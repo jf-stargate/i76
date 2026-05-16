@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+00499d20	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00499d24	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+00499d28	8b 15 c0 7c 5a 00	MOV	EDX, dword ptr [0x005a7cc0]	MOV EDX,dword ptr [0x005a7cc0]
+00499d2e	50	PUSH	EAX	PUSH EAX
+00499d2f	51	PUSH	ECX	PUSH ECX
+00499d30	6a 00	PUSH	0x0	PUSH 0x0
+00499d32	52	PUSH	EDX	PUSH EDX
+00499d33	ff 15 e4 c0 4b 00	CALL	dword ptr [0x004bc0e4]	CALL dword ptr [0x004bc0e4]
+00499d39	c3	RET		RET

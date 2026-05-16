@@ -1,0 +1,29 @@
+address	bytes	mnemonic	operands	instruction
+004195a0	d9 44 24 18	FLD	float ptr [ESP + 0x18]	FLD float ptr [ESP + 0x18]
+004195a4	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+004195a8	d9 44 24 1c	FLD	float ptr [ESP + 0x1c]	FLD float ptr [ESP + 0x1c]
+004195ac	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+004195b0	d9 c9	FXCH		FXCH
+004195b2	d8 44 24 08	FADD	float ptr [ESP + 0x8]	FADD float ptr [ESP + 0x8]
+004195b6	d9 44 24 20	FLD	float ptr [ESP + 0x20]	FLD float ptr [ESP + 0x20]
+004195ba	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+004195be	d9 ca	FXCH	ST2	FXCH ST2
+004195c0	d8 44 24 0c	FADD	float ptr [ESP + 0xc]	FADD float ptr [ESP + 0xc]
+004195c4	d9 c9	FXCH		FXCH
+004195c6	d9 5c 24 18	FSTP	float ptr [ESP + 0x18]	FSTP float ptr [ESP + 0x18]
+004195ca	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004195ce	8b 4c 24 18	MOV	ECX, dword ptr [ESP + 0x18]	MOV ECX,dword ptr [ESP + 0x18]
+004195d2	d9 c9	FXCH		FXCH
+004195d4	d8 44 24 10	FADD	float ptr [ESP + 0x10]	FADD float ptr [ESP + 0x10]
+004195d8	d9 c9	FXCH		FXCH
+004195da	d9 5c 24 1c	FSTP	float ptr [ESP + 0x1c]	FSTP float ptr [ESP + 0x1c]
+004195de	8b d0	MOV	EDX, EAX	MOV EDX,EAX
+004195e0	56	PUSH	ESI	PUSH ESI
+004195e1	8b 74 24 20	MOV	ESI, dword ptr [ESP + 0x20]	MOV ESI,dword ptr [ESP + 0x20]
+004195e5	d9 5c 24 24	FSTP	float ptr [ESP + 0x24]	FSTP float ptr [ESP + 0x24]
+004195e9	89 0a	MOV	dword ptr [EDX], ECX	MOV dword ptr [EDX],ECX
+004195eb	8b 4c 24 24	MOV	ECX, dword ptr [ESP + 0x24]	MOV ECX,dword ptr [ESP + 0x24]
+004195ef	89 72 04	MOV	dword ptr [EDX + 0x4], ESI	MOV dword ptr [EDX + 0x4],ESI
+004195f2	5e	POP	ESI	POP ESI
+004195f3	89 4a 08	MOV	dword ptr [EDX + 0x8], ECX	MOV dword ptr [EDX + 0x8],ECX
+004195f6	c3	RET		RET

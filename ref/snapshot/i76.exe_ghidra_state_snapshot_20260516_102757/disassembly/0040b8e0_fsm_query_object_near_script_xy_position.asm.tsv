@@ -1,0 +1,36 @@
+address	bytes	mnemonic	operands	instruction
+0040b8e0	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040b8e3	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+0040b8e7	8b 4c 24 14	MOV	ECX, dword ptr [ESP + 0x14]	MOV ECX,dword ptr [ESP + 0x14]
+0040b8eb	8b 40 54	MOV	EAX, dword ptr [EAX + 0x54]	MOV EAX,dword ptr [EAX + 0x54]
+0040b8ee	8b 09	MOV	ECX, dword ptr [ECX]	MOV ECX,dword ptr [ECX]
+0040b8f0	8b d1	MOV	EDX, ECX	MOV EDX,ECX
+0040b8f2	d9 40 08	FLD	float ptr [EAX + 0x8]	FLD float ptr [EAX + 0x8]
+0040b8f5	0f af d1	IMUL	EDX, ECX	IMUL EDX,ECX
+0040b8f8	d9 00	FLD	float ptr [EAX]	FLD float ptr [EAX]
+0040b8fa	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+0040b8fe	89 54 24 0c	MOV	dword ptr [ESP + 0xc], EDX	MOV dword ptr [ESP + 0xc],EDX
+0040b902	dc 60 40	FSUB	double ptr [EAX + 0x40]	FSUB double ptr [EAX + 0x40]
+0040b905	d9 c9	FXCH		FXCH
+0040b907	dc 60 50	FSUB	double ptr [EAX + 0x50]	FSUB double ptr [EAX + 0x50]
+0040b90a	d9 c9	FXCH		FXCH
+0040b90c	dd 54 24 00	FST	double ptr [ESP]	FST double ptr [ESP]
+0040b910	d9 c1	FLD	ST1	FLD ST1
+0040b912	d9 c9	FXCH		FXCH
+0040b914	dc 4c 24 00	FMUL	double ptr [ESP]	FMUL double ptr [ESP]
+0040b918	d9 c9	FXCH		FXCH
+0040b91a	d8 ca	FMUL	ST2	FMUL ST2
+0040b91c	db 44 24 0c	FILD	dword ptr [ESP + 0xc]	FILD dword ptr [ESP + 0xc]
+0040b920	d9 c9	FXCH		FXCH
+0040b922	de c2	FADDP	ST2, ST0	FADDP ST2,ST0
+0040b924	de d9	FCOMPP		FCOMPP
+0040b926	df e0	FNSTSW	AX	FNSTSW AX
+0040b928	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0040b92b	dd d8	FSTP	ST0	FSTP ST0
+0040b92d	75 09	JNZ	0x0040b938	JNZ 0x0040b938
+0040b92f	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+0040b934	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040b937	c3	RET		RET
+0040b938	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0040b93a	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040b93d	c3	RET		RET

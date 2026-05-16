@@ -1,0 +1,505 @@
+structure_name	category	length	field_ordinal	field_offset	field_length	field_name	field_type	field_comment
+_CONTEXT	/excpt.h	716	0	0	4	ContextFlags	DWORD	
+_CONTEXT	/excpt.h	716	1	4	4	Dr0	DWORD	
+_CONTEXT	/excpt.h	716	2	8	4	Dr1	DWORD	
+_CONTEXT	/excpt.h	716	3	12	4	Dr2	DWORD	
+_CONTEXT	/excpt.h	716	4	16	4	Dr3	DWORD	
+_CONTEXT	/excpt.h	716	5	20	4	Dr6	DWORD	
+_CONTEXT	/excpt.h	716	6	24	4	Dr7	DWORD	
+_CONTEXT	/excpt.h	716	7	28	112	FloatSave	FLOATING_SAVE_AREA	
+_CONTEXT	/excpt.h	716	8	140	4	SegGs	DWORD	
+_CONTEXT	/excpt.h	716	9	144	4	SegFs	DWORD	
+_CONTEXT	/excpt.h	716	10	148	4	SegEs	DWORD	
+_CONTEXT	/excpt.h	716	11	152	4	SegDs	DWORD	
+_CONTEXT	/excpt.h	716	12	156	4	Edi	DWORD	
+_CONTEXT	/excpt.h	716	13	160	4	Esi	DWORD	
+_CONTEXT	/excpt.h	716	14	164	4	Ebx	DWORD	
+_CONTEXT	/excpt.h	716	15	168	4	Edx	DWORD	
+_CONTEXT	/excpt.h	716	16	172	4	Ecx	DWORD	
+_CONTEXT	/excpt.h	716	17	176	4	Eax	DWORD	
+_CONTEXT	/excpt.h	716	18	180	4	Ebp	DWORD	
+_CONTEXT	/excpt.h	716	19	184	4	Eip	DWORD	
+_CONTEXT	/excpt.h	716	20	188	4	SegCs	DWORD	
+_CONTEXT	/excpt.h	716	21	192	4	EFlags	DWORD	
+_CONTEXT	/excpt.h	716	22	196	4	Esp	DWORD	
+_CONTEXT	/excpt.h	716	23	200	4	SegSs	DWORD	
+_CONTEXT	/excpt.h	716	24	204	512	ExtendedRegisters	BYTE[512]	
+_div_t	/stdlib.h	8	0	0	4	quot	int	
+_div_t	/stdlib.h	8	1	4	4	rem	int	
+_EXCEPTION_POINTERS	/excpt.h	8	0	0	4	ExceptionRecord	PEXCEPTION_RECORD	
+_EXCEPTION_POINTERS	/excpt.h	8	1	4	4	ContextRecord	PCONTEXT	
+_EXCEPTION_RECORD	/excpt.h	80	0	0	4	ExceptionCode	DWORD	
+_EXCEPTION_RECORD	/excpt.h	80	1	4	4	ExceptionFlags	DWORD	
+_EXCEPTION_RECORD	/excpt.h	80	2	8	4	ExceptionRecord	_EXCEPTION_RECORD *	
+_EXCEPTION_RECORD	/excpt.h	80	3	12	4	ExceptionAddress	PVOID	
+_EXCEPTION_RECORD	/excpt.h	80	4	16	4	NumberParameters	DWORD	
+_EXCEPTION_RECORD	/excpt.h	80	5	20	60	ExceptionInformation	ULONG_PTR[15]	
+_FILETIME	/WinDef.h	8	0	0	4	dwLowDateTime	DWORD	
+_FILETIME	/WinDef.h	8	1	4	4	dwHighDateTime	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	0	0	4	ControlWord	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	1	4	4	StatusWord	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	2	8	4	TagWord	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	3	12	4	ErrorOffset	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	4	16	4	ErrorSelector	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	5	20	4	DataOffset	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	6	24	4	DataSelector	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	7	28	80	RegisterArea	BYTE[80]	
+_FLOATING_SAVE_AREA	/winnt.h	112	8	108	4	Cr0NpxState	DWORD	
+_iobuf	/mbstring.h	32	0	0	4	_ptr	char *	
+_iobuf	/mbstring.h	32	1	4	4	_cnt	int	
+_iobuf	/mbstring.h	32	2	8	4	_base	char *	
+_iobuf	/mbstring.h	32	3	12	4	_flag	int	
+_iobuf	/mbstring.h	32	4	16	4	_file	int	
+_iobuf	/mbstring.h	32	5	20	4	_charbuf	int	
+_iobuf	/mbstring.h	32	6	24	4	_bufsiz	int	
+_iobuf	/mbstring.h	32	7	28	4	_tmpfname	char *	
+_MEMORY_BASIC_INFORMATION	/winnt.h	28	0	0	4	BaseAddress	PVOID	
+_MEMORY_BASIC_INFORMATION	/winnt.h	28	1	4	4	AllocationBase	PVOID	
+_MEMORY_BASIC_INFORMATION	/winnt.h	28	2	8	4	AllocationProtect	DWORD	
+_MEMORY_BASIC_INFORMATION	/winnt.h	28	3	12	4	RegionSize	SIZE_T	
+_MEMORY_BASIC_INFORMATION	/winnt.h	28	4	16	4	State	DWORD	
+_MEMORY_BASIC_INFORMATION	/winnt.h	28	5	20	4	Protect	DWORD	
+_MEMORY_BASIC_INFORMATION	/winnt.h	28	6	24	4	Type	DWORD	
+_MEMORYSTATUS	/winbase.h	32	0	0	4	dwLength	DWORD	
+_MEMORYSTATUS	/winbase.h	32	1	4	4	dwMemoryLoad	DWORD	
+_MEMORYSTATUS	/winbase.h	32	2	8	4	dwTotalPhys	SIZE_T	
+_MEMORYSTATUS	/winbase.h	32	3	12	4	dwAvailPhys	SIZE_T	
+_MEMORYSTATUS	/winbase.h	32	4	16	4	dwTotalPageFile	SIZE_T	
+_MEMORYSTATUS	/winbase.h	32	5	20	4	dwAvailPageFile	SIZE_T	
+_MEMORYSTATUS	/winbase.h	32	6	24	4	dwTotalVirtual	SIZE_T	
+_MEMORYSTATUS	/winbase.h	32	7	28	4	dwAvailVirtual	SIZE_T	
+_s_FuncInfo	/	28	0	0	4	magicNumber_and_bbtFlags	uint	
+_s_FuncInfo	/	28	1	4	4	maxState	__ehstate_t	
+_s_FuncInfo	/	28	2	8	4	pUnwindMap	UnwindMapEntry *	
+_s_FuncInfo	/	28	3	12	4	nTryBlocks	uint	
+_s_FuncInfo	/	28	4	16	4	pTryBlockMap	TryBlockMapEntry *	
+_s_FuncInfo	/	28	5	20	4	nIPMapEntries	uint	
+_s_FuncInfo	/	28	6	24	4	pIPToStateMap	void *	
+_s_HandlerType	/	16	0	0	4	adjectives	uint	
+_s_HandlerType	/	16	1	4	4	pType	TypeDescriptor *	
+_s_HandlerType	/	16	2	8	4	dispCatchObj	ptrdiff_t	
+_s_HandlerType	/	16	3	12	4	addressOfHandler	void *	
+_s_TryBlockMapEntry	/	20	0	0	4	tryLow	__ehstate_t	
+_s_TryBlockMapEntry	/	20	1	4	4	tryHigh	__ehstate_t	
+_s_TryBlockMapEntry	/	20	2	8	4	catchHigh	__ehstate_t	
+_s_TryBlockMapEntry	/	20	3	12	4	nCatches	int	
+_s_TryBlockMapEntry	/	20	4	16	4	pHandlerArray	HandlerType *	
+_s_UnwindMapEntry	/	8	0	0	4	toState	__ehstate_t	
+_s_UnwindMapEntry	/	8	1	4	4	action	action *	
+_SECURITY_ATTRIBUTES	/winbase.h	12	0	0	4	nLength	DWORD	
+_SECURITY_ATTRIBUTES	/winbase.h	12	1	4	4	lpSecurityDescriptor	LPVOID	
+_SECURITY_ATTRIBUTES	/winbase.h	12	2	8	4	bInheritHandle	BOOL	
+_startupinfo	/internal.h	4	0	0	4	newmode	int	
+_STARTUPINFOA	/winbase.h	68	0	0	4	cb	DWORD	
+_STARTUPINFOA	/winbase.h	68	1	4	4	lpReserved	LPSTR	
+_STARTUPINFOA	/winbase.h	68	2	8	4	lpDesktop	LPSTR	
+_STARTUPINFOA	/winbase.h	68	3	12	4	lpTitle	LPSTR	
+_STARTUPINFOA	/winbase.h	68	4	16	4	dwX	DWORD	
+_STARTUPINFOA	/winbase.h	68	5	20	4	dwY	DWORD	
+_STARTUPINFOA	/winbase.h	68	6	24	4	dwXSize	DWORD	
+_STARTUPINFOA	/winbase.h	68	7	28	4	dwYSize	DWORD	
+_STARTUPINFOA	/winbase.h	68	8	32	4	dwXCountChars	DWORD	
+_STARTUPINFOA	/winbase.h	68	9	36	4	dwYCountChars	DWORD	
+_STARTUPINFOA	/winbase.h	68	10	40	4	dwFillAttribute	DWORD	
+_STARTUPINFOA	/winbase.h	68	11	44	4	dwFlags	DWORD	
+_STARTUPINFOA	/winbase.h	68	12	48	2	wShowWindow	WORD	
+_STARTUPINFOA	/winbase.h	68	13	50	2	cbReserved2	WORD	
+_STARTUPINFOA	/winbase.h	68	14	52	4	lpReserved2	LPBYTE	
+_STARTUPINFOA	/winbase.h	68	15	56	4	hStdInput	HANDLE	
+_STARTUPINFOA	/winbase.h	68	16	60	4	hStdOutput	HANDLE	
+_STARTUPINFOA	/winbase.h	68	17	64	4	hStdError	HANDLE	
+_struct_531	/winbase.h	4	0	0	2	wProcessorArchitecture	WORD	
+_struct_531	/winbase.h	4	1	2	2	wReserved	WORD	
+_SYSTEM_INFO	/winbase.h	36	0	0	4	u	_union_530	
+_SYSTEM_INFO	/winbase.h	36	1	4	4	dwPageSize	DWORD	
+_SYSTEM_INFO	/winbase.h	36	2	8	4	lpMinimumApplicationAddress	LPVOID	
+_SYSTEM_INFO	/winbase.h	36	3	12	4	lpMaximumApplicationAddress	LPVOID	
+_SYSTEM_INFO	/winbase.h	36	4	16	4	dwActiveProcessorMask	DWORD_PTR	
+_SYSTEM_INFO	/winbase.h	36	5	20	4	dwNumberOfProcessors	DWORD	
+_SYSTEM_INFO	/winbase.h	36	6	24	4	dwProcessorType	DWORD	
+_SYSTEM_INFO	/winbase.h	36	7	28	4	dwAllocationGranularity	DWORD	
+_SYSTEM_INFO	/winbase.h	36	8	32	2	wProcessorLevel	WORD	
+_SYSTEM_INFO	/winbase.h	36	9	34	2	wProcessorRevision	WORD	
+_WIN32_FIND_DATAA	/winbase.h	320	0	0	4	dwFileAttributes	DWORD	
+_WIN32_FIND_DATAA	/winbase.h	320	1	4	8	ftCreationTime	FILETIME	
+_WIN32_FIND_DATAA	/winbase.h	320	2	12	8	ftLastAccessTime	FILETIME	
+_WIN32_FIND_DATAA	/winbase.h	320	3	20	8	ftLastWriteTime	FILETIME	
+_WIN32_FIND_DATAA	/winbase.h	320	4	28	4	nFileSizeHigh	DWORD	
+_WIN32_FIND_DATAA	/winbase.h	320	5	32	4	nFileSizeLow	DWORD	
+_WIN32_FIND_DATAA	/winbase.h	320	6	36	4	dwReserved0	DWORD	
+_WIN32_FIND_DATAA	/winbase.h	320	7	40	4	dwReserved1	DWORD	
+_WIN32_FIND_DATAA	/winbase.h	320	8	44	260	cFileName	CHAR[260]	
+_WIN32_FIND_DATAA	/winbase.h	320	9	304	14	cAlternateFileName	CHAR[14]	
+CLIENT_ID	/	8	0	0	4	UniqueProcess	void *	
+CLIENT_ID	/	8	1	4	4	UniqueThread	void *	
+HBITMAP__	/WinDef.h	4	0	0	4	unused	int	
+HBRUSH__	/WinDef.h	4	0	0	4	unused	int	
+HDC__	/WinDef.h	4	0	0	4	unused	int	
+HFONT__	/WinDef.h	4	0	0	4	unused	int	
+HICON__	/WinDef.h	4	0	0	4	unused	int	
+HIMC__	/imm.h	4	0	0	4	unused	int	
+HINSTANCE__	/WinDef.h	4	0	0	4	unused	int	
+HKEY__	/WinDef.h	4	0	0	4	unused	int	
+HMENU__	/WinDef.h	4	0	0	4	unused	int	
+HPALETTE__	/WinDef.h	4	0	0	4	unused	int	
+HWND__	/WinDef.h	4	0	0	4	unused	int	
+i76_ai_vehicle_behavior_state_partial	/i76	43056	0	0	40192	pad_0	byte[40192]	padding
+i76_ai_vehicle_behavior_state_partial	/i76	43056	1	40192	4	special_damage_event_time_seconds	float	Special/alternate damage event timestamp.
+i76_ai_vehicle_behavior_state_partial	/i76	43056	2	40196	48	pad_9d04	byte[48]	padding
+i76_ai_vehicle_behavior_state_partial	/i76	43056	3	40244	4	secondary_behavior_expire_time	float	AI secondary behavior expiry time.
+i76_ai_vehicle_behavior_state_partial	/i76	43056	4	40248	2804	pad_9d38	byte[2804]	padding
+i76_ai_vehicle_behavior_state_partial	/i76	43056	5	43052	4	primary_behavior_expire_time	float	AI primary behavior expiry time.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	40192	40192	4	special_damage_event_time_seconds	float	Observed in record_vehicle_damage_source_event for damage flag class 0x0006 or null source.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	40241	40244	4	secondary_timer_expire_time_seconds	float	Used by is_ai_behavior_secondary_timer_expired.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42702	42708	4	recent_special_damage_tick	dword	Recent special damage source tick/frame/event counter.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42703	42712	4	recent_normal_damage_tick	dword	Recent normal damage source tick/frame/event counter.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42704	42716	4	latest_damage_tick	dword	Latest damage source tick/frame/event counter.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42705	42720	4	latest_damage_source_is_active_player	dword	Set when latest damage source is active player/camera object.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42706	42724	4	recent_normal_damage_source_object	pointer	Recent normal damage source world object.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42707	42728	4	recent_special_damage_source_object	pointer	Recent special damage source world object.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42708	42732	4	latest_damage_source_object	pointer	Latest damage source world object.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	42709	42736	4	latest_damage_time_seconds	float	Latest damage source gameplay-runtime seconds.
+i76_ai_vehicle_behavior_state_partial.conflict	/i76	43088	43054	43084	4	primary_timer_expire_time_seconds	float	Used by is_ai_behavior_primary_timer_expired.
+i76_runtime_clock_state_partial	/i76	144	0	0	4	gameplay_step_seconds	float	Gameplay step delta candidate.
+i76_runtime_clock_state_partial	/i76	144	1	4	4	gameplay_step_inverse	float	Reciprocal gameplay step candidate.
+i76_runtime_clock_state_partial	/i76	144	2	8	4	raw_frame_delta_seconds	float	Raw/clamped frame delta candidate.
+i76_runtime_clock_state_partial	/i76	144	3	12	4	raw_frame_delta_inverse	float	Reciprocal raw frame delta candidate.
+i76_runtime_clock_state_partial	/i76	144	4	16	128	pad_10	byte[128]	padding
+i76_vehicle_control_intent_candidate	/i76	20	0	0	4	steering_or_axis_0	float	Potential control axis field
+i76_vehicle_control_intent_candidate	/i76	20	1	4	4	throttle_or_axis_1	float	Potential control axis field
+i76_vehicle_control_intent_candidate	/i76	20	2	8	4	brake_or_axis_2	float	Potential control axis field
+i76_vehicle_control_intent_candidate	/i76	20	3	12	4	handbrake_or_axis_3	float	Potential control axis field
+i76_vehicle_control_intent_candidate	/i76	20	4	16	4	fire_or_control_flags	dword	Potential fire/control flags
+i76_vehicle_runtime_partial	/i76	1152	0	0	56	pad_0	byte[56]	padding
+i76_vehicle_runtime_partial	/i76	1152	1	56	4	contact_or_wheel_probe_state_38	undefined4	Wheel/ground probe state area candidate.
+i76_vehicle_runtime_partial	/i76	1152	2	60	112	pad_3c	byte[112]	padding
+i76_vehicle_runtime_partial	/i76	1152	3	172	4	speed_ac	float	Vehicle speed magnitude candidate.
+i76_vehicle_runtime_partial	/i76	1152	4	176	4	inverse_speed_b0	float	Reciprocal speed or huge sentinel candidate.
+i76_vehicle_runtime_partial	/i76	1152	5	180	8	pad_b4	byte[8]	padding
+i76_vehicle_runtime_partial	/i76	1152	6	188	4	velocity_or_state_vec0_x	float	Vehicle state/vector candidate X.
+i76_vehicle_runtime_partial	/i76	1152	7	192	4	velocity_or_state_vec0_y	float	Vehicle state/vector candidate Y.
+i76_vehicle_runtime_partial	/i76	1152	8	196	4	velocity_or_state_vec0_z	float	Vehicle state/vector candidate Z.
+i76_vehicle_runtime_partial	/i76	1152	9	200	4	orientation_or_state_vec1_x	float	Vehicle state/vector candidate X.
+i76_vehicle_runtime_partial	/i76	1152	10	204	4	orientation_or_state_vec1_y	float	Vehicle state/vector candidate Y.
+i76_vehicle_runtime_partial	/i76	1152	11	208	4	orientation_or_state_vec1_z	float	Vehicle state/vector candidate Z.
+i76_vehicle_runtime_partial	/i76	1152	12	212	16	pad_d4	byte[16]	padding
+i76_vehicle_runtime_partial	/i76	1152	13	228	4	engine_or_drivetrain_state_e4	dword	Passed to engine gear/RPM/torque update.
+i76_vehicle_runtime_partial	/i76	1152	14	232	4	movement_or_drive_scalar_e8	float	Tested against 0.0 in drivetrain update.
+i76_vehicle_runtime_partial	/i76	1152	15	236	28	pad_ec	byte[28]	padding
+i76_vehicle_runtime_partial	/i76	1152	16	264	4	ai_fsm_damage_event_state	pointer	Vehicle AI/FSM damage attribution state block.
+i76_vehicle_runtime_partial	/i76	1152	17	268	668	pad_10c	byte[668]	padding
+i76_vehicle_runtime_partial	/i76	1152	18	936	4	tire_child_or_component_3a8	pointer	Tire/child runtime pointer candidate.
+i76_vehicle_runtime_partial	/i76	1152	19	940	4	tire_child_or_component_3ac	pointer	Tire/child runtime pointer candidate.
+i76_vehicle_runtime_partial	/i76	1152	20	944	4	optional_tire_child_3b0	pointer	Optional tire/child runtime pointer candidate.
+i76_vehicle_runtime_partial	/i76	1152	21	948	4	optional_tire_child_3b4	pointer	Optional tire/child runtime pointer candidate.
+i76_vehicle_runtime_partial	/i76	1152	22	952	4	tire_contact_component_3b8	pointer	Tire contact runtime pointer candidate.
+i76_vehicle_runtime_partial	/i76	1152	23	956	4	tire_contact_component_3bc	pointer	Tire contact runtime pointer candidate.
+i76_vehicle_runtime_partial	/i76	1152	24	960	4	pad_3c0	byte[4]	padding
+i76_vehicle_runtime_partial	/i76	1152	25	964	4	engine_or_drivetrain_child_3c4	pointer	Engine/drivetrain child/runtime pointer candidate.
+i76_vehicle_runtime_partial	/i76	1152	26	968	124	pad_3c8	byte[124]	padding
+i76_vehicle_runtime_partial	/i76	1152	27	1092	4	fixed_step_accumulator_444	undefined4	Vehicle fixed-step accumulator/timer area; initialized with 0.05f.
+i76_vehicle_runtime_partial	/i76	1152	28	1096	12	pad_448	byte[12]	padding
+i76_vehicle_runtime_partial	/i76	1152	29	1108	4	vehicle_contact_runtime_flags_454	dword	Central vehicle contact/status flags.
+i76_vehicle_runtime_partial	/i76	1152	30	1112	4	damage_speed_or_last_impact_458	float	Damage/impact speed scalar candidate.
+i76_vehicle_runtime_partial	/i76	1152	31	1116	4	terrain_or_contact_state_45c	dword	Terrain/contact/material state candidate.
+i76_vehicle_runtime_partial	/i76	1152	32	1120	4	surface_normal_or_up_x	float	Surface normal/up vector X; initialized to 0.
+i76_vehicle_runtime_partial	/i76	1152	33	1124	4	surface_normal_or_up_y	float	Surface normal/up vector Y; initialized to 1.
+i76_vehicle_runtime_partial	/i76	1152	34	1128	4	surface_normal_or_up_z	float	Surface normal/up vector Z; initialized to 0.
+i76_vehicle_runtime_partial	/i76	1152	35	1132	4	surface_response_or_gravity_scalar_46c	float	9.8f default; gravity/contact-response candidate.
+i76_vehicle_runtime_partial	/i76	1152	36	1136	4	pad_470	byte[4]	padding
+i76_vehicle_runtime_partial	/i76	1152	37	1140	4	previous_ground_height_or_contact_474	float	Ground height/contact scalar candidate.
+i76_vehicle_runtime_partial	/i76	1152	38	1144	8	pad_478	byte[8]	padding
+i76_vehicle_runtime_partial.conflict	/i76	1127	16	16	4	aio_patch_gate_candidate_10	dword	AIO patch uses this field instead of +0x44 in record_vehicle_damage_source_event gate.
+i76_vehicle_runtime_partial.conflict	/i76	1127	65	68	4	retail_damage_source_gate_candidate_44	dword	Retail field used by record_vehicle_damage_source_event gate before AIO patch.
+i76_vehicle_runtime_partial.conflict	/i76	1127	258	264	4	damage_event_state	pointer	Pointer/base used by vehicle damage event / AI reaction state helpers.
+i76_vehicle_runtime_partial.conflict	/i76	1127	1099	1108	4	vehicle_runtime_flags_454	dword	Vehicle runtime flags; record_vehicle_damage_source_event tests bit 0x20.
+i76_vehicle_runtime_partial.conflict1	/i76	1120	0	0	4	vehicle_runtime_header	dword	Runtime header/first field candidate
+i76_vehicle_runtime_partial.conflict1	/i76	1120	1	4	1	pad_4	undefined1	
+i76_vehicle_runtime_partial.conflict1	/i76	1120	13	16	4	aio_patch_preferred_gate_field	dword	AIO patch changed damage attribution gate to this field in related runtime
+i76_vehicle_runtime_partial.conflict1	/i76	1120	14	20	1	pad_14	undefined1	
+i76_vehicle_runtime_partial.conflict1	/i76	1120	62	68	4	retail_damage_attribution_gate_field	dword	Retail damage attribution gate field in related runtime
+i76_vehicle_runtime_partial.conflict1	/i76	1120	63	72	1	pad_48	undefined1	
+i76_vehicle_runtime_partial.conflict1	/i76	1120	255	264	4	damage_event_state	pointer	Vehicle damage/FSM attribution state block candidate
+i76_vehicle_runtime_partial.conflict1	/i76	1120	256	268	1	pad_10c	undefined1	
+i76_vehicle_runtime_partial.conflict1	/i76	1120	1080	1092	4	fixed_step_accumulator	undefined4	Vehicle fixed-step accumulator area candidate
+i76_vehicle_runtime_partial.conflict1	/i76	1120	1081	1096	1	pad_448	undefined1	
+i76_vehicle_runtime_partial.conflict1	/i76	1120	1093	1108	4	vehicle_runtime_flags_454	dword	Vehicle runtime flags observed in update/damage paths
+i76_vehicle_runtime_partial.conflict1	/i76	1120	1094	1112	1	pad_458	undefined1	
+i76_vehicle_runtime_partial.conflict1	/i76	1120	1098	1116	4	vehicle_runtime_flags_45c	dword	Secondary runtime flags candidate
+i76_world_object_class_descriptor_partial	/i76	52	0	0	4	class_id	dword	Canonical world-object class id.
+i76_world_object_class_descriptor_partial	/i76	52	1	4	4	construct_callback	pointer	Class constructor/runtime allocation callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	2	8	4	init_callback	pointer	Class init callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	3	12	4	pre_update_callback	pointer	Pre-update/frame-begin class callback.
+i76_world_object_class_descriptor_partial	/i76	52	4	16	4	post_update_or_visual_callback	pointer	Post-update/visual/secondary callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	5	20	4	callback_14	pointer	Unknown descriptor callback slot.
+i76_world_object_class_descriptor_partial	/i76	52	6	24	4	callback_18	pointer	Unknown descriptor callback slot.
+i76_world_object_class_descriptor_partial	/i76	52	7	28	4	vector_callback	pointer	Damage/target vector callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	8	32	4	transform_callback	pointer	Transform/damage builder callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	9	36	4	damage_transform_callback	pointer	Damage transform callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	10	40	4	target_or_placement_callback	pointer	Target/placement callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	11	44	4	damage_callback	pointer	Damage callback candidate.
+i76_world_object_class_descriptor_partial	/i76	52	12	48	4	release_callback	pointer	Class release callback.
+i76_world_object_partial	/i76	144	0	0	8	pad_0	byte[8]	padding
+i76_world_object_partial	/i76	144	1	8	2	stop_or_destroyed_word_08	word	Tested after fixed-step vehicle physics loop; stop/destroyed candidate.
+i76_world_object_partial	/i76	144	2	10	6	pad_a	byte[6]	padding
+i76_world_object_partial	/i76	144	3	16	4	object_flags_10	dword	World object flags; bit 0x20 gates/suppresses normal vehicle control update.
+i76_world_object_partial	/i76	144	4	20	28	pad_14	byte[28]	padding
+i76_world_object_partial	/i76	144	5	48	4	pos_x	float	World position X candidate.
+i76_world_object_partial	/i76	144	6	52	4	pos_y	float	World position Y candidate.
+i76_world_object_partial	/i76	144	7	56	4	pos_z	float	World position Z candidate.
+i76_world_object_partial	/i76	144	8	60	48	pad_3c	byte[48]	padding
+i76_world_object_partial	/i76	144	9	108	4	class_id	dword	World-object class id candidate.
+i76_world_object_partial	/i76	144	10	112	4	class_runtime	pointer	Per-class runtime payload; VehicleRuntime for class 1.
+i76_world_object_partial	/i76	144	11	116	4	pad_74	byte[4]	padding
+i76_world_object_partial	/i76	144	12	120	4	parent_or_owner	pointer	Owner/parent candidate.
+i76_world_object_partial	/i76	144	13	124	8	pad_7c	byte[8]	padding
+i76_world_object_partial	/i76	144	14	132	4	child_or_component_list	pointer	Child/component list candidate.
+i76_world_object_partial	/i76	144	15	136	8	pad_88	byte[8]	padding
+i76_world_object_partial.conflict	/i76	119	112	112	4	runtime_or_vehicle_context	pointer	Common world-object runtime pointer. Vehicle objects point at vehicle runtime/context here.
+i76_world_object_partial.conflict1	/i76	136	0	0	1	pad_1	undefined1	
+i76_world_object_partial.conflict1	/i76	136	15	15	4	flags10_or_runtime_flags	dword	Observed in vehicle update gates
+i76_world_object_partial.conflict1	/i76	136	16	19	1	pad_13	undefined1	
+i76_world_object_partial.conflict1	/i76	136	45	48	4	pos_x	float	World position X candidate
+i76_world_object_partial.conflict1	/i76	136	46	52	4	pos_y	float	World position Y candidate
+i76_world_object_partial.conflict1	/i76	136	47	56	4	pos_z	float	World position Z candidate
+i76_world_object_partial.conflict1	/i76	136	48	60	1	pad_3c	undefined1	
+i76_world_object_partial.conflict1	/i76	136	96	108	4	class_id	dword	World-object class id candidate
+i76_world_object_partial.conflict1	/i76	136	97	112	4	class_runtime	pointer	Per-class runtime payload; vehicle runtime for class 1
+i76_world_object_partial.conflict1	/i76	136	98	116	1	pad_74	undefined1	
+i76_world_object_partial.conflict1	/i76	136	102	120	4	parent_or_owner	pointer	Owner/parent candidate
+i76_world_object_partial.conflict1	/i76	136	103	124	1	pad_7c	undefined1	
+i76_world_object_partial.conflict1	/i76	136	111	132	4	child_or_component_list	pointer	Child/component list candidate
+IMAGE_DATA_DIRECTORY	/PE	8	0	0	4	VirtualAddress	ImageBaseOffset32	
+IMAGE_DATA_DIRECTORY	/PE	8	1	4	4	Size	dword	
+IMAGE_DOS_HEADER	/DOS	128	0	0	2	e_magic	char[2]	Magic number
+IMAGE_DOS_HEADER	/DOS	128	1	2	2	e_cblp	word	Bytes of last page
+IMAGE_DOS_HEADER	/DOS	128	2	4	2	e_cp	word	Pages in file
+IMAGE_DOS_HEADER	/DOS	128	3	6	2	e_crlc	word	Relocations
+IMAGE_DOS_HEADER	/DOS	128	4	8	2	e_cparhdr	word	Size of header in paragraphs
+IMAGE_DOS_HEADER	/DOS	128	5	10	2	e_minalloc	word	Minimum extra paragraphs needed
+IMAGE_DOS_HEADER	/DOS	128	6	12	2	e_maxalloc	word	Maximum extra paragraphs needed
+IMAGE_DOS_HEADER	/DOS	128	7	14	2	e_ss	word	Initial (relative) SS value
+IMAGE_DOS_HEADER	/DOS	128	8	16	2	e_sp	word	Initial SP value
+IMAGE_DOS_HEADER	/DOS	128	9	18	2	e_csum	word	Checksum
+IMAGE_DOS_HEADER	/DOS	128	10	20	2	e_ip	word	Initial IP value
+IMAGE_DOS_HEADER	/DOS	128	11	22	2	e_cs	word	Initial (relative) CS value
+IMAGE_DOS_HEADER	/DOS	128	12	24	2	e_lfarlc	word	File address of relocation table
+IMAGE_DOS_HEADER	/DOS	128	13	26	2	e_ovno	word	Overlay number
+IMAGE_DOS_HEADER	/DOS	128	14	28	8	e_res[4]	word[4]	Reserved words
+IMAGE_DOS_HEADER	/DOS	128	15	36	2	e_oemid	word	OEM identifier (for e_oeminfo)
+IMAGE_DOS_HEADER	/DOS	128	16	38	2	e_oeminfo	word	OEM information; e_oemid specific
+IMAGE_DOS_HEADER	/DOS	128	17	40	20	e_res2[10]	word[10]	Reserved words
+IMAGE_DOS_HEADER	/DOS	128	18	60	4	e_lfanew	dword	File address of new exe header
+IMAGE_DOS_HEADER	/DOS	128	19	64	64	e_program	byte[64]	Actual DOS program
+IMAGE_FILE_HEADER	/PE	20	0	0	2	Machine	word	332
+IMAGE_FILE_HEADER	/PE	20	1	2	2	NumberOfSections	word	
+IMAGE_FILE_HEADER	/PE	20	2	4	4	TimeDateStamp	dword	
+IMAGE_FILE_HEADER	/PE	20	3	8	4	PointerToSymbolTable	dword	
+IMAGE_FILE_HEADER	/PE	20	4	12	4	NumberOfSymbols	dword	
+IMAGE_FILE_HEADER	/PE	20	5	16	2	SizeOfOptionalHeader	word	
+IMAGE_FILE_HEADER	/PE	20	6	18	2	Characteristics	word	
+IMAGE_NT_HEADERS32	/PE	248	0	0	4	Signature	char[4]	
+IMAGE_NT_HEADERS32	/PE	248	1	4	20	FileHeader	IMAGE_FILE_HEADER	
+IMAGE_NT_HEADERS32	/PE	248	2	24	224	OptionalHeader	IMAGE_OPTIONAL_HEADER32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	0	0	2	Magic	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	1	2	1	MajorLinkerVersion	byte	
+IMAGE_OPTIONAL_HEADER32	/PE	224	2	3	1	MinorLinkerVersion	byte	
+IMAGE_OPTIONAL_HEADER32	/PE	224	3	4	4	SizeOfCode	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	4	8	4	SizeOfInitializedData	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	5	12	4	SizeOfUninitializedData	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	6	16	4	AddressOfEntryPoint	ImageBaseOffset32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	7	20	4	BaseOfCode	ImageBaseOffset32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	8	24	4	BaseOfData	ImageBaseOffset32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	9	28	4	ImageBase	pointer32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	10	32	4	SectionAlignment	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	11	36	4	FileAlignment	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	12	40	2	MajorOperatingSystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	13	42	2	MinorOperatingSystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	14	44	2	MajorImageVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	15	46	2	MinorImageVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	16	48	2	MajorSubsystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	17	50	2	MinorSubsystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	18	52	4	Win32VersionValue	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	19	56	4	SizeOfImage	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	20	60	4	SizeOfHeaders	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	21	64	4	CheckSum	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	22	68	2	Subsystem	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	23	70	2	DllCharacteristics	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	24	72	4	SizeOfStackReserve	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	25	76	4	SizeOfStackCommit	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	26	80	4	SizeOfHeapReserve	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	27	84	4	SizeOfHeapCommit	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	28	88	4	LoaderFlags	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	29	92	4	NumberOfRvaAndSizes	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	30	96	128	DataDirectory	IMAGE_DATA_DIRECTORY[16]	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	0	0	4	OffsetToData	dword	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	1	4	4	Size	dword	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	2	8	4	CodePage	dword	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	3	12	4	Reserved	dword	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	0	0	4	Characteristics	dword	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	1	4	4	TimeDateStamp	dword	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	2	8	2	MajorVersion	word	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	3	10	2	MinorVersion	word	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	4	12	2	NumberOfNamedEntries	word	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	5	14	2	NumberOfIdEntries	word	
+IMAGE_RESOURCE_DIRECTORY_ENTRY	/PE	8	0	0	4	NameUnion	IMAGE_RESOURCE_DIRECTORY_ENTRY_NameUnion	
+IMAGE_RESOURCE_DIRECTORY_ENTRY	/PE	8	1	4	4	DirectoryUnion	IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryUnion	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct	/	4	0	0	4	OffsetToDirectory	dword:31	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct	/	4	1	3	1	DataIsDirectory	dword:1	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct	/PE	4	0	0	4	NameOffset	dword:31	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct	/PE	4	1	3	1	NameIsString	dword:1	
+IMAGE_SECTION_HEADER	/PE	40	0	0	8	Name	char[8]	
+IMAGE_SECTION_HEADER	/PE	40	1	8	4	Misc	Misc	
+IMAGE_SECTION_HEADER	/PE	40	2	12	4	VirtualAddress	ImageBaseOffset32	
+IMAGE_SECTION_HEADER	/PE	40	3	16	4	SizeOfRawData	dword	
+IMAGE_SECTION_HEADER	/PE	40	4	20	4	PointerToRawData	dword	
+IMAGE_SECTION_HEADER	/PE	40	5	24	4	PointerToRelocations	dword	
+IMAGE_SECTION_HEADER	/PE	40	6	28	4	PointerToLinenumbers	dword	
+IMAGE_SECTION_HEADER	/PE	40	7	32	2	NumberOfRelocations	word	
+IMAGE_SECTION_HEADER	/PE	40	8	34	2	NumberOfLinenumbers	word	
+IMAGE_SECTION_HEADER	/PE	40	9	36	4	Characteristics	SectionFlags	
+joyinfoex_tag	/mmsystem.h	52	0	0	4	dwSize	DWORD	
+joyinfoex_tag	/mmsystem.h	52	1	4	4	dwFlags	DWORD	
+joyinfoex_tag	/mmsystem.h	52	2	8	4	dwXpos	DWORD	
+joyinfoex_tag	/mmsystem.h	52	3	12	4	dwYpos	DWORD	
+joyinfoex_tag	/mmsystem.h	52	4	16	4	dwZpos	DWORD	
+joyinfoex_tag	/mmsystem.h	52	5	20	4	dwRpos	DWORD	
+joyinfoex_tag	/mmsystem.h	52	6	24	4	dwUpos	DWORD	
+joyinfoex_tag	/mmsystem.h	52	7	28	4	dwVpos	DWORD	
+joyinfoex_tag	/mmsystem.h	52	8	32	4	dwButtons	DWORD	
+joyinfoex_tag	/mmsystem.h	52	9	36	4	dwButtonNumber	DWORD	
+joyinfoex_tag	/mmsystem.h	52	10	40	4	dwPOV	DWORD	
+joyinfoex_tag	/mmsystem.h	52	11	44	4	dwReserved1	DWORD	
+joyinfoex_tag	/mmsystem.h	52	12	48	4	dwReserved2	DWORD	
+StringFileInfo	/PE	6	0	0	2	wLength	word	
+StringFileInfo	/PE	6	1	2	2	wValueLength	word	
+StringFileInfo	/PE	6	2	4	2	wType	word	
+StringInfo	/PE	6	0	0	2	wLength	word	
+StringInfo	/PE	6	1	2	2	wValueLength	word	
+StringInfo	/PE	6	2	4	2	wType	word	
+StringTable	/PE	6	0	0	2	wLength	word	
+StringTable	/PE	6	1	2	2	wValueLength	word	
+StringTable	/PE	6	2	4	2	wType	word	
+tagAUXCAPSA	/mmsystem.h	48	0	0	2	wMid	WORD	
+tagAUXCAPSA	/mmsystem.h	48	1	2	2	wPid	WORD	
+tagAUXCAPSA	/mmsystem.h	48	2	4	4	vDriverVersion	MMVERSION	
+tagAUXCAPSA	/mmsystem.h	48	3	8	32	szPname	CHAR[32]	
+tagAUXCAPSA	/mmsystem.h	48	4	40	2	wTechnology	WORD	
+tagAUXCAPSA	/mmsystem.h	48	5	42	2	wReserved1	WORD	
+tagAUXCAPSA	/mmsystem.h	48	6	44	4	dwSupport	DWORD	
+tagBITMAPINFO	/wingdi.h	44	0	0	40	bmiHeader	BITMAPINFOHEADER	
+tagBITMAPINFO	/wingdi.h	44	1	40	4	bmiColors	RGBQUAD[1]	
+tagBITMAPINFOHEADER	/wingdi.h	40	0	0	4	biSize	DWORD	
+tagBITMAPINFOHEADER	/wingdi.h	40	1	4	4	biWidth	LONG	
+tagBITMAPINFOHEADER	/wingdi.h	40	2	8	4	biHeight	LONG	
+tagBITMAPINFOHEADER	/wingdi.h	40	3	12	2	biPlanes	WORD	
+tagBITMAPINFOHEADER	/wingdi.h	40	4	14	2	biBitCount	WORD	
+tagBITMAPINFOHEADER	/wingdi.h	40	5	16	4	biCompression	DWORD	
+tagBITMAPINFOHEADER	/wingdi.h	40	6	20	4	biSizeImage	DWORD	
+tagBITMAPINFOHEADER	/wingdi.h	40	7	24	4	biXPelsPerMeter	LONG	
+tagBITMAPINFOHEADER	/wingdi.h	40	8	28	4	biYPelsPerMeter	LONG	
+tagBITMAPINFOHEADER	/wingdi.h	40	9	32	4	biClrUsed	DWORD	
+tagBITMAPINFOHEADER	/wingdi.h	40	10	36	4	biClrImportant	DWORD	
+tagJOYCAPSA	/mmsystem.h	404	0	0	2	wMid	WORD	
+tagJOYCAPSA	/mmsystem.h	404	1	2	2	wPid	WORD	
+tagJOYCAPSA	/mmsystem.h	404	2	4	32	szPname	CHAR[32]	
+tagJOYCAPSA	/mmsystem.h	404	3	36	4	wXmin	UINT	
+tagJOYCAPSA	/mmsystem.h	404	4	40	4	wXmax	UINT	
+tagJOYCAPSA	/mmsystem.h	404	5	44	4	wYmin	UINT	
+tagJOYCAPSA	/mmsystem.h	404	6	48	4	wYmax	UINT	
+tagJOYCAPSA	/mmsystem.h	404	7	52	4	wZmin	UINT	
+tagJOYCAPSA	/mmsystem.h	404	8	56	4	wZmax	UINT	
+tagJOYCAPSA	/mmsystem.h	404	9	60	4	wNumButtons	UINT	
+tagJOYCAPSA	/mmsystem.h	404	10	64	4	wPeriodMin	UINT	
+tagJOYCAPSA	/mmsystem.h	404	11	68	4	wPeriodMax	UINT	
+tagJOYCAPSA	/mmsystem.h	404	12	72	4	wRmin	UINT	
+tagJOYCAPSA	/mmsystem.h	404	13	76	4	wRmax	UINT	
+tagJOYCAPSA	/mmsystem.h	404	14	80	4	wUmin	UINT	
+tagJOYCAPSA	/mmsystem.h	404	15	84	4	wUmax	UINT	
+tagJOYCAPSA	/mmsystem.h	404	16	88	4	wVmin	UINT	
+tagJOYCAPSA	/mmsystem.h	404	17	92	4	wVmax	UINT	
+tagJOYCAPSA	/mmsystem.h	404	18	96	4	wCaps	UINT	
+tagJOYCAPSA	/mmsystem.h	404	19	100	4	wMaxAxes	UINT	
+tagJOYCAPSA	/mmsystem.h	404	20	104	4	wNumAxes	UINT	
+tagJOYCAPSA	/mmsystem.h	404	21	108	4	wMaxButtons	UINT	
+tagJOYCAPSA	/mmsystem.h	404	22	112	32	szRegKey	CHAR[32]	
+tagJOYCAPSA	/mmsystem.h	404	23	144	260	szOEMVxD	CHAR[260]	
+tagLOGFONTA	/wingdi.h	60	0	0	4	lfHeight	LONG	
+tagLOGFONTA	/wingdi.h	60	1	4	4	lfWidth	LONG	
+tagLOGFONTA	/wingdi.h	60	2	8	4	lfEscapement	LONG	
+tagLOGFONTA	/wingdi.h	60	3	12	4	lfOrientation	LONG	
+tagLOGFONTA	/wingdi.h	60	4	16	4	lfWeight	LONG	
+tagLOGFONTA	/wingdi.h	60	5	20	1	lfItalic	BYTE	
+tagLOGFONTA	/wingdi.h	60	6	21	1	lfUnderline	BYTE	
+tagLOGFONTA	/wingdi.h	60	7	22	1	lfStrikeOut	BYTE	
+tagLOGFONTA	/wingdi.h	60	8	23	1	lfCharSet	BYTE	
+tagLOGFONTA	/wingdi.h	60	9	24	1	lfOutPrecision	BYTE	
+tagLOGFONTA	/wingdi.h	60	10	25	1	lfClipPrecision	BYTE	
+tagLOGFONTA	/wingdi.h	60	11	26	1	lfQuality	BYTE	
+tagLOGFONTA	/wingdi.h	60	12	27	1	lfPitchAndFamily	BYTE	
+tagLOGFONTA	/wingdi.h	60	13	28	32	lfFaceName	CHAR[32]	
+tagLOGPALETTE	/wingdi.h	8	0	0	2	palVersion	WORD	
+tagLOGPALETTE	/wingdi.h	8	1	2	2	palNumEntries	WORD	
+tagLOGPALETTE	/wingdi.h	8	2	4	4	palPalEntry	PALETTEENTRY[1]	
+tagMSG	/winuser.h	28	0	0	4	hwnd	HWND	
+tagMSG	/winuser.h	28	1	4	4	message	UINT	
+tagMSG	/winuser.h	28	2	8	4	wParam	WPARAM	
+tagMSG	/winuser.h	28	3	12	4	lParam	LPARAM	
+tagMSG	/winuser.h	28	4	16	4	time	DWORD	
+tagMSG	/winuser.h	28	5	20	8	pt	POINT	
+tagPAINTSTRUCT	/winuser.h	64	0	0	4	hdc	HDC	
+tagPAINTSTRUCT	/winuser.h	64	1	4	4	fErase	BOOL	
+tagPAINTSTRUCT	/winuser.h	64	2	8	16	rcPaint	RECT	
+tagPAINTSTRUCT	/winuser.h	64	3	24	4	fRestore	BOOL	
+tagPAINTSTRUCT	/winuser.h	64	4	28	4	fIncUpdate	BOOL	
+tagPAINTSTRUCT	/winuser.h	64	5	32	32	rgbReserved	BYTE[32]	
+tagPALETTEENTRY	/wingdi.h	4	0	0	1	peRed	BYTE	
+tagPALETTEENTRY	/wingdi.h	4	1	1	1	peGreen	BYTE	
+tagPALETTEENTRY	/wingdi.h	4	2	2	1	peBlue	BYTE	
+tagPALETTEENTRY	/wingdi.h	4	3	3	1	peFlags	BYTE	
+tagPOINT	/WinDef.h	8	0	0	4	x	LONG	
+tagPOINT	/WinDef.h	8	1	4	4	y	LONG	
+tagRECT	/WinDef.h	16	0	0	4	left	LONG	
+tagRECT	/WinDef.h	16	1	4	4	top	LONG	
+tagRECT	/WinDef.h	16	2	8	4	right	LONG	
+tagRECT	/WinDef.h	16	3	12	4	bottom	LONG	
+tagRGBQUAD	/wingdi.h	4	0	0	1	rgbBlue	BYTE	
+tagRGBQUAD	/wingdi.h	4	1	1	1	rgbGreen	BYTE	
+tagRGBQUAD	/wingdi.h	4	2	2	1	rgbRed	BYTE	
+tagRGBQUAD	/wingdi.h	4	3	3	1	rgbReserved	BYTE	
+tagSIZE	/WinDef.h	8	0	0	4	cx	LONG	
+tagSIZE	/WinDef.h	8	1	4	4	cy	LONG	
+tagWNDCLASSA	/winuser.h	40	0	0	4	style	UINT	
+tagWNDCLASSA	/winuser.h	40	1	4	4	lpfnWndProc	WNDPROC	
+tagWNDCLASSA	/winuser.h	40	2	8	4	cbClsExtra	int	
+tagWNDCLASSA	/winuser.h	40	3	12	4	cbWndExtra	int	
+tagWNDCLASSA	/winuser.h	40	4	16	4	hInstance	HINSTANCE	
+tagWNDCLASSA	/winuser.h	40	5	20	4	hIcon	HICON	
+tagWNDCLASSA	/winuser.h	40	6	24	4	hCursor	HCURSOR	
+tagWNDCLASSA	/winuser.h	40	7	28	4	hbrBackground	HBRUSH	
+tagWNDCLASSA	/winuser.h	40	8	32	4	lpszMenuName	LPCSTR	
+tagWNDCLASSA	/winuser.h	40	9	36	4	lpszClassName	LPCSTR	
+TypeDescriptor	/	8	0	0	4	hash	dword	
+TypeDescriptor	/	8	1	4	4	spare	void *	
+TypeDescriptor	/	8	2	8	0	name	char[0]	
+Var	/PE	6	0	0	2	wLength	word	
+Var	/PE	6	1	2	2	wValueLength	word	
+Var	/PE	6	2	4	2	wType	word	
+VarFileInfo	/PE	6	0	0	2	wLength	word	
+VarFileInfo	/PE	6	1	2	2	wValueLength	word	
+VarFileInfo	/PE	6	2	4	2	wType	word	
+VS_VERSION_INFO	/PE	92	0	0	2	StructLength	word	
+VS_VERSION_INFO	/PE	92	1	2	2	ValueLength	word	
+VS_VERSION_INFO	/PE	92	2	4	2	StructType	word	
+VS_VERSION_INFO	/PE	92	3	6	32	Info	unicode	
+VS_VERSION_INFO	/PE	92	4	38	2	Padding	byte[2]	
+VS_VERSION_INFO	/PE	92	5	40	4	Signature	dword	
+VS_VERSION_INFO	/PE	92	6	44	4	StructVersion	word[2]	
+VS_VERSION_INFO	/PE	92	7	48	8	FileVersion	word[4]	
+VS_VERSION_INFO	/PE	92	8	56	8	ProductVersion	word[4]	
+VS_VERSION_INFO	/PE	92	9	64	8	FileFlagsMask	dword[2]	
+VS_VERSION_INFO	/PE	92	10	72	4	FileFlags	dword	
+VS_VERSION_INFO	/PE	92	11	76	4	FileOS	dword	
+VS_VERSION_INFO	/PE	92	12	80	4	FileType	dword	
+VS_VERSION_INFO	/PE	92	13	84	4	FileSubtype	dword	
+VS_VERSION_INFO	/PE	92	14	88	4	FileTimestamp	dword	

@@ -1,0 +1,35 @@
+address	bytes	mnemonic	operands	instruction
+004adf70	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+004adf74	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004adf78	53	PUSH	EBX	PUSH EBX
+004adf79	55	PUSH	EBP	PUSH EBP
+004adf7a	8b 50 04	MOV	EDX, dword ptr [EAX + 0x4]	MOV EDX,dword ptr [EAX + 0x4]
+004adf7d	56	PUSH	ESI	PUSH ESI
+004adf7e	8d 59 08	LEA	EBX, [ECX + 0x8]	LEA EBX,[ECX + 0x8]
+004adf81	57	PUSH	EDI	PUSH EDI
+004adf82	8b fb	MOV	EDI, EBX	MOV EDI,EBX
+004adf84	83 c9 ff	OR	ECX, 0xffffffff	OR ECX,0xffffffff
+004adf87	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004adf89	8d aa a0 00 00 00	LEA	EBP, [EDX + 0xa0]	LEA EBP,[EDX + 0xa0]
+004adf8f	f2 ae	SCASB.REPNE	ES:EDI	SCASB.REPNE ES:EDI
+004adf91	f7 d1	NOT	ECX	NOT ECX
+004adf93	2b f9	SUB	EDI, ECX	SUB EDI,ECX
+004adf95	8b c1	MOV	EAX, ECX	MOV EAX,ECX
+004adf97	8b f7	MOV	ESI, EDI	MOV ESI,EDI
+004adf99	8b fd	MOV	EDI, EBP	MOV EDI,EBP
+004adf9b	c1 e9 02	SHR	ECX, 0x2	SHR ECX,0x2
+004adf9e	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+004adfa0	8b c8	MOV	ECX, EAX	MOV ECX,EAX
+004adfa2	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004adfa7	83 e1 03	AND	ECX, 0x3	AND ECX,0x3
+004adfaa	f3 a4	MOVSB.REP	ES:EDI, ESI	MOVSB.REP ES:EDI,ESI
+004adfac	8b 4b 3c	MOV	ECX, dword ptr [EBX + 0x3c]	MOV ECX,dword ptr [EBX + 0x3c]
+004adfaf	5f	POP	EDI	POP EDI
+004adfb0	89 8a 5c 0a 00 00	MOV	dword ptr [EDX + 0xa5c], ECX	MOV dword ptr [EDX + 0xa5c],ECX
+004adfb6	5e	POP	ESI	POP ESI
+004adfb7	d9 43 30	FLD	float ptr [EBX + 0x30]	FLD float ptr [EBX + 0x30]
+004adfba	5d	POP	EBP	POP EBP
+004adfbb	5b	POP	EBX	POP EBX
+004adfbc	d9 92 a4 0a 00 00	FST	float ptr [EDX + 0xaa4]	FST float ptr [EDX + 0xaa4]
+004adfc2	d9 9a a0 0a 00 00	FSTP	float ptr [EDX + 0xaa0]	FSTP float ptr [EDX + 0xaa0]
+004adfc8	c3	RET		RET

@@ -1,0 +1,12 @@
+address	bytes	mnemonic	operands	instruction
+0044eca0	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0044eca2	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+0044eca4	a3 e0 92 60 00	MOV	[0x006092e0], EAX	MOV [0x006092e0],EAX
+0044eca9	89 0d d0 92 60 00	MOV	dword ptr [0x006092d0], ECX	MOV dword ptr [0x006092d0],ECX
+0044ecaf	a3 e4 92 60 00	MOV	[0x006092e4], EAX	MOV [0x006092e4],EAX
+0044ecb4	89 0d d4 92 60 00	MOV	dword ptr [0x006092d4], ECX	MOV dword ptr [0x006092d4],ECX
+0044ecba	a3 e8 92 60 00	MOV	[0x006092e8], EAX	MOV [0x006092e8],EAX
+0044ecbf	89 0d d8 92 60 00	MOV	dword ptr [0x006092d8], ECX	MOV dword ptr [0x006092d8],ECX
+0044ecc5	a3 ec 92 60 00	MOV	[0x006092ec], EAX	MOV [0x006092ec],EAX
+0044ecca	89 0d dc 92 60 00	MOV	dword ptr [0x006092dc], ECX	MOV dword ptr [0x006092dc],ECX
+0044ecd0	c3	RET		RET

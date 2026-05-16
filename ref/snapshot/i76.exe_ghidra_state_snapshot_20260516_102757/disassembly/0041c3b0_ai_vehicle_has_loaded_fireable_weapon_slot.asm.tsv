@@ -1,0 +1,38 @@
+address	bytes	mnemonic	operands	instruction
+0041c3b0	55	PUSH	EBP	PUSH EBP
+0041c3b1	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0041c3b3	83 ec 64	SUB	ESP, 0x64	SUB ESP,0x64
+0041c3b6	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+0041c3b9	50	PUSH	EAX	PUSH EAX
+0041c3ba	e8 31 ff ff ff	CALL	0x0041c2f0	CALL 0x0041c2f0
+0041c3bf	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0041c3c2	89 45 f8	MOV	dword ptr [EBP + -0x8], EAX	MOV dword ptr [EBP + -0x8],EAX
+0041c3c5	c7 45 9c 00 00 00 00	MOV	dword ptr [EBP + -0x64], 0x0	MOV dword ptr [EBP + -0x64],0x0
+0041c3cc	eb 09	JMP	0x0041c3d7	JMP 0x0041c3d7
+0041c3ce	8b 4d 9c	MOV	ECX, dword ptr [EBP + -0x64]	MOV ECX,dword ptr [EBP + -0x64]
+0041c3d1	83 c1 01	ADD	ECX, 0x1	ADD ECX,0x1
+0041c3d4	89 4d 9c	MOV	dword ptr [EBP + -0x64], ECX	MOV dword ptr [EBP + -0x64],ECX
+0041c3d7	8b 55 f8	MOV	EDX, dword ptr [EBP + -0x8]	MOV EDX,dword ptr [EBP + -0x8]
+0041c3da	8b 45 9c	MOV	EAX, dword ptr [EBP + -0x64]	MOV EAX,dword ptr [EBP + -0x64]
+0041c3dd	3b 82 f4 a6 00 00	CMP	EAX, dword ptr [EDX + 0xa6f4]	CMP EAX,dword ptr [EDX + 0xa6f4]
+0041c3e3	7d 36	JGE	0x0041c41b	JGE 0x0041c41b
+0041c3e5	8d 4d a0	LEA	ECX, [EBP + -0x60]	LEA ECX,[EBP + -0x60]
+0041c3e8	51	PUSH	ECX	PUSH ECX
+0041c3e9	8b 55 9c	MOV	EDX, dword ptr [EBP + -0x64]	MOV EDX,dword ptr [EBP + -0x64]
+0041c3ec	8b 45 f8	MOV	EAX, dword ptr [EBP + -0x8]	MOV EAX,dword ptr [EBP + -0x8]
+0041c3ef	8b 8c 90 f8 a6 00 00	MOV	ECX, dword ptr [EAX + EDX*0x4 + 0xa6f8]	MOV ECX,dword ptr [EAX + EDX*0x4 + 0xa6f8]
+0041c3f6	8b 55 f8	MOV	EDX, dword ptr [EBP + -0x8]	MOV EDX,dword ptr [EBP + -0x8]
+0041c3f9	8b 84 8a 1c a7 00 00	MOV	EAX, dword ptr [EDX + ECX*0x4 + 0xa71c]	MOV EAX,dword ptr [EDX + ECX*0x4 + 0xa71c]
+0041c400	50	PUSH	EAX	PUSH EAX
+0041c401	e8 fa 6f 08 00	CALL	0x004a3400	CALL 0x004a3400
+0041c406	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041c409	89 45 fc	MOV	dword ptr [EBP + -0x4], EAX	MOV dword ptr [EBP + -0x4],EAX
+0041c40c	83 7d e4 00	CMP	dword ptr [EBP + -0x1c], 0x0	CMP dword ptr [EBP + -0x1c],0x0
+0041c410	76 07	JBE	0x0041c419	JBE 0x0041c419
+0041c412	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+0041c417	eb 04	JMP	0x0041c41d	JMP 0x0041c41d
+0041c419	eb b3	JMP	0x0041c3ce	JMP 0x0041c3ce
+0041c41b	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0041c41d	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0041c41f	5d	POP	EBP	POP EBP
+0041c420	c3	RET		RET

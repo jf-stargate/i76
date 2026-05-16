@@ -1,0 +1,26 @@
+address	bytes	mnemonic	operands	instruction
+00445fd0	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00445fd4	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00445fd6	74 38	JZ	0x00446010	JZ 0x00446010
+00445fd8	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+00445fdc	85 d2	TEST	EDX, EDX	TEST EDX,EDX
+00445fde	74 30	JZ	0x00446010	JZ 0x00446010
+00445fe0	8b 48 1c	MOV	ECX, dword ptr [EAX + 0x1c]	MOV ECX,dword ptr [EAX + 0x1c]
+00445fe3	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+00445fe5	75 07	JNZ	0x00445fee	JNZ 0x00445fee
+00445fe7	8b 48 18	MOV	ECX, dword ptr [EAX + 0x18]	MOV ECX,dword ptr [EAX + 0x18]
+00445fea	89 0a	MOV	dword ptr [EDX], ECX	MOV dword ptr [EDX],ECX
+00445fec	eb 06	JMP	0x00445ff4	JMP 0x00445ff4
+00445fee	8b 50 18	MOV	EDX, dword ptr [EAX + 0x18]	MOV EDX,dword ptr [EAX + 0x18]
+00445ff1	89 51 18	MOV	dword ptr [ECX + 0x18], EDX	MOV dword ptr [ECX + 0x18],EDX
+00445ff4	8b 48 18	MOV	ECX, dword ptr [EAX + 0x18]	MOV ECX,dword ptr [EAX + 0x18]
+00445ff7	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+00445ff9	74 06	JZ	0x00446001	JZ 0x00446001
+00445ffb	8b 50 1c	MOV	EDX, dword ptr [EAX + 0x1c]	MOV EDX,dword ptr [EAX + 0x1c]
+00445ffe	89 51 1c	MOV	dword ptr [ECX + 0x1c], EDX	MOV dword ptr [ECX + 0x1c],EDX
+00446001	50	PUSH	EAX	PUSH EAX
+00446002	a1 cc bb 52 00	MOV	EAX, [0x0052bbcc]	MOV EAX,[0x0052bbcc]
+00446007	6a 00	PUSH	0x0	PUSH 0x0
+00446009	50	PUSH	EAX	PUSH EAX
+0044600a	ff 15 04 c1 4b 00	CALL	dword ptr [0x004bc104]	CALL dword ptr [0x004bc104]
+00446010	c3	RET		RET

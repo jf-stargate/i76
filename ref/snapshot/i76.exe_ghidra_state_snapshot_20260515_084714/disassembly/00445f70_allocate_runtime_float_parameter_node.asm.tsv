@@ -1,0 +1,35 @@
+address	bytes	mnemonic	operands	instruction
+00445f70	a1 d0 bb 52 00	MOV	EAX, [0x0052bbd0]	MOV EAX,[0x0052bbd0]
+00445f75	56	PUSH	ESI	PUSH ESI
+00445f76	33 f6	XOR	ESI, ESI	XOR ESI,ESI
+00445f78	3b c6	CMP	EAX, ESI	CMP EAX,ESI
+00445f7a	75 04	JNZ	0x00445f80	JNZ 0x00445f80
+00445f7c	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+00445f7e	5e	POP	ESI	POP ESI
+00445f7f	c3	RET		RET
+00445f80	a1 cc bb 52 00	MOV	EAX, [0x0052bbcc]	MOV EAX,[0x0052bbcc]
+00445f85	6a 20	PUSH	0x20	PUSH 0x20
+00445f87	56	PUSH	ESI	PUSH ESI
+00445f88	50	PUSH	EAX	PUSH EAX
+00445f89	ff 15 08 c1 4b 00	CALL	dword ptr [0x004bc108]	CALL dword ptr [0x004bc108]
+00445f8f	3b c6	CMP	EAX, ESI	CMP EAX,ESI
+00445f91	74 2d	JZ	0x00445fc0	JZ 0x00445fc0
+00445f93	3b c6	CMP	EAX, ESI	CMP EAX,ESI
+00445f95	89 70 10	MOV	dword ptr [EAX + 0x10], ESI	MOV dword ptr [EAX + 0x10],ESI
+00445f98	89 70 14	MOV	dword ptr [EAX + 0x14], ESI	MOV dword ptr [EAX + 0x14],ESI
+00445f9b	89 30	MOV	dword ptr [EAX], ESI	MOV dword ptr [EAX],ESI
+00445f9d	89 70 04	MOV	dword ptr [EAX + 0x4], ESI	MOV dword ptr [EAX + 0x4],ESI
+00445fa0	89 70 1c	MOV	dword ptr [EAX + 0x1c], ESI	MOV dword ptr [EAX + 0x1c],ESI
+00445fa3	89 70 18	MOV	dword ptr [EAX + 0x18], ESI	MOV dword ptr [EAX + 0x18],ESI
+00445fa6	74 18	JZ	0x00445fc0	JZ 0x00445fc0
+00445fa8	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+00445fac	8b 11	MOV	EDX, dword ptr [ECX]	MOV EDX,dword ptr [ECX]
+00445fae	89 50 18	MOV	dword ptr [EAX + 0x18], EDX	MOV dword ptr [EAX + 0x18],EDX
+00445fb1	89 01	MOV	dword ptr [ECX], EAX	MOV dword ptr [ECX],EAX
+00445fb3	8b 48 18	MOV	ECX, dword ptr [EAX + 0x18]	MOV ECX,dword ptr [EAX + 0x18]
+00445fb6	89 70 1c	MOV	dword ptr [EAX + 0x1c], ESI	MOV dword ptr [EAX + 0x1c],ESI
+00445fb9	3b ce	CMP	ECX, ESI	CMP ECX,ESI
+00445fbb	74 03	JZ	0x00445fc0	JZ 0x00445fc0
+00445fbd	89 41 1c	MOV	dword ptr [ECX + 0x1c], EAX	MOV dword ptr [ECX + 0x1c],EAX
+00445fc0	5e	POP	ESI	POP ESI
+00445fc1	c3	RET		RET

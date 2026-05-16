@@ -1,0 +1,8 @@
+address	bytes	mnemonic	operands	instruction
+00467370	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00467374	83 78 6c 01	CMP	dword ptr [EAX + 0x6c], 0x1	CMP dword ptr [EAX + 0x6c],0x1
+00467378	75 0d	JNZ	0x00467387	JNZ 0x00467387
+0046737a	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+0046737d	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+00467381	89 88 04 01 00 00	MOV	dword ptr [EAX + 0x104], ECX	MOV dword ptr [EAX + 0x104],ECX
+00467387	c3	RET		RET

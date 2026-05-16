@@ -1,0 +1,21 @@
+address	bytes	mnemonic	operands	instruction
+00416e50	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00416e54	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+00416e58	56	PUSH	ESI	PUSH ESI
+00416e59	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+00416e5c	8b b1 08 01 00 00	MOV	ESI, dword ptr [ECX + 0x108]	MOV ESI,dword ptr [ECX + 0x108]
+00416e62	89 96 98 a9 00 00	MOV	dword ptr [ESI + 0xa998], EDX	MOV dword ptr [ESI + 0xa998],EDX
+00416e68	e8 53 59 08 00	CALL	0x0049c7c0	CALL 0x0049c7c0
+00416e6d	d9 5c 24 0c	FSTP	float ptr [ESP + 0xc]	FSTP float ptr [ESP + 0xc]
+00416e71	ff 15 0c c2 4b 00	CALL	dword ptr [0x004bc20c]	CALL dword ptr [0x004bc20c]
+00416e77	99	CDQ		CDQ
+00416e78	b9 0f 00 00 00	MOV	ECX, 0xf	MOV ECX,0xf
+00416e7d	c7 86 80 00 00 00 00 00 0c 42	MOV	dword ptr [ESI + 0x80], 0x420c0000	MOV dword ptr [ESI + 0x80],0x420c0000
+00416e87	f7 f9	IDIV	ECX	IDIV ECX
+00416e89	89 54 24 08	MOV	dword ptr [ESP + 0x8], EDX	MOV dword ptr [ESP + 0x8],EDX
+00416e8d	db 44 24 08	FILD	dword ptr [ESP + 0x8]	FILD dword ptr [ESP + 0x8]
+00416e91	d8 44 24 0c	FADD	float ptr [ESP + 0xc]	FADD float ptr [ESP + 0xc]
+00416e95	d8 25 ac c8 4b 00	FSUB	float ptr [0x004bc8ac]	FSUB float ptr [0x004bc8ac]
+00416e9b	d9 9e 2c a8 00 00	FSTP	float ptr [ESI + 0xa82c]	FSTP float ptr [ESI + 0xa82c]
+00416ea1	5e	POP	ESI	POP ESI
+00416ea2	c3	RET		RET

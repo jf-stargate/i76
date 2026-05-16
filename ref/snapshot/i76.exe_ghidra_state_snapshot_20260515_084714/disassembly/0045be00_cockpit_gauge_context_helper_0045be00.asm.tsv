@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+0045be00	8b 0d 38 a4 54 00	MOV	ECX, dword ptr [0x0054a438]	MOV ECX,dword ptr [0x0054a438]
+0045be06	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0045be08	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0045be0a	0f 94 c0	SETZ	AL	SETZ AL
+0045be0d	a3 38 a4 54 00	MOV	[0x0054a438], EAX	MOV [0x0054a438],EAX
+0045be12	c3	RET		RET

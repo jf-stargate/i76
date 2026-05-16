@@ -1,0 +1,45 @@
+address	bytes	mnemonic	operands	instruction
+00491810	53	PUSH	EBX	PUSH EBX
+00491811	8b 5c 24 08	MOV	EBX, dword ptr [ESP + 0x8]	MOV EBX,dword ptr [ESP + 0x8]
+00491815	8b 0d 20 d3 5d 00	MOV	ECX, dword ptr [0x005dd320]	MOV ECX,dword ptr [0x005dd320]
+0049181b	56	PUSH	ESI	PUSH ESI
+0049181c	0f bf 03	MOVSX	EAX, word ptr [EBX]	MOVSX EAX,word ptr [EBX]
+0049181f	8b 35 80 43 65 00	MOV	ESI, dword ptr [0x00654380]	MOV ESI,dword ptr [0x00654380]
+00491825	57	PUSH	EDI	PUSH EDI
+00491826	8d 04 40	LEA	EAX, [EAX + EAX*0x2]	LEA EAX,[EAX + EAX*0x2]
+00491829	8d 56 1c	LEA	EDX, [ESI + 0x1c]	LEA EDX,[ESI + 0x1c]
+0049182c	8d 3c 81	LEA	EDI, [ECX + EAX*0x4]	LEA EDI,[ECX + EAX*0x4]
+0049182f	89 15 80 43 65 00	MOV	dword ptr [0x00654380], EDX	MOV dword ptr [0x00654380],EDX
+00491835	d9 07	FLD	float ptr [EDI]	FLD float ptr [EDI]
+00491837	dc 25 18 e8 4b 00	FSUB	double ptr [0x004be818]	FSUB double ptr [0x004be818]
+0049183d	e8 4e 88 02 00	CALL	0x004ba090	CALL 0x004ba090
+00491842	66 89 06	MOV	word ptr [ESI], AX	MOV word ptr [ESI],AX
+00491845	d9 47 08	FLD	float ptr [EDI + 0x8]	FLD float ptr [EDI + 0x8]
+00491848	dc 25 18 e8 4b 00	FSUB	double ptr [0x004be818]	FSUB double ptr [0x004be818]
+0049184e	e8 3d 88 02 00	CALL	0x004ba090	CALL 0x004ba090
+00491853	8b 7c 24 14	MOV	EDI, dword ptr [ESP + 0x14]	MOV EDI,dword ptr [ESP + 0x14]
+00491857	66 89 46 02	MOV	word ptr [ESI + 0x2], AX	MOV word ptr [ESI + 0x2],AX
+0049185b	8b 0d 20 d3 5d 00	MOV	ECX, dword ptr [0x005dd320]	MOV ECX,dword ptr [0x005dd320]
+00491861	0f bf 47 02	MOVSX	EAX, word ptr [EDI + 0x2]	MOVSX EAX,word ptr [EDI + 0x2]
+00491865	8d 04 40	LEA	EAX, [EAX + EAX*0x2]	LEA EAX,[EAX + EAX*0x2]
+00491868	d9 04 81	FLD	float ptr [ECX + EAX*0x4]	FLD float ptr [ECX + EAX*0x4]
+0049186b	dc 25 18 e8 4b 00	FSUB	double ptr [0x004be818]	FSUB double ptr [0x004be818]
+00491871	e8 1a 88 02 00	CALL	0x004ba090	CALL 0x004ba090
+00491876	0f bf 16	MOVSX	EDX, word ptr [ESI]	MOVSX EDX,word ptr [ESI]
+00491879	8b 4c 24 1c	MOV	ECX, dword ptr [ESP + 0x1c]	MOV ECX,dword ptr [ESP + 0x1c]
+0049187d	2b c2	SUB	EAX, EDX	SUB EAX,EDX
+0049187f	89 46 04	MOV	dword ptr [ESI + 0x4], EAX	MOV dword ptr [ESI + 0x4],EAX
+00491882	8b 44 24 18	MOV	EAX, dword ptr [ESP + 0x18]	MOV EAX,dword ptr [ESP + 0x18]
+00491886	89 5e 0c	MOV	dword ptr [ESI + 0xc], EBX	MOV dword ptr [ESI + 0xc],EBX
+00491889	89 7e 10	MOV	dword ptr [ESI + 0x10], EDI	MOV dword ptr [ESI + 0x10],EDI
+0049188c	89 46 14	MOV	dword ptr [ESI + 0x14], EAX	MOV dword ptr [ESI + 0x14],EAX
+0049188f	89 4e 18	MOV	dword ptr [ESI + 0x18], ECX	MOV dword ptr [ESI + 0x18],ECX
+00491892	c7 46 08 00 00 00 00	MOV	dword ptr [ESI + 0x8], 0x0	MOV dword ptr [ESI + 0x8],0x0
+00491899	a1 6c c5 59 00	MOV	EAX, [0x0059c56c]	MOV EAX,[0x0059c56c]
+0049189e	40	INC	EAX	INC EAX
+0049189f	5f	POP	EDI	POP EDI
+004918a0	a3 6c c5 59 00	MOV	[0x0059c56c], EAX	MOV [0x0059c56c],EAX
+004918a5	8b c6	MOV	EAX, ESI	MOV EAX,ESI
+004918a7	5e	POP	ESI	POP ESI
+004918a8	5b	POP	EBX	POP EBX
+004918a9	c3	RET		RET

@@ -1,0 +1,12 @@
+address	bytes	mnemonic	operands	instruction
+0043f030	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0043f034	d9 40 0c	FLD	float ptr [EAX + 0xc]	FLD float ptr [EAX + 0xc]
+0043f037	d9 40 04	FLD	float ptr [EAX + 0x4]	FLD float ptr [EAX + 0x4]
+0043f03a	d8 4c 24 08	FMUL	float ptr [ESP + 0x8]	FMUL float ptr [ESP + 0x8]
+0043f03e	d9 c9	FXCH		FXCH
+0043f040	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0043f044	de c1	FADDP		FADDP
+0043f046	d8 40 10	FADD	float ptr [EAX + 0x10]	FADD float ptr [EAX + 0x10]
+0043f049	d8 70 08	FDIV	float ptr [EAX + 0x8]	FDIV float ptr [EAX + 0x8]
+0043f04c	d9 e0	FCHS		FCHS
+0043f04e	c3	RET		RET

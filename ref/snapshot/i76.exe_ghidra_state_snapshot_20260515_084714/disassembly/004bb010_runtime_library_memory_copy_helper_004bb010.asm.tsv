@@ -1,0 +1,31 @@
+address	bytes	mnemonic	operands	instruction
+004bb010	83 ec 24	SUB	ESP, 0x24	SUB ESP,0x24
+004bb013	dd 44 24 54	FLD	double ptr [ESP + 0x54]	FLD double ptr [ESP + 0x54]
+004bb017	8b 44 24 38	MOV	EAX, dword ptr [ESP + 0x38]	MOV EAX,dword ptr [ESP + 0x38]
+004bb01b	8b 4c 24 3c	MOV	ECX, dword ptr [ESP + 0x3c]	MOV ECX,dword ptr [ESP + 0x3c]
+004bb01f	d9 5c 24 18	FSTP	float ptr [ESP + 0x18]	FSTP float ptr [ESP + 0x18]
+004bb023	dd 44 24 5c	FLD	double ptr [ESP + 0x5c]	FLD double ptr [ESP + 0x5c]
+004bb027	8b 54 24 40	MOV	EDX, dword ptr [ESP + 0x40]	MOV EDX,dword ptr [ESP + 0x40]
+004bb02b	89 44 24 0c	MOV	dword ptr [ESP + 0xc], EAX	MOV dword ptr [ESP + 0xc],EAX
+004bb02f	8b 44 24 44	MOV	EAX, dword ptr [ESP + 0x44]	MOV EAX,dword ptr [ESP + 0x44]
+004bb033	89 4c 24 10	MOV	dword ptr [ESP + 0x10], ECX	MOV dword ptr [ESP + 0x10],ECX
+004bb037	d9 5c 24 1c	FSTP	float ptr [ESP + 0x1c]	FSTP float ptr [ESP + 0x1c]
+004bb03b	8b 4c 24 48	MOV	ECX, dword ptr [ESP + 0x48]	MOV ECX,dword ptr [ESP + 0x48]
+004bb03f	89 44 24 00	MOV	dword ptr [ESP], EAX	MOV dword ptr [ESP],EAX
+004bb043	dd 44 24 64	FLD	double ptr [ESP + 0x64]	FLD double ptr [ESP + 0x64]
+004bb047	8b 44 24 28	MOV	EAX, dword ptr [ESP + 0x28]	MOV EAX,dword ptr [ESP + 0x28]
+004bb04b	56	PUSH	ESI	PUSH ESI
+004bb04c	d9 5c 24 24	FSTP	float ptr [ESP + 0x24]	FSTP float ptr [ESP + 0x24]
+004bb050	89 54 24 18	MOV	dword ptr [ESP + 0x18], EDX	MOV dword ptr [ESP + 0x18],EDX
+004bb054	8b 54 24 50	MOV	EDX, dword ptr [ESP + 0x50]	MOV EDX,dword ptr [ESP + 0x50]
+004bb058	57	PUSH	EDI	PUSH EDI
+004bb059	89 4c 24 0c	MOV	dword ptr [ESP + 0xc], ECX	MOV dword ptr [ESP + 0xc],ECX
+004bb05d	b9 09 00 00 00	MOV	ECX, 0x9	MOV ECX,0x9
+004bb062	8d 74 24 08	LEA	ESI, [ESP + 0x8]	LEA ESI,[ESP + 0x8]
+004bb066	8b f8	MOV	EDI, EAX	MOV EDI,EAX
+004bb068	89 54 24 10	MOV	dword ptr [ESP + 0x10], EDX	MOV dword ptr [ESP + 0x10],EDX
+004bb06c	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+004bb06e	5f	POP	EDI	POP EDI
+004bb06f	5e	POP	ESI	POP ESI
+004bb070	83 c4 24	ADD	ESP, 0x24	ADD ESP,0x24
+004bb073	c3	RET		RET

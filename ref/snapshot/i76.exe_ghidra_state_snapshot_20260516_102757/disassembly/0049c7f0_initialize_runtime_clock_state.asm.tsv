@@ -1,0 +1,38 @@
+address	bytes	mnemonic	operands	instruction
+0049c7f0	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0049c7f3	d9 05 9c e9 4b 00	FLD	float ptr [0x004be99c]	FLD float ptr [0x004be99c]
+0049c7f9	d9 05 a0 e9 4b 00	FLD	float ptr [0x004be9a0]	FLD float ptr [0x004be9a0]
+0049c7ff	d9 05 98 e9 4b 00	FLD	float ptr [0x004be998]	FLD float ptr [0x004be998]
+0049c805	d9 05 9c e9 4b 00	FLD	float ptr [0x004be99c]	FLD float ptr [0x004be99c]
+0049c80b	d9 05 a0 e9 4b 00	FLD	float ptr [0x004be9a0]	FLD float ptr [0x004be9a0]
+0049c811	d9 05 98 e9 4b 00	FLD	float ptr [0x004be998]	FLD float ptr [0x004be998]
+0049c817	d9 cd	FXCH	ST5	FXCH ST5
+0049c819	d9 1d 20 e4 4f 00	FSTP	float ptr [0x004fe420]	FSTP float ptr [0x004fe420]
+0049c81f	d9 cb	FXCH	ST3	FXCH ST3
+0049c821	d9 1d 24 e4 4f 00	FSTP	float ptr [0x004fe424]	FSTP float ptr [0x004fe424]
+0049c827	d9 c9	FXCH		FXCH
+0049c829	d9 1d 70 7e 5a 00	FSTP	float ptr [0x005a7e70]	FSTP float ptr [0x005a7e70]
+0049c82f	c7 05 14 7e 5a 00 00 00 00 00	MOV	dword ptr [0x005a7e14], 0x0	MOV dword ptr [0x005a7e14],0x0
+0049c839	c7 05 18 7e 5a 00 00 00 00 00	MOV	dword ptr [0x005a7e18], 0x0	MOV dword ptr [0x005a7e18],0x0
+0049c843	d9 1d 28 e4 4f 00	FSTP	float ptr [0x004fe428]	FSTP float ptr [0x004fe428]
+0049c849	c7 05 1c 7e 5a 00 00 00 00 00	MOV	dword ptr [0x005a7e1c], 0x0	MOV dword ptr [0x005a7e1c],0x0
+0049c853	d9 1d 2c e4 4f 00	FSTP	float ptr [0x004fe42c]	FSTP float ptr [0x004fe42c]
+0049c859	d9 1d 74 7e 5a 00	FSTP	float ptr [0x005a7e74]	FSTP float ptr [0x005a7e74]
+0049c85f	ff 15 00 c1 4b 00	CALL	dword ptr [0x004bc100]	CALL dword ptr [0x004bc100]
+0049c865	89 44 24 00	MOV	dword ptr [ESP], EAX	MOV dword ptr [ESP],EAX
+0049c869	c7 44 24 04 00 00 00 00	MOV	dword ptr [ESP + 0x4], 0x0	MOV dword ptr [ESP + 0x4],0x0
+0049c871	df 6c 24 00	FILD	qword ptr [ESP]	FILD qword ptr [ESP]
+0049c875	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+0049c877	b8 20 7e 5a 00	MOV	EAX, 0x5a7e20	MOV EAX,0x5a7e20
+0049c87c	d8 0d 94 e9 4b 00	FMUL	float ptr [0x004be994]	FMUL float ptr [0x004be994]
+0049c882	d9 1d 10 7e 5a 00	FSTP	float ptr [0x005a7e10]	FSTP float ptr [0x005a7e10]
+0049c888	41	INC	ECX	INC ECX
+0049c889	83 c0 04	ADD	EAX, 0x4	ADD EAX,0x4
+0049c88c	89 4c 24 00	MOV	dword ptr [ESP], ECX	MOV dword ptr [ESP],ECX
+0049c890	3d 70 7e 5a 00	CMP	EAX, 0x5a7e70	CMP EAX,0x5a7e70
+0049c895	db 44 24 00	FILD	dword ptr [ESP]	FILD dword ptr [ESP]
+0049c899	d8 3d a4 e9 4b 00	FDIVR	float ptr [0x004be9a4]	FDIVR float ptr [0x004be9a4]
+0049c89f	d9 58 fc	FSTP	float ptr [EAX + -0x4]	FSTP float ptr [EAX + -0x4]
+0049c8a2	7c e4	JL	0x0049c888	JL 0x0049c888
+0049c8a4	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0049c8a7	c3	RET		RET

@@ -1,0 +1,27 @@
+address	bytes	mnemonic	operands	instruction
+004229f0	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+004229f4	56	PUSH	ESI	PUSH ESI
+004229f5	57	PUSH	EDI	PUSH EDI
+004229f6	b9 1f 00 00 00	MOV	ECX, 0x1f	MOV ECX,0x1f
+004229fb	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004229fd	8b fa	MOV	EDI, EDX	MOV EDI,EDX
+004229ff	f3 ab	STOSD.REP	ES:EDI	STOSD.REP ES:EDI
+00422a01	8d 72 04	LEA	ESI, [EDX + 0x4]	LEA ESI,[EDX + 0x4]
+00422a04	b9 0b 00 00 00	MOV	ECX, 0xb	MOV ECX,0xb
+00422a09	8b fe	MOV	EDI, ESI	MOV EDI,ESI
+00422a0b	f3 ab	STOSD.REP	ES:EDI	STOSD.REP ES:EDI
+00422a0d	89 46 1c	MOV	dword ptr [ESI + 0x1c], EAX	MOV dword ptr [ESI + 0x1c],EAX
+00422a10	83 c8 ff	OR	EAX, 0xffffffff	OR EAX,0xffffffff
+00422a13	c7 46 14 00 44 2c 46	MOV	dword ptr [ESI + 0x14], 0x462c4400	MOV dword ptr [ESI + 0x14],0x462c4400
+00422a1a	c7 46 18 00 00 c8 42	MOV	dword ptr [ESI + 0x18], 0x42c80000	MOV dword ptr [ESI + 0x18],0x42c80000
+00422a21	c7 42 30 47 41 53 30	MOV	dword ptr [EDX + 0x30], 0x30534147	MOV dword ptr [EDX + 0x30],0x30534147
+00422a28	89 42 34	MOV	dword ptr [EDX + 0x34], EAX	MOV dword ptr [EDX + 0x34],EAX
+00422a2b	89 42 38	MOV	dword ptr [EDX + 0x38], EAX	MOV dword ptr [EDX + 0x38],EAX
+00422a2e	89 42 3c	MOV	dword ptr [EDX + 0x3c], EAX	MOV dword ptr [EDX + 0x3c],EAX
+00422a31	89 42 40	MOV	dword ptr [EDX + 0x40], EAX	MOV dword ptr [EDX + 0x40],EAX
+00422a34	89 42 44	MOV	dword ptr [EDX + 0x44], EAX	MOV dword ptr [EDX + 0x44],EAX
+00422a37	89 42 48	MOV	dword ptr [EDX + 0x48], EAX	MOV dword ptr [EDX + 0x48],EAX
+00422a3a	5f	POP	EDI	POP EDI
+00422a3b	88 42 74	MOV	byte ptr [EDX + 0x74], AL	MOV byte ptr [EDX + 0x74],AL
+00422a3e	5e	POP	ESI	POP ESI
+00422a3f	c3	RET		RET

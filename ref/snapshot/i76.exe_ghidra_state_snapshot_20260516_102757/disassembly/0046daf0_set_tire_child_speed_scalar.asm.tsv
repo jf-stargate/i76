@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+0046daf0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0046daf4	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+0046daf8	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+0046dafb	89 51 20	MOV	dword ptr [ECX + 0x20], EDX	MOV dword ptr [ECX + 0x20],EDX
+0046dafe	c3	RET		RET

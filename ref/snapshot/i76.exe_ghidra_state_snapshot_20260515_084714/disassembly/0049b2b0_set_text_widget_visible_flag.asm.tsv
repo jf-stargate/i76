@@ -1,0 +1,12 @@
+address	bytes	mnemonic	operands	instruction
+0049b2b0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0049b2b4	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0049b2b8	f7 d9	NEG	ECX	NEG ECX
+0049b2ba	8b 40 08	MOV	EAX, dword ptr [EAX + 0x8]	MOV EAX,dword ptr [EAX + 0x8]
+0049b2bd	1b c9	SBB	ECX, ECX	SBB ECX,ECX
+0049b2bf	8b 90 94 00 00 00	MOV	EDX, dword ptr [EAX + 0x94]	MOV EDX,dword ptr [EAX + 0x94]
+0049b2c5	83 e1 02	AND	ECX, 0x2	AND ECX,0x2
+0049b2c8	83 e2 fd	AND	EDX, 0xfffffffd	AND EDX,0xfffffffd
+0049b2cb	0b ca	OR	ECX, EDX	OR ECX,EDX
+0049b2cd	89 88 94 00 00 00	MOV	dword ptr [EAX + 0x94], ECX	MOV dword ptr [EAX + 0x94],ECX
+0049b2d3	c3	RET		RET

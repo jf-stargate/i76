@@ -1,0 +1,14 @@
+address	bytes	mnemonic	operands	instruction
+0040bf60	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0040bf64	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+0040bf68	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+0040bf6b	8b 81 08 01 00 00	MOV	EAX, dword ptr [ECX + 0x108]	MOV EAX,dword ptr [ECX + 0x108]
+0040bf71	8b 0a	MOV	ECX, dword ptr [EDX]	MOV ECX,dword ptr [EDX]
+0040bf73	49	DEC	ECX	DEC ECX
+0040bf74	89 88 18 a8 00 00	MOV	dword ptr [EAX + 0xa818], ECX	MOV dword ptr [EAX + 0xa818],ECX
+0040bf7a	05 2c a8 00 00	ADD	EAX, 0xa82c	ADD EAX,0xa82c
+0040bf7f	50	PUSH	EAX	PUSH EAX
+0040bf80	51	PUSH	ECX	PUSH ECX
+0040bf81	e8 aa 66 00 00	CALL	0x00412630	CALL 0x00412630
+0040bf86	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040bf89	c3	RET		RET

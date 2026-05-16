@@ -1,0 +1,17 @@
+address	bytes	mnemonic	operands	instruction
+0049c8d0	e8 2b 85 fb ff	CALL	0x00454e00	CALL 0x00454e00
+0049c8d5	50	PUSH	EAX	PUSH EAX
+0049c8d6	e8 e5 82 fb ff	CALL	0x00454bc0	CALL 0x00454bc0
+0049c8db	d8 44 24 08	FADD	float ptr [ESP + 0x8]	FADD float ptr [ESP + 0x8]
+0049c8df	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+0049c8e3	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0049c8e6	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0049c8e8	d9 c0	FLD	ST0	FLD ST0
+0049c8ea	d8 25 70 7e 5a 00	FSUB	float ptr [0x005a7e70]	FSUB float ptr [0x005a7e70]
+0049c8f0	d9 c9	FXCH		FXCH
+0049c8f2	d9 1d 78 7e 5a 00	FSTP	float ptr [0x005a7e78]	FSTP float ptr [0x005a7e78]
+0049c8f8	d9 1d 7c 7e 5a 00	FSTP	float ptr [0x005a7e7c]	FSTP float ptr [0x005a7e7c]
+0049c8fe	74 0a	JZ	0x0049c90a	JZ 0x0049c90a
+0049c900	c7 05 7c 7e 5a 00 00 00 00 00	MOV	dword ptr [0x005a7e7c], 0x0	MOV dword ptr [0x005a7e7c],0x0
+0049c90a	c7 05 80 7e 5a 00 01 00 00 00	MOV	dword ptr [0x005a7e80], 0x1	MOV dword ptr [0x005a7e80],0x1
+0049c914	c3	RET		RET

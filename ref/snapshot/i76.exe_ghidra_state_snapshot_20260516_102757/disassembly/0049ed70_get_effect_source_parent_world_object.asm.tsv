@@ -1,0 +1,9 @@
+address	bytes	mnemonic	operands	instruction
+0049ed70	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0049ed74	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+0049ed77	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0049ed79	74 04	JZ	0x0049ed7f	JZ 0x0049ed7f
+0049ed7b	8b 40 0c	MOV	EAX, dword ptr [EAX + 0xc]	MOV EAX,dword ptr [EAX + 0xc]
+0049ed7e	c3	RET		RET
+0049ed7f	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0049ed81	c3	RET		RET

@@ -1,0 +1,24 @@
+address	bytes	mnemonic	operands	instruction
+0041e030	55	PUSH	EBP	PUSH EBP
+0041e031	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0041e033	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0041e036	c7 45 fc 00 00 00 00	MOV	dword ptr [EBP + -0x4], 0x0	MOV dword ptr [EBP + -0x4],0x0
+0041e03d	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+0041e040	50	PUSH	EAX	PUSH EAX
+0041e041	e8 aa e2 ff ff	CALL	0x0041c2f0	CALL 0x0041c2f0
+0041e046	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0041e049	89 45 fc	MOV	dword ptr [EBP + -0x4], EAX	MOV dword ptr [EBP + -0x4],EAX
+0041e04c	8b 4d fc	MOV	ECX, dword ptr [EBP + -0x4]	MOV ECX,dword ptr [EBP + -0x4]
+0041e04f	d9 81 24 9d 00 00	FLD	float ptr [ECX + 0x9d24]	FLD float ptr [ECX + 0x9d24]
+0041e055	d8 05 34 cb 4b 00	FADD	float ptr [0x004bcb34]	FADD float ptr [0x004bcb34]
+0041e05b	d9 5d f8	FSTP	float ptr [EBP + -0x8]	FSTP float ptr [EBP + -0x8]
+0041e05e	e8 5d e7 07 00	CALL	0x0049c7c0	CALL 0x0049c7c0
+0041e063	d8 5d f8	FCOMP	float ptr [EBP + -0x8]	FCOMP float ptr [EBP + -0x8]
+0041e066	df e0	FNSTSW	AX	FNSTSW AX
+0041e068	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0041e06b	75 0d	JNZ	0x0041e07a	JNZ 0x0041e07a
+0041e06d	8b 55 fc	MOV	EDX, dword ptr [EBP + -0x4]	MOV EDX,dword ptr [EBP + -0x4]
+0041e070	c7 82 98 00 00 00 01 00 00 00	MOV	dword ptr [EDX + 0x98], 0x1	MOV dword ptr [EDX + 0x98],0x1
+0041e07a	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0041e07c	5d	POP	EBP	POP EBP
+0041e07d	c3	RET		RET

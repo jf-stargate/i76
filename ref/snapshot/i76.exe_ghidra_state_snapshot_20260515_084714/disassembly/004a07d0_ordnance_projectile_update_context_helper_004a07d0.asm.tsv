@@ -1,0 +1,15 @@
+address	bytes	mnemonic	operands	instruction
+004a07d0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004a07d4	8b 0d 08 81 5a 00	MOV	ECX, dword ptr [0x005a8108]	MOV ECX,dword ptr [0x005a8108]
+004a07da	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+004a07dc	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004a07df	75 13	JNZ	0x004a07f4	JNZ 0x004a07f4
+004a07e1	d9 40 04	FLD	float ptr [EAX + 0x4]	FLD float ptr [EAX + 0x4]
+004a07e4	d8 1d 34 ea 4b 00	FCOMP	float ptr [0x004bea34]	FCOMP float ptr [0x004bea34]
+004a07ea	df e0	FNSTSW	AX	FNSTSW AX
+004a07ec	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+004a07ef	75 03	JNZ	0x004a07f4	JNZ 0x004a07f4
+004a07f1	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004a07f3	c3	RET		RET
+004a07f4	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004a07f9	c3	RET		RET

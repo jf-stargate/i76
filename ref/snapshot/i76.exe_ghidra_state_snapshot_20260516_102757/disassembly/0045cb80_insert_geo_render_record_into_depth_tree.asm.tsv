@@ -1,0 +1,34 @@
+address	bytes	mnemonic	operands	instruction
+0045cb80	8b 0d 28 ad 54 00	MOV	ECX, dword ptr [0x0054ad28]	MOV ECX,dword ptr [0x0054ad28]
+0045cb86	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+0045cb8a	d9 41 34	FLD	float ptr [ECX + 0x34]	FLD float ptr [ECX + 0x34]
+0045cb8d	d9 41 30	FLD	float ptr [ECX + 0x30]	FLD float ptr [ECX + 0x30]
+0045cb90	d8 4a 24	FMUL	float ptr [EDX + 0x24]	FMUL float ptr [EDX + 0x24]
+0045cb93	d9 41 38	FLD	float ptr [ECX + 0x38]	FLD float ptr [ECX + 0x38]
+0045cb96	d9 ca	FXCH	ST2	FXCH ST2
+0045cb98	d8 4a 28	FMUL	float ptr [EDX + 0x28]	FMUL float ptr [EDX + 0x28]
+0045cb9b	d9 ca	FXCH	ST2	FXCH ST2
+0045cb9d	d8 4a 2c	FMUL	float ptr [EDX + 0x2c]	FMUL float ptr [EDX + 0x2c]
+0045cba0	d9 ca	FXCH	ST2	FXCH ST2
+0045cba2	de c1	FADDP		FADDP
+0045cba4	d9 c9	FXCH		FXCH
+0045cba6	de c1	FADDP		FADDP
+0045cba8	d8 41 3c	FADD	float ptr [ECX + 0x3c]	FADD float ptr [ECX + 0x3c]
+0045cbab	dc 1d e0 e0 4b 00	FCOMP	double ptr [0x004be0e0]	FCOMP double ptr [0x004be0e0]
+0045cbb1	df e0	FNSTSW	AX	FNSTSW AX
+0045cbb3	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0045cbb6	75 0b	JNZ	0x0045cbc3	JNZ 0x0045cbc3
+0045cbb8	8b 41 40	MOV	EAX, dword ptr [ECX + 0x40]	MOV EAX,dword ptr [ECX + 0x40]
+0045cbbb	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0045cbbd	74 0f	JZ	0x0045cbce	JZ 0x0045cbce
+0045cbbf	8b c8	MOV	ECX, EAX	MOV ECX,EAX
+0045cbc1	eb c7	JMP	0x0045cb8a	JMP 0x0045cb8a
+0045cbc3	8b 41 44	MOV	EAX, dword ptr [ECX + 0x44]	MOV EAX,dword ptr [ECX + 0x44]
+0045cbc6	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0045cbc8	74 08	JZ	0x0045cbd2	JZ 0x0045cbd2
+0045cbca	8b c8	MOV	ECX, EAX	MOV ECX,EAX
+0045cbcc	eb bc	JMP	0x0045cb8a	JMP 0x0045cb8a
+0045cbce	89 51 40	MOV	dword ptr [ECX + 0x40], EDX	MOV dword ptr [ECX + 0x40],EDX
+0045cbd1	c3	RET		RET
+0045cbd2	89 51 44	MOV	dword ptr [ECX + 0x44], EDX	MOV dword ptr [ECX + 0x44],EDX
+0045cbd5	c3	RET		RET

@@ -1,0 +1,31 @@
+address	bytes	mnemonic	operands	instruction
+004ba980	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004ba984	c7 05 bc ba 5d 00 01 00 00 00	MOV	dword ptr [0x005dbabc], 0x1	MOV dword ptr [0x005dbabc],0x1
+004ba98e	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004ba990	75 04	JNZ	0x004ba996	JNZ 0x004ba996
+004ba992	83 c8 ff	OR	EAX, 0xffffffff	OR EAX,0xffffffff
+004ba995	c3	RET		RET
+004ba996	83 7c 24 08 02	CMP	dword ptr [ESP + 0x8], 0x2	CMP dword ptr [ESP + 0x8],0x2
+004ba99b	75 32	JNZ	0x004ba9cf	JNZ 0x004ba9cf
+004ba99d	8b 4c 24 0c	MOV	ECX, dword ptr [ESP + 0xc]	MOV ECX,dword ptr [ESP + 0xc]
+004ba9a1	b8 04 00 00 00	MOV	EAX, 0x4	MOV EAX,0x4
+004ba9a6	3b c8	CMP	ECX, EAX	CMP ECX,EAX
+004ba9a8	75 25	JNZ	0x004ba9cf	JNZ 0x004ba9cf
+004ba9aa	39 44 24 10	CMP	dword ptr [ESP + 0x10], EAX	CMP dword ptr [ESP + 0x10],EAX
+004ba9ae	75 1f	JNZ	0x004ba9cf	JNZ 0x004ba9cf
+004ba9b0	39 44 24 14	CMP	dword ptr [ESP + 0x14], EAX	CMP dword ptr [ESP + 0x14],EAX
+004ba9b4	75 19	JNZ	0x004ba9cf	JNZ 0x004ba9cf
+004ba9b6	39 44 24 18	CMP	dword ptr [ESP + 0x18], EAX	CMP dword ptr [ESP + 0x18],EAX
+004ba9ba	75 13	JNZ	0x004ba9cf	JNZ 0x004ba9cf
+004ba9bc	39 44 24 1c	CMP	dword ptr [ESP + 0x1c], EAX	CMP dword ptr [ESP + 0x1c],EAX
+004ba9c0	75 0d	JNZ	0x004ba9cf	JNZ 0x004ba9cf
+004ba9c2	39 44 24 20	CMP	dword ptr [ESP + 0x20], EAX	CMP dword ptr [ESP + 0x20],EAX
+004ba9c6	75 07	JNZ	0x004ba9cf	JNZ 0x004ba9cf
+004ba9c8	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004ba9cd	eb 02	JMP	0x004ba9d1	JMP 0x004ba9d1
+004ba9cf	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004ba9d1	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004ba9d3	75 04	JNZ	0x004ba9d9	JNZ 0x004ba9d9
+004ba9d5	83 c8 ff	OR	EAX, 0xffffffff	OR EAX,0xffffffff
+004ba9d8	c3	RET		RET
+004ba9d9	e9 f2 fc ff ff	JMP	0x004ba6d0	JMP 0x004ba6d0

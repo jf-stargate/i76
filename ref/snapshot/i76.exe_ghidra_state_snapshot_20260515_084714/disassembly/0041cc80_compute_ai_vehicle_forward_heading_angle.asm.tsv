@@ -1,0 +1,68 @@
+address	bytes	mnemonic	operands	instruction
+0041cc80	55	PUSH	EBP	PUSH EBP
+0041cc81	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0041cc83	83 ec 34	SUB	ESP, 0x34	SUB ESP,0x34
+0041cc86	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+0041cc89	d9 40 30	FLD	float ptr [EAX + 0x30]	FLD float ptr [EAX + 0x30]
+0041cc8c	d8 1d e8 ca 4b 00	FCOMP	float ptr [0x004bcae8]	FCOMP float ptr [0x004bcae8]
+0041cc92	df e0	FNSTSW	AX	FNSTSW AX
+0041cc94	f6 c4 40	TEST	AH, 0x40	TEST AH,0x40
+0041cc97	74 1e	JZ	0x0041ccb7	JZ 0x0041ccb7
+0041cc99	8b 4d 08	MOV	ECX, dword ptr [EBP + 0x8]	MOV ECX,dword ptr [EBP + 0x8]
+0041cc9c	d9 41 38	FLD	float ptr [ECX + 0x38]	FLD float ptr [ECX + 0x38]
+0041cc9f	d8 1d e8 ca 4b 00	FCOMP	float ptr [0x004bcae8]	FCOMP float ptr [0x004bcae8]
+0041cca5	df e0	FNSTSW	AX	FNSTSW AX
+0041cca7	f6 c4 40	TEST	AH, 0x40	TEST AH,0x40
+0041ccaa	74 0b	JZ	0x0041ccb7	JZ 0x0041ccb7
+0041ccac	d9 05 e8 ca 4b 00	FLD	float ptr [0x004bcae8]	FLD float ptr [0x004bcae8]
+0041ccb2	e9 88 00 00 00	JMP	0x0041cd3f	JMP 0x0041cd3f
+0041ccb7	8b 55 08	MOV	EDX, dword ptr [EBP + 0x8]	MOV EDX,dword ptr [EBP + 0x8]
+0041ccba	83 c2 18	ADD	EDX, 0x18	ADD EDX,0x18
+0041ccbd	52	PUSH	EDX	PUSH EDX
+0041ccbe	8d 45 e8	LEA	EAX, [EBP + -0x18]	LEA EAX,[EBP + -0x18]
+0041ccc1	50	PUSH	EAX	PUSH EAX
+0041ccc2	e8 19 83 ff ff	CALL	0x00414fe0	CALL 0x00414fe0
+0041ccc7	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041ccca	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+0041cccc	89 4d f4	MOV	dword ptr [EBP + -0xc], ECX	MOV dword ptr [EBP + -0xc],ECX
+0041cccf	8b 50 04	MOV	EDX, dword ptr [EAX + 0x4]	MOV EDX,dword ptr [EAX + 0x4]
+0041ccd2	89 55 f8	MOV	dword ptr [EBP + -0x8], EDX	MOV dword ptr [EBP + -0x8],EDX
+0041ccd5	8b 40 08	MOV	EAX, dword ptr [EAX + 0x8]	MOV EAX,dword ptr [EAX + 0x8]
+0041ccd8	89 45 fc	MOV	dword ptr [EBP + -0x4], EAX	MOV dword ptr [EBP + -0x4],EAX
+0041ccdb	8b 4d 08	MOV	ECX, dword ptr [EBP + 0x8]	MOV ECX,dword ptr [EBP + 0x8]
+0041ccde	51	PUSH	ECX	PUSH ECX
+0041ccdf	e8 ac bd 03 00	CALL	0x00458a90	CALL 0x00458a90
+0041cce4	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0041cce7	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0041cce9	74 46	JZ	0x0041cd31	JZ 0x0041cd31
+0041cceb	83 ec 0c	SUB	ESP, 0xc	SUB ESP,0xc
+0041ccee	8b d4	MOV	EDX, ESP	MOV EDX,ESP
+0041ccf0	8b 45 f4	MOV	EAX, dword ptr [EBP + -0xc]	MOV EAX,dword ptr [EBP + -0xc]
+0041ccf3	89 02	MOV	dword ptr [EDX], EAX	MOV dword ptr [EDX],EAX
+0041ccf5	8b 4d f8	MOV	ECX, dword ptr [EBP + -0x8]	MOV ECX,dword ptr [EBP + -0x8]
+0041ccf8	89 4a 04	MOV	dword ptr [EDX + 0x4], ECX	MOV dword ptr [EDX + 0x4],ECX
+0041ccfb	8b 45 fc	MOV	EAX, dword ptr [EBP + -0x4]	MOV EAX,dword ptr [EBP + -0x4]
+0041ccfe	89 42 08	MOV	dword ptr [EDX + 0x8], EAX	MOV dword ptr [EDX + 0x8],EAX
+0041cd01	8b 4d 08	MOV	ECX, dword ptr [EBP + 0x8]	MOV ECX,dword ptr [EBP + 0x8]
+0041cd04	51	PUSH	ECX	PUSH ECX
+0041cd05	e8 36 a7 04 00	CALL	0x00467440	CALL 0x00467440
+0041cd0a	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0041cd0d	8b 90 e8 00 00 00	MOV	EDX, dword ptr [EAX + 0xe8]	MOV EDX,dword ptr [EAX + 0xe8]
+0041cd13	52	PUSH	EDX	PUSH EDX
+0041cd14	8d 45 dc	LEA	EAX, [EBP + -0x24]	LEA EAX,[EBP + -0x24]
+0041cd17	50	PUSH	EAX	PUSH EAX
+0041cd18	e8 33 00 00 00	CALL	0x0041cd50	CALL 0x0041cd50
+0041cd1d	83 c4 14	ADD	ESP, 0x14	ADD ESP,0x14
+0041cd20	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+0041cd22	89 4d f4	MOV	dword ptr [EBP + -0xc], ECX	MOV dword ptr [EBP + -0xc],ECX
+0041cd25	8b 50 04	MOV	EDX, dword ptr [EAX + 0x4]	MOV EDX,dword ptr [EAX + 0x4]
+0041cd28	89 55 f8	MOV	dword ptr [EBP + -0x8], EDX	MOV dword ptr [EBP + -0x8],EDX
+0041cd2b	8b 40 08	MOV	EAX, dword ptr [EAX + 0x8]	MOV EAX,dword ptr [EAX + 0x8]
+0041cd2e	89 45 fc	MOV	dword ptr [EBP + -0x4], EAX	MOV dword ptr [EBP + -0x4],EAX
+0041cd31	d9 45 f4	FLD	float ptr [EBP + -0xc]	FLD float ptr [EBP + -0xc]
+0041cd34	d9 45 fc	FLD	float ptr [EBP + -0x4]	FLD float ptr [EBP + -0x4]
+0041cd37	e8 74 d5 09 00	CALL	0x004ba2b0	CALL 0x004ba2b0
+0041cd3c	d9 55 cc	FST	float ptr [EBP + -0x34]	FST float ptr [EBP + -0x34]
+0041cd3f	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0041cd41	5d	POP	EBP	POP EBP
+0041cd42	c3	RET		RET

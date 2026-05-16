@@ -1,0 +1,21 @@
+address	bytes	mnemonic	operands	instruction
+004721bf	8b 65 e8	MOV	ESP, dword ptr [EBP + -0x18]	MOV ESP,dword ptr [EBP + -0x18]
+004721c2	e8 79 1a 02 00	CALL	0x00493c40	CALL 0x00493c40
+004721c7	c7 45 fc ff ff ff ff	MOV	dword ptr [EBP + -0x4], 0xffffffff	MOV dword ptr [EBP + -0x4],0xffffffff
+004721ce	9b d9 bd c0 fc ff ff	FSTCW	word ptr [EBP + 0xfffffcc0]	FSTCW word ptr [EBP + 0xfffffcc0]
+004721d5	8b 9d e4 fc ff ff	MOV	EBX, dword ptr [EBP + 0xfffffce4]	MOV EBX,dword ptr [EBP + 0xfffffce4]
+004721db	8b 8d c0 fc ff ff	MOV	ECX, dword ptr [EBP + 0xfffffcc0]	MOV ECX,dword ptr [EBP + 0xfffffcc0]
+004721e1	81 e3 00 0c 00 00	AND	EBX, 0xc00	AND EBX,0xc00
+004721e7	81 e1 ff f3 ff ff	AND	ECX, 0xfffff3ff	AND ECX,0xfffff3ff
+004721ed	8b 85 c0 fc ff ff	MOV	EAX, dword ptr [EBP + 0xfffffcc0]	MOV EAX,dword ptr [EBP + 0xfffffcc0]
+004721f3	0b d9	OR	EBX, ECX	OR EBX,ECX
+004721f5	89 9d c0 fc ff ff	MOV	dword ptr [EBP + 0xfffffcc0], EBX	MOV dword ptr [EBP + 0xfffffcc0],EBX
+004721fb	d9 ad c0 fc ff ff	FLDCW	word ptr [EBP + 0xfffffcc0]	FLDCW word ptr [EBP + 0xfffffcc0]
+00472201	8b 4d f0	MOV	ECX, dword ptr [EBP + -0x10]	MOV ECX,dword ptr [EBP + -0x10]
+00472204	64 89 0d 00 00 00 00	MOV	dword ptr FS:[0x0], ECX	MOV dword ptr FS:[0x0],ECX
+0047220b	5f	POP	EDI	POP EDI
+0047220c	5e	POP	ESI	POP ESI
+0047220d	5b	POP	EBX	POP EBX
+0047220e	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+00472210	5d	POP	EBP	POP EBP
+00472211	c3	RET		RET

@@ -1,0 +1,5 @@
+address	bytes	mnemonic	operands	instruction
+00492780	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00492784	8d 04 80	LEA	EAX, [EAX + EAX*0x4]	LEA EAX,[EAX + EAX*0x4]
+00492787	d9 04 85 24 42 64 00	FLD	float ptr [EAX*0x4 + 0x644224]	FLD float ptr [EAX*0x4 + 0x644224]
+0049278e	c3	RET		RET

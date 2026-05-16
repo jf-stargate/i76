@@ -1,0 +1,252 @@
+address	bytes	mnemonic	operands	instruction
+0040cda0	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+0040cda4	56	PUSH	ESI	PUSH ESI
+0040cda5	83 f8 01	CMP	EAX, 0x1	CMP EAX,0x1
+0040cda8	57	PUSH	EDI	PUSH EDI
+0040cda9	0f 85 80 01 00 00	JNZ	0x0040cf2f	JNZ 0x0040cf2f
+0040cdaf	8b 7c 24 0c	MOV	EDI, dword ptr [ESP + 0xc]	MOV EDI,dword ptr [ESP + 0xc]
+0040cdb3	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+0040cdb7	8b 4f 14	MOV	ECX, dword ptr [EDI + 0x14]	MOV ECX,dword ptr [EDI + 0x14]
+0040cdba	49	DEC	ECX	DEC ECX
+0040cdbb	3b c1	CMP	EAX, ECX	CMP EAX,ECX
+0040cdbd	0f 8d bc 00 00 00	JGE	0x0040ce7f	JGE 0x0040ce7f
+0040cdc3	8b 57 28	MOV	EDX, dword ptr [EDI + 0x28]	MOV EDX,dword ptr [EDI + 0x28]
+0040cdc6	8d 34 40	LEA	ESI, [EAX + EAX*0x2]	LEA ESI,[EAX + EAX*0x2]
+0040cdc9	c1 e6 03	SHL	ESI, 0x3	SHL ESI,0x3
+0040cdcc	d9 44 16 24	FLD	float ptr [ESI + EDX*0x1 + 0x24]	FLD float ptr [ESI + EDX*0x1 + 0x24]
+0040cdd0	d9 44 16 0c	FLD	float ptr [ESI + EDX*0x1 + 0xc]	FLD float ptr [ESI + EDX*0x1 + 0xc]
+0040cdd4	d9 44 16 2c	FLD	float ptr [ESI + EDX*0x1 + 0x2c]	FLD float ptr [ESI + EDX*0x1 + 0x2c]
+0040cdd8	d9 c9	FXCH		FXCH
+0040cdda	de ea	FSUBP	ST2, ST0	FSUBP ST2,ST0
+0040cddc	8d 04 16	LEA	EAX, [ESI + EDX*0x1]	LEA EAX,[ESI + EDX*0x1]
+0040cddf	d8 60 14	FSUB	float ptr [EAX + 0x14]	FSUB float ptr [EAX + 0x14]
+0040cde2	d9 c9	FXCH		FXCH
+0040cde4	d9 54 24 0c	FST	float ptr [ESP + 0xc]	FST float ptr [ESP + 0xc]
+0040cde8	d9 c9	FXCH		FXCH
+0040cdea	d9 54 24 10	FST	float ptr [ESP + 0x10]	FST float ptr [ESP + 0x10]
+0040cdee	d9 c9	FXCH		FXCH
+0040cdf0	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0040cdf4	d9 c9	FXCH		FXCH
+0040cdf6	d8 4c 24 10	FMUL	float ptr [ESP + 0x10]	FMUL float ptr [ESP + 0x10]
+0040cdfa	de c1	FADDP		FADDP
+0040cdfc	d8 15 a4 c6 4b 00	FCOM	float ptr [0x004bc6a4]	FCOM float ptr [0x004bc6a4]
+0040ce02	df e0	FNSTSW	AX	FNSTSW AX
+0040ce04	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0040ce07	75 1f	JNZ	0x0040ce28	JNZ 0x0040ce28
+0040ce09	d8 15 a8 c6 4b 00	FCOM	float ptr [0x004bc6a8]	FCOM float ptr [0x004bc6a8]
+0040ce0f	df e0	FNSTSW	AX	FNSTSW AX
+0040ce11	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0040ce14	74 12	JZ	0x0040ce28	JZ 0x0040ce28
+0040ce16	dd d8	FSTP	ST0	FSTP ST0
+0040ce18	d9 05 b4 c6 4b 00	FLD	float ptr [0x004bc6b4]	FLD float ptr [0x004bc6b4]
+0040ce1e	c7 44 24 0c 00 00 80 3f	MOV	dword ptr [ESP + 0xc], 0x3f800000	MOV dword ptr [ESP + 0xc],0x3f800000
+0040ce26	eb 24	JMP	0x0040ce4c	JMP 0x0040ce4c
+0040ce28	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040ce2b	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040ce2e	e8 cd 81 08 00	CALL	0x00495000	CALL 0x00495000
+0040ce33	d9 c0	FLD	ST0	FLD ST0
+0040ce35	d8 4c 24 18	FMUL	float ptr [ESP + 0x18]	FMUL float ptr [ESP + 0x18]
+0040ce39	d9 c9	FXCH		FXCH
+0040ce3b	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+0040ce3f	d9 c9	FXCH		FXCH
+0040ce41	d9 e0	FCHS		FCHS
+0040ce43	d9 c9	FXCH		FXCH
+0040ce45	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040ce48	d9 5c 24 0c	FSTP	float ptr [ESP + 0xc]	FSTP float ptr [ESP + 0xc]
+0040ce4c	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040ce52	8b 47 28	MOV	EAX, dword ptr [EDI + 0x28]	MOV EAX,dword ptr [EDI + 0x28]
+0040ce55	8b 4c 24 18	MOV	ECX, dword ptr [ESP + 0x18]	MOV ECX,dword ptr [ESP + 0x18]
+0040ce59	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0040ce5d	d9 c9	FXCH		FXCH
+0040ce5f	d8 6c 06 0c	FSUBR	float ptr [ESI + EAX*0x1 + 0xc]	FSUBR float ptr [ESI + EAX*0x1 + 0xc]
+0040ce63	d9 c9	FXCH		FXCH
+0040ce65	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040ce6b	d9 c9	FXCH		FXCH
+0040ce6d	d9 19	FSTP	float ptr [ECX]	FSTP float ptr [ECX]
+0040ce6f	8b 57 28	MOV	EDX, dword ptr [EDI + 0x28]	MOV EDX,dword ptr [EDI + 0x28]
+0040ce72	8b 44 24 1c	MOV	EAX, dword ptr [ESP + 0x1c]	MOV EAX,dword ptr [ESP + 0x1c]
+0040ce76	d8 6c 16 14	FSUBR	float ptr [ESI + EDX*0x1 + 0x14]	FSUBR float ptr [ESI + EDX*0x1 + 0x14]
+0040ce7a	d9 18	FSTP	float ptr [EAX]	FSTP float ptr [EAX]
+0040ce7c	5f	POP	EDI	POP EDI
+0040ce7d	5e	POP	ESI	POP ESI
+0040ce7e	c3	RET		RET
+0040ce7f	8b 4f 28	MOV	ECX, dword ptr [EDI + 0x28]	MOV ECX,dword ptr [EDI + 0x28]
+0040ce82	8d 34 40	LEA	ESI, [EAX + EAX*0x2]	LEA ESI,[EAX + EAX*0x2]
+0040ce85	c1 e6 03	SHL	ESI, 0x3	SHL ESI,0x3
+0040ce88	d9 44 0e f4	FLD	float ptr [ESI + ECX*0x1 + -0xc]	FLD float ptr [ESI + ECX*0x1 + -0xc]
+0040ce8c	d9 44 0e 0c	FLD	float ptr [ESI + ECX*0x1 + 0xc]	FLD float ptr [ESI + ECX*0x1 + 0xc]
+0040ce90	d9 44 0e fc	FLD	float ptr [ESI + ECX*0x1 + -0x4]	FLD float ptr [ESI + ECX*0x1 + -0x4]
+0040ce94	d9 c9	FXCH		FXCH
+0040ce96	de ea	FSUBP	ST2, ST0	FSUBP ST2,ST0
+0040ce98	8d 04 0e	LEA	EAX, [ESI + ECX*0x1]	LEA EAX,[ESI + ECX*0x1]
+0040ce9b	d8 60 14	FSUB	float ptr [EAX + 0x14]	FSUB float ptr [EAX + 0x14]
+0040ce9e	d9 c9	FXCH		FXCH
+0040cea0	d9 54 24 0c	FST	float ptr [ESP + 0xc]	FST float ptr [ESP + 0xc]
+0040cea4	d9 c9	FXCH		FXCH
+0040cea6	d9 54 24 10	FST	float ptr [ESP + 0x10]	FST float ptr [ESP + 0x10]
+0040ceaa	d9 c9	FXCH		FXCH
+0040ceac	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0040ceb0	d9 c9	FXCH		FXCH
+0040ceb2	d8 4c 24 10	FMUL	float ptr [ESP + 0x10]	FMUL float ptr [ESP + 0x10]
+0040ceb6	de c1	FADDP		FADDP
+0040ceb8	d8 15 a4 c6 4b 00	FCOM	float ptr [0x004bc6a4]	FCOM float ptr [0x004bc6a4]
+0040cebe	df e0	FNSTSW	AX	FNSTSW AX
+0040cec0	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0040cec3	75 1d	JNZ	0x0040cee2	JNZ 0x0040cee2
+0040cec5	d8 15 a8 c6 4b 00	FCOM	float ptr [0x004bc6a8]	FCOM float ptr [0x004bc6a8]
+0040cecb	df e0	FNSTSW	AX	FNSTSW AX
+0040cecd	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0040ced0	74 10	JZ	0x0040cee2	JZ 0x0040cee2
+0040ced2	dd d8	FSTP	ST0	FSTP ST0
+0040ced4	d9 05 ac c6 4b 00	FLD	float ptr [0x004bc6ac]	FLD float ptr [0x004bc6ac]
+0040ceda	d9 05 b4 c6 4b 00	FLD	float ptr [0x004bc6b4]	FLD float ptr [0x004bc6b4]
+0040cee0	eb 20	JMP	0x0040cf02	JMP 0x0040cf02
+0040cee2	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040cee5	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040cee8	e8 13 81 08 00	CALL	0x00495000	CALL 0x00495000
+0040ceed	d9 c0	FLD	ST0	FLD ST0
+0040ceef	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+0040cef3	d9 c9	FXCH		FXCH
+0040cef5	d8 4c 24 18	FMUL	float ptr [ESP + 0x18]	FMUL float ptr [ESP + 0x18]
+0040cef9	d9 c9	FXCH		FXCH
+0040cefb	d9 e0	FCHS		FCHS
+0040cefd	d9 c9	FXCH		FXCH
+0040ceff	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040cf02	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040cf08	8b 57 28	MOV	EDX, dword ptr [EDI + 0x28]	MOV EDX,dword ptr [EDI + 0x28]
+0040cf0b	8b 44 24 18	MOV	EAX, dword ptr [ESP + 0x18]	MOV EAX,dword ptr [ESP + 0x18]
+0040cf0f	d8 6c 16 0c	FSUBR	float ptr [ESI + EDX*0x1 + 0xc]	FSUBR float ptr [ESI + EDX*0x1 + 0xc]
+0040cf13	d9 c9	FXCH		FXCH
+0040cf15	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040cf1b	d9 c9	FXCH		FXCH
+0040cf1d	d9 18	FSTP	float ptr [EAX]	FSTP float ptr [EAX]
+0040cf1f	8b 4f 28	MOV	ECX, dword ptr [EDI + 0x28]	MOV ECX,dword ptr [EDI + 0x28]
+0040cf22	8b 54 24 1c	MOV	EDX, dword ptr [ESP + 0x1c]	MOV EDX,dword ptr [ESP + 0x1c]
+0040cf26	d8 6c 0e 14	FSUBR	float ptr [ESI + ECX*0x1 + 0x14]	FSUBR float ptr [ESI + ECX*0x1 + 0x14]
+0040cf2a	d9 1a	FSTP	float ptr [EDX]	FSTP float ptr [EDX]
+0040cf2c	5f	POP	EDI	POP EDI
+0040cf2d	5e	POP	ESI	POP ESI
+0040cf2e	c3	RET		RET
+0040cf2f	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+0040cf33	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0040cf35	0f 8e ba 00 00 00	JLE	0x0040cff5	JLE 0x0040cff5
+0040cf3b	8b 7c 24 0c	MOV	EDI, dword ptr [ESP + 0xc]	MOV EDI,dword ptr [ESP + 0xc]
+0040cf3f	8d 34 49	LEA	ESI, [ECX + ECX*0x2]	LEA ESI,[ECX + ECX*0x2]
+0040cf42	c1 e6 03	SHL	ESI, 0x3	SHL ESI,0x3
+0040cf45	8b 47 28	MOV	EAX, dword ptr [EDI + 0x28]	MOV EAX,dword ptr [EDI + 0x28]
+0040cf48	03 c6	ADD	EAX, ESI	ADD EAX,ESI
+0040cf4a	d9 40 e8	FLD	float ptr [EAX + -0x18]	FLD float ptr [EAX + -0x18]
+0040cf4d	d9 00	FLD	float ptr [EAX]	FLD float ptr [EAX]
+0040cf4f	d9 40 f0	FLD	float ptr [EAX + -0x10]	FLD float ptr [EAX + -0x10]
+0040cf52	d9 c9	FXCH		FXCH
+0040cf54	de ea	FSUBP	ST2, ST0	FSUBP ST2,ST0
+0040cf56	d8 60 08	FSUB	float ptr [EAX + 0x8]	FSUB float ptr [EAX + 0x8]
+0040cf59	d9 c9	FXCH		FXCH
+0040cf5b	d9 54 24 0c	FST	float ptr [ESP + 0xc]	FST float ptr [ESP + 0xc]
+0040cf5f	d9 c9	FXCH		FXCH
+0040cf61	d9 54 24 10	FST	float ptr [ESP + 0x10]	FST float ptr [ESP + 0x10]
+0040cf65	d9 c9	FXCH		FXCH
+0040cf67	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0040cf6b	d9 c9	FXCH		FXCH
+0040cf6d	d8 4c 24 10	FMUL	float ptr [ESP + 0x10]	FMUL float ptr [ESP + 0x10]
+0040cf71	de c1	FADDP		FADDP
+0040cf73	d8 15 a4 c6 4b 00	FCOM	float ptr [0x004bc6a4]	FCOM float ptr [0x004bc6a4]
+0040cf79	df e0	FNSTSW	AX	FNSTSW AX
+0040cf7b	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0040cf7e	75 1f	JNZ	0x0040cf9f	JNZ 0x0040cf9f
+0040cf80	d8 15 a8 c6 4b 00	FCOM	float ptr [0x004bc6a8]	FCOM float ptr [0x004bc6a8]
+0040cf86	df e0	FNSTSW	AX	FNSTSW AX
+0040cf88	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0040cf8b	74 12	JZ	0x0040cf9f	JZ 0x0040cf9f
+0040cf8d	dd d8	FSTP	ST0	FSTP ST0
+0040cf8f	d9 05 b4 c6 4b 00	FLD	float ptr [0x004bc6b4]	FLD float ptr [0x004bc6b4]
+0040cf95	c7 44 24 0c 00 00 80 3f	MOV	dword ptr [ESP + 0xc], 0x3f800000	MOV dword ptr [ESP + 0xc],0x3f800000
+0040cf9d	eb 24	JMP	0x0040cfc3	JMP 0x0040cfc3
+0040cf9f	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040cfa2	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040cfa5	e8 56 80 08 00	CALL	0x00495000	CALL 0x00495000
+0040cfaa	d9 c0	FLD	ST0	FLD ST0
+0040cfac	d8 4c 24 18	FMUL	float ptr [ESP + 0x18]	FMUL float ptr [ESP + 0x18]
+0040cfb0	d9 c9	FXCH		FXCH
+0040cfb2	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+0040cfb6	d9 c9	FXCH		FXCH
+0040cfb8	d9 e0	FCHS		FCHS
+0040cfba	d9 c9	FXCH		FXCH
+0040cfbc	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040cfbf	d9 5c 24 0c	FSTP	float ptr [ESP + 0xc]	FSTP float ptr [ESP + 0xc]
+0040cfc3	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040cfc9	8b 4f 28	MOV	ECX, dword ptr [EDI + 0x28]	MOV ECX,dword ptr [EDI + 0x28]
+0040cfcc	8b 54 24 18	MOV	EDX, dword ptr [ESP + 0x18]	MOV EDX,dword ptr [ESP + 0x18]
+0040cfd0	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0040cfd4	d9 c9	FXCH		FXCH
+0040cfd6	d8 2c 0e	FSUBR	float ptr [ESI + ECX*0x1]	FSUBR float ptr [ESI + ECX*0x1]
+0040cfd9	d9 c9	FXCH		FXCH
+0040cfdb	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040cfe1	d9 c9	FXCH		FXCH
+0040cfe3	d9 1a	FSTP	float ptr [EDX]	FSTP float ptr [EDX]
+0040cfe5	8b 47 28	MOV	EAX, dword ptr [EDI + 0x28]	MOV EAX,dword ptr [EDI + 0x28]
+0040cfe8	8b 4c 24 1c	MOV	ECX, dword ptr [ESP + 0x1c]	MOV ECX,dword ptr [ESP + 0x1c]
+0040cfec	d8 6c 06 08	FSUBR	float ptr [ESI + EAX*0x1 + 0x8]	FSUBR float ptr [ESI + EAX*0x1 + 0x8]
+0040cff0	d9 19	FSTP	float ptr [ECX]	FSTP float ptr [ECX]
+0040cff2	5f	POP	EDI	POP EDI
+0040cff3	5e	POP	ESI	POP ESI
+0040cff4	c3	RET		RET
+0040cff5	8b 7c 24 0c	MOV	EDI, dword ptr [ESP + 0xc]	MOV EDI,dword ptr [ESP + 0xc]
+0040cff9	8d 51 01	LEA	EDX, [ECX + 0x1]	LEA EDX,[ECX + 0x1]
+0040cffc	8d 34 49	LEA	ESI, [ECX + ECX*0x2]	LEA ESI,[ECX + ECX*0x2]
+0040cfff	8b 47 28	MOV	EAX, dword ptr [EDI + 0x28]	MOV EAX,dword ptr [EDI + 0x28]
+0040d002	8d 14 52	LEA	EDX, [EDX + EDX*0x2]	LEA EDX,[EDX + EDX*0x2]
+0040d005	c1 e6 03	SHL	ESI, 0x3	SHL ESI,0x3
+0040d008	d9 04 d0	FLD	float ptr [EAX + EDX*0x8]	FLD float ptr [EAX + EDX*0x8]
+0040d00b	d9 04 30	FLD	float ptr [EAX + ESI*0x1]	FLD float ptr [EAX + ESI*0x1]
+0040d00e	d9 44 30 20	FLD	float ptr [EAX + ESI*0x1 + 0x20]	FLD float ptr [EAX + ESI*0x1 + 0x20]
+0040d012	d9 c9	FXCH		FXCH
+0040d014	de ea	FSUBP	ST2, ST0	FSUBP ST2,ST0
+0040d016	d8 64 30 08	FSUB	float ptr [EAX + ESI*0x1 + 0x8]	FSUB float ptr [EAX + ESI*0x1 + 0x8]
+0040d01a	d9 c9	FXCH		FXCH
+0040d01c	d9 54 24 0c	FST	float ptr [ESP + 0xc]	FST float ptr [ESP + 0xc]
+0040d020	d9 c9	FXCH		FXCH
+0040d022	d9 54 24 10	FST	float ptr [ESP + 0x10]	FST float ptr [ESP + 0x10]
+0040d026	d9 c9	FXCH		FXCH
+0040d028	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0040d02c	d9 c9	FXCH		FXCH
+0040d02e	d8 4c 24 10	FMUL	float ptr [ESP + 0x10]	FMUL float ptr [ESP + 0x10]
+0040d032	de c1	FADDP		FADDP
+0040d034	d8 15 a4 c6 4b 00	FCOM	float ptr [0x004bc6a4]	FCOM float ptr [0x004bc6a4]
+0040d03a	df e0	FNSTSW	AX	FNSTSW AX
+0040d03c	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0040d03f	75 1d	JNZ	0x0040d05e	JNZ 0x0040d05e
+0040d041	d8 15 a8 c6 4b 00	FCOM	float ptr [0x004bc6a8]	FCOM float ptr [0x004bc6a8]
+0040d047	df e0	FNSTSW	AX	FNSTSW AX
+0040d049	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0040d04c	74 10	JZ	0x0040d05e	JZ 0x0040d05e
+0040d04e	dd d8	FSTP	ST0	FSTP ST0
+0040d050	d9 05 ac c6 4b 00	FLD	float ptr [0x004bc6ac]	FLD float ptr [0x004bc6ac]
+0040d056	d9 05 b4 c6 4b 00	FLD	float ptr [0x004bc6b4]	FLD float ptr [0x004bc6b4]
+0040d05c	eb 20	JMP	0x0040d07e	JMP 0x0040d07e
+0040d05e	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040d061	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040d064	e8 97 7f 08 00	CALL	0x00495000	CALL 0x00495000
+0040d069	d9 c0	FLD	ST0	FLD ST0
+0040d06b	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+0040d06f	d9 c9	FXCH		FXCH
+0040d071	d8 4c 24 18	FMUL	float ptr [ESP + 0x18]	FMUL float ptr [ESP + 0x18]
+0040d075	d9 c9	FXCH		FXCH
+0040d077	d9 e0	FCHS		FCHS
+0040d079	d9 c9	FXCH		FXCH
+0040d07b	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040d07e	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040d084	8b 47 28	MOV	EAX, dword ptr [EDI + 0x28]	MOV EAX,dword ptr [EDI + 0x28]
+0040d087	8b 4c 24 18	MOV	ECX, dword ptr [ESP + 0x18]	MOV ECX,dword ptr [ESP + 0x18]
+0040d08b	d8 2c 06	FSUBR	float ptr [ESI + EAX*0x1]	FSUBR float ptr [ESI + EAX*0x1]
+0040d08e	d9 c9	FXCH		FXCH
+0040d090	d8 0d b8 c6 4b 00	FMUL	float ptr [0x004bc6b8]	FMUL float ptr [0x004bc6b8]
+0040d096	d9 c9	FXCH		FXCH
+0040d098	d9 19	FSTP	float ptr [ECX]	FSTP float ptr [ECX]
+0040d09a	8b 57 28	MOV	EDX, dword ptr [EDI + 0x28]	MOV EDX,dword ptr [EDI + 0x28]
+0040d09d	8b 44 24 1c	MOV	EAX, dword ptr [ESP + 0x1c]	MOV EAX,dword ptr [ESP + 0x1c]
+0040d0a1	5f	POP	EDI	POP EDI
+0040d0a2	d8 6c 16 08	FSUBR	float ptr [ESI + EDX*0x1 + 0x8]	FSUBR float ptr [ESI + EDX*0x1 + 0x8]
+0040d0a6	5e	POP	ESI	POP ESI
+0040d0a7	d9 18	FSTP	float ptr [EAX]	FSTP float ptr [EAX]
+0040d0a9	c3	RET		RET

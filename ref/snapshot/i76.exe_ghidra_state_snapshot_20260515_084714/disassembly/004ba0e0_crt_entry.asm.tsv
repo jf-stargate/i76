@@ -1,0 +1,108 @@
+address	bytes	mnemonic	operands	instruction
+004ba0e0	55	PUSH	EBP	PUSH EBP
+004ba0e1	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+004ba0e3	6a ff	PUSH	-0x1	PUSH -0x1
+004ba0e5	68 a8 ec 4b 00	PUSH	0x4beca8	PUSH 0x4beca8
+004ba0ea	68 d0 a0 4b 00	PUSH	0x4ba0d0	PUSH 0x4ba0d0
+004ba0ef	64 a1 00 00 00 00	MOV	EAX, FS:[0x0]	MOV EAX,FS:[0x0]
+004ba0f5	50	PUSH	EAX	PUSH EAX
+004ba0f6	64 89 25 00 00 00 00	MOV	dword ptr FS:[0x0], ESP	MOV dword ptr FS:[0x0],ESP
+004ba0fd	83 c4 98	ADD	ESP, -0x68	ADD ESP,-0x68
+004ba100	53	PUSH	EBX	PUSH EBX
+004ba101	56	PUSH	ESI	PUSH ESI
+004ba102	57	PUSH	EDI	PUSH EDI
+004ba103	89 65 e8	MOV	dword ptr [EBP + -0x18], ESP	MOV dword ptr [EBP + -0x18],ESP
+004ba106	c7 45 fc 00 00 00 00	MOV	dword ptr [EBP + -0x4], 0x0	MOV dword ptr [EBP + -0x4],0x0
+004ba10d	6a 02	PUSH	0x2	PUSH 0x2
+004ba10f	ff 15 b4 c1 4b 00	CALL	dword ptr [0x004bc1b4]	CALL dword ptr [0x004bc1b4]
+004ba115	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+004ba118	c7 05 ec 9e 66 00 ff ff ff ff	MOV	dword ptr [0x00669eec], 0xffffffff	MOV dword ptr [0x00669eec],0xffffffff
+004ba122	c7 05 f0 9e 66 00 ff ff ff ff	MOV	dword ptr [0x00669ef0], 0xffffffff	MOV dword ptr [0x00669ef0],0xffffffff
+004ba12c	ff 15 b0 c1 4b 00	CALL	dword ptr [0x004bc1b0]	CALL dword ptr [0x004bc1b0]
+004ba132	8b 0d a8 ba 5d 00	MOV	ECX, dword ptr [0x005dbaa8]	MOV ECX,dword ptr [0x005dbaa8]
+004ba138	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+004ba13a	ff 15 ac c1 4b 00	CALL	dword ptr [0x004bc1ac]	CALL dword ptr [0x004bc1ac]
+004ba140	8b 15 a4 ba 5d 00	MOV	EDX, dword ptr [0x005dbaa4]	MOV EDX,dword ptr [0x005dbaa4]
+004ba146	89 10	MOV	dword ptr [EAX], EDX	MOV dword ptr [EAX],EDX
+004ba148	a1 a8 c1 4b 00	MOV	EAX, [0x004bc1a8]	MOV EAX,[0x004bc1a8]
+004ba14d	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+004ba14f	89 0d f4 9e 66 00	MOV	dword ptr [0x00669ef4], ECX	MOV dword ptr [0x00669ef4],ECX
+004ba155	e8 66 4c fb ff	CALL	0x0046edc0	CALL 0x0046edc0
+004ba15a	a1 90 0f 50 00	MOV	EAX, [0x00500f90]	MOV EAX,[0x00500f90]
+004ba15f	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004ba161	75 0e	JNZ	0x004ba171	JNZ 0x004ba171
+004ba163	68 e0 3d 43 00	PUSH	0x433de0	PUSH 0x433de0
+004ba168	ff 15 a4 c1 4b 00	CALL	dword ptr [0x004bc1a4]	CALL dword ptr [0x004bc1a4]
+004ba16e	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+004ba171	e8 aa 01 00 00	CALL	0x004ba320	CALL 0x004ba320
+004ba176	68 18 20 4c 00	PUSH	0x4c2018	PUSH 0x4c2018
+004ba17b	68 14 20 4c 00	PUSH	0x4c2014	PUSH 0x4c2014
+004ba180	e8 8b 01 00 00	CALL	0x004ba310	CALL 0x004ba310
+004ba185	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+004ba188	8b 15 a0 ba 5d 00	MOV	EDX, dword ptr [0x005dbaa0]	MOV EDX,dword ptr [0x005dbaa0]
+004ba18e	89 55 94	MOV	dword ptr [EBP + -0x6c], EDX	MOV dword ptr [EBP + -0x6c],EDX
+004ba191	8d 45 94	LEA	EAX, [EBP + -0x6c]	LEA EAX,[EBP + -0x6c]
+004ba194	50	PUSH	EAX	PUSH EAX
+004ba195	8b 0d 9c ba 5d 00	MOV	ECX, dword ptr [0x005dba9c]	MOV ECX,dword ptr [0x005dba9c]
+004ba19b	51	PUSH	ECX	PUSH ECX
+004ba19c	8d 55 9c	LEA	EDX, [EBP + -0x64]	LEA EDX,[EBP + -0x64]
+004ba19f	52	PUSH	EDX	PUSH EDX
+004ba1a0	8d 45 90	LEA	EAX, [EBP + -0x70]	LEA EAX,[EBP + -0x70]
+004ba1a3	50	PUSH	EAX	PUSH EAX
+004ba1a4	8d 4d a0	LEA	ECX, [EBP + -0x60]	LEA ECX,[EBP + -0x60]
+004ba1a7	51	PUSH	ECX	PUSH ECX
+004ba1a8	ff 15 9c c1 4b 00	CALL	dword ptr [0x004bc19c]	CALL dword ptr [0x004bc19c]
+004ba1ae	83 c4 14	ADD	ESP, 0x14	ADD ESP,0x14
+004ba1b1	68 10 20 4c 00	PUSH	0x4c2010	PUSH 0x4c2010
+004ba1b6	68 00 20 4c 00	PUSH	0x4c2000	PUSH 0x4c2000
+004ba1bb	e8 50 01 00 00	CALL	0x004ba310	CALL 0x004ba310
+004ba1c0	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+004ba1c3	8b 15 98 c1 4b 00	MOV	EDX, dword ptr [0x004bc198]	MOV EDX,dword ptr [0x004bc198]
+004ba1c9	8b 32	MOV	ESI, dword ptr [EDX]	MOV ESI,dword ptr [EDX]
+004ba1cb	89 75 8c	MOV	dword ptr [EBP + -0x74], ESI	MOV dword ptr [EBP + -0x74],ESI
+004ba1ce	80 3e 22	CMP	byte ptr [ESI], 0x22	CMP byte ptr [ESI],0x22
+004ba1d1	0f 85 a8 00 00 00	JNZ	0x004ba27f	JNZ 0x004ba27f
+004ba1d7	46	INC	ESI	INC ESI
+004ba1d8	89 75 8c	MOV	dword ptr [EBP + -0x74], ESI	MOV dword ptr [EBP + -0x74],ESI
+004ba1db	8a 06	MOV	AL, byte ptr [ESI]	MOV AL,byte ptr [ESI]
+004ba1dd	84 c0	TEST	AL, AL	TEST AL,AL
+004ba1df	74 04	JZ	0x004ba1e5	JZ 0x004ba1e5
+004ba1e1	3c 22	CMP	AL, 0x22	CMP AL,0x22
+004ba1e3	75 f2	JNZ	0x004ba1d7	JNZ 0x004ba1d7
+004ba1e5	80 3e 22	CMP	byte ptr [ESI], 0x22	CMP byte ptr [ESI],0x22
+004ba1e8	75 04	JNZ	0x004ba1ee	JNZ 0x004ba1ee
+004ba1ea	46	INC	ESI	INC ESI
+004ba1eb	89 75 8c	MOV	dword ptr [EBP + -0x74], ESI	MOV dword ptr [EBP + -0x74],ESI
+004ba1ee	8a 06	MOV	AL, byte ptr [ESI]	MOV AL,byte ptr [ESI]
+004ba1f0	84 c0	TEST	AL, AL	TEST AL,AL
+004ba1f2	74 0a	JZ	0x004ba1fe	JZ 0x004ba1fe
+004ba1f4	3c 20	CMP	AL, 0x20	CMP AL,0x20
+004ba1f6	77 06	JA	0x004ba1fe	JA 0x004ba1fe
+004ba1f8	46	INC	ESI	INC ESI
+004ba1f9	89 75 8c	MOV	dword ptr [EBP + -0x74], ESI	MOV dword ptr [EBP + -0x74],ESI
+004ba1fc	eb f0	JMP	0x004ba1ee	JMP 0x004ba1ee
+004ba1fe	c7 45 d0 00 00 00 00	MOV	dword ptr [EBP + -0x30], 0x0	MOV dword ptr [EBP + -0x30],0x0
+004ba205	8d 45 a4	LEA	EAX, [EBP + -0x5c]	LEA EAX,[EBP + -0x5c]
+004ba208	50	PUSH	EAX	PUSH EAX
+004ba209	ff 15 40 c1 4b 00	CALL	dword ptr [0x004bc140]	CALL dword ptr [0x004bc140]
+004ba20f	f6 45 d0 01	TEST	byte ptr [EBP + -0x30], 0x1	TEST byte ptr [EBP + -0x30],0x1
+004ba213	74 0a	JZ	0x004ba21f	JZ 0x004ba21f
+004ba215	8b 45 d4	MOV	EAX, dword ptr [EBP + -0x2c]	MOV EAX,dword ptr [EBP + -0x2c]
+004ba218	25 ff ff 00 00	AND	EAX, 0xffff	AND EAX,0xffff
+004ba21d	eb 05	JMP	0x004ba224	JMP 0x004ba224
+004ba21f	b8 0a 00 00 00	MOV	EAX, 0xa	MOV EAX,0xa
+004ba224	50	PUSH	EAX	PUSH EAX
+004ba225	56	PUSH	ESI	PUSH ESI
+004ba226	6a 00	PUSH	0x0	PUSH 0x0
+004ba228	6a 00	PUSH	0x0	PUSH 0x0
+004ba22a	ff 15 ec c0 4b 00	CALL	dword ptr [0x004bc0ec]	CALL dword ptr [0x004bc0ec]
+004ba230	50	PUSH	EAX	PUSH EAX
+004ba231	e8 fa 88 f4 ff	CALL	0x00402b30	CALL 0x00402b30
+004ba236	89 45 98	MOV	dword ptr [EBP + -0x68], EAX	MOV dword ptr [EBP + -0x68],EAX
+004ba239	50	PUSH	EAX	PUSH EAX
+004ba23a	ff 15 30 c2 4b 00	CALL	dword ptr [0x004bc230]	CALL dword ptr [0x004bc230]
+004ba27f	80 3e 20	CMP	byte ptr [ESI], 0x20	CMP byte ptr [ESI],0x20
+004ba282	0f 86 66 ff ff ff	JBE	0x004ba1ee	JBE 0x004ba1ee
+004ba288	46	INC	ESI	INC ESI
+004ba289	89 75 8c	MOV	dword ptr [EBP + -0x74], ESI	MOV dword ptr [EBP + -0x74],ESI
+004ba28c	eb f1	JMP	0x004ba27f	JMP 0x004ba27f

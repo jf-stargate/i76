@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+00457270	a1 54 a2 54 00	MOV	EAX, [0x0054a254]	MOV EAX,[0x0054a254]
+00457275	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+00457279	89 0c 85 88 a1 54 00	MOV	dword ptr [EAX*0x4 + 0x54a188], ECX	MOV dword ptr [EAX*0x4 + 0x54a188],ECX
+00457280	40	INC	EAX	INC EAX
+00457281	a3 54 a2 54 00	MOV	[0x0054a254], EAX	MOV [0x0054a254],EAX
+00457286	c3	RET		RET

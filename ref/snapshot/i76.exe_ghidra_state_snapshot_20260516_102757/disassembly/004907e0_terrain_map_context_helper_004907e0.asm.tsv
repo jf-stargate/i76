@@ -1,0 +1,14 @@
+address	bytes	mnemonic	operands	instruction
+004907e0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004907e4	c7 05 24 ad 4f 00 ab aa 2a 3b	MOV	dword ptr [0x004fad24], 0x3b2aaaab	MOV dword ptr [0x004fad24],0x3b2aaaab
+004907ee	83 e8 00	SUB	EAX, 0x0	SUB EAX,0x0
+004907f1	c7 05 20 ad 4f 00 00 00 80 41	MOV	dword ptr [0x004fad20], 0x41800000	MOV dword ptr [0x004fad20],0x41800000
+004907fb	74 1a	JZ	0x00490817	JZ 0x00490817
+004907fd	83 e8 02	SUB	EAX, 0x2	SUB EAX,0x2
+00490800	75 29	JNZ	0x0049082b	JNZ 0x0049082b
+00490802	c7 05 20 ad 4f 00 00 00 20 42	MOV	dword ptr [0x004fad20], 0x42200000	MOV dword ptr [0x004fad20],0x42200000
+0049080c	c7 05 24 ad 4f 00 f8 53 e3 3a	MOV	dword ptr [0x004fad24], 0x3ae353f8	MOV dword ptr [0x004fad24],0x3ae353f8
+00490816	c3	RET		RET
+00490817	c7 05 20 ad 4f 00 cd cc cc 40	MOV	dword ptr [0x004fad20], 0x40cccccd	MOV dword ptr [0x004fad20],0x40cccccd
+00490821	c7 05 24 ad 4f 00 00 00 80 3b	MOV	dword ptr [0x004fad24], 0x3b800000	MOV dword ptr [0x004fad24],0x3b800000
+0049082b	c3	RET		RET

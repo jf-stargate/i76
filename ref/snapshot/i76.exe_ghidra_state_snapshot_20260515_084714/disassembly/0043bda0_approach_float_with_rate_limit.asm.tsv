@@ -1,0 +1,27 @@
+address	bytes	mnemonic	operands	instruction
+0043bda0	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0043bda4	d8 1d 48 d1 4b 00	FCOMP	float ptr [0x004bd148]	FCOMP float ptr [0x004bd148]
+0043bdaa	df e0	FNSTSW	AX	FNSTSW AX
+0043bdac	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0043bdaf	75 3a	JNZ	0x0043bdeb	JNZ 0x0043bdeb
+0043bdb1	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0043bdb5	d8 1d c0 d1 4b 00	FCOMP	float ptr [0x004bd1c0]	FCOMP float ptr [0x004bd1c0]
+0043bdbb	df e0	FNSTSW	AX	FNSTSW AX
+0043bdbd	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0043bdc0	74 29	JZ	0x0043bdeb	JZ 0x0043bdeb
+0043bdc2	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0043bdc6	d8 64 24 04	FSUB	float ptr [ESP + 0x4]	FSUB float ptr [ESP + 0x4]
+0043bdca	d9 c0	FLD	ST0	FLD ST0
+0043bdcc	d9 e1	FABS		FABS
+0043bdce	dc 1d c8 d1 4b 00	FCOMP	double ptr [0x004bd1c8]	FCOMP double ptr [0x004bd1c8]
+0043bdd4	df e0	FNSTSW	AX	FNSTSW AX
+0043bdd6	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0043bdd9	74 07	JZ	0x0043bde2	JZ 0x0043bde2
+0043bddb	dd d8	FSTP	ST0	FSTP ST0
+0043bddd	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0043bde1	c3	RET		RET
+0043bde2	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0043bde6	d8 44 24 04	FADD	float ptr [ESP + 0x4]	FADD float ptr [ESP + 0x4]
+0043bdea	c3	RET		RET
+0043bdeb	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0043bdef	c3	RET		RET

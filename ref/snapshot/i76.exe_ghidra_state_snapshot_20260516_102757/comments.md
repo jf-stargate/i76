@@ -1,0 +1,3110 @@
+# Comments
+
+| Address | Function | Type | Comment |
+|---|---|---|---|
+| `00400000` | `` | eol | Magic number |
+| `004001b0` | `` | eol | .text |
+| `004001d8` | `` | eol | .rdata |
+| `00400200` | `` | eol | .data |
+| `00400228` | `` | eol | .rsrc |
+| `00401000` | `load_opponent_vehicle_files` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=medium-high] Loads network/opponent vehicle VCF files from NVCL/VCL naming patterns. |
+| `00401250` | `cleanup_temp_network_vehicle_files` | plate | i76 second-pass rename<br>old_name: FUN_00401250<br>suggested_name: cleanup_temp_network_vehicle_files<br>basis: References NVCL/*.vcf and _unlink; likely cleanup for generated network vehicle files. |
+| `00401270` | `set_shell_return_launch_requested` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM] Called when shell return state is 3 before copying shell path to selected mission resource path.<br>old_name: FUN_00401270 |
+| `00401280` | `accumulate_multiplayer_score_distance_from_active_vehicle` | plate | cgpt rename v3: Increments a multiplayer/scoreboard accumulator using the active player/camera object and refreshes the multiplayer scoreboard overlay. |
+| `004012c0` | `set_multiplayer_score_accumulators` | plate | cgpt rename v3: Sets the two globals later read by scoreboard/report writers. |
+| `004012e0` | `get_multiplayer_score_accumulators` | plate | cgpt rename v3: Copies the two multiplayer score accumulator globals to optional caller-provided outputs. |
+| `00401310` | `is_network_or_trip_runtime_mode` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM] Predicate used throughout mission setup/runtime for alternate vehicle/network/trip paths. |
+| `00401320` | `mission_user_vehicle_allowed_by_damage_suppression` | plate | cgpt rename v3: Returns true when a mission/user vehicle check should pass because the local override is set or damage side effects are suppressed. |
+| `00401410` | `initialize_horizon_ring_vertex_table` | plate | cgpt rename v3: Builds a circular/ring vertex table with radius 6000 and duplicated distance entries for horizon/sky-style rendering. |
+| `00401510` | `load_predefined_localized_m16_texture_set` | plate | cgpt rename v3: Iterates a predefined table and loads localized M16 texture resources, then resets related render counters. |
+| `00401540` | `load_horizon_texture_manifest` | plate | cgpt whole-binary semantic rename v1: parses resource text into horizon texture slots; string evidence: Horizon Texture (%s) not found |
+| `004016e0` | `submit_dynamic_geometry_aux_view_polygons` | plate | cgpt readability rename v13 set A: Dynamic render helper called from the frame renderer; prepares auxiliary clipped/lit polygon batches for the active view. |
+| `00401970` | `allocate_dynamic_render_pass_vertex_buffer` | plate | cgpt readability rename v13 set A: Allocates or returns scratch vertex/output storage for the dynamic render pass. |
+| `00401bd0` | `build_camera_forward_basis_from_active_transform` | plate | cgpt readability rename v13 set A: Builds normalized camera/forward basis vectors into globals from an active transform row. |
+| `00401c90` | `dispatch_ai_frame_update_if_gameplay_active` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] AI/frame-update gate. Runs only while g_game_flow_state == 5 and selects heap/runtime-dependent update path. |
+| `00401cc0` | `render_game_frame_software_pipeline_debug_timed` | plate | cgpt readability rename v13 set A: High-level frame render pipeline with timing labels such as Mirr/Terr/Road/Skid/Sky/Sort/Span/Final; software-style path. |
+| `00401cc0` | `render_game_frame_software_pipeline_debug_timed` | pre | I76 semantic baseline: render_game_frame_software_pipeline_debug_timed<br>High-level software frame render pipeline with timing/debug labels. |
+| `00401fa0` | `render_game_frame_d3d_pipeline_debug_timed` | plate | cgpt readability rename v13 set A: High-level frame render pipeline with timing labels and DirectDraw/D3D surface restore/scene flush calls. |
+| `00401fa0` | `render_game_frame_d3d_pipeline_debug_timed` | pre | I76 semantic baseline: render_game_frame_d3d_pipeline_debug_timed<br>High-level D3D frame render pipeline with timing/debug labels. |
+| `00402290` | `debug_fprintf_wrapper` | plate | i76 second-pass rename<br>old_name: FUN_00402290<br>suggested_name: debug_fprintf_wrapper<br>basis: Tiny fprintf wrapper called by diagnostics/cache/resource paths. |
+| `004022e0` | `call_shell_main` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Loads i76shell.dll exports, builds ShellMain callback table, calls ShellMain, consumes shell launch results, then refreshes PIX/resource caches on non-cancel return. |
+| `00402610` | `get_game_flow_state` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Accessor returning g_game_flow_state. |
+| `00402610` | `get_game_flow_state` | pre | I76 semantic baseline: get_game_flow_state<br>Returns global game-flow state. |
+| `00402620` | `set_game_flow_state` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Setter for g_game_flow_state. |
+| `00402620` | `set_game_flow_state` | pre | I76 semantic baseline: set_game_flow_state<br>Sets global game-flow state. |
+| `00402630` | `parse_fullres_lst_line` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Parses one FULLRES.LST line into an asset/name entry used by the full-resolution texture bitset. |
+| `004026c0` | `preload_asset_caches` | plate | i76 first-pass rename<br>old_name: FUN_004026c0<br>suggested_name: preload_asset_caches<br>basis: Cache preload candidate; clustered with geometry/texture/video cache preload diagnostics. |
+| `00402b30` | `winmain_top_level_game_fsm` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Top-level WinMain-hosted game-flow FSM. Contains shell launch/re-entry, mission setup, active gameplay loop, teardown, and post-mission state transitions. |
+| `00402b30` | `winmain_top_level_game_fsm` | pre | I76 semantic baseline: winmain_top_level_game_fsm<br>Top-level game-flow FSM: shell transition, mission setup, active gameplay loop, teardown. |
+| `00403d86` | `winmain_top_level_game_fsm` | pre | I76 semantic baseline note:<br>Main active gameplay loop: world-object pre-update dispatch begins here before explicit FSM/weapon/presentation stages. |
+| `00403dd5` | `winmain_top_level_game_fsm` | pre | I76 semantic baseline note:<br>Main active gameplay loop: world-object post-update dispatch follows shortly after pre-update; this ends object update phase, not rendered frame. |
+| `00403ddf` | `winmain_top_level_game_fsm` | pre | I76 semantic baseline note:<br>Main active gameplay loop: AI/FSM vehicle runtime frame update after object callback passes. |
+| `00403de7` | `winmain_top_level_game_fsm` | pre | I76 semantic baseline note:<br>Main active gameplay loop: vehicle weapon fire-state update after AI/FSM. |
+| `00404c40` | `get_selected_mission_resource_stem8` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Splits g_selected_mission_resource_path and returns/copies the first 8 bytes of the filename stem. |
+| `00404c90` | `copy_multiplayer_session_status_name_string` | plate | cgpt readability rename v13 set A: Copies the global multiplayer/session status name string at DAT_005049f0 into caller storage. |
+| `00404cc0` | `copy_multiplayer_scoreboard_name_string` | plate | cgpt rename v3: Copies the global multiplayer score/name string into a caller buffer. |
+| `00404cf0` | `copy_multiplayer_score_results_name_string` | plate | cgpt rename v4: Copies the multiplayer score/results name string from its global buffer to the caller buffer. |
+| `00404d20` | `copy_shell_session_text_block` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Copies the 0x1e-byte shell session text block from global shell launch output. |
+| `00404d50` | `get_shell_selected_map_or_session_scalar` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Returns the shell-selected map/session scalar copied from launch config offset +0x6c. |
+| `00404d60` | `copy_shell_session_descriptor_block` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Copies the 0x66-dword shell session descriptor block from global shell launch output. |
+| `00404d80` | `fatal_out_of_memory_message` | plate | i76 second-pass rename<br>old_name: FUN_00404d80<br>suggested_name: fatal_out_of_memory_message<br>basis: Shows out-of-memory MessageBox, destroys window, exits. |
+| `00404e00` | `load_base_font_resource_variants` | plate | cgpt whole-binary semantic rename v1: references base6x7*.fnt variants |
+| `00404e50` | `init_sky_textures` | plate | i76 second-pass rename<br>old_name: FUN_00404e50<br>suggested_name: init_sky_textures<br>basis: Diagnostics for missing sky/moon/sun textures. |
+| `004051c0` | `release_sky_texture_resources` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Cleanup counterpart for sky/background texture resources. |
+| `00405200` | `submit_far_scene_horizon_polygon_batch` | plate | cgpt readability rename v13 set A: Dynamic render helper that builds/submits far-scene or horizon-style polygon batches using active display globals. |
+| `00405560` | `project_aux_render_vertex_batch_to_scratch` | plate | cgpt readability rename v13 set A: Projects/transforms auxiliary render vertices into a scratch buffer for the dynamic render pass. |
+| `004058b0` | `pop_runtime_camera_state_stack` | plate | cgpt readability rename v13 set A: Pops one saved runtime camera/view state from the stack into the active display-mode camera state. |
+| `004058f0` | `can_pop_runtime_camera_state_stack` | plate | cgpt readability rename v13 set A: Predicate used before popping runtime camera/view state; also checks active-player control-change gating. |
+| `00405910` | `push_runtime_camera_state_stack` | plate | cgpt readability rename v13 set A: Pushes the active runtime camera/view state onto an 8-entry stack and resumes classifier/display state if needed. |
+| `00405970` | `initialize_runtime_camera_projection_matrix` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Initializes runtime camera/projection matrix globals, view aspect, default camera mode state, and active camera mode callback. |
+| `00405b30` | `toggle_runtime_camera_debug_or_reverse_flag` | plate | cgpt readability rename v13 set A: Toggles a runtime camera/display boolean flag at DAT_004c2718. |
+| `00405b50` | `compare_runtime_camera_distance_threshold` | plate | cgpt readability rename v13 set A: Compares DAT_004c2970 against a supplied float and returns a 16-bit comparison code. |
+| `00405b90` | `update_runtime_camera_follow_object_callback` | plate | cgpt readability rename v13 set A: Runtime camera callback used by special object-relative camera modes; updates tracked object transform and active camera matrix. |
+| `004060c0` | `compute_audio_listener_orientation_from_world_object` | plate | cgpt rename v4: Builds a listener/orientation transform from a world object's forward/right vectors or the default listener matrix. |
+| `004061b0` | `update_runtime_camera_object_relative_callback` | plate | cgpt readability rename v13 set A: Runtime camera callback used by object-relative camera modes; updates tracked object transform and active camera matrix. |
+| `004066e0` | `update_distance_culled_world_object_render_state` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Per-frame camera/distance culling pass over active world-object entries. Releases or marks far object/child render state outside configured radii. |
+| `004066e0` | `update_distance_culled_world_object_render_state` | pre | I76 semantic baseline: update_distance_culled_world_object_render_state<br>Per-frame camera/distance culling over active world-object entries. |
+| `00406810` | `recursive_clear_world_object_geometry_bindings` | plate | cgpt rename v3: Recursively clears geometry bindings and refreshes texture bindings over a world-object subtree. |
+| `00406840` | `get_world_object_runtime_activity_state` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Object runtime/activity predicate used by the vehicle frame callback with threshold 25.0; result 2 enables direct update path. |
+| `00406840` | `get_world_object_runtime_activity_state` | pre | I76 semantic baseline: get_world_object_runtime_activity_state<br>Returns activity/relevance state for world object, used by vehicle active simulation gate. |
+| `00406920` | `activate_runtime_camera_mode_0e_default_object_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x0e; initializes the default object-relative camera state, projection block, tracked object pointer, and callback LAB_00406ab0. |
+| `00406e00` | `activate_runtime_camera_mode_1a_external_object_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x1a; initializes an object/view mode without copying object orientation anchor fields. |
+| `00406f30` | `activate_runtime_camera_mode_0d_restore_or_default_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x0d; conditionally restores from camera state 0/2, otherwise initializes the default object-relative view. |
+| `00407500` | `activate_runtime_camera_mode_11_wide_fov_object_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x11; initializes object-relative view with a wider 2.0943952 rad FOV and callback LAB_00407680. |
+| `00407930` | `is_runtime_camera_mode_11_callback_active` | plate | cgpt rename v5 runtime camera cluster: Returns whether the current runtime camera callback equals LAB_00407680, the callback installed by camera mode 0x11. |
+| `00407950` | `activate_runtime_camera_mode_10_rear_orbit_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x10; initializes object-relative view with pi yaw/orbit constants and callback LAB_00407ad0. |
+| `00407ea0` | `activate_runtime_camera_mode_0f_object_relative_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x0f; initializes object-relative camera state using computed listener/object orientation and callback FUN_004061b0. |
+| `00408030` | `activate_runtime_camera_mode_1b_effect_target_orbit_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x1b; initializes an effect-target orbit view using transformed target radius and callback FUN_00408240. |
+| `00408240` | `update_runtime_camera_orbit_offset_callback` | plate | cgpt rename v5 runtime camera cluster: Runtime camera callback that composes orbit/offset parameters with the tracked object's transform and writes the active camera matrix. |
+| `00408350` | `activate_runtime_camera_mode_13_fixed_offset_view_a` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x13; initializes a fixed offset object view and installs update_runtime_camera_orbit_offset_callback. |
+| `004084a0` | `activate_runtime_camera_mode_14_fixed_offset_view_b` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x14; initializes a second fixed offset object view with alternate yaw/offset constants and installs update_runtime_camera_orbit_offset_callback. |
+| `004085f0` | `activate_runtime_camera_mode_15_orbit_angle_view_a` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x15; initializes object-relative orbit view with angle constant 0x40278d36 and callback LAB_00407ad0. |
+| `00408770` | `activate_runtime_camera_mode_16_orbit_angle_view_b` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x16; initializes object-relative orbit view with angle constant 0x3f060a92 and callback LAB_00407ad0. |
+| `004088f0` | `activate_runtime_camera_mode_17_far_chase_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x17; initializes a far chase-style view using distance 100.0 and callback LAB_00408a10. |
+| `00408b50` | `activate_runtime_camera_mode_18_weapon_target_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x18; switches into weapon-target tracking view when the tracked vehicle has a primary weapon target. |
+| `00408c60` | `update_runtime_camera_weapon_target_tracking_callback` | plate | cgpt rename v5 runtime camera cluster: Runtime camera callback for weapon-target tracking; updates source/target transforms, times out if target disappears, and calls the two-position camera solver. |
+| `00408d90` | `solve_runtime_camera_between_source_and_target_positions` | plate | cgpt rename v5 runtime camera cluster: Builds a camera transform between source and target positions with distance/tilt limiting, then writes the active camera matrix. |
+| `00409030` | `activate_runtime_camera_mode_19_weapon_target_view_alt` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x19; alternate weapon-target tracking activation using callback LAB_00409140. |
+| `00409270` | `activate_runtime_camera_mode_fefe_object_relative_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0xfefe sentinel/special entry; initializes object-relative camera state using computed orientation and callback FUN_00405b90. |
+| `00409400` | `activate_runtime_camera_mode_12_ordnance_projectile_view` | plate | cgpt rename v5 runtime camera cluster: Runtime camera mode table id 0x12; switches to ordnance/effect-source camera view when the current ordnance parent object is valid and flagged. |
+| `004096c0` | `dispatch_runtime_camera_mode_activation_by_id` | plate | cgpt rename v5 runtime camera cluster: Dispatches runtime camera/view mode activation through the id->function table at 004c2990 and resets projection state after transitions. |
+| `00409740` | `initialize_fsm_runtime_heap_and_tables` | plate | cgpt rename v3: Creates the FSM runtime heap, parses serialized FSM table data, and initializes FSM command/runtime tables. |
+| `00409850` | `initialize_fsm_runtime_heap_and_tables` | plate | cgpt rename v10 fsm/ai runtime core cluster: World-object registration callback: inserts vehicle/actor objects into team buckets, initializes vehicle damage/FSM state, parses tactics tag, and caches terrain material. |
+| `00409850` | `initialize_fsm_runtime_heap_and_tables` | pre | I76 semantic baseline: initialize_fsm_runtime_heap_and_tables<br>FSM runtime initialization anchor at AI/FSM neighborhood start. |
+| `00409bd0` | `initialize_fsm_vehicle_runtime_system` | plate | cgpt rename v10 fsm/ai runtime core cluster: Initializes FSM/vehicle runtime globals, team vehicle buckets, bridge validation, world-object callbacks, FSM helper subsystems, and default runtime state. |
+| `00409cf0` | `collect_forward_facing_vehicle_weapon_slots` | plate | cgpt rename v10 fsm/ai runtime core cluster: Builds a list of vehicle weapon slots that face forward or are eligible relative to the active player/camera vehicle. |
+| `00409de0` | `fsm_get_car_weapon_info_indexed` | plate | cgpt whole-binary semantic rename v1: string evidence: Could not get weapon info in car %d %d %d |
+| `00409f10` | `mark_active_vehicle_damage_textures_dirty` | plate | cgpt rename v2: Walks active vehicle tables and marks each vehicle damage texture/state block dirty. |
+| `00409f60` | `fsm_get_vehicle_weapon_info` | plate | cgpt whole-binary semantic rename v1: string evidence: Could not get weapon info in %d |
+| `0040a010` | `shutdown_fsm_vehicle_runtime_system` | plate | cgpt rename v10 fsm/ai runtime core cluster: Shuts down or resets FSM/vehicle runtime state after mission/user-vehicle checks and bridge/path cleanup. |
+| `0040a030` | `shutdown_fsm_runtime_heap_and_tables` | plate | cgpt rename v3: Destroys the FSM runtime heap, calls the no-op cleanup callback, and clears FSM runtime state. |
+| `0040a050` | `play_gang_speech_clip_69` | plate | cgpt whole-binary semantic rename v1: references gdsgc69.wav |
+| `0040a130` | `update_all_ai_vehicles_against_active_player` | plate | cgpt rename v10 fsm/ai runtime core cluster: Updates all registered AI vehicles against the active player/camera object or brakes them when no active object exists. |
+| `0040a130` | `update_all_ai_vehicles_against_active_player` | pre | I76 semantic baseline: update_all_ai_vehicles_against_active_player<br>Updates registered AI vehicles against active player/camera object, or idles/brakes them. |
+| `0040a270` | `fsm_set_all_aggression` | plate | cgpt whole-binary semantic rename v1: string evidence: illigal value in setAllAggresion |
+| `0040a320` | `update_fsm_vehicle_runtime_frame` | plate | cgpt rename v10 fsm/ai runtime core cluster: Per-frame FSM/vehicle runtime update: updates aim/terrain bounds, processes FSM instructions, updates AI targets, and clears one-frame globals. |
+| `0040a320` | `update_fsm_vehicle_runtime_frame` | pre | I76 semantic baseline: update_fsm_vehicle_runtime_frame<br>Frame-level AI/FSM vehicle orchestrator: registry precompute, instruction processing/active-player targeting. |
+| `0040a6f0` | `add_vec3_components` | plate | cgpt rename v10 fsm/ai runtime core cluster: Adds two 3-component vectors and writes the result to the output vector. |
+| `0040a740` | `select_fsm_target_or_closest_user_vehicle` | plate | cgpt rename v10 fsm/ai runtime core cluster: Selects a script/FSM target object and falls back to the closest user/player vehicle candidate when appropriate. |
+| `0040a8a0` | `fsm_format_default_label_name` | plate | cgpt whole-binary semantic rename v1: string evidence: NoLabel%d |
+| `0040aa90` | `fsm_query_all_other_team_vehicles_flag_0x20_set` | plate | cgpt rename v10 fsm/ai runtime core cluster: FSM predicate: checks all vehicles outside the current object's team and returns true only when their runtime flag 0x20 is set. |
+| `0040ab30` | `fsm_query_enemy_vehicle_within_radius` | plate | cgpt rename v10 fsm/ai runtime core cluster: FSM predicate: scans vehicles on other teams and returns true if an active enemy is within the supplied radius. |
+| `0040ac00` | `fsm_query_target_not_over_subscribed` | plate | cgpt rename v10 fsm/ai runtime core cluster: FSM predicate: counts other active vehicles targeting the supplied object and rejects when the target's allowed attacker count is reached. |
+| `0040acf0` | `fsm_consume_round_robin_condition_slot` | plate | cgpt rename v10 fsm/ai runtime core cluster: FSM predicate helper: advances round-robin condition counters and returns true once when the current scan slot is reached. |
+| `0040ad30` | `fsm_get_active_player_special_condition_flag` | plate | cgpt rename v10 fsm/ai runtime core cluster: Returns the global active-player special-condition flag maintained during the per-frame FSM/vehicle runtime update. |
+| `0040ad40` | `fsm_query_global_context_allows_object` | plate | cgpt rename v10 fsm/ai runtime core cluster: Predicate over global FSM context/override state: allows a specific object when locked, otherwise requires no global suppression flag. |
+| `0040ad70` | `fsm_mark_global_context_suppressed_this_frame` | plate | cgpt rename v10 fsm/ai runtime core cluster: Sets the global one-frame FSM context suppression flag. |
+| `0040ad80` | `fsm_lock_global_context_to_object` | plate | cgpt rename v10 fsm/ai runtime core cluster: Locks global FSM context to a specific world object and marks the lock active for this frame. |
+| `0040ada0` | `fsm_query_primary_team_clear_of_position` | plate | cgpt rename v10 fsm/ai runtime core cluster: FSM predicate: checks primary team vehicles against a position vector and returns true when all are outside the near threshold. |
+| `0040ae20` | `set_ai_behavior_xy_bounds_from_segment` | plate | cgpt rename v10 fsm/ai runtime core cluster: Stores expanded X/Z bounds for an AI/FSM behavior segment into state fields +0x9d40..+0x9d54. |
+| `0040ae20` | `set_ai_behavior_xy_bounds_from_segment` | pre | I76 semantic baseline: set_ai_behavior_xy_bounds_from_segment<br>Sets AI behavior XY bounds from a segment/spatial context. |
+| `0040aeb0` | `set_fsm_registered_instance_count` | plate | cgpt rename v10 fsm/ai runtime core cluster: Stores the registered FSM instance count/global loaded from mission registration. |
+| `0040aec0` | `get_fsm_registered_instance_count` | plate | cgpt rename v10 fsm/ai runtime core cluster: Returns the registered FSM instance count/global loaded from mission registration. |
+| `0040aed0` | `fsm_behave_not_implemented` | plate | cgpt whole-binary semantic rename v1: string evidence: FSM: behave is not implimented |
+| `0040af00` | `fsm_make_vehicle_sit` | plate | cgpt whole-binary semantic rename v1: string evidence: only vehicles can sit / dead car sit |
+| `0040af80` | `fsm_start_vehicle_special_behavior_mode_0` | plate | cgpt rename v10 fsm/ai runtime core cluster: FSM action: starts vehicle special/behavior sound or state handler and sets vehicle runtime mode 0. |
+| `0040afa0` | `fsm_start_vehicle_special_behavior_mode_3` | plate | cgpt rename v10 fsm/ai runtime core cluster: FSM action: starts vehicle special/behavior sound or state handler and sets vehicle runtime mode 3. |
+| `0040afc0` | `fsm_do_not_implemented` | plate | cgpt whole-binary semantic rename v1: string evidence: FSM: do is not implimented |
+| `0040aff0` | `fsm_query_who_rammed` | plate | i76 first-pass rename<br>old_name: FUN_0040aff0<br>suggested_name: fsm_query_who_rammed<br>basis: FSM diagnostic string indicates whoRammed query when nobody has rammed yet. |
+| `0040aff0` | `fsm_query_who_rammed` | pre | I76 semantic baseline: fsm_query_who_rammed<br>FSM query reading recent ramming/normal damage source. |
+| `0040b0f0` | `fsm_query_recent_special_damage_source` | plate | i76 first-pass rename<br>old_name: FUN_0040b0f0<br>suggested_name: fsm_query_who_shot<br>basis: FSM diagnostic string indicates whoShot query when nobody has shot yet. |
+| `0040b0f0` | `fsm_query_recent_special_damage_source` | pre | I76 semantic baseline: fsm_query_recent_special_damage_source<br>FSM query reading recent special damage source candidate. |
+| `0040b1f0` | `fsm_query_who_attacked` | plate | i76 first-pass rename<br>old_name: FUN_0040b1f0<br>suggested_name: fsm_query_who_attacked<br>basis: FSM diagnostic string indicates whoAttacked query when nobody has hurt entity yet. |
+| `0040b2f0` | `fsm_test_not_implemented` | plate | cgpt whole-binary semantic rename v1: string evidence: FSM:test is not implimented |
+| `0040b320` | `fsm_query_and_clear_vehicle_damage_event_flag` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: reads the vehicle damage-event state block, returns true when field +0x9c is 1, and clears it. |
+| `0040b360` | `fsm_query_objects_within_radius` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: compares cached aim positions for two world objects and returns true if squared distance is below radius^2. |
+| `0040b410` | `fsm_query_current_actor_matches_state_slot_a6d4` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: checks AI/FSM state slot +0xa6d4 against the current actor/player id, then clears the slot to sentinel -10 on success. |
+| `0040b450` | `compute_world_object_damage_integrity_percent` | plate | cgpt rename v7 fsm predicate/bridge cluster: Computes a 0..100 integrity/health percentage for vehicles, child damage parts, and related damage-bearing world objects. |
+| `0040b7d0` | `fsm_query_object_integrity_less_than` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: computes object integrity percentage and compares it against the supplied threshold. |
+| `0040b800` | `fsm_query_current_actor_matches_state_slot_a6d8` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: checks AI/FSM state slot +0xa6d8 against the current actor/player id, then clears the slot to sentinel -10 on success. |
+| `0040b840` | `fsm_query_world_object_flag_0x200_set` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: returns true when world-object flag 0x200 is set. |
+| `0040b840` | `fsm_query_world_object_flag_0x200_set` | pre | I76 semantic baseline: fsm_query_world_object_flag_0x200_set<br>Queries FSM/world-object flag 0x200. |
+| `0040b860` | `fsm_query_is_grooves_fault` | plate | cgpt whole-binary semantic rename v1: string evidence: isGroovesFault validation |
+| `0040b8b0` | `fsm_query_is_lit_not_implemented` | plate | cgpt whole-binary semantic rename v1: string evidence: isLit is not implimented |
+| `0040b8e0` | `fsm_query_object_near_script_xy_position` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: compares object X/Z position against script-provided X/Z coordinates using radius^2. |
+| `0040b940` | `fsm_query_object_inside_script_xy_box` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: compares object X/Z position against script-provided X/Z coordinates using axis-aligned absolute thresholds. |
+| `0040b990` | `fsm_query_current_actor_matches_any_damage_state_slot` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: checks state slot +0xa6dc against current actor/player id, then clears slots +0xa6d4/+0xa6d8/+0xa6dc on success. |
+| `0040b9e0` | `fsm_destroy_target_object` | plate | cgpt whole-binary semantic rename v1: string evidence: FSM destroy called for dead car/structure |
+| `0040ba60` | `fsm_find_nearest_enemy` | plate | i76 first-pass rename<br>old_name: FUN_0040ba60<br>suggested_name: fsm_find_nearest_enemy<br>basis: FSM diagnostic string indicates nearestEnemy failure path. |
+| `0040bbc0` | `fsm_query_no_visible_transform_targets_active` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: iterates target/object list entries and returns false if any transform-composed object lacks world-object flag 0x200. |
+| `0040bc10` | `fsm_toggle_ai_behavior_state_flag_9d14` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action: toggles AI/FSM behavior-state field +0x9d14 in the vehicle damage-event state block. |
+| `0040bc40` | `fsm_set_helicopter_height` | plate | cgpt whole-binary semantic rename v1: string evidence: setHeliHeight non-helicopter |
+| `0040bc70` | `initialize_fsm_tactics_weight_tables` | plate | cgpt rename v7 fsm predicate/bridge cluster: Initializes global FSM/AI tactics weight tables with fixed 1.0/0.8/0.6/0.5/0.4-style values. |
+| `0040bd40` | `set_fsm_tactics_weights_from_indices` | plate | cgpt rename v7 fsm predicate/bridge cluster: Stores four tactic/behavior weight values into AI/FSM state fields +0xa81c..+0xa828 using table indices. |
+| `0040bd90` | `fsm_set_tactics_weights_from_script_indices` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action: maps two script indices into four AI/FSM tactic weight fields +0xa81c..+0xa828. |
+| `0040bdf0` | `fsm_query_is_at_follow_target` | plate | cgpt whole-binary semantic rename v1: string evidence: isAtFollow non-vehicle |
+| `0040be50` | `fsm_reveal_mission_objective` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around reveal_mission_objective. |
+| `0040be60` | `fsm_query_ammo_lesser` | plate | cgpt whole-binary semantic rename v1: string evidence: ammoLesser nonVehicle / hard point |
+| `0040bf20` | `fsm_start_world_object_action_slot_7` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action/predicate: resolves object action slot/type 7 and starts it when present. |
+| `0040bf60` | `fsm_set_tactics_tag_from_index` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action: stores tactic index - 1 and parses the corresponding tactics tag into AI/FSM state +0xa82c. |
+| `0040bf90` | `fsm_set_active_player_vehicle_control_context` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action: when the global context id changes, updates the active player/camera vehicle control context. |
+| `0040bfc0` | `fsm_update_timer_default_type3` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around update_timer_or_frame_delta using timer/update type 3. |
+| `0040bfe0` | `fsm_update_timer_with_script_type` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around update_timer_or_frame_delta using a script-provided update type. |
+| `0040c000` | `fsm_update_timer_with_value_and_type` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around update_timer_or_frame_delta using both script-provided value and update type. |
+| `0040c020` | `fsm_stop_callback_handler` | plate | cgpt whole-binary semantic rename v1: string evidence: STOPCBXX |
+| `0040c040` | `fsm_append_salvage_resource_reference` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around append_salvage_resource_reference_for_mission with default id -1 and enabled flag. |
+| `0040c060` | `fsm_play_or_stop_vehicle_engine_event_sound` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around play_or_stop_vehicle_engine_event_sound. |
+| `0040c080` | `fsm_set_ai_behavior_state_field_9d14` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action: writes script value directly to AI/FSM behavior-state field +0x9d14. |
+| `0040c0a0` | `fsm_set_ai_behavior_state_field_a948` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action: writes script value directly to AI/FSM behavior-state field +0xa948. |
+| `0040c0c0` | `fsm_query_vehicle_runtime_flag_0x454_bit2` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: returns vehicle runtime field +0x454 bit 2. |
+| `0040c0e0` | `fsm_mark_vehicle_effect_object_if_flag6_mismatch` | plate | cgpt rename v7 fsm predicate/bridge cluster: FSM action: compares script value against vehicle runtime field +0x454 bit 6 and marks current damage/effect object when mismatched. |
+| `0040c120` | `short_startup_spin_delay_stub` | plate | cgpt rename v7 fsm predicate/bridge cluster: Small startup spin-delay/no-op loop reached from winmain_top_level_game_fsm. |
+| `0040c160` | `initialize_bridge_validation_node_pool` | plate | cgpt rename v7 fsm predicate/bridge cluster: Initializes the bridge/path validation node pool and resets validation globals. |
+| `0040c1a0` | `reset_bridge_validation_runtime_state` | plate | cgpt rename v7 fsm predicate/bridge cluster: Resets bridge/path validation free-list state, counters, and per-vehicle bridge validation fields. |
+| `0040c210` | `append_bridge_validation_span_record` | plate | cgpt rename v7 fsm predicate/bridge cluster: Appends a bridge/path validation span record from rounded endpoint coordinates, object pointer, and height/range values. |
+| `0040c310` | `insert_bridge_validation_span_node_sorted` | plate | cgpt rename v7 fsm predicate/bridge cluster: Recursively inserts a bridge/path validation span node into a binary tree sorted by span key. |
+| `0040c360` | `find_bridge_validation_span_node_by_coordinate` | plate | cgpt rename v7 fsm predicate/bridge cluster: Searches a bridge/path validation span tree by coordinate, rejecting objects with world-object flag 0x200. |
+| `0040c3b0` | `find_bridge_piece_transform_in_object_tree` | plate | cgpt rename v7 fsm predicate/bridge cluster: Recursively searches an object tree for child class/type 0x0d, composing transforms and returning the matching bridge piece transform. |
+| `0040c480` | `validate_bridge_is_orthogonal` | plate | cgpt whole-binary semantic rename v1: string evidence: bridge not orthoginal |
+| `0040cc40` | `initialize_bridge_and_road_validation_records` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Clears road/bridge validation globals and iterates class-0x0c world objects to validate bridge orthogonality. |
+| `0040cc90` | `fsm_astar_illegal_state_error` | plate | cgpt whole-binary semantic rename v1: string evidence: FSM - astar in illigal state |
+| `0040cda0` | `compute_offset_point_along_road_segment` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Computes an X/Z point offset perpendicular to a road/path segment by a fixed lane-width-style offset. |
+| `0040d0b0` | `collapse_astar_path_collinear_runs` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Compacts/collapses path points with collinear/continuation flags into a simplified output path. |
+| `0040d350` | `road_loop_end_error` | plate | cgpt whole-binary semantic rename v1: string evidence: road loop off the end of the road |
+| `0040d3f0` | `compute_road_loop_distance_between_nodes` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Computes accumulated distance between two road-loop nodes in forward or reverse traversal direction. |
+| `0040d480` | `test_road_loop_distance_window_clear` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Tests whether a road-loop traversal window remains clear within a supplied accumulated distance budget. |
+| `0040d550` | `build_roadwar_path_waypoints_between_nodes` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Builds roadwar/A* path waypoints between two road nodes, handling loop direction and emitting offset X/Z/weight triples. |
+| `0040d8f0` | `astar_report_path_too_long` | plate | cgpt whole-binary semantic rename v1: string evidence: Astar ran out of memory - path to long |
+| `0040dae0` | `astar_expand_path_node_checked` | plate | cgpt whole-binary semantic rename v1: string evidence: Astar ran out of memory - path to long |
+| `0040dcd0` | `astar_expand_path_neighbor_checked` | plate | cgpt whole-binary semantic rename v1: string evidence: Astar ran out of memory - path to long |
+| `0040e2c0` | `copy_astar_path_points_to_ai_path_state` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Copies path point coordinates and turn/flag fields into an AI path-state output block. |
+| `0040e340` | `smooth_astar_path_corner_points` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Smooths or adjusts A* path corner points and writes the resulting path point sequence. |
+| `0040e770` | `emit_astar_path_to_ai_path_state` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Expands checked A* path nodes and emits them into the AI path-state block, handling direct and multi-node cases. |
+| `0040e900` | `allocate_astar_grid_node` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Allocates and initializes an A* grid node from grid X/Z coordinates, base cost, and parent pointer. |
+| `0040e9a0` | `pop_free_astar_grid_node` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Pops one node from the free A* node list and updates peak node allocation counters. |
+| `0040e9d0` | `compute_astar_terrain_cost_and_block_flag` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Computes A* terrain traversal cost from terrain material and blocked-road flags, also setting a blocked flag in the node. |
+| `0040eaf0` | `allocate_astar_neighbor_grid_nodes` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Allocates the eight neighboring A* grid nodes around a grid node and links them into neighbor slots. |
+| `0040ed60` | `compare_astar_open_node_less` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: A* priority comparator: orders nodes by accumulated score/cost, using node key as a tiebreaker. |
+| `0040edc0` | `compare_astar_open_node_greater` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Reverse A* priority comparator: orders nodes by accumulated score/cost in the opposite direction. |
+| `0040ee20` | `try_build_direct_astar_segment_between_positions` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Attempts to build a two-point direct A* path segment between two world positions when both positions lie near known path segments. |
+| `0040f0a0` | `relax_astar_neighbor_cost_recursive` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Relaxes an A* neighbor node cost through a parent node and recursively propagates cost changes to child nodes. |
+| `0040f1e0` | `find_astar_path_between_world_positions` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Main A* path search between world positions using terrain costs, open/closed nodes, neighbor allocation, and path emission. |
+| `0040f830` | `initialize_active_player_ai_control_change_state` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Initializes per-frame active player/object AI control-change tracking globals. |
+| `0040f870` | `commit_active_player_ai_control_change_state` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Commits the pending active player/object AI control-change flag into the previous-frame flag. |
+| `0040f890` | `get_pending_active_player_ai_control_change_flag` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Returns the pending active player/object AI control-change flag. |
+| `0040f8a0` | `is_active_player_object_control_change_allowed` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Returns whether the active player/camera object can trigger a control-change event this frame. |
+| `0040f8d0` | `mark_active_player_object_control_changed` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Marks the tracked active player/camera object as having changed control state this frame. |
+| `0040f8f0` | `update_vehicle_damage_state_speed_scalar_from_tire_load` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Computes and stores a vehicle damage-state speed/load scalar from tire compression/load and vehicle mass. |
+| `0040f990` | `get_ai_vehicle_damage_state_speed_scalar` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Returns the computed AI/vehicle damage-state speed scalar, or a fixed value for object class 9. |
+| `0040f9c0` | `set_ai_vehicle_throttle_brake_toward_speed` | plate | cgpt rename v4: Computes AI throttle/brake command toward target speed using wheel traction, engine force, brake force, and safe drive/brake limits. |
+| `0040fd20` | `set_ai_vehicle_steering_toward_heading` | plate | cgpt rename v4: Computes and clamps AI steering command toward a target heading using current heading, speed, and frame delta. |
+| `0040fe80` | `update_ai_vehicle_steering_control` | plate | cgpt rename v2: Updates AI vehicle steering command from target heading, traction, tire contact, and frame delta. |
+| `004100f0` | `set_vehicle_steering_to_max_left_grip` | plate | cgpt rename v4: Sets vehicle steering command to the positive maximum grip-limited value. |
+| `00410120` | `set_vehicle_steering_to_max_right_grip` | plate | cgpt rename v4: Sets vehicle steering command to the negative maximum grip-limited value. |
+| `00410150` | `clear_vehicle_throttle_brake_command` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Clears the vehicle runtime throttle/brake command field at +0xe0. |
+| `00410170` | `increase_vehicle_throttle_toward_max_safe_drive` | plate | cgpt rename v4: Raises vehicle throttle/drive command toward the safe maximum drive delta. |
+| `00410210` | `set_vehicle_throttle_to_max_safe_drive` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Sets vehicle drive/throttle command to just below the max safe drive delta and marks active-player control changed. |
+| `00410260` | `set_vehicle_brake_to_max_safe_value` | plate | cgpt rename v4: Sets vehicle brake/reverse command to the safe maximum braking delta. |
+| `004102b0` | `reset_serialized_fsm_table_reader_state` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Resets the serialized FSM/AI table reader cursor and backing pointer globals. |
+| `004102d0` | `load_serialized_fsm_record_array_with_vec3_lists` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Loads a serialized FSM/AI record array with 0x58-byte records and per-record vector/list payloads from the shared table stream. |
+| `00410490` | `load_serialized_fsm_linked_state_blocks` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Loads serialized FSM/AI linked state blocks of size 0x10bc and patches each block's internal pointer fields. |
+| `004105a0` | `load_serialized_fsm_record_array_with_bitfields` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Loads a serialized FSM/AI record array with 0x60-byte records and packed flag/bitfield payloads. |
+| `00410720` | `load_serialized_fsm_runtime_tables` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Top-level serialized FSM/AI table loader; allocates multiple record arrays, index tables, and auxiliary pointer tables from the shared stream. |
+| `00410a10` | `initialize_fsm_command_name_table` | plate | cgpt whole-binary semantic rename v1: string table contains behave/attack/sit/etc |
+| `004122d0` | `validate_project_wav_smk_resource_list` | plate | cgpt whole-binary semantic rename v1: checks wav via resource_exists and smk via cutscene lookup |
+| `00412400` | `register_fsm_instance_ids_from_mission` | plate | cgpt whole-binary semantic rename v1: string evidence: instance id duplicate/missing in mission file |
+| `00412500` | `relocate_fsm_command_table_internal_pointers` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Relocates internal command-table pointers after serialized FSM table load and initializes command-list sentinels. |
+| `004125c0` | `finalize_loaded_fsm_runtime_tables` | plate | cgpt rename v11 astar/ai/fsm-loader cluster: Finalizes loaded FSM runtime tables by initializing command names, registering instance ids, validating media lists, and relocating command-table pointers. |
+| `00412630` | `parse_fsm_tactics_tag` | plate | cgpt whole-binary semantic rename v1: string evidence: tactics tag bad value |
+| `00412680` | `compute_fsm_aggression_sum` | plate | cgpt whole-binary semantic rename v1: string evidence: calc_sum - agg out of bounds |
+| `00412830` | `update_vehicle_ai_target_and_attack_state` | plate | cgpt whole-binary semantic rename v1: sets vehicle runtime target/ref and attack/state tables |
+| `00412830` | `update_vehicle_ai_target_and_attack_state` | pre | I76 semantic baseline: update_vehicle_ai_target_and_attack_state<br>Updates AI vehicle target/attack state against active object. |
+| `00412cc0` | `reset_fsm_instruction_minmax_state` | plate | cgpt readability rename v13 set A: Resets FSM instruction tracking globals to default min/max sentinel values. |
+| `00412ce0` | `execute_fsm_bytecode_instruction` | plate | cgpt whole-binary semantic rename v1: large switch over FSM instruction prototype/state; string evidence unknown fsm prototype |
+| `00414670` | `assemble_fsm_instruction` | plate | cgpt whole-binary semantic rename v1: string evidence: Unknown fsm assembler instuction |
+| `004149f0` | `process_pending_fsm_instruction_list` | plate | cgpt rename v3: Processes pending FSM instruction records, advances game flow on timeout, and unlinks/frees completed instruction records. |
+| `004149f0` | `process_pending_fsm_instruction_list` | pre | I76 semantic baseline: process_pending_fsm_instruction_list<br>Processes pending FSM instruction list/context. |
+| `00414b50` | `reset_fsm_runtime_progress_counter` | plate | cgpt rename v12 fsm/roadwar/path cluster: Clears global FSM/runtime progress counter DAT_00524540. |
+| `00414b60` | `update_fsm_runtime_progress_compare_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Compares FSM/runtime progress counter globals and stores compare state 1/2 into DAT_00524548. |
+| `00414b90` | `clear_fsm_runtime_secondary_progress_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Clears secondary FSM/runtime progress state DAT_0052454c. |
+| `00414ba0` | `initialize_fsm_runtime_progress_counters` | plate | cgpt rename v12 fsm/roadwar/path cluster: Initializes FSM/runtime progress counter globals DAT_00524540/44/48/4c to their default state. |
+| `00414bc0` | `fsm_teleport_object` | plate | cgpt whole-binary semantic rename v1: string evidence: FSM - teleport angle out of bounds |
+| `00414dd0` | `compute_short_2d_segment_alignment_metric` | plate | cgpt rename v12 fsm/roadwar/path cluster: Computes a short-distance 2D alignment/dot metric used by path simplification and waypoint progress logic. |
+| `00414ef0` | `evaluate_vehicle_weapon_fire_requests` | plate | cgpt whole-binary semantic rename v1: iterates vehicle weapon slots and calls fire-solution test |
+| `00414fb0` | `dot_product_vec3` | plate | cgpt rename v12 fsm/roadwar/path cluster: Returns the dot product of two 3-component float vectors. |
+| `00414fe0` | `copy_object_local_translation_vec3` | plate | cgpt rename v12 fsm/roadwar/path cluster: Copies three float/vector fields from object/transform offsets +0x18/+0x1c/+0x20 into an output vector. |
+| `00415020` | `update_ai_path_waypoint_progress_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Advances AI/path waypoint progress, detects path completion, and updates waypoint/segment progress flags. |
+| `004151f0` | `bind_ai_path_state_to_path_record` | plate | cgpt rename v12 fsm/roadwar/path cluster: Binds an AI path-state block to a path/route record and initializes path progress fields from the route header. |
+| `00415220` | `validate_ai_path_destination_bounds` | plate | cgpt rename v2: Checks AI path destination/segment bounds and reports the 'dest out of bounds' parse error on invalid path geometry. |
+| `004155e0` | `reset_vehicle_damage_source_event_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Clears the vehicle damage-source event/global actor id state. |
+| `004155f0` | `increment_vehicle_damage_source_event_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Increments the vehicle damage-source event/global actor id state. |
+| `00415600` | `get_vehicle_damage_source_event_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Returns the vehicle damage-source event/global actor id state. |
+| `00415610` | `reset_ai_tactics_weight_scalars_to_one` | plate | cgpt rename v12 fsm/roadwar/path cluster: Resets four AI tactic weight scalars at +0x9d58..+0x9d64 to 1.0. |
+| `00415640` | `allocate_initialized_ai_fsm_behavior_state_block` | plate | cgpt rename v12 fsm/roadwar/path cluster: Allocates and initializes the large AI/FSM behavior state block with tactics, timers, target slots, and path state defaults. |
+| `004157a0` | `record_vehicle_damage_source_event` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Records source/attacker object and timestamp data into vehicle damage-event state. |
+| `004157a0` | `record_vehicle_damage_source_event` | pre | I76 semantic baseline: record_vehicle_damage_source_event<br>Records recent/latest damage source into vehicle FSM/damage event state. |
+| `0041580e` | `record_vehicle_damage_source_event` | plate | Loads vehicle/runtime pointer from world_object+0x70 before patched gate field read. |
+| `0041580e` | `record_vehicle_damage_source_event` | eol | eax = world_object->vehicle_runtime |
+| `00415815` | `record_vehicle_damage_source_event` | plate | I76 AIO patch semantic gate site. Retail reads vehicle_runtime+0x44; AIO reads vehicle_runtime+0x10. Loaded program appears to be: retail/original i76.exe |
+| `00415815` | `record_vehicle_damage_source_event` | pre | I76 semantic baseline note:<br>AIO patch semantic delta: retail reads [runtime+0x44], AIO reads [runtime+0x10] as gate for categorized damage-source attribution. Affects FSM queries such as whoRammed/whoShot style behavior, not raw damage amount. |
+| `00415815` | `record_vehicle_damage_source_event` | eol | AIO patch changes tested vehicle-runtime field here: retail +0x44, patched +0x10 |
+| `00415867` | `record_vehicle_damage_source_event` | plate | Stores get_gameplay_runtime_seconds() into ai_behavior_state+0xa6f0. |
+| `00415867` | `record_vehicle_damage_source_event` | eol | timestamp ai_behavior_state+0xa6f0 |
+| `004158c0` | `project_point_to_ai_path_segment_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Projects a point into AI/path segment state through the path projection helper at 0048e700. |
+| `004158f0` | `roadwar_get_next_road_index` | plate | cgpt whole-binary semantic rename v1: string evidence: roadwar get_next_index infinite loop |
+| `00415a30` | `path_nodes_share_same_position` | plate | cgpt rename v12 fsm/roadwar/path cluster: Compares two path node records and returns true if they reference the same path object and nearly identical vertex position. |
+| `00415b00` | `path_records_share_same_route_object` | plate | cgpt rename v12 fsm/roadwar/path cluster: Returns true when two path records are non-null and refer to the same route/path object. |
+| `00415b30` | `classify_roadwar_next_turn_direction` | plate | cgpt rename v12 fsm/roadwar/path cluster: Classifies next Roadwar turn/heading direction from current vehicle heading and route node progression. |
+| `00415d20` | `compute_point_to_segment_unit_offset_and_distance` | plate | cgpt rename v12 fsm/roadwar/path cluster: Computes the closest offset from a point to a segment, returning unit offset vector and distance. |
+| `00415f30` | `roadwar_advance_to_next_road_segment` | plate | cgpt rename v2: Roadwar helper that advances to the next road index/segment. |
+| `004162f0` | `vec3_length` | plate | cgpt rename v12 fsm/roadwar/path cluster: Returns Euclidean length of a 3-component vector supplied as separate floats. |
+| `00416320` | `update_roadwar_vehicle_steering_and_speed_control` | plate | cgpt rename v4: Advances roadwar steering target, applies steering control, then adjusts throttle/speed command based on path offset. |
+| `00416430` | `classify_roadwar_path_segment_progress` | plate | cgpt rename v12 fsm/roadwar/path cluster: Classifies the vehicle position relative to the current Roadwar path segment and sets progress/direction state. |
+| `00416600` | `compare_roadwar_path_tree_node_order` | plate | cgpt rename v12 fsm/roadwar/path cluster: Compares Roadwar/path tree node ordering while walking child links and side selectors. |
+| `00416650` | `handle_roadwar_atomic_behavior` | plate | cgpt whole-binary semantic rename v1: string evidence: Unknown atomic behavior in road war |
+| `00416b80` | `start_ai_behavior_targeted_5s_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Stores an AI behavior target object, sets speed/state 35.0, and starts a 5-second behavior timer. |
+| `00416bc0` | `roadwar_atomic_behavior_mode0_wrapper` | plate | cgpt rename v12 fsm/roadwar/path cluster: Thin wrapper around handle_roadwar_atomic_behavior with mode 0. |
+| `00416be0` | `start_ai_behavior_random_target_delay_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Stores or clears a target object using random gating and starts a randomized target/behavior timer. |
+| `00416cb0` | `roadwar_atomic_behavior_mode1_wrapper` | plate | cgpt rename v12 fsm/roadwar/path cluster: Thin wrapper around handle_roadwar_atomic_behavior with mode 1. |
+| `00416cd0` | `is_ai_target_on_same_or_next_roadwar_segment` | plate | cgpt rename v12 fsm/roadwar/path cluster: Checks whether AI and target share the same Roadwar segment or a reachable next segment. |
+| `00416d70` | `is_ai_target_projected_to_same_route_segment` | plate | cgpt rename v12 fsm/roadwar/path cluster: Projects both AI and target positions to nearest route/path segments and compares the resulting path node. |
+| `00416e50` | `start_ai_behavior_targeted_long_delay_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Stores a target object, sets speed/state 35.0, and starts a randomized long 25-39 second behavior timer. |
+| `00416eb0` | `roadwar_atomic_behavior_mode3_wrapper` | plate | cgpt rename v12 fsm/roadwar/path cluster: Thin wrapper around handle_roadwar_atomic_behavior with mode 3. |
+| `00416ed0` | `is_ai_target_close_while_vehicle_slow` | plate | cgpt rename v12 fsm/roadwar/path cluster: Returns true when target vehicle speed is low and object distance is under 30. |
+| `00416f20` | `start_ai_behavior_random_offset_position_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Initializes AI behavior state with randomized target gating, timer, and projected offset/position fields. |
+| `004170c0` | `update_ai_behavior_target_projection_state` | plate | cgpt rename v12 fsm/roadwar/path cluster: Updates AI behavior projection state from target object position when target is a valid runtime object. |
+| `004171a0` | `update_ai_roadwar_path_follow_drive_control` | plate | cgpt rename v12 fsm/roadwar/path cluster: Roadwar/path-following drive control update: advances route segment, applies steering, and sets throttle/brake target speed. |
+| `00417490` | `is_ai_target_far_beyond_next_roadwar_segment` | plate | cgpt rename v12 fsm/roadwar/path cluster: Checks whether a next Roadwar segment exists and the target is farther than 160 units. |
+| `00417510` | `rotate_astar_tree_node_after_insert_delete` | plate | cgpt rename v12 fsm/roadwar/path cluster: Rebalances/rotates an A*/path tree node after insertion/deletion using side state fields. |
+| `00417640` | `remove_astar_tree_min_node_recursive` | plate | cgpt rename v12 fsm/roadwar/path cluster: Removes the minimum-side node from an A*/path binary tree and rebalances the tree. |
+| `00417770` | `remove_astar_tree_node_recursive` | plate | cgpt rename v12 fsm/roadwar/path cluster: Removes a matching node from an A*/path binary tree using the path-node comparators and rebalancing helpers. |
+| `00417920` | `double_rotate_astar_tree_nodes` | plate | cgpt rename v12 fsm/roadwar/path cluster: Performs a double rotation/relink operation on A*/path binary tree nodes. |
+| `00417a10` | `insert_astar_tree_node_recursive` | plate | cgpt rename v12 fsm/roadwar/path cluster: Inserts an A*/path node into a binary tree and updates balance/side state fields. |
+| `00417b00` | `find_astar_tree_node_or_insert_parent` | plate | cgpt rename v12 fsm/roadwar/path cluster: Searches an A*/path binary tree for a node and returns the matching/insertion-parent node through an output pointer. |
+| `00417b60` | `remove_astar_tree_leftmost_node_recursive` | plate | cgpt rename v12 fsm/roadwar/path cluster: Removes a leftmost child node from an A*/path binary tree and rebalances on unwind. |
+| `00417bf0` | `test_weapon_projectile_path_clear_to_target` | plate | cgpt rename v12 fsm/roadwar/path cluster: Tests whether a weapon/projectile path from source to target is clear, checking moving effect targets and collision candidates. |
+| `00417e50` | `normalize_angle_delta_signed_pi` | plate | cgpt rename v12 fsm/roadwar/path cluster: Normalizes signed angle delta into the [-pi, pi] range. |
+| `00417e90` | `predict_world_object_position_at_time` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Predicts a world-object position at a future time with special vehicle motion handling. |
+| `004180f0` | `compute_line_closest_approach_parameter` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Math helper computing closest-approach parameter between moving/line vectors. |
+| `00418200` | `test_weapon_fire_solution_against_target` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Weapon fire-solution predicate using weapon type, target class, prediction, range/line geometry, spread, and friendly/near-target checks. |
+| `00419550` | `vec3_subtract_xyz` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Computes dst = a - b from scalar xyz inputs. |
+| `004195a0` | `vec3_madd_xyz` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Computes dst = base + scale * vector from scalar xyz inputs. |
+| `00419600` | `predict_ai_target_lead_position_for_weapon_fire` | plate | cgpt rename v6 ai vehicle behavior cluster: Computes a lead/predicted target position from target distance, projectile/vehicle vectors, and predict_world_object_position_at_time. |
+| `00419930` | `probe_ai_vehicle_path_clearance_along_heading` | plate | cgpt rename v6 ai vehicle behavior cluster: Samples transformed positions along a heading/trajectory and returns whether the projected path has clearance. |
+| `00419e20` | `update_ai_vehicle_damage_response_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Large AI behavior helper using vehicle runtime/damage event state, frame delta, and steering/target vectors to update damage-response behavior. |
+| `0041a040` | `update_ai_vehicle_pursuit_intercept_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Large AI behavior helper for pursuit/intercept steering using runtime delta, target vectors, vehicle context, and transformed heading vectors. |
+| `0041a330` | `decode_ai_maneuver_direction_code_to_vector` | plate | cgpt rename v6 ai vehicle behavior cluster: Maps small maneuver/direction selector codes into signed direction/scalar components used by AI steering helpers. |
+| `0041a530` | `compute_ai_vehicle_intercept_or_avoidance_solution` | plate | cgpt rename v6 ai vehicle behavior cluster: Computes a vehicle AI intercept/avoidance solution using target vectors, runtime delta, transform composition, and projected positions. |
+| `0041abf0` | `compute_ai_vehicle_relative_target_vector_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Computes relative target vectors and intermediate pursuit/avoidance state using vec3 subtract/add-scaled helpers. |
+| `0041b270` | `select_ai_vehicle_target_or_path_candidate` | plate | cgpt rename v6 ai vehicle behavior cluster: Misnamed earlier as get_tick_count_wrapper_a; actually searches/selects an AI target/path candidate and writes candidate/timer/progress outputs. |
+| `0041b6e0` | `update_ai_vehicle_pursuit_path_control` | plate | cgpt rename v6 ai vehicle behavior cluster: High-level AI pursuit/path-control update that uses target selection, tire grip, drive/brake limits, and steering/throttle helpers. |
+| `0041c0c0` | `update_ai_vehicle_turnaround_brake_control` | plate | cgpt rename v6 ai vehicle behavior cluster: Updates steering sign, braking, and timed turnaround state using tire grip and current speed. |
+| `0041c1c0` | `ai_behavior_condition_always_true` | plate | cgpt rename v6 ai vehicle behavior cluster: Trivial behavior predicate returning true. |
+| `0041c1d0` | `ai_vehicle_has_active_behavior_counter` | plate | cgpt rename v6 ai vehicle behavior cluster: Returns whether vehicle runtime field +0x148 is positive. |
+| `0041c210` | `start_ai_vehicle_forward_timed_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a timed AI behavior state, stores a target/object id, clears brake override, enters drive mode 3, and sets speed limit 35. |
+| `0041c2a0` | `run_ai_combat_behavior_mode_0` | plate | cgpt rename v6 ai vehicle behavior cluster: Thin wrapper that invokes update_ai_combat_state with behavior selector 0. |
+| `0041c2c0` | `is_ai_vehicle_target_matching_current_player_or_actor` | plate | cgpt rename v6 ai vehicle behavior cluster: Checks AI behavior state target id against the current actor/player id returned by FUN_00415600. |
+| `0041c2f0` | `get_ai_vehicle_behavior_state_block` | plate | cgpt rename v6 ai vehicle behavior cluster: Returns the per-vehicle AI behavior/state block pointer from the vehicle runtime context. |
+| `0041c300` | `start_ai_vehicle_forward_random_delay_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a randomized 20-34 second forward timed AI state and enters drive mode 3. |
+| `0041c3b0` | `ai_vehicle_has_loaded_fireable_weapon_slot` | plate | cgpt readability rename v13 set A: Checks AI vehicle behavior weapon slots and returns true when any extracted weapon state reports usable ammo/state. |
+| `0041c430` | `run_ai_combat_behavior_mode_0_alt` | plate | cgpt rename v6 ai vehicle behavior cluster: Thin wrapper that invokes update_ai_combat_state with behavior selector 0 from an alternate behavior table slot. |
+| `0041c450` | `ai_vehicle_has_usable_weapon_or_nonvehicle_target` | plate | cgpt readability rename v13 set A: Predicate over target type and AI weapon slot metadata to decide whether weapon/combat behavior can proceed. |
+| `0041c5c0` | `start_ai_vehicle_forward_attack_delay_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a randomized 7-16 second forward AI state, stores target id, enables behavior flag, and enters drive mode 3. |
+| `0041c680` | `update_ai_vehicle_circle_or_evade_target` | plate | cgpt rename v6 ai vehicle behavior cluster: Steers toward/away from target based on range and heading, switching between throttle, braking, and reverse steering. |
+| `0041c830` | `start_ai_vehicle_forward_long_delay_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a randomized 20-34 second forward AI state and enters drive mode 3. |
+| `0041c8e0` | `run_ai_combat_behavior_mode_3` | plate | cgpt rename v6 ai vehicle behavior cluster: Thin wrapper that invokes update_ai_combat_state with behavior selector 3. |
+| `0041c900` | `start_ai_vehicle_forward_medium_delay_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a randomized 10-19 second forward AI state and enters drive mode 3. |
+| `0041c9b0` | `run_ai_combat_behavior_mode_2` | plate | cgpt rename v6 ai vehicle behavior cluster: Thin wrapper that invokes update_ai_combat_state with behavior selector 2. |
+| `0041c9d0` | `start_ai_vehicle_targeted_forward_burst_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a short forward burst timer, optionally stores target id, and enters drive mode 3. |
+| `0041cae0` | `run_ai_combat_behavior_mode_4` | plate | cgpt rename v6 ai vehicle behavior cluster: Thin wrapper that invokes update_ai_combat_state with behavior selector 4. |
+| `0041cb00` | `start_ai_vehicle_forward_idle_delay_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a randomized 30-34 second no-target forward AI state and enters drive mode 3. |
+| `0041cbb0` | `update_ai_vehicle_small_offset_turn_drive` | plate | cgpt rename v6 ai vehicle behavior cluster: Applies constant drive speed and steering offset relative to current heading. |
+| `0041cc00` | `is_ai_behavior_primary_timer_expired` | plate | cgpt rename v6 ai vehicle behavior cluster: Returns whether AI behavior timer at state +0xa82c has expired. |
+| `0041cc00` | `is_ai_behavior_primary_timer_expired` | pre | I76 semantic baseline: is_ai_behavior_primary_timer_expired<br>Compares gameplay time against AI behavior primary expiry at state+0xa82c. |
+| `0041cc40` | `is_ai_behavior_secondary_timer_expired` | plate | cgpt rename v6 ai vehicle behavior cluster: Returns whether AI behavior timer at state +0x9d34 has expired. |
+| `0041cc40` | `is_ai_behavior_secondary_timer_expired` | pre | I76 semantic baseline: is_ai_behavior_secondary_timer_expired<br>Compares gameplay time against AI behavior secondary expiry at state+0x9d34. |
+| `0041cc80` | `compute_ai_vehicle_forward_heading_angle` | plate | cgpt rename v6 ai vehicle behavior cluster: Computes the current forward/heading angle for an object or vehicle-adjusted forward vector using atan2. |
+| `0041cd50` | `scale_vec3_components` | plate | cgpt rename v6 ai vehicle behavior cluster: Writes a 3-component vector scaled by a scalar. |
+| `0041cd90` | `is_ai_vehicle_moving_backward_relative_to_forward` | plate | cgpt rename v6 ai vehicle behavior cluster: Tests whether vehicle velocity/direction is opposite its forward vector. |
+| `0041ce30` | `is_ai_vehicle_not_moving_backward_relative_to_forward` | plate | cgpt rename v6 ai vehicle behavior cluster: Boolean negation wrapper around is_ai_vehicle_moving_backward_relative_to_forward. |
+| `0041ce50` | `flip_ai_vehicle_steering_direction_preserve_throttle` | plate | cgpt rename v6 ai vehicle behavior cluster: Flips steering sign using tire-grip scalar while clearing behavior override. |
+| `0041cec0` | `brake_and_flip_ai_vehicle_steering_direction` | plate | cgpt rename v6 ai vehicle behavior cluster: Applies max braking and flips steering sign based on tire-grip scalar. |
+| `0041cf30` | `start_ai_vehicle_reverse_turnaround_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Captures steering/heading baseline, starts turnaround control, and sets a 4-second secondary timer. |
+| `0041cff0` | `update_ai_vehicle_reverse_turnaround_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Updates reverse-turnaround behavior using heading delta, forward alignment, braking, and steering helper calls. |
+| `0041d170` | `is_ai_vehicle_turnaround_state_finished` | plate | cgpt rename v6 ai vehicle behavior cluster: Checks heading/position/speed deltas to determine whether a turnaround state has completed. |
+| `0041d240` | `sample_ai_vehicle_safe_drive_window` | plate | cgpt rename v6 ai vehicle behavior cluster: Samples max safe drive/brake values into a rolling four-slot window and reports whether movement is blocked. |
+| `0041d330` | `is_ai_vehicle_allowed_to_enter_turnaround_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Predicate for entering a turnaround/reverse behavior based on vehicle type, backward motion, and damage/target response state. |
+| `0041d390` | `start_ai_vehicle_reverse_or_forward_brake_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Starts braking and toggles forward/reverse drive mode based on current reverse flag. |
+| `0041d420` | `is_float_nearly_zero_1e_minus4` | plate | cgpt rename v6 ai vehicle behavior cluster: Returns true when a float is within +/-0.0001. |
+| `0041d450` | `probe_ai_vehicle_forward_ground_clearance` | plate | cgpt rename v6 ai vehicle behavior cluster: Projects points ahead of the vehicle and tests for ground/height clearance changes. |
+| `0041d5e0` | `copy_transform_position_vec3` | plate | cgpt rename v6 ai vehicle behavior cluster: Copies a transform/world-object position vector from offsets +0x28/+0x30/+0x38 into a float[3]. |
+| `0041d620` | `start_ai_vehicle_short_reverse_pause_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Toggles forward/reverse mode, clears drive input, and starts a 1.5-second secondary timer. |
+| `0041d6d0` | `clear_ai_vehicle_throttle_brake_command` | plate | cgpt rename v6 ai vehicle behavior cluster: Wrapper that clears or reduces AI throttle/brake command via FUN_00410210. |
+| `0041d6f0` | `toggle_ai_vehicle_forward_reverse_drive_mode` | plate | cgpt rename v6 ai vehicle behavior cluster: Toggles vehicle drive direction flag and updates drive mode animation/state. |
+| `0041d770` | `select_ai_target_candidate_excluding_current` | plate | cgpt rename v6 ai vehicle behavior cluster: Selects an AI candidate through the target/path selector but rejects a supplied current target. |
+| `0041d820` | `select_ai_target_candidate_for_behavior_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Selects an AI candidate through the target/path selector and writes state progress outputs. |
+| `0041d8b0` | `select_ai_target_candidate_and_maybe_play_engine_event` | plate | cgpt rename v6 ai vehicle behavior cluster: Selects a candidate target, applies route/heading gating, and may play a vehicle engine event sound. |
+| `0041db10` | `update_ai_vehicle_pursuit_attack_drive_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Updates pursuit/attack driving state, candidate steering, throttle, and timing around a selected target. |
+| `0041dd80` | `update_ai_vehicle_target_seek_drive_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Updates target-seeking drive behavior using candidate selection, steering, throttle, and timers. |
+| `0041e030` | `mark_ai_behavior_ready_after_delay` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets a behavior-ready flag after a 3-second delay from state +0x9d24. |
+| `0041e080` | `is_ai_target_too_far_or_vertically_separated` | plate | cgpt rename v6 ai vehicle behavior cluster: Distance/vertical separation predicate for rejecting far or unsuitable targets. |
+| `0041e160` | `start_ai_vehicle_move_to_target_position_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Copies a target position into AI behavior state, initializes movement fields, and enters forward drive mode. |
+| `0041e230` | `is_ai_target_within_heading_range` | plate | cgpt rename v6 ai vehicle behavior cluster: Returns whether target heading/range is within the allowed threshold for the object type. |
+| `0041e2b0` | `start_ai_vehicle_alternating_target_side_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Initializes alternating side/target behavior, randomizes side choice, and synchronizes paired AI state fields. |
+| `0041e450` | `update_ai_vehicle_alternating_side_attack_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Alternates between combat behavior modes based on distance, timer, and line/visibility checks. |
+| `0041e600` | `is_ai_target_active_player_without_blocking_condition` | plate | cgpt rename v6 ai vehicle behavior cluster: Checks whether target is the active player object and no blocking AI condition is present. |
+| `0041e640` | `evaluate_ai_pair_condition_side_effect` | plate | cgpt rename v6 ai vehicle behavior cluster: Thin wrapper around the paired-object condition evaluator FUN_0040ac00. |
+| `0041e660` | `set_ai_behavior_target_object` | plate | cgpt rename v6 ai vehicle behavior cluster: Stores a target object/id into the AI behavior state block at +0xa998. |
+| `0041e680` | `is_ai_behavior_line_of_sight_stale` | plate | cgpt rename v6 ai vehicle behavior cluster: Uses gating predicates and a 5-second timer to decide whether line-of-sight/behavior state is stale. |
+| `0041e720` | `is_ai_behavior_line_of_sight_not_stale` | plate | cgpt readability rename v13 set A: Boolean negation wrapper around is_ai_behavior_line_of_sight_stale. |
+| `0041e740` | `start_ai_vehicle_reverse_position_offset_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Starts a reverse-mode AI state, stores a transformed offset position, and initializes movement state fields. |
+| `0041e890` | `run_ai_behavior_action_004171a0` | plate | cgpt rename v6 ai vehicle behavior cluster: Thin wrapper around FUN_004171a0 for a specific AI behavior table action. |
+| `0041e8b0` | `start_ai_vehicle_reverse_from_current_forward_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Starts reverse-mode AI state using current forward vector as stored position/direction baseline. |
+| `0041e970` | `update_ai_turn_state` | plate | cgpt whole-binary semantic rename v1: string evidence: unkown turn state |
+| `0041ec20` | `is_ai_reverse_state_expired_or_facing_away` | plate | cgpt rename v6 ai vehicle behavior cluster: Checks reverse-state timer and forward-vector dot product against stored direction. |
+| `0041ecc0` | `reset_ai_vehicle_forward_drive_mode` | plate | cgpt rename v6 ai vehicle behavior cluster: Clears override and enters forward drive mode 3. |
+| `0041ed00` | `start_ai_vehicle_reverse_short_delay_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Starts reverse drive mode with randomized 5-8 second timer and speed limit 20. |
+| `0041edb0` | `is_ai_vehicle_close_and_slow_enough_for_behavior` | plate | cgpt rename v6 ai vehicle behavior cluster: Checks vehicle speed and distance to target against close-range behavior thresholds. |
+| `0041ee10` | `set_ai_vehicle_forward_drive_mode` | plate | cgpt rename v6 ai vehicle behavior cluster: Sets forward drive flag and enters drive mode 3. |
+| `0041ee40` | `is_ai_target_not_in_vehicle_state_range_2_to_4` | plate | cgpt rename v6 ai vehicle behavior cluster: Returns true unless target is a vehicle whose runtime state field +0x45c lies in range 2..4. |
+| `0041eea0` | `is_ai_target_blocked_or_not_in_state_range` | plate | cgpt rename v6 ai vehicle behavior cluster: Combines vehicle state range predicate with another paired-object predicate to reject blocked targets. |
+| `0041eef0` | `reset_ai_vehicle_forward_drive_mode_alt` | plate | cgpt rename v6 ai vehicle behavior cluster: Alternate wrapper that clears override and enters forward drive mode 3. |
+| `0041ef40` | `update_ai_vehicle_intercept_or_avoidance_drive` | plate | cgpt rename v6 ai vehicle behavior cluster: Large drive update using target vectors, closest-approach parameter, steering control, braking, and throttle helpers. |
+| `0041f550` | `set_vec3_components` | plate | cgpt rename v6 ai vehicle behavior cluster: Stores three scalar values into a 3-component vector. |
+| `0041f590` | `should_ai_trigger_vehicle_skid_or_engine_event` | plate | cgpt rename v6 ai vehicle behavior cluster: Randomized predicate based on vehicle speed, tire contact/friction, and target object suitability. |
+| `0041f750` | `start_ai_vehicle_recovery_burst_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Starts a short recovery/boost state, preserves steering sign, sets override flag, and marks recovery timer. |
+| `0041f7f0` | `update_ai_vehicle_recovery_burst_state` | plate | cgpt rename v6 ai vehicle behavior cluster: Clears recovery flag if needed and increases throttle toward maximum safe drive. |
+| `0041f860` | `is_ai_nonvehicle_target_within_radius_margin` | plate | cgpt rename v6 ai vehicle behavior cluster: Checks non-vehicle target distance against target radius plus margin. |
+| `0041f8e0` | `dequeue_player_control_input` | plate | cgpt whole-binary semantic rename v1: string evidence: Dequeued control from empty queue |
+| `0041f9c0` | `enqueue_vehicle_steer_brake_input_sample` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] FSM/control helper that validates steer/e-brake values and appends vehicle control samples into the runtime damage/control state block. |
+| `0041fb90` | `enqueue_ai_vehicle_steer_brake_sample_from_history` | plate | cgpt readability rename v13 set A: Builds steering/brake sample values from vehicle runtime history and enqueues them as player-control style input. |
+| `0041fc40` | `apply_player_control_input_to_vehicle_runtime` | plate | cgpt readability rename v13 set A: Dequeues stored player-control input into vehicle runtime steering/throttle/brake fields, or resets drive mode when no sample is available. |
+| `0041fce0` | `get_ai_vehicle_damage_state_field_a6d0` | plate | cgpt readability rename v13 set A: Returns AI/vehicle damage-event state field +0xa6d0. |
+| `0041fd00` | `update_ai_vehicle_close_target_drive_control` | plate | cgpt readability rename v13 set A: AI drive-control helper that steers and throttles toward a target using predicted target vectors and close-range speed rules. |
+| `00420240` | `update_ai_vehicle_full_throttle_intercept_control` | plate | cgpt readability rename v13 set A: AI drive-control helper that steers toward a predicted/intercept target and commands high throttle. |
+| `004203a0` | `update_ai_vehicle_target_approach_control` | plate | cgpt rename v2: Computes relative target approach and selects AI steering/throttle behavior. |
+| `00420520` | `update_ai_combat_state` | plate | cgpt whole-binary semantic rename v1: string evidence: Unknown ai combat state |
+| `004208d0` | `update_ai_vehicle_nearest_target_threat_state` | plate | cgpt readability rename v13 set A: AI helper that scans target/vehicle state around the current vehicle and updates nearest target or threat behavior state. |
+| `00420a20` | `start_ai_path_following_forward_state` | plate | cgpt readability rename v13 set A: Initializes AI path-following state and resets vehicle drive/throttle fields for forward mode. |
+| `00420aa0` | `start_ai_path_following_forward_state_with_threat_scan` | plate | cgpt readability rename v13 set A: Initializes AI path-following state and invokes nearby target/threat scan when transitioning from inactive progress state. |
+| `00420b30` | `update_ai_path_following_drive_with_target_avoidance` | plate | cgpt readability rename v13 set A: AI path-following drive update with waypoint progress, target proximity avoidance, steering, and throttle/brake control. |
+| `00420d30` | `start_or_update_ai_astar_pathfinding_state` | plate | cgpt readability rename v13 set A: AI helper that initializes/updates pathfinding state, locks global FSM context when path search succeeds, and slows vehicle while pathing. |
+| `00420e50` | `ai_vehicle_behavior_context_stub_00420e50` | plate | cgpt readability rename v13 set A: Small AI vehicle behavior helper; body evidence was limited, so this is a neighborhood readability label. |
+| `00420e70` | `ai_vehicle_behavior_context_stub_00420e70` | plate | cgpt readability rename v13 set A: Small AI vehicle behavior helper; body evidence was limited, so this is a neighborhood readability label. |
+| `00420ea0` | `reset_ai_vehicle_drive_mode_forward` | plate | cgpt readability rename v13 set A: Resets vehicle runtime speed/drive fields and enters drive mode 3. |
+| `00420ed0` | `update_ai_path_following_drive_basic` | plate | cgpt readability rename v13 set A: AI path-following drive update using validate_ai_path_destination_bounds, steering control, and throttle/brake helper. |
+| `00420f80` | `ai_vehicle_behavior_context_stub_00420f80` | plate | cgpt readability rename v13 set A: Small AI vehicle behavior helper; body evidence was limited, so this is a neighborhood readability label. |
+| `00420fc0` | `update_ai_path_following_drive_with_close_target_check` | plate | cgpt readability rename v13 set A: Variant of AI path-following drive update with nearby-target gating and alternating avoidance state. |
+| `004211b0` | `initialize_audio_runtime_directsound_cd` | plate | cgpt rename v3: Initializes DirectSound runtime state, audio attenuation tables, default volumes, CD audio state, and the audio object heap. |
+| `00421400` | `pump_audio_object_system` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium-high] ShellMain callback slot +0x28. Updates/pumps shell-visible audio object state. |
+| `00421400` | `pump_audio_object_system` | pre | I76 semantic baseline: pump_audio_object_system<br>Pumps audio object system. |
+| `004216e0` | `shutdown_audio_runtime_directsound_cd` | plate | cgpt rename v3: Stops CD audio, closes MCI CD device, shuts down DirectSound, destroys the audio heap, and clears audio runtime state. |
+| `00421720` | `set_audio_runtime_global_flag` | plate | cgpt readability rename v13 set A: Stores a global audio runtime flag at DAT_004ed7e8. |
+| `00421720` | `set_audio_runtime_global_flag` | pre | I76 semantic baseline: set_audio_runtime_global_flag<br>Sets audio runtime global flag. |
+| `00421730` | `release_all_audio_objects_and_buffers` | plate | cgpt rename v3: Stops and releases all audio objects from both audio object lists and clears the audio runtime active flag. |
+| `004217e0` | `update_audio_object_buffer_volume_pan_and_release_target` | plate | cgpt rename v3: Updates DirectSound buffer volume/pan state for an audio object and releases its associated world-object reference when needed. |
+| `00421900` | `update_audio_listener_transform_from_camera_object` | plate | cgpt readability rename v13 set A: Updates audio listener/source transform globals from the active camera/object transform and sends them to the audio backend. |
+| `00421a60` | `trim_audio_object_list_to_priority_limit` | plate | cgpt readability rename v13 set A: Walks active audio objects, queues lower-priority objects for stop/release, and updates the active audio count limit. |
+| `00421ac0` | `set_audio_runtime_category_enable_mask` | plate | cgpt readability rename v13 set A: Updates audio runtime category/channel enable flags, substituting default category bits for sentinel arguments. |
+| `00421b40` | `create_or_queue_positional_audio_object` | plate | cgpt rename v2: Creates or queues a named audio object with optional world-object distance gating. |
+| `00421d50` | `shell_cb_2c_audio_helper` | plate | [cgpt i76.exe shell callback rename v2; confidence=high] ShellMain callback slot +0x2c. Finds or creates an audio object keyed by caller ID, converts integer coordinates to floats, and inserts/updates it in the audio object system. |
+| `00421e70` | `release_audio_object_if_present` | plate | cgpt rename v2: Null-safe wrapper that releases an audio object through the audio-object release path. |
+| `00421e90` | `shell_cb_30_audio_helper` | plate | [cgpt i76.exe shell callback rename v2; confidence=high] ShellMain callback slot +0x30. Finds an audio object by ID and stops/releases its active DirectSound buffer when appropriate. |
+| `00421f50` | `shell_cb_34_audio_helper` | plate | [cgpt i76.exe shell callback rename v2; confidence=high] ShellMain callback slot +0x34. Finds an audio object by ID and returns its active/playing state. |
+| `00421fb0` | `copy_audio_params_with_defaults` | plate | cgpt rename v3: Copies audio parameter fields while substituting default values for sentinel -1 fields. |
+| `00422030` | `merge_audio_params_with_defaults` | plate | cgpt rename v3: Merges audio parameter fields into an existing parameter block, preserving or defaulting sentinel -1 fields. |
+| `004220c0` | `start_audio_object_playback` | plate | cgpt rename v3: Initializes randomized playback parameters, invokes the audio object start callback, starts the DirectSound buffer, and marks the object playing. |
+| `00422180` | `stop_audio_object_buffer_if_playing` | plate | cgpt rename v3: Checks a DirectSound buffer status and stops it if currently playing, updating playback flags/counters. |
+| `004221d0` | `find_audio_object_by_name_and_world_object` | plate | cgpt rename v3: Searches the active audio object list by attached world object and optional case-insensitive sound name. |
+| `00422230` | `find_audio_object_by_name_with_loaded_buffer` | plate | cgpt readability rename v13 set A: Searches active and pending audio object lists by name and loaded-buffer state. |
+| `004222c0` | `find_audio_object_by_name_and_attached_world_object` | plate | cgpt readability rename v13 set A: Searches active and pending audio object lists by name and attached world-object pointer. |
+| `00422340` | `update_audio_object_lists_and_release_finished` | plate | cgpt readability rename v13 set A: Scans audio object lists, releases finished buffers/resources, and moves or retires objects based on flags. |
+| `00422400` | `start_pending_audio_objects` | plate | cgpt rename v3: Walks active audio objects, starts objects that are not flagged as playing, and clears pending flags. |
+| `00422440` | `update_audio_listener_cached_vectors_from_active_object` | plate | cgpt readability rename v13 set A: Copies active-object listener vectors and camera basis globals into the audio listener parameter block. |
+| `00422540` | `move_audio_object_between_active_and_pending_lists` | plate | cgpt rename v3: Unlinks an audio object from its current list and reinserts it into the active/pending audio list with priority ordering. |
+| `004226e0` | `unlink_audio_object_from_active_or_pending_list` | plate | cgpt rename v4: Removes an audio object from the active/pending audio list selected by low playback-state bits and updates active-list count. |
+| `00422750` | `evaluate_audio_object_priority_distance_state` | plate | cgpt readability rename v13 set A: Evaluates an audio object for priority, distance, duplicate-name limits, and active/pending list promotion decisions. |
+| `004229f0` | `initialize_audio_params_full_defaults` | plate | cgpt readability rename v13 set A: Initializes the full audio parameter block with distance defaults, sentinel fields, and channel/category defaults. |
+| `00422a40` | `initialize_audio_distance_params_defaults` | plate | cgpt readability rename v13 set A: Initializes the shorter audio distance/attenuation parameter block. |
+| `00422a70` | `initialize_audio_gate_params_defaults` | plate | cgpt readability rename v13 set A: Initializes the short audio gate/category parameter block with GAS0 signature and sentinel defaults. |
+| `00422a90` | `promote_pending_audio_objects_by_priority_flags` | plate | cgpt readability rename v13 set A: Promotes pending audio objects into the active list according to flags, priority, and active object count limit. |
+| `00422b40` | `update_positional_audio_activation_by_distance` | plate | cgpt readability rename v13 set A: Moves positional audio objects between active and pending lists based on distance to active listener/camera object. |
+| `00422d20` | `set_audio_object_playback_flags_and_queue` | plate | cgpt rename v3: Stops any currently playing buffer, moves the object to the correct audio list, and applies playback state flags. |
+| `00422e80` | `release_pending_audio_objects_and_buffers` | plate | cgpt readability rename v13 set A: Releases all pending audio objects and clears one audio-list runtime flag. |
+| `00422eb0` | `stop_and_demote_all_active_audio_objects` | plate | cgpt readability rename v13 set A: Stops currently active audio objects, releases playing buffers, and moves them to the pending/inactive list. |
+| `00422f20` | `dispatch_vehicle_runtime_sound_event` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Dispatches vehicle sound events: engine loop start/stop, landing, vehicle/body collision, explosion, gun/missile fire, skid start/stop, and collision signs. |
+| `004231f0` | `play_positional_audio_for_object_or_active_player` | plate | cgpt rename v3: Plays a named positional sound on a supplied world object, falling back to the active player/camera object when no object is supplied. |
+| `00423230` | `play_named_sound_attached_to_object_or_player` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium_high] Builds default 3D sound parameters and plays a named sound attached to a supplied object, falling back to active player object. |
+| `004232a0` | `attach_named_sound_to_runtime_object` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Attaches or plays a named sound against a supplied runtime object, or against the current global world/entity context. |
+| `00423320` | `set_cd_audio_runtime_enabled_flag` | plate | cgpt readability rename v13 set A: Stores a CD/audio runtime enabled flag at DAT_004ed800. |
+| `00423330` | `start_cd_audio_track_if_available` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium-high] ShellMain callback slot +0x50. Starts/plays a CD-audio track if the subsystem/media state allows it. |
+| `004233d0` | `stop_cd_audio_track_if_playing` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium-high] ShellMain callback slot +0x54. Stops active CD-audio playback when present. |
+| `00423400` | `get_tick_count_wrapper_b` | plate | i76 first-pass rename<br>old_name: FUN_00423400<br>suggested_name: get_tick_count_wrapper_b<br>basis: Small GetTickCount timing wrapper. |
+| `004234a0` | `pause_cd_audio_for_cutscene_or_mode_change` | plate | cgpt rename v3: Stops/pauses CD audio when entering a cutscene/display mode transition and records the paused state. |
+| `004234e0` | `resume_cd_audio_after_cutscene_or_mode_change` | plate | cgpt rename v3: Restores CD audio playback after a cutscene/display mode transition when playback was previously paused. |
+| `00423520` | `shell_cb_38_cd_audio_or_redbook_helper` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium] ShellMain callback slot +0x38. CD-audio subsystem initialization/startup callback exposed to the shell. |
+| `00423540` | `shell_cb_3c_cd_audio_or_redbook_helper` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium] ShellMain callback slot +0x3c. CD-audio subsystem shutdown callback exposed to the shell. |
+| `004235a0` | `shell_cb_40_cd_audio_or_redbook_helper` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium] ShellMain callback slot +0x40. CD-audio availability/status callback exposed to the shell. |
+| `00423600` | `set_audio_runtime_pause_when_zero_flag` | plate | cgpt readability rename v13 set A: Stores an inverted audio pause/mute style flag at DAT_00524580. |
+| `00423620` | `update_timer_or_frame_delta` | plate | i76 first-pass rename<br>old_name: FUN_00423620<br>suggested_name: update_timer_or_frame_delta<br>basis: Timer/frame-delta candidate; calls GetTickCount in update-like path. |
+| `00423a10` | `release_audio_world_object_attachment_records` | plate | cgpt rename v4: Walks and frees the audio world-object attachment/association list, releasing nested audio objects and clearing the global list head. |
+| `00423a80` | `is_voice_speech_channel_available` | plate | cgpt readability rename v13 set A: Returns true when the voice/speech channel busy flag DAT_0052457c is clear. |
+| `00423a90` | `play_cmike_voice_clip` | plate | cgpt whole-binary semantic rename v1: references cmike.wav |
+| `00423b30` | `open_mci_cd_audio_device` | plate | cgpt whole-binary semantic rename v1: opens MCI CDAudio device and probes aux volume |
+| `00423d50` | `initialize_cd_audio_playback_state` | plate | cgpt whole-binary semantic rename v1: calls open_mci_cd_audio_device and initializes media status/volume |
+| `00423f70` | `close_mci_cd_audio_device` | plate | cgpt whole-binary semantic rename v1: sends MCI close and clears device id |
+| `00423fb0` | `query_mci_cd_audio_ready_state` | plate | cgpt whole-binary semantic rename v1: queries MCI status and closes on error |
+| `00424090` | `update_mci_cd_audio_status_state` | plate | cgpt whole-binary semantic rename v1: maps MCI mode/status to internal state |
+| `00424190` | `control_cd_audio_playback` | plate | i76 first-pass rename<br>old_name: FUN_00424190<br>suggested_name: control_cd_audio_playback<br>basis: MCI CD-audio command path using mciSendCommandA; manages playback state. |
+| `00424470` | `wait_for_mci_cd_audio_playing_state` | plate | cgpt whole-binary semantic rename v1: polls MCI until playing state |
+| `00424550` | `poll_mci_cd_audio_state_change` | plate | cgpt whole-binary semantic rename v1: detects MCI state change and retries start |
+| `00424670` | `play_or_seek_cd_audio_track` | plate | i76 first-pass rename<br>old_name: FUN_00424670<br>suggested_name: play_or_seek_cd_audio_track<br>basis: MCI CD-audio play/seek-style command path; uses track/index globals. |
+| `004249a0` | `set_mci_cd_audio_time_format` | plate | cgpt whole-binary semantic rename v1: MCI helper called during CD audio init/playback |
+| `00424ac0` | `set_mci_cd_audio_volume_from_config` | plate | cgpt whole-binary semantic rename v1: MCI/aux volume helper |
+| `00424b30` | `get_current_cd_audio_track_index` | plate | cgpt rename v3: Returns the current CD-audio track/index global. |
+| `00424b40` | `is_cd_audio_track_in_valid_range` | plate | cgpt rename v3: Checks whether a CD-audio track number lies inside the current valid min/max range. |
+| `00424b60` | `set_aux_cd_audio_volume_scaled` | plate | cgpt readability rename v13 set A: Scales a small volume argument and applies it to the auxiliary/CD audio device with auxSetVolume. |
+| `00424bc0` | `start_vehicle_engine_loop_sound` | plate | cgpt rename v3: Creates and attaches the engine loop sound object for a vehicle using engine sound metadata and optional runtime flags. |
+| `00424d20` | `restart_vehicle_engine_loop_sound` | plate | cgpt label refinement v18: was start_vehicle_engine_loop_sound. Separate this from 00424bc0; this entry is adjacent to stop/restart/runtime sound helpers and should not duplicate the primary start name. |
+| `00424df0` | `stop_vehicle_engine_loop_sound` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Stops the active looping engine runtime sound associated with a vehicle. |
+| `00424e30` | `play_or_stop_vehicle_engine_event_sound` | plate | cgpt rename v3: Plays a vehicle engine event sound when requested or finds and releases an existing event sound when not requested. |
+| `00424e90` | `play_vehicle_engine_event_sound_unattached` | plate | cgpt rename v3: Plays a vehicle engine event sound without attaching it to the vehicle object. |
+| `00424ed0` | `play_vehicle_engine_event_sound_attached` | plate | cgpt rename v3: Plays a vehicle engine event sound attached to the supplied vehicle world object. |
+| `00424f10` | `play_vehicle_engine_event_sound` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Plays a one-shot engine-related vehicle sound selected from the engine component sound table. |
+| `00424f80` | `stop_vehicle_secondary_runtime_sounds` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Second vehicle audio cleanup helper used during vehicle destruction/removal. |
+| `00424fd0` | `start_vehicle_engine_damage_state_sound` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Starts an engine damage/state sound based on engine condition fraction and returns the selected duration/timing scalar. |
+| `00425070` | `restart_vehicle_runtime_sound_state` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Vehicle sound-state restart helper called after destruction/lifecycle flag transitions. |
+| `004250f0` | `play_sound_if_object_tree_is_audible` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium_high] Plays a named sound only when the root ancestor object has the audible/runtime flag set. |
+| `00425130` | `attach_audio_object_resource_and_buffers` | plate | cgpt rename v2: Loads/attaches audio object backing resources and buffer/interface state. |
+| `00425c10` | `init_directsound` | plate | i76 first-pass rename<br>old_name: FUN_00425c10<br>suggested_name: init_directsound<br>basis: Initializes COM/DirectSound; calls CoInitialize and DirectSoundCreate. |
+| `00425e00` | `shutdown_directsound` | plate | i76 first-pass rename<br>old_name: FUN_00425e00<br>suggested_name: shutdown_directsound<br>basis: DirectSound/COM shutdown path; calls CoUninitialize. |
+| `00425e60` | `allocate_audio_object_record_for_world_object` | plate | cgpt rename v3: Allocates or initializes an audio object record, copies sound name/params, and increments the attached world-object refcount. |
+| `00425ef0` | `release_audio_object_resource_and_buffers` | plate | cgpt rename v2: Releases audio object resources, DirectSound buffers/interfaces, and loaded resource references. |
+| `00426050` | `set_directsound_primary_buffer_rate` | plate | cgpt whole-binary semantic rename v1: string evidence: Cannot set DSound primary buffer rate |
+| `004260d0` | `log_cache_memory_status` | plate | i76 first-pass rename<br>old_name: FUN_004260d0<br>suggested_name: log_cache_memory_status<br>basis: Diagnostic/cache status logging candidate; related to cache/video free messages. |
+| `00426900` | `load_raster_plugin_and_resolve_exports` | plate | i76 first-pass rename<br>old_name: FUN_00426900<br>suggested_name: load_raster_plugin_and_resolve_exports<br>basis: Loads raster/render plugin DLL and resolves render backend exports such as Render, SetState, LockDisplay, UpdateTexture. |
+| `00426b40` | `parse_driver_selection_arg` | plate | i76 second-pass rename<br>old_name: FUN_00426b40<br>suggested_name: parse_driver_selection_arg<br>basis: Checks RASTER/SOUND/DRIVER option strings. |
+| `00426c30` | `build_palette_luminance_shade_lookup_tables` | plate | cgpt rename v8 display/d3d cluster: Builds palette-derived luminance/shading lookup tables from the game RGB palette and fills gray ramp tables used by the display backend. |
+| `00426e10` | `initialize_d3d_execute_buffer_pool` | plate | cgpt rename v8 display/d3d cluster: Initializes the Direct3D execute-buffer pool/ring, creates the first execute buffer, and primes the current command buffer. |
+| `00426f00` | `submit_and_reset_current_d3d_execute_buffer` | plate | cgpt rename v8 display/d3d cluster: Finalizes the current execute buffer, submits it through the Direct3D device, resets the active buffer index, and begins a new command buffer. |
+| `00426f70` | `lock_and_begin_d3d_execute_buffer_batch` | plate | cgpt rename v8 display/d3d cluster: Locks or initializes a Direct3D execute buffer and emits the initial viewport/execute data records and pending render-state setup. |
+| `00427220` | `finalize_d3d_execute_buffer_and_set_execute_data` | plate | cgpt rename v8 display/d3d cluster: Writes execute-buffer terminators, unlocks the buffer when needed, fills execute data, and calls SetExecuteData. |
+| `00427300` | `release_d3d_execute_buffer_pool` | plate | cgpt rename v8 display/d3d cluster: Finalizes and releases all allocated Direct3D execute buffers in the pool and clears active buffer counters. |
+| `00427ac0` | `append_d3d_render_state_changes_to_execute_buffer` | plate | cgpt rename v8 display/d3d cluster: Appends render-state change instructions to the current Direct3D execute buffer when shade/texture/fill state globals change. |
+| `00427de0` | `submit_d3d_unlit_indexed_primitive_batch_context` | plate | cgpt label refinement v18: was d3d_execute_buffer_context_helper_00427de0. Refine generic D3D context label to primitive submission context based on adjacent lit-indexed primitive submitters. |
+| `00427e70` | `submit_d3d_lit_indexed_primitive_batch_a` | plate | cgpt rename v8 display/d3d cluster: Submits a lit indexed-color primitive batch, using game palette shade lookup and falling back to the immediate callback path when available. |
+| `004282e0` | `submit_d3d_lit_indexed_primitive_batch_b` | plate | cgpt rename v8 display/d3d cluster: Submits the alternate lit indexed-color primitive batch form, sharing execute-buffer growth/state logic with the mode-a submitter. |
+| `0042cd60` | `get_m16_embedded_palette_or_default` | plate | cgpt rename v8 display/d3d cluster: Returns the embedded trailing palette pointer for an M16-like texture when present, otherwise returns the global/default palette pointer. |
+| `0042cd90` | `submit_display_backend_white_edge_test_quads` | plate | cgpt rename v8 display/d3d cluster: Submits two white edge/corner quad batches through the immediate primitive callback path, likely a display/backend clear or test pattern. |
+| `0042d0a0` | `get_current_display_transparent_palette_index` | plate | cgpt rename v8 display/d3d cluster: Returns the active transparent palette index, using 0xff in one display mode and DAT_0060865e otherwise. |
+| `0042d0c0` | `create_display_window_mode_a` | plate | i76 first-pass rename<br>old_name: FUN_0042d0c0<br>suggested_name: create_display_window_mode_a<br>basis: Alternate CreateWindowExA display/window creation path. |
+| `0042d420` | `create_directdraw_texture_palette` | plate | cgpt whole-binary semantic rename v1: string evidence: failed to create palette for destination texture |
+| `0042d5d0` | `report_chunk_parse_error` | plate | [cgpt i76.exe vehicle object rename v7; confidence=high] Shared parse error/report helper used when chunk state references invalid vehicle/weapon records. |
+| `0042d5e0` | `shutdown_display_surface_context_and_ddraw` | plate | cgpt rename v4: Releases a display surface context, restores/release DirectDraw interfaces, and clears related fullscreen/window state. |
+| `0042d630` | `build_8bit_to_pixel_mask_lookup_table` | plate | cgpt rename v8 display/d3d cluster: Builds a 256-entry lookup table that maps 8-bit channel values into a destination pixel-format mask/bitfield. |
+| `0042d6a0` | `initialize_display_palette_and_pixel_remap_tables` | plate | cgpt rename v8 display/d3d cluster: Initializes DirectDraw palette entries, game palette mirror globals, and RGB pixel-format remap tables for the current display mode. |
+| `0042d800` | `build_display_pixel_format_palette_remap_tables` | plate | cgpt rename v8 display/d3d cluster: Builds RGB mask lookup/remap tables for the current display pixel format and optionally loads/updates a 64K palette translation table resource. |
+| `0042dd00` | `restore_or_acquire_directdraw_surface_if_needed` | plate | [cgpt i76.exe main runtime loop rename v22; confidence=MEDIUM] Small repeated frame-phase helper that calls the DirectDraw surface vtable method at +0x2c when a pending restore flag is set.<br>old_name: FUN_0042dd00 |
+| `0042dd30` | `initialize_front_buffer_bitmap_surface_context` | plate | cgpt rename v8 display/d3d cluster: Initializes a bitmap-surface context for the current front/back display surface, querying surface description and constructing a clipped bitmap context. |
+| `0042de70` | `write_directdraw_surface_to_bmp_file` | plate | cgpt rename v2: Captures/serializes a DirectDraw surface-like buffer to a BMP-style file using fwrite and surface masks. |
+| `0042e1d0` | `prepare_smacker_cutscene_display_surface` | plate | cgpt rename v8 display/d3d cluster: Prepares or restores the DirectDraw display/front-buffer surface state used by Smacker cutscene open/render/close paths. |
+| `0042e2c0` | `flip_or_restore_directdraw_front_back_surfaces` | plate | cgpt readability rename v13 set A: Handles DirectDraw front/back surface restore, flip/blit behavior, and surface state flags for the display backend. |
+| `0042e850` | `submit_display_backend_screen_edge_quads` | plate | cgpt rename v8 display/d3d cluster: Begins a D3D scene and submits two screen-edge quad batches through the indexed primitive submitter. |
+| `0042e970` | `end_d3d_scene_and_flush_execute_buffer` | plate | cgpt rename v8 display/d3d cluster: Flushes the current execute buffer, calls the Direct3D device EndScene path, and releases video-memory texture cache records when flagged. |
+| `0042e9c0` | `video_memory_texture_cache_record_exists` | plate | cgpt rename v8 display/d3d cluster: Checks whether a video-memory texture cache record exists by resource/bitmap id, or delegates to the alternate renderer callback. |
+| `0042ea40` | `reset_video_memory_texture_cache_index` | plate | cgpt rename v8 display/d3d cluster: Clears the video-memory texture cache index/counters and resets min/max cache id bounds. |
+| `0042ea70` | `release_all_video_memory_texture_cache_records` | plate | cgpt rename v8 display/d3d cluster: Releases all video-memory texture cache records, associated DirectDraw surfaces, backing bitmap contexts, and resets the cache index. |
+| `0042eb10` | `release_video_memory_texture_cache_record_by_id` | plate | cgpt rename v8 display/d3d cluster: Finds a video-memory texture cache record by id, releases its DirectDraw surfaces/backing bitmap context, compacts the cache array, or delegates to alternate renderer callback. |
+| `0042ec20` | `mark_texture_set_binding_dirty_or_track_special_view` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium] Marks texture-set binding dirty/special after HUD/object texture binding; special-cases zbk, ZRADF000, and RearView bindings. |
+| `0042ece0` | `register_video_memory_texture_cache_entry` | plate | cgpt rename v4: Binary-searches/inserts a texture cache entry and creates/restores its video-memory surface. |
+| `0042ede0` | `create_or_restore_video_memory_texture_surface` | plate | cgpt rename v3: Creates/restores DirectDraw texture surfaces for a bitmap/texture record, builds backing bitmap contexts, and logs dimensions on failure/debug. |
+| `0042f5f0` | `initialize_video_memory_texture_cache_record` | plate | cgpt rename v4: Initializes a packed video-memory texture cache record from texture dimensions, mode flags, and current cache generation. |
+| `0042f6b0` | `flush_video_memory_cache_entries_for_resource` | plate | cgpt rename v2: String-anchored video-memory cache flush path for overfull resource/video-memory item lists. |
+| `0042fac0` | `log_video_texture_memory` | plate | i76 second-pass rename<br>old_name: FUN_0042fac0<br>suggested_name: log_video_texture_memory<br>basis: Diagnostic string: Video card texture mem holds %d bytes. |
+| `0042fb60` | `create_direct3d_interface` | plate | cgpt whole-binary semantic rename v1: calls DirectDraw QueryInterface/Create IDirect3D and reports Creation of IDirect3D failed |
+| `0042fba0` | `enumerate_direct3d_drivers` | plate | cgpt whole-binary semantic rename v1: calls IDirect3D EnumDevices/driver enumeration; reports Enumeration of drivers failed |
+| `0042fdd0` | `register_d3d_device_driver_descriptor` | plate | cgpt readability rename v13 set A: Copies and normalizes a D3D driver/device descriptor into the global enumerated-driver table. |
+| `00430110` | `create_selected_direct3d_device` | plate | cgpt whole-binary semantic rename v1: creates selected D3D device and enumerates texture formats |
+| `004302a0` | `d3d_error_to_string` | plate | i76 first-pass rename<br>old_name: FUN_004302a0<br>suggested_name: d3d_error_to_string<br>basis: Renderer/D3D error string lookup; includes D3DRMERR and execute-buffer diagnostics. |
+| `00430ba0` | `set_active_d3d_viewport_descriptor` | plate | cgpt readability rename v13 set A: Copies a D3D viewport/display descriptor into the active global block and validates backend error state. |
+| `00430be0` | `release_directdraw_direct3d_interfaces` | plate | cgpt rename v2: Releases DirectDraw/Direct3D interfaces and restores display/cooperative state. |
+| `00430cc0` | `directdraw_error_to_string` | plate | i76 first-pass rename<br>old_name: FUN_00430cc0<br>suggested_name: directdraw_error_to_string<br>basis: Maps DirectDraw/D3D HRESULT-style errors to diagnostic strings. |
+| `004313e0` | `initialize_directdraw_surface_descriptor_block` | plate | cgpt rename v2: Allocates/initializes a DirectDraw surface descriptor block and invokes the surface creation callback. |
+| `004314c0` | `create_display_window_for_mode_selector` | plate | cgpt readability rename v13 set A: Dispatches display window creation to windowed or fullscreen mode based on a mode selector. |
+| `00431500` | `create_display_window_mode_b` | plate | i76 first-pass rename<br>old_name: FUN_00431500<br>suggested_name: create_display_window_mode_b<br>basis: Alternate CreateWindowExA display/window creation path. |
+| `004317e0` | `initialize_display_surface_context` | plate | cgpt whole-binary semantic rename v1: creates shell/windowed bitmap/surface context |
+| `00431c70` | `directdraw_display_mode_enum_callback_context` | plate | cgpt label refinement v18: was display_mode_enum_callback_context_helper_00431c70. Refine generic display label to the DirectDraw display-mode enumeration callback neighborhood. |
+| `00431ca0` | `apply_texture_palette_to_display_context` | plate | cgpt readability rename v13 set A: Applies an M16/texture embedded palette or default palette into the current display/palette context. |
+| `00431d00` | `initialize_display_rgb_pixel_remap_tables` | plate | cgpt readability rename v13 set A: Builds display RGB mask/remap lookup tables for the active pixel format. |
+| `00431f60` | `write_video_driver_log` | plate | i76 second-pass rename<br>old_name: FUN_00431f60<br>suggested_name: write_video_driver_log<br>basis: Writes VIDEOLOG.TXT and DirectDraw/D3D caps diagnostics. |
+| `004324f0` | `log_d3d_shade_caps` | plate | cgpt whole-binary semantic rename v1: string table: Shade Caps / D3DPSHADECAPS_* |
+| `00432690` | `log_d3d_misc_caps` | plate | cgpt whole-binary semantic rename v1: string table: Misc Caps / D3DPMISCCAPS_* |
+| `00432740` | `log_d3d_blend_caps` | plate | cgpt whole-binary semantic rename v1: string table: Blend Caps / D3DPBLENDCAPS_* |
+| `00432900` | `init_directdraw` | plate | i76 first-pass rename<br>old_name: FUN_00432900<br>suggested_name: init_directdraw<br>basis: Calls DirectDrawEnumerateA/DirectDrawCreate; captures system palette; stores DirectDraw object globally. |
+| `00432c20` | `query_directdraw_surface_descriptor` | plate | cgpt rename v3: Zeros a DDSURFACEDESC-sized block, sets dwSize, and queries the DirectDraw surface description. |
+| `00432c50` | `create_directdraw_render_surfaces` | plate | cgpt whole-binary semantic rename v1: creates fullscreen/window front/back buffers and clipper |
+| `00433050` | `create_and_attach_directdraw_palette` | plate | i76 first-pass rename<br>old_name: FUN_00433050<br>suggested_name: create_and_attach_directdraw_palette<br>basis: Creates DirectDraw palette and attaches it to front/back buffers; error strings mention SetPalette/CreatePalette failures. |
+| `00433340` | `restore_directdraw_display_mode` | plate | cgpt whole-binary semantic rename v1: calls RestoreDisplayMode and reports failure |
+| `00433410` | `clear_directdraw_front_back_buffers` | plate | cgpt whole-binary semantic rename v1: locks/describes and clears front/back buffers |
+| `004335e0` | `map_display_bit_depth_to_ddraw_caps_mask` | plate | cgpt rename v2: Maps display bit-depth selector values to DirectDraw capability masks. |
+| `00433670` | `initialize_display_runtime_globals` | plate | cgpt rename v3: Zeros display/runtime mode tables and initializes default DirectDraw/D3D display state globals. |
+| `004337a0` | `invoke_optional_raster_driver_callback` | plate | cgpt label refinement v18: was invoke_optional_display_driver_callback. Clarify that this dispatch is in the optional raster/display backend callback path rather than a generic driver callback. |
+| `004337e0` | `select_best_display_driver_for_caps_mask` | plate | cgpt readability rename v13 set A: Selects the best enumerated display/D3D driver matching a capability mask and preference flags. |
+| `004338b0` | `update_supported_display_depth_flags_for_driver` | plate | cgpt rename v3: Maps a selected D3D driver's bit-depth caps into per-display-mode supported flags. |
+| `00433920` | `choose_display_mode_matching_caps` | plate | cgpt rename v3: Finds the first display mode matching a capability mask, preferring 640x480x16 when available. |
+| `004339e0` | `select_compatible_d3d_device_driver` | plate | cgpt whole-binary semantic rename v1: string evidence: selected D3D driver compatibility errors |
+| `00433ca0` | `reset_display_clip_rects_to_current_mode` | plate | cgpt rename v3: Sets display dirty/fullscreen flags and resets multiple render/client rectangles to the current mode dimensions. |
+| `00433d10` | `update_window_client_screen_metrics` | plate | cgpt rename v3: Updates client rectangle dimensions and screen origin for windowed mode, or uses fullscreen dimensions directly. |
+| `00433de0` | `shell_cb_4c_display_or_directdraw_helper` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium-low] ShellMain callback slot +0x4c. Display/render-driver state callback. Needs DirectDraw/raster follow-up before stronger naming. |
+| `00433df0` | `create_raster_fullscreen_window_640x480` | plate | i76 first-pass rename<br>old_name: FUN_00433df0<br>suggested_name: create_raster_fullscreen_window_640x480<br>basis: Window creation helper using AdjustWindowRect/CreateWindowExA, likely fullscreen raster mode. |
+| `00434100` | `initialize_640x480_display_surface_context` | plate | cgpt rename v2: Initializes 640x480 display/surface context for shell/windowed or full mode. |
+| `00434410` | `initialize_8bpp_display_palette_and_remap_tables` | plate | cgpt label refinement v18: was initialize_8bpp_display_palette_remap_tables. Clarify that this belongs to palette plus remap table setup. |
+| `00434670` | `initialize_vehicle_wheel_contact_state_block` | plate | cgpt readability rename v13 set A: Initializes a vehicle wheel/contact state block and its nested physics/contact fields. |
+| `00434670` | `initialize_vehicle_wheel_contact_state_block` | pre | I76 semantic baseline: initialize_vehicle_wheel_contact_state_block<br>Initializes wheel/tire contact state block. |
+| `004346d0` | `initialize_effect_target_system` | plate | cgpt readability rename v13 set A: Initializes effect-target lists, registers world-object callbacks, creates collision heap, and clears probe lists. |
+| `00434870` | `unregister_effect_target_record` | plate | cgpt rename v3: Removes an effect-target record from the primary/secondary target lists, fixes iterator state, and releases any child target registrations. |
+| `00434960` | `shutdown_effect_target_system` | plate | cgpt rename v4: Clears primary and secondary effect-target lists, resets scan iterators, clears collision links, and shuts down target heap state. |
+| `004349c0` | `update_effect_target_collision_pairs` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM_HIGH] Updates effect target transformed bounds, scans primary/secondary target lists, and dispatches target pair collision/effect checks.<br>old_name: FUN_004349c0 |
+| `004349c0` | `update_effect_target_collision_pairs` | pre | I76 semantic baseline: update_effect_target_collision_pairs<br>Updates effect-target transformed bounds and collision/effect pairs. |
+| `00434b60` | `test_bounds_overlap_xz_ranges` | plate | cgpt readability rename v13 set A: Tests overlap between two X/Z bounding ranges or effect-target bounds records. |
+| `00434bb0` | `preload_vehicle_voice_audio_clips` | plate | cgpt whole-binary semantic rename v1: references vv*/vnvcs*.wav clips |
+| `00434f00` | `test_effect_target_swept_interval_candidate` | plate | cgpt readability rename v13 set A: Effect-target swept interval/collision helper used by projectile and vehicle effect scans. |
+| `00435120` | `apply_explosion_radial_damage_effect` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] Iterates live world/entity lists around an explosion center, checks radius/range, computes impulse/direction, and dispatches damage/force effect to affected objects. |
+| `004354c0` | `scan_effect_targets_for_collision_response_a` | plate | cgpt readability rename v13 set A: Scans effect-target lists for a matching collision/response candidate using transformed positions and runtime filters. |
+| `00435830` | `scan_effect_targets_for_collision_response_b` | plate | cgpt readability rename v13 set A: Variant effect-target scan that evaluates collision candidates and output contact/target response data. |
+| `00435cc0` | `scan_effect_targets_for_vehicle_collision_response` | plate | cgpt readability rename v13 set A: Vehicle-oriented effect-target scan variant using runtime vehicle/object filters and transformed collision candidates. |
+| `00436120` | `test_effect_target_forward_alignment` | plate | cgpt rename v3: Compares transformed forward vectors for two effect targets and returns true when they are closely aligned. |
+| `004361e0` | `find_nearest_effect_target_in_weapon_cone` | plate | cgpt rename v2: Searches effect targets and returns the nearest target lying inside the weapon/fire cone. |
+| `00436450` | `find_nearest_primary_effect_target_in_forward_cone` | plate | cgpt rename v3: Scans primary effect targets and returns the nearest vehicle target inside a forward cone. |
+| `00436570` | `find_nearest_effect_target_to_active_player` | plate | cgpt readability rename v13 set A: Scans secondary effect-target list around the active player/camera object and returns/updates nearest target information. |
+| `00436750` | `get_current_effect_target_scan_object` | plate | cgpt readability rename v13 set A: Returns the world object associated with the current effect-target scan node, or null when no scan is active. |
+| `00436790` | `effect_target_scan_query_context_helper_00436790` | plate | cgpt label refinement v18: was effect_target_scan_target_query_helper_00436790. Remove duplicated target wording from readability-pass label. |
+| `004367e0` | `spawn_chC_runtime_effect` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=low-medium] Effect helper anchored by chC string; exact effect role needs later pass. |
+| `00436980` | `find_nearest_effect_target_in_scan_list_helper_00436980` | plate | cgpt readability rename set B v14: Readability pass set B: find nearest effect target in scan list helper based on prior focused closure context. |
+| `004369c0` | `effect_target_distance_filter_helper_004369c0` | plate | cgpt readability rename set B v14: Readability pass set B: effect target distance filter helper based on prior focused closure context. |
+| `00436c60` | `effect_target_visibility_scan_helper_00436c60` | plate | cgpt readability rename set B v14: Readability pass set B: effect target visibility scan helper based on prior focused closure context. |
+| `00436d90` | `effect_target_scan_target_query_helper_00436d90` | plate | cgpt readability rename set B v14: Readability pass set B: likely effect_target_scan / target_query_helper based on address neighborhood and prior focused closure context. |
+| `00436ff0` | `effect_target_scan_target_query_helper_00436ff0` | plate | cgpt readability rename set B v14: Readability pass set B: likely effect_target_scan / target_query_helper based on address neighborhood and prior focused closure context. |
+| `00437230` | `update_tire_suspension_visual_compression_state` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Applies tire/suspension visual compression state to tire child objects using contact height and compression values. |
+| `00437f90` | `effect_target_bounds_query_helper_00437f90` | plate | cgpt readability rename set B v14: Readability pass set B: effect target bounds query helper based on prior focused closure context. |
+| `004382e0` | `effect_target_list_scan_context_helper_004382e0` | plate | cgpt label refinement v18: was effect_target_scan_target_list_scan_helper_004382e0. Reduce duplicated wording while preserving address-suffixed context label. |
+| `00438340` | `effect_target_list_scan_context_helper_00438340` | plate | cgpt label refinement v18: was effect_target_scan_target_list_scan_helper_00438340. Reduce duplicated wording while preserving address-suffixed context label. |
+| `004383a0` | `effect_target_list_scan_context_helper_004383a0` | plate | cgpt label refinement v18: was effect_target_scan_target_list_scan_helper_004383a0. Reduce duplicated wording while preserving address-suffixed context label. |
+| `004384f0` | `effect_target_list_scan_context_helper_004384f0` | plate | cgpt label refinement v18: was effect_target_scan_target_list_scan_helper_004384f0. Reduce duplicated wording while preserving address-suffixed context label. |
+| `00438630` | `integrate_vertical_motion_with_gravity` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium] Integrates position/velocity with a gravity-like Y acceleration term. |
+| `00438680` | `integrate_vec3_motion_with_acceleration` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium] Integrates 3D velocity and displacement using acceleration vector and timestep. |
+| `004387b0` | `effect_target_list_scan_context_helper_004387b0` | plate | cgpt label refinement v18: was effect_target_scan_target_list_scan_helper_004387b0. Reduce duplicated wording while preserving address-suffixed context label. |
+| `00438810` | `effect_target_list_scan_context_helper_00438810` | plate | cgpt label refinement v18: was effect_target_scan_target_list_scan_helper_00438810. Reduce duplicated wording while preserving address-suffixed context label. |
+| `004389f0` | `effect_target_list_scan_context_helper_004389f0` | plate | cgpt label refinement v18: was effect_target_scan_target_list_scan_helper_004389f0. Reduce duplicated wording while preserving address-suffixed context label. |
+| `00438a90` | `effect_target_selection_context_helper_00438a90` | plate | cgpt label refinement v18: was effect_target_scan_target_selection_helper_00438a90. Reduce duplicated wording while preserving address-suffixed context label. |
+| `00438fd0` | `update_vehicle_wheel_contact_physics_and_terrain_response` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Top-level vehicle physics integrator for velocity, transform, contact flags, wheel/tire child state, tire speed scalars, airborne/grounded state, and impact damage. |
+| `00438fd0` | `update_vehicle_wheel_contact_physics_and_terrain_response` | pre | I76 semantic baseline note:<br>Lower-level vehicle wheel/contact/terrain/impact integration. Terrain material can affect underbody/speed damage. |
+| `0043a210` | `blend_two_vec3_weighted` | plate | [cgpt i76.exe vehicle physics integrator rename v31; confidence=high] Simple vector helper computing dst = a * weightA + b * weightB. |
+| `0043a280` | `vec3_cross_product` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Computes dst = cross(a,b). |
+| `0043a300` | `store_vec3_as_double_triplet` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Stores a 3-float vector into three double fields. |
+| `0043a320` | `mat3_transform_vec3` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Transforms a 3-vector by a 3x3 matrix. |
+| `0043a3c0` | `update_vehicle_control_input_and_drivetrain_state` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=medium_high] Per-frame vehicle control/drivetrain pre-pass feeding the physics integrator. |
+| `0043a3c0` | `update_vehicle_control_input_and_drivetrain_state` | pre | I76 semantic baseline note:<br>Active vehicle control/drivetrain update. Next-level target for steering/throttle/brake and drivetrain semantics. |
+| `0043a560` | `integrate_vehicle_dynamics_with_contact_mode` | plate | cgpt rename v3: Chooses between free vehicle integration and wheel-contact suspension solving based on contact/special state. |
+| `0043a5d0` | `solve_vehicle_wheel_contact_suspension_solver` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Large wheel-ground contact and suspension solver: computes contact masks, grounded/airborne state, suspension response vectors, and output transform/velocity state. |
+| `0043a5d0` | `solve_vehicle_wheel_contact_suspension_solver` | pre | I76 semantic baseline: solve_vehicle_wheel_contact_suspension_solver<br>Solves wheel contact/suspension response. |
+| `0043bc90` | `vehicle_contact_physics_scalar_helper_0043bc90` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle contact physics scalar helper based on prior focused closure context. |
+| `0043bcf0` | `copy_transform_forward_vector` | plate | [cgpt i76.exe vehicle physics integrator rename v31; confidence=medium] Copies the forward/axis vector at transform offsets +0x0c/+0x10/+0x14. |
+| `0043bd30` | `copy_vec3` | plate | [cgpt i76.exe vehicle physics integrator rename v31; confidence=high] Copies three dwords/floats from source to destination. |
+| `0043bd70` | `vehicle_contact_physics_response_helper_0043bd70` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle contact physics response helper based on prior focused closure context. |
+| `0043bda0` | `approach_float_with_rate_limit` | plate | [cgpt i76.exe vehicle physics integrator rename v31; confidence=high] Moves one scalar toward a target by a rate if the delta exceeds a small threshold. |
+| `0043bdf0` | `integrate_vehicle_control_vector_and_orientation` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=medium_high] Control-vector/orientation integrator used by drivetrain pre-pass; builds forward/speed vectors and candidate transform state. |
+| `0043bdf0` | `integrate_vehicle_control_vector_and_orientation` | pre | I76 semantic baseline note:<br>Bridge between vehicle control/orientation vectors and runtime fields +0xbc/+0xc8/+0xac/+0xb0; should be traced next. |
+| `0043c310` | `compute_vehicle_longitudinal_drive_brake_force` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Computes longitudinal drive/brake force from engine, brake, tire contact scalars, terrain friction, speed, gear/mode flags, and throttle/brake state. |
+| `0043c600` | `solve_vehicle_max_drive_brake_delta` | plate | cgpt rename v3: Binary-searches a safe longitudinal drive/brake delta by repeatedly testing drive/brake force response. |
+| `0043c6f0` | `compute_vehicle_tire_grip_control_scalar` | plate | cgpt rename v3: Computes a vehicle traction/control scalar from tire contact compression, terrain friction, speed, and suspension data. |
+| `0043c850` | `apply_longitudinal_drag_force_to_velocity` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Applies a longitudinal drag/braking force along the vehicle forward vector into a velocity accumulator. |
+| `0043c960` | `apply_wheel_contact_impulse_between_vehicles` | plate | cgpt rename v3: Computes and applies an impulse response between a vehicle and a wheel/contact object in local transform space. |
+| `0043ce10` | `compute_vehicle_suspension_traction_limit` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Computes traction/grip limit from suspension component values, terrain friction/material, tire contact states, vehicle speed, and runtime flags. |
+| `0043d070` | `update_inactive_vehicle_ground_recovery_and_suspension_visuals` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=medium] Vehicle recovery/autopilot-like runtime update helper in the physics step path. |
+| `0043d070` | `update_inactive_vehicle_ground_recovery_and_suspension_visuals` | pre | I76 semantic baseline: update_inactive_vehicle_ground_recovery_and_suspension_visuals<br>Inactive/special vehicle ground recovery and suspension visual update. |
+| `0043d140` | `update_rear_tire_skid_fx_contact_state` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Updates rear tire contact/skid state and vehicle contact/skid flag using rear-left and rear-right tire components. |
+| `0043d1a0` | `set_active_vehicle_runtime_flag_0x10000` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Sets or clears bit 0x10000 in the active player/camera vehicle runtime flags at +0x454. |
+| `0043d1f0` | `update_vehicle_suspension_visual_tilt` | plate | cgpt rename v3: Applies suspension response scalar to paired visual suspension/tilt objects. |
+| `0043d240` | `get_vehicle_effective_terrain_friction_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Returns terrain material friction for vehicle runtime field +0x45c, with wet/slippery flag clamp when vehicle runtime flag 0x400 is set. |
+| `0043d280` | `play_nitro_boost_audio` | plate | cgpt whole-binary semantic rename v1: references bnitro.wav |
+| `0043d2e0` | `apply_vehicle_local_impulse_response` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Applies a local impulse/response vector to a vehicle-like runtime object with speed and damping limits. |
+| `0043d500` | `update_vehicle_skid_collision_damage_audio` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Per-frame vehicle audio feedback path for tire flat, body damage, tire skid/contact, and brake/damage related WAV triggers. |
+| `0043d500` | `update_vehicle_skid_collision_damage_audio` | pre | I76 semantic baseline: update_vehicle_skid_collision_damage_audio<br>Updates skid/collision/damage audio side effects from vehicle contact flags. |
+| `0043d640` | `apply_vehicle_random_bounce_impulse` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Applies randomized bounce/impact impulse to vehicle velocity fields and marks an impact/bounce flag. |
+| `0043d770` | `query_vehicle_effect_collision_response_state` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Collision/effect predicate over vehicle/effect state selectors 1/2/3 with output state written through stack arguments. |
+| `0043d9e0` | `update_vehicle_effect_collision_response` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Large effect/vehicle collision response updater using object transforms, runtime delta, and collision state selectors. |
+| `0043df10` | `test_swept_aabb_axis_interval_collision` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Tests swept interval overlap against an expanded axis-aligned volume and returns the collision side/direction selector. |
+| `0043e380` | `clear_effect_target_surface_probe_list` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Clears the global effect-target surface/collision probe list head. |
+| `0043e390` | `clear_effect_target_collision_link_lists` | plate | cgpt rename v3: Frees all collision/geometry link nodes for registered effect targets and clears the global target list. |
+| `0043e3f0` | `collect_effect_target_collision_links` | plate | cgpt rename v3: Scans a world-object subtree for collision links and attaches qualifying links to an effect-target record. |
+| `0043e4c0` | `release_effect_target_collision_links` | plate | cgpt rename v3: Frees collision link nodes for a single effect-target record and removes it from the global effect-target list. |
+| `0043e530` | `probe_effect_target_surface_height_at_position` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Scans effect-target collision/surface records near a position and returns the best surface height/fallback transform result. |
+| `0043e530` | `probe_effect_target_surface_height_at_position` | pre | I76 semantic baseline: probe_effect_target_surface_height_at_position<br>Probes effect target/surface height at world position. |
+| `0043e7a0` | `effect_target_object_has_collision_geometry` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Checks whether an effect target object has qualifying collision geometry/child class links. |
+| `0043e850` | `collect_collision_links_from_world_object_tree` | plate | cgpt rename v4: Recursively scans a world-object subtree and appends qualifying geometry/collision links to an effect-target record. |
+| `0043e8f0` | `free_effect_target_collision_link_chain` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Frees a collision-link chain associated with an effect-target/collision payload. |
+| `0043e930` | `is_world_object_class_collision_target_candidate` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Checks whether a world-object class/type is in the collision-target candidate range 0x0b..0x0d. |
+| `0043e950` | `initialize_effect_target_collision_heap` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Creates the heap used for effect-target collision/link payload allocations. |
+| `0043e970` | `shutdown_effect_target_collision_heap` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Destroys the effect-target collision/link payload heap and clears the heap handle. |
+| `0043e990` | `allocate_effect_target_collision_payload_from_geometry` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Allocates and fills an effect-target collision payload from geometry/section records and transformed vertex data. |
+| `0043eb70` | `release_effect_target_collision_payload` | plate | cgpt rename v4: Frees the per-target collision link chain and payload block attached at target +0x80. |
+| `0043ebc0` | `test_swept_point_against_effect_target_collision_payload` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Tests a moving point/segment against an effect-target collision payload using runtime delta and per-axis polygon tests. |
+| `0043f030` | `solve_plane_y_from_xz` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Solves the Y coordinate on a plane from X/Z coordinates using stored plane coefficients. |
+| `0043f050` | `point_in_polygon_xz` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Point-in-polygon test over X/Z coordinates for indexed polygon vertex data. |
+| `0043f2b0` | `point_in_polygon_xy` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Point-in-polygon test over X/Y coordinates for indexed polygon vertex data. |
+| `0043f510` | `test_effect_target_collision_pair` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Tests two effect-target/collision records for possible collision using transformed bounds and swept payload tests. |
+| `0043f8c0` | `test_effect_target_swept_collision_against_object` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Large swept collision test between an effect-target collision payload and a world object, composing transforms and producing contact outputs. |
+| `0043ff80` | `test_collision_between_effect_target_bounds` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Tests collision between two transformed effect-target bounds/collision payloads. |
+| `00440670` | `vehicle_ground_contact_probe_context_helper_00440670` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle ground contact probe context helper based on prior focused closure context. |
+| `00440740` | `probe_vehicle_ground_contact_from_wheel_points` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Transforms wheel/contact sample points and probes downward against terrain/height data to fill contact records. |
+| `00440740` | `probe_vehicle_ground_contact_from_wheel_points` | pre | I76 semantic baseline: probe_vehicle_ground_contact_from_wheel_points<br>Probes vehicle ground contact from wheel points. |
+| `00440d90` | `test_vehicle_damage_volume_against_effect_target` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Builds vehicle damage/collision transforms, expands a damage volume, and tests it against an effect target. |
+| `00441150` | `preload_smoke_animation_textures` | plate | i76 second-pass rename<br>old_name: FUN_00441150<br>suggested_name: preload_smoke_animation_textures<br>basis: References smoke animation texture maps and missing animation diagnostic. |
+| `00441260` | `load_smoke_animation_texture_pair` | plate | cgpt whole-binary semantic rename v1: references xwp1_101.map/xwp1_102.map |
+| `00441310` | `register_world_object_smoke_emitter` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Allocates/registers a world-object-attached smoke/effect emitter and increments the attached object tree refcount. |
+| `004413b0` | `unregister_world_object_smoke_emitter` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Finds a world-object-attached smoke/effect emitter, releases the object tree refcount, unlinks it, and returns it to the free list. |
+| `00441440` | `mark_world_object_smoke_emitter_type2` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Marks the smoke/effect emitter attached to a world object with state/type value 2. |
+| `00441470` | `set_world_object_smoke_emitter_mode` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Sets the mode/state field on a world-object-attached smoke/effect emitter. |
+| `004414a0` | `update_world_object_smoke_emitters_and_spawn_particles` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Updates active world-object-attached smoke/effect emitters, releases stale object refs, and spawns particle records. |
+| `00441930` | `build_smoke_particle_billboard_geometry` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Builds billboard/quad geometry for one smoke/effect particle chain using camera/view data and particle age. |
+| `00441bb0` | `render_active_smoke_particle_emitters` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Renders all active smoke/effect particle emitters by building billboard geometry for each active record. |
+| `00441be0` | `load_projectile_tracer_texture` | plate | cgpt whole-binary semantic rename v1: references mcannon.map and Tracer map missing |
+| `00441cd0` | `release_projectile_tracer_runtime_records` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Frees all active projectile tracer/beam runtime records and clears the tracer list head. |
+| `00441d10` | `enqueue_projectile_tracer_runtime_record` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Allocates/enqueues a projectile tracer/beam runtime record with mode, source object, and per-mode parameters. |
+| `00441ef0` | `update_projectile_tracer_runtime_record_for_object` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Finds a projectile tracer/beam record for an object and updates its mode-dependent vector/scale parameters. |
+| `004420b0` | `render_projectile_tracer_quads_variant_a` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Builds render quads for active projectile tracer/beam records using transformed vertex arrays and palette/material constants. |
+| `00442480` | `render_projectile_tracer_quads_variant_b` | plate | cgpt rename v9 vehicle effect/collision/particle cluster: Builds alternate/clipped render quads for projectile tracer/beam records using transformed vertex arrays and a visibility probe. |
+| `00442940` | `preload_contrail_textures` | plate | i76 second-pass rename<br>old_name: FUN_00442940<br>suggested_name: preload_contrail_textures<br>basis: References contrail start frame maps and calls add_texture_to_cache. |
+| `00442ae0` | `preload_smoke_or_dust_textures` | plate | i76 second-pass rename<br>old_name: FUN_00442ae0<br>suggested_name: preload_smoke_or_dust_textures<br>basis: References xsh/xdu .map texture frames and is called from startup. |
+| `00442ba0` | `load_dust_texture_resource` | plate | cgpt whole-binary semantic rename v1: references xdu1_101.map |
+| `00442f20` | `play_clockon_audio` | plate | cgpt whole-binary semantic rename v1: references clockon.wav |
+| `00443150` | `vehicle_effect_audio_context_helper_00443150` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle effect audio context helper based on prior focused closure context. |
+| `004439a0` | `vehicle_effect_audio_update_helper_004439a0` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle effect audio update helper based on prior focused closure context. |
+| `00443a90` | `preload_flamer_textures` | plate | i76 second-pass rename<br>old_name: FUN_00443a90<br>suggested_name: preload_flamer_textures<br>basis: References flamer start/mid/end/endcap frame maps and missing-frame diagnostics. |
+| `00443c50` | `vehicle_effect_runtime_shutdown_helper_00443c50` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle effect runtime shutdown helper based on prior focused closure context. |
+| `00443c90` | `initialize_flamer_effect_state` | plate | cgpt whole-binary semantic rename v1: string evidence: flamer |
+| `00443e90` | `update_flamer_effect_state` | plate | cgpt whole-binary semantic rename v1: string evidence: flamer |
+| `00443fc0` | `shutdown_flamer_effect_state` | plate | cgpt whole-binary semantic rename v1: string evidence: flamer |
+| `00444e30` | `force_feedback_user_entity_lookup_context_helper_00444e30` | plate | cgpt label refinement v18: was player_force_feedback_user_entity_lookup_helper_00444e30. Shorten readability label; force-feedback/user entity context is sufficient. |
+| `00444e90` | `force_feedback_user_entity_lookup_context_helper_00444e90` | plate | cgpt label refinement v18: was player_force_feedback_user_entity_lookup_helper_00444e90. Shorten readability label; force-feedback/user entity context is sufficient. |
+| `00444ed0` | `begin_tire_skid_mark_trail` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Allocates/initializes a tire skid trail record from the free-list and stores the first point and owner object. |
+| `00444f50` | `append_tire_skid_mark_trail_point` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Appends another skid trail point/segment when the tire has moved far enough from the previous segment. |
+| `00445060` | `force_feedback_user_entity_lookup_context_helper_00445060` | plate | cgpt label refinement v18: was player_force_feedback_user_entity_lookup_helper_00445060. Shorten readability label; force-feedback/user entity context is sufficient. |
+| `00445370` | `get_user_entity_context_helper_00445370` | plate | cgpt readability rename set B v14: Readability pass set B: get user entity context helper based on prior focused closure context. |
+| `00445380` | `get_user_entity_or_report_missing` | plate | cgpt whole-binary semantic rename v1: string evidence: No User Entity present |
+| `00445610` | `force_feedback_effect_table_helper_00445610` | plate | cgpt readability rename set B v14: Readability pass set B: force feedback effect table helper based on prior focused closure context. |
+| `00445640` | `force_feedback_device_state_helper_00445640` | plate | cgpt readability rename set B v14: Readability pass set B: force feedback device state helper based on prior focused closure context. |
+| `004456e0` | `force_feedback_effect_instance_helper_004456e0` | plate | cgpt readability rename set B v14: Readability pass set B: force feedback effect instance helper based on prior focused closure context. |
+| `00445750` | `force_feedback_effect_stop_helper_00445750` | plate | cgpt readability rename set B v14: Readability pass set B: force feedback effect stop helper based on prior focused closure context. |
+| `00445a60` | `initialize_force_feedback_runtime` | plate | cgpt rename v2: Initializes force-feedback/runtime parameter globals, resolves optional APIs, and creates the runtime parameter heap. |
+| `00445b10` | `force_feedback_runtime_helper_00445b10` | plate | cgpt label refinement v18: was player_force_feedback_force_feedback_helper_00445b10. Remove duplicated force_feedback wording. |
+| `00445b40` | `force_feedback_runtime_helper_00445b40` | plate | cgpt label refinement v18: was player_force_feedback_force_feedback_helper_00445b40. Remove duplicated force_feedback wording. |
+| `00445b60` | `force_feedback_runtime_helper_00445b60` | plate | cgpt label refinement v18: was player_force_feedback_force_feedback_helper_00445b60. Remove duplicated force_feedback wording. |
+| `00445b80` | `force_feedback_runtime_helper_00445b80` | plate | cgpt label refinement v18: was player_force_feedback_force_feedback_helper_00445b80. Remove duplicated force_feedback wording. |
+| `00445ba0` | `force_feedback_runtime_helper_00445ba0` | plate | cgpt label refinement v18: was player_force_feedback_force_feedback_helper_00445ba0. Remove duplicated force_feedback wording. |
+| `00445f70` | `allocate_runtime_float_parameter_node` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Allocates a 0x20-byte runtime float parameter node from g_runtime_parameter_heap and links it into the caller-provided list head. |
+| `00445fd0` | `force_feedback_runtime_update_helper_00445fd0` | plate | cgpt readability rename set B v14: Readability pass set B: force feedback runtime update helper based on prior focused closure context. |
+| `00446020` | `resolve_optional_win32_apis` | plate | i76 first-pass rename<br>old_name: FUN_00446020<br>suggested_name: resolve_optional_win32_apis<br>basis: Resolves optional Win32 APIs via GetModuleHandle/GetProcAddress. |
+| `00446110` | `dispatch_force_feedback_effect` | plate | cgpt whole-binary semantic rename v1: string evidence: I7FF_SIM_Effect failed |
+| `00446170` | `shutdown_force_feedback_dll` | plate | i76 second-pass rename<br>old_name: FUN_00446170<br>suggested_name: shutdown_force_feedback_dll<br>basis: OutputDebugString diagnostic: Unable to Exit from SWForce object. |
+| `004461a0` | `force_feedback_effect_dispatch_context_helper_004461a0` | plate | cgpt readability rename set B v14: Readability pass set B: force feedback effect dispatch context helper based on prior focused closure context. |
+| `004461e0` | `cache_add_entry` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Adds a runtime cache record to a hash/cache table. |
+| `00446330` | `cache_add_indexed_entry` | plate | i76 first-pass rename<br>old_name: FUN_00446330<br>suggested_name: cache_add_indexed_entry<br>basis: Generic cache insertion variant/indexed add helper. |
+| `004464e0` | `release_world_object_geometry_binding` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Releases geometry binding attached to a world object. |
+| `004465b0` | `release_or_detach_object_geometry_variant` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Geometry/cache helper called by vehicle destruction and object release paths. |
+| `004466c0` | `ensure_world_object_geometry_variant_binding` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Ensures the requested geometry variant is loaded/bound on a world object before bounds/render traversal. |
+| `004467e0` | `clear_world_object_geometry_binding_and_refresh_textures` | plate | cgpt rename v2: Clears a world object's geometry cache binding and refreshes object texture bindings after the change. |
+| `00446870` | `destroy_geometry_binding_hash_heaps` | plate | cgpt rename v2: Releases all geometry binding hash records, child binding lists, and destroys the geometry-binding heaps. |
+| `00446900` | `geometry_binding_table_helper_00446900` | plate | cgpt readability rename set B v14: Readability pass set B: geometry binding table helper based on prior focused closure context. |
+| `004469a0` | `load_geometry_resource_into_cache` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=high] Loads a .geo resource through the resource stack, calls construct_geometry_from_geo_buffer, and installs the runtime geometry record into the geometry cache. |
+| `00446bd0` | `release_geometry_cache_reference` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=high] Releases/decrements a cached runtime geometry reference. |
+| `00446c70` | `geometry_buffer_preconstruct_helper_00446c70` | plate | cgpt readability rename set B v14: Readability pass set B: geometry buffer preconstruct helper based on prior focused closure context. |
+| `00446c90` | `construct_geometry_from_geo_buffer` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Constructs runtime geometry from decoded GEO buffer: positions, normal/secondary table, section records, texture slots, centroid, and entries. |
+| `004471e0` | `geometry_cache_reference_helper_004471e0` | plate | cgpt readability rename set B v14: Readability pass set B: geometry cache reference helper based on prior focused closure context. |
+| `00447270` | `purge_queued_geometry_cache_records` | plate | cgpt rename v2: Unlinks and frees queued geometry cache records and releases geometry heap memory. |
+| `00447420` | `texture_resource_preload_helper_00447420` | plate | cgpt readability rename set B v14: Readability pass set B: texture resource preload helper based on prior focused closure context. |
+| `004474b0` | `load_texture_resource_resolving_vqm_cbk_to_cache` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Loads texture resources into cache, resolving .vqm through the named .cbk codebook into indexed pixels where applicable. |
+| `004478b0` | `load_texture_resource_resolving_vqm_cbk_to_buffer` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Non-cache/buffer form of texture loading path; resolves VQM/CBK into M16-like indexed image data. |
+| `00447b20` | `release_vqm_texture_cache_reference_by_name` | plate | [cgpt i76.exe image payload renames v28; confidence=high] Releases a cached VQM/direct texture resource reference by normalized texture name and updates cache/LRU state. |
+| `00447c80` | `texture_cache_lru_helper_00447c80` | plate | cgpt readability rename set B v14: Readability pass set B: texture cache lru helper based on prior focused closure context. |
+| `00447d20` | `texture_cache_record_lookup_helper_00447d20` | plate | cgpt readability rename set B v14: Readability pass set B: texture cache record lookup helper based on prior focused closure context. |
+| `00447db0` | `texture_cache_record_touch_helper_00447db0` | plate | cgpt readability rename set B v14: Readability pass set B: texture cache record touch helper based on prior focused closure context. |
+| `00447dd0` | `find_vqm_texture_cache_record_by_bitmap_id` | plate | cgpt rename v4: Searches VQM texture cache hash buckets and LRU list for a cache record matching a bitmap/resource id. |
+| `00447e10` | `evict_lru_vqm_texture_cache_record` | plate | [cgpt i76.exe image payload renames v28; confidence=high] Evicts a zero-refcount VQM/direct texture cache record from the LRU list to recover texture cache memory. |
+| `00447f70` | `vqm_texture_cache_context_helper_00447f70` | plate | cgpt readability rename set B v14: Readability pass set B: vqm texture cache context helper based on prior focused closure context. |
+| `00447f90` | `texture_resource_buffer_context_helper_00447f90` | plate | cgpt readability rename set B v14: Readability pass set B: texture resource buffer context helper based on prior focused closure context. |
+| `00447fd0` | `texture_resource_cache_context_helper_00447fd0` | plate | cgpt readability rename set B v14: Readability pass set B: texture resource cache context helper based on prior focused closure context. |
+| `00448010` | `parse_labeled_data_record` | plate | cgpt whole-binary semantic rename v1: string evidence: # / dst / label |
+| `00448840` | `definition_record_parser_context_helper_00448840` | plate | cgpt label refinement v18: was definition_record_parser_definition_parser_helper_00448840. Remove duplicated parser wording. |
+| `00448890` | `definition_record_parser_context_helper_00448890` | plate | cgpt label refinement v18: was definition_record_parser_definition_parser_helper_00448890. Remove duplicated parser wording. |
+| `00448940` | `draw_texture_widget_to_hud_surface_and_bind_object` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium_high] Draws a named texture widget to the weapon HUD surface, then optionally binds the object texture-set state. |
+| `00448bf0` | `definition_record_parser_context_helper_00448bf0` | plate | cgpt label refinement v18: was definition_record_parser_definition_parser_helper_00448bf0. Remove duplicated parser wording. |
+| `00448e40` | `draw_scrolling_texture_widget_to_hud_surface` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium_high] Draws a split/scrolling texture widget region into the HUD surface, used by rolling ammo digit wheels. |
+| `00449220` | `definition_record_parser_context_helper_00449220` | plate | cgpt label refinement v18: was definition_record_parser_definition_parser_helper_00449220. Remove duplicated parser wording. |
+| `00449610` | `definition_record_parser_context_helper_00449610` | plate | cgpt label refinement v18: was definition_record_parser_definition_parser_helper_00449610. Remove duplicated parser wording. |
+| `00449680` | `bind_texture_resource_to_object_slot` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Creates/binds an object texture-slot record and resolves MAP/TMT/VQM-backed texture resources. |
+| `00449a00` | `load_texture_set_and_create_binding_list` | plate | [cgpt i76.exe image payload renames v27; confidence=high] Loads a texture set, creates object texture bindings, and installs texture animation state as needed. |
+| `00449d10` | `clone_texture_bindings_to_object` | plate | [cgpt i76.exe texture/resource-cache rename v10; confidence=high] Clones texture bindings from one object/list key to another object, preserving frame offsets and lazy cache state. |
+| `00449e60` | `release_world_object_texture_bindings` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Releases all texture-slot bindings owned by a world object. |
+| `0044a0b0` | `refresh_object_texture_bindings_after_geometry_change` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Refreshes per-object texture bindings after geometry changes; bridges geometry section texture slots to active texture resources. |
+| `0044a150` | `set_texture_binding_frame_and_reload` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Updates an animated texture binding frame and reloads/rebinds the corresponding texture resource. |
+| `0044a290` | `bind_or_load_texture_set_for_object` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Binds or loads a texture set for an object/texture-slot name during render submission. |
+| `0044a630` | `destroy_texture_binding_cache_heaps` | plate | cgpt rename v2: Releases texture-set cache, texture-slot bindings, object binding lists, and associated heaps. |
+| `0044a740` | `materialize_texture_binding_surface_context` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Materializes an object texture binding into a bitmap/surface context from the current texture frame resource. |
+| `0044a930` | `reload_texture_binding_current_frame_pixels` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Texture binding update helper: locates object+slot binding and reloads/copies current frame pixels through the VQM/direct texture cache loader. |
+| `0044aa20` | `register_texture_set_cache_record_from_header` | plate | [cgpt i76.exe image payload renames v27; confidence=high] Registers a decoded TMT/MAP texture-set cache record, including name, dimensions, animation fields, frame-name array, and hash chain. |
+| `0044ab90` | `decode_tmt_texture_set_header_into_record` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Decodes TMT texture-set headers: dimension count/values, animation period/rate, flags, and 8-byte frame basenames. |
+| `0044ac80` | `create_texture_slot_binding_for_object` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Creates a per-object texture-slot binding record for a named slot and texture-set cache record. |
+| `0044adc0` | `texture_manager_log_or_tag` | plate | cgpt whole-binary semantic rename v1: string evidence: texmgr |
+| `0044adf0` | `hash_texture_set_name_mod_0x7ed` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Case-insensitive texture-set name hash helper using multiplier 0x6cd/addend 0xaab modulo 0x7ed. |
+| `0044ae30` | `texture_animation_table_context_helper_0044ae30` | plate | cgpt readability rename set B v14: Readability pass set B: texture animation table context helper based on prior focused closure context. |
+| `0044ae50` | `register_or_replace_texture_animation_timer` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Registers or replaces a runtime texture animation timer for a texture slot binding. |
+| `0044af80` | `update_texture_animation_timer_list` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Per-frame texanm timer list walker. Releases invalid object references, invokes animation callbacks, and frees expired timer records. |
+| `0044af80` | `update_texture_animation_timer_list` | pre | I76 semantic baseline: update_texture_animation_timer_list<br>Walks texture animation timers and invokes callbacks/frees expired entries. |
+| `0044b030` | `release_texture_animation_record` | plate | cgpt whole-binary semantic rename v1: string evidence: texanm and HeapFree |
+| `0044b100` | `destroy_texture_animation_list` | plate | cgpt whole-binary semantic rename v1: string evidence: texanm and HeapFree |
+| `0044b1b0` | `install_texture_animation_pingpong_timer` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Installs ping-pong texture animation timing for a texture-set binding. |
+| `0044b240` | `install_texture_animation_linear_timer` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Installs linear/wrapping texture animation timing for a texture-set binding. |
+| `0044b2d0` | `update_texture_animation_timer` | plate | [cgpt i76.exe texture/resource-cache rename v10; confidence=high] Advances texture animation timer state, supports ping-pong/reverse/one-shot behavior, updates binding frame, and removes expired timers. |
+| `0044b430` | `decode_vqm_cbk_4x4_blocks_to_indexed_pixels` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Decodes VQM 4x4 block-compressed indexed textures through CBK codebook tiles into an M16-like indexed-pixel buffer. |
+| `0044b6f0` | `register_mouse_input_controls` | plate | cgpt whole-binary semantic rename v1: string evidence: mouse axes/buttons |
+| `0044bb30` | `input_action_registration_context_helper_0044bb30` | plate | cgpt readability rename set B v14: Readability pass set B: input action registration context helper based on prior focused closure context. |
+| `0044bb40` | `capture_and_hide_mouse_cursor` | plate | i76 first-pass rename<br>old_name: FUN_0044bb40<br>suggested_name: capture_and_hide_mouse_cursor<br>basis: Gets client rect/cursor position, clips cursor, recenters/hides mouse. |
+| `0044bcc0` | `release_and_show_mouse_cursor` | plate | i76 first-pass rename<br>old_name: FUN_0044bcc0<br>suggested_name: release_and_show_mouse_cursor<br>basis: Releases cursor clipping and restores/shows mouse cursor. |
+| `0044bde0` | `register_default_input_action_names` | plate | cgpt whole-binary semantic rename v1: string evidence: wiggleburger/freelance/getdown/etc |
+| `0044c060` | `validate_input_device` | plate | i76 second-pass rename<br>old_name: FUN_0044c060<br>suggested_name: validate_input_device<br>basis: Reports missing/misconfigured input device and prompts user to continue/abort. |
+| `0044c270` | `resolve_analog_input_channel` | plate | i76 second-pass rename<br>old_name: FUN_0044c270<br>suggested_name: resolve_analog_input_channel<br>basis: Reports missing analog input channel/device from input.map. |
+| `0044c390` | `resolve_discrete_input_channel` | plate | i76 second-pass rename<br>old_name: FUN_0044c390<br>suggested_name: resolve_discrete_input_channel<br>basis: Reports missing discrete input channel/device from input.map. |
+| `0044c4a0` | `register_runtime_axis_input_binding_descriptor` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium-high] Parses axis binding descriptors such as throttle_up/throttle_down and stores them in the runtime input binding table. |
+| `0044c8a0` | `parse_analog_control_binding` | plate | cgpt whole-binary semantic rename v1: string evidence: Too many analog controls |
+| `0044ca60` | `parse_input_chord_binding` | plate | i76 second-pass rename<br>old_name: FUN_0044ca60<br>suggested_name: parse_input_chord_binding<br>basis: Parses input.map chord binding syntax and chord-too-big diagnostics. |
+| `0044cc90` | `parse_input_map` | plate | i76 second-pass rename<br>old_name: FUN_0044cc90<br>suggested_name: parse_input_map<br>basis: Parses input.map controls, throttle fields, discrete control limits, and line diagnostics. |
+| `0044d280` | `load_input_map` | plate | i76 second-pass rename<br>old_name: FUN_0044d280<br>suggested_name: load_input_map<br>basis: Opens input.map and invokes parser. |
+| `0044d460` | `load_gamekey_map` | plate | i76 second-pass rename<br>old_name: FUN_0044d460<br>suggested_name: load_gamekey_map<br>basis: Parses gamekey.map and validates gamekey names/sequences. |
+| `0044d780` | `update_one_axis_binding_from_latched_or_digital_input` | plate | cgpt readability rename set B v14: Readability pass set B: likely input_device_binding / input_action_state_helper based on address neighborhood and prior focused closure context. |
+| `0044d780` | `update_one_axis_binding_from_latched_or_digital_input` | pre | I76 semantic baseline: update_one_axis_binding_from_latched_or_digital_input<br>Updates one axis binding from latched analog or digital ramp inputs. |
+| `0044d950` | `init_input_bindings` | plate | i76 second-pass rename<br>old_name: FUN_0044d950<br>suggested_name: init_input_bindings<br>basis: Loads keyboard/gamekey/input map configuration. |
+| `0044d9e0` | `update_runtime_input_state_and_pending_action` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Early per-frame input update. Polls device callbacks, evaluates condition/axis bindings, updates bound axis values, and writes g_pending_input_action_code. |
+| `0044d9e0` | `update_runtime_input_state_and_pending_action` | pre | I76 semantic baseline: update_runtime_input_state_and_pending_action<br>Per-frame input binding update: axes, chord flags, device polling, pending action code. |
+| `0044dcc0` | `update_or_clear_input_binding_state_after_poll` | plate | cgpt readability rename set B v14: Readability pass set B: likely input_device_binding / input_action_state_helper based on address neighborhood and prior focused closure context. |
+| `0044dcc0` | `update_or_clear_input_binding_state_after_poll` | pre | I76 semantic baseline: update_or_clear_input_binding_state_after_poll<br>Input binding state cleanup/update helper after polling. |
+| `0044de10` | `clear_pending_input_action_code` | plate | cgpt rename v2: Clears a pending input/action global used by the input dispatcher and player death path. |
+| `0044de10` | `clear_pending_input_action_code` | pre | I76 semantic baseline: clear_pending_input_action_code<br>Clears global pending input action code. |
+| `0044de20` | `input_action_state_getter_helper_0044de20` | plate | cgpt readability rename set B v14: Readability pass set B: input action state getter helper based on prior focused closure context. |
+| `0044de30` | `input_action_state_setter_helper_0044de30` | plate | cgpt readability rename set B v14: Readability pass set B: input action state setter helper based on prior focused closure context. |
+| `0044de40` | `input_action_state_clearer_helper_0044de40` | plate | cgpt readability rename set B v14: Readability pass set B: input action state clearer helper based on prior focused closure context. |
+| `0044dec0` | `dispatch_pending_input_action_code` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Dispatches the currently pending input action through binding/action handler records. |
+| `0044dec0` | `dispatch_pending_input_action_code` | pre | I76 semantic baseline: dispatch_pending_input_action_code<br>Dispatches the pending one-shot gameplay action code. |
+| `0044df80` | `input_device_binding_input_action_state_helper_0044df80` | plate | cgpt readability rename set B v14: Readability pass set B: likely input_device_binding / input_action_state_helper based on address neighborhood and prior focused closure context. |
+| `0044dfa0` | `input_device_binding_input_action_state_helper_0044dfa0` | plate | cgpt readability rename set B v14: Readability pass set B: likely input_device_binding / input_action_state_helper based on address neighborhood and prior focused closure context. |
+| `0044dff0` | `input_device_binding_input_action_state_helper_0044dff0` | plate | cgpt readability rename set B v14: Readability pass set B: likely input_device_binding / input_action_state_helper based on address neighborhood and prior focused closure context. |
+| `0044e000` | `input_device_binding_input_action_state_helper_0044e000` | plate | cgpt readability rename set B v14: Readability pass set B: likely input_device_binding / input_action_state_helper based on address neighborhood and prior focused closure context. |
+| `0044e010` | `is_gameplay_input_update_paused` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Pause/update gate checked before running the direct vehicle frame update branch. |
+| `0044e010` | `is_gameplay_input_update_paused` | pre | I76 semantic baseline: is_gameplay_input_update_paused<br>Returns whether runtime input/simulation update is paused/gated. |
+| `0044e030` | `input_device_binding_input_action_state_helper_0044e030` | plate | cgpt readability rename set B v14: Readability pass set B: likely input_device_binding / input_action_state_helper based on address neighborhood and prior focused closure context. |
+| `0044e500` | `register_keyboard_input_device` | plate | cgpt whole-binary semantic rename v1: string evidence: Escape Key / keyboard |
+| `0044e660` | `keyboard_input_device_context_helper_0044e660` | plate | cgpt readability rename set B v14: Readability pass set B: keyboard input device context helper based on prior focused closure context. |
+| `0044e750` | `flush_keyboard_messages_to_input_ring` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Drains WM_KEYDOWN/WM_SYSKEYDOWN messages, maps modifiers, fills the keyboard/input ring, then resets ring cursors.<br>old_name: FUN_0044e750 |
+| `0044e920` | `pump_keyboard_messages_to_input_queue` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Processes a supplied keyboard message and any queued keyboard messages into the input ring.<br>kept_existing_name: pump_keyboard_messages_to_input_queue |
+| `0044eab0` | `keyboard_input_binding_context_helper_0044eab0` | plate | cgpt readability rename set B v14: Readability pass set B: keyboard input binding context helper based on prior focused closure context. |
+| `0044eca0` | `keyboard_joystick_input_binding_context_helper_0044eca0` | plate | cgpt label refinement v18: was input_device_binding_keyboard_joystick_input_helper_0044eca0. Shorten readability label while preserving keyboard/joystick input binding context. |
+| `0044ece0` | `keyboard_joystick_input_binding_context_helper_0044ece0` | plate | cgpt label refinement v18: was input_device_binding_keyboard_joystick_input_helper_0044ece0. Shorten readability label while preserving keyboard/joystick input binding context. |
+| `0044ed20` | `keyboard_joystick_input_binding_context_helper_0044ed20` | plate | cgpt label refinement v18: was input_device_binding_keyboard_joystick_input_helper_0044ed20. Shorten readability label while preserving keyboard/joystick input binding context. |
+| `0044ed50` | `play_adwind_audio_clip` | plate | cgpt whole-binary semantic rename v1: references @ADWIND.WAV |
+| `0044f180` | `keyboard_joystick_input_binding_context_helper_0044f180` | plate | cgpt label refinement v18: was input_device_binding_keyboard_joystick_input_helper_0044f180. Shorten readability label while preserving keyboard/joystick input binding context. |
+| `0044f1c0` | `scoreboard_or_input_table_context_helper_0044f1c0` | plate | cgpt readability rename set B v14: Readability pass set B: scoreboard or input table context helper based on prior focused closure context. |
+| `0044f830` | `keyboard_joystick_input_binding_context_helper_0044f830` | plate | cgpt label refinement v18: was input_device_binding_keyboard_joystick_input_helper_0044f830. Shorten readability label while preserving keyboard/joystick input binding context. |
+| `004507e0` | `joystick_device_poll_context_helper_004507e0` | plate | cgpt readability rename set B v14: Readability pass set B: joystick device poll context helper based on prior focused closure context. |
+| `00450ca0` | `query_joystick_oem_name_from_registry` | plate | i76 first-pass rename<br>old_name: FUN_00450ca0<br>suggested_name: query_joystick_oem_name_from_registry<br>basis: Reads joystick OEM/config values from registry. |
+| `00450de0` | `enumerate_joystick_input_devices` | plate | cgpt whole-binary semantic rename v1: string evidence: Tracker/SideWinder/Flightstick/Thrustmaster |
+| `00450f40` | `initialize_multiplayer_runtime_player_state` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Pre-runtime multiplayer/trip setup. Clears player/session runtime buffers and registers camera/world-object callbacks. |
+| `00450f90` | `spawn_location_lookup_context_helper_00450f90` | plate | cgpt readability rename set B v14: Readability pass set B: spawn location lookup context helper based on prior focused closure context. |
+| `00451030` | `get_spawn_location_or_report_missing` | plate | cgpt whole-binary semantic rename v1: string evidence: SpawnLoc_GetLocation - no spawn points |
+| `00451180` | `load_or_create_player_vehicle_entity` | plate | i76 second-pass rename<br>old_name: FUN_00451180<br>suggested_name: load_or_create_player_vehicle_entity<br>basis: Reports missing network vehicle and world-full entity creation. |
+| `004513c0` | `load_vehicle_entity` | plate | i76 second-pass rename<br>old_name: FUN_004513c0<br>suggested_name: load_vehicle_entity<br>basis: Reports cannot load vehicle and cannot create entity; called by startup and player vehicle paths. |
+| `00451540` | `multiplayer_respawn_timer_context_helper_00451540` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer respawn timer context helper based on prior focused closure context. |
+| `00451560` | `stamp_multiplayer_respawn_or_score_time` | plate | cgpt rename v2: Stores current multiplayer/runtime seconds into the respawn/score timing global. |
+| `00451570` | `multiplayer_respawn_state_context_helper_00451570` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer respawn state context helper based on prior focused closure context. |
+| `004515e0` | `maybe_respawn_player_vehicle_at_valid_spawn` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM_HIGH] Checks active player/camera object, spawn locations, mission/network mode, and loads a replacement/player vehicle when conditions allow.<br>old_name: FUN_004515e0 |
+| `00451900` | `multiplayer_scoreboard_accumulator_helper_00451900` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer scoreboard accumulator helper based on prior focused closure context. |
+| `00451950` | `multiplayer_network_scoreboard_table_helper_00451950` | plate | cgpt readability rename set B v14: Readability pass set B: likely multiplayer_network / scoreboard_table_helper based on address neighborhood and prior focused closure context. |
+| `00451960` | `multiplayer_network_scoreboard_table_helper_00451960` | plate | cgpt readability rename set B v14: Readability pass set B: likely multiplayer_network / scoreboard_table_helper based on address neighborhood and prior focused closure context. |
+| `00451970` | `multiplayer_network_scoreboard_table_helper_00451970` | plate | cgpt readability rename set B v14: Readability pass set B: likely multiplayer_network / scoreboard_table_helper based on address neighborhood and prior focused closure context. |
+| `004519b0` | `multiplayer_network_scoreboard_table_helper_004519b0` | plate | cgpt readability rename set B v14: Readability pass set B: likely multiplayer_network / scoreboard_table_helper based on address neighborhood and prior focused closure context. |
+| `00451a10` | `fsm_camera_stack_operation` | plate | i76 first-pass rename<br>old_name: FUN_00451a10<br>suggested_name: fsm_camera_stack_operation<br>basis: FSM camera stack diagnostics mention underflow/overflow. |
+| `00451a70` | `multiplayer_network_scoreboard_table_helper_00451a70` | plate | cgpt readability rename set B v14: Readability pass set B: likely multiplayer_network / scoreboard_table_helper based on address neighborhood and prior focused closure context. |
+| `00451ac0` | `write_multiplayer_scoreboard_report` | plate | cgpt whole-binary semantic rename v1: formats player/team score kills deaths |
+| `00451f10` | `update_multiplayer_scoreboard_overlay` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Aggregates player score/kills/deaths and updates or draws multiplayer scoreboard overlay rows. |
+| `004522c0` | `player_score_table_context_helper_004522c0` | plate | cgpt readability rename set B v14: Readability pass set B: player score table context helper based on prior focused closure context. |
+| `00452360` | `write_player_score_table` | plate | cgpt whole-binary semantic rename v1: formats Player Name Score Kills Deaths |
+| `004524e0` | `write_multiplayer_score_results_file` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Writes NSCR.DAT style 0x54-byte multiplayer/session score result records. |
+| `00452910` | `team_score_table_context_helper_00452910` | plate | cgpt readability rename set B v14: Readability pass set B: team score table context helper based on prior focused closure context. |
+| `00452930` | `multiplayer_network_scoreboard_table_helper_00452930` | plate | cgpt readability rename set B v14: Readability pass set B: likely multiplayer_network / scoreboard_table_helper based on address neighborhood and prior focused closure context. |
+| `00452a20` | `write_team_score_table` | plate | cgpt whole-binary semantic rename v1: formats team/player score report |
+| `00452d20` | `is_damage_side_effects_suppressed` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Tiny predicate returning global damage/effect side-effect suppression state. |
+| `00452d30` | `set_damage_side_effects_suppressed` | plate | cgpt rename v2: Setter for g_damage_side_effects_suppressed. |
+| `00452d40` | `initialize_multiplayer_game_runtime_state` | plate | cgpt rename v4: Initializes multiplayer runtime state, disables damage side effects, registers network vehicle state, and initializes chat/join/vote/scoreboard UI. |
+| `00452db0` | `multiplayer_game_state_context_helper_00452db0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer game state context helper based on prior focused closure context. |
+| `00452df0` | `multiplayer_chat_ui_context_helper_00452df0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00452df0. Remove duplicated multiplayer wording from readability label. |
+| `00452e00` | `multiplayer_chat_ui_context_helper_00452e00` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00452e00. Remove duplicated multiplayer wording from readability label. |
+| `00452e10` | `multiplayer_chat_ui_context_helper_00452e10` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00452e10. Remove duplicated multiplayer wording from readability label. |
+| `00452e20` | `multiplayer_chat_ui_context_helper_00452e20` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00452e20. Remove duplicated multiplayer wording from readability label. |
+| `00452e30` | `publish_local_player_vehicle_config_to_directplay` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Loads selected local player .vcf and publishes it as DirectPlay player data. |
+| `00452f20` | `wait_for_multiplayer_mission_start_sync` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Pre-runtime DirectPlay synchronization loop waiting for mission/session start messages and local player readiness. |
+| `004532c0` | `process_directplay_runtime_messages` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Runtime DirectPlay receive/update loop. Handles join/leave/chat/state/position/score/timing message families and periodic send/flush behavior. |
+| `00453860` | `multiplayer_chat_ui_context_helper_00453860` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00453860. Remove duplicated multiplayer wording from readability label. |
+| `004538a0` | `update_weapon_available_bitmask_from_vsf_state` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=medium_high] Collects active weapon slots, serializes weapon state, and builds global weapon availability/status bitmask. |
+| `00453980` | `update_player_weapon_target_status_bitmask` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium_high] Updates global weapon/target status bitmask and small HUD status fields from active player weapon mounts and current target objects. |
+| `00453a90` | `multiplayer_chat_ui_context_helper_00453a90` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00453a90. Remove duplicated multiplayer wording from readability label. |
+| `00453ab0` | `multiplayer_chat_ui_context_helper_00453ab0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00453ab0. Remove duplicated multiplayer wording from readability label. |
+| `00453ac0` | `multiplayer_chat_ui_context_helper_00453ac0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00453ac0. Remove duplicated multiplayer wording from readability label. |
+| `00453b00` | `format_checkpoint_points_status` | plate | cgpt whole-binary semantic rename v1: string evidence: %d of %d Points |
+| `00453bc0` | `initialize_multiplayer_chat_font` | plate | cgpt whole-binary semantic rename v1: string evidence: courier |
+| `00453d00` | `draw_multiplayer_chat_prompt` | plate | cgpt whole-binary semantic rename v1: string evidence: To %s: / Say: |
+| `00453df0` | `draw_multiplayer_chat_message` | plate | cgpt whole-binary semantic rename v1: string evidence: Unknown Loser / From %s: |
+| `00453ee0` | `multiplayer_chat_widget_context_helper_00453ee0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer chat widget context helper based on prior focused closure context. |
+| `00453ef0` | `multiplayer_chat_ui_context_helper_00453ef0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00453ef0. Remove duplicated multiplayer wording from readability label. |
+| `00453f10` | `multiplayer_chat_ui_context_helper_00453f10` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_00453f10. Remove duplicated multiplayer wording from readability label. |
+| `00454090` | `multiplayer_chat_message_queue_helper_00454090` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer chat message queue helper based on prior focused closure context. |
+| `004541b0` | `multiplayer_chat_ui_context_helper_004541b0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_chat_ui_helper_004541b0. Remove duplicated multiplayer wording from readability label. |
+| `00454340` | `notify_local_player_became_host` | plate | cgpt whole-binary semantic rename v1: string evidence: You are now the host |
+| `00454610` | `get_multiplayer_player_count_or_limit` | plate | cgpt rename v2: Returns a multiplayer player count/limit global used by scoreboard and DirectPlay message paths. |
+| `00454620` | `multiplayer_player_count_context_helper_00454620` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer player count context helper based on prior focused closure context. |
+| `00454680` | `get_multiplayer_player_record_and_copy_name` | plate | cgpt rename v4: Looks up a multiplayer player slot, optionally copies its player name, and returns the slot/player id. |
+| `004546c0` | `multiplayer_player_record_lookup_helper_004546c0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer player record lookup helper based on prior focused closure context. |
+| `00454700` | `lookup_multiplayer_player_vehicle_config_id` | plate | cgpt rename v4: Finds a multiplayer player slot by player id and returns the associated vehicle/config id. |
+| `00454750` | `multiplayer_player_vehicle_lookup_helper_00454750` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer player vehicle lookup helper based on prior focused closure context. |
+| `004547c0` | `multiplayer_player_table_context_helper_004547c0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_004547c0. Remove duplicated multiplayer wording from readability label. |
+| `00454800` | `multiplayer_player_table_context_helper_00454800` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_00454800. Remove duplicated multiplayer wording from readability label. |
+| `00454840` | `multiplayer_host_migration_context_helper_00454840` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer host migration context helper based on prior focused closure context. |
+| `004548a0` | `multiplayer_player_table_context_helper_004548a0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_004548a0. Remove duplicated multiplayer wording from readability label. |
+| `00454960` | `notify_remote_player_became_host` | plate | cgpt whole-binary semantic rename v1: string evidence: %s is now the host |
+| `00454bc0` | `multiplayer_host_notice_context_helper_00454bc0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer host notice context helper based on prior focused closure context. |
+| `00454c10` | `broadcast_host_migration_notice` | plate | cgpt whole-binary semantic rename v1: string evidence: host migration notices |
+| `00454e00` | `get_multiplayer_message_source_player_id` | plate | cgpt rename v2: Returns a multiplayer message/source player id used by DirectPlay message handling and anti-cheat kick paths. |
+| `00454e10` | `get_multiplayer_mission_sync_player_id` | plate | cgpt rename v2: Returns the player id used by multiplayer mission start synchronization. |
+| `00454e20` | `set_multiplayer_mission_sync_player_id` | plate | cgpt rename v2: Sets the player id used by multiplayer mission start synchronization. |
+| `00454e30` | `get_local_multiplayer_player_id` | plate | cgpt rename v2: Returns the local multiplayer player id used by scoreboard, respawn, kill-message, and vehicle update paths. |
+| `00454e40` | `is_local_multiplayer_sync_player_current` | plate | cgpt rename v4: Compares the current multiplayer sync/player id against the local/session player id. |
+| `00454e60` | `multiplayer_sync_player_context_helper_00454e60` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer sync player context helper based on prior focused closure context. |
+| `00454ea0` | `multiplayer_player_state_lookup_helper_00454ea0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer player state lookup helper based on prior focused closure context. |
+| `00454f60` | `get_multiplayer_player_spawn_score_fields` | plate | cgpt rename v4: Looks up a multiplayer player slot and returns associated score/spawn fields through optional output pointers. |
+| `00454ff0` | `multiplayer_score_spawn_context_helper_00454ff0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer score spawn context helper based on prior focused closure context. |
+| `00455130` | `multiplayer_player_table_context_helper_00455130` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_00455130. Remove duplicated multiplayer wording from readability label. |
+| `004551f0` | `multiplayer_player_table_context_helper_004551f0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_004551f0. Remove duplicated multiplayer wording from readability label. |
+| `00455230` | `multiplayer_player_table_context_helper_00455230` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_00455230. Remove duplicated multiplayer wording from readability label. |
+| `00455470` | `multiplayer_player_table_context_helper_00455470` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_00455470. Remove duplicated multiplayer wording from readability label. |
+| `00455490` | `multiplayer_player_table_context_helper_00455490` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_player_table_helper_00455490. Remove duplicated multiplayer wording from readability label. |
+| `00455500` | `multiplayer_prompt_context_helper_00455500` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_prompt_helper_00455500. Remove duplicated multiplayer wording from readability label. |
+| `00455590` | `multiplayer_prompt_context_helper_00455590` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_prompt_helper_00455590. Remove duplicated multiplayer wording from readability label. |
+| `00455620` | `initialize_multiplayer_vote_prompt_font` | plate | cgpt whole-binary semantic rename v1: string evidence: courier |
+| `00455690` | `clear_multiplayer_scoreboard_dirty_flag` | plate | cgpt rename v2: Clears a scoreboard/UI dirty flag used by scoreboard report and overlay paths. |
+| `004556a0` | `append_multiplayer_team_score_slot` | plate | cgpt rename v4: Appends a team/player id into the bounded multiplayer team-score slot array. |
+| `004556c0` | `prompt_boot_player_from_game` | plate | cgpt whole-binary semantic rename v1: string evidence: Boot %s from the game? |
+| `004557a0` | `multiplayer_vote_prompt_context_helper_004557a0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer vote prompt context helper based on prior focused closure context. |
+| `004557e0` | `multiplayer_prompt_context_helper_004557e0` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_prompt_helper_004557e0. Remove duplicated multiplayer wording from readability label. |
+| `00455800` | `multiplayer_prompt_context_helper_00455800` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_prompt_helper_00455800. Remove duplicated multiplayer wording from readability label. |
+| `00455810` | `multiplayer_prompt_context_helper_00455810` | plate | cgpt label refinement v18: was multiplayer_network_multiplayer_prompt_helper_00455810. Remove duplicated multiplayer wording from readability label. |
+| `00455820` | `initialize_multiplayer_join_prompt_font` | plate | cgpt whole-binary semantic rename v1: string evidence: courier |
+| `004558c0` | `multiplayer_join_prompt_context_helper_004558c0` | plate | cgpt readability rename set B v14: Readability pass set B: multiplayer join prompt context helper based on prior focused closure context. |
+| `004559a0` | `prompt_allow_player_join_game` | plate | cgpt whole-binary semantic rename v1: string evidence: Let %s join the game? |
+| `00455c00` | `directplay_message_dispatch_context_helper_00455c00` | plate | cgpt readability rename set B v14: Readability pass set B: directplay message dispatch context helper based on prior focused closure context. |
+| `00455cd0` | `network_vehicle_message_context_helper_00455cd0` | plate | cgpt readability rename set B v14: Readability pass set B: network vehicle message context helper based on prior focused closure context. |
+| `00455d80` | `network_vehicle_message_context_helper_00455d80` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00455d80. Remove duplicated network wording. |
+| `00455dd0` | `network_vehicle_message_context_helper_00455dd0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00455dd0. Remove duplicated network wording. |
+| `00455de0` | `register_network_vehicle_file` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=medium-high] Registers network vehicle files using NVCL/*.vcf patterns. |
+| `00455e60` | `write_network_vehicle_file` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=medium-high] Writes or publishes network vehicle VCF data using NVCL/VCL filename patterns. |
+| `00455f50` | `parse_network_vehicle_slot_name` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Parses a network vehicle slot name such as nvcl%1x.vcf. |
+| `00455f90` | `delete_network_vehicle_files` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Deletes temporary network vehicle VCF files matching NVCL/*.vcf. |
+| `00455fa0` | `send_mission_file_timestamp_over_network` | plate | i76 first-pass rename<br>old_name: FUN_00455fa0<br>suggested_name: send_mission_file_timestamp_over_network<br>basis: Uses CreateFileA/GetFileTime/CloseHandle and sends file timestamp/state over network path.<br><br>i76 second-pass rename<br>old_name: send_mission_file_timestamp_over_network<br>suggested_name: send_mission_file_timestamp_over_network<br>basis: Already identified; keeps name stable if script rerun. |
+| `004560a0` | `network_vehicle_message_context_helper_004560a0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004560a0. Remove duplicated network wording. |
+| `00456100` | `fsm_or_mission_logic_helper_a` | plate | i76 first-pass rename<br>old_name: FUN_00456100<br>suggested_name: fsm_or_mission_logic_helper_a<br>basis: Gameplay/FSM cluster candidate from diagnostics; name intentionally cautious. |
+| `00456220` | `network_vehicle_message_context_helper_00456220` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456220. Remove duplicated network wording. |
+| `00456320` | `network_vehicle_message_context_helper_00456320` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456320. Remove duplicated network wording. |
+| `004563a0` | `network_vehicle_message_context_helper_004563a0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004563a0. Remove duplicated network wording. |
+| `00456410` | `network_vehicle_message_context_helper_00456410` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456410. Remove duplicated network wording. |
+| `00456490` | `network_vehicle_message_context_helper_00456490` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456490. Remove duplicated network wording. |
+| `004564e0` | `network_vehicle_message_context_helper_004564e0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004564e0. Remove duplicated network wording. |
+| `00456530` | `network_vehicle_message_context_helper_00456530` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456530. Remove duplicated network wording. |
+| `004565b0` | `network_vehicle_message_context_helper_004565b0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004565b0. Remove duplicated network wording. |
+| `00456640` | `network_vehicle_message_context_helper_00456640` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456640. Remove duplicated network wording. |
+| `004566a0` | `network_vehicle_message_context_helper_004566a0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004566a0. Remove duplicated network wording. |
+| `004566d0` | `network_vehicle_message_context_helper_004566d0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004566d0. Remove duplicated network wording. |
+| `00456700` | `network_vehicle_message_context_helper_00456700` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456700. Remove duplicated network wording. |
+| `00456710` | `network_vehicle_message_context_helper_00456710` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456710. Remove duplicated network wording. |
+| `00456760` | `network_vehicle_message_context_helper_00456760` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_00456760. Remove duplicated network wording. |
+| `00456790` | `fsm_or_mission_logic_helper_b` | plate | i76 first-pass rename<br>old_name: FUN_00456790<br>suggested_name: fsm_or_mission_logic_helper_b<br>basis: Gameplay/FSM cluster candidate from diagnostics; name intentionally cautious. |
+| `004568a0` | `network_vehicle_message_context_helper_004568a0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004568a0. Remove duplicated network wording. |
+| `004568b0` | `network_vehicle_message_context_helper_004568b0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004568b0. Remove duplicated network wording. |
+| `004568f0` | `network_vehicle_message_context_helper_004568f0` | plate | cgpt label refinement v19: was multiplayer_network_network_vehicle_message_helper_004568f0. Remove duplicated network wording. |
+| `00456970` | `report_no_valid_spawn_location` | plate | cgpt whole-binary semantic rename v1: string evidence: Cannot find a valid spawn location |
+| `00456b00` | `handle_network_vehicle_spawn_or_update_record` | plate | cgpt rename v2: Processes a network vehicle spawn/update record, writes missing vehicle data, creates vehicle entity, and updates chunk lookup. |
+| `00456c10` | `network_vehicle_spawn_update_context_helper_00456c10` | plate | cgpt readability rename set B v14: Readability pass set B: network vehicle spawn update context helper based on prior focused closure context. |
+| `00456d70` | `multiplayer_network_network_vehicle_message_helper_00456d70` | plate | cgpt readability rename set B v14: Readability pass set B: likely multiplayer_network / network_vehicle_message_helper based on address neighborhood and prior focused closure context. |
+| `00456ea0` | `kick_player_for_cheating` | plate | cgpt whole-binary semantic rename v1: string evidence: kicked out for cheating |
+| `00456fb0` | `reject_hacked_vehicle_join` | plate | i76 second-pass rename<br>old_name: FUN_00456fb0<br>suggested_name: reject_hacked_vehicle_join<br>basis: Diagnostic: player tried to join with hacked vehicle. |
+| `00457100` | `allocate_entity_instance_id_handler` | plate | cgpt whole-binary semantic rename v1: string evidence: cannot allocate EntityInstIDHandler |
+| `004571a0` | `entity_instance_id_table_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence: ent |
+| `00457270` | `entity_instance_id_allocate_context_helper_00457270` | plate | cgpt readability rename set B v14: Readability pass set B: entity instance id allocate context helper based on prior focused closure context. |
+| `00457290` | `register_world_object_tree_callback` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Appends a world/object tree callback pointer to the global callback list. |
+| `004572b0` | `register_active_world_object_entry` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Allocates/reuses an active-world-object entry, increments the object tree refcount, stores center/radius bounds, marks the active player/object entry when flagged, and invokes registered callbacks. |
+| `00457420` | `entity_instance_id_lookup_or_update` | plate | cgpt whole-binary semantic rename v1: string evidence: ent |
+| `004574e0` | `entity_instance_id_table_context_helper_004574e0` | plate | cgpt readability rename set B v14: Readability pass set B: entity instance id table context helper based on prior focused closure context. |
+| `00457530` | `get_active_player_or_camera_world_object_entry` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Returns active player/camera world-object entry global. |
+| `00457540` | `entity_instance_table_context_helper_00457540` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457540. Remove duplicated network/entity wording. |
+| `00457560` | `entity_instance_table_context_helper_00457560` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457560. Remove duplicated network/entity wording. |
+| `00457570` | `entity_instance_table_context_helper_00457570` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457570. Remove duplicated network/entity wording. |
+| `004575d0` | `get_active_world_object_entry_object` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Small helper in active world-object entry path; returns/normalizes active entry object pointer. |
+| `00457610` | `entity_instance_table_context_helper_00457610` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457610. Remove duplicated network/entity wording. |
+| `00457630` | `entity_instance_table_context_helper_00457630` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457630. Remove duplicated network/entity wording. |
+| `00457650` | `get_effect_target_transformed_position_radius` | plate | [cgpt i76.exe effect/damage/blit rename v18; confidence=HIGH] Transforms an effect target's local offset into world coordinates and copies the target radius from record +0x10. |
+| `004576a0` | `entity_instance_table_context_helper_004576a0` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_004576a0. Remove duplicated network/entity wording. |
+| `004577a0` | `entity_instance_table_context_helper_004577a0` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_004577a0. Remove duplicated network/entity wording. |
+| `004577f0` | `entity_instance_table_context_helper_004577f0` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_004577f0. Remove duplicated network/entity wording. |
+| `00457870` | `entity_instance_table_context_helper_00457870` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457870. Remove duplicated network/entity wording. |
+| `00457a00` | `entity_instance_table_context_helper_00457a00` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457a00. Remove duplicated network/entity wording. |
+| `00457a90` | `entity_instance_table_context_helper_00457a90` | plate | cgpt label refinement v19: was multiplayer_network_entity_instance_table_helper_00457a90. Remove duplicated network/entity wording. |
+| `00457f40` | `world_object_tree_context_helper_00457f40` | plate | cgpt readability rename set B v14: Readability pass set B: world object tree context helper based on prior focused closure context. |
+| `00457ff0` | `world_object_geometry_context_helper_00457ff0` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00457ff0. Remove duplicated world_object_geometry wording. |
+| `00458790` | `world_object_bounds_context_helper_00458790` | plate | cgpt readability rename set B v14: Readability pass set B: world object bounds context helper based on prior focused closure context. |
+| `004587d0` | `world_object_geometry_context_helper_004587d0` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_004587d0. Remove duplicated world_object_geometry wording. |
+| `00458810` | `get_world_object_class_id` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Small world-object class/id accessor used by vehicle damage callback. |
+| `00458860` | `world_object_geometry_context_helper_00458860` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00458860. Remove duplicated world_object_geometry wording. |
+| `004588b0` | `world_object_geometry_context_helper_004588b0` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_004588b0. Remove duplicated world_object_geometry wording. |
+| `00458920` | `world_object_geometry_context_helper_00458920` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00458920. Remove duplicated world_object_geometry wording. |
+| `00458930` | `world_object_geometry_context_helper_00458930` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00458930. Remove duplicated world_object_geometry wording. |
+| `00458970` | `world_object_geometry_context_helper_00458970` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00458970. Remove duplicated world_object_geometry wording. |
+| `00458980` | `world_object_geometry_context_helper_00458980` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00458980. Remove duplicated world_object_geometry wording. |
+| `004589d0` | `world_object_geometry_context_helper_004589d0` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_004589d0. Remove duplicated world_object_geometry wording. |
+| `004589f0` | `world_object_geometry_context_helper_004589f0` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_004589f0. Remove duplicated world_object_geometry wording. |
+| `00458a10` | `world_object_geometry_context_helper_00458a10` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00458a10. Remove duplicated world_object_geometry wording. |
+| `00458a30` | `world_object_geometry_context_helper_00458a30` | plate | cgpt label refinement v19: was world_object_geometry_world_object_geometry_helper_00458a30. Remove duplicated world_object_geometry wording. |
+| `00458a90` | `is_vehicle_or_actor_runtime_world_object` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Predicate for runtime classes 1, 8, and 9 used by damage/effect paths. |
+| `00458ac0` | `is_transform_composed_world_object_class` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium-high] Class predicate returning true for object classes 2,3,4,0xb,0xc,0x5c; used near transform hierarchy helpers. |
+| `00458b60` | `is_collapsible_special_world_object_class` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Predicate/helper for collapsing special object classes to a generic handling class. |
+| `00458bf0` | `world_object_has_optional_runtime_flag` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Predicate for optional runtime flag used by radial-damage filtering. |
+| `00458c10` | `is_vehicle_or_weapon_source_world_object` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Predicate for classes 1, 7, and 9 used to classify damage/effect source objects. |
+| `00458c30` | `is_world_object_class_geometry_or_light_range` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=medium] Predicate true for class 4 or class range 0x5a..0x5b. Exact class names remain provisional; likely geometry/light/special renderable range. |
+| `00458c50` | `is_world_object_class_root_actor_or_weapon_range` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=medium] Predicate true for class 1 or class range 8..9. Exact class names remain provisional. |
+| `00458c70` | `get_parent_if_current_is_last_child_link` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=medium-high] Walks parent links until the current node is not the +0x64 child link of its parent, then returns the parent link; hierarchy traversal helper. |
+| `00458c90` | `get_root_ancestor_world_object` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=high] Walks +0x68 parent links until the root ancestor and returns it in EAX. |
+| `00458cb0` | `compute_transform_relative_to_ancestor` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=high] Composes local 4x4 transforms up the +0x68 parent chain until the requested ancestor and writes the resulting matrix. |
+| `00458d60` | `compose_world_object_runtime_transform` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] World-object transform composition helper used by damage/runtime callbacks. |
+| `00458e30` | `reticle_texture_context_helper_00458e30` | plate | cgpt readability rename set B v14: Readability pass set B: reticle texture context helper based on prior focused closure context. |
+| `00458f00` | `copy_world_object_position_vector` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Small transform/position helper used by vehicle damage callback. |
+| `00458f40` | `target_reticle_context_helper_00458f40` | plate | cgpt label refinement v19: was cockpit_hud_ui_target_reticle_helper_00458f40. Shorten readability label. |
+| `00458f80` | `copy_world_object_orientation_or_velocity_vector` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Small transform/vector helper used by vehicle damage callback. |
+| `00458fc0` | `compute_world_object_bounding_radius_from_point` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium] Computes world-object bounding radius/distance from point data; appears in geometry/object bounds path. |
+| `00459060` | `compute_object_bounds_from_runtime_geometry` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium] Likely computes object bounds from runtime geometry records; candidate downstream geometry consumer. |
+| `00459160` | `compute_world_object_transformed_bounds` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Computes transformed world-object bounds using object geometry/transform state. |
+| `004591d0` | `update_world_object_bounds_from_geometry` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium] Likely updates world-object bounds from attached geometry data; candidate downstream geometry consumer. |
+| `00459330` | `target_reticle_context_helper_00459330` | plate | cgpt label refinement v19: was cockpit_hud_ui_target_reticle_helper_00459330. Shorten readability label. |
+| `00459550` | `load_target_reticle_textures` | plate | cgpt whole-binary semantic rename v1: references ztarg201/202 maps |
+| `00459760` | `update_target_reticle_texture_state` | plate | cgpt whole-binary semantic rename v1: references ztarg201/202 maps |
+| `00459850` | `target_reticle_state_context_helper_00459850` | plate | cgpt readability rename set B v14: Readability pass set B: target reticle state context helper based on prior focused closure context. |
+| `00459880` | `cockpit_gauge_context_helper_00459880` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_00459880. Remove duplicated cockpit wording. |
+| `004598b0` | `cockpit_gauge_context_helper_004598b0` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_004598b0. Remove duplicated cockpit wording. |
+| `004598f0` | `cockpit_gauge_context_helper_004598f0` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_004598f0. Remove duplicated cockpit wording. |
+| `00459910` | `preload_cockpit_gauge_textures` | plate | i76 second-pass rename<br>old_name: FUN_00459910<br>suggested_name: preload_cockpit_gauge_textures<br>basis: References gauge/reticle/speedometer/tachometer .map/.tmt assets and calls add_texture_to_cache. |
+| `00459d60` | `cockpit_hud_texture_context_helper_00459d60` | plate | cgpt readability rename set B v14: Readability pass set B: cockpit hud texture context helper based on prior focused closure context. |
+| `00459d90` | `cockpit_gauge_context_helper_00459d90` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_00459d90. Remove duplicated cockpit wording. |
+| `00459da0` | `load_cockpit_hud_base_texture` | plate | cgpt whole-binary semantic rename v1: references zcbh3101.tmt |
+| `00459fa0` | `initialize_speed_tach_needles` | plate | cgpt whole-binary semantic rename v1: strings speedneedleloc/tachneedleloc/needle maps |
+| `0045a450` | `update_cockpit_status_warning_indicators` | plate | cgpt whole-binary semantic rename v1: references zsy_.map and CWSTAT.WAV |
+| `0045ad40` | `initialize_gear_selector_indicator` | plate | cgpt whole-binary semantic rename v1: references prnd/park/arrow and VSHIF1A.WAV |
+| `0045add0` | `gear_indicator_context_helper_0045add0` | plate | cgpt readability rename set B v14: Readability pass set B: gear indicator context helper based on prior focused closure context. |
+| `0045ade0` | `cockpit_gauge_context_helper_0045ade0` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_0045ade0. Remove duplicated cockpit wording. |
+| `0045adf0` | `load_gear_indicator_texture` | plate | cgpt whole-binary semantic rename v1: references zgear101.map |
+| `0045af10` | `cockpit_gauge_context_helper_0045af10` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_0045af10. Remove duplicated cockpit wording. |
+| `0045b450` | `draw_bitmap_context_or_textured_quad` | plate | cgpt rename v2: Draws/blits a bitmap context directly or submits it as a lit textured quad depending on render mode. |
+| `0045b8c0` | `cockpit_gauge_render_context_helper_0045b8c0` | plate | cgpt readability rename set B v14: Readability pass set B: cockpit gauge render context helper based on prior focused closure context. |
+| `0045baa0` | `cockpit_gauge_context_helper_0045baa0` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_0045baa0. Remove duplicated cockpit wording. |
+| `0045bb80` | `cockpit_gauge_context_helper_0045bb80` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_0045bb80. Remove duplicated cockpit wording. |
+| `0045bc20` | `cockpit_gauge_context_helper_0045bc20` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_0045bc20. Remove duplicated cockpit wording. |
+| `0045be00` | `cockpit_gauge_context_helper_0045be00` | plate | cgpt label refinement v19: was cockpit_hud_ui_cockpit_gauge_helper_0045be00. Remove duplicated cockpit wording. |
+| `0045be20` | `load_speedometer_textures` | plate | cgpt whole-binary semantic rename v1: references zspeedo3/6 maps |
+| `0045c330` | `hud_bitmap_quad_render_context_helper_0045c330` | plate | cgpt readability rename set B v14: Readability pass set B: hud bitmap quad render context helper based on prior focused closure context. |
+| `0045c380` | `hud_bitmap_render_context_helper_0045c380` | plate | cgpt label refinement v19: was cockpit_hud_ui_hud_bitmap_render_helper_0045c380. Remove duplicated HUD wording. |
+| `0045c850` | `render_world_object_geometry_with_depth_sort` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Leaf/fallback world-object render traversal. Builds depth-sorted section records, binds texture slots, and submits lit textured polygons. |
+| `0045cb80` | `insert_geo_render_record_into_depth_tree` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Inserts a prepared GEO render record into the depth-sorted binary tree using render-record child links at +0x40/+0x44 and centroid/sort fields. |
+| `0045cbe0` | `build_lit_geo_render_records_from_sections` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Builds depth-sortable render records from runtime GEO sections. Transforms positions, indexes transformed normals/lighting by entry.secondary_index, copies UVs, and emits 0x18-byte lit render vertices. |
+| `0045d060` | `render_world_object_child_geometry_branch_primary` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Recursive/helper branch used by primary traversal for object child/sibling geometry lists. |
+| `0045d100` | `render_world_object_geometry_tree_pass_primary` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Primary world-object geometry traversal. Ensures geometry binding, builds lit GEO render records, binds texture sets, and submits sorted textured polygons. |
+| `0045d530` | `render_world_object_geometry_tree_pass_secondary` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Secondary/alternate world-object geometry traversal. Mirrors the primary traversal for another render pass or object-list branch. |
+| `0045da70` | `mission_objective_file_context_helper_0045da70` | plate | cgpt readability rename set B v14: Readability pass set B: mission objective file context helper based on prior focused closure context. |
+| `0045db70` | `render_world_object_child_geometry_branch_secondary` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Recursive/helper branch used by secondary traversal for object child/sibling geometry lists. |
+| `0045dc10` | `hud_bitmap_render_context_helper_0045dc10` | plate | cgpt label refinement v19: was cockpit_hud_ui_hud_bitmap_render_helper_0045dc10. Remove duplicated HUD wording. |
+| `0045dcc0` | `hud_bitmap_render_context_helper_0045dcc0` | plate | cgpt label refinement v19: was cockpit_hud_ui_hud_bitmap_render_helper_0045dcc0. Remove duplicated HUD wording. |
+| `0045dea0` | `load_mission_objective_text_file` | plate | cgpt whole-binary semantic rename v1: string evidence objective text file / Notepad unavailable |
+| `0045e110` | `notepad_objective_text_context_helper_0045e110` | plate | cgpt readability rename set B v14: Readability pass set B: notepad objective text context helper based on prior focused closure context. |
+| `0045e190` | `mission_objective_notepad_context_helper_0045e190` | plate | cgpt label refinement v19: was cockpit_hud_ui_mission_objective_notepad_helper_0045e190. Shorten readability label. |
+| `0045e2b0` | `initialize_notepad_objective_display` | plate | cgpt whole-binary semantic rename v1: loads notepad textures/DC/font and objective state |
+| `0045e780` | `release_notepad_objective_display_resources` | plate | cgpt rename v2: Releases notepad/objective display bitmap surfaces, HDC, font/brush objects, and heap buffer. |
+| `0045e820` | `redraw_notepad_objective_display_surface` | plate | cgpt rename v2: Redraws notepad/objective text into its bitmap surface using GDI text rendering. |
+| `0045e960` | `reveal_mission_objective` | plate | cgpt whole-binary semantic rename v1: string evidence: reveal Objective %d |
+| `0045e9e0` | `mark_mission_objective_succeeded` | plate | cgpt whole-binary semantic rename v1: string evidence: succeed Objective %d |
+| `0045ea90` | `mark_mission_objective_failed` | plate | cgpt whole-binary semantic rename v1: string evidence: fail Objective %d |
+| `0045eb30` | `mission_objective_state_context_helper_0045eb30` | plate | cgpt readability rename set B v14: Readability pass set B: mission objective state context helper based on prior focused closure context. |
+| `0045eb40` | `mission_objective_notepad_context_helper_0045eb40` | plate | cgpt label refinement v19: was cockpit_hud_ui_mission_objective_notepad_helper_0045eb40. Shorten readability label. |
+| `0045eb70` | `mission_objective_notepad_context_helper_0045eb70` | plate | cgpt label refinement v19: was cockpit_hud_ui_mission_objective_notepad_helper_0045eb70. Shorten readability label. |
+| `0045eba0` | `mission_objective_notepad_context_helper_0045eba0` | plate | cgpt label refinement v19: was cockpit_hud_ui_mission_objective_notepad_helper_0045eba0. Shorten readability label. |
+| `0045ebd0` | `allocate_world_object_node` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=high] Allocates and initializes a 0xb0-byte world object node; with non-null parent inserts as child/sibling, otherwise initializes root object list. |
+| `0045ed00` | `increment_refcount_recursive_for_object_tree` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Recursively increments world-object refcounts before temporary damage dispatch. |
+| `0045ed70` | `unlink_and_release_world_object_node_refcounted` | plate | cgpt rename v2: Unlinks a world-object node, recursively releases children, drops class/geometry/texture/light state, and frees from the world-object heap. |
+| `0045ee80` | `release_world_object_subtree_recursive` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Recursive subtree release helper. Unlinks siblings/children, releases class, geometry, texture, and light runtime state, then frees nodes whose refcount reaches zero. |
+| `0045ef70` | `finalize_released_world_object_after_damage` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Post-damage release/unlink cleanup. Recursively releases children and frees class/geometry/texture/light state when the object refcount reaches zero. |
+| `0045f0c0` | `decrement_world_object_subtree_refcounts` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Recursively decrements child/sibling world-object refcounts without performing full runtime release. |
+| `0045f0f0` | `release_world_object_tree_reference` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Releases a world-object tree reference; decrements refcounts, unlinks/free objects at zero, and returns the released object pointer when applicable. |
+| `0045f260` | `attach_world_object_as_first_child` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Attaches an object under a parent as the first child, updates sibling/parent links, and propagates parent refcount/state to descendants. |
+| `0045f2d0` | `propagate_world_object_refcount_delta_to_children` | plate | [cgpt i76.exe world/runtime table rename v17; confidence=HIGH] Adds a signed delta to a world object tree node's refcount at +0x0c and recurses through child links at +0x64/+0x60. |
+| `0045f310` | `radar_context_setup_helper_0045f310` | plate | cgpt readability rename set B v14: Readability pass set B: radar context setup helper based on prior focused closure context. |
+| `0045f3b0` | `radar_context_helper_0045f3b0` | plate | cgpt label refinement v19: was cockpit_hud_ui_radar_context_helper_0045f3b0. Shorten readability label. |
+| `0045f3d0` | `release_vehicle_runtime_context` | plate | [cgpt i76.exe world/runtime table rename v17; confidence=MEDIUM-HIGH] Shared cleanup helper called by vehicle class release and damaged-part cleanup paths; verify exact field layout in the next helper pass. |
+| `0045f3f0` | `init_radar_mask_texture` | plate | i76 second-pass rename<br>old_name: FUN_0045f3f0<br>suggested_name: init_radar_mask_texture<br>basis: References zradmask.map and radar mask diagnostic. |
+| `0045f4d0` | `shutdown_radar_mask_texture` | plate | i76 second-pass rename<br>old_name: FUN_0045f4d0<br>suggested_name: shutdown_radar_mask_texture<br>basis: Releases zradmask.map and destroys heap. |
+| `0045f520` | `initialize_palette_shading_tables` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Builds palette shading and lookup tables used by display/surface color effects. |
+| `0045f6d0` | `initialize_radar_context` | plate | cgpt whole-binary semantic rename v1: string evidence: radar |
+| `0045f780` | `allocate_bitmap_overlay_context` | plate | cgpt rename v2: Allocates and initializes a bitmap overlay/context with an embedded bitmap surface context. |
+| `0045f810` | `radar_bitmap_context_helper_0045f810` | plate | cgpt readability rename set B v14: Readability pass set B: radar bitmap context helper based on prior focused closure context. |
+| `0045f8f0` | `radar_context_helper_0045f8f0` | plate | cgpt label refinement v19: was cockpit_hud_ui_radar_context_helper_0045f8f0. Shorten readability label. |
+| `0045f930` | `radar_context_helper_0045f930` | plate | cgpt label refinement v19: was cockpit_hud_ui_radar_context_helper_0045f930. Shorten readability label. |
+| `0045f970` | `radar_context_helper_0045f970` | plate | cgpt label refinement v19: was cockpit_hud_ui_radar_context_helper_0045f970. Shorten readability label. |
+| `0045faf0` | `release_radar_context` | plate | cgpt whole-binary semantic rename v1: string evidence: radar and HeapFree |
+| `00460190` | `render_queued_hud_marker_quads` | plate | cgpt rename v2: Renders queued small HUD marker quads through the polygon renderer and clears the queue. |
+| `00460a70` | `radar_blip_render_context_helper_00460a70` | plate | cgpt readability rename set B v14: Readability pass set B: radar blip render context helper based on prior focused closure context. |
+| `00460bf1` | `radar_render_context_helper_00460bf1` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460bf1. Shorten readability label. |
+| `00460bfe` | `radar_render_context_helper_00460bfe` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460bfe. Shorten readability label. |
+| `00460c0b` | `radar_render_context_helper_00460c0b` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460c0b. Shorten readability label. |
+| `00460c80` | `radar_render_context_helper_00460c80` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460c80. Shorten readability label. |
+| `00460db0` | `radar_render_context_helper_00460db0` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460db0. Shorten readability label. |
+| `00460de0` | `radar_render_context_helper_00460de0` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460de0. Shorten readability label. |
+| `00460e10` | `radar_render_context_helper_00460e10` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460e10. Shorten readability label. |
+| `00460e60` | `reset_vehicle_weapon_target_transform_state` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium] Clears vehicle weapon target transform state. |
+| `00460ea0` | `radar_render_context_helper_00460ea0` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460ea0. Shorten readability label. |
+| `00460f20` | `radar_render_context_helper_00460f20` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00460f20. Shorten readability label. |
+| `00461040` | `radar_render_context_helper_00461040` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00461040. Shorten readability label. |
+| `00461150` | `radar_render_context_helper_00461150` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00461150. Shorten readability label. |
+| `00461220` | `radar_render_context_helper_00461220` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00461220. Shorten readability label. |
+| `00461270` | `radar_render_context_helper_00461270` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00461270. Shorten readability label. |
+| `004613f0` | `get_primary_vehicle_weapon_target_object` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Returns primary weapon/radar target object from vehicle target state, filtering inactive records. |
+| `00461430` | `radar_render_context_helper_00461430` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00461430. Shorten readability label. |
+| `00461480` | `get_vehicle_weapon_target_object_by_slot` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Returns secondary target object for slot selectors, filtering inactive target records. |
+| `004614e0` | `update_radar_display` | plate | cgpt whole-binary semantic rename v1: string evidence: radar |
+| `00461570` | `release_vehicle_radar_or_weapon_target_object` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Releases/clears a retained radar or weapon target object reference. |
+| `004615f0` | `radar_display_update_context_helper_004615f0` | plate | cgpt readability rename set B v14: Readability pass set B: radar display update context helper based on prior focused closure context. |
+| `00461640` | `set_vehicle_weapon_target_transform` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Stores target transform/state for vehicle weapon targeting. |
+| `00461680` | `radar_render_context_helper_00461680` | plate | cgpt label refinement v19: was radar_classifier_specials_radar_render_helper_00461680. Shorten readability label. |
+| `00461770` | `play_clock_or_jammer_audio` | plate | cgpt whole-binary semantic rename v1: references clockon.wav and cjamm.wav |
+| `00461800` | `classifier_display_context_helper_00461800` | plate | cgpt readability rename set B v14: Readability pass set B: classifier display context helper based on prior focused closure context. |
+| `00461810` | `initialize_classifier_display` | plate | cgpt whole-binary semantic rename v1: string evidence: clasfn |
+| `004618e0` | `update_classifier_display` | plate | cgpt whole-binary semantic rename v1: string evidence: clasfn |
+| `00461970` | `set_world_object_class_and_register_runtime` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=high] Stores object class, maps special classes through class predicate/table, optionally allocates class runtime data, and registers object in runtime class lists. |
+| `00461970` | `set_world_object_class_and_register_runtime` | pre | I76 semantic baseline: set_world_object_class_and_register_runtime<br>Assigns object class, maps descriptor row, allocates runtime data, registers in class lists. |
+| `00461a20` | `draw_classifier_display` | plate | cgpt whole-binary semantic rename v1: string evidence: clasfn |
+| `00461b20` | `release_world_object_class_runtime` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Dispatches the class-specific release callback from the class descriptor table for object class runtime data. |
+| `00461b20` | `release_world_object_class_runtime` | pre | I76 semantic baseline: release_world_object_class_runtime<br>Dispatches class release callback and releases class runtime. |
+| `00461b80` | `dispatch_queued_world_object_class_callbacks` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Walks queued world-object class callback entries, releases invalid references, invokes class descriptor callbacks, and removes completed entries. |
+| `00461b80` | `dispatch_queued_world_object_class_callbacks` | pre | I76 semantic baseline: dispatch_queued_world_object_class_callbacks<br>Drains queued world-object class callbacks and releases invalid refs. |
+| `00461c80` | `dispatch_world_object_pre_update_callbacks` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Per-frame world-object callback pass before major simulation update. |
+| `00461c80` | `dispatch_world_object_pre_update_callbacks` | pre | I76 semantic baseline: dispatch_world_object_pre_update_callbacks<br>World-object pre-update callback pass; formerly frame-begin callback. |
+| `00461d50` | `dispatch_world_object_post_update_callbacks` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Per-frame world-object callback pass after major simulation update. |
+| `00461d50` | `dispatch_world_object_post_update_callbacks` | pre | I76 semantic baseline: dispatch_world_object_post_update_callbacks<br>World-object post-update callback pass; formerly frame-end callback. |
+| `00461e20` | `get_world_object_damage_or_target_vectors` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium] Dispatches class-specific callback to obtain target/damage vectors for a world object, falling back to zero vectors. |
+| `00461e20` | `get_world_object_damage_or_target_vectors` | pre | I76 semantic baseline: get_world_object_damage_or_target_vectors<br>Dispatches class handler for damage/target vectors. |
+| `00461ed0` | `build_world_object_class_damage_transform` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Class-table dispatcher for damage transform callback; falls back to identity transform when absent. |
+| `00461ed0` | `build_world_object_class_damage_transform` | pre | I76 semantic baseline: build_world_object_class_damage_transform<br>Dispatches class transform/damage-context builder. |
+| `00461f70` | `release_classifier_display` | plate | cgpt whole-binary semantic rename v1: string evidence: clasfn |
+| `00462040` | `dispatch_damage_context_to_world_object_class_handler` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Class-table dispatcher for damage context callbacks through the clasfn descriptor table. |
+| `00462040` | `dispatch_damage_context_to_world_object_class_handler` | pre | I76 semantic baseline: dispatch_damage_context_to_world_object_class_handler<br>Dispatches damage context to class-specific handler. |
+| `004620a0` | `has_world_object_class_damage_handler` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Small class-descriptor predicate near damage dispatch path. |
+| `004620c0` | `load_reticle_crosshair_textures` | plate | cgpt whole-binary semantic rename v1: references zretc_6.map/zretc_1.map |
+| `00462130` | `reticle_crosshair_context_helper_00462130` | plate | cgpt readability rename set B v14: Readability pass set B: reticle crosshair context helper based on prior focused closure context. |
+| `004621a0` | `weapon_hud_display_context_helper_004621a0` | plate | cgpt label refinement v19: was radar_classifier_specials_weapon_hud_display_helper_004621a0. Shorten readability label. |
+| `004621b0` | `weapon_hud_display_context_helper_004621b0` | plate | cgpt label refinement v19: was radar_classifier_specials_weapon_hud_display_helper_004621b0. Shorten readability label. |
+| `004621e0` | `render_display_mode1_bitmap_overlay` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Display-mode-1 software bitmap/overlay path. Loads or reuses background/overlay surface and blits via bitmap surface contexts. |
+| `004621e0` | `render_display_mode1_bitmap_overlay` | pre | I76 semantic baseline: render_display_mode1_bitmap_overlay<br>Renders display-mode bitmap overlay. |
+| `004625c0` | `weapon_hud_context_helper_004625c0` | plate | cgpt readability rename set B v14: Readability pass set B: weapon hud context helper based on prior focused closure context. |
+| `00462600` | `weapon_hud_display_context_helper_00462600` | plate | cgpt label refinement v19: was radar_classifier_specials_weapon_hud_display_helper_00462600. Shorten readability label. |
+| `00462660` | `spawn_vehicle_chunk_debris_and_explosion` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Vehicle destruction helper. Spawns CHUNK1/CHUNK2 debris, explosion/chunk-manager effects, releases geometry variants, and applies radial damage/side effects. |
+| `00462990` | `artillery_carrier_weapon_context_helper_00462990` | plate | cgpt readability rename set B v14: Readability pass set B: artillery carrier weapon context helper based on prior focused closure context. |
+| `004629c0` | `initialize_artillery_carrier_weapon_info` | plate | cgpt whole-binary semantic rename v1: string evidence: artillery weapon info |
+| `00462a80` | `vehicle_specials_display_context_helper_00462a80` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle specials display context helper based on prior focused closure context. |
+| `00462a90` | `update_vehicle_weapon_runtime_fire_state` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Updates vehicle weapon runtime fire state, including artillery/carrier diagnostics and weapon ordering checks. |
+| `00462a90` | `update_vehicle_weapon_runtime_fire_state` | pre | I76 semantic baseline: update_vehicle_weapon_runtime_fire_state<br>Updates vehicle weapon runtime firing state. |
+| `00462c80` | `vehicle_specials_display_context_helper_00462c80` | plate | cgpt label refinement v19: was radar_classifier_specials_vehicle_specials_display_helper_00462c80. Shorten readability label. |
+| `00462ca0` | `vehicle_specials_display_context_helper_00462ca0` | plate | cgpt label refinement v19: was radar_classifier_specials_vehicle_specials_display_helper_00462ca0. Shorten readability label. |
+| `00462cc0` | `vehicle_specials_display_context_helper_00462cc0` | plate | cgpt label refinement v19: was radar_classifier_specials_vehicle_specials_display_helper_00462cc0. Shorten readability label. |
+| `00462d90` | `allocate_vehicle_runtime_context_and_child_nodes` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Class-id 1 constructor callback. Allocates vehicle runtime context and child world objects with classes 0x14, 0x15, 0x16, and 0x17. |
+| `00462d90` | `allocate_vehicle_runtime_context_and_child_nodes` | pre | I76 semantic baseline: allocate_vehicle_runtime_context_and_child_nodes<br>Vehicle class constructor: allocates runtime and child component world objects. |
+| `00462e30` | `allocate_initialized_vehicle_runtime_context` | plate | cgpt rename v2: Allocates and initializes the large vehicle runtime context with default damage, wheel, lighting, and headlight state. |
+| `00462e30` | `allocate_initialized_vehicle_runtime_context` | pre | I76 semantic baseline: allocate_initialized_vehicle_runtime_context<br>Allocates and initializes vehicle runtime, wheel contact, and FSM/damage state. |
+| `00463120` | `initialize_vehicle_runtime_context_and_cockpit_state` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Class-id 1 initialization callback. Initializes vehicle runtime arrays, component/object references, cockpit textures, camera projection, and weapon HUD state. |
+| `00463800` | `vehicle_class_pre_update_callback` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=high] Class-id 1 frame callback. Gates update by object state, accumulates fixed-step time at vehicle runtime +0x444, calls vehicle state/lifecycle update and the lower-level vehicle physics integrator. |
+| `00463800` | `vehicle_class_pre_update_callback` | pre | I76 semantic baseline note:<br>Vehicle object class pre-update callback. Active path: lifecycle + control/drivetrain update. Inactive path: fixed-step wheel/contact physics. Uses 0.05s vehicle fixed-step accumulator. |
+| `00463950` | `update_optional_vehicle_runtime_visual_state` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] Class-id 1 callback gated by optional runtime flag; updates two visual/runtime helpers for the vehicle object. |
+| `004639a0` | `vehicle_class_visual_or_secondary_update_callback` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Class-id 1 release callback. Releases child/component world objects for engine/brake/suspension/wheels/special parts and then releases vehicle runtime context. |
+| `004639a0` | `vehicle_class_visual_or_secondary_update_callback` | pre | I76 semantic baseline: vehicle_class_visual_or_secondary_update_callback<br>Vehicle class secondary/visual callback candidate. |
+| `00463a80` | `vehicle_class_damage_or_release_callback` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Class-id 1 damage callback. Applies vehicle damage, updates texture state, handles death/kill messages, and removes the loaded vehicle runtime when destroyed. |
+| `00463a80` | `vehicle_class_damage_or_release_callback` | pre | I76 semantic baseline: vehicle_class_damage_or_release_callback<br>Vehicle class damage/release callback candidate. |
+| `004641e0` | `apply_random_underbody_or_speed_damage` | plate | [cgpt i76.exe vehicle physics integrator rename v31; confidence=medium] Applies randomized part damage when speed/grounding conditions are met, then may update vehicle damage state based on current speed. |
+| `004641e0` | `apply_random_underbody_or_speed_damage` | pre | I76 semantic baseline: apply_random_underbody_or_speed_damage<br>Applies terrain/speed-scaled random underbody or speed damage. |
+| `00464360` | `copy_vehicle_runtime_velocity_and_speed` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] Class-id 1 callback that copies a 3-float vector from runtime +0xbc and a scalar from +0xac to caller buffers. |
+| `004643a0` | `copy_vehicle_runtime_transform_matrix` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Class-id 1 callback that copies 15 dwords from vehicle runtime +0xa4 to a caller matrix/transform buffer. |
+| `004643c0` | `apply_vehicle_collision_radial_damage_response` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium-high] Class-id 1 callback that builds relative damage vectors between world objects and dispatches radial damage/impulse to the target. |
+| `004644d0` | `vehicle_damage_network_context_helper_004644d0` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle damage network context helper based on prior focused closure context. |
+| `00464890` | `apply_network_vehicle_state_and_damage_update` | plate | cgpt rename v2: Applies a network vehicle state/damage packet, updates engine/tire state, death handling, and kill chat messages. |
+| `004652b0` | `trigger_vehicle_forced_damage_or_actor_cleanup` | plate | [cgpt i76.exe vehicle physics integrator rename v31; confidence=medium] Late physics helper that marks vehicle damage state or dispatches actor cleanup when runtime damage flags indicate a forced destruction/cleanup path. |
+| `00465310` | `vehicle_system_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence: vhcl |
+| `00465350` | `vehicle_damage_system_context_helper_00465350` | plate | cgpt readability rename set B v14: Readability pass set B: vehicle damage system context helper based on prior focused closure context. |
+| `00465370` | `update_vehicle_lifecycle_and_destruction_state` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=high] Per-frame vehicle lifecycle/state update under the class frame callback. Handles delayed destruction flags, sound/effect transitions, refcount cleanup, loaded-vehicle removal, and child part cleanup. |
+| `00465370` | `update_vehicle_lifecycle_and_destruction_state` | pre | I76 semantic baseline: update_vehicle_lifecycle_and_destruction_state<br>Updates vehicle lifecycle/destruction transitions, cleanup, sounds/effects/weapon removal. |
+| `00465620` | `apply_vehicle_damage_record_to_accumulators` | plate | cgpt rename v2: Applies a vehicle damage record against component damage accumulators, honoring special equipment and suppression flags. |
+| `00465af0` | `apply_vehicle_part_damage_and_special_equipment_effects` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Damage path below player vehicle damage callback. Checks special equipment, randomizes damage outcomes, dispatches class damage, updates part damage states and texture frames. |
+| `00465fe0` | `vehicle_damage_texture_context_helper_00465fe0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle damage texture context helper based on adjacent named subsystem context. |
+| `00466010` | `update_vehicle_damage_texture_state` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Maps vehicle/part damage severity to texture-binding frame state for body and wheel damage regions. |
+| `004660d0` | `set_vehicle_damage_texture_frame_group` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=high] Sets texture animation frame groups for vehicle body/wheel damage texture regions using the V1 FT/MD map-name table. |
+| `00466180` | `apply_vehicle_catastrophic_damage_breakup` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Large catastrophic damage/destruction path. Spawns car/chunk explosions, releases lights/geometry, updates damage textures, detaches chunks, and removes loaded vehicle/runtime state. |
+| `00466180` | `apply_vehicle_catastrophic_damage_breakup` | pre | I76 semantic baseline: apply_vehicle_catastrophic_damage_breakup<br>Applies catastrophic vehicle breakup/destruction effects. |
+| `00466ac0` | `vehicle_damage_part_state_context_helper_00466ac0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle damage part state context helper based on adjacent named subsystem context. |
+| `00466b70` | `vehicle_damage_part_state_context_helper_00466b70` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle damage part state context helper based on adjacent named subsystem context. |
+| `00466c20` | `vehicle_damage_threshold_context_helper_00466c20` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle damage threshold context helper based on adjacent named subsystem context. |
+| `00466ca0` | `vehicle_damage_texture_dirty_context_helper_00466ca0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle damage texture dirty context helper based on adjacent named subsystem context. |
+| `00466de0` | `vehicle_damage_component_runtime_context_helper_00466de0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle damage component runtime context helper based on adjacent named subsystem context. |
+| `00466e20` | `get_vehicle_damage_event_state_block` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Returns vehicle runtime damage/source-event state block pointer. |
+| `00466e30` | `get_vehicle_suspension_response_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Returns vehicle suspension response/travel scalar used by traction calculations. |
+| `00466e40` | `get_vehicle_throttle_input_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Returns vehicle throttle/engine input scalar used by drivetrain calculations. |
+| `00466e50` | `vehicle_damage_component_runtime_context_helper_00466e50` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle damage component runtime context helper based on adjacent named subsystem context. |
+| `00466e80` | `mark_vehicle_runtime_state_dirty` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=medium-high] Sets vehicle runtime dirty/refresh flags around offsets +0x450/+0x454. |
+| `00466eb0` | `apply_flat_tire_damage_from_hazard_collision` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Vehicle/hazard collision path that finds nearest wheel/part slot, applies flat tire damage, and updates flat tire texture frames. |
+| `00467280` | `vehicle_specials_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence: v-spcl |
+| `004672d0` | `find_active_special_equipment_component_by_index` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Scans special-equipment component slots and returns active component matching requested equipment index. |
+| `00467360` | `get_vehicle_drivetrain_mode_state` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Returns vehicle drivetrain/gear/mode state used by drivetrain and contact calculations. |
+| `00467370` | `vehicle_specials_state_getter_helper_00467370` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials state getter helper based on adjacent named subsystem context. |
+| `00467390` | `vehicle_specials_state_setter_helper_00467390` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials state setter helper based on adjacent named subsystem context. |
+| `004673b0` | `vehicle_specials_indicator_value_helper_004673b0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials indicator value helper based on adjacent named subsystem context. |
+| `004673d0` | `vehicle_specials_indicator_flag_helper_004673d0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials indicator flag helper based on adjacent named subsystem context. |
+| `00467400` | `vehicle_specials_indicator_update_helper_00467400` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials indicator update helper based on adjacent named subsystem context. |
+| `00467440` | `get_vehicle_runtime_context` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Returns vehicle class runtime context pointer from world object runtime data. |
+| `00467440` | `get_vehicle_runtime_context` | pre | I76 semantic baseline: get_vehicle_runtime_context<br>Returns vehicle runtime context from world_object+0x70. |
+| `00467450` | `get_vehicle_front_left_tire_runtime_component` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=medium] Vehicle runtime component accessor in the tire/contact helper cluster. |
+| `00467450` | `get_vehicle_front_left_tire_runtime_component` | pre | I76 semantic baseline: get_vehicle_front_left_tire_runtime_component<br>Returns front-left tire runtime component. |
+| `00467460` | `get_vehicle_front_right_tire_runtime_component` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=medium] Vehicle runtime component accessor in the tire/contact helper cluster. |
+| `00467460` | `get_vehicle_front_right_tire_runtime_component` | pre | I76 semantic baseline: get_vehicle_front_right_tire_runtime_component<br>Returns front-right tire runtime component. |
+| `00467470` | `get_vehicle_rear_left_tire_runtime_component` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=medium] Vehicle runtime component accessor in the tire/contact helper cluster. |
+| `00467470` | `get_vehicle_rear_left_tire_runtime_component` | pre | I76 semantic baseline: get_vehicle_rear_left_tire_runtime_component<br>Returns rear-left tire runtime component. |
+| `00467480` | `get_vehicle_rear_right_tire_runtime_component` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=medium] Vehicle runtime component accessor in the tire/contact helper cluster. |
+| `00467480` | `get_vehicle_rear_right_tire_runtime_component` | pre | I76 semantic baseline: get_vehicle_rear_right_tire_runtime_component<br>Returns rear-right tire runtime component. |
+| `00467490` | `get_vehicle_engine_runtime_component` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Returns vehicle engine runtime component from vehicle context object. |
+| `00467490` | `get_vehicle_engine_runtime_component` | pre | I76 semantic baseline: get_vehicle_engine_runtime_component<br>Returns engine runtime component. |
+| `004674a0` | `get_vehicle_suspension_runtime_component` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Returns vehicle suspension runtime component from vehicle context object. |
+| `004674a0` | `get_vehicle_suspension_runtime_component` | pre | I76 semantic baseline: get_vehicle_suspension_runtime_component<br>Returns suspension runtime component. |
+| `004674b0` | `get_vehicle_brake_runtime_component` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Returns vehicle brake runtime component from vehicle context object. |
+| `004674b0` | `get_vehicle_brake_runtime_component` | pre | I76 semantic baseline: get_vehicle_brake_runtime_component<br>Returns brake runtime component. |
+| `004674c0` | `set_vehicle_current_damage_or_effect_object` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Stores/updates a vehicle runtime effect/damage object pointer and releases/rebinds related light/object state. |
+| `00467660` | `vehicle_specials_display_state_helper_00467660` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials display state helper based on adjacent named subsystem context. |
+| `00467690` | `vehicle_specials_display_flag_helper_00467690` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials display flag helper based on adjacent named subsystem context. |
+| `004676b0` | `vehicle_specials_display_counter_helper_004676b0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials display counter helper based on adjacent named subsystem context. |
+| `004676e0` | `vehicle_specials_display_update_helper_004676e0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials display update helper based on adjacent named subsystem context. |
+| `00467760` | `vehicle_specials_display_render_context_helper_00467760` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials display render context helper based on adjacent named subsystem context. |
+| `00467790` | `get_special_equipment_runtime_index` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Returns the special-equipment index stored at runtime component +0x70, or zero for a missing component. |
+| `004677a0` | `is_special_equipment_component_active` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Predicate for active special-equipment runtime component state. |
+| `004677d0` | `vehicle_specials_display_texture_context_helper_004677d0` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials display texture context helper based on adjacent named subsystem context. |
+| `004677e0` | `mark_special_equipment_runtime_activated` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=medium-high] Marks special-equipment component runtime activation/state fields. |
+| `00467810` | `vehicle_specials_display_cleanup_helper_00467810` | plate | cgpt readability rename set C v15: Readability pass set C: vehicle specials display cleanup helper based on adjacent named subsystem context. |
+| `00467850` | `initialize_specials_empty_indicator` | plate | cgpt whole-binary semantic rename v1: strings sp_empty / carx1 |
+| `004679a0` | `load_specials_backing_texture` | plate | cgpt whole-binary semantic rename v1: references zbks_.map/zbks_320.map |
+| `00467a70` | `initialize_specials_tire_cover_indicator` | plate | cgpt whole-binary semantic rename v1: strings tire cover/diode |
+| `00467b50` | `initialize_specials_numeric_display` | plate | cgpt whole-binary semantic rename v1: strings ones/tens/hunds/thous |
+| `00467e30` | `initialize_specials_housing_display` | plate | cgpt whole-binary semantic rename v1: strings housing/bracket/dymo |
+| `00468040` | `special_equipment_state_context_helper_00468040` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_00468040. Shorten readability label. |
+| `004680a0` | `special_equipment_state_context_helper_004680a0` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_004680a0. Shorten readability label. |
+| `00468270` | `special_equipment_state_context_helper_00468270` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_00468270. Shorten readability label. |
+| `00468440` | `get_cached_world_object_aim_position` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Returns a cached aiming/position vector for a world object used by weapon targeting. |
+| `00468620` | `special_equipment_state_context_helper_00468620` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_00468620. Shorten readability label. |
+| `004687f0` | `special_equipment_state_context_helper_004687f0` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_004687f0. Shorten readability label. |
+| `00468c40` | `special_equipment_state_context_helper_00468c40` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_00468c40. Shorten readability label. |
+| `00468dc0` | `special_equipment_state_context_helper_00468dc0` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_00468dc0. Shorten readability label. |
+| `00469210` | `special_equipment_state_context_helper_00469210` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_00469210. Shorten readability label. |
+| `00469680` | `special_equipment_state_context_helper_00469680` | plate | cgpt label refinement v19: was vehicle_specials_runtime_special_equipment_state_helper_00469680. Shorten readability label. |
+| `00469b00` | `parse_world_object_placement_record` | plate | cgpt whole-binary semantic rename v1: sscanf pattern for world object placement |
+| `00469d20` | `get_engine_loop_sound_name` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Returns the engine loop sound name from the engine sound table unless the entry is NONE. |
+| `00469d70` | `get_engine_loop_sound_flags` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium] Returns the dword flag/config value associated with the engine loop sound-table entry. |
+| `00469d90` | `get_engine_event_sound_name` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Returns one-shot engine event sound name from the engine sound table unless the entry is NONE. |
+| `00469de0` | `get_engine_damage_state_sound_name` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Selects an engine damage-state sound name from the engine sound table based on current/max condition fraction. |
+| `00469eb0` | `get_engine_damage_state_sound_duration` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Selects an engine damage-state sound duration/timing scalar based on current/max condition fraction. |
+| `00469f10` | `parse_world_object_placement_field_helper_00469f10` | plate | cgpt readability rename set C v15: Readability pass set C: parse world object placement field helper based on adjacent named subsystem context. |
+| `00469f50` | `world_object_placement_transform_helper_00469f50` | plate | cgpt readability rename set C v15: Readability pass set C: world object placement transform helper based on adjacent named subsystem context. |
+| `00469fb0` | `world_object_placement_class_helper_00469fb0` | plate | cgpt readability rename set C v15: Readability pass set C: world object placement class helper based on adjacent named subsystem context. |
+| `0046a060` | `world_object_placement_flags_helper_0046a060` | plate | cgpt readability rename set C v15: Readability pass set C: world object placement flags helper based on adjacent named subsystem context. |
+| `0046a0a0` | `world_object_placement_record_finalize_helper_0046a0a0` | plate | cgpt readability rename set C v15: Readability pass set C: world object placement record finalize helper based on adjacent named subsystem context. |
+| `0046a0c0` | `test_gear_shift_curve_region` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Tests whether a speed/load point lies within a gear shift curve region. |
+| `0046a140` | `select_engine_gear_from_speed_load` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Selects final engine gear/mode from speed/load and requested candidate gear using shift-curve constraints. |
+| `0046a320` | `update_engine_gear_rpm_torque_state` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Updates engine gear/mode, RPM-like value, and torque/power scalar from speed/load, throttle/brake flags, frame delta, and engine definition parameters. |
+| `0046a320` | `update_engine_gear_rpm_torque_state` | pre | I76 semantic baseline: update_engine_gear_rpm_torque_state<br>Updates engine gear/RPM/torque drivetrain state. |
+| `0046a790` | `building_child_piece_context_helper_0046a790` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046a790. Remove duplicated building wording. |
+| `0046a7a0` | `get_engine_component_drive_force_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium-high] Accessor returning engine component scalar at runtime/definition offset +0x10, used in drive force calculation. |
+| `0046a7b0` | `building_child_piece_context_helper_0046a7b0` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046a7b0. Remove duplicated building wording. |
+| `0046a880` | `release_vehicle_class_runtime_context` | plate | [cgpt i76.exe world/runtime table rename v17; confidence=HIGH] Vehicle class-specific release callback; delegates to the shared vehicle runtime context cleanup helper. |
+| `0046a890` | `building_child_piece_context_helper_0046a890` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046a890. Remove duplicated building wording. |
+| `0046a8d0` | `building_child_piece_context_helper_0046a8d0` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046a8d0. Remove duplicated building wording. |
+| `0046a910` | `building_child_piece_context_helper_0046a910` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046a910. Remove duplicated building wording. |
+| `0046a9f0` | `extract_engine_or_suspension_state_pair` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=medium-high] Extracts two dword state values from engine/suspension component runtime, defaulting to 300/300. |
+| `0046aa30` | `allocate_traffic_runtime_defaults` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=medium] Allocates a 0x30-byte class runtime block and initializes first two fields to 400; class-specific runtime initializer, likely traffic/vehicle behavior defaults. |
+| `0046aa50` | `refresh_damageable_runtime_source_when_suppressed` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] Damageable/traffic class callback that caches a source/runtime object when side effects are suppressed. |
+| `0046aa80` | `create_building_world_object_default` | plate | cgpt whole-binary semantic rename v1: strings x1_bldx1/null |
+| `0046ac50` | `apply_vehicle_damage_context_and_destruction` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Vehicle class damage callback; updates damage state and destruction side effects. |
+| `0046b200` | `building_child_piece_context_helper_0046b200` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046b200. Remove duplicated building wording. |
+| `0046b220` | `apply_vehicle_destruction_effects_and_chunk_spawns` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium-high] Vehicle destruction helper referencing CHUNK1/CHUNK2/K1/K2 and explosion/building/car effect resources. |
+| `0046b710` | `spawn_vehicle_damage_chunk_pair` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Helper under vehicle destruction path referencing CHUNK1/CHUNK2/K1/K2. |
+| `0046ba10` | `create_building_world_object` | plate | cgpt whole-binary semantic rename v1: string evidence x1_bldx1 |
+| `0046bb60` | `building_child_piece_context_helper_0046bb60` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046bb60. Remove duplicated building wording. |
+| `0046bd10` | `building_child_piece_context_helper_0046bd10` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046bd10. Remove duplicated building wording. |
+| `0046c870` | `building_child_piece_context_helper_0046c870` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046c870. Remove duplicated building wording. |
+| `0046c8b0` | `create_textured_building_piece` | plate | cgpt whole-binary semantic rename v1: strings x1_bldx1 and V1 FT/LF/MD texture slots |
+| `0046cba0` | `create_building_child_object` | plate | cgpt whole-binary semantic rename v1: string evidence x1_bldx1 |
+| `0046cc50` | `building_child_piece_context_helper_0046cc50` | plate | cgpt label refinement v19: was building_world_object_building_child_piece_helper_0046cc50. Remove duplicated building wording. |
+| `0046ce30` | `format_kill_message` | plate | cgpt whole-binary semantic rename v1: strings killed by / has been killed |
+| `0046d6f0` | `world_object_texture_animation_context_helper_0046d6f0` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture animation context helper based on adjacent named subsystem context. |
+| `0046d740` | `world_object_texture_animation_state_getter_0046d740` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture animation state getter based on adjacent named subsystem context. |
+| `0046d760` | `world_object_texture_animation_state_setter_0046d760` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture animation state setter based on adjacent named subsystem context. |
+| `0046d820` | `initialize_dual_geometry_texture_animation_timer` | plate | cgpt rename v2: Initializes a two-variant geometry texture animation timer and registers texture animation callbacks. |
+| `0046d900` | `world_object_texture_animation_start_helper_0046d900` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture animation start helper based on adjacent named subsystem context. |
+| `0046d9f0` | `extract_part_damage_state_pair` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=medium-high] Extracts damage/state pair from damageable part runtime, defaulting to 300/300. |
+| `0046da30` | `set_damageable_part_state_pair` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Writes two state/damage fields to class 0x1e damageable part runtime data. |
+| `0046da60` | `world_object_texture_animation_stop_helper_0046da60` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture animation stop helper based on adjacent named subsystem context. |
+| `0046da90` | `world_object_texture_animation_tick_helper_0046da90` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture animation tick helper based on adjacent named subsystem context. |
+| `0046daf0` | `set_tire_child_speed_scalar` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Tiny setter storing vehicle speed/contact scalar into tire child runtime state. |
+| `0046daf0` | `set_tire_child_speed_scalar` | pre | I76 semantic baseline: set_tire_child_speed_scalar<br>Sets tire child speed/rotation scalar. |
+| `0046db00` | `world_object_texture_animation_update_helper_0046db00` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture animation update helper based on adjacent named subsystem context. |
+| `0046dc10` | `update_tire_contact_height_and_compression_state` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Computes tire terrain/contact height, compression delta, smoothing, and visual/runtime contact height state. |
+| `0046dc10` | `update_tire_contact_height_and_compression_state` | pre | I76 semantic baseline: update_tire_contact_height_and_compression_state<br>Updates tire contact height and compression state. |
+| `0046dd60` | `get_tire_contact_surface_height` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Tire child accessor for cached contact surface height. |
+| `0046dd70` | `get_tire_compression_visual_offset` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Tire child accessor for visual compression/contact offset. |
+| `0046dd80` | `get_tire_world_position_minus_contact_offset` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Tire child helper returning world position adjusted by contact offset. |
+| `0046ddd0` | `play_flat_tire_blowout_sound` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Small helper referenced by vehicle damage texture state update; anchored by tblow.wav. |
+| `0046de10` | `is_tire_contact_active` | plate | [cgpt i76.exe vehicle suspension/contact renames v32; confidence=high] Returns tire child contact-active state. |
+| `0046de10` | `is_tire_contact_active` | pre | I76 semantic baseline: is_tire_contact_active<br>Returns whether tire contact is active. |
+| `0046de20` | `update_tire_contact_skid_fx_state` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Tracks tire contact, begins/appends tire skid trails, and occasionally spawns CHUNK3/K3 dust or skid FX from the tire contact point. |
+| `0046de20` | `update_tire_contact_skid_fx_state` | pre | I76 semantic baseline: update_tire_contact_skid_fx_state<br>Updates tire contact/skid effect state. |
+| `0046dfc0` | `world_object_texture_binding_refresh_helper_0046dfc0` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture binding refresh helper based on adjacent named subsystem context. |
+| `0046dfe0` | `initialize_vehicle_door_or_hood_damage_visual` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Initializes damage visual state for class 0x20/0x21 child parts, records active vehicle part pointers, binds ZHR/ZHL texture animation resources for local-player vehicles. |
+| `0046e240` | `world_object_texture_binding_lookup_helper_0046e240` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture binding lookup helper based on adjacent named subsystem context. |
+| `0046e2e0` | `world_object_texture_binding_apply_helper_0046e2e0` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture binding apply helper based on adjacent named subsystem context. |
+| `0046e360` | `world_object_texture_binding_clear_helper_0046e360` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture binding clear helper based on adjacent named subsystem context. |
+| `0046e3e0` | `start_weapon_muzzle_flash_texture_animation` | plate | cgpt rename v2: Starts a weapon/muzzle texture animation by selecting frames on the weapon child object. |
+| `0046e490` | `get_vehicle_weapon_fire_gate_state` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Returns vehicle weapon fire-gate state used by fire enable and targeting paths. |
+| `0046e4d0` | `is_vehicle_weapon_fire_gate_clear` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Small vehicle weapon fire-gate predicate used by player weapon fire enable logic. |
+| `0046e540` | `is_vehicle_weapon_fire_gate_locked_ready` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Small vehicle weapon fire-gate predicate for locked/ready state. |
+| `0046e5a0` | `world_object_texture_binding_state_helper_0046e5a0` | plate | cgpt readability rename set C v15: Readability pass set C: world object texture binding state helper based on adjacent named subsystem context. |
+| `0046e6e0` | `create_vehicle_damage_child_effect_objects` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Creates child world objects/effects for damaged vehicle parts, using handgn/part geometry and parent transforms. |
+| `0046ebf0` | `world_object_noop_callback_a_0046ebf0` | plate | cgpt readability rename set C v15: Readability pass set C: world object noop callback a based on adjacent named subsystem context. |
+| `0046ec00` | `world_object_noop_callback_b_0046ec00` | plate | cgpt readability rename set C v15: Readability pass set C: world object noop callback b based on adjacent named subsystem context. |
+| `0046ecc0` | `apply_vehicle_directional_impulse` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Applies a direction-scaled impulse into vehicle runtime/physics state. |
+| `0046edc0` | `noop_world_object_callback_stub` | plate | cgpt rename v2: No-op callback target referenced from world/mission callback tables. |
+| `0046edd0` | `world_object_callback_table_entry_helper_0046edd0` | plate | cgpt readability rename set C v15: Readability pass set C: world object callback table entry helper based on adjacent named subsystem context. |
+| `0046ee00` | `world_object_callback_table_entry_helper_0046ee00` | plate | cgpt readability rename set C v15: Readability pass set C: world object callback table entry helper based on adjacent named subsystem context. |
+| `0046ee40` | `world_object_callback_table_entry_helper_0046ee40` | plate | cgpt readability rename set C v15: Readability pass set C: world object callback table entry helper based on adjacent named subsystem context. |
+| `0046ee60` | `update_vehicle_weapon_mount_pitch_toward_target` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Updates vehicle weapon mount pitch/aim toward target using targeting transforms. |
+| `0046f1d0` | `loaded_resource_cache_find_record_helper_0046f1d0` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache find record helper based on adjacent named subsystem context. |
+| `0046f290` | `loaded_resource_cache_insert_record_helper_0046f290` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache insert record helper based on adjacent named subsystem context. |
+| `0046f2b0` | `initialize_vehicle_suspension_or_wheel_damage_visual` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Initializes a vehicle part texture animation using ZSWLS*.tmt and object texture-slot names. Likely suspension/wheel damage visual state. |
+| `0046f3f0` | `loaded_resource_cache_refcount_helper_0046f3f0` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache refcount helper based on adjacent named subsystem context. |
+| `0046f420` | `loaded_resource_cache_release_record_helper_0046f420` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache release record helper based on adjacent named subsystem context. |
+| `0046f590` | `loaded_resource_cache_lookup_size_helper_0046f590` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache lookup size helper based on adjacent named subsystem context. |
+| `0046f5b0` | `loaded_resource_cache_load_record_helper_0046f5b0` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache load record helper based on adjacent named subsystem context. |
+| `0046f890` | `apply_generic_vehicle_radial_damage_response` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium-high] Shared class callback that builds a class damage transform and dispatches radial damage/impulse using vectors from the damage context. |
+| `0046f8f0` | `loaded_resource_cache_evict_lru_helper_0046f8f0` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache evict lru helper based on adjacent named subsystem context. |
+| `0046f960` | `loaded_resource_cache_hash_context_helper_0046f960` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache hash context helper based on adjacent named subsystem context. |
+| `0046f980` | `loaded_resource_cache_hash_context_helper_0046f980` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache hash context helper based on adjacent named subsystem context. |
+| `0046fa80` | `loaded_resource_cache_cleanup_context_helper_0046fa80` | plate | cgpt readability rename set C v15: Readability pass set C: loaded resource cache cleanup context helper based on adjacent named subsystem context. |
+| `0046fab0` | `destroy_loaded_resource_cache_heap` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Evicts all loaded-resource cache records, frees hash table, resets purge lists/counters, and destroys the resource heap. |
+| `0046fb30` | `initialize_loaded_resource_cache_heap` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Initializes loaded-resource cache heap, hash table, purge lists, and cache budget based on system memory profile. |
+| `0046fbe0` | `evict_loaded_resource_cache_record` | plate | [cgpt i76.exe texture/resource-cache rename v10; confidence=high] Unlinks a loaded-resource cache record from purge/hash lists, frees it, and rebuilds purge list if needed. |
+| `0046fd40` | `release_resource_file_reference` | plate | [cgpt i76.exe texture/resource-cache rename v10; confidence=high] Canonicalizes/lowercases a resource name and releases either indexed-resource payload or loaded-resource cache record reference. |
+| `0046fe30` | `release_loaded_resource_cache_record_by_name` | plate | [cgpt i76.exe texture/resource-cache rename v10; confidence=high] Looks up a loaded-resource cache record by name, decrements refcount, and moves it to the purge list when refcount reaches zero. |
+| `0046fee0` | `get_loaded_resource_file_size` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Returns loaded resource file size for the resource/cache helper object. |
+| `0046ffc0` | `open_resource_file_into_memory` | plate | [cgpt i76.exe texture/resource-cache rename v10; confidence=high] Canonicalized resource open helper that chooses directory-backed loaded cache versus indexed archive record depending on preference/global state. |
+| `00470070` | `load_resource_stream_into_loaded_cache` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Loads a resource stream into the loaded resource cache; used as the backing stream for .pak payload access. |
+| `004702d0` | `canonicalize_resource_key_16byte` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] Canonicalizes a resource key before it is inserted into or queried from the registered resource table. |
+| `00470340` | `resource_exists_in_cache_or_search_paths` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=high] Tests whether a resource exists in cache/registered paths; used by GEO texture slot .tmt versus .map fallback. |
+| `004703a0` | `load_localized_texture_or_vqm_to_buffer` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Localized/resource-variant texture loader that ultimately routes texture image data through direct/VQM image loading into a caller buffer. |
+| `004704a0` | `load_localized_texture_resource_variant` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Loads a localized/resource variant of a texture/image resource. |
+| `00470580` | `release_localized_texture_resource_variant` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Releases a localized/resource variant texture/image resource. |
+| `00470660` | `load_pix_pak_resource_index` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Enumerates registered *.pix index files, maps each to a sibling .pak, parses resource offset/size rows, and builds the sorted 0x1c-byte indexed-resource table. |
+| `00470ac0` | `free_pix_pak_resource_index` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Releases per-PAK resource handles, frees PIX/PAK file table and sorted indexed-resource record table. |
+| `00470b20` | `load_indexed_resource_record_payload` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Loads or reuses the owning .pak stream and returns base + indexed-resource payload offset. |
+| `00470bc0` | `release_indexed_resource_record_payload` | plate | [cgpt i76.exe texture/resource-cache rename v10; confidence=high] Binary-searches indexed resource records, decrements backing-file record refcount, and releases backing loaded-resource cache record when it reaches zero. |
+| `00470c40` | `get_indexed_resource_record_size` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Returns indexed-resource payload size from the 0x1c-byte PIX/PAK table record. |
+| `00470c70` | `indexed_resource_record_exists` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Checks existence of a key in the sorted 0x1c-byte PIX/PAK indexed-resource table. |
+| `00470ca0` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Comparator for bsearch/qsort over registered or indexed records keyed by the first 16 bytes. |
+| `00470cd0` | `enumerate_logical_drives` | plate | i76 first-pass rename<br>old_name: FUN_00470cd0<br>suggested_name: enumerate_logical_drives<br>basis: Uses GetLogicalDrives/GetDriveTypeA to enumerate drives. |
+| `00470d30` | `get_active_cdrom_drive_letter` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] Returns/formats active drive letter used when resource paths are remapped to CD drive paths. |
+| `00470ed0` | `check_i76_cd2_volume_available` | plate | cgpt whole-binary semantic rename v1: string evidence I76_CD2 |
+| `00470f90` | `prompt_for_cd2_if_needed` | plate | [cgpt i76.exe shell callback rename v2; confidence=high] ShellMain callback slot +0x44. Prompts/checks for CD2 when required by shell/game resource access. |
+| `00471250` | `enumerate_cdrom_drives` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Enumerates CD-ROM drives, identifies I76 CD media, initializes loaded-resource/ZFS/PixPak callbacks, and loads the PIX/PAK resource index. |
+| `004713f0` | `reset_pix_pak_and_resource_cache` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Frees PIX/PAK index, destroys loaded-resource cache heap, then calls ZFS/archive cleanup helper. |
+| `00471400` | `graphics_error_ui_graphics_error_dialog_helper_00471400` | plate | cgpt readability rename set C v15: Readability pass set C: likely graphics_error_ui / graphics_error_dialog_helper based on address neighborhood and previously named adjacent systems. |
+| `00471540` | `close_two_handles` | plate | i76 first-pass rename<br>old_name: FUN_00471540<br>suggested_name: close_two_handles<br>basis: Small helper closing two Win32 handles. |
+| `00471580` | `show_init_graphics_error_dialog` | plate | cgpt whole-binary semantic rename v1: strings Init_Graphic_System / Gold Edition |
+| `004716b0` | `load_project_info_file` | plate | cgpt whole-binary semantic rename v1: references PrjInfo.txt |
+| `00471840` | `mark_asset_fullres_flag_from_fullres_list` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Initializes/checks FULLRES.LST-derived hash bitset and marks asset/resource flags for full-resolution handling. |
+| `00471980` | `ensure_m16_resource_loaded_and_mark_fullres` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Lazily loads basename.m16, initializes FULLRES.LST bitset if needed, and marks loaded M16 resource flags for full-resolution handling. |
+| `00471b70` | `release_m16_resource_handle` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Releases a lazily loaded M16 resource handle associated with the texture/fullres path. |
+| `00471c10` | `load_fullres_texture_list` | plate | i76 second-pass rename<br>old_name: FUN_00471c10<br>suggested_name: load_fullres_texture_list<br>basis: References FULLRES.LST and add_texture_to_cache. |
+| `00471e50` | `load_localized_m16_texture_resource` | plate | cgpt whole-binary semantic rename v1: references .m16 and texture loading path |
+| `00471f00` | `polygon_renderer_context_helper_00471f00` | plate | cgpt readability rename set C v15: Readability pass set C: polygon renderer context helper based on adjacent named subsystem context. |
+| `00471fd0` | `submit_lit_textured_polygon_to_renderer` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Dispatches lit/textured polygon through clip/prepare and draw/span tables using 0x18-byte render vertices. |
+| `004721bf` | `software_raster_inner_stub_004721bf` | plate | cgpt readability rename set C v15: Readability pass set C: software raster inner stub based on adjacent named subsystem context. |
+| `00472220` | `software_raster_command_context_helper_00472220` | plate | cgpt readability rename set C v15: Readability pass set C: software raster command context helper based on adjacent named subsystem context. |
+| `00472400` | `software_raster_command_context_helper_00472400` | plate | cgpt readability rename set C v15: Readability pass set C: software raster command context helper based on adjacent named subsystem context. |
+| `00472530` | `software_raster_command_context_helper_00472530` | plate | cgpt readability rename set C v15: Readability pass set C: software raster command context helper based on adjacent named subsystem context. |
+| `00472990` | `software_raster_queue_context_helper_00472990` | plate | cgpt readability rename set C v15: Readability pass set C: software raster queue context helper based on adjacent named subsystem context. |
+| `00472c10` | `software_raster_queue_context_helper_00472c10` | plate | cgpt readability rename set C v15: Readability pass set C: software raster queue context helper based on adjacent named subsystem context. |
+| `00472d30` | `raster_scratch_arena_context_helper_00472d30` | plate | cgpt readability rename set C v15: Readability pass set C: raster scratch arena context helper based on adjacent named subsystem context. |
+| `00472df0` | `ensure_raster_scratch_arena` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Ensures/refreshes the software rasterizer scratch arena used by command records, edges, and span lists. |
+| `00472ee0` | `initialize_raster_command_record` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Initializes a 0x60-ish software raster command record with callback, control/mode, span-list fields, and default sentinel values. |
+| `00472f20` | `initialize_raster_edge_record_from_vertex_pair` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Initializes an edge record from a projected vertex pair for polygon scanline span generation. |
+| `00472fd0` | `raster_edge_record_context_helper_00472fd0` | plate | cgpt readability rename set C v15: Readability pass set C: raster edge record context helper based on adjacent named subsystem context. |
+| `00473260` | `raster_edge_step_context_helper_00473260` | plate | cgpt readability rename set C v15: Readability pass set C: raster edge step context helper based on adjacent named subsystem context. |
+| `004732e0` | `raster_edge_step_context_helper_004732e0` | plate | cgpt readability rename set C v15: Readability pass set C: raster edge step context helper based on adjacent named subsystem context. |
+| `00473400` | `raster_span_builder_context_helper_00473400` | plate | cgpt readability rename set C v15: Readability pass set C: raster span builder context helper based on adjacent named subsystem context. |
+| `00473490` | `raster_span_builder_context_helper_00473490` | plate | cgpt readability rename set C v15: Readability pass set C: raster span builder context helper based on adjacent named subsystem context. |
+| `00473630` | `raster_span_builder_context_helper_00473630` | plate | cgpt readability rename set C v15: Readability pass set C: raster span builder context helper based on adjacent named subsystem context. |
+| `00473640` | `raster_span_builder_context_helper_00473640` | plate | cgpt readability rename set C v15: Readability pass set C: raster span builder context helper based on adjacent named subsystem context. |
+| `00473670` | `build_projected_polygon_scanline_spans` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Wrapper for projected polygon scanline span construction. |
+| `004736b0` | `raster_span_workspace_context_helper_004736b0` | plate | cgpt readability rename set C v15: Readability pass set C: raster span workspace context helper based on adjacent named subsystem context. |
+| `00473760` | `grow_raster_scanline_workspace` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Grows/reallocates the software rasterizer scanline workspace arrays. |
+| `00473960` | `build_projected_polygon_scanline_spans_impl` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Builds edge intersections and span descriptors for projected polygons. |
+| `00474270` | `emit_raster_scanline_span_runs` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Emits packed scanline span descriptors using y/x-left/x-right packing. |
+| `00474380` | `display_bitmap_surface_context_helper_00474380` | plate | cgpt readability rename set C v15: Readability pass set C: display bitmap surface context helper based on adjacent named subsystem context. |
+| `00474620` | `submit_single_vertex_or_point_primitive` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium-high] Submits a single-vertex/point primitive into the software renderer path. |
+| `00474850` | `submit_two_vertex_or_line_primitive` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium-high] Submits a two-vertex/line primitive into the software renderer path. |
+| `00474b90` | `graphics_buffer_memory_error_context_helper_00474b90` | plate | cgpt readability rename set C v15: Readability pass set C: graphics buffer memory error context helper based on adjacent named subsystem context. |
+| `00474c10` | `report_not_enough_graphic_buffer_memory` | plate | cgpt whole-binary semantic rename v1: string evidence graphic buffers |
+| `00474c40` | `localized_texture_resource_context_helper_00474c40` | plate | cgpt readability rename set C v15: Readability pass set C: localized texture resource context helper based on adjacent named subsystem context. |
+| `00474c60` | `construct_bitmap_surface_context` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Constructs bitmap/surface context backing texture image resources. |
+| `00474d40` | `release_bitmap_surface_context` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Releases heap/backing memory held by a bitmap/surface context. |
+| `00474e00` | `set_bitmap_surface_clip_rect` | plate | cgpt rename v4: Normalizes and clips a rectangle to bitmap bounds and stores the resulting clip rectangle in the bitmap surface context. |
+| `00474ea0` | `fill_bitmap_surface_context` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Fills or initializes bitmap/surface-context pixel memory. |
+| `00474f60` | `bitmap_surface_clip_context_helper_00474f60` | plate | cgpt readability rename set C v15: Readability pass set C: bitmap surface clip context helper based on adjacent named subsystem context. |
+| `004750d0` | `bitmap_surface_blit_context_helper_004750d0` | plate | cgpt readability rename set C v15: Readability pass set C: bitmap surface blit context helper based on adjacent named subsystem context. |
+| `00475350` | `report_3d_hardware_acceleration_init_failed` | plate | cgpt whole-binary semantic rename v1: string evidence failed to initialize 3D hardware acceleration |
+| `004754f0` | `display_hardware_acceleration_error_context_helper_004754f0` | plate | cgpt readability rename set C v15: Readability pass set C: display hardware acceleration error context helper based on adjacent named subsystem context. |
+| `00475b60` | `recreate_direct3d_render_surfaces_for_mode` | plate | cgpt rename v2: Releases and recreates D3D render/depth/viewport-style surfaces for a selected display mode. |
+| `00476000` | `select_display_backend` | plate | i76 second-pass rename<br>old_name: FUN_00476000<br>suggested_name: select_display_backend<br>basis: References zglide/zredline/zpowervr/zdx5draw and software/hardware mode diagnostics. |
+| `00476190` | `windowed_high_color_error_context_helper_00476190` | plate | cgpt readability rename set C v15: Readability pass set C: windowed high color error context helper based on adjacent named subsystem context. |
+| `004761a0` | `report_windowed_mode_requires_high_color` | plate | cgpt whole-binary semantic rename v1: string evidence 16/24/32 bit color |
+| `00476450` | `dib_surface_palette_context_helper_00476450` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface palette context helper based on adjacent named subsystem context. |
+| `004764c0` | `dib_surface_palette_context_helper_004764c0` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface palette context helper based on adjacent named subsystem context. |
+| `004766d0` | `dib_surface_context_getter_helper_004766d0` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface context getter helper based on adjacent named subsystem context. |
+| `004766e0` | `dib_surface_context_setter_helper_004766e0` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface context setter helper based on adjacent named subsystem context. |
+| `00476730` | `dib_surface_context_flag_helper_00476730` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface context flag helper based on adjacent named subsystem context. |
+| `00476780` | `dib_surface_context_update_helper_00476780` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface context update helper based on adjacent named subsystem context. |
+| `00476890` | `dib_surface_context_cleanup_helper_00476890` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface context cleanup helper based on adjacent named subsystem context. |
+| `004768d0` | `dib_surface_context_release_helper_004768d0` | plate | cgpt readability rename set C v15: Readability pass set C: dib surface context release helper based on adjacent named subsystem context. |
+| `004768f0` | `create_gdi_font_from_i76_font_descriptor` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Creates a Win32 GDI HFONT from one of the game's display-mode-specific font descriptors. |
+| `004769e0` | `install_or_register_game_font` | plate | i76 first-pass rename<br>old_name: FUN_004769e0<br>suggested_name: install_or_register_game_font<br>basis: Font install/register path; uses CreateScalableFontResourceA/AddFontResourceA/DeleteFileA/GetCurrentDirectoryA. |
+| `00476c90` | `cleanup_registered_game_font` | plate | i76 first-pass rename<br>old_name: FUN_00476c90<br>suggested_name: cleanup_registered_game_font<br>basis: Font cleanup path paired with font registration helper. |
+| `00476db0` | `create_dibsection_8bpp_surface_context_with_game_palette` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=high] Creates top-down 8bpp DIBSection surface context using game palette triplets at 004fa170. |
+| `00476ec0` | `create_palette_dib_surface_context_helper_00476ec0` | plate | cgpt readability rename set D v16: Readability pass set D: create palette dib surface context helper based on adjacent named subsystem context. |
+| `00477170` | `release_palette_dib_surface_context_helper_00477170` | plate | cgpt readability rename set D v16: Readability pass set D: release palette dib surface context helper based on adjacent named subsystem context. |
+| `00477300` | `update_palette_dib_surface_pixels_helper_00477300` | plate | cgpt readability rename set D v16: Readability pass set D: update palette dib surface pixels helper based on adjacent named subsystem context. |
+| `00477760` | `copy_bitmap_surface_to_dib_context_helper_00477760` | plate | cgpt readability rename set D v16: Readability pass set D: copy bitmap surface to dib context helper based on adjacent named subsystem context. |
+| `00477ac0` | `get_current_headlight_runtime_state` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium] Returns current headlight/runtime entry field from DAT_004fa0b0 indexed by DAT_0058db00; exact state enum awaits lighting pass. |
+| `00477ad0` | `palette_dib_surface_getter_helper_00477ad0` | plate | cgpt readability rename set D v16: Readability pass set D: palette dib surface getter helper based on adjacent named subsystem context. |
+| `00477ae0` | `palette_dib_surface_setter_helper_00477ae0` | plate | cgpt readability rename set D v16: Readability pass set D: palette dib surface setter helper based on adjacent named subsystem context. |
+| `00477af0` | `palette_dib_surface_flag_helper_00477af0` | plate | cgpt readability rename set D v16: Readability pass set D: palette dib surface flag helper based on adjacent named subsystem context. |
+| `00477b00` | `palette_dib_surface_update_helper_00477b00` | plate | cgpt readability rename set D v16: Readability pass set D: palette dib surface update helper based on adjacent named subsystem context. |
+| `00477be0` | `palette_dib_surface_blit_context_helper_00477be0` | plate | cgpt readability rename set D v16: Readability pass set D: palette dib surface blit context helper based on adjacent named subsystem context. |
+| `00477c20` | `create_lobj_light_runtime_entry` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=high] Creates runtime LOBJ light entry, clamps range/cone values, computes attenuation, stores color fields, and handles spotlight direction. |
+| `00477e10` | `release_world_object_light_runtime` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Removes a world object from the runtime light table, clears the light flag, and compacts the fixed-size light entry array. |
+| `00477e80` | `palette_dib_surface_lock_context_helper_00477e80` | plate | cgpt readability rename set D v16: Readability pass set D: palette dib surface lock context helper based on adjacent named subsystem context. |
+| `00477ed0` | `palette_dib_surface_unlock_context_helper_00477ed0` | plate | cgpt readability rename set D v16: Readability pass set D: palette dib surface unlock context helper based on adjacent named subsystem context. |
+| `004781d0` | `prepare_world_object_render_state_candidate` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Prepares per-object render state before geometry traversal; called by primary GEO tree pass. |
+| `00478430` | `compute_geo_vertex_lighting_from_normals` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Consumes runtime_geometry +0x10 normal/secondary vector table and transformed positions to produce one lighting/shade scalar per normal index. Handles ambient/directional and dynamic light contributions. |
+| `004788b0` | `vec3_or_matrix_transform_context_helper_004788b0` | plate | cgpt readability rename set D v16: Readability pass set D: vec3 or matrix transform context helper based on adjacent named subsystem context. |
+| `00478b30` | `matrix_vector_projection_context_helper_00478b30` | plate | cgpt readability rename set D v16: Readability pass set D: matrix vector projection context helper based on adjacent named subsystem context. |
+| `00478b80` | `matrix_vector_projection_context_helper_00478b80` | plate | cgpt readability rename set D v16: Readability pass set D: matrix vector projection context helper based on adjacent named subsystem context. |
+| `00478c20` | `matrix_transform_bounds_context_helper_00478c20` | plate | cgpt readability rename set D v16: Readability pass set D: matrix transform bounds context helper based on adjacent named subsystem context. |
+| `00479010` | `geometry_projection_context_helper_00479010` | plate | cgpt readability rename set D v16: Readability pass set D: geometry projection context helper based on adjacent named subsystem context. |
+| `004791e0` | `geometry_projection_clip_context_helper_004791e0` | plate | cgpt readability rename set D v16: Readability pass set D: geometry projection clip context helper based on adjacent named subsystem context. |
+| `00479540` | `vec3_normalize_or_scale_context_helper_00479540` | plate | cgpt readability rename set D v16: Readability pass set D: vec3 normalize or scale context helper based on adjacent named subsystem context. |
+| `004795a0` | `vec3_interpolate_context_helper_004795a0` | plate | cgpt readability rename set D v16: Readability pass set D: vec3 interpolate context helper based on adjacent named subsystem context. |
+| `00479600` | `convert_rgb_floats_to_nearest_palette_index` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Converts three RGB-like float values to clamped bytes and resolves a nearest palette/cube index. |
+| `004796a0` | `cache_nearest_palette_cube_index` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Maps GEO section RGB bytes to nearest game palette index used as a runtime section color/material field. |
+| `00479740` | `matrix_identity_or_copy_context_helper_00479740` | plate | cgpt readability rename set D v16: Readability pass set D: matrix identity or copy context helper based on adjacent named subsystem context. |
+| `00479780` | `matrix_rotation_context_helper_00479780` | plate | cgpt readability rename set D v16: Readability pass set D: matrix rotation context helper based on adjacent named subsystem context. |
+| `004797f0` | `matrix_rotation_context_helper_004797f0` | plate | cgpt readability rename set D v16: Readability pass set D: matrix rotation context helper based on adjacent named subsystem context. |
+| `00479860` | `matrix_transform_composition_context_helper_00479860` | plate | cgpt readability rename set D v16: Readability pass set D: matrix transform composition context helper based on adjacent named subsystem context. |
+| `00479970` | `matrix_transform_composition_context_helper_00479970` | plate | cgpt readability rename set D v16: Readability pass set D: matrix transform composition context helper based on adjacent named subsystem context. |
+| `00479a10` | `vec3_transform_context_helper_00479a10` | plate | cgpt readability rename set D v16: Readability pass set D: vec3 transform context helper based on adjacent named subsystem context. |
+| `00479a60` | `vec3_transform_context_helper_00479a60` | plate | cgpt readability rename set D v16: Readability pass set D: vec3 transform context helper based on adjacent named subsystem context. |
+| `00479a90` | `matrix_transform_context_helper_00479a90` | plate | cgpt readability rename set D v16: Readability pass set D: matrix transform context helper based on adjacent named subsystem context. |
+| `00479c60` | `geometry_math_context_helper_00479c60` | plate | cgpt readability rename set D v16: Readability pass set D: geometry math context helper based on adjacent named subsystem context. |
+| `00479c90` | `geometry_math_context_helper_00479c90` | plate | cgpt readability rename set D v16: Readability pass set D: geometry math context helper based on adjacent named subsystem context. |
+| `00479e50` | `write_texture_buffer_to_pcx_file` | plate | cgpt rename v4: Wraps a texture buffer as a bitmap surface context, writes it as an 8bpp PCX file, then releases the temporary context. |
+| `00479ec0` | `write_8bpp_pcx_file_with_palette` | plate | cgpt rename v2: Writes an 8bpp PCX-style file: 0x80 header, RLE scanlines, palette marker, and 256 RGB triplets. |
+| `0047a100` | `projection_or_clip_context_helper_0047a100` | plate | cgpt readability rename set D v16: Readability pass set D: projection or clip context helper based on adjacent named subsystem context. |
+| `0047a1b0` | `projection_or_clip_context_helper_0047a1b0` | plate | cgpt readability rename set D v16: Readability pass set D: projection or clip context helper based on adjacent named subsystem context. |
+| `0047a220` | `projection_or_clip_context_helper_0047a220` | plate | cgpt readability rename set D v16: Readability pass set D: projection or clip context helper based on adjacent named subsystem context. |
+| `0047a860` | `projection_or_clip_context_helper_0047a860` | plate | cgpt readability rename set D v16: Readability pass set D: projection or clip context helper based on adjacent named subsystem context. |
+| `0047aa50` | `blit_bitmap_surface_context_clipped_with_palette_blend` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Clipped 8bpp surface blitter that blends/copies through palette composition lookup tables. |
+| `0047b1a0` | `clip_screen_xy_lit_textured_polygon_vertices` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=high] Screen-space X/Y clipper preserving 0x18-byte lit textured vertex attributes x,y,z,u,v,light. |
+| `0047b8c0` | `clip_screen_xy_lit_polygon_vertices_compact` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=high] Screen-space X/Y clipper for compact or reduced polygon attribute mode; preserves position/depth/light behavior. |
+| `0047bf00` | `project_zclip_then_screen_clip_lit_polygon` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=high] Near/far Z clip plus perspective projection, then compact screen-space clipping. |
+| `0047c2f0` | `project_zclip_then_screen_clip_lit_textured_polygon` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=high] Near/far Z clip plus perspective projection, then full lit textured screen-space clipping. |
+| `0047c8d0` | `prepare_projected_polygon_mode_0047c8d0` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=medium] Clip/prepare table target in g_geo_raster_clip_prepare_table; exact raster mode semantics still being traced. |
+| `0047c930` | `prepare_projected_polygon_mode_0047c930` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=medium] Clip/prepare table target in g_geo_raster_clip_prepare_table; exact raster mode semantics still being traced. |
+| `0047cab0` | `prepare_projected_polygon_mode_0047cab0` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=medium] Rare clip/prepare table target in g_geo_raster_clip_prepare_table and also appears in draw/mode table. |
+| `0047cae0` | `prepare_projected_polygon_mode_0047cae0` | plate | [cgpt i76.exe GEO raster table renames v35; confidence=medium] Clip/prepare table target in g_geo_raster_clip_prepare_table; exact raster mode semantics still being traced. |
+| `0047cb00` | `raster_emit_flat_shaded_gradient_spans` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Span callback for flat-color spans with interpolated light/shade; uses palette shade table and packed span descriptors. |
+| `0047ce40` | `queue_flat_color_light_gradient_polygon` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Queues flat-color polygon command with interpolated light/shade gradient; callback raster_emit_flat_shaded_gradient_spans. |
+| `0047cfc0` | `raster_emit_flat_shaded_constant_spans` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Span callback for flat-color spans with constant light/shade; uses palette shade table and packed span descriptors. |
+| `0047d110` | `queue_flat_color_constant_light_polygon` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Queues flat-color polygon command with constant light/shade value; callback raster_emit_flat_shaded_constant_spans. |
+| `0047d1e0` | `raster_emit_span_callback_mode1_flat` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium-high] Simple flat/mode1 span callback that writes directly to destination spans. |
+| `0047d3a0` | `queue_flat_or_mode1_polygon` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium-high] Queues flat/mode1 polygon command with simpler span callback and no texture gradients. |
+| `0047d450` | `raster_emit_affine_textured_spans` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Span callback for affine textured spans with U/V interpolation and direct texture sampling. |
+| `0047da90` | `queue_affine_textured_polygon_uv` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Queues affine textured polygon command with U/V gradients and no light gradient. |
+| `0047dcc0` | `raster_emit_affine_textured_lit_spans` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Span callback for affine textured spans with interpolated light/shade and texture sampling. |
+| `0047e400` | `queue_affine_textured_polygon_uv_light` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Queues affine textured polygon command with U/V gradients and light gradient. |
+| `0047e6b0` | `raster_emit_textured_blend_spans_variant_a` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured span callback variant using destination/source palette blend table. |
+| `0047edb0` | `queue_affine_textured_polygon_uv_blend_variant_a` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured polygon variant using palette/blend-table callback family A. |
+| `0047efe0` | `raster_emit_textured_spans_variant_b` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured span callback variant with alternate texture row/coordinate behavior. |
+| `0047f620` | `queue_affine_textured_polygon_uv_variant_b` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured polygon variant with alternate UV coefficient ordering/callback. |
+| `0047f850` | `raster_emit_textured_lit_spans_variant_b` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured+lit span callback variant B. |
+| `0047ff90` | `queue_affine_textured_polygon_uv_light_variant_b` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured+lit polygon variant with alternate coefficient ordering/callback. |
+| `00480240` | `raster_emit_textured_blend_spans_variant_c` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured span callback variant using g_palette_blend_table_c. |
+| `00480900` | `queue_affine_textured_polygon_uv_blend_variant_c` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured polygon variant using blend-table callback family C. |
+| `00480b30` | `raster_emit_textured_lit_blend_spans_variant_c` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured+lit span callback variant using blend table C. |
+| `004812e0` | `queue_affine_textured_polygon_uv_light_blend_variant_c` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured+lit polygon variant using blend-table callback family C. |
+| `00481590` | `raster_emit_textured_spans_variant_d` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured span callback variant D. |
+| `00481c50` | `queue_affine_textured_polygon_uv_variant_d` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured polygon variant D. |
+| `00481e80` | `raster_emit_textured_lit_spans_variant_d` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured+lit span callback variant D. |
+| `00482630` | `queue_affine_textured_polygon_uv_light_variant_d` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured+lit polygon variant D. |
+| `004828e0` | `raster_emit_textured_spans_mode2_variant` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Affine textured mode-2 span callback variant. |
+| `00482fe0` | `queue_affine_textured_polygon_uv_mode2_variant` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured polygon mode-2 variant. |
+| `00483210` | `raster_emit_span_callback_mode_00483210` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00483a10` | `queue_affine_textured_polygon_uv_light_mode2_variant` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues affine textured+lit polygon mode-2 variant. |
+| `00483cc0` | `raster_emit_span_callback_mode_00483cc0` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00484400` | `queue_affine_textured_polygon_uv_variant_00484400` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Affine textured draw-table variant from raster draw table. |
+| `00484630` | `raster_emit_span_callback_mode_00484630` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00484e70` | `queue_affine_textured_polygon_uv_light_variant_00484e70` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Affine textured/lit draw-table variant from raster draw table. |
+| `00485120` | `raster_emit_span_callback_mode_00485120` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `004859e0` | `queue_affine_textured_constant_light_polygon_variant_004859e0` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant combining constant light/depth setup with U/V/light gradients. |
+| `00485cc0` | `raster_emit_span_callback_mode_00485cc0` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00486580` | `queue_affine_textured_constant_light_polygon_variant_00486580` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant combining constant light/depth setup with U/V/light gradients. |
+| `00486860` | `raster_emit_span_callback_mode_00486860` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00487190` | `queue_affine_textured_polygon_variant_00487190` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=medium] Queues another affine textured polygon variant observed in the raster draw table. |
+| `00487480` | `raster_emit_span_callback_mode_00487480` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00487ea0` | `queue_affine_textured_polygon_variant_00487ea0` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant from high-frequency mode family; exact raster state still under investigation. |
+| `00488220` | `raster_emit_span_callback_mode_00488220` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00488b50` | `queue_affine_textured_polygon_variant_00488b50` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant from high-frequency mode family; exact raster state still under investigation. |
+| `00488e40` | `raster_emit_span_callback_mode_00488e40` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `00489860` | `queue_affine_textured_polygon_variant_00489860` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant from high-frequency mode family; exact raster state still under investigation. |
+| `00489be0` | `raster_emit_span_callback_mode_00489be0` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `0048a580` | `queue_affine_textured_polygon_variant_0048a580` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant from high-frequency mode family; exact raster state still under investigation. |
+| `0048a870` | `raster_emit_span_callback_mode_0048a870` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `0048b310` | `queue_affine_textured_polygon_variant_0048b310` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant from high-frequency mode family; exact raster state still under investigation. |
+| `0048b690` | `raster_emit_span_callback_mode_0048b690` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `0048c030` | `queue_affine_textured_polygon_uv_light_mode2_variant_0048c030` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant using command mode/control 2 and U/V/light gradients. |
+| `0048c320` | `raster_emit_span_callback_mode_0048c320` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Raster span callback target from draw table; exact mode still being separated by feature trace. |
+| `0048cdc0` | `queue_affine_textured_polygon_uv_light_mode2_variant_0048cdc0` | plate | [cgpt i76.exe GEO raster span renames v37; confidence=medium] Draw-table variant using command mode/control 2 and U/V/light gradients. |
+| `0048d140` | `compute_projected_triangle_barycentric_matrix` | plate | [cgpt i76.exe geo raster span family renames v38; confidence=high] Computes a projected triangle inverse/barycentric coefficient matrix used for raster attribute gradients. |
+| `0048d2e0` | `draw_clipped_line_to_bitmap_surface` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] General clipped Bresenham-style 8bpp line drawer for bitmap/surface contexts. |
+| `0048d770` | `clip_rect_to_rect_bounds` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Clips one four-int rectangle against another; returns -1 fully outside, 0 unchanged, 1 clipped. |
+| `0048dbd0` | `release_windowed_bitmap_surface_hdc_resources` | plate | cgpt rename v4: Restores selected GDI objects, deletes bitmap/DC resources, releases nested bitmap surface context, and clears HDC state. |
+| `0048dc50` | `world_transform_projection_context_helper_0048dc50` | plate | cgpt label refinement v19: was geometry_transform_highlight_world_transform_or_projection_helper_0048dc50. Shorten readability label. |
+| `0048dc60` | `update_bitmap_palette_entries_and_realize` | plate | cgpt rename v2: Copies palette entries, rebuilds palette tables, creates/updates HPALETTE, realizes it, and refreshes the bitmap context. |
+| `0048e110` | `world_transform_projection_context_helper_0048e110` | plate | cgpt label refinement v19: was geometry_transform_highlight_world_transform_or_projection_helper_0048e110. Shorten readability label. |
+| `0048e1a0` | `load_road_textures` | plate | i76 second-pass rename<br>old_name: FUN_0048e1a0<br>suggested_name: load_road_textures<br>basis: References road textures and abort diagnostic. |
+| `0048e6c0` | `world_transform_projection_context_helper_0048e6c0` | plate | cgpt label refinement v19: was geometry_transform_highlight_world_transform_or_projection_helper_0048e6c0. Shorten readability label. |
+| `0048e700` | `project_point_to_path_segment_context_helper_0048e700` | plate | cgpt readability rename set D v16: Readability pass set D: project point to path segment context helper based on adjacent named subsystem context. |
+| `0048e900` | `render_dynamic_or_track_geometry_pass_candidate` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Separate render-side geometry consumer discovered near GEO render traversal; likely dynamic/track/object pass dispatcher. |
+| `0048f2b0` | `highlight_system_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence hlight |
+| `0048f4c0` | `dispatch_world_object_geometry_render_pass` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Dispatches between primary and secondary world-object geometry tree render passes based on object/list state. |
+| `0048f570` | `highlight_visibility_context_helper_0048f570` | plate | cgpt readability rename set D v16: Readability pass set D: highlight visibility context helper based on adjacent named subsystem context. |
+| `0048f750` | `highlight_merge_context_helper_0048f750` | plate | cgpt readability rename set D v16: Readability pass set D: highlight merge context helper based on adjacent named subsystem context. |
+| `0048f840` | `merge_system_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence merge |
+| `0048f9b0` | `initialize_dynamic_geometry_render_arenas` | plate | cgpt rename v3: Allocates render scratch arenas and initializes dynamic geometry span/record arrays. |
+| `0048fac0` | `merge_world_object_or_geometry_state` | plate | cgpt whole-binary semantic rename v1: string evidence merge |
+| `0048fe10` | `terrain_map_context_helper_0048fe10` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_0048fe10. Remove duplicated terrain wording. |
+| `00490470` | `terrain_map_context_helper_00490470` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00490470. Remove duplicated terrain wording. |
+| `00490590` | `terrain_map_context_helper_00490590` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00490590. Remove duplicated terrain wording. |
+| `004905c0` | `terrain_map_context_helper_004905c0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004905c0. Remove duplicated terrain wording. |
+| `004905e0` | `terrain_map_context_helper_004905e0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004905e0. Remove duplicated terrain wording. |
+| `004907e0` | `terrain_map_context_helper_004907e0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004907e0. Remove duplicated terrain wording. |
+| `00490830` | `terrain_map_context_helper_00490830` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00490830. Remove duplicated terrain wording. |
+| `00490870` | `terrain_map_context_helper_00490870` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00490870. Remove duplicated terrain wording. |
+| `004908f0` | `load_terrain_texture_defaults` | plate | i76 second-pass rename<br>old_name: FUN_004908f0<br>suggested_name: load_terrain_texture_defaults<br>basis: References terrain texture defaults terr256.map, terr128.map, terr16.map. |
+| `004909b0` | `terrain_map_context_helper_004909b0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004909b0. Remove duplicated terrain wording. |
+| `00490a00` | `terrain_map_context_helper_00490a00` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00490a00. Remove duplicated terrain wording. |
+| `00490fb0` | `terrain_map_context_helper_00490fb0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00490fb0. Remove duplicated terrain wording. |
+| `004911e0` | `terrain_map_context_helper_004911e0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004911e0. Remove duplicated terrain wording. |
+| `00491810` | `terrain_map_context_helper_00491810` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00491810. Remove duplicated terrain wording. |
+| `004918b0` | `terrain_map_context_helper_004918b0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004918b0. Remove duplicated terrain wording. |
+| `004918f0` | `terrain_map_context_helper_004918f0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004918f0. Remove duplicated terrain wording. |
+| `00491a30` | `terrain_map_context_helper_00491a30` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00491a30. Remove duplicated terrain wording. |
+| `00492270` | `terrain_map_context_helper_00492270` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00492270. Remove duplicated terrain wording. |
+| `004922b0` | `terrain_map_context_helper_004922b0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004922b0. Remove duplicated terrain wording. |
+| `004922f0` | `terrain_map_context_helper_004922f0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004922f0. Remove duplicated terrain wording. |
+| `004924b0` | `terrain_map_context_helper_004924b0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004924b0. Remove duplicated terrain wording. |
+| `004925e0` | `terrain_map_context_helper_004925e0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004925e0. Remove duplicated terrain wording. |
+| `004925f0` | `compute_world_object_bounds_and_link_global` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Computes bounds for a world object and links it into global runtime structures after geometry/object creation. |
+| `004926c0` | `terrain_map_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence termap |
+| `004926f0` | `terrain_map_context_helper_004926f0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004926f0. Remove duplicated terrain wording. |
+| `00492770` | `get_terrain_material_friction_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Returns terrain/material friction scalar from the terrain material table. |
+| `00492780` | `get_terrain_material_primary_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium] Accessor for the first float in the 5-field terrain/material table entry. |
+| `00492790` | `get_terrain_material_roughness_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Returns terrain/material roughness scalar from the terrain material table. |
+| `004927a0` | `get_terrain_material_integer_scalar` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=medium] Accessor returning the integer field from a terrain/material table entry as a floating-point value. |
+| `004927a0` | `get_terrain_material_integer_scalar` | pre | I76 semantic baseline: get_terrain_material_integer_scalar<br>Returns terrain material integer scalar used by damage/contact paths. |
+| `004927b0` | `lookup_terrain_material_index_at_world_xz` | plate | [cgpt i76.exe vehicle drivetrain/contact renames v33; confidence=high] Maps world X/Z coordinates into the terrain material map and returns the upper material-index bits from the terrain cell. |
+| `004927b0` | `lookup_terrain_material_index_at_world_xz` | pre | I76 semantic baseline: lookup_terrain_material_index_at_world_xz<br>Looks up terrain material index at world X/Z. |
+| `00492890` | `terrain_map_context_helper_00492890` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00492890. Remove duplicated terrain wording. |
+| `004929b0` | `terrain_map_context_helper_004929b0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004929b0. Remove duplicated terrain wording. |
+| `00493080` | `terrain_map_context_helper_00493080` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00493080. Remove duplicated terrain wording. |
+| `00493160` | `terrain_map_context_helper_00493160` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_00493160. Remove duplicated terrain wording. |
+| `004931c0` | `terrain_map_context_helper_004931c0` | plate | cgpt label refinement v19: was terrain_map_runtime_terrain_map_context_helper_004931c0. Remove duplicated terrain wording. |
+| `00493550` | `apply_world_object_transform_to_bounds_or_geometry` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium] Transform helper reached from vehicle child-object creation and bounds paths; candidate geometry/bounds consumer. |
+| `004937c0` | `zone_satellite_map_context_helper_004937c0` | plate | cgpt label refinement v19: was zone_satellite_map_zone_satellite_map_helper_004937c0. Remove duplicated zone_satellite_map wording. |
+| `00493910` | `terrain_reverse_tag_handler` | plate | cgpt whole-binary semantic rename v1: string evidence TREV |
+| `00493960` | `report_zone_number_too_large` | plate | cgpt whole-binary semantic rename v1: string evidence Zone Map |
+| `004939d0` | `load_zone_satellite_map` | plate | cgpt whole-binary semantic rename v1: strings addon/%s another.sat Zone loader error |
+| `00493bd0` | `zone_satellite_map_context_helper_00493bd0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493bd0. Remove duplicated zone_satellite_map wording. |
+| `00493bf0` | `zone_satellite_map_context_helper_00493bf0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493bf0. Remove duplicated zone_satellite_map wording. |
+| `00493c00` | `zone_satellite_map_context_helper_00493c00` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493c00. Remove duplicated zone_satellite_map wording. |
+| `00493c10` | `load_another_satellite_map` | plate | cgpt whole-binary semantic rename v1: references another.sat |
+| `00493c40` | `zone_satellite_map_context_helper_00493c40` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493c40. Remove duplicated zone_satellite_map wording. |
+| `00493c50` | `zone_satellite_map_context_helper_00493c50` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493c50. Remove duplicated zone_satellite_map wording. |
+| `00493ca0` | `zone_satellite_map_context_helper_00493ca0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493ca0. Remove duplicated zone_satellite_map wording. |
+| `00493da0` | `zone_satellite_map_context_helper_00493da0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493da0. Remove duplicated zone_satellite_map wording. |
+| `00493e00` | `zone_satellite_map_context_helper_00493e00` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493e00. Remove duplicated zone_satellite_map wording. |
+| `00493e60` | `zone_satellite_map_context_helper_00493e60` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493e60. Remove duplicated zone_satellite_map wording. |
+| `00493fc0` | `zone_satellite_map_context_helper_00493fc0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00493fc0. Remove duplicated zone_satellite_map wording. |
+| `00494170` | `zone_satellite_map_context_helper_00494170` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00494170. Remove duplicated zone_satellite_map wording. |
+| `004942f0` | `zone_satellite_map_context_helper_004942f0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_004942f0. Remove duplicated zone_satellite_map wording. |
+| `00494460` | `zone_satellite_map_context_helper_00494460` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00494460. Remove duplicated zone_satellite_map wording. |
+| `004944d0` | `zone_satellite_map_context_helper_004944d0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_004944d0. Remove duplicated zone_satellite_map wording. |
+| `00494710` | `zone_satellite_map_context_helper_00494710` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00494710. Remove duplicated zone_satellite_map wording. |
+| `00494880` | `zone_satellite_map_context_helper_00494880` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00494880. Remove duplicated zone_satellite_map wording. |
+| `00494a90` | `zone_satellite_map_context_helper_00494a90` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00494a90. Remove duplicated zone_satellite_map wording. |
+| `00494be0` | `zone_satellite_map_context_helper_00494be0` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00494be0. Remove duplicated zone_satellite_map wording. |
+| `00494c80` | `zone_satellite_map_context_helper_00494c80` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00494c80. Remove duplicated zone_satellite_map wording. |
+| `00494da0` | `transform_vec3_array_by_matrix` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Transforms an array of vec3 positions by a matrix; used for runtime_geometry +0x0c position table. |
+| `00494e20` | `compose_matrix_or_transform_a` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=high] Matrix/affine transform multiply helper used by world-object transform composition. |
+| `00494ef0` | `transform_section_centroid_or_plane_by_matrix` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Transforms GEO section centroid/plane-like sort fields before depth-tree insertion. |
+| `00494f70` | `compose_matrix_or_transform_b` | plate | [cgpt i76.exe vehicle object rename v7; confidence=medium] Builds a rearranged/inverse-style affine transform from the object matrix; exact row/column convention still needs math validation. |
+| `00495000` | `zone_satellite_map_context_helper_00495000` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00495000. Remove duplicated zone_satellite_map wording. |
+| `00495060` | `get_global_heap_handle` | plate | i76 second-pass rename<br>old_name: FUN_00495060<br>suggested_name: get_global_heap_handle<br>basis: Tiny helper called before HeapAlloc/cache operations; likely returns global heap/context. |
+| `00495070` | `zone_satellite_map_context_helper_00495070` | plate | cgpt label refinement v20: was zone_satellite_map_zone_satellite_map_helper_00495070. Remove duplicated zone_satellite_map wording. |
+| `00495170` | `initialize_player_definition_file` | plate | cgpt whole-binary semantic rename v1: references I76PLYR.DEF and graphics init strings |
+| `004952b0` | `destroy_mission_loading_screen` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Releases mission loading screen textures, bitmap contexts, GDI fonts, and display state. |
+| `004953e0` | `initialize_mission_loading_screen` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Creates compatible DC, fonts, loads x1.map, initializes mission loading/menu bitmap context, then calls load_selected_loading_screen_bitmap. |
+| `004956e0` | `load_selected_loading_screen_bitmap` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Loads bitmap resource named by selected loading-screen record, centers it, builds compatible surface/DC state, initializes per-entry UI callbacks. |
+| `00495940` | `player_definition_flow_context_helper_00495940` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495940. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495970` | `player_definition_flow_context_helper_00495970` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495970. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `004959f0` | `player_definition_flow_context_helper_004959f0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_004959f0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495a10` | `player_definition_flow_context_helper_00495a10` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495a10. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495a30` | `player_definition_flow_context_helper_00495a30` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495a30. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495a50` | `player_definition_flow_context_helper_00495a50` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495a50. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495af0` | `player_definition_flow_context_helper_00495af0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495af0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495b10` | `player_definition_flow_context_helper_00495b10` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495b10. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495b40` | `player_definition_flow_context_helper_00495b40` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495b40. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495b70` | `player_definition_flow_context_helper_00495b70` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495b70. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495bf0` | `player_definition_flow_context_helper_00495bf0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495bf0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495c80` | `player_definition_flow_context_helper_00495c80` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495c80. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495cf0` | `player_definition_flow_context_helper_00495cf0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495cf0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495d60` | `player_definition_flow_context_helper_00495d60` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495d60. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495dd0` | `player_definition_flow_context_helper_00495dd0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495dd0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495e40` | `player_definition_flow_context_helper_00495e40` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495e40. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00495ec0` | `player_definition_flow_context_helper_00495ec0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00495ec0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00496190` | `player_definition_flow_context_helper_00496190` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00496190. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00496850` | `player_definition_flow_context_helper_00496850` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00496850. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00496870` | `redraw_mission_loading_screen` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Redraws mission loading screen backing surface, paints selected entries, prints mission timer for nonzero mission family, flips/repaints through display callbacks. |
+| `00496ab0` | `draw_mission_loading_screen_entry` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Draws a single loading-screen entry, including optional border, label, tick/progress marks, string value, or numeric value. |
+| `004970f0` | `load_or_create_player_definition` | plate | i76 second-pass rename<br>old_name: FUN_004970f0<br>suggested_name: load_or_create_player_definition<br>basis: Reads/writes I76PLYR.DEF. |
+| `00497290` | `save_player_definition` | plate | i76 second-pass rename<br>old_name: FUN_00497290<br>suggested_name: save_player_definition<br>basis: Writes I76PLYR.DEF. |
+| `004972d0` | `player_definition_flow_context_helper_004972d0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_004972d0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00497760` | `run_post_mission_shell_transition_screen` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM] Called after runtime for state 0/0xb before returning to shell or changing flow state.<br>old_name: FUN_00497760 |
+| `004978e0` | `player_definition_flow_context_helper_004978e0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_004978e0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00497910` | `player_definition_flow_context_helper_00497910` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00497910. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00497940` | `player_definition_flow_context_helper_00497940` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00497940. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00497960` | `player_definition_flow_context_helper_00497960` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00497960. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `004979a0` | `player_definition_flow_context_helper_004979a0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_004979a0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00497a30` | `player_definition_flow_context_helper_00497a30` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00497a30. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00497ab0` | `player_definition_flow_context_helper_00497ab0` | plate | cgpt label refinement v20: was player_definition_runtime_player_definition_or_flow_helper_00497ab0. Shorten readability label for player-definition / mission-flow loading screen context. |
+| `00497b20` | `show_in_game_pause_menu` | plate | cgpt whole-binary semantic rename v1: strings Load Bookmark/Abort Mission/Options/Exit |
+| `00498700` | `system_cutscene_memory_context_helper_00498700` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00498700. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00498720` | `system_cutscene_memory_context_helper_00498720` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00498720. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00498730` | `system_cutscene_memory_context_helper_00498730` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00498730. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00498910` | `notify_vehicle_runtime_after_impulse` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Post-impulse vehicle runtime notification/update helper. |
+| `00498940` | `virtual_alloc_reserved_commit_region` | plate | cgpt rename v2: Reserves a VirtualAlloc region, commits the aligned initial size, and tracks it in a global allocation list. |
+| `00498a00` | `system_cutscene_memory_context_helper_00498a00` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00498a00. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00498a50` | `handle_virtual_access_violation` | plate | cgpt whole-binary semantic rename v1: string evidence Virtual Access Violation Error Cr2 |
+| `00498af0` | `open_interval_log` | plate | i76 second-pass rename<br>old_name: FUN_00498af0<br>suggested_name: open_interval_log<br>basis: Opens interval.txt. |
+| `00498b50` | `begin_frame_timing_sample` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Begins frame timing sample using timeGetTime and timing globals. |
+| `00498b80` | `mark_frame_timing_interval` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Records a named frame timing interval for profiling/log output. |
+| `00498c00` | `write_frame_timing_summary` | plate | i76 second-pass rename<br>old_name: FUN_00498c00<br>suggested_name: write_frame_timing_summary<br>basis: Writes median FPS and average jerk timing diagnostics. |
+| `00498d60` | `finish_frame_timing_sample_and_log_stats` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] End-of-frame timing sampler/logger. Maintains ring buffers, median frame timing, jerk statistics, and optional timing log output. |
+| `004990b0` | `write_frame_histogram_log` | plate | i76 second-pass rename<br>old_name: FUN_004990b0<br>suggested_name: write_frame_histogram_log<br>basis: Writes histogram.txt and frame-rate header. |
+| `00499110` | `system_cutscene_memory_context_helper_00499110` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499110. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499210` | `measure_multibyte_text_width_until_limit` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] Measures glyph advance over ASCII/DBCS text until a pixel/advance limit and returns character count, byte count, and end pointer. |
+| `00499360` | `measure_text_prefix_to_fit_hdc_width` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Uses GetTextExtentExPointA to measure how many bytes/characters fit into a target HDC width. |
+| `00499410` | `measure_text_break_prefix_until_width` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] Uses a measurement callback and parse_next_text_break_token to find a line-break-safe text prefix fitting a width limit. |
+| `004994b0` | `draw_wrapped_text_to_hdc_with_optional_underline` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=MEDIUM-HIGH] Draws wrapped text via TextOutA and optionally draws underline/marker spans into a bitmap surface. |
+| `00499640` | `detect_language_and_keyboard` | plate | i76 second-pass rename<br>old_name: FUN_00499640<br>suggested_name: detect_language_and_keyboard<br>basis: Uses locale, keyboard type, and language strings. |
+| `004998d0` | `select_display_mode_font_descriptor` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Returns font descriptor indexed by current display/options profile, falling back to caller default. |
+| `004998f0` | `system_cutscene_memory_context_helper_004998f0` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_004998f0. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499920` | `select_recommended_performance_option_value` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=medium-high] Stores one of two recommended performance option values depending on global mode/state DAT_006547e0 == 3. |
+| `00499950` | `system_cutscene_memory_context_helper_00499950` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499950. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499ae0` | `system_cutscene_memory_context_helper_00499ae0` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499ae0. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499b00` | `system_cutscene_memory_context_helper_00499b00` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499b00. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499ba0` | `fill_recommended_performance_options` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=medium-high] Fills recommended performance/video option profile values. |
+| `00499c30` | `system_cutscene_memory_context_helper_00499c30` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499c30. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499c50` | `system_cutscene_memory_context_helper_00499c50` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499c50. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499c80` | `system_cutscene_memory_context_helper_00499c80` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499c80. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499c90` | `system_cutscene_memory_context_helper_00499c90` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499c90. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499cb0` | `system_cutscene_memory_context_helper_00499cb0` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_00499cb0. Shorten readability label for system/cutscene/virtual-memory context. |
+| `00499ce0` | `xalloc_global_heap` | plate | cgpt rename v2: Thin global HeapAlloc wrapper paired with existing xfree_global_heap. |
+| `00499d00` | `xcalloc_global_heap` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Small allocation wrapper around process/global heap calloc-like path. |
+| `00499d20` | `xrealloc_global_heap` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Small allocation wrapper around process/global heap realloc-like path. |
+| `00499d40` | `xfree_global_heap` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Small allocation wrapper around process/global heap free path. |
+| `00499d60` | `render_smacker_frame_to_buffer` | plate | i76 first-pass rename<br>old_name: FUN_00499d60<br>suggested_name: render_smacker_frame_to_buffer<br>basis: Renders current Smacker frame using SmackDoFrame/SmackToBufferRect/SmackBufferBlit. |
+| `0049a040` | `system_cutscene_memory_context_helper_0049a040` | plate | cgpt label refinement v20: was system_virtual_memory_cutscene_virtual_memory_or_cutscene_helper_0049a040. Shorten readability label for system/cutscene/virtual-memory context. |
+| `0049a070` | `open_smacker_cutscene` | plate | i76 first-pass rename<br>old_name: FUN_0049a070<br>suggested_name: open_smacker_cutscene<br>basis: Opens .smk cutscene, resolves cutscene path, calls SmackOpen and SmackBufferOpen. |
+| `0049a4c0` | `find_cutscene_smk_file` | plate | cgpt whole-binary semantic rename v1: strings cutscene and smk directories |
+| `0049a630` | `is_active_smacker_cutscene` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Tiny predicate returning whether the active Smacker cutscene handle/global is nonzero.<br>old_name: FUN_0049a630 |
+| `0049a640` | `cutscene_smk_playback_context_helper_0049a640` | plate | cgpt readability rename set D v16: Readability pass set D: cutscene smk playback context helper based on adjacent named subsystem context. |
+| `0049a670` | `advance_smacker_cutscene_frame` | plate | i76 first-pass rename<br>old_name: FUN_0049a670<br>suggested_name: advance_smacker_cutscene_frame<br>basis: Waits, renders, advances Smacker frame, closes playback on final frame. |
+| `0049a920` | `close_smacker_cutscene_and_restore_display` | plate | i76 first-pass rename<br>old_name: FUN_0049a920<br>suggested_name: close_smacker_cutscene_and_restore_display<br>basis: Cleanup path for Smacker playback and display restoration. |
+| `0049a9f0` | `initialize_graphics_system_or_report_error` | plate | cgpt whole-binary semantic rename v1: string evidence Init_Graphic_System |
+| `0049ab50` | `ui_bitmap_region_context_helper_0049ab50` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049ab50. Remove duplicated UI/region wording. |
+| `0049ae20` | `ui_bitmap_region_context_helper_0049ae20` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049ae20. Remove duplicated UI/region wording. |
+| `0049ae50` | `ui_bitmap_region_context_helper_0049ae50` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049ae50. Remove duplicated UI/region wording. |
+| `0049aea0` | `ui_bitmap_region_context_helper_0049aea0` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049aea0. Remove duplicated UI/region wording. |
+| `0049aeb0` | `has_pending_smacker_cutscene_request` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Tiny predicate returning whether the pending Smacker cutscene path/request global is nonzero.<br>old_name: FUN_0049aeb0 |
+| `0049aec0` | `ui_bitmap_region_context_helper_0049aec0` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049aec0. Remove duplicated UI/region wording. |
+| `0049aed0` | `consume_pending_smacker_cutscene_path` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Returns pending Smacker cutscene path and clears the pending-request global.<br>old_name: FUN_0049aed0 |
+| `0049aee0` | `initialize_or_resize_runtime_text_overlay_buffers` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Allocates/resizes runtime text/status overlay buffers and related display resources. |
+| `0049b0e0` | `create_scroll_region_bitmap` | plate | cgpt whole-binary semantic rename v1: string evidence cannot create bitmap for scroll region |
+| `0049b280` | `set_text_widget_integer_values` | plate | cgpt rename v4: Stores a count and a caller-provided integer array into a text/widget backing record. |
+| `0049b2b0` | `set_text_widget_visible_flag` | plate | cgpt rename v4: Sets or clears bit 0x02 in a text/widget flags field. |
+| `0049b2e0` | `clear_scrolling_text_widget_buffer` | plate | cgpt rename v4: Clears a scrolling text widget buffer, resets cursor/range fields, and marks the widget dirty. |
+| `0049b340` | `append_scrolling_text_widget_message` | plate | cgpt rename v4: Appends a timed line to a scrolling text widget ring buffer and marks the widget dirty. |
+| `0049b430` | `draw_scrolling_status_message_overlays` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Draws animated/scrolled runtime status message overlays. |
+| `0049b430` | `draw_scrolling_status_message_overlays` | pre | I76 semantic baseline: draw_scrolling_status_message_overlays<br>Draws scrolling runtime status message overlays. |
+| `0049b720` | `ui_bitmap_region_context_helper_0049b720` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049b720. Remove duplicated UI/region wording. |
+| `0049b770` | `ui_bitmap_region_context_helper_0049b770` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049b770. Remove duplicated UI/region wording. |
+| `0049b7e0` | `ui_bitmap_region_context_helper_0049b7e0` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049b7e0. Remove duplicated UI/region wording. |
+| `0049b800` | `create_input_region_bitmap` | plate | cgpt whole-binary semantic rename v1: string evidence cannot create bitmap for input region |
+| `0049b9b0` | `ui_bitmap_region_context_helper_0049b9b0` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049b9b0. Remove duplicated UI/region wording. |
+| `0049b9e0` | `ui_bitmap_region_context_helper_0049b9e0` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049b9e0. Remove duplicated UI/region wording. |
+| `0049ba40` | `ui_bitmap_region_context_helper_0049ba40` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049ba40. Remove duplicated UI/region wording. |
+| `0049bae0` | `ui_bitmap_region_context_helper_0049bae0` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049bae0. Remove duplicated UI/region wording. |
+| `0049bb40` | `ui_bitmap_region_context_helper_0049bb40` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049bb40. Remove duplicated UI/region wording. |
+| `0049beb0` | `ui_bitmap_region_context_helper_0049beb0` | plate | cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049beb0. Remove duplicated UI/region wording. |
+| `0049bee0` | `draw_static_text_overlay_entries` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Draws static runtime text overlay entries, optional underline spans, and blended surface output. |
+| `0049bee0` | `draw_static_text_overlay_entries` | pre | I76 semantic baseline: draw_static_text_overlay_entries<br>Draws static text overlay entries. |
+| `0049c260` | `mission_flow_map_context_helper_0049c260` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c260. Remove duplicated mission-flow/map wording. |
+| `0049c2a0` | `mission_flow_map_context_helper_0049c2a0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c2a0. Remove duplicated mission-flow/map wording. |
+| `0049c300` | `mission_flow_map_context_helper_0049c300` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c300. Remove duplicated mission-flow/map wording. |
+| `0049c320` | `allocate_linked_list_node_3field` | plate | cgpt rename v4: Allocates a generic three-field linked-list node and stitches it between optional previous/next pointers. |
+| `0049c360` | `unlink_and_free_linked_list_node_3field` | plate | cgpt rename v4: Unlinks a generic three-field linked-list node and frees it from the associated heap. |
+| `0049c3b0` | `mission_flow_map_context_helper_0049c3b0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c3b0. Remove duplicated mission-flow/map wording. |
+| `0049c400` | `play_post_mission_audio_sequence_a` | plate | cgpt whole-binary semantic rename v1: references POSTA/GDSGC wav sequence |
+| `0049c480` | `mission_flow_map_context_helper_0049c480` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c480. Remove duplicated mission-flow/map wording. |
+| `0049c4a0` | `play_post_mission_audio_sequence_b` | plate | cgpt whole-binary semantic rename v1: references GDSGC/POSTA wav sequence |
+| `0049c5e0` | `mission_flow_map_context_helper_0049c5e0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c5e0. Remove duplicated mission-flow/map wording. |
+| `0049c6d0` | `mission_flow_map_context_helper_0049c6d0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c6d0. Remove duplicated mission-flow/map wording. |
+| `0049c7a0` | `get_runtime_update_delta_seconds` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Runtime frame/update delta accessor used by vehicle frame update before lifecycle and control update calls. |
+| `0049c7b0` | `mission_flow_map_context_helper_0049c7b0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c7b0. Remove duplicated mission-flow/map wording. |
+| `0049c7c0` | `get_gameplay_runtime_seconds` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Returns runtime time seconds global used by damage/effect timestamps. |
+| `0049c7c0` | `get_gameplay_runtime_seconds` | pre | I76 semantic baseline: get_gameplay_runtime_seconds<br>Returns gameplay/runtime seconds used by damage/effect/FSM timestamps. |
+| `0049c7d0` | `get_current_texture_cache_generation` | plate | cgpt rename v4: Returns the global texture/video-memory cache generation or mode token. |
+| `0049c7e0` | `mission_flow_map_context_helper_0049c7e0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c7e0. Remove duplicated mission-flow/map wording. |
+| `0049c7f0` | `initialize_runtime_clock_state` | plate | i76 first-pass rename<br>old_name: FUN_0049c7f0<br>suggested_name: elapsed_time_or_timer_update<br>basis: Timing/update helper using GetTickCount. |
+| `0049c7f0` | `initialize_runtime_clock_state` | pre | I76 semantic baseline: initialize_runtime_clock_state<br>Initializes GetTickCount-based runtime clock state and frame delta defaults. |
+| `0049c8b0` | `get_runtime_frame_delta_seconds` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Returns current frame delta scalar used by targeting, cooldowns, projectile spread, and mount updates. |
+| `0049c8b0` | `get_runtime_frame_delta_seconds` | pre | I76 semantic baseline: get_runtime_frame_delta_seconds<br>Returns current frame delta seconds. |
+| `0049c8c0` | `get_network_or_session_runtime_seconds` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM] Returns the float runtime/network timer at 005a7e74; heavily used in multiplayer timing gates.<br>old_name: FUN_0049c8c0 |
+| `0049c8c0` | `get_network_or_session_runtime_seconds` | pre | I76 semantic baseline: get_network_or_session_runtime_seconds<br>Returns secondary/session runtime clock, heavily used by multiplayer gates. |
+| `0049c8d0` | `apply_runtime_clock_base_adjustment` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049c8d0. Remove duplicated mission-flow/map wording. |
+| `0049c8d0` | `apply_runtime_clock_base_adjustment` | pre | I76 semantic baseline: apply_runtime_clock_base_adjustment<br>Medium-confidence timing adjustment helper. |
+| `0049c920` | `update_runtime_clock_from_gettickcount` | plate | i76 first-pass rename<br>old_name: FUN_0049c920<br>suggested_name: get_tick_count_wrapper_c<br>basis: Small GetTickCount wrapper in utility/timing area. |
+| `0049c920` | `update_runtime_clock_from_gettickcount` | pre | I76 semantic baseline: update_runtime_clock_from_gettickcount<br>Per-frame runtime clock update; clamps delta and updates gameplay/session clocks. |
+| `0049cbe0` | `initialize_fixedstep_accumulator_interval` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Initializes the accumulator interval for vehicle runtime +0x444 with constant 0.05 in the class frame callback. |
+| `0049cbe0` | `initialize_fixedstep_accumulator_interval` | pre | I76 vehicle trace anchor: fixed-step accumulator interval initializer |
+| `0049cc20` | `reset_fixedstep_accumulator_timer` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Resets or initializes the fixed-step accumulator/timer embedded in the vehicle runtime context at +0x444. |
+| `0049cc20` | `reset_fixedstep_accumulator_timer` | pre | I76 vehicle trace anchor: fixed-step accumulator reset helper |
+| `0049cc60` | `mission_flow_map_context_helper_0049cc60` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049cc60. Remove duplicated mission-flow/map wording. |
+| `0049cca0` | `get_fixedstep_accumulator_seconds` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Returns accumulated seconds from the fixed-step accumulator/timer; compared against the global fixed-step interval. |
+| `0049cca0` | `get_fixedstep_accumulator_seconds` | pre | I76 vehicle trace anchor: fixed-step accumulator seconds accessor |
+| `0049ccc0` | `mission_flow_map_context_helper_0049ccc0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049ccc0. Remove duplicated mission-flow/map wording. |
+| `0049ccd0` | `select_runtime_display_mode_from_token` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM_HIGH] Parses a short token such as a one-letter/two-digit selector and maps it to a runtime display/input mode global.<br>old_name: FUN_0049ccd0 |
+| `0049cdc0` | `reset_runtime_display_input_mode_state` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Sets both current and requested runtime display/input mode globals to 1.<br>old_name: FUN_0049cdc0 |
+| `0049cdd0` | `mission_flow_map_context_helper_0049cdd0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049cdd0. Remove duplicated mission-flow/map wording. |
+| `0049cdf0` | `initialize_mission_map_display` | plate | cgpt whole-binary semantic rename v1: strings cmap/gdsgc map unavailable |
+| `0049d000` | `update_runtime_display_mode_and_input_fsm` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Per-frame display/input mode FSM. Consumes pending action codes, handles loading/FMV/menu/gameplay input modes, and dispatches mode-specific action handlers. |
+| `0049d000` | `update_runtime_display_mode_and_input_fsm` | pre | I76 semantic baseline: update_runtime_display_mode_and_input_fsm<br>Per-frame display/input mode FSM for gameplay/menu/loading/FMV modes. |
+| `0049d140` | `mission_flow_map_context_helper_0049d140` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d140. Remove duplicated mission-flow/map wording. |
+| `0049d1d0` | `parse_command_line_options` | plate | i76 second-pass rename<br>old_name: FUN_0049d1d0<br>suggested_name: parse_command_line_options<br>basis: Parses glide/redline/powervr/recordLoads/interval options. |
+| `0049d400` | `mission_flow_map_context_helper_0049d400` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d400. Remove duplicated mission-flow/map wording. |
+| `0049d420` | `fsm_camera_stack_underflow_error` | plate | cgpt whole-binary semantic rename v1: string evidence Camera Stack Underfow |
+| `0049d470` | `fsm_camera_stack_overflow_error` | plate | cgpt whole-binary semantic rename v1: string evidence Camera Stack 0verfow |
+| `0049d4a0` | `mission_flow_map_context_helper_0049d4a0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d4a0. Remove duplicated mission-flow/map wording. |
+| `0049d5f0` | `mission_flow_map_context_helper_0049d5f0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d5f0. Remove duplicated mission-flow/map wording. |
+| `0049d730` | `mission_flow_map_context_helper_0049d730` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d730. Remove duplicated mission-flow/map wording. |
+| `0049d740` | `mission_flow_map_context_helper_0049d740` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d740. Remove duplicated mission-flow/map wording. |
+| `0049da00` | `mission_flow_map_context_helper_0049da00` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049da00. Remove duplicated mission-flow/map wording. |
+| `0049dac0` | `mission_flow_map_context_helper_0049dac0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049dac0. Remove duplicated mission-flow/map wording. |
+| `0049dda0` | `mission_flow_map_context_helper_0049dda0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049dda0. Remove duplicated mission-flow/map wording. |
+| `0049e0a0` | `format_screenshot_pcx_name` | plate | cgpt whole-binary semantic rename v1: string evidence SCR%04d.pcx |
+| `0049e0f0` | `mission_flow_map_context_helper_0049e0f0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049e0f0. Remove duplicated mission-flow/map wording. |
+| `0049e1b0` | `mission_flow_map_context_helper_0049e1b0` | plate | cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049e1b0. Remove duplicated mission-flow/map wording. |
+| `0049e1f0` | `is_sjis_83_40_to_96_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper: lead 0x83, trail 0x40..0x96 except 0x7f. |
+| `0049e220` | `is_sjis_83_katakana_range_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper: lead 0x83, trail 0x9f..0xb6 or 0xbf..0xd6. |
+| `0049e250` | `is_sjis_84_extended_range_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper: lead 0x84, trail 0x40..0x60 or 0x70..0x91. |
+| `0049e280` | `is_sjis_81_opening_punctuation_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper for selected 0x81 punctuation trails used as non-break/opening punctuation class. |
+| `0049e330` | `is_sjis_closing_punctuation_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper for selected 0x81/0x82 closing punctuation and related marks. |
+| `0049e4d0` | `is_sjis_81_nonbreak_symbol_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper for selected 0x81 symbol trails that affect line break eligibility. |
+| `0049e570` | `is_halfwidth_kana_break_symbol` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] Single-byte halfwidth-kana/punctuation text-break classification helper. |
+| `0049e5a0` | `is_sjis_81_leading_quote_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper for selected 0x81 quote/opening punctuation trails. |
+| `0049e620` | `is_sjis_81_closing_quote_class` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=medium] SJIS/DBCS text-break classification helper for selected 0x81 closing quote/punctuation trails. |
+| `0049e690` | `parse_next_text_break_token` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] Parses the next line-break token in multibyte text using punctuation, kana/full-width, DBCS, and alphanumeric classification helpers. |
+| `0049e8f0` | `load_effect_xdf_resources` | plate | cgpt whole-binary semantic rename v1: references xcarx1/xbldx1/xcars1.xdf |
+| `0049e970` | `effect_resource_xdf_context_helper_0049e970` | plate | cgpt label refinement v20: was effect_xdf_resource_context_helper_0049e970. Clarify effect XDF resource context. |
+| `0049ead0` | `spawn_cached_explosion_runtime_object` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Finds or allocates a cached explosion object, positions it, binds textures/lights/animation/sound, and returns the runtime object. |
+| `0049ed70` | `get_effect_source_parent_world_object` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium-high] Returns parent/source object associated with the current explosion/effect object. |
+| `0049ed90` | `build_explosion_damage_distribution` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium-high] Builds damage/distribution context for explosion radial damage. |
+| `0049efe0` | `explosion_system_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence explsn |
+| `0049f100` | `initialize_explosion_effect_system` | plate | cgpt whole-binary semantic rename v1: string evidence explsn |
+| `0049f1b0` | `explosion_effect_context_helper_0049f1b0` | plate | cgpt readability rename set D v16: Readability pass set D: explosion effect context helper based on adjacent named subsystem context. |
+| `0049f1d0` | `explosion_effect_context_helper_0049f1d0` | plate | cgpt readability rename set D v16: Readability pass set D: explosion effect context helper based on adjacent named subsystem context. |
+| `0049f1f0` | `explosion_effect_context_helper_0049f1f0` | plate | cgpt readability rename set D v16: Readability pass set D: explosion effect context helper based on adjacent named subsystem context. |
+| `0049f210` | `muzzle_flash_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence mzlfls |
+| `0049f2f0` | `update_weapon_muzzle_flash_runtime_effect` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Maintains mzlfls muzzle flash runtime objects, installs light state, and starts texture animation for visible muzzle flash records. |
+| `0049f470` | `initialize_muzzle_flash_effect_system` | plate | cgpt whole-binary semantic rename v1: string evidence mzlfls |
+| `0049f4f0` | `muzzle_flash_effect_context_helper_0049f4f0` | plate | cgpt readability rename set D v16: Readability pass set D: muzzle flash effect context helper based on adjacent named subsystem context. |
+| `0049f5c0` | `ordnance_system_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `0049f790` | `initialize_ordnance_instance` | plate | cgpt whole-binary semantic rename v1: string evidence Ordinance %d |
+| `0049fb10` | `ordnance_instance_runtime_context_helper_0049fb10` | plate | cgpt label refinement v20: was ordnance_instance_context_helper_0049fb10. Clarify runtime ordnance instance context. |
+| `0049fb40` | `spawn_weapon_projectile_or_ordnance_runtime_object` | plate | [cgpt i76.exe weapon/projectile v27; confidence=high] Creates projectile/ordnance world objects from weapon fire parameters, binds textures/lights, applies spread, and handles ordnc child effects. |
+| `004a0410` | `update_mission_dynamic_runtime_object_lists` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=medium-high] Per-frame mission runtime object/effect list update; broader than vehicle transform update. |
+| `004a0410` | `update_mission_dynamic_runtime_object_lists` | pre | I76 semantic baseline: update_mission_dynamic_runtime_object_lists<br>Updates mission dynamic runtime object/effect lists. |
+| `004a0480` | `ordnance_update_context_helper_004a0480` | plate | cgpt label refinement v20: was ordnance_state_update_context_helper_004a0480. Shorten readability label. |
+| `004a05a0` | `release_world_object_subtree_class_payloads` | plate | cgpt rename v2: Recursively frees per-object class/runtime payloads from a supplied heap over child/sibling links. |
+| `004a05f0` | `ordnance_object_release_context_helper_004a05f0` | plate | cgpt label refinement v20: was ordnance_world_object_release_context_helper_004a05f0. Shorten readability label. |
+| `004a06f0` | `ordnance_projectile_update_context_helper_004a06f0` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance projectile update context helper based on adjacent named subsystem context. |
+| `004a07d0` | `ordnance_projectile_update_context_helper_004a07d0` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance projectile update context helper based on adjacent named subsystem context. |
+| `004a0800` | `ordnance_projectile_update_context_helper_004a0800` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance projectile update context helper based on adjacent named subsystem context. |
+| `004a0990` | `update_mission_runtime_object_list_and_release_expired` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Updates mission runtime object linked lists, decrements timers, runs object updates, and releases expired records/lights/ordnance children. |
+| `004a0ae0` | `update_ordnance_system` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004a0cc0` | `ordnance_collision_context_helper_004a0cc0` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance collision context helper based on adjacent named subsystem context. |
+| `004a0dd0` | `ordnance_collision_context_helper_004a0dd0` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance collision context helper based on adjacent named subsystem context. |
+| `004a0eb0` | `ordnance_damage_effect_context_helper_004a0eb0` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance damage effect context helper based on adjacent named subsystem context. |
+| `004a0f50` | `ordnance_runtime_flag_context_helper_004a0f50` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance runtime flag context helper based on adjacent named subsystem context. |
+| `004a0f60` | `chunk_manager_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence chnkmgr |
+| `004a0ff0` | `cache_vehicle_chunk_geometry_attachment` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=medium-high] Caches or links geometry attachment data for vehicle/object chunk geometry. |
+| `004a11e0` | `ordnance_runtime_context_helper_004a11e0` | plate | cgpt readability rename set D v16: Readability pass set D: ordnance runtime context helper based on adjacent named subsystem context. |
+| `004a12f0` | `create_chunk_manager_geometry_runtime` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Chunk-manager geometry helper referencing chnkmgr and .geo resources. |
+| `004a1810` | `spawn_random_chunk_child_object` | plate | cgpt whole-binary semantic rename v1: creates .geo child object from chunk table and attaches to world |
+| `004a1b60` | `update_chunk_manager_runtime` | plate | cgpt whole-binary semantic rename v1: string evidence chnkmgr repeated |
+| `004a1e40` | `release_chunk_manager_runtime` | plate | cgpt whole-binary semantic rename v1: string evidence chnkmgr |
+| `004a1ed0` | `chunk_manager_lookup_or_remove_entry` | plate | cgpt whole-binary semantic rename v1: string evidence chnkmgr |
+| `004a1f90` | `chunk_manager_entry_context_helper_004a1f90` | plate | cgpt readability rename set D v16: Readability pass set D: chunk manager entry context helper based on adjacent named subsystem context. |
+| `004a24a0` | `bind_chunk_texture_slot_from_material` | plate | cgpt whole-binary semantic rename v1: strings 1234567890AB / V1 BO DY |
+| `004a2560` | `clone_chunk_manager_world_object_tree_and_release_source` | plate | cgpt rename v2: Clones a world-object subtree for the chunk manager, copies transforms/textures, then releases the source subtree using the chnkmgr tag. |
+| `004a25f0` | `initialize_chunk_manager_objects` | plate | cgpt whole-binary semantic rename v1: creates heap/table and default .geo chunk objects |
+| `004a2bb0` | `destroy_chunk_manager_objects` | plate | cgpt whole-binary semantic rename v1: string evidence chnkmgr |
+| `004a2cd0` | `chunk_manager_update_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence chnkmgr |
+| `004a2d30` | `chunk_manager_update_context_helper_004a2d30` | plate | cgpt readability rename set D v16: Readability pass set D: chunk manager update context helper based on adjacent named subsystem context. |
+| `004a2e00` | `register_hardpoint_carrier` | plate | cgpt whole-binary semantic rename v1: string evidence hardpoint system max carriers |
+| `004a2ff0` | `mount_weapon_on_hardpoint` | plate | cgpt whole-binary semantic rename v1: string evidence max weapon definitions / nonexistent hardpoint |
+| `004a2ff0` | `mount_weapon_on_hardpoint` | pre | I76 semantic baseline: mount_weapon_on_hardpoint<br>Mounts a weapon on a vehicle hardpoint. |
+| `004a31d0` | `collect_vehicle_weapon_runtime_slots` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Finds the loaded vehicle runtime row and collects active weapon slot indices/count metadata into an eight-dword output block. |
+| `004a3280` | `weapon_mount_context_helper_004a3280` | plate | cgpt label refinement v20: was weapon_hardpoint_mount_context_helper_004a3280. Shorten readability label. |
+| `004a32c0` | `copy_weapon_runtime_state_summary` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Copies weapon type/category, ammo/state, object/slot ids, and definition-derived fields into caller summary record. |
+| `004a3380` | `weapon_mount_context_helper_004a3380` | plate | cgpt label refinement v20: was weapon_hardpoint_mount_context_helper_004a3380. Shorten readability label. |
+| `004a3400` | `extract_weapon_runtime_state_to_vsf_record` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Serializes a weapon runtime slot to a VSF/WPST-style record, including relative transform and global weapon-runtime state fields. |
+| `004a34c0` | `apply_weapon_state_entry` | plate | [cgpt i76.exe descriptor callback rename v6; confidence=medium] Helper used by WPST callback to apply a weapon state entry to a vehicle/world object.<br>[cgpt i76.exe vehicle object rename v7; confidence=high] Finds a loaded vehicle and weapon slot, then writes WPST state into the global weapon runtime table; reports a chunk parse error on invalid mapping. |
+| `004a3560` | `set_weapon_runtime_fire_request_flag` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Writes the weapon runtime fire-request/armed flag in a weapon slot record. |
+| `004a3580` | `remove_loaded_vehicle_runtime_and_weapon_slots` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] Removes one loaded vehicle runtime record, compacts g_loaded_vehicle_runtime_table, compacts weapon runtime slots, and rebuilds slot back-pointers. |
+| `004a3580` | `remove_loaded_vehicle_runtime_and_weapon_slots` | pre | I76 semantic baseline: remove_loaded_vehicle_runtime_and_weapon_slots<br>Removes loaded vehicle runtime and weapon slot records. |
+| `004a3760` | `update_player_weapon_targeting_lock_and_reticle_state` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium_high] Pre-pass under local player weapon/HUD update. Computes target/lock/lead state, target transforms, reticle or aim feedback, and sound hooks for selected/active weapons. |
+| `004a4130` | `update_local_player_vehicle_weapons_and_hud` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Local player weapon/HUD control loop: targeting pre-pass, fire gating, selected weapon/HUD updates, cooldown/ammo/fire effects, texture refresh. |
+| `004a4130` | `update_local_player_vehicle_weapons_and_hud` | pre | I76 semantic baseline: update_local_player_vehicle_weapons_and_hud<br>Local player weapon/HUD loop: targeting, fire gating, selected weapon, ammo/cooldown/HUD. |
+| `004a4530` | `weapon_state_update_context_helper_004a4530` | plate | cgpt readability rename set D v16: Readability pass set D: weapon state update context helper based on adjacent named subsystem context. |
+| `004a45c0` | `initialize_or_refresh_player_weapon_hud_overlay` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] Creates/reset weapon HUD bitmap surface, resolves zbk map resource variant, initializes selected slots, draws HUD widgets, and binds texture set state. |
+| `004a4a00` | `weapon_state_validation_context_helper_004a4a00` | plate | cgpt label refinement v20: was weapon_state_checked_context_helper_004a4a00. Clarify checked/validated weapon state context. |
+| `004a4a40` | `set_weapon_state_checked` | plate | cgpt whole-binary semantic rename v1: string evidence cannot set state on nonexistent weapons |
+| `004a4bd0` | `set_weapon_runtime_state_field_04` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium] Tiny setter for dword +0x04 in a weapon runtime slot record. Kept conservative until field meaning is pinned. |
+| `004a4bf0` | `get_weapon_ammo_fraction_remaining` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Returns current ammo divided by weapon-definition ammo capacity. |
+| `004a4c50` | `weapon_fire_request_context_helper_004a4c50` | plate | cgpt readability rename set D v16: Readability pass set D: weapon fire request context helper based on adjacent named subsystem context. |
+| `004a4c90` | `weapon_fire_request_context_helper_004a4c90` | plate | cgpt readability rename set D v16: Readability pass set D: weapon fire request context helper based on adjacent named subsystem context. |
+| `004a4cd0` | `set_default_selected_weapon_slot_for_vehicle` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium_high] Updates the loaded vehicle selected weapon slot: clears on false input or selects the first active slot with weapon class/type 3. |
+| `004a4d50` | `update_weapon_hud_diode_indicator` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Maps ammo fraction/range to weapon HUD diode/off texture names. |
+| `004a4e40` | `update_weapon_hud_ammo_digit_wheels` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Updates ones/tens/hundreds/thousands ammo digit texture wheels for a weapon HUD slot. |
+| `004a5170` | `find_loaded_vehicle_runtime_index_by_world_object` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Scans loaded vehicle runtime table for a matching world object pointer and returns index or -1. |
+| `004a51a0` | `weapon_instance_context_helper_004a51a0` | plate | cgpt label refinement v20: was weapon_instance_registration_context_helper_004a51a0. Shorten readability label. |
+| `004a52e0` | `register_weapon_instance` | plate | cgpt whole-binary semantic rename v1: string evidence cannot register weapon with no POF object |
+| `004a5840` | `weapon_selection_contains_slot` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] Returns true when a candidate weapon slot appears in the current selected-slot list. |
+| `004a5870` | `update_player_weapon_fire_enable_flags` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Sets per-weapon fire-enable flags based on ammo, controls, damage-suppression state, and active slots. |
+| `004a5b50` | `is_selected_weapon_empty` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Returns true when the selected weapon has no remaining ammo/fraction. |
+| `004a5be0` | `select_next_player_weapon_slot` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=medium] Weapon selection/HUD update path, likely next-slot input binding. Needs one more focused pass for exact binding semantics. |
+| `004a5f50` | `select_previous_player_weapon_slot` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=medium] Weapon selection/HUD update path, likely previous-slot input binding. Needs one more focused pass for exact binding semantics. |
+| `004a6170` | `select_matching_player_weapon_group` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=medium] Weapon selection/HUD update path for matching group/category. Needs one more focused pass for exact binding semantics. |
+| `004a6470` | `update_weapon_cooldowns_ammo_and_fire_effects` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Per-frame weapon cooldown/ammo/fire loop: transitions, counters, delays, fire effects, and HUD/audio feedback. |
+| `004a6e90` | `fire_weapon_runtime_slot_and_spawn_effects` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] Consumes ammo/cooldown state, plays weapon fire sound, chooses muzzle/mount object, dispatches projectile/effect helpers, and records weapon firing side effects. |
+| `004a70f0` | `weapon_runtime_slot_belongs_to_world_object` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Checks whether a weapon runtime slot belongs to a supplied world object. |
+| `004a7120` | `set_ordnance_global_runtime_flag` | plate | cgpt rename v2: Stores an ordnance/runtime global flag used by weapon/ordnance systems. |
+| `004a7130` | `ordnance_runtime_flag_get_context_helper_004a7130` | plate | cgpt label refinement v20: was ordnance_runtime_flag_getter_context_helper_004a7130. Shorten getter wording. |
+| `004a7150` | `ordnance_runtime_flag_set_context_helper_004a7150` | plate | cgpt label refinement v20: was ordnance_runtime_flag_setter_context_helper_004a7150. Shorten setter wording. |
+| `004a7160` | `find_selected_mission_runtime_index` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Searches mission runtime table at 0x00655280..0x006562c0 for mission id and returns the 0xd0-byte record index. |
+| `004a7190` | `spawn_mission_vehicle_effect_by_slot` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium] Uses mission runtime table indexed by vehicle mission id; selects one of several per-slot resource pairs and spawns/attaches runtime effect/object. |
+| `004a7370` | `build_vehicle_ordnance_runtime_context` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] Finds ordnc child objects, reads vehicle runtime/mission table fields, computes ordnance position/offset context, and emits a 0x7c-byte runtime block. |
+| `004a7680` | `get_vehicle_damage_distribution_selector` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=HIGH] Returns the first dword selector from object runtime data at +0x70, or zero when missing. |
+| `004a76a0` | `build_vehicle_wheel_damage_distribution` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Distributes a damage/scalar value across four wheel slots based on mission table mask. |
+| `004a7800` | `weapon_ordnance_query_context_helper_004a7800` | plate | cgpt label refinement v20: was ordnance_weapon_query_context_helper_004a7800. Normalize query label ordering. |
+| `004a7bb0` | `weapon_ordnance_query_context_helper_004a7bb0` | plate | cgpt label refinement v20: was ordnance_weapon_query_context_helper_004a7bb0. Normalize query label ordering. |
+| `004a7c80` | `apply_radial_damage_and_impulse_to_target` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Root radial damage target handler; computes distance/direction, distribution, yaw, and dispatches class damage plus vehicle impulse. |
+| `004a7c80` | `apply_radial_damage_and_impulse_to_target` | pre | I76 semantic baseline: apply_radial_damage_and_impulse_to_target<br>Applies radial damage and impulse to a target. |
+| `004a8240` | `weapon_ordnance_query_context_helper_004a8240` | plate | cgpt label refinement v20: was ordnance_weapon_query_context_helper_004a8240. Normalize query label ordering. |
+| `004a82b0` | `weapon_target_ordnance_query_context_helper_004a82b0` | plate | cgpt label refinement v20: was ordnance_weapon_target_query_context_helper_004a82b0. Normalize query label ordering. |
+| `004a82c0` | `raycast_weapon_fire_from_muzzle_transform` | plate | [cgpt i76.exe weapon/projectile v27; confidence=medium_high] Computes muzzle world transform and dispatches the lower-level weapon raycast/fire helper between shooter and target. |
+| `004a8370` | `update_radar_contacts_for_vehicle_weapon_directions` | plate | cgpt rename v2: Updates radar contacts/probes for forward/reverse and weapon-direction vectors. |
+| `004a8600` | `get_world_object_position_vector` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Returns or computes the world-space position vector for a world object. |
+| `004a8690` | `weapon_mount_ordnance_query_context_helper_004a8690` | plate | cgpt label refinement v20: was ordnance_weapon_mount_query_context_helper_004a8690. Normalize query label ordering. |
+| `004a8930` | `ordnance_target_selection_context_helper_004a8930` | plate | cgpt readability rename set E v17: Readability pass set E: ordnance target selection context helper based on adjacent named subsystem context. |
+| `004a9020` | `reset_pending_mission_vehicle_effect_spawn_heap` | plate | cgpt rename v2: Clears the pending mission vehicle/effect spawn list, recreates its heap, and reseeds randomness. |
+| `004a9090` | `mission_vehicle_effect_spawn_context_helper_004a9090` | plate | cgpt readability rename set E v17: Readability pass set E: mission vehicle effect spawn context helper based on adjacent named subsystem context. |
+| `004a91e0` | `update_pending_mission_vehicle_effect_spawns` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=high] Walks pending effect/spawn records, countdown timers, places objects, and dispatches mission vehicle effects by slot. |
+| `004a92e0` | `ordnance_runtime_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004aa0f0` | `ordnance_projectile_state_context_helper_004aa0f0` | plate | cgpt readability rename set E v17: Readability pass set E: ordnance projectile state context helper based on adjacent named subsystem context. |
+| `004aa150` | `update_ordnance_projectile_state_a` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004aa2d0` | `update_ordnance_projectile_state_b` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004aa450` | `update_ordnance_projectile_state_c` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004aa5b0` | `ordnance_projectile_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004aa9f0` | `update_ordnance_collision_state` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004ab1c0` | `ordnance_collision_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004ab920` | `update_ordnance_damage_effects` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004abe60` | `ordnance_damage_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004ac3d0` | `ordnance_effect_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004ac800` | `ordnance_cleanup_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004ace20` | `release_ordnance_system` | plate | cgpt whole-binary semantic rename v1: string evidence ordnc |
+| `004ad260` | `world_instance_id_table_context_helper_004ad260` | plate | cgpt readability rename set E v17: Readability pass set E: world instance id table context helper based on adjacent named subsystem context. |
+| `004ad2e0` | `world_instance_id_lookup_context_helper_004ad2e0` | plate | cgpt readability rename set E v17: Readability pass set E: world instance id lookup context helper based on adjacent named subsystem context. |
+| `004ad410` | `world_instance_id_registration_context_helper_004ad410` | plate | cgpt readability rename set E v17: Readability pass set E: world instance id registration context helper based on adjacent named subsystem context. |
+| `004ad450` | `add_world_instance_id_checked` | plate | cgpt whole-binary semantic rename v1: string evidence non-unique instance id |
+| `004ad5b0` | `world_instance_id_remove_context_helper_004ad5b0` | plate | cgpt readability rename set E v17: Readability pass set E: world instance id remove context helper based on adjacent named subsystem context. |
+| `004ad600` | `vehicle_config_loader_context_helper_004ad600` | plate | cgpt label refinement v20: was vehicle_config_loading_context_helper_004ad600. Shorten readability label. |
+| `004ad640` | `format_8char_resource_basename_with_suffix` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Formats an 8-character resource basename with a suffix such as .geo/.vqm/.cbk/.map. |
+| `004ad6f0` | `load_vehicle_config_for_world_object` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] Loads a vehicle object's VCF/VCST resources, appends .vcf/.vsf suffixes, and enters the BWD2 descriptor parser. |
+| `004ad8c0` | `parse_vcfc_vehicle_config_resource` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Wrapper around parse_bwd2_resource_with_descriptor_table using the VCFC descriptor table at 004fefb0. |
+| `004ad900` | `parse_vcst_vehicle_state_resource` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] Wrapper around parse_bwd2_resource_with_descriptor_table using the VCST descriptor table at 004ff180 and clearing output +0xbc before parse. |
+| `004ad950` | `parse_vcfc_vdf_vtf_wdf_resource_refs` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] VCFC-adjacent resolver: parses VDF at +0x18, VTFC at +0x25, WDF weapon slots at +0x3e/+0x4b/+0x58, and component CDF selections at +0x32/+0x36/+0x3a. |
+| `004adb90` | `parse_vcfc_vehicle_config_root` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] VCFC root callback: copies vehicle display/config strings, parses VDF, parses three WDF weapon definitions, parses component CDF tables, and copies derived runtime scalars. |
+| `004ade30` | `parse_vtfc_vehicle_display_key_resource` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Wrapper around parse_bwd2_resource_with_descriptor_table using the VTFC descriptor table at 004ff1f0 to recover vehicle display/texture key data. |
+| `004ade50` | `vehicle_vcf_parser_context_helper_004ade50` | plate | cgpt label refinement v20: was vehicle_vcf_parse_context_helper_004ade50. Normalize parser wording. |
+| `004adea0` | `parse_spec_vehicle_special_config_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] SPEC callback in VCFC table; parses special/config subrecords for vehicle config resources. |
+| `004adee0` | `parse_vdfc_vehicle_definition_core_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=high] VDFC callback in the vehicle asset descriptor chain; copies core VDF vehicle definition fields. |
+| `004adf70` | `parse_vdfc_vehicle_runtime_definition_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] Alternate VDFC callback used by the runtime VDF descriptor table; copies vehicle definition fields into runtime descriptor storage. |
+| `004adfd0` | `parse_vshl_vehicle_shell_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium] VSHL callback in the runtime vehicle descriptor table. |
+| `004ae000` | `parse_vloc_vehicle_local_attachment_chunk` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] VLOC callback: handles special vehicle-local attachments such as needle, headlight mask, and local transform-only child objects. |
+| `004ae2e0` | `vehicle_component_config_context_helper_004ae2e0` | plate | cgpt label refinement v20: was vehicle_config_component_context_helper_004ae2e0. Normalize component/config label ordering. |
+| `004ae3a0` | `parse_vgeo_vehicle_geometry_part_set_chunk` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] VGEO callback: copies indexed part records and instantiates named vehicle child geometry using .geo cache entries. |
+| `004ae400` | `parse_vchk_vehicle_geometry_check_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium] VCHK callback in the vehicle descriptor table; likely validates/checks vehicle geometry or damage-state data. |
+| `004ae570` | `parse_colp_vehicle_collision_bounds_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=high] COLP callback; parses inner/outer vehicle collision bounds. |
+| `004ae5a0` | `copy_wloc_six_wheel_transform_table` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] WLOC callback: copies six 0x38-byte wheel transform records into the vehicle runtime wheel-location table at +0x168. |
+| `004ae5e0` | `load_vehicle_weapon_wdf_and_attach_mount_pair` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] Loads a WDF weapon/mount resource and attaches the paired weapon objects to the vehicle runtime. |
+| `004ae780` | `parse_wdf_weapon_definition_into_vehicle_slot` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=medium-high] Loads/parses a WDF weapon definition referenced from VCFC and installs the resulting weapon runtime slot data. |
+| `004ae840` | `parse_wdf_weapon_definition_resource` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Parses a WDF weapon component definition resource. |
+| `004ae870` | `create_wdf_weapon_mount_pair_and_copy_core` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] WDFC callback: creates paired weapon world objects, sets class 0x1e, copies core WDF scalars, and contributes weapon mass/weight. |
+| `004ae920` | `parse_wdfc_weapon_definition_summary_chunk` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=medium-high] Alternative WDFC callback used by summary/validation descriptor table for WDF weapon definitions. |
+| `004ae980` | `parse_wgeo_dual_weapon_geometry_sets` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] WGEO callback: expands two parallel weapon geometry part sets using generic 0x64-byte part records and .geo cache entries. |
+| `004aea00` | `parse_hloc_vehicle_hardpoint_location_chunk_validation` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=medium] Validation-table HLOC callback entry; may be a thunk/interior label depending on function discovery, so this script labels only if no function starts here. |
+| `004aea90` | `append_hloc_hardpoint_location_record` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] Runtime HLOC callback: appends a hardpoint record with name, position, and extra fields into a seven-entry 0xfc-byte hardpoint table. |
+| `004aeb60` | `parse_spcs_vehicle_special_sprite_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium] SPCS callback in runtime vehicle descriptor table; likely parses special/sprite metadata. |
+| `004aeb90` | `world_reader_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence wrldr |
+| `004af250` | `parse_wepn_vehicle_weapon_config_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] WEPN callback in VCFC table; parses vehicle weapon config subrecords. |
+| `004af340` | `parse_gdf_equipment_definition_resource` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Parses a GDF equipment component definition resource. |
+| `004af360` | `parse_gdfc_equipment_definition_core_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=high] GDFC callback for equipment/gadget definition core fields. |
+| `004af3b0` | `parse_gdfc_equipment_definition_summary_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium] Alternate GDFC callback used by a compact/summary equipment descriptor table. |
+| `004af3d0` | `parse_gpof_equipment_position_offset_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] GPOF callback for equipment/gadget position or offset records. |
+| `004af680` | `parse_ggeo_equipment_geometry_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] GGEO callback for equipment/gadget geometry records. |
+| `004af860` | `parse_ordf_ordinance_definition_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] ORDF callback for ordinance/projectile definition records. |
+| `004af890` | `parse_ogeo_ordinance_geometry_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] OGEO callback for ordinance/projectile geometry records. |
+| `004af8f0` | `load_vtfc_vehicle_texture_map_sets` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Loads/binds VTFC vehicle texture map/TMT sets, including repeated six-face groups and body-map slots. |
+| `004b0150` | `bind_optional_vtfc_texture_map_slot` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Binds optional VTF/VTFC texture map slot when the slot value is not NULL. |
+| `004b0190` | `bind_vtfc_six_face_map_slots` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Binds six face map slots FT/BK/RT/LF/TP/UN for a VTF material prefix family. |
+| `004b0290` | `bind_vtfc_body_map_to_object_tree` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Recursively binds the VTFC body-map texture slot to an object tree. |
+| `004b0320` | `parse_vtfc_display_texture_key_chunk` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=medium-high] Alternative VTFC callback used by display/key descriptor table. |
+| `004b0350` | `apply_vcst_vehicle_state_transform_and_components` | plate | [cgpt i76.exe descriptor callback rename v6; confidence=medium-high] Alternate VCST callback. Validates the source name, applies vehicle state transform/scalars, and updates existing engine/brake/suspension component objects. |
+| `004b0520` | `parse_vcst_vehicle_scene_state_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=high] VCST callback for saved/trip vehicle scene-state data. |
+| `004b0540` | `apply_wlst_wheel_state_values` | plate | [cgpt i76.exe descriptor callback rename v6; confidence=medium-high] Alternate WLST callback. Applies six wheel state values to already-created wheel objects. |
+| `004b05e0` | `parse_wlst_vehicle_weapon_list_state_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] WLST callback for saved/trip vehicle weapon list state. |
+| `004b0610` | `add_wpst_weapon_state_entry` | plate | [cgpt i76.exe descriptor callback rename v6; confidence=medium-high] Alternate WPST callback. Adds/applies a weapon state entry through the runtime weapon-state helper. |
+| `004b0640` | `parse_wpst_vehicle_weapon_part_state_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] WPST callback for saved/trip weapon part state. |
+| `004b0680` | `parse_salv_vehicle_salvage_state_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] SALV callback for saved/trip salvage/state data. |
+| `004b06b0` | `write_trip_vehicle_scene_state_file` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=medium-high] Writes trip vehicle scene/state data using .vcf/.vsf naming conventions. |
+| `004b0b00` | `read_vehicle_scene_state_chunks` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Reads VCST/WLST/WPST/EXIT chunks from a vehicle scene/state file stream. |
+| `004b0bd0` | `read_vehicle_config_weapon_chunks` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Reads VCFC/SPEC/WEPN/EXIT chunks from a vehicle config file stream, skipping empty weapon names. |
+| `004b0d00` | `parse_component_definition_reference_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] Shared callback used for ENGN/BRAK/SUSP chunks in one component descriptor table. |
+| `004b0e70` | `parse_component_definition_body_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] Shared callback used for ENGN/BRAK/SUSP component body chunks. |
+| `004b0f50` | `parse_engine_table_component_entries` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] NTBL callback in engine component descriptor table. |
+| `004b0f90` | `parse_brake_table_component_entries` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] BTBL callback in brake component descriptor table. |
+| `004b0fd0` | `parse_suspension_table_component_entries` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] STBL callback in suspension component descriptor table. |
+| `004b1010` | `load_engine_brake_suspension_component_definition` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Loads engine/brake/suspension component definitions and reports missing component diagnostics. |
+| `004b10e0` | `extract_trip_vehicle_vsf_state_from_world_object` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Builds the large VSF/VCST state buffer for trip mode by extracting current vehicle components, wheels, weapons, and special equipment from a world object. |
+| `004b1610` | `load_gdf_resource_reference` | plate | cgpt whole-binary semantic rename v1: references .gdf |
+| `004b16e0` | `append_salvage_resource_reference_for_mission` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Classifies salvage/resource path by extension/stem (.wdf/.gdf/.vcf and eng/sus/brk/tir prefixes), gates by selected mission number/family, appends linked salvage item record. |
+| `004b19d0` | `free_mission_salvage_resource_list` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Frees the full nested mission salvage/resource linked list and clears g_mission_salvage_resource_list. |
+| `004b1a20` | `gdf_resource_reference_context_helper_004b1a20` | plate | cgpt readability rename set E v17: Readability pass set E: gdf resource reference context helper based on adjacent named subsystem context. |
+| `004b1b90` | `clear_mission_salvage_resource_list` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Randomly prunes category lists in the mission salvage-resource list unless salvage pruning is disabled by global flags. |
+| `004b1cb0` | `is_salvage_resource_available_for_mission` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Checks/canonicalizes salvage resource tokens against mission family and mission-number availability tables. |
+| `004b1df0` | `parse_zix_path_line` | plate | i76 second-pass rename<br>old_name: FUN_004b1df0<br>suggested_name: parse_zix_path_line<br>basis: Parses zix path lines with sscanf; reports too many zix paths. |
+| `004b20f0` | `mission_resource_reference_context_helper_004b20f0` | plate | cgpt readability rename set E v17: Readability pass set E: mission resource reference context helper based on adjacent named subsystem context. |
+| `004b2220` | `init_registry_install_settings` | plate | i76 second-pass rename<br>old_name: FUN_004b2220<br>suggested_name: init_registry_install_settings<br>basis: Uses registry keys under SOFTWARE/Activision/Interstate '76 Gold Edition. |
+| `004b2350` | `mission16_system_log_tag` | plate | cgpt whole-binary semantic rename v1: string evidence miss16 |
+| `004b23e0` | `init_resource_search_paths` | plate | i76 first-pass rename<br>old_name: FUN_004b23e0<br>suggested_name: init_resource_search_paths<br>basis: Resource/search-path setup candidate; clustered with archive/resource discovery routines. |
+| `004b28c0` | `enumerate_registered_resource_directory_entries` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Enumerates configured ZIX/resource path directories with FindFirstFileA/FindNextFileA into 0x30-byte registered resource records. |
+| `004b2a70` | `registered_resource_directory_context_helper_004b2a70` | plate | cgpt readability rename set E v17: Readability pass set E: registered resource directory context helper based on adjacent named subsystem context. |
+| `004b2ac0` | `find_next_resource_file_record_by_pattern` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Iterates registered resource-file records matching wildcard patterns such as *.wdf, *.gdf, *.vtf. |
+| `004b2b30` | `register_resource_key_for_zix_path` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Registers a 16-byte resource key against a ZIX/search-path index, maintaining the per-record path bitset and sorted table. |
+| `004b2d50` | `format_registered_resource_record_path` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] Formats/resolves the registered resource path for a 16-byte resource key. |
+| `004b2e00` | `lookup_registered_resource_record_by_key` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Looks up the 0x30-byte registered resource record by 16-byte lowercase key. |
+| `004b3000` | `load_registered_resource_payload_bool` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Boolean wrapper around load_registered_resource_payload. |
+| `004b3030` | `load_registered_resource_payload` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Retail resource-stack caller that opens ZFSF through open_zfsf_archive_file with create/update flag 0, confirming read-only rb path for normal payload loads. |
+| `004b32f0` | `registered_resource_payload_size_context_helper_004b32f0` | plate | cgpt readability rename set E v17: Readability pass set E: registered resource payload size context helper based on adjacent named subsystem context. |
+| `004b3310` | `get_registered_resource_payload_size` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Retail resource-stack size caller that opens ZFSF through open_zfsf_archive_file with create/update flag 0, confirming read-only rb path for normal size lookups. |
+| `004b34f0` | `registered_resource_key_exists` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Binary-searches the registered 0x30-byte resource-key table. |
+| `004b3550` | `registered_resource_lookup_context_helper_004b3550` | plate | cgpt readability rename set E v17: Readability pass set E: registered resource lookup context helper based on adjacent named subsystem context. |
+| `004b3570` | `set_expected_file_crc_validation_records` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Installs caller-provided 8-byte expected CRC/file validation records for subsequent validation. |
+| `004b35a0` | `compute_bwd2_file_crc32_and_validate_prefix` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Initializes CRC32 table/state, parses a BWD2/VCFC validation stream, and returns complemented CRC result. |
+| `004b3650` | `parse_vdf_vehicle_definition_resource` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Parses a BWD2 .vdf vehicle definition via descriptor table VDFC/SOBJ/VLOC/VGEO/COLP/WLOC/HLOC/ETBL and performs component/resource validation. |
+| `004b3a10` | `vehicle_gdf_resource_context_helper_004b3a10` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle gdf resource context helper based on adjacent named subsystem context. |
+| `004b3aa0` | `load_tank_gdf_resources` | plate | cgpt whole-binary semantic rename v1: references gtktank.gdf/gtptank.gdf/tthowitz.gdf |
+| `004b3cb0` | `validate_vdfc_vehicle_core_chunk_for_shell` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] VDFC callback in the shell/default VDF descriptor table; validates/copies core VDF fields during BWD2 descriptor parsing. |
+| `004b3cd0` | `validate_hloc_vehicle_hardpoint_chunk_for_shell` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium-high] HLOC callback in the shell/default VDF descriptor table; validates hardpoint data during BWD2 descriptor parsing. |
+| `004b3ce2` | `vehicle_definition_loader_inner_stub_004b3ce2` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle definition loader inner stub based on adjacent named subsystem context. |
+| `004b3d30` | `validate_gdfc_equipment_core_chunk_for_shell` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=medium] GDFC callback immediately following the shell/default VDF descriptor table; likely equipment/weapon definition validation path. |
+| `004b3d50` | `vehicle_vdf_chunk_parser_context_helper_004b3d50` | plate | cgpt label refinement v20: was vehicle_vdf_chunk_parse_context_helper_004b3d50. Normalize parser wording. |
+| `004b3db0` | `parse_tagged_chunk_descriptor_table` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Generic tagged chunk descriptor-table parser used by VDF/VCF/VTF/WDF/SOBJ/BWD2 style resources. |
+| `004b41e0` | `parse_bwd2_resource_with_descriptor_table` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Opens a named resource, validates the generic BWD2 descriptor, then parses a caller-supplied tagged chunk descriptor table. |
+| `004b4290` | `handle_bwd2_exit_chunk` | plate | [cgpt i76.exe vehicle asset chunk callback renames v17; confidence=high] Generic EXIT chunk callback used across vehicle/object descriptor tables. |
+| `004b42b0` | `load_and_parse_selected_mission_resource` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Parses selected .msn name/family, stores mission-number/family globals, resolves registered resource path, loads resource, validates BWD2, then parses WDEF mission descriptor table. |
+| `004b4550` | `vehicle_vdf_chunk_callback_context_helper_004b4550` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context helper based on adjacent named subsystem context. |
+| `004b4570` | `vehicle_vdf_chunk_callback_context_helper_004b4570` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context helper based on adjacent named subsystem context. |
+| `004b4590` | `vehicle_vdf_chunk_callback_context_helper_004b4590` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context helper based on adjacent named subsystem context. |
+| `004b45b0` | `vehicle_vdf_chunk_callback_context_helper_004b45b0` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context helper based on adjacent named subsystem context. |
+| `004b45d0` | `vehicle_vdf_chunk_callback_context_helper_004b45d0` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context helper based on adjacent named subsystem context. |
+| `004b45f0` | `vehicle_vdf_chunk_callback_context_helper_004b45f0` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context helper based on adjacent named subsystem context. |
+| `004b4610` | `validate_mission_revision_chunks` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Validates mission revision/mandatory chunk tags; reports unknown revision chunks or missing mandatory chunks. |
+| `004b4790` | `validate_mission_has_user_vehicle` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Checks global/current world context for a user vehicle; reports 'No User vehicle in mission %s' on failure. |
+| `004b47c0` | `create_vehicle_child_object_and_copy_ids` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Creates a vehicle child object and copies identity/name fields used by the VGEO hierarchy. |
+| `004b47f0` | `find_vehicle_child_object_by_ids` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Finds an existing vehicle child object by ID/name pair during VGEO hierarchy instantiation. |
+| `004b4840` | `create_bwd2_chunk_output_file` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] Creates a writable BWD2 chunk file and emits the BWD2 header plus first top-level container tag supplied by caller. |
+| `004b4900` | `write_bwd2_chunk_record` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] Writes a BWD2 chunk record: four-character tag, length = payload size + 8, then optional payload bytes. |
+| `004b49a0` | `close_bwd2_chunk_output_file` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] Optionally writes EXIT chunk and closes a writable BWD2 chunk file. |
+| `004b4a10` | `vehicle_vdf_runtime_context_helper_004b4a10` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf runtime context helper based on adjacent named subsystem context. |
+| `004b4a50` | `vehicle_vdf_runtime_context_helper_004b4a50` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle vdf runtime context helper based on adjacent named subsystem context. |
+| `004b4a80` | `load_bwd2_wdef_resource_text` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Shell callback +0x58. Opens a resource, parses BWD2/WDEF chunks, copies the WDEF text/name payload to caller buffer, and NUL-terminates it. |
+| `004b4b80` | `load_default_shell_vehicle_definitions` | plate | [cgpt i76.exe shell callback rename v2; confidence=medium-high] ShellMain callback slot +0x04. Existing function from first pass; loads/defaults shell vehicle definition records for frontend vehicle selection/configuration. |
+| `004b4c10` | `populate_shell_vehicle_part_records` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Populates frontend/shell vehicle part records and derives VTF names for vehicle paint/texture variants. |
+| `004b4e40` | `append_builtin_engine_part_records` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=medium-high] Calls load_component_definition(index,0,...) for four built-in component records and emits shell category 2. |
+| `004b4fe0` | `append_builtin_suspension_part_records` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=medium-high] Calls load_component_definition(index,1,...) for four built-in component records and emits shell category 4. |
+| `004b5170` | `append_builtin_brake_part_records` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=medium-high] Calls load_component_definition(index,2,...) for four built-in component records and emits shell category 3. |
+| `004b5310` | `append_wdf_weapon_part_record` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Parses a .wdf resource and appends a shell vehicle-part record with category 5. Evidence includes WDF use and weapon diagnostics in adjacent loader. |
+| `004b5470` | `append_gdf_equipment_or_weapon_record` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=medium-high] Parses a .gdf resource and appends a shell vehicle-part record. It classifies parsed local_16c values into shell categories 7/8/9 and reports ERROR weapon has no class. |
+| `004b56d0` | `append_builtin_special_equipment_records` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Appends localized novelty/special equipment records: Radar Jammer, NitrousOxide, Blower, X-Aust Brake, Structo Bmpr, Curb Feelers, Mud Flaps, Heated Seats, Cup Holders, using spc%02d identifiers. |
+| `004b58a0` | `load_shell_vehicle_definition` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=medium-high] Loads a frontend shell vehicle definition/config record from a VCF path into a shell vehicle descriptor slot. |
+| `004b62b0` | `append_empty_shell_vehicle_part_slots` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Initializes EMPTY placeholder records for vehicle part categories 2,3,4,5,7,8,9,10,11,13 before real records are appended. |
+| `004b6850` | `build_vehicle_descriptor_from_loaded_definition` | plate | [cgpt i76.exe vehicle/resource rename v4; confidence=high] Builds shell vehicle descriptor from loaded definition, with explicit validation diagnostics for engine, suspension, brake, front/rear tires, wheels, and weapons. |
+| `004b7190` | `copy_wdf_component_definition_to_shell_descriptor` | plate | [cgpt i76.exe callback subsystem rename v3; confidence=high] ShellMain callback slot +0x18. Parses a component definition buffer and copies core numeric fields plus component block entries into the shell-facing descriptor structure. |
+| `004b72b0` | `build_vehicle_descriptor_from_vcf_path` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Splits an input vehicle path, normalizes/appends the .vcf basename, and finalizes a shell vehicle descriptor. |
+| `004b73a0` | `build_vehicle_descriptor_from_component_and_vcf_path` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Parses component/state data, appends the .vcf basename from the provided path, and finalizes a shell vehicle descriptor. |
+| `004b7480` | `copy_vehicle_descriptor_and_read_scene_chunks` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Copies selected vehicle descriptor fields, then reads VCST/WLST/WPST scene/state chunks for shell/world-object vehicle descriptors. |
+| `004b7570` | `fill_resource_lookup_key_stride100` | plate | [cgpt i76.exe descriptor callback rename v6; confidence=medium] Helper used by geometry callbacks to convert chunk name fields into lookup-key records.<br>[cgpt i76.exe vehicle object rename v7; confidence=medium] Fills an array of lookup-key dwords by repeatedly adding class/stride*100 to the initial key; used by geometry/chunk lookup setup. |
+| `004b75a0` | `instantiate_part_record_array_with_geo_cache` | plate | [cgpt i76.exe vehicle asset renames v19; confidence=high] Generic part-array instantiator for 0x64-byte part records; resolves world/null/named parents, creates children, and registers basename.geo variants. |
+| `004b7800` | `instantiate_vdf_vehicle_geometry_part_sets` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Instantiates VDF VGEO part records into vehicle child objects, resolves parent names, and registers part basename + .geo cache entries. |
+| `004b7a90` | `vehicle_geometry_part_context_helper_004b7a90` | plate | cgpt label refinement v20: was vehicle_vdf_geometry_part_context_helper_004b7a90. Shorten readability label. |
+| `004b7ac0` | `load_scene_object_or_vehicle_entity_record` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=medium] Scene/world-object loader that dispatches vehicle VCF/VDF-backed object creation for vehicle-like object classes and non-vehicle SOBJ-style records for other classes. |
+| `004b7ea0` | `parse_scene_object_descriptor_resource` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=medium] Parses a scene object descriptor resource through the SOBJ-like descriptor table and adjusts transform-composed child texture/slot metadata. |
+| `004b7f70` | `vehicle_geometry_part_set_context_helper_004b7f70` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle geometry part set context helper based on adjacent named subsystem context. |
+| `004b7ff0` | `vehicle_geometry_part_set_context_helper_004b7ff0` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle geometry part set context helper based on adjacent named subsystem context. |
+| `004b8050` | `add_chunk_to_parent_object` | plate | cgpt whole-binary semantic rename v1: string evidence parent object not found / unable to add chunk |
+| `004b81c0` | `vehicle_geometry_part_binding_context_helper_004b81c0` | plate | cgpt readability rename set E v17: Readability pass set E: vehicle geometry part binding context helper based on adjacent named subsystem context. |
+| `004b8230` | `create_child_object_from_part_transform_record` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=medium-high] Creates/initializes a vehicle child object from a VDF/VGEO part transform record and links geometry/bounds state. |
+| `004b8470` | `load_sobj_scene_object_geometry_id` | plate | [cgpt i76.exe GEO mesh/render renames v29; confidence=high] Loads SOBJ geometry basename as a .geo resource and stores/returns the runtime geometry handle for a scene/vehicle object. |
+| `004b84b0` | `clear_mission_parse_object_callback_state` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] Mission parser object reset callback that releases geometry cache state stored at object +0x5c. |
+| `004b84e0` | `reset_mission_resource_parse_callbacks` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] Registers/reset mission resource parse callback state through FUN_00457290 before selected mission parse. |
+| `004b8500` | `initialize_mission_scrounge_state` | plate | cgpt whole-binary semantic rename v1: string evidence No scrounge in this mission |
+| `004b86d0` | `mission_scrounge_record_handler` | plate | cgpt whole-binary semantic rename v1: near scrounge init and null strings |
+| `004b8750` | `mission_scrounge_record_context_helper_004b8750` | plate | cgpt readability rename set E v17: Readability pass set E: mission scrounge record context helper based on adjacent named subsystem context. |
+| `004b8780` | `mission_scrounge_record_context_helper_004b8780` | plate | cgpt readability rename set E v17: Readability pass set E: mission scrounge record context helper based on adjacent named subsystem context. |
+| `004b8960` | `world_reader_record_table_context_helper_004b8960` | plate | cgpt readability rename set E v17: Readability pass set E: world reader record table context helper based on adjacent named subsystem context. |
+| `004b8970` | `world_reader_record_table_context_helper_004b8970` | plate | cgpt readability rename set E v17: Readability pass set E: world reader record table context helper based on adjacent named subsystem context. |
+| `004b8980` | `world_reader_record_table_context_helper_004b8980` | plate | cgpt readability rename set E v17: Readability pass set E: world reader record table context helper based on adjacent named subsystem context. |
+| `004b89b0` | `world_reader_record_table_context_helper_004b89b0` | plate | cgpt readability rename set E v17: Readability pass set E: world reader record table context helper based on adjacent named subsystem context. |
+| `004b89e0` | `world_reader_record_table_context_helper_004b89e0` | plate | cgpt readability rename set E v17: Readability pass set E: world reader record table context helper based on adjacent named subsystem context. |
+| `004b8a10` | `load_palette_luminance_translucency_tables` | plate | cgpt whole-binary semantic rename v1: strings palette/luminance/translucency table not found |
+| `004b8c40` | `world_reader_null_handler` | plate | cgpt whole-binary semantic rename v1: string evidence wrldr/null |
+| `004b8d30` | `world_reader_record_handler` | plate | cgpt whole-binary semantic rename v1: string evidence wrldr |
+| `004b8e00` | `world_reader_record_handler_context_helper_004b8e00` | plate | cgpt readability rename set E v17: Readability pass set E: world reader record handler context helper based on adjacent named subsystem context. |
+| `004b8e20` | `world_reader_null_record_handler` | plate | cgpt whole-binary semantic rename v1: string evidence null |
+| `004b8ed0` | `create_lobj_light_object` | plate | [cgpt i76.exe descriptor callback rename v6; confidence=medium-high] LOBJ callback. Creates a light/object record from position/vector/intensity fields and marks the parent object with a light-present flag. |
+| `004b8f40` | `world_reader_parser_context_helper_004b8f40` | plate | cgpt label refinement v20: was world_reader_parse_context_helper_004b8f40. Normalize parser wording. |
+| `004b8f70` | `create_world_entity_from_resource` | plate | i76 second-pass rename<br>old_name: FUN_004b8f70<br>suggested_name: create_world_entity_from_resource<br>basis: References wrldr and world-full entity creation diagnostic; adds indexed cache entry. |
+| `004b95c0` | `lowercase_resource_filename` | plate | i76 second-pass rename<br>old_name: FUN_004b95c0<br>suggested_name: lowercase_resource_filename<br>basis: tolower helper used by resource enumeration/registration. |
+| `004b95f0` | `create_empty_zfsf_archive_file` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Creates a minimal empty ZFSF archive file: writes 0x1c-byte ZFSF header and one 0xe14-byte directory table. Used by open_zfsf_archive_file only when update/create mode is requested and the archive is missing. |
+| `004b9740` | `open_zfsf_archive_file` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Opens a ZFSF archive file by path. Second argument selects read-only mode versus create/update-capable rb+ mode. Retail resource callers observed passing 0 for read-only rb behavior. |
+| `004b9800` | `open_zfsf_archive` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Parses and validates an already-open ZFSF archive stream. Validates magic ZFSF, version 1, record-name size 0x10, records-per-directory-table 100; reads chained 0xe14-byte directory tables and filters inactive records. |
+| `004b9800` | `open_zfsf_archive` | pre | I76 semantic baseline: open_zfsf_archive<br>Opens/parses ZFSF archive. |
+| `004b9ad0` | `compare_zfsf_record_name_cstring` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Case-insensitive compare between a 16-byte ZFSF record key/name and a C string, used by binary search over the live record table. |
+| `004b9af0` | `close_zfsf_archive` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Closes the archive FILE pointer and releases directory-offset and live-record arrays from a ZFSF archive handle. |
+| `004b9b40` | `lookup_zfsf_record_logical_size` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Looks up a live ZFSF record by name and returns decompressed/logical size. For compressed records this is flags_size >> 8; for uncompressed records this is stored_size. |
+| `004b9ba0` | `read_zfsf_record_to_buffer_bool` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Public ZFSF read wrapper that looks up a record and decodes it into a caller-provided buffer, returning success/failure. |
+| `004b9bd0` | `read_zfsf_record_payload` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Core ZFSF record read path: seeks to record file_offset, reads record stored_size bytes from disk, optionally LZO-decompresses based on flags byte, then applies archive XOR key dword-wise if nonzero. |
+| `004b9bd0` | `read_zfsf_record_payload` | pre | I76 semantic baseline: read_zfsf_record_payload<br>Reads ZFSF record payload. |
+| `004b9db0` | `read_zfsf_record_allocated_payload` | plate | [cgpt i76.exe ZFSF format renames v13; confidence=high] Allocating ZFSF read wrapper. Allocates logical output size for a named record, then calls read_zfsf_record_payload. |
+| `004b9db0` | `read_zfsf_record_allocated_payload` | pre | I76 semantic baseline: read_zfsf_record_allocated_payload<br>Allocates and reads ZFSF record payload. |
+| `004b9dd0` | `zfsf_payload_wrapper_context_helper_004b9dd0` | plate | cgpt label refinement v20: was zfsf_record_payload_wrapper_context_helper_004b9dd0. Shorten readability label. |
+| `004b9df0` | `zfsf_payload_wrapper_context_helper_004b9df0` | plate | cgpt label refinement v20: was zfsf_record_payload_wrapper_context_helper_004b9df0. Shorten readability label. |
+| `004b9e10` | `zfsf_payload_wrapper_context_helper_004b9e10` | plate | cgpt label refinement v20: was zfsf_record_payload_wrapper_context_helper_004b9e10. Shorten readability label. |
+| `004b9e40` | `zfsf_payload_wrapper_context_helper_004b9e40` | plate | cgpt label refinement v20: was zfsf_record_payload_wrapper_context_helper_004b9e40. Shorten readability label. |
+| `004b9fc0` | `zfsf_decompress_record_payload_by_lzo_mode` | plate | [cgpt i76.exe LZO1Y labels v24; confidence=high] ZFSF compressed-record wrapper: initializes embedded LZO and dispatches compression byte 0x02 to LZO1X, 0x04 to LZO1Y. |
+| `004b9fc0` | `zfsf_decompress_record_payload_by_lzo_mode` | pre | I76 semantic baseline: zfsf_decompress_record_payload_by_lzo_mode<br>Dispatches ZFSF LZO1X/LZO1Y decompression by mode. |
+| `004ba0a0` | `zfsf_error_context_helper_004ba0a0` | plate | cgpt label refinement v20: was zfsf_resource_error_context_helper_004ba0a0. Shorten readability label. |
+| `004ba0e0` | `crt_entry` | plate | [cgpt i76.exe ZFSF rename corrections v14] Restore entrypoint name. v13 accidentally renamed the containing function while trying to name an interior LZO helper at 004ba220. |
+| `004ba290` | `__allshl` | plate | Library Function - Single Match<br> __allshl<br><br>Library: Visual Studio |
+| `004ba2d0` | `__allshr` | plate | Library Function - Single Match<br> __allshr<br><br>Library: Visual Studio |
+| `004ba320` | `zfsf_lzo_context_helper_004ba320` | plate | cgpt label refinement v20: was zfsf_lzo_probe_or_wrapper_context_helper_004ba320. Shorten readability label. |
+| `004ba370` | `compute_yaw_degrees_between_xz_vectors` | plate | [cgpt i76.exe ZFSF rename corrections v14] Restore previously established math helper name. v13 accidentally renamed the containing function while trying to name an interior LZO helper at 004ba4d0. |
+| `004ba5f0` | `release_geometry_variant_recursive` | plate | cgpt rename v2: Recursively releases/detaches a geometry variant for a world-object subtree. |
+| `004ba640` | `find_object_texture_slot_name` | plate | [cgpt i76.exe vehicle asset format renames v16; confidence=high] Looks up texture slot names and normalizes .map/.tmt suffix behavior for object/geometry texture bindings. |
+| `004ba6d0` | `lzo_runtime_config_selftest` | plate | [cgpt i76.exe LZO1Y labels v24; confidence=medium-high] LZO runtime configuration/self-test helper for byte order, unaligned access, pointer behavior, and embedded identity-string checksum. |
+| `004ba6f0` | `lzo_runtime_config_selftest` | eol | cgpt note: LZO nearby/interior probe address only; not renamed by v22 to avoid polluting containing function names. |
+| `004ba980` | `lzo_init_embedded_library` | plate | [cgpt i76.exe LZO1Y labels v24; confidence=high] Embedded LZO 1.00 initialization wrapper called once by the ZFSF decompression dispatcher. |
+| `004ba9e0` | `lzo_compute_alignment_gap` | plate | [cgpt i76.exe LZO1Y labels v24; confidence=medium-high] Small LZO helper returning alignment gap for a pointer and alignment value. |
+| `004baa00` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Embedded LZO 1.00 LZO1Y unsafe decompressor entry; ZFSF mode/compression byte 0x04. |
+| `004baa1b` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y internal block label v24; confidence=high] Reads the first compressed token byte and decides whether the stream begins with an initial literal run. |
+| `004baa2a` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y internal block label v24; confidence=high] Zero-extension loop for long initial literal run length. |
+| `004baa40` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] State reached after a match with no post-match literal tail; next token below 0x10 is a literal-run token, not an M1 short-match token. |
+| `004baa43` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] If token >= 0x10 dispatches to match classes; if token is zero extends literal run; otherwise copies token+3 literals. |
+| `004baa4e` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y internal block label v24; confidence=high] Copies a literal run using dword chunks plus a byte tail. |
+| `004baa62` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y internal block label v24; confidence=high] Copies the final 0..3 literal bytes and then reads the next token. |
+| `004baa70` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Initial post-literal M2 form: m_pos = op - 0x401 - ((token >> 2) + (next << 2)); copies three bytes. |
+| `004baa90` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Main match-token dispatch: >=0x40 M2, >=0x20 M3, >=0x10 M4/end, otherwise M1 short match. |
+| `004baaa0` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] M2 form: length = (token >> 4) - 1; offset uses ((token >> 2) & 3) + (next << 2). |
+| `004baab0` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] M3 long length extension loop; each zero byte adds 0xff before final byte plus 0x21. |
+| `004baac8` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y internal block label v24; confidence=medium-high] Dispatches token class below 0x40 into M3/M4/end-marker families. |
+| `004baad4` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] M3 offset word path: m_pos = op - 1 - (word >> 2). |
+| `004baae6` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Unsafe match copy path using dword copies plus byte tail when match distance is large enough. |
+| `004bab07` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Uses low two bits of previous token for post-match literal count; if zero returns to literal-state reader at 004baa40. |
+| `004bab28` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Short-distance overlap path; swaps ip/m_pos and uses rep movsb to copy match bytes safely for overlap. |
+| `004bab30` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] M4/end long length extension loop; each zero byte adds 0xff before final byte plus 9. |
+| `004bab48` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Token 0x10..0x1f enters M4/end path; token below 0x10 enters M1 short-match path when reached through main dispatch. |
+| `004bab5c` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] M4 offset word path; high offset bit from token bit 3 is preserved across MOV AX and then shifted right two. |
+| `004bab62` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] M4 m_pos base is op - 0x4000 - encoded_offset; zero encoded offset enters terminal marker classification. |
+| `004bab78` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] M1 short match after main dispatch: length 2, offset ((token >> 2) + (next << 2)) from op - 1. |
+| `004bab98` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Terminal marker path; compares ip against input_end and returns 0, -8, or -4 after storing output length. |
+| `004babac` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Stores produced output length and returns negative status. |
+| `004babc2` | `lzo_decompress_inner_context_stub_004babc2` | plate | cgpt readability rename set E v17: Readability pass set E: lzo decompress inner context stub based on adjacent named subsystem context. |
+| `004babc9` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Internal status 8, returned as -8 when input pointer is before expected input end. |
+| `004babd0` | `lzo1y_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y state labels v25] Internal status 4, returned as -4 when input pointer exceeds expected input end. |
+| `004babd8` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Embedded LZO 1.00 LZO1X unsafe decompressor entry; ZFSF mode/compression byte 0x02. |
+| `004bac18` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] State reached after a match with no post-match literal tail; next token below 0x10 is a literal-run token, not an M1 short-match token. |
+| `004bac1b` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] If token >= 0x10 dispatches to match classes; if token is zero extends literal run; otherwise copies token+3 literals. |
+| `004bac48` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Initial post-literal M2 form: m_pos = op - 0x801 - ((token >> 2) + (next << 3)); copies three bytes. This is the LZO1X 0x800-range discriminator. |
+| `004bac68` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Main match-token dispatch: >=0x40 M2, >=0x20 M3, >=0x10 M4/end, otherwise M1 short match. |
+| `004bac79` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1Y internal block label v24; confidence=high] LZO1X comparison point: length uses token >> 5 and next-byte contribution shifted by 3. |
+| `004bac80` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe ZFSF rename corrections v14] Interior address inside lzo1x_style_expand_mode2; not a standalone function entry in current Ghidra analysis. |
+| `004bac80` | `lzo1x_decompress_unsafe` | eol | cgpt note: LZO nearby/interior probe address only; not renamed by v22 to avoid polluting containing function names. |
+| `004bacac` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] M3 offset word path: m_pos = op - 1 - (word >> 2). |
+| `004bacbe` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Unsafe match copy path using dword copies plus byte tail when match distance is large enough. |
+| `004bacdf` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Uses low two bits of previous offset/token source for post-match literal count; if zero returns to literal-state reader at 004bac18. |
+| `004bad00` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Short-distance overlap path; swaps ip/m_pos and uses rep movsb to copy match bytes safely for overlap. |
+| `004bad08` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] M4/end long length extension loop; each zero byte adds 0xff before final byte plus 9. |
+| `004bad20` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Token 0x10..0x1f enters M4/end path; token below 0x10 enters M1 short-match path when reached through main dispatch. |
+| `004bad34` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] M4 offset word path; high offset bit from token bit 3 is preserved across MOV AX and then shifted right two. |
+| `004bad3a` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] M4 m_pos base is op - 0x4000 - encoded_offset; zero encoded offset enters terminal marker classification. |
+| `004bad50` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] M1 short match after main dispatch: length 2, offset ((token >> 2) + (next << 2)) from op - 1. |
+| `004bad70` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Terminal marker path; compares ip against input_end and returns 0, -8, or -4 after storing output length. |
+| `004bad84` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Stores produced output length and returns negative status. |
+| `004bada1` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Internal status 8, returned as -8 when input pointer is before expected input end. |
+| `004bada8` | `lzo1x_decompress_unsafe` | plate | [cgpt i76.exe LZO1X state labels v26] Internal status 4, returned as -4 when input pointer exceeds expected input end. |
+| `004badb0` | `lzo_adler32` | plate | [cgpt i76.exe LZO1Y labels v24; confidence=high] LZO Adler-32 implementation used by the embedded LZO runtime configuration check. |
+| `004baee0` | `runtime_library_string_or_memory_helper_004baee0` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library string or memory helper based on adjacent named subsystem context. |
+| `004bb010` | `runtime_library_memory_copy_helper_004bb010` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library memory copy helper based on adjacent named subsystem context. |
+| `004bb080` | `runtime_library_memory_fill_helper_004bb080` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library memory fill helper based on adjacent named subsystem context. |
+| `004bb1c0` | `runtime_library_string_compare_helper_004bb1c0` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library string compare helper based on adjacent named subsystem context. |
+| `004bb370` | `runtime_library_string_scan_helper_004bb370` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library string scan helper based on adjacent named subsystem context. |
+| `004bb5a0` | `runtime_library_string_format_helper_004bb5a0` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library string format helper based on adjacent named subsystem context. |
+| `004bb760` | `runtime_library_numeric_conversion_helper_004bb760` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library numeric conversion helper based on adjacent named subsystem context. |
+| `004bb8e0` | `runtime_library_division_or_math_helper_004bb8e0` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library division or math helper based on adjacent named subsystem context. |
+| `004bb990` | `runtime_library_error_or_exit_helper_004bb990` | plate | cgpt readability rename set E v17: Readability pass set E: runtime library error or exit helper based on adjacent named subsystem context. |
+| `004bc000` | `` | pre | 302  RegOpenKeyExA  <<not bound>> |
+| `004bc004` | `` | pre | 279  RegCloseKey  <<not bound>> |
+| `004bc008` | `` | pre | 310  RegQueryValueExA  <<not bound>> |
+| `004bc00c` | `` | pre | 283  RegCreateKeyExA  <<not bound>> |
+| `004bc010` | `` | pre | 321  RegSetValueExA  <<not bound>> |
+| `004bc018` | `` | pre | 5  DirectDrawCreate  <<not bound>> |
+| `004bc01c` | `` | pre | 7  DirectDrawEnumerateA  <<not bound>> |
+| `004bc024` | `` | pre | 3  DirectSoundCreate  <<not bound>> |
+| `004bc02c` | `` | pre | 387  TextOutA  <<not bound>> |
+| `004bc030` | `` | pre | 36  CreateDIBSection  <<not bound>> |
+| `004bc034` | `` | pre | 31  CreateCompatibleDC  <<not bound>> |
+| `004bc038` | `` | pre | 70  DeleteObject  <<not bound>> |
+| `004bc03c` | `` | pre | 67  DeleteDC  <<not bound>> |
+| `004bc040` | `` | pre | 330  SelectObject  <<not bound>> |
+| `004bc044` | `` | pre | 143  GdiFlush  <<not bound>> |
+| `004bc048` | `` | pre | 337  SetBkMode  <<not bound>> |
+| `004bc04c` | `` | pre | 259  GetTextExtentExPointA  <<not bound>> |
+| `004bc050` | `` | pre | 314  Rectangle  <<not bound>> |
+| `004bc054` | `` | pre | 261  GetTextExtentPoint32A  <<not bound>> |
+| `004bc058` | `` | pre | 252  GetSystemPaletteEntries  <<not bound>> |
+| `004bc05c` | `` | pre | 344  SetDIBitsToDevice  <<not bound>> |
+| `004bc060` | `` | pre | 53  CreatePalette  <<not bound>> |
+| `004bc064` | `` | pre | 358  SetPaletteEntries  <<not bound>> |
+| `004bc068` | `` | pre | 250  GetStockObject  <<not bound>> |
+| `004bc06c` | `` | pre | 370  SetTextColor  <<not bound>> |
+| `004bc070` | `` | pre | 336  SetBkColor  <<not bound>> |
+| `004bc074` | `` | pre | 62  CreateScalableFontResourceA  <<not bound>> |
+| `004bc078` | `` | pre | 2  AddFontResourceA  <<not bound>> |
+| `004bc07c` | `` | pre | 315  RemoveFontResourceA  <<not bound>> |
+| `004bc080` | `` | pre | 354  SetMapperFlags  <<not bound>> |
+| `004bc084` | `` | pre | 44  CreateFontIndirectA  <<not bound>> |
+| `004bc088` | `` | pre | 199  GetDeviceCaps  <<not bound>> |
+| `004bc08c` | `` | pre | 331  SelectPalette  <<not bound>> |
+| `004bc090` | `` | pre | 311  RealizePalette  <<not bound>> |
+| `004bc098` | `` | pre | 0  ImmAssociateContext  <<not bound>> |
+| `004bc0a0` | `` | pre | 278  GetProcAddress  <<not bound>> |
+| `004bc0a4` | `` | pre | 152  FreeLibrary  <<not bound>> |
+| `004bc0a8` | `` | pre | 548  SetPriorityClass  <<not bound>> |
+| `004bc0ac` | `` | pre | 211  GetCurrentProcess  <<not bound>> |
+| `004bc0b0` | `` | pre | 400  LoadLibraryA  <<not bound>> |
+| `004bc0b4` | `` | pre | 280  GetProcessHeap  <<not bound>> |
+| `004bc0b8` | `` | pre | 209  GetCurrentDirectoryA  <<not bound>> |
+| `004bc0bc` | `` | pre | 50  CreateFileMappingA  <<not bound>> |
+| `004bc0c0` | `` | pre | 420  MapViewOfFile  <<not bound>> |
+| `004bc0c4` | `` | pre | 595  UnmapViewOfFile  <<not bound>> |
+| `004bc0c8` | `` | pre | 335  GetVolumeInformationA  <<not bound>> |
+| `004bc0cc` | `` | pre | 250  GetLogicalDrives  <<not bound>> |
+| `004bc0d0` | `` | pre | 223  GetDriveTypeA  <<not bound>> |
+| `004bc0d4` | `` | pre | 361  HeapCompact  <<not bound>> |
+| `004bc0d8` | `` | pre | 49  CreateFileA  <<not bound>> |
+| `004bc0dc` | `` | pre | 238  GetFileTime  <<not bound>> |
+| `004bc0e0` | `` | pre | 24  CloseHandle  <<not bound>> |
+| `004bc0e4` | `` | pre | 369  HeapReAlloc  <<not bound>> |
+| `004bc0e8` | `` | pre | 370  HeapSize  <<not bound>> |
+| `004bc0ec` | `` | pre | 254  GetModuleHandleA  <<not bound>> |
+| `004bc0f0` | `` | pre | 78  DeleteFileA  <<not bound>> |
+| `004bc0f4` | `` | pre | 442  OutputDebugStringA  <<not bound>> |
+| `004bc0f8` | `` | pre | 658  lstrcatA  <<not bound>> |
+| `004bc0fc` | `` | pre | 667  lstrcpyA  <<not bound>> |
+| `004bc100` | `` | pre | 325  GetTickCount  <<not bound>> |
+| `004bc104` | `` | pre | 366  HeapFree  <<not bound>> |
+| `004bc108` | `` | pre | 360  HeapAlloc  <<not bound>> |
+| `004bc10c` | `` | pre | 364  HeapDestroy  <<not bound>> |
+| `004bc110` | `` | pre | 362  HeapCreate  <<not bound>> |
+| `004bc114` | `` | pre | 37  CopyFileA  <<not bound>> |
+| `004bc118` | `` | pre | 535  SetFileAttributesA  <<not bound>> |
+| `004bc11c` | `` | pre | 606  VirtualFree  <<not bound>> |
+| `004bc120` | `` | pre | 603  VirtualAlloc  <<not bound>> |
+| `004bc124` | `` | pre | 307  GetSystemInfo  <<not bound>> |
+| `004bc128` | `` | pre | 611  VirtualQuery  <<not bound>> |
+| `004bc12c` | `` | pre | 303  GetSystemDefaultLCID  <<not bound>> |
+| `004bc130` | `` | pre | 353  GlobalMemoryStatus  <<not bound>> |
+| `004bc134` | `` | pre | 130  FindFirstFileA  <<not bound>> |
+| `004bc138` | `` | pre | 126  FindClose  <<not bound>> |
+| `004bc13c` | `` | pre | 135  FindNextFileA  <<not bound>> |
+| `004bc140` | `` | pre | 296  GetStartupInfoA  <<not bound>> |
+| `004bc148` | `` | pre | 572  bsearch  <<not bound>> |
+| `004bc14c` | `` | pre | 478  _vsnprintf  <<not bound>> |
+| `004bc150` | `` | pre | 16  ??3@YAXPAX@Z  <<not bound>> |
+| `004bc154` | `` | pre | 15  ??2@YAPAXI@Z  <<not bound>> |
+| `004bc158` | `` | pre | 73  __CxxFrameHandler  <<not bound>> |
+| `004bc15c` | `` | pre | 589  fgetc  <<not bound>> |
+| `004bc160` | `` | pre | 385  _msize  <<not bound>> |
+| `004bc164` | `` | pre | 598  fputc  <<not bound>> |
+| `004bc168` | `` | pre | 607  fseek  <<not bound>> |
+| `004bc16c` | `` | pre | 439  _stat  <<not bound>> |
+| `004bc170` | `` | pre | 338  _mbctype  <<not bound>> |
+| `004bc174` | `` | pre | 682  setlocale  <<not bound>> |
+| `004bc178` | `` | pre | 298  _ismbcpunct  <<not bound>> |
+| `004bc17c` | `` | pre | 286  _ismbcalnum  <<not bound>> |
+| `004bc180` | `` | pre | 606  fscanf  <<not bound>> |
+| `004bc184` | `` | pre | 358  _mbsnbicmp  <<not bound>> |
+| `004bc188` | `` | pre | 50  _CIasin  <<not bound>> |
+| `004bc18c` | `` | pre | 197  _errno  <<not bound>> |
+| `004bc190` | `` | pre | 208  _exit  <<not bound>> |
+| `004bc194` | `` | pre | 72  _XcptFilter  <<not bound>> |
+| `004bc198` | `` | pre | 141  _acmdln  <<not bound>> |
+| `004bc19c` | `` | pre | 88  __getmainargs  <<not bound>> |
+| `004bc1a0` | `` | pre | 268  _initterm  <<not bound>> |
+| `004bc1a4` | `` | pre | 130  __setusermatherr  <<not bound>> |
+| `004bc1a8` | `` | pre | 155  _adjust_fdiv  <<not bound>> |
+| `004bc1ac` | `` | pre | 105  __p__commode  <<not bound>> |
+| `004bc1b0` | `` | pre | 110  __p__fmode  <<not bound>> |
+| `004bc1b4` | `` | pre | 128  __set_app_type  <<not bound>> |
+| `004bc1b8` | `` | pre | 180  _controlfp  <<not bound>> |
+| `004bc1bc` | `` | pre | 299  _ismbcspace  <<not bound>> |
+| `004bc1c0` | `` | pre | 353  _mbsnbcat  <<not bound>> |
+| `004bc1c4` | `` | pre | 348  _mbsicmp  <<not bound>> |
+| `004bc1c8` | `` | pre | 357  _mbsnbcpy  <<not bound>> |
+| `004bc1cc` | `` | pre | 720  tolower  <<not bound>> |
+| `004bc1d0` | `` | pre | 690  sscanf  <<not bound>> |
+| `004bc1d4` | `` | pre | 706  strstr  <<not bound>> |
+| `004bc1d8` | `` | pre | 570  atoi  <<not bound>> |
+| `004bc1dc` | `` | pre | 571  atol  <<not bound>> |
+| `004bc1e0` | `` | pre | 721  toupper  <<not bound>> |
+| `004bc1e4` | `` | pre | 49  _CIacos  <<not bound>> |
+| `004bc1e8` | `` | pre | 673  qsort  <<not bound>> |
+| `004bc1ec` | `` | pre | 611  fwrite  <<not bound>> |
+| `004bc1f0` | `` | pre | 661  memmove  <<not bound>> |
+| `004bc1f4` | `` | pre | 654  malloc  <<not bound>> |
+| `004bc1f8` | `` | pre | 704  strrchr  <<not bound>> |
+| `004bc1fc` | `` | pre | 59  _CIpow  <<not bound>> |
+| `004bc200` | `` | pre | 591  fgets  <<not bound>> |
+| `004bc204` | `` | pre | 708  strtok  <<not bound>> |
+| `004bc208` | `` | pre | 52  _CIatan2  <<not bound>> |
+| `004bc20c` | `` | pre | 675  rand  <<not bound>> |
+| `004bc210` | `` | pre | 446  _stricmp  <<not bound>> |
+| `004bc214` | `` | pre | 561  abort  <<not bound>> |
+| `004bc218` | `` | pre | 581  div  <<not bound>> |
+| `004bc21c` | `` | pre | 594  floor  <<not bound>> |
+| `004bc220` | `` | pre | 56  _CIfmod  <<not bound>> |
+| `004bc224` | `` | pre | 717  time  <<not bound>> |
+| `004bc228` | `` | pre | 683  setvbuf  <<not bound>> |
+| `004bc22c` | `` | pre | 609  ftell  <<not bound>> |
+| `004bc230` | `` | pre | 582  exit  <<not bound>> |
+| `004bc234` | `` | plate | [cgpt i76.exe LZO analysis renames v23; confidence=medium] Function pointer used by ZFSF/LZO dispatch to format resource/compression errors. |
+| `004bc234` | `` | pre | 687  sprintf  <<not bound>> |
+| `004bc238` | `` | pre | 438  _splitpath  <<not bound>> |
+| `004bc23c` | `` | pre | 596  fopen  <<not bound>> |
+| `004bc240` | `` | pre | 304  _isnan  <<not bound>> |
+| `004bc244` | `` | pre | 388  _open  <<not bound>> |
+| `004bc248` | `` | pre | 405  _read  <<not bound>> |
+| `004bc24c` | `` | pre | 176  _close  <<not bound>> |
+| `004bc250` | `` | pre | 321  _lseek  <<not bound>> |
+| `004bc254` | `` | pre | 448  _strlwr  <<not bound>> |
+| `004bc258` | `` | pre | 689  srand  <<not bound>> |
+| `004bc25c` | `` | pre | 400  _putch  <<not bound>> |
+| `004bc260` | `` | pre | 450  _strnicmp  <<not bound>> |
+| `004bc264` | `` | pre | 585  fclose  <<not bound>> |
+| `004bc268` | `` | pre | 602  fread  <<not bound>> |
+| `004bc26c` | `` | pre | 692  strchr  <<not bound>> |
+| `004bc270` | `` | pre | 474  _unlink  <<not bound>> |
+| `004bc274` | `` | pre | 383  _mkdir  <<not bound>> |
+| `004bc278` | `` | pre | 140  _access  <<not bound>> |
+| `004bc27c` | `` | pre | 238  _ftol  <<not bound>> |
+| `004bc280` | `` | pre | 395  _pctype  <<not bound>> |
+| `004bc284` | `` | pre | 274  _isctype  <<not bound>> |
+| `004bc288` | `` | pre | 96  __mb_cur_max  <<not bound>> |
+| `004bc28c` | `` | pre | 702  strncpy  <<not bound>> |
+| `004bc290` | `` | pre | 703  strpbrk  <<not bound>> |
+| `004bc294` | `` | pre | 199  _except_handler3  <<not bound>> |
+| `004bc298` | `` | pre | 597  fprintf  <<not bound>> |
+| `004bc29c` | `` | pre | 701  strncmp  <<not bound>> |
+| `004bc2a4` | `` | pre | 3  StrLookupFormat  <<not bound>> |
+| `004bc2a8` | `` | pre | 4  StrLookup_Global_Object  <<not bound>> |
+| `004bc2ac` | `` | pre | 1  StrLookupDestroy  <<not bound>> |
+| `004bc2b0` | `` | pre | 0  StrLookupCreate  <<not bound>> |
+| `004bc2b4` | `` | pre | 2  StrLookupFind  <<not bound>> |
+| `004bc2bc` | `` | pre | 494  SetCursorPos  <<not bound>> |
+| `004bc2c0` | `` | pre | 467  ScreenToClient  <<not bound>> |
+| `004bc2c4` | `` | pre | 55  ClipCursor  <<not bound>> |
+| `004bc2c8` | `` | pre | 248  GetFocus  <<not bound>> |
+| `004bc2cc` | `` | pre | 553  ShowCursor  <<not bound>> |
+| `004bc2d0` | `` | pre | 237  GetCursorPos  <<not bound>> |
+| `004bc2d4` | `` | pre | 257  GetKeyState  <<not bound>> |
+| `004bc2d8` | `` | pre | 396  MapVirtualKeyA  <<not bound>> |
+| `004bc2dc` | `` | pre | 215  GetAsyncKeyState  <<not bound>> |
+| `004bc2e0` | `` | pre | 507  SetMenu  <<not bound>> |
+| `004bc2e4` | `` | pre | 539  SetWindowLongA  <<not bound>> |
+| `004bc2e8` | `` | pre | 501  SetFocus  <<not bound>> |
+| `004bc2ec` | `` | pre | 474  SendMessageA  <<not bound>> |
+| `004bc2f0` | `` | pre | 542  SetWindowPos  <<not bound>> |
+| `004bc2f4` | `` | pre | 520  SetRect  <<not bound>> |
+| `004bc2f8` | `` | pre | 54  ClientToScreen  <<not bound>> |
+| `004bc2fc` | `` | pre | 612  wsprintfA  <<not bound>> |
+| `004bc300` | `` | pre | 461  ReleaseDC  <<not bound>> |
+| `004bc304` | `` | pre | 238  GetDC  <<not bound>> |
+| `004bc308` | `` | pre | 1  AdjustWindowRect  <<not bound>> |
+| `004bc30c` | `` | pre | 300  GetSystemMetrics  <<not bound>> |
+| `004bc310` | `` | pre | 85  CreateWindowExA  <<not bound>> |
+| `004bc314` | `` | pre | 593  UpdateWindow  <<not bound>> |
+| `004bc318` | `` | pre | 614  wvsprintfA  <<not bound>> |
+| `004bc31c` | `` | pre | 263  GetKeyboardType  <<not bound>> |
+| `004bc320` | `` | pre | 492  SetCursor  <<not bound>> |
+| `004bc324` | `` | pre | 228  GetClientRect  <<not bound>> |
+| `004bc328` | `` | pre | 317  GetWindowRect  <<not bound>> |
+| `004bc32c` | `` | pre | 9  BeginPaint  <<not bound>> |
+| `004bc330` | `` | pre | 597  ValidateRect  <<not bound>> |
+| `004bc334` | `` | pre | 182  EndPaint  <<not bound>> |
+| `004bc338` | `` | pre | 128  DefWindowProcA  <<not bound>> |
+| `004bc33c` | `` | pre | 205  FindWindowA  <<not bound>> |
+| `004bc340` | `` | pre | 557  ShowWindow  <<not bound>> |
+| `004bc344` | `` | pre | 370  LoadCursorA  <<not bound>> |
+| `004bc348` | `` | pre | 446  RegisterClassA  <<not bound>> |
+| `004bc34c` | `` | pre | 581  TranslateMessage  <<not bound>> |
+| `004bc350` | `` | pre | 431  PeekMessageA  <<not bound>> |
+| `004bc354` | `` | pre | 138  DestroyWindow  <<not bound>> |
+| `004bc358` | `` | pre | 144  DispatchMessageA  <<not bound>> |
+| `004bc35c` | `` | pre | 405  MessageBoxA  <<not bound>> |
+| `004bc364` | `` | pre | 46  mciGetErrorStringA  <<not bound>> |
+| `004bc368` | `` | pre | 23  auxSetVolume  <<not bound>> |
+| `004bc36c` | `` | pre | 20  auxGetNumDevs  <<not bound>> |
+| `004bc370` | `` | pre | 151  timeGetTime  <<not bound>> |
+| `004bc374` | `` | pre | 50  mciSendCommandA  <<not bound>> |
+| `004bc378` | `` | pre | 28  joyGetNumDevs  <<not bound>> |
+| `004bc37c` | `` | pre | 26  joyGetDevCapsA  <<not bound>> |
+| `004bc380` | `` | pre | 18  auxGetDevCapsA  <<not bound>> |
+| `004bc384` | `` | pre | 30  joyGetPosEx  <<not bound>> |
+| `004bc38c` | `` | pre | 31  dpSend  <<not bound>> |
+| `004bc390` | `` | pre | 14  dpEnumGroups  <<not bound>> |
+| `004bc394` | `` | pre | 15  dpEnumPlayers  <<not bound>> |
+| `004bc398` | `` | pre | 21  dpGetPlayerName  <<not bound>> |
+| `004bc39c` | `` | pre | 29  dpReceive  <<not bound>> |
+| `004bc3a0` | `` | pre | 0  dpAddPlayerToGroup  <<not bound>> |
+| `004bc3a4` | `` | pre | 13  dpEnumGroupPlayers  <<not bound>> |
+| `004bc3a8` | `` | pre | 11  dpDestroyPlayer  <<not bound>> |
+| `004bc3ac` | `` | pre | 20  dpGetPlayerData  <<not bound>> |
+| `004bc3b0` | `` | pre | 34  dpSetPlayerData  <<not bound>> |
+| `004bc3b8` | `` | pre | 38  CoInitialize  <<not bound>> |
+| `004bc3bc` | `` | pre | 72  CoUninitialize  <<not bound>> |
+| `004bc3c4` | `` | pre | 21  Ordinal_21  <<not bound>> |
+| `004bc3c8` | `` | pre | 32  Ordinal_32  <<not bound>> |
+| `004bc3cc` | `` | pre | 7  Ordinal_7  <<not bound>> |
+| `004bc3d0` | `` | pre | 14  Ordinal_14  <<not bound>> |
+| `004bc3d4` | `` | pre | 5  Ordinal_5  <<not bound>> |
+| `004bc3d8` | `` | pre | 17  Ordinal_17  <<not bound>> |
+| `004bc3dc` | `` | pre | 23  Ordinal_23  <<not bound>> |
+| `004bc3e0` | `` | pre | 18  Ordinal_18  <<not bound>> |
+| `004bc3e4` | `` | pre | 28  Ordinal_28  <<not bound>> |
+| `004bc3e8` | `` | pre | 25  Ordinal_25  <<not bound>> |
+| `004bc3ec` | `` | pre | 19  Ordinal_19  <<not bound>> |
+| `004bc3f0` | `` | pre | 3  Ordinal_3  <<not bound>> |
+| `004bc3f4` | `` | pre | 6  Ordinal_6  <<not bound>> |
+| `004bc3f8` | `` | pre | 38  Ordinal_38  <<not bound>> |
+| `004bc3fc` | `` | pre | 2  Ordinal_2  <<not bound>> |
+| `004be1b0` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Shared float zero constant used by vehicle accumulator/damage comparisons. |
+| `004c04b8` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c04cc` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c04e0` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c04f4` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c0508` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c051c` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c0530` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c0544` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c0558` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c056c` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c0580` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c0594` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c05a8` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `004c05d0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05d4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05d8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05dc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05e0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05e8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05ec` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05f4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c05fc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0600` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0604` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0608` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c060c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0610` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0614` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0618` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c061c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0620` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0624` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0628` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c062c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0630` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0634` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0638` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c063c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0640` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0644` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0648` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c064c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0650` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0654` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0658` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c065c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0660` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0668` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0670` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0674` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0678` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c067c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0680` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0684` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0688` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c068c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0690` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0694` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0698` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c069c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06a0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06a4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06a8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06ac` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06b0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06b4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06b8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06bc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06c0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06c4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06c8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06cc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06d0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06d4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06d8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06dc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06e0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06e4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06e8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06ec` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06f0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06f4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06f8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c06fc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0700` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0704` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0708` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c070c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0710` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0718` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c071c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0720` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0724` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0728` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c072c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0730` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0734` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0738` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c073c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0740` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0744` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0748` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c074c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0750` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0754` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0758` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c075c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0760` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0764` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0768` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c076c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0770` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0774` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0778` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c077c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0780` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0784` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0788` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c078c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0790` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0794` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0798` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c079c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07a0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07a4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07a8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07ac` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07b0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07b4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07b8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07bc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07c0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07c4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07c8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07cc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07d0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07d4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07d8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07dc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07e0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07e4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07e8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07ec` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07f0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07f4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07f8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c07fc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0800` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0804` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0808` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c080c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0810` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0814` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0818` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c081c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0820` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0824` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0828` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c082c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0830` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0834` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0838` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c083c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0840` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0844` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0848` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c084c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0850` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0854` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0858` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c085c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0860` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0864` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0868` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c086c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0874` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0878` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c087c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0880` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0884` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c088c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0890` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0894` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0898` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c089c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08a0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08a4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08a8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08ac` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08b0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08b4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08b8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08bc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08c0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08c4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08c8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08cc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08d0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08d4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08d8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08dc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08e0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08e4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08e8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08ec` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08f0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08f4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08f8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c08fc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0900` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0904` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0908` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c090c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0910` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0914` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0918` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c091c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0920` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0924` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0928` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c092c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0934` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0938` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c093c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0940` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0944` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0948` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c094c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0950` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0954` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c095c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0960` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0964` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0968` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c096c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0970` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0974` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0978` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c097c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0980` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0988` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c098c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0994` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c0998` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c099c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09a0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09a4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09a8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09ac` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09b0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09b4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09b8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09bc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09c0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09c4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09c8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09cc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `004c09d4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c09e8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c09f8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0a12` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0a24` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c0a30` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0a42` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0a50` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0a64` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0a78` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0a88` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c0a96` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0aa4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ab4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ac8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0adc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0aec` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0afe` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b0c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b1a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b28` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b3a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b46` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b56` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b64` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b74` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0b84` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c0b90` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ba2` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c0bac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0bb6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0bc4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0bce` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0bd6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0bde` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0be8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0bf2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0bfc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c04` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c0e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c1a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c2a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c34` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c3e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c52` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c5c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c66` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c70` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c78` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c80` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c88` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c92` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0c9a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ca0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ca8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0cb4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0cbc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0cc8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0cd2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0cda` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ce4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0cee` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0cf8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d02` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d0c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d14` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d1e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d28` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d30` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d38` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d42` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d4c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d56` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d62` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d6e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d7a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d88` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0d96` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0da0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0daa` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0db4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0dc2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0dd2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0de2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0df6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0dfe` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e06` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e0e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e16` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e22` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e2e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e3c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e4a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e54` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e5c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e66` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e70` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c0e7c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e84` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e92` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0e9c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0eac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0eb8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ecc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0edc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0eec` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0efa` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f0c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f1a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f2c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f3e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f54` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f60` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f76` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f86` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0f96` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0fa8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0fba` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0fc4` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c0fd0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0fe2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ff0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c0ffe` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c100a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1016` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1026` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1032` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c103e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1054` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1068` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1074` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1082` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1090` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c109e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c10ac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c10ba` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c10ca` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c10de` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c10f6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1108` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1118` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c112e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1146` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1154` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1160` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1176` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1184` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1194` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c11a4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c11b4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c11cc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c11e2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c11f4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1206` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1212` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1222` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1234` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1244` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1256` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c126a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c127e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1286` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1292` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c129e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c12b0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c12ba` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c12ca` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c12da` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c12e8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c12f4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1302` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1310` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1320` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1332` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1342` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c134e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1362` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1370` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1382` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c138e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1398` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c13aa` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c13bc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c13d6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c13ec` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c13fc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1408` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1418` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1424` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1430` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c143e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c144e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1460` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1470` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1480` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1496` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c14a8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c14be` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c14d2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c14f0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1504` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1518` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1528` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c153c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1548` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1560` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c156c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1584` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1592` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c15a6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c15b6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c15c8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c15da` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c15e8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c15fa` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c160a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1620` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1632` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1642` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1652` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1664` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1672` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1680` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c168a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c169e` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c16aa` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c16b8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c16cc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c16e4` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c16ee` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1704` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c170e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1720` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1730` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `004c173a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1746` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1750` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c175a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1764` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c176e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c1776` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c177e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `004c2020` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Literal .vcf suffix used by vehicle config paths. |
+| `004c2164` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Top-level game-flow state. Active runtime loop runs while this value is 5. |
+| `004c2720` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Callback invoked by vehicle frame update when runtime display/camera mode transitions. |
+| `004c2728` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Current runtime display/camera mode copied into g_runtime_display_mode_last_vehicle_state. |
+| `004ecfa8` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Diagnostic string for illegal e-brake values. |
+| `004ecfd0` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Diagnostic string for illegal steer values. |
+| `004f234c` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium] Feedback flag set when next-weapon selection updates HUD dymo text. |
+| `004f2350` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium] Feedback flag set when matching-group weapon selection updates HUD dymo text. |
+| `004f2354` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium] Feedback flag set when previous/clear weapon selection updates HUD dymo text. |
+| `004f2478` | `` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=MEDIUM] Runtime float-parameter list head used by radial damage for one directional damage component. |
+| `004f247c` | `` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=MEDIUM] Runtime float-parameter list head used by radial damage for one directional damage component. |
+| `004f2480` | `` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=MEDIUM] Runtime float-parameter list head used by radial damage for one directional damage component. |
+| `004f2484` | `` | plate | [cgpt i76.exe damage dispatch rename v19; confidence=MEDIUM] Runtime float-parameter list head used by radial damage for one directional damage/impulse component. |
+| `004f45c8` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] String constant: throttle_up. |
+| `004f45d4` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] String constant: throttle. |
+| `004f76e0` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] World-object class callback descriptor table root. |
+| `004f76e0` | `` | pre | I76 semantic baseline note:<br>World-object class descriptor table start candidate. 0x34-byte rows: class id + callback slots. Manual C-style polymorphism rather than compiler C++ inheritance. |
+| `004f777c` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] World-object class callback descriptor row for class id 1, the main vehicle runtime class. |
+| `004f7dc0` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Per-damage-region offsets into vehicle runtime/object texture slot records. |
+| `004f7df0` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] Number of texture names per vehicle damage region. |
+| `004f7e08` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=high] Table of V1 FT/MD damage texture map names used by vehicle damage texture frame update. |
+| `004f89d8` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] ZHR45%1d01.tmt format used by vehicle damage visual initializer. |
+| `004f89f0` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium-high] ZHL45%1d01.tmt format used by vehicle damage visual initializer. |
+| `004f8a98` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] ZSWLS%1d01.tmt format used by suspension/wheel damage visual initializer. |
+| `004f8d38` | `` | plate | [cgpt i76.exe GEO raster pipeline renames v34; confidence=medium] Adjacent/related raster mode table referenced by submit_lit_textured_polygon_to_renderer after clipping. Needs deeper validation because initial table export suggests overlap/aliasing with the clip table region. |
+| `004f9538` | `` | plate | [cgpt i76.exe GEO raster pipeline renames v34; confidence=high] Mode-indexed table used by submit_lit_textured_polygon_to_renderer before final draw submission. Entries resolve to the four clip/project/prepare variants around 0047b1a0..0047c2f0. |
+| `004fa170` | `` | plate | [cgpt i76.exe GEO runtime/render renames v30; confidence=high] 256 RGB triplets used to populate 8bpp DIBSection palette entries for decoded image/texture previews. |
+| `004fe534` | `` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM_HIGH] Primary runtime display/input mode bitfield/state. Values gate SMK playback, loading screen redraw, frame blit, menu/input modes, and audio pumping. |
+| `004fe538` | `` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM_HIGH] Requested/next runtime display-input mode used by the mode FSM around 0049d000. |
+| `004fef70` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] BWD2 descriptor table beginning with VCFC used by load_vehicle_config_for_world_object. |
+| `004fefb0` | `` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] BWD2 chunk descriptor table for VCFC vehicle configuration resources. |
+| `004ff180` | `` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] BWD2 chunk descriptor table for VCST vehicle/component state resources. |
+| `004ff1f0` | `` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] BWD2 chunk descriptor table for VTFC display-key/resource parse path. |
+| `004ff240` | `` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] BWD2 chunk descriptor table for WDF/WDFC weapon definition resources. |
+| `004ff2d0` | `` | plate | [cgpt i76.exe chunk/parser/text rename v5; confidence=high] BWD2 chunk descriptor table for GDF/GDFC equipment definition resources. |
+| `004ff330` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] BWD2 descriptor table beginning with VCST used for optional .vsf vehicle state parsing. |
+| `004ffc28` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] Triples of salvage availability table pointer, name-offset, and count. |
+| `004ffc2c` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] Name-offset table used when comparing/canonicalizing salvage resource tokens. |
+| `004ffc30` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] Per-group salvage availability record counts. |
+| `004ffc70` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Literal .vsf suffix used by vehicle state paths. |
+| `004ffc78` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Diagnostic string for missing suspension component. |
+| `004ffc98` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Diagnostic string for missing brake component. |
+| `004ffcb4` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=high] Diagnostic string for missing engine component. |
+| `004ffed0` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Diagnostic string: Unknown Salvage type %s found. |
+| `004ffef0` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Diagnostic string: Can't add salvage item. |
+| `00500328` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Initial BWD2 descriptor table used before parsing specific resource chunk families. |
+| `00500348` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] WDEF mission descriptor table used by selected mission resource parser. |
+| `005003b8` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium] Extension/type table used by validate_mission_revision_chunks for .msn/.lvl family checks. |
+| `00500438` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] Revision/mandatory chunk table consumed by validate_mission_revision_chunks. |
+| `00500768` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=high] Diagnostic string for missing user vehicle in mission. |
+| `00504a04` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Scalar copied from shell launch config offset +0x6c after successful ShellMain launch. |
+| `00504a08` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] 0x1e-byte text block copied from shell launch config offset +0x70. |
+| `00504a30` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] 0x66-dword descriptor block copied from shell launch config offset +0x98. |
+| `00504bf4` | `` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Stores WM_QUIT wParam for process return from top-level shutdown path. |
+| `00504c00` | `` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Optional resource/texture debug log FILE pointer used by texture and VQM loading paths. |
+| `00504c04` | `` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Nested resource-load depth counter incremented while loading VQM plus referenced CBK resources. |
+| `00507da0` | `` | pre | I76 semantic baseline note:<br>FSM vehicle bucket entries candidate. Buckets appear spaced by 0x100 bytes. |
+| `005095a8` | `` | pre | I76 semantic baseline note:<br>FSM delayed game-flow transition time candidate. |
+| `0051f5d0` | `` | pre | I76 semantic baseline note:<br>FSM vehicle bucket count table candidate. Used by AI/FSM registry loops. |
+| `0051f5fc` | `` | pre | I76 semantic baseline note:<br>FSM delayed game-flow transition state candidate. |
+| `00524550` | `` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Global block referenced by vehicle damage source event helpers. |
+| `0052b920` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM] Current node while scanning the two effect/damage target lists. |
+| `0052b928` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM] Pointer to the current effect/damage target-list head while alternating lists. |
+| `0052b930` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM] Primary effect/damage target list head used by radial explosion effect scanning. |
+| `0052b934` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM] Secondary effect/damage target list head used by radial explosion effect scanning. |
+| `0052bbcc` | `` | plate | [cgpt i76.exe effect/damage/blit rename v18; confidence=MEDIUM-HIGH] Heap used for runtime float parameter nodes allocated by allocate_runtime_float_parameter_node. |
+| `0052bbd0` | `` | plate | [cgpt i76.exe effect/damage/blit rename v18; confidence=MEDIUM-HIGH] Gate indicating runtime float parameter allocation/list insertion is enabled. |
+| `0052bbe8` | `` | plate | [cgpt i76.exe effect/damage/blit rename v18; confidence=HIGH] Hash table used by object geometry binding records; indexed by object id with 0x7ed buckets. |
+| `0052dba8` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium] Secondary geometry cache/index table keyed by geometry handle/id. |
+| `0052fb60` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Geometry cache table keyed by 8-character geometry basename. |
+| `00530500` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Global table of discovered .pak backing files; each entry is 0x18 bytes. |
+| `00530504` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Number of discovered PIX/PAK backing file entries. |
+| `00530508` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Sorted 0x1c-byte table of resources listed by .pix files. |
+| `0053050c` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Count of records in the sorted PIX/PAK indexed-resource table. |
+| `00531b14` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Memoized GEO texture suffix decision: nonzero means the last basename resolved to .tmt, zero means .map fallback. |
+| `00531b18` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium-high] Heap handle used for constructed .GEO geometry objects. |
+| `00531b1c` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium-high] Heap handle used for geometry cache metadata entries. |
+| `00531b20` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium-high] Head of unreferenced geometry cache purge/free list. |
+| `00531b24` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium-high] Tail of unreferenced geometry cache purge/free list. |
+| `00531b28` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Memoized GEO texture basename used to avoid repeated .tmt existence checks for adjacent GEO sections. |
+| `00531b38` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium] Head of texture LRU/purge chain manipulated when cached texture refcount reaches zero. |
+| `00531b3c` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium] Tail of texture LRU/purge chain manipulated when cached texture refcount reaches zero. |
+| `00531b40` | `` | plate | [cgpt i76.exe image payload renames v28; confidence=medium-high] Hash table for normalized VQM/direct texture cache records, bucket count 0x6d. |
+| `00531b58` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium] Head of VQM texture LRU/purge list observed in release path. |
+| `00531b5c` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium] Tail of VQM texture LRU/purge list observed in release path. |
+| `00531cf8` | `` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Heap handle used by VQM/direct texture cache allocation path. |
+| `00531e20` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Texture-set cache hash table, modulo 0x7ed. |
+| `00533dd8` | `` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=high] Hash table from object/binding-list key to linked list of texture bindings associated with that object. |
+| `00533fa0` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Object/slot texture-binding hash table, modulo 0x7ed. |
+| `00535f54` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Heap used for 0x34-byte texture-set cache records. |
+| `00535f58` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=high] Heap used for 0x48-byte object texture-slot binding records. |
+| `00535f5c` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium-high] Heap handle for texture-set name/level arrays. |
+| `00535f60` | `` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=high] Heap used for small object-to-texture-binding list records. |
+| `00535f64` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Linked list head for runtime texture animation timers. |
+| `00535f68` | `` | plate | [cgpt i76.exe texture/image/resource renames v21; confidence=medium-high] Heap for runtime texture animation timer records. |
+| `00536758` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Input device callback table used by per-frame input polling. |
+| `005367c8` | `` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=MEDIUM_HIGH] Pending key/action code consumed by the runtime display/input FSM and command binding dispatcher. |
+| `00536820` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Number of configured input axis binding records. |
+| `00536824` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] Count for runtime axis/action binding descriptors. |
+| `00536828` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Number of configured input condition binding records. |
+| `00539a38` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] Runtime axis/action binding table populated by register_runtime_axis_input_binding_descriptor. |
+| `0053da48` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Number of active input device context records. |
+| `00541008` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium] Small target/status field updated from active player weapon mount helper. |
+| `0054100c` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium] Small target/status field updated from active player weapon mount helper. |
+| `0054101c` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium_high] Global bitmask summarizing active/available weapon status for HUD or network/runtime state. |
+| `00541020` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium] Small global target/status field updated from current target object or active player mount. |
+| `00541030` | `` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=medium_high] Global predicate used by weapon/damage paths to suppress damage side effects. |
+| `00541034` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=HIGH] Runtime DirectPlay receive/update enable flag. |
+| `00542830` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] 0x100-entry active object table; each entry is 0x78 bytes / 0x1e dwords in the observed walker. |
+| `0054a0a8` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] Callback vector populated by register_world_object_tree_callback. |
+| `0054a188` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=MEDIUM_HIGH] Callback vector invoked for each newly registered active-world-object entry. |
+| `0054a254` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Count of active world-object entry callbacks. |
+| `0054a258` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Count of registered world-object tree callbacks. |
+| `0054a25c` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Count of allocated active-world-object entries. |
+| `0054a264` | `` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Active player or camera world-object entry used by local player weapon/HUD paths. |
+| `0054acb8` | `` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Global scratch pointer for transformed GEO positions; render-record builder indexes it by vertex_index. |
+| `0054acbc` | `` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Global pointer to the next GEO render-queue record being filled. |
+| `0054acc8` | `` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Global matrix/context pointer passed into GEO render-record construction by tree traversal. |
+| `0054acdc` | `` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium] Global render flag mask ORed into GEO render-record flags at +0x20. |
+| `0054ace0` | `` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=medium-high] Current geometry variant index used by GEO render traversal and ensure_world_object_geometry_variant_binding. |
+| `0054ad28` | `` | plate | [cgpt i76.exe GEO lighting/render renames v33; confidence=high] Global root pointer for the depth-sorted GEO render record tree. |
+| `0054ad34` | `` | plate | [cgpt i76.exe world/runtime table rename v17; confidence=MEDIUM-HIGH] Heap used for world object tree node allocation/free. |
+| `0054ad3c` | `` | plate | [cgpt i76.exe world/runtime table rename v17; confidence=MEDIUM] Guard flag used by recursive world object refcount increment path. |
+| `0054b204` | `` | plate | [cgpt i76.exe vehicle class physics rename v29; confidence=medium] Global queue/list used by world-object class callback dispatchers. |
+| `0054b688` | `` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium] Array of network/AI weapon runtime actor entries used by update_vehicle_weapon_runtime_fire_state. |
+| `0054b9a8` | `` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium] Count of network/AI weapon runtime actor entries processed by update_vehicle_weapon_runtime_fire_state. |
+| `0054b9ac` | `` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium] Dirty flag that forces network/AI weapon runtime actor state summary rebuild. |
+| `0054b9b0` | `` | plate | [cgpt i76.exe vehicle mainloop physics rename v30; confidence=medium] Tracks last display/runtime mode state observed by vehicle frame update before invoking display callback pointer. |
+| `0058d908` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Scratch buffer used to splice display/localization suffixes into texture/resource names before load/release. |
+| `0058d918` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] Count of indexed resource table records. |
+| `0058d91c` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Sorted table of 0x1c-byte indexed-resource records: 16-byte key, PAK index, offset, size. |
+| `0058d920` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Array of 0x18-byte PIX/PAK file records: .pak resource name, loaded backing handle, and state/ref fields. |
+| `0058d924` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Number of PIX/PAK file-table entries. |
+| `0058d928` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Count of sorted 0x1c-byte indexed-resource records parsed from *.pix files. |
+| `0058d938` | `` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=high] Bitset built from FULLRES.LST and consulted by mark_asset_fullres_flag_from_fullres_list. |
+| `0058da14` | `` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=high] Set after FULLRES.LST has been parsed into g_fullres_resource_hash_bitset. |
+| `0058db04` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Count of runtime light entries in the fixed array at g_runtime_light_entries. |
+| `0058db84` | `` | plate | [cgpt i76.exe mission/world/effects rename v16; confidence=HIGH] Fixed-size runtime light table; each entry is 0x6c bytes / 0x1b dwords in the observed release path. |
+| `0059bb88` | `` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=medium-high] Distance lookup table used by cache_nearest_palette_cube_index. |
+| `005a60c4` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] One-time init guard for loading-screen table coordinate accumulation. |
+| `005a60c8` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] Last mission number used to seed/update randomized loading-screen resource ids. |
+| `005a7cd0` | `` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Pending cutscene path consumed by the main loop to open another Smacker clip. |
+| `005a7d70` | `` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Nonzero while a Smacker cutscene is open/active; queried by is_active_smacker_cutscene. |
+| `005a7d90` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Runtime text/status overlay heap or allocation context. |
+| `005a7d94` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Head/list pointer for scrolling runtime status message overlays. |
+| `005a7d98` | `` | plate | [cgpt i76.exe runtime loop refinement v23; confidence=MEDIUM_HIGH] Head/list pointer for static runtime text overlay entries. |
+| `005a7e70` | `` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=high] Runtime time in seconds used by damage/effect timestamps. |
+| `005a7f30` | `` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium] Explosion/effect runtime state block referenced by explosion spawn/distribution helpers. |
+| `005a8100` | `` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium_high] Linked list of muzzle-flash runtime records used by update_weapon_muzzle_flash_runtime_effect. |
+| `005a8104` | `` | plate | [cgpt i76.exe player weapon targeting rename v26; confidence=medium] Heap used for muzzle-flash runtime records. |
+| `005aab08` | `` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Global weapon runtime slot table base. |
+| `005be4d8` | `` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Global loaded vehicle runtime table base. |
+| `005da74c` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] Set when weapon HUD texture widgets have been redrawn and need refresh. |
+| `005da750` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] Count of active entries in g_weapon_runtime_slot_table. |
+| `005da758` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] Bitmap/surface context used as intermediate weapon HUD drawing surface. |
+| `005da78c` | `` | plate | [cgpt i76.exe player vehicle runtime rename v24; confidence=high] Global loaded vehicle runtime table count. |
+| `005da794` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=high] World object used as cockpit/player weapon HUD texture target. |
+| `005da7a0` | `` | plate | [cgpt i76.exe player weapon HUD rename v25; confidence=medium_high] Set after initial weapon HUD selected-slot state is initialized. |
+| `005da7a8` | `` | plate | [cgpt i76.exe damage runtime deeptrace v20; confidence=medium-high] Global used to suppress radial damage on optional/special targets. |
+| `005da7ac` | `` | plate | [cgpt i76.exe vehicle engine/suspension rename v28; confidence=medium] Global linked list/head for pending mission vehicle/effect spawn records observed by update_pending_mission_vehicle_effect_spawns. |
+| `005dabb0` | `` | plate | [cgpt i76.exe vehicle object rename v7; confidence=high] Shared scratch buffer returned by format_8char_vehicle_resource_name_with_suffix. |
+| `005dabc0` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium] Flag checked by vehicle config load path; when set it uses explicit input path instead of selected mission-derived stem. |
+| `005dabc4` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Nested linked list of mission salvage/resource candidates. |
+| `005dacc8` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Sorted table of 0x30-byte registered resource records keyed by first 16 bytes with per-path bitset. |
+| `005daccc` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=high] Count of entries in g_registered_resource_records. |
+| `005dace0` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] MSB-first CRC32 table generated with polynomial 0x04C11DB7. |
+| `005db7c8` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium] Storage for expected 8-byte CRC/file validation records copied from the shell callback. |
+| `005db95c` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium] Count for expected CRC/file validation records. |
+| `005db97c` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] Global parse cursor used around mission/BWD2/WDEF resource parsing. |
+| `005db980` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] End pointer for current BWD2/WDEF parse buffer. |
+| `005db990` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] Process heap handle used by resource/archive allocation code. |
+| `005db998` | `` | plate | [cgpt i76.exe LZO analysis renames v23; confidence=medium-high] Global resource/compression error message buffer used by ZFSF LZO dispatch failure path. |
+| `005dba98` | `` | plate | [cgpt i76.exe LZO analysis renames v23; confidence=high] Global initialized flag checked by the ZFSF LZO dispatch wrapper before calling lzo_init_embedded_library. |
+| `005dcea0` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] ShellMain side-state consumed by i76.exe; state 5 selects launch-config block consumption, states 2/3/4 copy DAT_005dcea9 to selected path. |
+| `005dcea9` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=medium] Shell return path/name buffer copied into selected mission/resource path for return states 2, 3, and 4. |
+| `005dcf98` | `` | plate | [cgpt i76.exe main runtime/FSM rename v21; confidence=HIGH] Set when the message pump sees WM_QUIT; checked by startup, FMV, shell, and runtime loops. |
+| `005dd370` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Global path/name buffer filled by ShellMain return state and later used as the selected mission/resource path. |
+| `00608e58` | `` | plate | [cgpt i76.exe image payload renames v28; confidence=medium] Texture cache memory budget/remaining-byte counter decremented by VQM/direct texture cache allocations. |
+| `00609560` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=medium] Remaining loaded-resource heap budget after hash table allocation and cache records. |
+| `00609564` | `` | plate | [cgpt i76.exe geometry/texture rename v8; confidence=medium] Global mode flag that flips resource lookup order between cache/archive and directory/direct paths. |
+| `00609580` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Hash table for loaded-resource cache records. |
+| `00609584` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=medium] Loaded-resource cache usage counter compared against budget/low-memory thresholds. |
+| `00609588` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=medium] Loaded-resource cache low-memory threshold/counter initialized to 2000. |
+| `0060958c` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Tail/end side of loaded-resource purge/LRU list. |
+| `00609590` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Head/start side of loaded-resource purge/LRU list. |
+| `00609594` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Windows heap handle used for loaded-resource cache records and payloads. |
+| `0060afa0` | `` | plate | [cgpt i76.exe effect/damage/blit rename v18; confidence=MEDIUM-HIGH] 8bpp palette blend/composition lookup table used by clipped bitmap surface blitters. |
+| `0061afa0` | `` | plate | [cgpt i76.exe effect/damage/blit rename v18; confidence=MEDIUM-HIGH] 8bpp palette blend/composition lookup table used by clipped bitmap surface blitters. |
+| `0062b2c0` | `` | plate | [cgpt i76.exe effect/damage/blit rename v18; confidence=MEDIUM-HIGH] 8bpp palette blend/composition lookup table used by clipped bitmap surface blitters. |
+| `0063b2e0` | `` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=medium-high] 0x20x0x20x0x20 byte cache of nearest palette/cube index results. |
+| `006432e0` | `` | plate | [cgpt i76.exe texture/resource-cache rename v9; confidence=medium-high] RGB-ish sample point triplets used to populate nearest palette/cube index cache. |
+| `00654a20` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] Current loading screen record pointer consumed by redraw_mission_loading_screen. |
+| `00654a24` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] Resource name buffer for the current mission loading-screen bitmap. |
+| `00654a38` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] Handle/cache pointer for x1.map used by the mission loading screen UI. |
+| `00654a4c` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] GDI font handle used by loading screen entry drawing. |
+| `00654a54` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] GDI font handle used by loading screen entry drawing. |
+| `00654a58` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] GDI font handle used by loading screen entry drawing. |
+| `00654a5c` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] Alternate progress font selected when entry flags include 0x400. |
+| `00654a60` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] GDI font handle used by loading screen entry drawing. |
+| `00654a64` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] GDI font handle used by loading screen entry drawing. |
+| `00654b08` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=high] Compatible DC used by mission loading screen drawing. |
+| `00654b20` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium] Saved/restored loading-screen state value around loading-screen teardown. |
+| `00654b80` | `` | plate | [cgpt i76.exe mission/vehicle runtime rename v15; confidence=medium_high] Display/profile index used to select localized resource suffixes and font descriptors. |
+| `00654c00` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] Pointer to one of two loading-screen layout tables selected by display/options state. |
+| `00655280` | `` | plate | [cgpt i76.exe mission/runtime rename v14; confidence=medium] Mission runtime/vehicle table with 0xd0-byte records; searched by selected/vehicle mission id. |
+| `006562c0` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Mission number parsed from selected .msn filename stem; defaults to 0x27 when unavailable. |
+| `006562c4` | `` | plate | [cgpt i76.exe mission/resource rename v13; confidence=high] Mission family parsed from .msn stem: m/n => 1, t => 2, s/p => 3. |
+| `006562c8` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium-high] Number of registered ZIX/resource search paths. |
+| `006564e0` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium] Array of directory root strings used by registered resource records. |
+| `006592e0` | `` | plate | [cgpt i76.exe resource/archive rename v11; confidence=medium] Array of 0x10c-byte ZIX/resource search path records. |
+| `0066a060` | `` | plate | Rsrc_Version_1_409 Size of resource: 0x338 bytes |

@@ -1,0 +1,28 @@
+address	bytes	mnemonic	operands	instruction
+00495000	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+00495004	ba fc 0b 00 00	MOV	EDX, 0xbfc	MOV EDX,0xbfc
+00495009	c1 e9 14	SHR	ECX, 0x14	SHR ECX,0x14
+0049500c	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00495010	c1 e8 0d	SHR	EAX, 0xd	SHR EAX,0xd
+00495013	2b d1	SUB	EDX, ECX	SUB EDX,ECX
+00495015	d1 ea	SHR	EDX, 0x1	SHR EDX,0x1
+00495017	25 ff 00 00 00	AND	EAX, 0xff	AND EAX,0xff
+0049501c	dd 44 24 04	FLD	double ptr [ESP + 0x4]	FLD double ptr [ESP + 0x4]
+00495020	c1 e2 14	SHL	EDX, 0x14	SHL EDX,0x14
+00495023	8a 80 80 51 65 00	MOV	AL, byte ptr [EAX + 0x655180]	MOV AL,byte ptr [EAX + 0x655180]
+00495029	c1 e0 0c	SHL	EAX, 0xc	SHL EAX,0xc
+0049502c	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+0049502e	0b d0	OR	EDX, EAX	OR EDX,EAX
+00495030	89 4c 24 04	MOV	dword ptr [ESP + 0x4], ECX	MOV dword ptr [ESP + 0x4],ECX
+00495034	89 54 24 08	MOV	dword ptr [ESP + 0x8], EDX	MOV dword ptr [ESP + 0x8],EDX
+00495038	dd 44 24 04	FLD	double ptr [ESP + 0x4]	FLD double ptr [ESP + 0x4]
+0049503c	dc c8	FMUL	ST0	FMUL ST0
+0049503e	dd 44 24 04	FLD	double ptr [ESP + 0x4]	FLD double ptr [ESP + 0x4]
+00495042	d9 c9	FXCH		FXCH
+00495044	de ca	FMULP	ST2	FMULP ST2
+00495046	dc 0d 28 af 4f 00	FMUL	double ptr [0x004faf28]	FMUL double ptr [0x004faf28]
+0049504c	d9 c9	FXCH		FXCH
+0049504e	dc 2d 20 af 4f 00	FSUBR	double ptr [0x004faf20]	FSUBR double ptr [0x004faf20]
+00495054	de c9	FMULP		FMULP
+00495056	dc 0d 30 af 4f 00	FMUL	double ptr [0x004faf30]	FMUL double ptr [0x004faf30]
+0049505c	c3	RET		RET

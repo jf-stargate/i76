@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+0049a630	8b 0d 70 7d 5a 00	MOV	ECX, dword ptr [0x005a7d70]	MOV ECX,dword ptr [0x005a7d70]
+0049a636	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0049a638	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0049a63a	0f 95 c0	SETNZ	AL	SETNZ AL
+0049a63d	c3	RET		RET

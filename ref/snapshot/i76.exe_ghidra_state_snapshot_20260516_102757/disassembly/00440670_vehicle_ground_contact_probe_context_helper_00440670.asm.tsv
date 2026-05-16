@@ -1,0 +1,57 @@
+address	bytes	mnemonic	operands	instruction
+00440670	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00440674	83 ec 24	SUB	ESP, 0x24	SUB ESP,0x24
+00440677	8b 40 18	MOV	EAX, dword ptr [EAX + 0x18]	MOV EAX,dword ptr [EAX + 0x18]
+0044067a	56	PUSH	ESI	PUSH ESI
+0044067b	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0044067d	57	PUSH	EDI	PUSH EDI
+0044067e	74 67	JZ	0x004406e7	JZ 0x004406e7
+00440680	d9 40 0c	FLD	float ptr [EAX + 0xc]	FLD float ptr [EAX + 0xc]
+00440683	d9 5c 24 08	FSTP	float ptr [ESP + 0x8]	FSTP float ptr [ESP + 0x8]
+00440687	d9 40 20	FLD	float ptr [EAX + 0x20]	FLD float ptr [EAX + 0x20]
+0044068a	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0044068e	d9 5c 24 0c	FSTP	float ptr [ESP + 0xc]	FSTP float ptr [ESP + 0xc]
+00440692	8b 54 24 0c	MOV	EDX, dword ptr [ESP + 0xc]	MOV EDX,dword ptr [ESP + 0xc]
+00440696	89 4c 24 14	MOV	dword ptr [ESP + 0x14], ECX	MOV dword ptr [ESP + 0x14],ECX
+0044069a	d9 40 2c	FLD	float ptr [EAX + 0x2c]	FLD float ptr [EAX + 0x2c]
+0044069d	89 54 24 18	MOV	dword ptr [ESP + 0x18], EDX	MOV dword ptr [ESP + 0x18],EDX
+004406a1	8b 10	MOV	EDX, dword ptr [EAX]	MOV EDX,dword ptr [EAX]
+004406a3	d9 5c 24 10	FSTP	float ptr [ESP + 0x10]	FSTP float ptr [ESP + 0x10]
+004406a7	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+004406ab	d9 44 90 08	FLD	float ptr [EAX + EDX*0x4 + 0x8]	FLD float ptr [EAX + EDX*0x4 + 0x8]
+004406af	8b 50 08	MOV	EDX, dword ptr [EAX + 0x8]	MOV EDX,dword ptr [EAX + 0x8]
+004406b2	89 4c 24 1c	MOV	dword ptr [ESP + 0x1c], ECX	MOV dword ptr [ESP + 0x1c],ECX
+004406b6	8b 48 04	MOV	ECX, dword ptr [EAX + 0x4]	MOV ECX,dword ptr [EAX + 0x4]
+004406b9	d9 5c 24 08	FSTP	float ptr [ESP + 0x8]	FSTP float ptr [ESP + 0x8]
+004406bd	d9 44 88 18	FLD	float ptr [EAX + ECX*0x4 + 0x18]	FLD float ptr [EAX + ECX*0x4 + 0x18]
+004406c1	d9 5c 24 0c	FSTP	float ptr [ESP + 0xc]	FSTP float ptr [ESP + 0xc]
+004406c5	d9 44 90 28	FLD	float ptr [EAX + EDX*0x4 + 0x28]	FLD float ptr [EAX + EDX*0x4 + 0x28]
+004406c9	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004406cd	8b 4c 24 0c	MOV	ECX, dword ptr [ESP + 0xc]	MOV ECX,dword ptr [ESP + 0xc]
+004406d1	d9 5c 24 10	FSTP	float ptr [ESP + 0x10]	FSTP float ptr [ESP + 0x10]
+004406d5	8b 54 24 10	MOV	EDX, dword ptr [ESP + 0x10]	MOV EDX,dword ptr [ESP + 0x10]
+004406d9	89 44 24 20	MOV	dword ptr [ESP + 0x20], EAX	MOV dword ptr [ESP + 0x20],EAX
+004406dd	89 4c 24 24	MOV	dword ptr [ESP + 0x24], ECX	MOV dword ptr [ESP + 0x24],ECX
+004406e1	89 54 24 28	MOV	dword ptr [ESP + 0x28], EDX	MOV dword ptr [ESP + 0x28],EDX
+004406e5	eb 3c	JMP	0x00440723	JMP 0x00440723
+004406e7	c7 44 24 08 00 00 00 00	MOV	dword ptr [ESP + 0x8], 0x0	MOV dword ptr [ESP + 0x8],0x0
+004406ef	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004406f3	c7 44 24 0c 00 00 00 00	MOV	dword ptr [ESP + 0xc], 0x0	MOV dword ptr [ESP + 0xc],0x0
+004406fb	8b 4c 24 0c	MOV	ECX, dword ptr [ESP + 0xc]	MOV ECX,dword ptr [ESP + 0xc]
+004406ff	c7 44 24 10 00 00 00 00	MOV	dword ptr [ESP + 0x10], 0x0	MOV dword ptr [ESP + 0x10],0x0
+00440707	8b 54 24 10	MOV	EDX, dword ptr [ESP + 0x10]	MOV EDX,dword ptr [ESP + 0x10]
+0044070b	89 44 24 20	MOV	dword ptr [ESP + 0x20], EAX	MOV dword ptr [ESP + 0x20],EAX
+0044070f	89 4c 24 24	MOV	dword ptr [ESP + 0x24], ECX	MOV dword ptr [ESP + 0x24],ECX
+00440713	89 54 24 28	MOV	dword ptr [ESP + 0x28], EDX	MOV dword ptr [ESP + 0x28],EDX
+00440717	89 44 24 14	MOV	dword ptr [ESP + 0x14], EAX	MOV dword ptr [ESP + 0x14],EAX
+0044071b	89 4c 24 18	MOV	dword ptr [ESP + 0x18], ECX	MOV dword ptr [ESP + 0x18],ECX
+0044071f	89 54 24 1c	MOV	dword ptr [ESP + 0x1c], EDX	MOV dword ptr [ESP + 0x1c],EDX
+00440723	8b 44 24 30	MOV	EAX, dword ptr [ESP + 0x30]	MOV EAX,dword ptr [ESP + 0x30]
+00440727	b9 06 00 00 00	MOV	ECX, 0x6	MOV ECX,0x6
+0044072c	8d 74 24 14	LEA	ESI, [ESP + 0x14]	LEA ESI,[ESP + 0x14]
+00440730	8b f8	MOV	EDI, EAX	MOV EDI,EAX
+00440732	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+00440734	5f	POP	EDI	POP EDI
+00440735	5e	POP	ESI	POP ESI
+00440736	83 c4 24	ADD	ESP, 0x24	ADD ESP,0x24
+00440739	c3	RET		RET

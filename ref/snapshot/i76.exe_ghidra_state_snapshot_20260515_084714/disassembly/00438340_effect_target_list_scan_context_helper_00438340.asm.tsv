@@ -1,0 +1,25 @@
+address	bytes	mnemonic	operands	instruction
+00438340	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+00438344	d8 1d 90 d0 4b 00	FCOMP	float ptr [0x004bd090]	FCOMP float ptr [0x004bd090]
+0043834a	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0043834e	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+00438352	d9 19	FSTP	float ptr [ECX]	FSTP float ptr [ECX]
+00438354	df e0	FNSTSW	AX	FNSTSW AX
+00438356	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+00438359	75 0d	JNZ	0x00438368	JNZ 0x00438368
+0043835b	d9 05 94 d0 4b 00	FLD	float ptr [0x004bd094]	FLD float ptr [0x004bd094]
+00438361	d8 74 24 08	FDIV	float ptr [ESP + 0x8]	FDIV float ptr [ESP + 0x8]
+00438365	d9 59 04	FSTP	float ptr [ECX + 0x4]	FSTP float ptr [ECX + 0x4]
+00438368	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0043836c	d8 1d 90 d0 4b 00	FCOMP	float ptr [0x004bd090]	FCOMP float ptr [0x004bd090]
+00438372	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+00438376	89 41 10	MOV	dword ptr [ECX + 0x10], EAX	MOV dword ptr [ECX + 0x10],EAX
+00438379	df e0	FNSTSW	AX	FNSTSW AX
+0043837b	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0043837e	75 0c	JNZ	0x0043838c	JNZ 0x0043838c
+00438380	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+00438384	d8 74 24 0c	FDIV	float ptr [ESP + 0xc]	FDIV float ptr [ESP + 0xc]
+00438388	d9 59 14	FSTP	float ptr [ECX + 0x14]	FSTP float ptr [ECX + 0x14]
+0043838b	c3	RET		RET
+0043838c	c7 41 14 f9 02 15 50	MOV	dword ptr [ECX + 0x14], 0x501502f9	MOV dword ptr [ECX + 0x14],0x501502f9
+00438393	c3	RET		RET

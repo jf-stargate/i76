@@ -1,0 +1,13 @@
+address	bytes	mnemonic	operands	instruction
+00466b70	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00466b74	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+00466b78	8b 84 81 a8 03 00 00	MOV	EAX, dword ptr [ECX + EAX*0x4 + 0x3a8]	MOV EAX,dword ptr [ECX + EAX*0x4 + 0x3a8]
+00466b7f	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00466b81	74 4e	JZ	0x00466bd1	JZ 0x00466bd1
+00466b83	8b 48 6c	MOV	ECX, dword ptr [EAX + 0x6c]	MOV ECX,dword ptr [EAX + 0x6c]
+00466b86	83 c1 ec	ADD	ECX, -0x14	ADD ECX,-0x14
+00466b89	83 f9 1e	CMP	ECX, 0x1e	CMP ECX,0x1e
+00466b8c	77 43	JA	0x00466bd1	JA 0x00466bd1
+00466b8e	33 d2	XOR	EDX, EDX	XOR EDX,EDX
+00466b90	8a 91 f4 6b 46 00	MOV	DL, byte ptr [ECX + 0x466bf4]	MOV DL,byte ptr [ECX + 0x466bf4]
+00466b96	ff 24 95 d4 6b 46 00	JMP	dword ptr [EDX*0x4 + 0x466bd4]	JMP dword ptr [EDX*0x4 + 0x466bd4]

@@ -1,0 +1,15 @@
+address	bytes	mnemonic	operands	instruction
+004918b0	a1 80 43 65 00	MOV	EAX, [0x00654380]	MOV EAX,[0x00654380]
+004918b5	66 8b 54 24 04	MOV	DX, word ptr [ESP + 0x4]	MOV DX,word ptr [ESP + 0x4]
+004918ba	8d 48 0c	LEA	ECX, [EAX + 0xc]	LEA ECX,[EAX + 0xc]
+004918bd	89 0d 80 43 65 00	MOV	dword ptr [0x00654380], ECX	MOV dword ptr [0x00654380],ECX
+004918c3	66 8b 4c 24 08	MOV	CX, word ptr [ESP + 0x8]	MOV CX,word ptr [ESP + 0x8]
+004918c8	66 89 48 02	MOV	word ptr [EAX + 0x2], CX	MOV word ptr [EAX + 0x2],CX
+004918cc	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+004918ce	66 89 10	MOV	word ptr [EAX], DX	MOV word ptr [EAX],DX
+004918d1	89 48 04	MOV	dword ptr [EAX + 0x4], ECX	MOV dword ptr [EAX + 0x4],ECX
+004918d4	89 48 08	MOV	dword ptr [EAX + 0x8], ECX	MOV dword ptr [EAX + 0x8],ECX
+004918d7	8b 0d 68 c5 59 00	MOV	ECX, dword ptr [0x0059c568]	MOV ECX,dword ptr [0x0059c568]
+004918dd	41	INC	ECX	INC ECX
+004918de	89 0d 68 c5 59 00	MOV	dword ptr [0x0059c568], ECX	MOV dword ptr [0x0059c568],ECX
+004918e4	c3	RET		RET

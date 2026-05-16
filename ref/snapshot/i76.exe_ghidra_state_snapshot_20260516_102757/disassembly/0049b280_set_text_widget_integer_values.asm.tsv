@@ -1,0 +1,18 @@
+address	bytes	mnemonic	operands	instruction
+0049b280	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0049b284	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+0049b288	85 d2	TEST	EDX, EDX	TEST EDX,EDX
+0049b28a	8b 48 08	MOV	ECX, dword ptr [EAX + 0x8]	MOV ECX,dword ptr [EAX + 0x8]
+0049b28d	89 51 68	MOV	dword ptr [ECX + 0x68], EDX	MOV dword ptr [ECX + 0x68],EDX
+0049b290	7e 16	JLE	0x0049b2a8	JLE 0x0049b2a8
+0049b292	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+0049b296	56	PUSH	ESI	PUSH ESI
+0049b297	83 c1 6c	ADD	ECX, 0x6c	ADD ECX,0x6c
+0049b29a	8b 30	MOV	ESI, dword ptr [EAX]	MOV ESI,dword ptr [EAX]
+0049b29c	83 c0 04	ADD	EAX, 0x4	ADD EAX,0x4
+0049b29f	89 31	MOV	dword ptr [ECX], ESI	MOV dword ptr [ECX],ESI
+0049b2a1	83 c1 04	ADD	ECX, 0x4	ADD ECX,0x4
+0049b2a4	4a	DEC	EDX	DEC EDX
+0049b2a5	75 f3	JNZ	0x0049b29a	JNZ 0x0049b29a
+0049b2a7	5e	POP	ESI	POP ESI
+0049b2a8	c3	RET		RET

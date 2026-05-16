@@ -1,0 +1,8 @@
+address	bytes	mnemonic	operands	instruction
+00467790	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00467794	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00467796	75 01	JNZ	0x00467799	JNZ 0x00467799
+00467798	c3	RET		RET
+00467799	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+0046779c	8b 00	MOV	EAX, dword ptr [EAX]	MOV EAX,dword ptr [EAX]
+0046779e	c3	RET		RET

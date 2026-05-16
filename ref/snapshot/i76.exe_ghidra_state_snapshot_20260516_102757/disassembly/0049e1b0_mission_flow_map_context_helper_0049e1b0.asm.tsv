@@ -1,0 +1,24 @@
+address	bytes	mnemonic	operands	instruction
+0049e1b0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0049e1b4	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0049e1b8	dd 00	FLD	double ptr [EAX]	FLD double ptr [EAX]
+0049e1ba	d9 c9	FXCH		FXCH
+0049e1bc	dc 48 10	FMUL	double ptr [EAX + 0x10]	FMUL double ptr [EAX + 0x10]
+0049e1bf	d9 c9	FXCH		FXCH
+0049e1c1	dc 48 18	FMUL	double ptr [EAX + 0x18]	FMUL double ptr [EAX + 0x18]
+0049e1c4	dd 40 08	FLD	double ptr [EAX + 0x8]	FLD double ptr [EAX + 0x8]
+0049e1c7	dc 48 20	FMUL	double ptr [EAX + 0x20]	FMUL double ptr [EAX + 0x20]
+0049e1ca	d9 c9	FXCH		FXCH
+0049e1cc	de ea	FSUBP	ST2, ST0	FSUBP ST2,ST0
+0049e1ce	8b 48 18	MOV	ECX, dword ptr [EAX + 0x18]	MOV ECX,dword ptr [EAX + 0x18]
+0049e1d1	8b 50 1c	MOV	EDX, dword ptr [EAX + 0x1c]	MOV EDX,dword ptr [EAX + 0x1c]
+0049e1d4	89 48 20	MOV	dword ptr [EAX + 0x20], ECX	MOV dword ptr [EAX + 0x20],ECX
+0049e1d7	89 50 24	MOV	dword ptr [EAX + 0x24], EDX	MOV dword ptr [EAX + 0x24],EDX
+0049e1da	de e9	FSUBP		FSUBP
+0049e1dc	d9 c0	FLD	ST0	FLD ST0
+0049e1de	d9 c9	FXCH		FXCH
+0049e1e0	d9 c1	FLD	ST1	FLD ST1
+0049e1e2	d9 c9	FXCH		FXCH
+0049e1e4	dd 58 18	FSTP	double ptr [EAX + 0x18]	FSTP double ptr [EAX + 0x18]
+0049e1e7	dd d8	FSTP	ST0	FSTP ST0
+0049e1e9	c3	RET		RET

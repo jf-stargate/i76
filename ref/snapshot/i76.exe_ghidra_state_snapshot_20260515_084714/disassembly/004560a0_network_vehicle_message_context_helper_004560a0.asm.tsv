@@ -1,0 +1,26 @@
+address	bytes	mnemonic	operands	instruction
+004560a0	83 ec 20	SUB	ESP, 0x20	SUB ESP,0x20
+004560a3	e8 18 67 04 00	CALL	0x0049c7c0	CALL 0x0049c7c0
+004560a8	d9 5c 24 00	FSTP	float ptr [ESP]	FSTP float ptr [ESP]
+004560ac	8b 44 24 00	MOV	EAX, dword ptr [ESP]	MOV EAX,dword ptr [ESP]
+004560b0	8b 4c 24 28	MOV	ECX, dword ptr [ESP + 0x28]	MOV ECX,dword ptr [ESP + 0x28]
+004560b4	8b 54 24 2c	MOV	EDX, dword ptr [ESP + 0x2c]	MOV EDX,dword ptr [ESP + 0x2c]
+004560b8	89 44 24 08	MOV	dword ptr [ESP + 0x8], EAX	MOV dword ptr [ESP + 0x8],EAX
+004560bc	8d 44 24 04	LEA	EAX, [ESP + 0x4]	LEA EAX,[ESP + 0x4]
+004560c0	89 4c 24 0c	MOV	dword ptr [ESP + 0xc], ECX	MOV dword ptr [ESP + 0xc],ECX
+004560c4	8b 4c 24 24	MOV	ECX, dword ptr [ESP + 0x24]	MOV ECX,dword ptr [ESP + 0x24]
+004560c8	6a 10	PUSH	0x10	PUSH 0x10
+004560ca	89 54 24 14	MOV	dword ptr [ESP + 0x14], EDX	MOV dword ptr [ESP + 0x14],EDX
+004560ce	66 8b 15 28 10 54 00	MOV	DX, word ptr [0x00541028]	MOV DX,word ptr [0x00541028]
+004560d5	50	PUSH	EAX	PUSH EAX
+004560d6	a1 24 10 54 00	MOV	EAX, [0x00541024]	MOV EAX,[0x00541024]
+004560db	6a 00	PUSH	0x0	PUSH 0x0
+004560dd	51	PUSH	ECX	PUSH ECX
+004560de	52	PUSH	EDX	PUSH EDX
+004560df	50	PUSH	EAX	PUSH EAX
+004560e0	66 c7 44 24 1c 4a 44	MOV	word ptr [ESP + 0x1c], 0x444a	MOV word ptr [ESP + 0x1c],0x444a
+004560e7	c6 44 24 1e 00	MOV	byte ptr [ESP + 0x1e], 0x0	MOV byte ptr [ESP + 0x1e],0x0
+004560ec	ff 15 8c c3 4b 00	CALL	dword ptr [0x004bc38c]	CALL dword ptr [0x004bc38c]
+004560f2	83 c4 18	ADD	ESP, 0x18	ADD ESP,0x18
+004560f5	83 c4 20	ADD	ESP, 0x20	ADD ESP,0x20
+004560f8	c3	RET		RET

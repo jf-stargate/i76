@@ -1,0 +1,11 @@
+address	bytes	mnemonic	operands	instruction
+0049cca0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0049cca4	8b 48 08	MOV	ECX, dword ptr [EAX + 0x8]	MOV ECX,dword ptr [EAX + 0x8]
+0049cca7	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0049cca9	74 08	JZ	0x0049ccb3	JZ 0x0049ccb3
+0049ccab	d9 40 04	FLD	float ptr [EAX + 0x4]	FLD float ptr [EAX + 0x4]
+0049ccae	49	DEC	ECX	DEC ECX
+0049ccaf	89 48 08	MOV	dword ptr [EAX + 0x8], ECX	MOV dword ptr [EAX + 0x8],ECX
+0049ccb2	c3	RET		RET
+0049ccb3	d9 05 98 e9 4b 00	FLD	float ptr [0x004be998]	FLD float ptr [0x004be998]
+0049ccb9	c3	RET		RET

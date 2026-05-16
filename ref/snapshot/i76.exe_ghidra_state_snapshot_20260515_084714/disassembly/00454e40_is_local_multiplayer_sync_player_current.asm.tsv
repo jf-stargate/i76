@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+00454e40	66 8b 0d 64 10 54 00	MOV	CX, word ptr [0x00541064]	MOV CX,word ptr [0x00541064]
+00454e47	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+00454e49	66 3b 0d 28 10 54 00	CMP	CX, word ptr [0x00541028]	CMP CX,word ptr [0x00541028]
+00454e50	0f 94 c0	SETZ	AL	SETZ AL
+00454e53	c3	RET		RET

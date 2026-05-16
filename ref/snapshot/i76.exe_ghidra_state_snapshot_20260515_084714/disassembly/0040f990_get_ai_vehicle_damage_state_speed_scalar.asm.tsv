@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+0040f990	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0040f994	83 78 6c 09	CMP	dword ptr [EAX + 0x6c], 0x9	CMP dword ptr [EAX + 0x6c],0x9
+0040f998	75 07	JNZ	0x0040f9a1	JNZ 0x0040f9a1
+0040f99a	d9 05 3c c7 4b 00	FLD	float ptr [0x004bc73c]	FLD float ptr [0x004bc73c]
+0040f9a0	c3	RET		RET
+0040f9a1	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+0040f9a4	8b 88 08 01 00 00	MOV	ECX, dword ptr [EAX + 0x108]	MOV ECX,dword ptr [EAX + 0x108]
+0040f9aa	d9 81 94 a9 00 00	FLD	float ptr [ECX + 0xa994]	FLD float ptr [ECX + 0xa994]
+0040f9b0	c3	RET		RET

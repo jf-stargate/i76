@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+004a7130	a1 a4 a7 5d 00	MOV	EAX, [0x005da7a4]	MOV EAX,[0x005da7a4]
+004a7135	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+004a7139	3b c1	CMP	EAX, ECX	CMP EAX,ECX
+004a713b	75 0a	JNZ	0x004a7147	JNZ 0x004a7147
+004a713d	c7 05 a4 a7 5d 00 00 00 00 00	MOV	dword ptr [0x005da7a4], 0x0	MOV dword ptr [0x005da7a4],0x0
+004a7147	c3	RET		RET

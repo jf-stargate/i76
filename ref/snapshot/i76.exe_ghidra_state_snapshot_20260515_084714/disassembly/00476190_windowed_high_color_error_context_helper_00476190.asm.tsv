@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+00476190	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00476194	50	PUSH	EAX	PUSH EAX
+00476195	ff 90 f8 03 00 00	CALL	dword ptr [EAX + 0x3f8]	CALL dword ptr [EAX + 0x3f8]
+0047619b	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0047619e	c3	RET		RET

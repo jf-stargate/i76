@@ -1,0 +1,93 @@
+address	bytes	mnemonic	operands	instruction
+00414dd0	d9 44 24 10	FLD	float ptr [ESP + 0x10]	FLD float ptr [ESP + 0x10]
+00414dd4	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+00414dd8	d8 64 24 04	FSUB	float ptr [ESP + 0x4]	FSUB float ptr [ESP + 0x4]
+00414ddc	d9 c9	FXCH		FXCH
+00414dde	d8 64 24 08	FSUB	float ptr [ESP + 0x8]	FSUB float ptr [ESP + 0x8]
+00414de2	d9 c9	FXCH		FXCH
+00414de4	d9 54 24 0c	FST	float ptr [ESP + 0xc]	FST float ptr [ESP + 0xc]
+00414de8	d9 c9	FXCH		FXCH
+00414dea	d9 54 24 10	FST	float ptr [ESP + 0x10]	FST float ptr [ESP + 0x10]
+00414dee	d9 c9	FXCH		FXCH
+00414df0	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+00414df4	d9 c9	FXCH		FXCH
+00414df6	d8 4c 24 10	FMUL	float ptr [ESP + 0x10]	FMUL float ptr [ESP + 0x10]
+00414dfa	de c1	FADDP		FADDP
+00414dfc	d8 15 ac c7 4b 00	FCOM	float ptr [0x004bc7ac]	FCOM float ptr [0x004bc7ac]
+00414e02	df e0	FNSTSW	AX	FNSTSW AX
+00414e04	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+00414e07	75 16	JNZ	0x00414e1f	JNZ 0x00414e1f
+00414e09	d8 15 b0 c7 4b 00	FCOM	float ptr [0x004bc7b0]	FCOM float ptr [0x004bc7b0]
+00414e0f	df e0	FNSTSW	AX	FNSTSW AX
+00414e11	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+00414e14	74 09	JZ	0x00414e1f	JZ 0x00414e1f
+00414e16	dd d8	FSTP	ST0	FSTP ST0
+00414e18	d9 05 b4 c7 4b 00	FLD	float ptr [0x004bc7b4]	FLD float ptr [0x004bc7b4]
+00414e1e	c3	RET		RET
+00414e1f	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+00414e22	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+00414e25	e8 d6 01 08 00	CALL	0x00495000	CALL 0x00495000
+00414e2a	dc 15 b8 c7 4b 00	FCOM	double ptr [0x004bc7b8]	FCOM double ptr [0x004bc7b8]
+00414e30	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+00414e33	df e0	FNSTSW	AX	FNSTSW AX
+00414e35	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+00414e38	75 09	JNZ	0x00414e43	JNZ 0x00414e43
+00414e3a	dd d8	FSTP	ST0	FSTP ST0
+00414e3c	d9 05 b4 c7 4b 00	FLD	float ptr [0x004bc7b4]	FLD float ptr [0x004bc7b4]
+00414e42	c3	RET		RET
+00414e43	d9 44 24 18	FLD	float ptr [ESP + 0x18]	FLD float ptr [ESP + 0x18]
+00414e47	d9 44 24 14	FLD	float ptr [ESP + 0x14]	FLD float ptr [ESP + 0x14]
+00414e4b	d8 64 24 04	FSUB	float ptr [ESP + 0x4]	FSUB float ptr [ESP + 0x4]
+00414e4f	d9 c9	FXCH		FXCH
+00414e51	d8 64 24 08	FSUB	float ptr [ESP + 0x8]	FSUB float ptr [ESP + 0x8]
+00414e55	d9 c2	FLD	ST2	FLD ST2
+00414e57	d9 ca	FXCH	ST2	FXCH ST2
+00414e59	d9 54 24 04	FST	float ptr [ESP + 0x4]	FST float ptr [ESP + 0x4]
+00414e5d	d9 c9	FXCH		FXCH
+00414e5f	d9 54 24 08	FST	float ptr [ESP + 0x8]	FST float ptr [ESP + 0x8]
+00414e63	d9 c9	FXCH		FXCH
+00414e65	d8 4c 24 04	FMUL	float ptr [ESP + 0x4]	FMUL float ptr [ESP + 0x4]
+00414e69	d9 c9	FXCH		FXCH
+00414e6b	d8 4c 24 08	FMUL	float ptr [ESP + 0x8]	FMUL float ptr [ESP + 0x8]
+00414e6f	d9 ca	FXCH	ST2	FXCH ST2
+00414e71	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+00414e75	d9 ca	FXCH	ST2	FXCH ST2
+00414e77	de c1	FADDP		FADDP
+00414e79	d9 ca	FXCH	ST2	FXCH ST2
+00414e7b	d8 4c 24 10	FMUL	float ptr [ESP + 0x10]	FMUL float ptr [ESP + 0x10]
+00414e7f	d9 c2	FLD	ST2	FLD ST2
+00414e81	d8 1d ac c7 4b 00	FCOMP	float ptr [0x004bc7ac]	FCOMP float ptr [0x004bc7ac]
+00414e87	d9 c9	FXCH		FXCH
+00414e89	d9 5c 24 0c	FSTP	float ptr [ESP + 0xc]	FSTP float ptr [ESP + 0xc]
+00414e8d	d9 5c 24 10	FSTP	float ptr [ESP + 0x10]	FSTP float ptr [ESP + 0x10]
+00414e91	df e0	FNSTSW	AX	FNSTSW AX
+00414e93	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+00414e96	75 16	JNZ	0x00414eae	JNZ 0x00414eae
+00414e98	d8 15 b0 c7 4b 00	FCOM	float ptr [0x004bc7b0]	FCOM float ptr [0x004bc7b0]
+00414e9e	df e0	FNSTSW	AX	FNSTSW AX
+00414ea0	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+00414ea3	74 09	JZ	0x00414eae	JZ 0x00414eae
+00414ea5	dd d8	FSTP	ST0	FSTP ST0
+00414ea7	d9 05 b4 c7 4b 00	FLD	float ptr [0x004bc7b4]	FLD float ptr [0x004bc7b4]
+00414ead	c3	RET		RET
+00414eae	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+00414eb1	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+00414eb4	e8 47 01 08 00	CALL	0x00495000	CALL 0x00495000
+00414eb9	d8 15 c0 c7 4b 00	FCOM	float ptr [0x004bc7c0]	FCOM float ptr [0x004bc7c0]
+00414ebf	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+00414ec2	df e0	FNSTSW	AX	FNSTSW AX
+00414ec4	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+00414ec7	75 09	JNZ	0x00414ed2	JNZ 0x00414ed2
+00414ec9	dd d8	FSTP	ST0	FSTP ST0
+00414ecb	d9 05 b4 c7 4b 00	FLD	float ptr [0x004bc7b4]	FLD float ptr [0x004bc7b4]
+00414ed1	c3	RET		RET
+00414ed2	d9 c0	FLD	ST0	FLD ST0
+00414ed4	d8 4c 24 04	FMUL	float ptr [ESP + 0x4]	FMUL float ptr [ESP + 0x4]
+00414ed8	d9 c9	FXCH		FXCH
+00414eda	d8 4c 24 08	FMUL	float ptr [ESP + 0x8]	FMUL float ptr [ESP + 0x8]
+00414ede	d9 c9	FXCH		FXCH
+00414ee0	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+00414ee4	d9 c9	FXCH		FXCH
+00414ee6	d8 4c 24 10	FMUL	float ptr [ESP + 0x10]	FMUL float ptr [ESP + 0x10]
+00414eea	de c1	FADDP		FADDP
+00414eec	c3	RET		RET

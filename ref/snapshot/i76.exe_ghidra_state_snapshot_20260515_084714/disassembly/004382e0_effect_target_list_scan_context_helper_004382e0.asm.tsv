@@ -1,0 +1,31 @@
+address	bytes	mnemonic	operands	instruction
+004382e0	83 ec 0c	SUB	ESP, 0xc	SUB ESP,0xc
+004382e3	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+004382e7	b9 ca f2 49 71	MOV	ECX, 0x7149f2ca	MOV ECX,0x7149f2ca
+004382ec	56	PUSH	ESI	PUSH ESI
+004382ed	33 d2	XOR	EDX, EDX	XOR EDX,EDX
+004382ef	89 48 04	MOV	dword ptr [EAX + 0x4], ECX	MOV dword ptr [EAX + 0x4],ECX
+004382f2	89 48 0c	MOV	dword ptr [EAX + 0xc], ECX	MOV dword ptr [EAX + 0xc],ECX
+004382f5	8d 48 24	LEA	ECX, [EAX + 0x24]	LEA ECX,[EAX + 0x24]
+004382f8	57	PUSH	EDI	PUSH EDI
+004382f9	89 10	MOV	dword ptr [EAX], EDX	MOV dword ptr [EAX],EDX
+004382fb	89 50 08	MOV	dword ptr [EAX + 0x8], EDX	MOV dword ptr [EAX + 0x8],EDX
+004382fe	c7 40 10 00 00 80 3f	MOV	dword ptr [EAX + 0x10], 0x3f800000	MOV dword ptr [EAX + 0x10],0x3f800000
+00438305	89 50 14	MOV	dword ptr [EAX + 0x14], EDX	MOV dword ptr [EAX + 0x14],EDX
+00438308	8b f9	MOV	EDI, ECX	MOV EDI,ECX
+0043830a	8b ca	MOV	ECX, EDX	MOV ECX,EDX
+0043830c	83 c0 18	ADD	EAX, 0x18	ADD EAX,0x18
+0043830f	8b f2	MOV	ESI, EDX	MOV ESI,EDX
+00438311	89 0f	MOV	dword ptr [EDI], ECX	MOV dword ptr [EDI],ECX
+00438313	89 54 24 08	MOV	dword ptr [ESP + 0x8], EDX	MOV dword ptr [ESP + 0x8],EDX
+00438317	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+00438319	89 54 24 0c	MOV	dword ptr [ESP + 0xc], EDX	MOV dword ptr [ESP + 0xc],EDX
+0043831d	89 57 04	MOV	dword ptr [EDI + 0x4], EDX	MOV dword ptr [EDI + 0x4],EDX
+00438320	89 54 24 10	MOV	dword ptr [ESP + 0x10], EDX	MOV dword ptr [ESP + 0x10],EDX
+00438324	89 50 04	MOV	dword ptr [EAX + 0x4], EDX	MOV dword ptr [EAX + 0x4],EDX
+00438327	89 77 08	MOV	dword ptr [EDI + 0x8], ESI	MOV dword ptr [EDI + 0x8],ESI
+0043832a	5f	POP	EDI	POP EDI
+0043832b	89 70 08	MOV	dword ptr [EAX + 0x8], ESI	MOV dword ptr [EAX + 0x8],ESI
+0043832e	5e	POP	ESI	POP ESI
+0043832f	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+00438332	c3	RET		RET

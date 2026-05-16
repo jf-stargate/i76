@@ -1,0 +1,43 @@
+address	bytes	mnemonic	operands	instruction
+004ad260	51	PUSH	ECX	PUSH ECX
+004ad261	53	PUSH	EBX	PUSH EBX
+004ad262	55	PUSH	EBP	PUSH EBP
+004ad263	8b 2d 58 c2 4b 00	MOV	EBP, dword ptr [0x004bc258]	MOV EBP,dword ptr [0x004bc258]
+004ad269	56	PUSH	ESI	PUSH ESI
+004ad26a	57	PUSH	EDI	PUSH EDI
+004ad26b	6a 00	PUSH	0x0	PUSH 0x0
+004ad26d	ff d5	CALL	EBP	CALL EBP
+004ad26f	8b 1d 0c c2 4b 00	MOV	EBX, dword ptr [0x004bc20c]	MOV EBX,dword ptr [0x004bc20c]
+004ad275	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+004ad278	be c0 a7 5d 00	MOV	ESI, 0x5da7c0	MOV ESI,0x5da7c0
+004ad27d	c7 06 00 00 00 00	MOV	dword ptr [ESI], 0x0	MOV dword ptr [ESI],0x0
+004ad283	bf 0a 00 00 00	MOV	EDI, 0xa	MOV EDI,0xa
+004ad288	eb 02	JMP	0x004ad28c	JMP 0x004ad28c
+004ad28a	dd d8	FSTP	ST0	FSTP ST0
+004ad28c	ff d3	CALL	EBX	CALL EBX
+004ad28e	89 44 24 10	MOV	dword ptr [ESP + 0x10], EAX	MOV dword ptr [ESP + 0x10],EAX
+004ad292	4f	DEC	EDI	DEC EDI
+004ad293	db 44 24 10	FILD	dword ptr [ESP + 0x10]	FILD dword ptr [ESP + 0x10]
+004ad297	d8 0d 68 ec 4b 00	FMUL	float ptr [0x004bec68]	FMUL float ptr [0x004bec68]
+004ad29d	d8 2e	FSUBR	float ptr [ESI]	FSUBR float ptr [ESI]
+004ad29f	d9 16	FST	float ptr [ESI]	FST float ptr [ESI]
+004ad2a1	75 e7	JNZ	0x004ad28a	JNZ 0x004ad28a
+004ad2a3	d8 0d 6c ec 4b 00	FMUL	float ptr [0x004bec6c]	FMUL float ptr [0x004bec6c]
+004ad2a9	83 c6 04	ADD	ESI, 0x4	ADD ESI,0x4
+004ad2ac	81 fe ac ab 5d 00	CMP	ESI, 0x5dabac	CMP ESI,0x5dabac
+004ad2b2	d8 25 70 ec 4b 00	FSUB	float ptr [0x004bec70]	FSUB float ptr [0x004bec70]
+004ad2b8	d9 5e fc	FSTP	float ptr [ESI + -0x4]	FSTP float ptr [ESI + -0x4]
+004ad2bb	7c c0	JL	0x004ad27d	JL 0x004ad27d
+004ad2bd	6a 00	PUSH	0x0	PUSH 0x0
+004ad2bf	c7 05 b8 a7 5d 00 00 00 00 00	MOV	dword ptr [0x005da7b8], 0x0	MOV dword ptr [0x005da7b8],0x0
+004ad2c9	ff 15 24 c2 4b 00	CALL	dword ptr [0x004bc224]	CALL dword ptr [0x004bc224]
+004ad2cf	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+004ad2d2	50	PUSH	EAX	PUSH EAX
+004ad2d3	ff d5	CALL	EBP	CALL EBP
+004ad2d5	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+004ad2d8	5f	POP	EDI	POP EDI
+004ad2d9	5e	POP	ESI	POP ESI
+004ad2da	5d	POP	EBP	POP EBP
+004ad2db	5b	POP	EBX	POP EBX
+004ad2dc	59	POP	ECX	POP ECX
+004ad2dd	c3	RET		RET

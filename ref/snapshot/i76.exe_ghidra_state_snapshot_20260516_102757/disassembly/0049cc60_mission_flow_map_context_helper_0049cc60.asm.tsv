@@ -1,0 +1,17 @@
+address	bytes	mnemonic	operands	instruction
+0049cc60	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0049cc64	56	PUSH	ESI	PUSH ESI
+0049cc65	8b 74 24 08	MOV	ESI, dword ptr [ESP + 0x8]	MOV ESI,dword ptr [ESP + 0x8]
+0049cc69	d8 0e	FMUL	float ptr [ESI]	FMUL float ptr [ESI]
+0049cc6b	e8 20 d4 01 00	CALL	0x004ba090	CALL 0x004ba090
+0049cc70	40	INC	EAX	INC EAX
+0049cc71	83 f8 14	CMP	EAX, 0x14	CMP EAX,0x14
+0049cc74	89 46 08	MOV	dword ptr [ESI + 0x8], EAX	MOV dword ptr [ESI + 0x8],EAX
+0049cc77	7e 07	JLE	0x0049cc80	JLE 0x0049cc80
+0049cc79	c7 46 08 14 00 00 00	MOV	dword ptr [ESI + 0x8], 0x14	MOV dword ptr [ESI + 0x8],0x14
+0049cc80	8b 46 08	MOV	EAX, dword ptr [ESI + 0x8]	MOV EAX,dword ptr [ESI + 0x8]
+0049cc83	d9 04 85 1c 7e 5a 00	FLD	float ptr [EAX*0x4 + 0x5a7e1c]	FLD float ptr [EAX*0x4 + 0x5a7e1c]
+0049cc8a	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0049cc8e	d9 5e 04	FSTP	float ptr [ESI + 0x4]	FSTP float ptr [ESI + 0x4]
+0049cc91	5e	POP	ESI	POP ESI
+0049cc92	c3	RET		RET

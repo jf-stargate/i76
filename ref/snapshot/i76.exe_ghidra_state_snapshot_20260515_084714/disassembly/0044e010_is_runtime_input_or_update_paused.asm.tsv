@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+0044e010	8b 0d a4 4c 4f 00	MOV	ECX, dword ptr [0x004f4ca4]	MOV ECX,dword ptr [0x004f4ca4]
+0044e016	8b 15 60 d3 5d 00	MOV	EDX, dword ptr [0x005dd360]	MOV EDX,dword ptr [0x005dd360]
+0044e01c	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0044e01e	3b ca	CMP	ECX, EDX	CMP ECX,EDX
+0044e020	0f 95 c0	SETNZ	AL	SETNZ AL
+0044e023	c3	RET		RET

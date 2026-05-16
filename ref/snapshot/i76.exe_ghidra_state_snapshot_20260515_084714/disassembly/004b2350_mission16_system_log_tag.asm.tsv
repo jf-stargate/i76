@@ -1,0 +1,37 @@
+address	bytes	mnemonic	operands	instruction
+004b2350	e8 0b 2d fe ff	CALL	0x00495060	CALL 0x00495060
+004b2355	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b2357	74 50	JZ	0x004b23a9	JZ 0x004b23a9
+004b2359	e8 c2 fe ff ff	CALL	0x004b2220	CALL 0x004b2220
+004b235e	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b2360	74 26	JZ	0x004b2388	JZ 0x004b2388
+004b2362	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004b2366	8b 0d 7c ff 4f 00	MOV	ECX, dword ptr [0x004fff7c]	MOV ECX,dword ptr [0x004fff7c]
+004b236c	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+004b236e	66 8b 15 80 ff 4f 00	MOV	DX, word ptr [0x004fff80]	MOV DX,word ptr [0x004fff80]
+004b2375	66 89 50 04	MOV	word ptr [EAX + 0x4], DX	MOV word ptr [EAX + 0x4],DX
+004b2379	8a 0d 82 ff 4f 00	MOV	CL, byte ptr [0x004fff82]	MOV CL,byte ptr [0x004fff82]
+004b237f	88 48 06	MOV	byte ptr [EAX + 0x6], CL	MOV byte ptr [EAX + 0x6],CL
+004b2382	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004b2387	c3	RET		RET
+004b2388	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+004b238c	a1 7c ff 4f 00	MOV	EAX, [0x004fff7c]	MOV EAX,[0x004fff7c]
+004b2391	89 02	MOV	dword ptr [EDX], EAX	MOV dword ptr [EDX],EAX
+004b2393	66 8b 0d 80 ff 4f 00	MOV	CX, word ptr [0x004fff80]	MOV CX,word ptr [0x004fff80]
+004b239a	66 89 4a 04	MOV	word ptr [EDX + 0x4], CX	MOV word ptr [EDX + 0x4],CX
+004b239e	a0 82 ff 4f 00	MOV	AL, [0x004fff82]	MOV AL,[0x004fff82]
+004b23a3	88 42 06	MOV	byte ptr [EDX + 0x6], AL	MOV byte ptr [EDX + 0x6],AL
+004b23a6	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004b23a8	c3	RET		RET
+004b23a9	e8 72 fe ff ff	CALL	0x004b2220	CALL 0x004b2220
+004b23ae	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+004b23b2	8b 15 58 ff 4f 00	MOV	EDX, dword ptr [0x004fff58]	MOV EDX,dword ptr [0x004fff58]
+004b23b8	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b23ba	89 11	MOV	dword ptr [ECX], EDX	MOV dword ptr [ECX],EDX
+004b23bc	66 a1 5c ff 4f 00	MOV	AX, [0x004fff5c]	MOV AX,[0x004fff5c]
+004b23c2	66 89 41 04	MOV	word ptr [ECX + 0x4], AX	MOV word ptr [ECX + 0x4],AX
+004b23c6	74 06	JZ	0x004b23ce	JZ 0x004b23ce
+004b23c8	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004b23cd	c3	RET		RET
+004b23ce	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004b23d0	c3	RET		RET

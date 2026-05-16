@@ -1,0 +1,100 @@
+address	bytes	mnemonic	operands	instruction
+00492890	83 ec 30	SUB	ESP, 0x30	SUB ESP,0x30
+00492893	8b 44 24 40	MOV	EAX, dword ptr [ESP + 0x40]	MOV EAX,dword ptr [ESP + 0x40]
+00492897	56	PUSH	ESI	PUSH ESI
+00492898	8b 74 24 3c	MOV	ESI, dword ptr [ESP + 0x3c]	MOV ESI,dword ptr [ESP + 0x3c]
+0049289c	57	PUSH	EDI	PUSH EDI
+0049289d	dd 00	FLD	double ptr [EAX]	FLD double ptr [EAX]
+0049289f	dd 40 08	FLD	double ptr [EAX + 0x8]	FLD double ptr [EAX + 0x8]
+004928a2	dd 40 10	FLD	double ptr [EAX + 0x10]	FLD double ptr [EAX + 0x10]
+004928a5	8b 44 24 44	MOV	EAX, dword ptr [ESP + 0x44]	MOV EAX,dword ptr [ESP + 0x44]
+004928a9	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+004928ac	dd 00	FLD	double ptr [EAX]	FLD double ptr [EAX]
+004928ae	dd 40 08	FLD	double ptr [EAX + 0x8]	FLD double ptr [EAX + 0x8]
+004928b1	dd 40 10	FLD	double ptr [EAX + 0x10]	FLD double ptr [EAX + 0x10]
+004928b4	d9 ca	FXCH	ST2	FXCH ST2
+004928b6	dc 26	FSUB	double ptr [ESI]	FSUB double ptr [ESI]
+004928b8	dd 5c 24 28	FSTP	double ptr [ESP + 0x28]	FSTP double ptr [ESP + 0x28]
+004928bc	d9 cc	FXCH	ST4	FXCH ST4
+004928be	dc 26	FSUB	double ptr [ESI]	FSUB double ptr [ESI]
+004928c0	d9 cb	FXCH	ST3	FXCH ST3
+004928c2	dc 66 08	FSUB	double ptr [ESI + 0x8]	FSUB double ptr [ESI + 0x8]
+004928c5	d9 ca	FXCH	ST2	FXCH ST2
+004928c7	dc 66 10	FSUB	double ptr [ESI + 0x10]	FSUB double ptr [ESI + 0x10]
+004928ca	d9 cc	FXCH	ST4	FXCH ST4
+004928cc	dc 66 08	FSUB	double ptr [ESI + 0x8]	FSUB double ptr [ESI + 0x8]
+004928cf	d9 c9	FXCH		FXCH
+004928d1	dc 66 10	FSUB	double ptr [ESI + 0x10]	FSUB double ptr [ESI + 0x10]
+004928d4	d9 cb	FXCH	ST3	FXCH ST3
+004928d6	dd 54 24 10	FST	double ptr [ESP + 0x10]	FST double ptr [ESP + 0x10]
+004928da	d9 ca	FXCH	ST2	FXCH ST2
+004928dc	dd 54 24 18	FST	double ptr [ESP + 0x18]	FST double ptr [ESP + 0x18]
+004928e0	d9 c4	FLD	ST4	FLD ST4
+004928e2	d9 ca	FXCH	ST2	FXCH ST2
+004928e4	dd 5c 24 30	FSTP	double ptr [ESP + 0x30]	FSTP double ptr [ESP + 0x30]
+004928e8	d9 c9	FXCH		FXCH
+004928ea	dc 4c 24 30	FMUL	double ptr [ESP + 0x30]	FMUL double ptr [ESP + 0x30]
+004928ee	d9 cb	FXCH	ST3	FXCH ST3
+004928f0	dd 5c 24 38	FSTP	double ptr [ESP + 0x38]	FSTP double ptr [ESP + 0x38]
+004928f4	dc 4c 24 38	FMUL	double ptr [ESP + 0x38]	FMUL double ptr [ESP + 0x38]
+004928f8	dd 44 24 18	FLD	double ptr [ESP + 0x18]	FLD double ptr [ESP + 0x18]
+004928fc	d9 ca	FXCH	ST2	FXCH ST2
+004928fe	dc 4c 24 38	FMUL	double ptr [ESP + 0x38]	FMUL double ptr [ESP + 0x38]
+00492902	dd 44 24 10	FLD	double ptr [ESP + 0x10]	FLD double ptr [ESP + 0x10]
+00492906	d9 ca	FXCH	ST2	FXCH ST2
+00492908	de ec	FSUBP	ST4, ST0	FSUBP ST4,ST0
+0049290a	d9 cc	FXCH	ST4	FXCH ST4
+0049290c	dc 4c 24 28	FMUL	double ptr [ESP + 0x28]	FMUL double ptr [ESP + 0x28]
+00492910	d9 cb	FXCH	ST3	FXCH ST3
+00492912	dd 5c 24 10	FSTP	double ptr [ESP + 0x10]	FSTP double ptr [ESP + 0x10]
+00492916	d9 ca	FXCH	ST2	FXCH ST2
+00492918	de eb	FSUBP	ST3, ST0	FSUBP ST3,ST0
+0049291a	dd 44 24 10	FLD	double ptr [ESP + 0x10]	FLD double ptr [ESP + 0x10]
+0049291e	dc 4c 24 10	FMUL	double ptr [ESP + 0x10]	FMUL double ptr [ESP + 0x10]
+00492922	d9 cb	FXCH	ST3	FXCH ST3
+00492924	dd 54 24 18	FST	double ptr [ESP + 0x18]	FST double ptr [ESP + 0x18]
+00492928	dc 4c 24 18	FMUL	double ptr [ESP + 0x18]	FMUL double ptr [ESP + 0x18]
+0049292c	d9 c9	FXCH		FXCH
+0049292e	dc 4c 24 28	FMUL	double ptr [ESP + 0x28]	FMUL double ptr [ESP + 0x28]
+00492932	d9 c9	FXCH		FXCH
+00492934	de c3	FADDP	ST3, ST0	FADDP ST3,ST0
+00492936	d9 c9	FXCH		FXCH
+00492938	dc 4c 24 30	FMUL	double ptr [ESP + 0x30]	FMUL double ptr [ESP + 0x30]
+0049293c	de e9	FSUBP		FSUBP
+0049293e	dd 54 24 20	FST	double ptr [ESP + 0x20]	FST double ptr [ESP + 0x20]
+00492942	dc 4c 24 20	FMUL	double ptr [ESP + 0x20]	FMUL double ptr [ESP + 0x20]
+00492946	de c1	FADDP		FADDP
+00492948	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0049294b	e8 b0 26 00 00	CALL	0x00495000	CALL 0x00495000
+00492950	d9 c0	FLD	ST0	FLD ST0
+00492952	dc 4c 24 10	FMUL	double ptr [ESP + 0x10]	FMUL double ptr [ESP + 0x10]
+00492956	d9 c1	FLD	ST1	FLD ST1
+00492958	dc 4c 24 18	FMUL	double ptr [ESP + 0x18]	FMUL double ptr [ESP + 0x18]
+0049295c	d9 ca	FXCH	ST2	FXCH ST2
+0049295e	dc 4c 24 20	FMUL	double ptr [ESP + 0x20]	FMUL double ptr [ESP + 0x20]
+00492962	d9 c9	FXCH		FXCH
+00492964	d9 54 24 28	FST	float ptr [ESP + 0x28]	FST float ptr [ESP + 0x28]
+00492968	d9 ca	FXCH	ST2	FXCH ST2
+0049296a	d9 54 24 2c	FST	float ptr [ESP + 0x2c]	FST float ptr [ESP + 0x2c]
+0049296e	dc 4e 08	FMUL	double ptr [ESI + 0x8]	FMUL double ptr [ESI + 0x8]
+00492971	d9 ca	FXCH	ST2	FXCH ST2
+00492973	d9 e0	FCHS		FCHS
+00492975	dc 0e	FMUL	double ptr [ESI]	FMUL double ptr [ESI]
+00492977	d9 c9	FXCH		FXCH
+00492979	d9 54 24 30	FST	float ptr [ESP + 0x30]	FST float ptr [ESP + 0x30]
+0049297d	dc 4e 10	FMUL	double ptr [ESI + 0x10]	FMUL double ptr [ESI + 0x10]
+00492980	d9 ca	FXCH	ST2	FXCH ST2
+00492982	de e9	FSUBP		FSUBP
+00492984	d9 c9	FXCH		FXCH
+00492986	de e9	FSUBP		FSUBP
+00492988	8b 44 24 44	MOV	EAX, dword ptr [ESP + 0x44]	MOV EAX,dword ptr [ESP + 0x44]
+0049298c	b9 06 00 00 00	MOV	ECX, 0x6	MOV ECX,0x6
+00492991	8d 74 24 28	LEA	ESI, [ESP + 0x28]	LEA ESI,[ESP + 0x28]
+00492995	8b f8	MOV	EDI, EAX	MOV EDI,EAX
+00492997	dd 5c 24 38	FSTP	double ptr [ESP + 0x38]	FSTP double ptr [ESP + 0x38]
+0049299b	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0049299e	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+004929a0	5f	POP	EDI	POP EDI
+004929a1	5e	POP	ESI	POP ESI
+004929a2	83 c4 30	ADD	ESP, 0x30	ADD ESP,0x30
+004929a5	c3	RET		RET

@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+0043a300	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+0043a304	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+0043a308	d9 00	FLD	float ptr [EAX]	FLD float ptr [EAX]
+0043a30a	dd 59 28	FSTP	double ptr [ECX + 0x28]	FSTP double ptr [ECX + 0x28]
+0043a30d	d9 40 04	FLD	float ptr [EAX + 0x4]	FLD float ptr [EAX + 0x4]
+0043a310	dd 59 30	FSTP	double ptr [ECX + 0x30]	FSTP double ptr [ECX + 0x30]
+0043a313	d9 40 08	FLD	float ptr [EAX + 0x8]	FLD float ptr [EAX + 0x8]
+0043a316	dd 59 38	FSTP	double ptr [ECX + 0x38]	FSTP double ptr [ECX + 0x38]
+0043a319	c3	RET		RET

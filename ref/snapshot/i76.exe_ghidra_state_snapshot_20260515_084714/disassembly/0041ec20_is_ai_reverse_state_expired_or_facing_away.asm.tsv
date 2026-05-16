@@ -1,0 +1,49 @@
+address	bytes	mnemonic	operands	instruction
+0041ec20	55	PUSH	EBP	PUSH EBP
+0041ec21	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0041ec23	83 ec 2c	SUB	ESP, 0x2c	SUB ESP,0x2c
+0041ec26	c7 45 fc 00 00 00 00	MOV	dword ptr [EBP + -0x4], 0x0	MOV dword ptr [EBP + -0x4],0x0
+0041ec2d	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+0041ec30	50	PUSH	EAX	PUSH EAX
+0041ec31	e8 ba d6 ff ff	CALL	0x0041c2f0	CALL 0x0041c2f0
+0041ec36	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0041ec39	89 45 fc	MOV	dword ptr [EBP + -0x4], EAX	MOV dword ptr [EBP + -0x4],EAX
+0041ec3c	e8 7f db 07 00	CALL	0x0049c7c0	CALL 0x0049c7c0
+0041ec41	8b 4d fc	MOV	ECX, dword ptr [EBP + -0x4]	MOV ECX,dword ptr [EBP + -0x4]
+0041ec44	d8 99 2c a8 00 00	FCOMP	float ptr [ECX + 0xa82c]	FCOMP float ptr [ECX + 0xa82c]
+0041ec4a	df e0	FNSTSW	AX	FNSTSW AX
+0041ec4c	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0041ec4f	75 07	JNZ	0x0041ec58	JNZ 0x0041ec58
+0041ec51	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+0041ec56	eb 5a	JMP	0x0041ecb2	JMP 0x0041ecb2
+0041ec58	8b 55 08	MOV	EDX, dword ptr [EBP + 0x8]	MOV EDX,dword ptr [EBP + 0x8]
+0041ec5b	83 c2 18	ADD	EDX, 0x18	ADD EDX,0x18
+0041ec5e	52	PUSH	EDX	PUSH EDX
+0041ec5f	8d 45 e4	LEA	EAX, [EBP + -0x1c]	LEA EAX,[EBP + -0x1c]
+0041ec62	50	PUSH	EAX	PUSH EAX
+0041ec63	e8 78 63 ff ff	CALL	0x00414fe0	CALL 0x00414fe0
+0041ec68	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041ec6b	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+0041ec6d	89 4d f0	MOV	dword ptr [EBP + -0x10], ECX	MOV dword ptr [EBP + -0x10],ECX
+0041ec70	8b 50 04	MOV	EDX, dword ptr [EAX + 0x4]	MOV EDX,dword ptr [EAX + 0x4]
+0041ec73	89 55 f4	MOV	dword ptr [EBP + -0xc], EDX	MOV dword ptr [EBP + -0xc],EDX
+0041ec76	8b 40 08	MOV	EAX, dword ptr [EAX + 0x8]	MOV EAX,dword ptr [EAX + 0x8]
+0041ec79	89 45 f8	MOV	dword ptr [EBP + -0x8], EAX	MOV dword ptr [EBP + -0x8],EAX
+0041ec7c	8b 4d fc	MOV	ECX, dword ptr [EBP + -0x4]	MOV ECX,dword ptr [EBP + -0x4]
+0041ec7f	81 c1 70 a9 00 00	ADD	ECX, 0xa970	ADD ECX,0xa970
+0041ec85	51	PUSH	ECX	PUSH ECX
+0041ec86	8d 55 f0	LEA	EDX, [EBP + -0x10]	LEA EDX,[EBP + -0x10]
+0041ec89	52	PUSH	EDX	PUSH EDX
+0041ec8a	e8 21 63 ff ff	CALL	0x00414fb0	CALL 0x00414fb0
+0041ec8f	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041ec92	d8 1d 60 cb 4b 00	FCOMP	float ptr [0x004bcb60]	FCOMP float ptr [0x004bcb60]
+0041ec98	df e0	FNSTSW	AX	FNSTSW AX
+0041ec9a	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0041ec9d	74 09	JZ	0x0041eca8	JZ 0x0041eca8
+0041ec9f	c7 45 d4 01 00 00 00	MOV	dword ptr [EBP + -0x2c], 0x1	MOV dword ptr [EBP + -0x2c],0x1
+0041eca6	eb 07	JMP	0x0041ecaf	JMP 0x0041ecaf
+0041eca8	c7 45 d4 00 00 00 00	MOV	dword ptr [EBP + -0x2c], 0x0	MOV dword ptr [EBP + -0x2c],0x0
+0041ecaf	8b 45 d4	MOV	EAX, dword ptr [EBP + -0x2c]	MOV EAX,dword ptr [EBP + -0x2c]
+0041ecb2	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0041ecb4	5d	POP	EBP	POP EBP
+0041ecb5	c3	RET		RET

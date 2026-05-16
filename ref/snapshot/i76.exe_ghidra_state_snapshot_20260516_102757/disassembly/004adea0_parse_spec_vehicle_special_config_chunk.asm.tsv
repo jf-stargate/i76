@@ -1,0 +1,18 @@
+address	bytes	mnemonic	operands	instruction
+004adea0	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004adea4	8b 50 04	MOV	EDX, dword ptr [EAX + 0x4]	MOV EDX,dword ptr [EAX + 0x4]
+004adea7	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004adea9	8d 8a 70 0a 00 00	LEA	ECX, [EDX + 0xa70]	LEA ECX,[EDX + 0xa70]
+004adeaf	83 39 00	CMP	dword ptr [ECX], 0x0	CMP dword ptr [ECX],0x0
+004adeb2	74 0c	JZ	0x004adec0	JZ 0x004adec0
+004adeb4	40	INC	EAX	INC EAX
+004adeb5	83 c1 04	ADD	ECX, 0x4	ADD ECX,0x4
+004adeb8	83 f8 03	CMP	EAX, 0x3	CMP EAX,0x3
+004adebb	7c f2	JL	0x004adeaf	JL 0x004adeaf
+004adebd	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004adebf	c3	RET		RET
+004adec0	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+004adec4	8b 49 08	MOV	ECX, dword ptr [ECX + 0x8]	MOV ECX,dword ptr [ECX + 0x8]
+004adec7	89 8c 82 70 0a 00 00	MOV	dword ptr [EDX + EAX*0x4 + 0xa70], ECX	MOV dword ptr [EDX + EAX*0x4 + 0xa70],ECX
+004adece	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004aded3	c3	RET		RET

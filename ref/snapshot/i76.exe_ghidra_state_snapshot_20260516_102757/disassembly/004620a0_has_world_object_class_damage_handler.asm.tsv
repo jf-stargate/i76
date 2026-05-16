@@ -1,0 +1,5 @@
+address	bytes	mnemonic	operands	instruction
+004620a0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004620a4	c7 40 68 ff ff ff ff	MOV	dword ptr [EAX + 0x68], 0xffffffff	MOV dword ptr [EAX + 0x68],0xffffffff
+004620ab	c7 40 70 00 00 00 00	MOV	dword ptr [EAX + 0x70], 0x0	MOV dword ptr [EAX + 0x70],0x0
+004620b2	c3	RET		RET

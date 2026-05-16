@@ -1,0 +1,60 @@
+address	bytes	mnemonic	operands	instruction
+004a82c0	83 ec 58	SUB	ESP, 0x58	SUB ESP,0x58
+004a82c3	53	PUSH	EBX	PUSH EBX
+004a82c4	8b 5c 24 60	MOV	EBX, dword ptr [ESP + 0x60]	MOV EBX,dword ptr [ESP + 0x60]
+004a82c8	85 db	TEST	EBX, EBX	TEST EBX,EBX
+004a82ca	75 07	JNZ	0x004a82d3	JNZ 0x004a82d3
+004a82cc	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004a82ce	5b	POP	EBX	POP EBX
+004a82cf	83 c4 58	ADD	ESP, 0x58	ADD ESP,0x58
+004a82d2	c3	RET		RET
+004a82d3	57	PUSH	EDI	PUSH EDI
+004a82d4	56	PUSH	ESI	PUSH ESI
+004a82d5	6a 00	PUSH	0x0	PUSH 0x0
+004a82d7	8d 44 24 28	LEA	EAX, [ESP + 0x28]	LEA EAX,[ESP + 0x28]
+004a82db	53	PUSH	EBX	PUSH EBX
+004a82dc	50	PUSH	EAX	PUSH EAX
+004a82dd	e8 ce 09 fb ff	CALL	0x00458cb0	CALL 0x00458cb0
+004a82e2	b9 10 00 00 00	MOV	ECX, 0x10	MOV ECX,0x10
+004a82e7	8b f0	MOV	ESI, EAX	MOV ESI,EAX
+004a82e9	8d 7c 24 30	LEA	EDI, [ESP + 0x30]	LEA EDI,[ESP + 0x30]
+004a82ed	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+004a82f0	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+004a82f2	dd 44 24 4c	FLD	double ptr [ESP + 0x4c]	FLD double ptr [ESP + 0x4c]
+004a82f6	d9 5c 24 18	FSTP	float ptr [ESP + 0x18]	FSTP float ptr [ESP + 0x18]
+004a82fa	dd 44 24 54	FLD	double ptr [ESP + 0x54]	FLD double ptr [ESP + 0x54]
+004a82fe	d9 5c 24 1c	FSTP	float ptr [ESP + 0x1c]	FSTP float ptr [ESP + 0x1c]
+004a8302	dd 44 24 5c	FLD	double ptr [ESP + 0x5c]	FLD double ptr [ESP + 0x5c]
+004a8306	d9 5c 24 20	FSTP	float ptr [ESP + 0x20]	FSTP float ptr [ESP + 0x20]
+004a830a	8b 4c 24 3c	MOV	ECX, dword ptr [ESP + 0x3c]	MOV ECX,dword ptr [ESP + 0x3c]
+004a830e	8b 54 24 40	MOV	EDX, dword ptr [ESP + 0x40]	MOV EDX,dword ptr [ESP + 0x40]
+004a8312	8b 44 24 44	MOV	EAX, dword ptr [ESP + 0x44]	MOV EAX,dword ptr [ESP + 0x44]
+004a8316	89 4c 24 0c	MOV	dword ptr [ESP + 0xc], ECX	MOV dword ptr [ESP + 0xc],ECX
+004a831a	8b 4c 24 6c	MOV	ECX, dword ptr [ESP + 0x6c]	MOV ECX,dword ptr [ESP + 0x6c]
+004a831e	89 54 24 10	MOV	dword ptr [ESP + 0x10], EDX	MOV dword ptr [ESP + 0x10],EDX
+004a8322	51	PUSH	ECX	PUSH ECX
+004a8323	53	PUSH	EBX	PUSH EBX
+004a8324	8b 4c 24 18	MOV	ECX, dword ptr [ESP + 0x18]	MOV ECX,dword ptr [ESP + 0x18]
+004a8328	83 ec 0c	SUB	ESP, 0xc	SUB ESP,0xc
+004a832b	89 44 24 28	MOV	dword ptr [ESP + 0x28], EAX	MOV dword ptr [ESP + 0x28],EAX
+004a832f	8b 44 24 20	MOV	EAX, dword ptr [ESP + 0x20]	MOV EAX,dword ptr [ESP + 0x20]
+004a8333	8b d4	MOV	EDX, ESP	MOV EDX,ESP
+004a8335	83 ec 0c	SUB	ESP, 0xc	SUB ESP,0xc
+004a8338	89 02	MOV	dword ptr [EDX], EAX	MOV dword ptr [EDX],EAX
+004a833a	8b 44 24 34	MOV	EAX, dword ptr [ESP + 0x34]	MOV EAX,dword ptr [ESP + 0x34]
+004a833e	89 4a 04	MOV	dword ptr [EDX + 0x4], ECX	MOV dword ptr [EDX + 0x4],ECX
+004a8341	8b cc	MOV	ECX, ESP	MOV ECX,ESP
+004a8343	89 42 08	MOV	dword ptr [EDX + 0x8], EAX	MOV dword ptr [EDX + 0x8],EAX
+004a8346	8b 54 24 38	MOV	EDX, dword ptr [ESP + 0x38]	MOV EDX,dword ptr [ESP + 0x38]
+004a834a	8b 44 24 3c	MOV	EAX, dword ptr [ESP + 0x3c]	MOV EAX,dword ptr [ESP + 0x3c]
+004a834e	89 11	MOV	dword ptr [ECX], EDX	MOV dword ptr [ECX],EDX
+004a8350	8b 54 24 40	MOV	EDX, dword ptr [ESP + 0x40]	MOV EDX,dword ptr [ESP + 0x40]
+004a8354	89 41 04	MOV	dword ptr [ECX + 0x4], EAX	MOV dword ptr [ECX + 0x4],EAX
+004a8357	89 51 08	MOV	dword ptr [ECX + 0x8], EDX	MOV dword ptr [ECX + 0x8],EDX
+004a835a	e8 81 de f8 ff	CALL	0x004361e0	CALL 0x004361e0
+004a835f	83 c4 20	ADD	ESP, 0x20	ADD ESP,0x20
+004a8362	5e	POP	ESI	POP ESI
+004a8363	5f	POP	EDI	POP EDI
+004a8364	5b	POP	EBX	POP EBX
+004a8365	83 c4 58	ADD	ESP, 0x58	ADD ESP,0x58
+004a8368	c3	RET		RET

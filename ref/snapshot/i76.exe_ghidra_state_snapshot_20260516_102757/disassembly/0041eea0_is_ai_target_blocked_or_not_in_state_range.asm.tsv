@@ -1,0 +1,27 @@
+address	bytes	mnemonic	operands	instruction
+0041eea0	55	PUSH	EBP	PUSH EBP
+0041eea1	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0041eea3	51	PUSH	ECX	PUSH ECX
+0041eea4	8b 45 0c	MOV	EAX, dword ptr [EBP + 0xc]	MOV EAX,dword ptr [EBP + 0xc]
+0041eea7	50	PUSH	EAX	PUSH EAX
+0041eea8	8b 4d 08	MOV	ECX, dword ptr [EBP + 0x8]	MOV ECX,dword ptr [EBP + 0x8]
+0041eeab	51	PUSH	ECX	PUSH ECX
+0041eeac	e8 8f ff ff ff	CALL	0x0041ee40	CALL 0x0041ee40
+0041eeb1	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041eeb4	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0041eeb6	75 1d	JNZ	0x0041eed5	JNZ 0x0041eed5
+0041eeb8	8b 55 0c	MOV	EDX, dword ptr [EBP + 0xc]	MOV EDX,dword ptr [EBP + 0xc]
+0041eebb	52	PUSH	EDX	PUSH EDX
+0041eebc	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+0041eebf	50	PUSH	EAX	PUSH EAX
+0041eec0	e8 ab 7e ff ff	CALL	0x00416d70	CALL 0x00416d70
+0041eec5	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041eec8	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0041eeca	74 09	JZ	0x0041eed5	JZ 0x0041eed5
+0041eecc	c7 45 fc 00 00 00 00	MOV	dword ptr [EBP + -0x4], 0x0	MOV dword ptr [EBP + -0x4],0x0
+0041eed3	eb 07	JMP	0x0041eedc	JMP 0x0041eedc
+0041eed5	c7 45 fc 01 00 00 00	MOV	dword ptr [EBP + -0x4], 0x1	MOV dword ptr [EBP + -0x4],0x1
+0041eedc	8b 45 fc	MOV	EAX, dword ptr [EBP + -0x4]	MOV EAX,dword ptr [EBP + -0x4]
+0041eedf	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0041eee1	5d	POP	EBP	POP EBP
+0041eee2	c3	RET		RET

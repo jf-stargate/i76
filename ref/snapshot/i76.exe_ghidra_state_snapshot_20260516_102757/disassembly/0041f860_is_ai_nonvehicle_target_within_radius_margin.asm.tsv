@@ -1,0 +1,45 @@
+address	bytes	mnemonic	operands	instruction
+0041f860	55	PUSH	EBP	PUSH EBP
+0041f861	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0041f863	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0041f866	8b 45 0c	MOV	EAX, dword ptr [EBP + 0xc]	MOV EAX,dword ptr [EBP + 0xc]
+0041f869	50	PUSH	EAX	PUSH EAX
+0041f86a	e8 21 92 03 00	CALL	0x00458a90	CALL 0x00458a90
+0041f86f	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0041f872	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0041f874	74 04	JZ	0x0041f87a	JZ 0x0041f87a
+0041f876	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0041f878	eb 61	JMP	0x0041f8db	JMP 0x0041f8db
+0041f87a	83 7d 0c 00	CMP	dword ptr [EBP + 0xc], 0x0	CMP dword ptr [EBP + 0xc],0x0
+0041f87e	74 12	JZ	0x0041f892	JZ 0x0041f892
+0041f880	8b 4d 0c	MOV	ECX, dword ptr [EBP + 0xc]	MOV ECX,dword ptr [EBP + 0xc]
+0041f883	83 79 5c 00	CMP	dword ptr [ECX + 0x5c], 0x0	CMP dword ptr [ECX + 0x5c],0x0
+0041f887	75 09	JNZ	0x0041f892	JNZ 0x0041f892
+0041f889	8b 55 0c	MOV	EDX, dword ptr [EBP + 0xc]	MOV EDX,dword ptr [EBP + 0xc]
+0041f88c	8b 42 64	MOV	EAX, dword ptr [EDX + 0x64]	MOV EAX,dword ptr [EDX + 0x64]
+0041f88f	89 45 0c	MOV	dword ptr [EBP + 0xc], EAX	MOV dword ptr [EBP + 0xc],EAX
+0041f892	83 7d 0c 00	CMP	dword ptr [EBP + 0xc], 0x0	CMP dword ptr [EBP + 0xc],0x0
+0041f896	75 04	JNZ	0x0041f89c	JNZ 0x0041f89c
+0041f898	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0041f89a	eb 3f	JMP	0x0041f8db	JMP 0x0041f8db
+0041f89c	8b 4d 0c	MOV	ECX, dword ptr [EBP + 0xc]	MOV ECX,dword ptr [EBP + 0xc]
+0041f89f	d9 81 90 00 00 00	FLD	float ptr [ECX + 0x90]	FLD float ptr [ECX + 0x90]
+0041f8a5	d8 05 2c cb 4b 00	FADD	float ptr [0x004bcb2c]	FADD float ptr [0x004bcb2c]
+0041f8ab	d9 5d fc	FSTP	float ptr [EBP + -0x4]	FSTP float ptr [EBP + -0x4]
+0041f8ae	8b 55 0c	MOV	EDX, dword ptr [EBP + 0xc]	MOV EDX,dword ptr [EBP + 0xc]
+0041f8b1	52	PUSH	EDX	PUSH EDX
+0041f8b2	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+0041f8b5	50	PUSH	EAX	PUSH EAX
+0041f8b6	e8 35 91 03 00	CALL	0x004589f0	CALL 0x004589f0
+0041f8bb	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041f8be	d8 5d fc	FCOMP	float ptr [EBP + -0x4]	FCOMP float ptr [EBP + -0x4]
+0041f8c1	df e0	FNSTSW	AX	FNSTSW AX
+0041f8c3	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0041f8c6	74 09	JZ	0x0041f8d1	JZ 0x0041f8d1
+0041f8c8	c7 45 f8 01 00 00 00	MOV	dword ptr [EBP + -0x8], 0x1	MOV dword ptr [EBP + -0x8],0x1
+0041f8cf	eb 07	JMP	0x0041f8d8	JMP 0x0041f8d8
+0041f8d1	c7 45 f8 00 00 00 00	MOV	dword ptr [EBP + -0x8], 0x0	MOV dword ptr [EBP + -0x8],0x0
+0041f8d8	8b 45 f8	MOV	EAX, dword ptr [EBP + -0x8]	MOV EAX,dword ptr [EBP + -0x8]
+0041f8db	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0041f8dd	5d	POP	EBP	POP EBP
+0041f8de	c3	RET		RET

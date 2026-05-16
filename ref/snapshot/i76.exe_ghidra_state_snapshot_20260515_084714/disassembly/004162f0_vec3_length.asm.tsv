@@ -1,0 +1,15 @@
+address	bytes	mnemonic	operands	instruction
+004162f0	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+004162f4	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+004162f8	d8 4c 24 04	FMUL	float ptr [ESP + 0x4]	FMUL float ptr [ESP + 0x4]
+004162fc	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+00416300	d9 ca	FXCH	ST2	FXCH ST2
+00416302	d8 4c 24 08	FMUL	float ptr [ESP + 0x8]	FMUL float ptr [ESP + 0x8]
+00416306	d9 ca	FXCH	ST2	FXCH ST2
+00416308	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0041630c	d9 ca	FXCH	ST2	FXCH ST2
+0041630e	de c1	FADDP		FADDP
+00416310	d9 c9	FXCH		FXCH
+00416312	de c1	FADDP		FADDP
+00416314	d9 fa	FSQRT		FSQRT
+00416316	c3	RET		RET

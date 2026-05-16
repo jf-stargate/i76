@@ -1,0 +1,15 @@
+address	bytes	mnemonic	operands	instruction
+00432c20	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+00432c24	57	PUSH	EDI	PUSH EDI
+00432c25	b9 1b 00 00 00	MOV	ECX, 0x1b	MOV ECX,0x1b
+00432c2a	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+00432c2c	8b fa	MOV	EDI, EDX	MOV EDI,EDX
+00432c2e	52	PUSH	EDX	PUSH EDX
+00432c2f	f3 ab	STOSD.REP	ES:EDI	STOSD.REP ES:EDI
+00432c31	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+00432c35	c7 02 6c 00 00 00	MOV	dword ptr [EDX], 0x6c	MOV dword ptr [EDX],0x6c
+00432c3b	50	PUSH	EAX	PUSH EAX
+00432c3c	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+00432c3e	ff 51 58	CALL	dword ptr [ECX + 0x58]	CALL dword ptr [ECX + 0x58]
+00432c41	5f	POP	EDI	POP EDI
+00432c42	c3	RET		RET

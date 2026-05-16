@@ -1,0 +1,116 @@
+address	bytes	mnemonic	operands	instruction
+0041a330	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0041a334	83 ec 24	SUB	ESP, 0x24	SUB ESP,0x24
+0041a337	83 f8 09	CMP	EAX, 0x9	CMP EAX,0x9
+0041a33a	0f 87 ad 00 00 00	JA	0x0041a3ed	JA 0x0041a3ed
+0041a340	ff 24 85 04 a5 41 00	JMP	dword ptr [EAX*0x4 + 0x41a504]	JMP dword ptr [EAX*0x4 + 0x41a504]
+0041a347	d9 05 b4 c9 4b 00	FLD	float ptr [0x004bc9b4]	FLD float ptr [0x004bc9b4]
+0041a34d	c7 44 24 28 00 00 80 3f	MOV	dword ptr [ESP + 0x28], 0x3f800000	MOV dword ptr [ESP + 0x28],0x3f800000
+0041a355	e9 97 00 00 00	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a35a	d9 05 b4 c9 4b 00	FLD	float ptr [0x004bc9b4]	FLD float ptr [0x004bc9b4]
+0041a360	c7 44 24 28 00 00 80 bf	MOV	dword ptr [ESP + 0x28], 0xbf800000	MOV dword ptr [ESP + 0x28],0xbf800000
+0041a368	e9 84 00 00 00	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a36d	d9 05 1c c9 4b 00	FLD	float ptr [0x004bc91c]	FLD float ptr [0x004bc91c]
+0041a373	c7 44 24 28 00 00 80 3f	MOV	dword ptr [ESP + 0x28], 0x3f800000	MOV dword ptr [ESP + 0x28],0x3f800000
+0041a37b	eb 74	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a37d	d9 05 1c c9 4b 00	FLD	float ptr [0x004bc91c]	FLD float ptr [0x004bc91c]
+0041a383	c7 44 24 28 00 00 80 bf	MOV	dword ptr [ESP + 0x28], 0xbf800000	MOV dword ptr [ESP + 0x28],0xbf800000
+0041a38b	eb 64	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a38d	d9 05 14 c9 4b 00	FLD	float ptr [0x004bc914]	FLD float ptr [0x004bc914]
+0041a393	c7 44 24 28 00 00 80 3f	MOV	dword ptr [ESP + 0x28], 0x3f800000	MOV dword ptr [ESP + 0x28],0x3f800000
+0041a39b	eb 54	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a39d	d9 05 14 c9 4b 00	FLD	float ptr [0x004bc914]	FLD float ptr [0x004bc914]
+0041a3a3	c7 44 24 28 00 00 80 bf	MOV	dword ptr [ESP + 0x28], 0xbf800000	MOV dword ptr [ESP + 0x28],0xbf800000
+0041a3ab	eb 44	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a3ad	d9 05 18 c9 4b 00	FLD	float ptr [0x004bc918]	FLD float ptr [0x004bc918]
+0041a3b3	c7 44 24 28 00 00 80 3f	MOV	dword ptr [ESP + 0x28], 0x3f800000	MOV dword ptr [ESP + 0x28],0x3f800000
+0041a3bb	eb 34	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a3bd	d9 05 18 c9 4b 00	FLD	float ptr [0x004bc918]	FLD float ptr [0x004bc918]
+0041a3c3	c7 44 24 28 00 00 80 bf	MOV	dword ptr [ESP + 0x28], 0xbf800000	MOV dword ptr [ESP + 0x28],0xbf800000
+0041a3cb	eb 24	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a3cd	d9 05 38 ca 4b 00	FLD	float ptr [0x004bca38]	FLD float ptr [0x004bca38]
+0041a3d3	c7 44 24 28 00 00 80 3f	MOV	dword ptr [ESP + 0x28], 0x3f800000	MOV dword ptr [ESP + 0x28],0x3f800000
+0041a3db	eb 14	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a3dd	d9 05 38 ca 4b 00	FLD	float ptr [0x004bca38]	FLD float ptr [0x004bca38]
+0041a3e3	c7 44 24 28 00 00 80 bf	MOV	dword ptr [ESP + 0x28], 0xbf800000	MOV dword ptr [ESP + 0x28],0xbf800000
+0041a3eb	eb 04	JMP	0x0041a3f1	JMP 0x0041a3f1
+0041a3ed	d9 44 24 28	FLD	float ptr [ESP + 0x28]	FLD float ptr [ESP + 0x28]
+0041a3f1	8b 44 24 34	MOV	EAX, dword ptr [ESP + 0x34]	MOV EAX,dword ptr [ESP + 0x34]
+0041a3f5	d8 0d 20 ca 4b 00	FMUL	float ptr [0x004bca20]	FMUL float ptr [0x004bca20]
+0041a3fb	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+0041a3fd	89 4c 24 00	MOV	dword ptr [ESP], ECX	MOV dword ptr [ESP],ECX
+0041a401	d9 44 24 00	FLD	float ptr [ESP]	FLD float ptr [ESP]
+0041a405	8b 50 04	MOV	EDX, dword ptr [EAX + 0x4]	MOV EDX,dword ptr [EAX + 0x4]
+0041a408	d8 c9	FMUL	ST1	FMUL ST1
+0041a40a	8b 40 08	MOV	EAX, dword ptr [EAX + 0x8]	MOV EAX,dword ptr [EAX + 0x8]
+0041a40d	89 54 24 04	MOV	dword ptr [ESP + 0x4], EDX	MOV dword ptr [ESP + 0x4],EDX
+0041a411	89 44 24 08	MOV	dword ptr [ESP + 0x8], EAX	MOV dword ptr [ESP + 0x8],EAX
+0041a415	8b 44 24 38	MOV	EAX, dword ptr [ESP + 0x38]	MOV EAX,dword ptr [ESP + 0x38]
+0041a419	8b c8	MOV	ECX, EAX	MOV ECX,EAX
+0041a41b	d9 5c 24 00	FSTP	float ptr [ESP]	FSTP float ptr [ESP]
+0041a41f	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+0041a423	d8 c9	FMUL	ST1	FMUL ST1
+0041a425	8b 54 24 00	MOV	EDX, dword ptr [ESP]	MOV EDX,dword ptr [ESP]
+0041a429	89 11	MOV	dword ptr [ECX], EDX	MOV dword ptr [ECX],EDX
+0041a42b	d9 5c 24 04	FSTP	float ptr [ESP + 0x4]	FSTP float ptr [ESP + 0x4]
+0041a42f	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0041a433	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+0041a437	d8 c9	FMUL	ST1	FMUL ST1
+0041a439	89 51 04	MOV	dword ptr [ECX + 0x4], EDX	MOV dword ptr [ECX + 0x4],EDX
+0041a43c	d9 5c 24 08	FSTP	float ptr [ESP + 0x8]	FSTP float ptr [ESP + 0x8]
+0041a440	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+0041a444	89 51 08	MOV	dword ptr [ECX + 0x8], EDX	MOV dword ptr [ECX + 0x8],EDX
+0041a447	8b 4c 24 30	MOV	ECX, dword ptr [ESP + 0x30]	MOV ECX,dword ptr [ESP + 0x30]
+0041a44b	dd d8	FSTP	ST0	FSTP ST0
+0041a44d	d9 44 24 28	FLD	float ptr [ESP + 0x28]	FLD float ptr [ESP + 0x28]
+0041a451	8b 11	MOV	EDX, dword ptr [ECX]	MOV EDX,dword ptr [ECX]
+0041a453	d8 0d 3c ca 4b 00	FMUL	float ptr [0x004bca3c]	FMUL float ptr [0x004bca3c]
+0041a459	89 54 24 18	MOV	dword ptr [ESP + 0x18], EDX	MOV dword ptr [ESP + 0x18],EDX
+0041a45d	8b 51 04	MOV	EDX, dword ptr [ECX + 0x4]	MOV EDX,dword ptr [ECX + 0x4]
+0041a460	d9 44 24 18	FLD	float ptr [ESP + 0x18]	FLD float ptr [ESP + 0x18]
+0041a464	d8 c9	FMUL	ST1	FMUL ST1
+0041a466	89 54 24 1c	MOV	dword ptr [ESP + 0x1c], EDX	MOV dword ptr [ESP + 0x1c],EDX
+0041a46a	8b 49 08	MOV	ECX, dword ptr [ECX + 0x8]	MOV ECX,dword ptr [ECX + 0x8]
+0041a46d	89 4c 24 20	MOV	dword ptr [ESP + 0x20], ECX	MOV dword ptr [ESP + 0x20],ECX
+0041a471	8b d0	MOV	EDX, EAX	MOV EDX,EAX
+0041a473	d8 44 24 00	FADD	float ptr [ESP]	FADD float ptr [ESP]
+0041a477	d9 5c 24 0c	FSTP	float ptr [ESP + 0xc]	FSTP float ptr [ESP + 0xc]
+0041a47b	d9 44 24 1c	FLD	float ptr [ESP + 0x1c]	FLD float ptr [ESP + 0x1c]
+0041a47f	d8 c9	FMUL	ST1	FMUL ST1
+0041a481	8b 4c 24 0c	MOV	ECX, dword ptr [ESP + 0xc]	MOV ECX,dword ptr [ESP + 0xc]
+0041a485	89 0a	MOV	dword ptr [EDX], ECX	MOV dword ptr [EDX],ECX
+0041a487	d8 44 24 04	FADD	float ptr [ESP + 0x4]	FADD float ptr [ESP + 0x4]
+0041a48b	d9 5c 24 10	FSTP	float ptr [ESP + 0x10]	FSTP float ptr [ESP + 0x10]
+0041a48f	d9 44 24 20	FLD	float ptr [ESP + 0x20]	FLD float ptr [ESP + 0x20]
+0041a493	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+0041a497	d8 c9	FMUL	ST1	FMUL ST1
+0041a499	89 4a 04	MOV	dword ptr [EDX + 0x4], ECX	MOV dword ptr [EDX + 0x4],ECX
+0041a49c	d8 44 24 08	FADD	float ptr [ESP + 0x8]	FADD float ptr [ESP + 0x8]
+0041a4a0	d9 5c 24 14	FSTP	float ptr [ESP + 0x14]	FSTP float ptr [ESP + 0x14]
+0041a4a4	8b 4c 24 14	MOV	ECX, dword ptr [ESP + 0x14]	MOV ECX,dword ptr [ESP + 0x14]
+0041a4a8	89 4a 08	MOV	dword ptr [EDX + 0x8], ECX	MOV dword ptr [EDX + 0x8],ECX
+0041a4ab	8b 54 24 2c	MOV	EDX, dword ptr [ESP + 0x2c]	MOV EDX,dword ptr [ESP + 0x2c]
+0041a4af	dd d8	FSTP	ST0	FSTP ST0
+0041a4b1	8b 0a	MOV	ECX, dword ptr [EDX]	MOV ECX,dword ptr [EDX]
+0041a4b3	89 4c 24 18	MOV	dword ptr [ESP + 0x18], ECX	MOV dword ptr [ESP + 0x18],ECX
+0041a4b7	d9 44 24 18	FLD	float ptr [ESP + 0x18]	FLD float ptr [ESP + 0x18]
+0041a4bb	d8 44 24 0c	FADD	float ptr [ESP + 0xc]	FADD float ptr [ESP + 0xc]
+0041a4bf	8b 4a 04	MOV	ECX, dword ptr [EDX + 0x4]	MOV ECX,dword ptr [EDX + 0x4]
+0041a4c2	89 4c 24 1c	MOV	dword ptr [ESP + 0x1c], ECX	MOV dword ptr [ESP + 0x1c],ECX
+0041a4c6	8b 52 08	MOV	EDX, dword ptr [EDX + 0x8]	MOV EDX,dword ptr [EDX + 0x8]
+0041a4c9	d9 5c 24 00	FSTP	float ptr [ESP]	FSTP float ptr [ESP]
+0041a4cd	d9 44 24 1c	FLD	float ptr [ESP + 0x1c]	FLD float ptr [ESP + 0x1c]
+0041a4d1	d8 44 24 10	FADD	float ptr [ESP + 0x10]	FADD float ptr [ESP + 0x10]
+0041a4d5	8b 4c 24 00	MOV	ECX, dword ptr [ESP]	MOV ECX,dword ptr [ESP]
+0041a4d9	89 54 24 20	MOV	dword ptr [ESP + 0x20], EDX	MOV dword ptr [ESP + 0x20],EDX
+0041a4dd	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+0041a4df	d9 5c 24 04	FSTP	float ptr [ESP + 0x4]	FSTP float ptr [ESP + 0x4]
+0041a4e3	d9 44 24 20	FLD	float ptr [ESP + 0x20]	FLD float ptr [ESP + 0x20]
+0041a4e7	d8 44 24 14	FADD	float ptr [ESP + 0x14]	FADD float ptr [ESP + 0x14]
+0041a4eb	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+0041a4ef	89 50 04	MOV	dword ptr [EAX + 0x4], EDX	MOV dword ptr [EAX + 0x4],EDX
+0041a4f2	d9 5c 24 08	FSTP	float ptr [ESP + 0x8]	FSTP float ptr [ESP + 0x8]
+0041a4f6	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0041a4fa	89 48 08	MOV	dword ptr [EAX + 0x8], ECX	MOV dword ptr [EAX + 0x8],ECX
+0041a4fd	83 c4 24	ADD	ESP, 0x24	ADD ESP,0x24
+0041a500	c3	RET		RET

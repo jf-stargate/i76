@@ -1,0 +1,34 @@
+address	bytes	mnemonic	operands	instruction
+0041c210	55	PUSH	EBP	PUSH EBP
+0041c211	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0041c213	51	PUSH	ECX	PUSH ECX
+0041c214	c7 45 fc 00 00 00 00	MOV	dword ptr [EBP + -0x4], 0x0	MOV dword ptr [EBP + -0x4],0x0
+0041c21b	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+0041c21e	50	PUSH	EAX	PUSH EAX
+0041c21f	e8 1c b2 04 00	CALL	0x00467440	CALL 0x00467440
+0041c224	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0041c227	89 45 fc	MOV	dword ptr [EBP + -0x4], EAX	MOV dword ptr [EBP + -0x4],EAX
+0041c22a	e8 91 05 08 00	CALL	0x0049c7c0	CALL 0x0049c7c0
+0041c22f	d8 05 b0 ca 4b 00	FADD	float ptr [0x004bcab0]	FADD float ptr [0x004bcab0]
+0041c235	8b 4d fc	MOV	ECX, dword ptr [EBP + -0x4]	MOV ECX,dword ptr [EBP + -0x4]
+0041c238	8b 91 08 01 00 00	MOV	EDX, dword ptr [ECX + 0x108]	MOV EDX,dword ptr [ECX + 0x108]
+0041c23e	d9 9a 2c a8 00 00	FSTP	float ptr [EDX + 0xa82c]	FSTP float ptr [EDX + 0xa82c]
+0041c244	8b 45 fc	MOV	EAX, dword ptr [EBP + -0x4]	MOV EAX,dword ptr [EBP + -0x4]
+0041c247	8b 88 08 01 00 00	MOV	ECX, dword ptr [EAX + 0x108]	MOV ECX,dword ptr [EAX + 0x108]
+0041c24d	8b 55 0c	MOV	EDX, dword ptr [EBP + 0xc]	MOV EDX,dword ptr [EBP + 0xc]
+0041c250	89 91 98 a9 00 00	MOV	dword ptr [ECX + 0xa998], EDX	MOV dword ptr [ECX + 0xa998],EDX
+0041c256	8b 45 fc	MOV	EAX, dword ptr [EBP + -0x4]	MOV EAX,dword ptr [EBP + -0x4]
+0041c259	c7 80 f0 00 00 00 00 00 00 00	MOV	dword ptr [EAX + 0xf0], 0x0	MOV dword ptr [EAX + 0xf0],0x0
+0041c263	6a 03	PUSH	0x3	PUSH 0x3
+0041c265	8b 4d 08	MOV	ECX, dword ptr [EBP + 0x8]	MOV ECX,dword ptr [EBP + 0x8]
+0041c268	51	PUSH	ECX	PUSH ECX
+0041c269	e8 02 b1 04 00	CALL	0x00467370	CALL 0x00467370
+0041c26e	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0041c271	8b 55 fc	MOV	EDX, dword ptr [EBP + -0x4]	MOV EDX,dword ptr [EBP + -0x4]
+0041c274	c7 82 e8 00 00 00 00 00 80 3f	MOV	dword ptr [EDX + 0xe8], 0x3f800000	MOV dword ptr [EDX + 0xe8],0x3f800000
+0041c27e	8b 45 fc	MOV	EAX, dword ptr [EBP + -0x4]	MOV EAX,dword ptr [EBP + -0x4]
+0041c281	8b 88 08 01 00 00	MOV	ECX, dword ptr [EAX + 0x108]	MOV ECX,dword ptr [EAX + 0x108]
+0041c287	c7 81 80 00 00 00 00 00 0c 42	MOV	dword ptr [ECX + 0x80], 0x420c0000	MOV dword ptr [ECX + 0x80],0x420c0000
+0041c291	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0041c293	5d	POP	EBP	POP EBP
+0041c294	c3	RET		RET

@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+00495060	8b 0d a8 d2 5d 00	MOV	ECX, dword ptr [0x005dd2a8]	MOV ECX,dword ptr [0x005dd2a8]
+00495066	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+00495068	83 f9 01	CMP	ECX, 0x1	CMP ECX,0x1
+0049506b	0f 94 c0	SETZ	AL	SETZ AL
+0049506e	c3	RET		RET

@@ -1,0 +1,46 @@
+address	bytes	mnemonic	operands	instruction
+004b7f70	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004b7f74	53	PUSH	EBX	PUSH EBX
+004b7f75	8b 5c 24 08	MOV	EBX, dword ptr [ESP + 0x8]	MOV EBX,dword ptr [ESP + 0x8]
+004b7f79	56	PUSH	ESI	PUSH ESI
+004b7f7a	57	PUSH	EDI	PUSH EDI
+004b7f7b	8d 78 3c	LEA	EDI, [EAX + 0x3c]	LEA EDI,[EAX + 0x3c]
+004b7f7e	8d 73 1c	LEA	ESI, [EBX + 0x1c]	LEA ESI,[EBX + 0x1c]
+004b7f81	b9 05 00 00 00	MOV	ECX, 0x5	MOV ECX,0x5
+004b7f86	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+004b7f88	c7 40 50 01 00 00 00	MOV	dword ptr [EAX + 0x50], 0x1	MOV dword ptr [EAX + 0x50],0x1
+004b7f8f	8b 00	MOV	EAX, dword ptr [EAX]	MOV EAX,dword ptr [EAX]
+004b7f91	8b 48 6c	MOV	ECX, dword ptr [EAX + 0x6c]	MOV ECX,dword ptr [EAX + 0x6c]
+004b7f94	83 f9 02	CMP	ECX, 0x2	CMP ECX,0x2
+004b7f97	74 0f	JZ	0x004b7fa8	JZ 0x004b7fa8
+004b7f99	83 f9 03	CMP	ECX, 0x3	CMP ECX,0x3
+004b7f9c	74 0a	JZ	0x004b7fa8	JZ 0x004b7fa8
+004b7f9e	83 f9 0c	CMP	ECX, 0xc	CMP ECX,0xc
+004b7fa1	74 05	JZ	0x004b7fa8	JZ 0x004b7fa8
+004b7fa3	83 f9 0b	CMP	ECX, 0xb	CMP ECX,0xb
+004b7fa6	75 35	JNZ	0x004b7fdd	JNZ 0x004b7fdd
+004b7fa8	8b 70 70	MOV	ESI, dword ptr [EAX + 0x70]	MOV ESI,dword ptr [EAX + 0x70]
+004b7fab	85 f6	TEST	ESI, ESI	TEST ESI,ESI
+004b7fad	74 2e	JZ	0x004b7fdd	JZ 0x004b7fdd
+004b7faf	8d 46 10	LEA	EAX, [ESI + 0x10]	LEA EAX,[ESI + 0x10]
+004b7fb2	6a 00	PUSH	0x0	PUSH 0x0
+004b7fb4	8d 4b 34	LEA	ECX, [EBX + 0x34]	LEA ECX,[EBX + 0x34]
+004b7fb7	50	PUSH	EAX	PUSH EAX
+004b7fb8	51	PUSH	ECX	PUSH ECX
+004b7fb9	e8 82 0c 00 00	CALL	0x004b8c40	CALL 0x004b8c40
+004b7fbe	83 c3 41	ADD	EBX, 0x41	ADD EBX,0x41
+004b7fc1	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+004b7fc4	83 c6 18	ADD	ESI, 0x18	ADD ESI,0x18
+004b7fc7	8b 13	MOV	EDX, dword ptr [EBX]	MOV EDX,dword ptr [EBX]
+004b7fc9	89 16	MOV	dword ptr [ESI], EDX	MOV dword ptr [ESI],EDX
+004b7fcb	8b 43 04	MOV	EAX, dword ptr [EBX + 0x4]	MOV EAX,dword ptr [EBX + 0x4]
+004b7fce	89 46 04	MOV	dword ptr [ESI + 0x4], EAX	MOV dword ptr [ESI + 0x4],EAX
+004b7fd1	8b 4b 08	MOV	ECX, dword ptr [EBX + 0x8]	MOV ECX,dword ptr [EBX + 0x8]
+004b7fd4	89 4e 08	MOV	dword ptr [ESI + 0x8], ECX	MOV dword ptr [ESI + 0x8],ECX
+004b7fd7	8a 53 0c	MOV	DL, byte ptr [EBX + 0xc]	MOV DL,byte ptr [EBX + 0xc]
+004b7fda	88 56 0c	MOV	byte ptr [ESI + 0xc], DL	MOV byte ptr [ESI + 0xc],DL
+004b7fdd	5f	POP	EDI	POP EDI
+004b7fde	5e	POP	ESI	POP ESI
+004b7fdf	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004b7fe4	5b	POP	EBX	POP EBX
+004b7fe5	c3	RET		RET

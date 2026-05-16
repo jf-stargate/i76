@@ -1,0 +1,73 @@
+address	bytes	mnemonic	operands	instruction
+00474ea0	55	PUSH	EBP	PUSH EBP
+00474ea1	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+00474ea3	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+00474ea6	53	PUSH	EBX	PUSH EBX
+00474ea7	56	PUSH	ESI	PUSH ESI
+00474ea8	57	PUSH	EDI	PUSH EDI
+00474ea9	83 78 2c 01	CMP	dword ptr [EAX + 0x2c], 0x1	CMP dword ptr [EAX + 0x2c],0x1
+00474ead	0f 85 a2 00 00 00	JNZ	0x00474f55	JNZ 0x00474f55
+00474eb3	3d c0 ce 5d 00	CMP	EAX, 0x5dcec0	CMP EAX,0x5dcec0
+00474eb8	75 26	JNZ	0x00474ee0	JNZ 0x00474ee0
+00474eba	8b 45 0c	MOV	EAX, dword ptr [EBP + 0xc]	MOV EAX,dword ptr [EBP + 0xc]
+00474ebd	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+00474ebf	25 ff 00 00 00	AND	EAX, 0xff	AND EAX,0xff
+00474ec4	66 8b 0c 45 60 84 60 00	MOV	CX, word ptr [EAX*0x2 + 0x608460]	MOV CX,word ptr [EAX*0x2 + 0x608460]
+00474ecc	51	PUSH	ECX	PUSH ECX
+00474ecd	68 c0 ce 5d 00	PUSH	0x5dcec0	PUSH 0x5dcec0
+00474ed2	ff 15 e4 d2 5d 00	CALL	dword ptr [0x005dd2e4]	CALL dword ptr [0x005dd2e4]
+00474ed8	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+00474edb	5f	POP	EDI	POP EDI
+00474edc	5e	POP	ESI	POP ESI
+00474edd	5b	POP	EBX	POP EBX
+00474ede	5d	POP	EBP	POP EBP
+00474edf	c3	RET		RET
+00474ee0	8b 75 08	MOV	ESI, dword ptr [EBP + 0x8]	MOV ESI,dword ptr [EBP + 0x8]
+00474ee3	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+00474ee5	8a 45 0c	MOV	AL, byte ptr [EBP + 0xc]	MOV AL,byte ptr [EBP + 0xc]
+00474ee8	8b 4e 14	MOV	ECX, dword ptr [ESI + 0x14]	MOV ECX,dword ptr [ESI + 0x14]
+00474eeb	8a e0	MOV	AH, AL	MOV AH,AL
+00474eed	8b 1e	MOV	EBX, dword ptr [ESI]	MOV EBX,dword ptr [ESI]
+00474eef	8b d0	MOV	EDX, EAX	MOV EDX,EAX
+00474ef1	8b 7e 04	MOV	EDI, dword ptr [ESI + 0x4]	MOV EDI,dword ptr [ESI + 0x4]
+00474ef4	81 e7 ff ff 00 00	AND	EDI, 0xffff	AND EDI,0xffff
+00474efa	0f af df	IMUL	EBX, EDI	IMUL EBX,EDI
+00474efd	8b f9	MOV	EDI, ECX	MOV EDI,ECX
+00474eff	83 fb 40	CMP	EBX, 0x40	CMP EBX,0x40
+00474f02	7c 4b	JL	0x00474f4f	JL 0x00474f4f
+00474f04	c1 e0 10	SHL	EAX, 0x10	SHL EAX,0x10
+00474f07	83 eb 40	SUB	EBX, 0x40	SUB EBX,0x40
+00474f0a	0b c2	OR	EAX, EDX	OR EAX,EDX
+00474f0c	8a 17	MOV	DL, byte ptr [EDI]	MOV DL,byte ptr [EDI]
+00474f0e	8a 4f 20	MOV	CL, byte ptr [EDI + 0x20]	MOV CL,byte ptr [EDI + 0x20]
+00474f11	89 07	MOV	dword ptr [EDI], EAX	MOV dword ptr [EDI],EAX
+00474f13	89 47 20	MOV	dword ptr [EDI + 0x20], EAX	MOV dword ptr [EDI + 0x20],EAX
+00474f16	89 47 04	MOV	dword ptr [EDI + 0x4], EAX	MOV dword ptr [EDI + 0x4],EAX
+00474f19	89 47 24	MOV	dword ptr [EDI + 0x24], EAX	MOV dword ptr [EDI + 0x24],EAX
+00474f1c	89 47 08	MOV	dword ptr [EDI + 0x8], EAX	MOV dword ptr [EDI + 0x8],EAX
+00474f1f	89 47 28	MOV	dword ptr [EDI + 0x28], EAX	MOV dword ptr [EDI + 0x28],EAX
+00474f22	89 47 0c	MOV	dword ptr [EDI + 0xc], EAX	MOV dword ptr [EDI + 0xc],EAX
+00474f25	89 47 2c	MOV	dword ptr [EDI + 0x2c], EAX	MOV dword ptr [EDI + 0x2c],EAX
+00474f28	89 47 10	MOV	dword ptr [EDI + 0x10], EAX	MOV dword ptr [EDI + 0x10],EAX
+00474f2b	89 47 30	MOV	dword ptr [EDI + 0x30], EAX	MOV dword ptr [EDI + 0x30],EAX
+00474f2e	89 47 14	MOV	dword ptr [EDI + 0x14], EAX	MOV dword ptr [EDI + 0x14],EAX
+00474f31	89 47 34	MOV	dword ptr [EDI + 0x34], EAX	MOV dword ptr [EDI + 0x34],EAX
+00474f34	89 47 18	MOV	dword ptr [EDI + 0x18], EAX	MOV dword ptr [EDI + 0x18],EAX
+00474f37	89 47 38	MOV	dword ptr [EDI + 0x38], EAX	MOV dword ptr [EDI + 0x38],EAX
+00474f3a	89 47 1c	MOV	dword ptr [EDI + 0x1c], EAX	MOV dword ptr [EDI + 0x1c],EAX
+00474f3d	89 47 3c	MOV	dword ptr [EDI + 0x3c], EAX	MOV dword ptr [EDI + 0x3c],EAX
+00474f40	83 c7 40	ADD	EDI, 0x40	ADD EDI,0x40
+00474f43	83 eb 40	SUB	EBX, 0x40	SUB EBX,0x40
+00474f46	7f c4	JG	0x00474f0c	JG 0x00474f0c
+00474f48	8a 17	MOV	DL, byte ptr [EDI]	MOV DL,byte ptr [EDI]
+00474f4a	83 c3 40	ADD	EBX, 0x40	ADD EBX,0x40
+00474f4d	74 06	JZ	0x00474f55	JZ 0x00474f55
+00474f4f	88 07	MOV	byte ptr [EDI], AL	MOV byte ptr [EDI],AL
+00474f51	47	INC	EDI	INC EDI
+00474f52	4b	DEC	EBX	DEC EBX
+00474f53	75 fa	JNZ	0x00474f4f	JNZ 0x00474f4f
+00474f55	5f	POP	EDI	POP EDI
+00474f56	5e	POP	ESI	POP ESI
+00474f57	5b	POP	EBX	POP EBX
+00474f58	5d	POP	EBP	POP EBP
+00474f59	c3	RET		RET

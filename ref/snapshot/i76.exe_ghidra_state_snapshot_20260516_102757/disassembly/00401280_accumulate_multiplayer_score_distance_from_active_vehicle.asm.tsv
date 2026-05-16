@@ -1,0 +1,16 @@
+address	bytes	mnemonic	operands	instruction
+00401280	66 ff 05 88 17 50 00	INC	word ptr [0x00501788]	INC word ptr [0x00501788]
+00401287	e8 a4 62 05 00	CALL	0x00457530	CALL 0x00457530
+0040128c	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0040128e	74 2e	JZ	0x004012be	JZ 0x004012be
+00401290	8b 00	MOV	EAX, dword ptr [EAX]	MOV EAX,dword ptr [EAX]
+00401292	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+00401296	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+00401299	8b 42 70	MOV	EAX, dword ptr [EDX + 0x70]	MOV EAX,dword ptr [EDX + 0x70]
+0040129c	d9 81 a8 00 00 00	FLD	float ptr [ECX + 0xa8]	FLD float ptr [ECX + 0xa8]
+004012a2	d8 88 a4 00 00 00	FMUL	float ptr [EAX + 0xa4]	FMUL float ptr [EAX + 0xa4]
+004012a8	d8 0d 08 c4 4b 00	FMUL	float ptr [0x004bc408]	FMUL float ptr [0x004bc408]
+004012ae	e8 dd 8d 0b 00	CALL	0x004ba090	CALL 0x004ba090
+004012b3	01 05 84 17 50 00	ADD	dword ptr [0x00501784], EAX	ADD dword ptr [0x00501784],EAX
+004012b9	e9 52 0c 05 00	JMP	0x00451f10	JMP 0x00451f10
+004012be	c3	RET		RET

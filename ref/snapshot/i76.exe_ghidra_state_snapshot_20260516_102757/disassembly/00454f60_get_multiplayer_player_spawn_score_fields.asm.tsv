@@ -1,0 +1,41 @@
+address	bytes	mnemonic	operands	instruction
+00454f60	66 8b 54 24 04	MOV	DX, word ptr [ESP + 0x4]	MOV DX,word ptr [ESP + 0x4]
+00454f65	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+00454f67	b8 70 10 54 00	MOV	EAX, 0x541070	MOV EAX,0x541070
+00454f6c	66 39 10	CMP	word ptr [EAX], DX	CMP word ptr [EAX],DX
+00454f6f	74 0b	JZ	0x00454f7c	JZ 0x00454f7c
+00454f71	83 c0 48	ADD	EAX, 0x48	ADD EAX,0x48
+00454f74	41	INC	ECX	INC ECX
+00454f75	3d f0 14 54 00	CMP	EAX, 0x5414f0	CMP EAX,0x5414f0
+00454f7a	7c f0	JL	0x00454f6c	JL 0x00454f6c
+00454f7c	83 f9 10	CMP	ECX, 0x10	CMP ECX,0x10
+00454f7f	75 03	JNZ	0x00454f84	JNZ 0x00454f84
+00454f81	83 c9 ff	OR	ECX, 0xffffffff	OR ECX,0xffffffff
+00454f84	83 f9 ff	CMP	ECX, -0x1	CMP ECX,-0x1
+00454f87	75 1d	JNZ	0x00454fa6	JNZ 0x00454fa6
+00454f89	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+00454f8d	8b 4c 24 0c	MOV	ECX, dword ptr [ESP + 0xc]	MOV ECX,dword ptr [ESP + 0xc]
+00454f91	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+00454f95	66 c7 00 00 00	MOV	word ptr [EAX], 0x0	MOV word ptr [EAX],0x0
+00454f9a	66 c7 01 00 00	MOV	word ptr [ECX], 0x0	MOV word ptr [ECX],0x0
+00454f9f	c7 02 00 00 00 00	MOV	dword ptr [EDX], 0x0	MOV dword ptr [EDX],0x0
+00454fa5	c3	RET		RET
+00454fa6	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00454faa	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00454fac	74 0c	JZ	0x00454fba	JZ 0x00454fba
+00454fae	8d 14 c9	LEA	EDX, [ECX + ECX*0x8]	LEA EDX,[ECX + ECX*0x8]
+00454fb1	8b 14 d5 b0 10 54 00	MOV	EDX, dword ptr [EDX*0x8 + 0x5410b0]	MOV EDX,dword ptr [EDX*0x8 + 0x5410b0]
+00454fb8	89 10	MOV	dword ptr [EAX], EDX	MOV dword ptr [EAX],EDX
+00454fba	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+00454fbe	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00454fc0	74 0e	JZ	0x00454fd0	JZ 0x00454fd0
+00454fc2	8d 14 c9	LEA	EDX, [ECX + ECX*0x8]	LEA EDX,[ECX + ECX*0x8]
+00454fc5	66 8b 14 d5 ac 10 54 00	MOV	DX, word ptr [EDX*0x8 + 0x5410ac]	MOV DX,word ptr [EDX*0x8 + 0x5410ac]
+00454fcd	66 89 10	MOV	word ptr [EAX], DX	MOV word ptr [EAX],DX
+00454fd0	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+00454fd4	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00454fd6	74 0e	JZ	0x00454fe6	JZ 0x00454fe6
+00454fd8	8d 0c c9	LEA	ECX, [ECX + ECX*0x8]	LEA ECX,[ECX + ECX*0x8]
+00454fdb	66 8b 14 cd ae 10 54 00	MOV	DX, word ptr [ECX*0x8 + 0x5410ae]	MOV DX,word ptr [ECX*0x8 + 0x5410ae]
+00454fe3	66 89 10	MOV	word ptr [EAX], DX	MOV word ptr [EAX],DX
+00454fe6	c3	RET		RET

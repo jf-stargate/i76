@@ -1,0 +1,39 @@
+address	bytes	mnemonic	operands	instruction
+004ae2e0	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+004ae2e4	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004ae2e8	56	PUSH	ESI	PUSH ESI
+004ae2e9	8b 51 6c	MOV	EDX, dword ptr [ECX + 0x6c]	MOV EDX,dword ptr [ECX + 0x6c]
+004ae2ec	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004ae2ef	8d 72 da	LEA	ESI, [EDX + -0x26]	LEA ESI,[EDX + -0x26]
+004ae2f2	83 fe 22	CMP	ESI, 0x22	CMP ESI,0x22
+004ae2f5	77 55	JA	0x004ae34c	JA 0x004ae34c
+004ae2f7	33 d2	XOR	EDX, EDX	XOR EDX,EDX
+004ae2f9	8a 96 78 e3 4a 00	MOV	DL, byte ptr [ESI + 0x4ae378]	MOV DL,byte ptr [ESI + 0x4ae378]
+004ae2ff	ff 24 95 50 e3 4a 00	JMP	dword ptr [EDX*0x4 + 0x4ae350]	JMP dword ptr [EDX*0x4 + 0x4ae350]
+004ae306	89 88 08 04 00 00	MOV	dword ptr [EAX + 0x408], ECX	MOV dword ptr [EAX + 0x408],ECX
+004ae30c	5e	POP	ESI	POP ESI
+004ae30d	c3	RET		RET
+004ae30e	89 88 0c 04 00 00	MOV	dword ptr [EAX + 0x40c], ECX	MOV dword ptr [EAX + 0x40c],ECX
+004ae314	5e	POP	ESI	POP ESI
+004ae315	c3	RET		RET
+004ae316	89 88 10 04 00 00	MOV	dword ptr [EAX + 0x410], ECX	MOV dword ptr [EAX + 0x410],ECX
+004ae31c	5e	POP	ESI	POP ESI
+004ae31d	c3	RET		RET
+004ae31e	89 88 14 04 00 00	MOV	dword ptr [EAX + 0x414], ECX	MOV dword ptr [EAX + 0x414],ECX
+004ae324	5e	POP	ESI	POP ESI
+004ae325	c3	RET		RET
+004ae326	89 88 18 04 00 00	MOV	dword ptr [EAX + 0x418], ECX	MOV dword ptr [EAX + 0x418],ECX
+004ae32c	5e	POP	ESI	POP ESI
+004ae32d	c3	RET		RET
+004ae32e	89 88 1c 04 00 00	MOV	dword ptr [EAX + 0x41c], ECX	MOV dword ptr [EAX + 0x41c],ECX
+004ae334	5e	POP	ESI	POP ESI
+004ae335	c3	RET		RET
+004ae336	89 88 40 04 00 00	MOV	dword ptr [EAX + 0x440], ECX	MOV dword ptr [EAX + 0x440],ECX
+004ae33c	5e	POP	ESI	POP ESI
+004ae33d	c3	RET		RET
+004ae33e	89 88 a0 03 00 00	MOV	dword ptr [EAX + 0x3a0], ECX	MOV dword ptr [EAX + 0x3a0],ECX
+004ae344	5e	POP	ESI	POP ESI
+004ae345	c3	RET		RET
+004ae346	89 88 a4 03 00 00	MOV	dword ptr [EAX + 0x3a4], ECX	MOV dword ptr [EAX + 0x3a4],ECX
+004ae34c	5e	POP	ESI	POP ESI
+004ae34d	c3	RET		RET

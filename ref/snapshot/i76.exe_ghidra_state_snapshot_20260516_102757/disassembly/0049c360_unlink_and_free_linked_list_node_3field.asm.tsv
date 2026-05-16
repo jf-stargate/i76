@@ -1,0 +1,27 @@
+address	bytes	mnemonic	operands	instruction
+0049c360	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+0049c364	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+0049c366	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0049c368	74 06	JZ	0x0049c370	JZ 0x0049c370
+0049c36a	8b 50 04	MOV	EDX, dword ptr [EAX + 0x4]	MOV EDX,dword ptr [EAX + 0x4]
+0049c36d	89 51 04	MOV	dword ptr [ECX + 0x4], EDX	MOV dword ptr [ECX + 0x4],EDX
+0049c370	8b 48 04	MOV	ECX, dword ptr [EAX + 0x4]	MOV ECX,dword ptr [EAX + 0x4]
+0049c373	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0049c375	74 14	JZ	0x0049c38b	JZ 0x0049c38b
+0049c377	8b 10	MOV	EDX, dword ptr [EAX]	MOV EDX,dword ptr [EAX]
+0049c379	50	PUSH	EAX	PUSH EAX
+0049c37a	89 11	MOV	dword ptr [ECX], EDX	MOV dword ptr [ECX],EDX
+0049c37c	a1 a0 7d 5a 00	MOV	EAX, [0x005a7da0]	MOV EAX,[0x005a7da0]
+0049c381	6a 00	PUSH	0x0	PUSH 0x0
+0049c383	50	PUSH	EAX	PUSH EAX
+0049c384	ff 15 04 c1 4b 00	CALL	dword ptr [0x004bc104]	CALL dword ptr [0x004bc104]
+0049c38a	c3	RET		RET
+0049c38b	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+0049c38f	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+0049c391	50	PUSH	EAX	PUSH EAX
+0049c392	6a 00	PUSH	0x0	PUSH 0x0
+0049c394	89 0a	MOV	dword ptr [EDX], ECX	MOV dword ptr [EDX],ECX
+0049c396	a1 a0 7d 5a 00	MOV	EAX, [0x005a7da0]	MOV EAX,[0x005a7da0]
+0049c39b	50	PUSH	EAX	PUSH EAX
+0049c39c	ff 15 04 c1 4b 00	CALL	dword ptr [0x004bc104]	CALL dword ptr [0x004bc104]
+0049c3a2	c3	RET		RET
