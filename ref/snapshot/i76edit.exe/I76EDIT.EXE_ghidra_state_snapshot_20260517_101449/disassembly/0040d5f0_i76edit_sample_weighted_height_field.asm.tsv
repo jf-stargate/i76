@@ -1,0 +1,40 @@
+address	bytes	mnemonic	operands	instruction
+0040d5f0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0040d5f4	83 ec 04	SUB	ESP, 0x4	SUB ESP,0x4
+0040d5f7	c7 44 24 00 00 00 00 00	MOV	dword ptr [ESP], 0x0	MOV dword ptr [ESP],0x0
+0040d5ff	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+0040d601	8b 40 04	MOV	EAX, dword ptr [EAX + 0x4]	MOV EAX,dword ptr [EAX + 0x4]
+0040d604	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0040d606	7e 38	JLE	0x0040d640	JLE 0x0040d640
+0040d608	d9 44 24 00	FLD	float ptr [ESP]	FLD float ptr [ESP]
+0040d60c	d9 00	FLD	float ptr [EAX]	FLD float ptr [EAX]
+0040d60e	d8 64 24 0c	FSUB	float ptr [ESP + 0xc]	FSUB float ptr [ESP + 0xc]
+0040d612	d9 40 04	FLD	float ptr [EAX + 0x4]	FLD float ptr [EAX + 0x4]
+0040d615	d8 64 24 10	FSUB	float ptr [ESP + 0x10]	FSUB float ptr [ESP + 0x10]
+0040d619	d9 c9	FXCH		FXCH
+0040d61b	dc c8	FMUL	ST0	FMUL ST0
+0040d61d	d9 40 08	FLD	float ptr [EAX + 0x8]	FLD float ptr [EAX + 0x8]
+0040d620	d8 60 10	FSUB	float ptr [EAX + 0x10]	FSUB float ptr [EAX + 0x10]
+0040d623	d9 ca	FXCH	ST2	FXCH ST2
+0040d625	dc c8	FMUL	ST0	FMUL ST0
+0040d627	83 c0 14	ADD	EAX, 0x14	ADD EAX,0x14
+0040d62a	49	DEC	ECX	DEC ECX
+0040d62b	de c1	FADDP		FADDP
+0040d62d	d8 48 f8	FMUL	float ptr [EAX + -0x8]	FMUL float ptr [EAX + -0x8]
+0040d630	d8 05 cc 20 43 00	FADD	float ptr [0x004320cc]	FADD float ptr [0x004320cc]
+0040d636	de f9	FDIVP		FDIVP
+0040d638	de c1	FADDP		FADDP
+0040d63a	75 d0	JNZ	0x0040d60c	JNZ 0x0040d60c
+0040d63c	d9 5c 24 00	FSTP	float ptr [ESP]	FSTP float ptr [ESP]
+0040d640	b8 00 f0 7f 45	MOV	EAX, 0x457ff000	MOV EAX,0x457ff000
+0040d645	8b 4c 24 00	MOV	ECX, dword ptr [ESP]	MOV ECX,dword ptr [ESP]
+0040d649	3b c8	CMP	ECX, EAX	CMP ECX,EAX
+0040d64b	7e 04	JLE	0x0040d651	JLE 0x0040d651
+0040d64d	89 44 24 00	MOV	dword ptr [ESP], EAX	MOV dword ptr [ESP],EAX
+0040d651	8b 44 24 00	MOV	EAX, dword ptr [ESP]	MOV EAX,dword ptr [ESP]
+0040d655	3d 00 00 00 80	CMP	EAX, 0x80000000	CMP EAX,0x80000000
+0040d65a	76 08	JBE	0x0040d664	JBE 0x0040d664
+0040d65c	c7 44 24 00 00 00 00 00	MOV	dword ptr [ESP], 0x0	MOV dword ptr [ESP],0x0
+0040d664	d9 44 24 00	FLD	float ptr [ESP]	FLD float ptr [ESP]
+0040d668	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0040d66b	c3	RET		RET

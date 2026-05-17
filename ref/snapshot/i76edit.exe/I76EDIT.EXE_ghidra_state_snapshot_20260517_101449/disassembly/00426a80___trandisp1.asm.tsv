@@ -1,0 +1,30 @@
+address	bytes	mnemonic	operands	instruction
+00426a80	80 7a 0e 05	CMP	byte ptr [EDX + 0xe], 0x5	CMP byte ptr [EDX + 0xe],0x5
+00426a84	75 11	JNZ	0x00426a97	JNZ 0x00426a97
+00426a86	66 8b 9d 5c ff ff ff	MOV	BX, word ptr [EBP + 0xffffff5c]	MOV BX,word ptr [EBP + 0xffffff5c]
+00426a8d	80 cf 02	OR	BH, 0x2	OR BH,0x2
+00426a90	80 e7 fe	AND	BH, 0xfe	AND BH,0xfe
+00426a93	b3 3f	MOV	BL, 0x3f	MOV BL,0x3f
+00426a95	eb 04	JMP	0x00426a9b	JMP 0x00426a9b
+00426a97	66 bb 3f 13	MOV	BX, 0x133f	MOV BX,0x133f
+00426a9b	66 89 9d 5e ff ff ff	MOV	word ptr [EBP + 0xffffff5e], BX	MOV word ptr [EBP + 0xffffff5e],BX
+00426aa2	d9 ad 5e ff ff ff	FLDCW	word ptr [EBP + 0xffffff5e]	FLDCW word ptr [EBP + 0xffffff5e]
+00426aa8	bb cd 86 43 00	MOV	EBX, 0x4386cd	MOV EBX,0x4386cd
+00426aad	d9 e5	FXAM		FXAM
+00426aaf	89 95 6c ff ff ff	MOV	dword ptr [EBP + 0xffffff6c], EDX	MOV dword ptr [EBP + 0xffffff6c],EDX
+00426ab5	9b dd bd 60 ff ff ff	FSTSW	word ptr [EBP + 0xffffff60]	FSTSW word ptr [EBP + 0xffffff60]
+00426abc	c6 85 70 ff ff ff 00	MOV	byte ptr [EBP + 0xffffff70], 0x0	MOV byte ptr [EBP + 0xffffff70],0x0
+00426ac3	9b	WAIT		WAIT
+00426ac4	8a 8d 61 ff ff ff	MOV	CL, byte ptr [EBP + 0xffffff61]	MOV CL,byte ptr [EBP + 0xffffff61]
+00426aca	d0 e1	SHL	CL, 0x1	SHL CL,0x1
+00426acc	d0 f9	SAR	CL, 0x1	SAR CL,0x1
+00426ace	d0 c1	ROL	CL, 0x1	ROL CL,0x1
+00426ad0	8a c1	MOV	AL, CL	MOV AL,CL
+00426ad2	24 0f	AND	AL, 0xf	AND AL,0xf
+00426ad4	d7	XLAT	, EBX	XLAT EBX
+00426ad5	0f be c0	MOVSX	EAX, AL	MOVSX EAX,AL
+00426ad8	81 e1 04 04 00 00	AND	ECX, 0x404	AND ECX,0x404
+00426ade	8b da	MOV	EBX, EDX	MOV EBX,EDX
+00426ae0	03 d8	ADD	EBX, EAX	ADD EBX,EAX
+00426ae2	83 c3 10	ADD	EBX, 0x10	ADD EBX,0x10
+00426ae5	ff 23	JMP	dword ptr [EBX]	JMP dword ptr [EBX]

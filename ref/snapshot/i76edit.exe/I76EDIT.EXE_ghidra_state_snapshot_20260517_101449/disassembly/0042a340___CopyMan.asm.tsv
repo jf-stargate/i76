@@ -1,0 +1,13 @@
+address	bytes	mnemonic	operands	instruction
+0042a340	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+0042a344	56	PUSH	ESI	PUSH ESI
+0042a345	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0042a349	ba 03 00 00 00	MOV	EDX, 0x3	MOV EDX,0x3
+0042a34e	8b 30	MOV	ESI, dword ptr [EAX]	MOV ESI,dword ptr [EAX]
+0042a350	83 c0 04	ADD	EAX, 0x4	ADD EAX,0x4
+0042a353	89 31	MOV	dword ptr [ECX], ESI	MOV dword ptr [ECX],ESI
+0042a355	83 c1 04	ADD	ECX, 0x4	ADD ECX,0x4
+0042a358	4a	DEC	EDX	DEC EDX
+0042a359	75 f3	JNZ	0x0042a34e	JNZ 0x0042a34e
+0042a35b	5e	POP	ESI	POP ESI
+0042a35c	c3	RET		RET

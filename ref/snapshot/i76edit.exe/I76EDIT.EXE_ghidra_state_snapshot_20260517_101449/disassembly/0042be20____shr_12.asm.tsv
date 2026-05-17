@@ -1,0 +1,24 @@
+address	bytes	mnemonic	operands	instruction
+0042be20	56	PUSH	ESI	PUSH ESI
+0042be21	57	PUSH	EDI	PUSH EDI
+0042be22	8b 74 24 0c	MOV	ESI, dword ptr [ESP + 0xc]	MOV ESI,dword ptr [ESP + 0xc]
+0042be26	8b 4e 08	MOV	ECX, dword ptr [ESI + 0x8]	MOV ECX,dword ptr [ESI + 0x8]
+0042be29	8b 46 04	MOV	EAX, dword ptr [ESI + 0x4]	MOV EAX,dword ptr [ESI + 0x4]
+0042be2c	8b d1	MOV	EDX, ECX	MOV EDX,ECX
+0042be2e	8b f8	MOV	EDI, EAX	MOV EDI,EAX
+0042be30	c1 e9 01	SHR	ECX, 0x1	SHR ECX,0x1
+0042be33	83 e2 01	AND	EDX, 0x1	AND EDX,0x1
+0042be36	c1 e2 1f	SHL	EDX, 0x1f	SHL EDX,0x1f
+0042be39	83 e7 01	AND	EDI, 0x1	AND EDI,0x1
+0042be3c	c1 e7 1f	SHL	EDI, 0x1f	SHL EDI,0x1f
+0042be3f	89 4e 08	MOV	dword ptr [ESI + 0x8], ECX	MOV dword ptr [ESI + 0x8],ECX
+0042be42	c1 e8 01	SHR	EAX, 0x1	SHR EAX,0x1
+0042be45	0b c2	OR	EAX, EDX	OR EAX,EDX
+0042be47	89 46 04	MOV	dword ptr [ESI + 0x4], EAX	MOV dword ptr [ESI + 0x4],EAX
+0042be4a	8b 06	MOV	EAX, dword ptr [ESI]	MOV EAX,dword ptr [ESI]
+0042be4c	c1 e8 01	SHR	EAX, 0x1	SHR EAX,0x1
+0042be4f	0b c7	OR	EAX, EDI	OR EAX,EDI
+0042be51	5f	POP	EDI	POP EDI
+0042be52	89 06	MOV	dword ptr [ESI], EAX	MOV dword ptr [ESI],EAX
+0042be54	5e	POP	ESI	POP ESI
+0042be55	c3	RET		RET

@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+00424ef0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00424ef4	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+00424ef6	83 c1 04	ADD	ECX, 0x4	ADD ECX,0x4
+00424ef9	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+00424efb	66 8b 41 fc	MOV	AX, word ptr [ECX + -0x4]	MOV AX,word ptr [ECX + -0x4]
+00424eff	c3	RET		RET

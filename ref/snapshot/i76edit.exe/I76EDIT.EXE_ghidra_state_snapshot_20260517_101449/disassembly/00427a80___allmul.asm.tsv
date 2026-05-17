@@ -1,0 +1,20 @@
+address	bytes	mnemonic	operands	instruction
+00427a80	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00427a84	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+00427a88	0b c8	OR	ECX, EAX	OR ECX,EAX
+00427a8a	8b 4c 24 0c	MOV	ECX, dword ptr [ESP + 0xc]	MOV ECX,dword ptr [ESP + 0xc]
+00427a8e	75 09	JNZ	0x00427a99	JNZ 0x00427a99
+00427a90	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00427a94	f7 e1	MUL	ECX	MUL ECX
+00427a96	c2 10 00	RET	0x10	RET 0x10
+00427a99	53	PUSH	EBX	PUSH EBX
+00427a9a	f7 e1	MUL	ECX	MUL ECX
+00427a9c	8b d8	MOV	EBX, EAX	MOV EBX,EAX
+00427a9e	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00427aa2	f7 64 24 14	MUL	dword ptr [ESP + 0x14]	MUL dword ptr [ESP + 0x14]
+00427aa6	03 d8	ADD	EBX, EAX	ADD EBX,EAX
+00427aa8	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00427aac	f7 e1	MUL	ECX	MUL ECX
+00427aae	03 d3	ADD	EDX, EBX	ADD EDX,EBX
+00427ab0	5b	POP	EBX	POP EBX
+00427ab1	c2 10 00	RET	0x10	RET 0x10

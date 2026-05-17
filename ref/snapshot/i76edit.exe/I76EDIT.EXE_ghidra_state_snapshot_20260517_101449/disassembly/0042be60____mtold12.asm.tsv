@@ -1,0 +1,81 @@
+address	bytes	mnemonic	operands	instruction
+0042be60	83 ec 0c	SUB	ESP, 0xc	SUB ESP,0xc
+0042be63	53	PUSH	EBX	PUSH EBX
+0042be64	56	PUSH	ESI	PUSH ESI
+0042be65	8b 74 24 20	MOV	ESI, dword ptr [ESP + 0x20]	MOV ESI,dword ptr [ESP + 0x20]
+0042be69	57	PUSH	EDI	PUSH EDI
+0042be6a	66 bf 4e 40	MOV	DI, 0x404e	MOV DI,0x404e
+0042be6e	55	PUSH	EBP	PUSH EBP
+0042be6f	8b 5c 24 24	MOV	EBX, dword ptr [ESP + 0x24]	MOV EBX,dword ptr [ESP + 0x24]
+0042be73	c7 06 00 00 00 00	MOV	dword ptr [ESI], 0x0	MOV dword ptr [ESI],0x0
+0042be79	c7 46 04 00 00 00 00	MOV	dword ptr [ESI + 0x4], 0x0	MOV dword ptr [ESI + 0x4],0x0
+0042be80	c7 46 08 00 00 00 00	MOV	dword ptr [ESI + 0x8], 0x0	MOV dword ptr [ESI + 0x8],0x0
+0042be87	85 db	TEST	EBX, EBX	TEST EBX,EBX
+0042be89	74 6d	JZ	0x0042bef8	JZ 0x0042bef8
+0042be8b	8b 6c 24 20	MOV	EBP, dword ptr [ESP + 0x20]	MOV EBP,dword ptr [ESP + 0x20]
+0042be8f	8d 4c 24 10	LEA	ECX, [ESP + 0x10]	LEA ECX,[ESP + 0x10]
+0042be93	8b 06	MOV	EAX, dword ptr [ESI]	MOV EAX,dword ptr [ESI]
+0042be95	8b 56 04	MOV	EDX, dword ptr [ESI + 0x4]	MOV EDX,dword ptr [ESI + 0x4]
+0042be98	56	PUSH	ESI	PUSH ESI
+0042be99	89 01	MOV	dword ptr [ECX], EAX	MOV dword ptr [ECX],EAX
+0042be9b	8b 46 08	MOV	EAX, dword ptr [ESI + 0x8]	MOV EAX,dword ptr [ESI + 0x8]
+0042be9e	89 51 04	MOV	dword ptr [ECX + 0x4], EDX	MOV dword ptr [ECX + 0x4],EDX
+0042bea1	89 41 08	MOV	dword ptr [ECX + 0x8], EAX	MOV dword ptr [ECX + 0x8],EAX
+0042bea4	e8 37 ff ff ff	CALL	0x0042bde0	CALL 0x0042bde0
+0042bea9	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0042beac	4b	DEC	EBX	DEC EBX
+0042bead	45	INC	EBP	INC EBP
+0042beae	56	PUSH	ESI	PUSH ESI
+0042beaf	e8 2c ff ff ff	CALL	0x0042bde0	CALL 0x0042bde0
+0042beb4	8d 4c 24 14	LEA	ECX, [ESP + 0x14]	LEA ECX,[ESP + 0x14]
+0042beb8	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0042bebb	51	PUSH	ECX	PUSH ECX
+0042bebc	56	PUSH	ESI	PUSH ESI
+0042bebd	e8 ae fe ff ff	CALL	0x0042bd70	CALL 0x0042bd70
+0042bec2	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0042bec5	56	PUSH	ESI	PUSH ESI
+0042bec6	e8 15 ff ff ff	CALL	0x0042bde0	CALL 0x0042bde0
+0042becb	0f be 4d ff	MOVSX	ECX, byte ptr [EBP + -0x1]	MOVSX ECX,byte ptr [EBP + -0x1]
+0042becf	c7 44 24 18 00 00 00 00	MOV	dword ptr [ESP + 0x18], 0x0	MOV dword ptr [ESP + 0x18],0x0
+0042bed7	c7 44 24 1c 00 00 00 00	MOV	dword ptr [ESP + 0x1c], 0x0	MOV dword ptr [ESP + 0x1c],0x0
+0042bedf	89 4c 24 14	MOV	dword ptr [ESP + 0x14], ECX	MOV dword ptr [ESP + 0x14],ECX
+0042bee3	8d 4c 24 14	LEA	ECX, [ESP + 0x14]	LEA ECX,[ESP + 0x14]
+0042bee7	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0042beea	51	PUSH	ECX	PUSH ECX
+0042beeb	56	PUSH	ESI	PUSH ESI
+0042beec	e8 7f fe ff ff	CALL	0x0042bd70	CALL 0x0042bd70
+0042bef1	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0042bef4	85 db	TEST	EBX, EBX	TEST EBX,EBX
+0042bef6	75 97	JNZ	0x0042be8f	JNZ 0x0042be8f
+0042bef8	83 7e 08 00	CMP	dword ptr [ESI + 0x8], 0x0	CMP dword ptr [ESI + 0x8],0x0
+0042befc	75 27	JNZ	0x0042bf25	JNZ 0x0042bf25
+0042befe	66 83 ef 10	SUB	DI, 0x10	SUB DI,0x10
+0042bf02	8b 56 04	MOV	EDX, dword ptr [ESI + 0x4]	MOV EDX,dword ptr [ESI + 0x4]
+0042bf05	8b ca	MOV	ECX, EDX	MOV ECX,EDX
+0042bf07	8b 06	MOV	EAX, dword ptr [ESI]	MOV EAX,dword ptr [ESI]
+0042bf09	c1 e9 10	SHR	ECX, 0x10	SHR ECX,0x10
+0042bf0c	8b d8	MOV	EBX, EAX	MOV EBX,EAX
+0042bf0e	c1 e2 10	SHL	EDX, 0x10	SHL EDX,0x10
+0042bf11	89 4e 08	MOV	dword ptr [ESI + 0x8], ECX	MOV dword ptr [ESI + 0x8],ECX
+0042bf14	c1 eb 10	SHR	EBX, 0x10	SHR EBX,0x10
+0042bf17	c1 e0 10	SHL	EAX, 0x10	SHL EAX,0x10
+0042bf1a	0b d3	OR	EDX, EBX	OR EDX,EBX
+0042bf1c	89 56 04	MOV	dword ptr [ESI + 0x4], EDX	MOV dword ptr [ESI + 0x4],EDX
+0042bf1f	89 06	MOV	dword ptr [ESI], EAX	MOV dword ptr [ESI],EAX
+0042bf21	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0042bf23	74 d9	JZ	0x0042befe	JZ 0x0042befe
+0042bf25	f6 46 09 80	TEST	byte ptr [ESI + 0x9], 0x80	TEST byte ptr [ESI + 0x9],0x80
+0042bf29	75 11	JNZ	0x0042bf3c	JNZ 0x0042bf3c
+0042bf2b	66 4f	DEC	DI	DEC DI
+0042bf2d	56	PUSH	ESI	PUSH ESI
+0042bf2e	e8 ad fe ff ff	CALL	0x0042bde0	CALL 0x0042bde0
+0042bf33	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0042bf36	f6 46 09 80	TEST	byte ptr [ESI + 0x9], 0x80	TEST byte ptr [ESI + 0x9],0x80
+0042bf3a	74 ef	JZ	0x0042bf2b	JZ 0x0042bf2b
+0042bf3c	66 89 7e 0a	MOV	word ptr [ESI + 0xa], DI	MOV word ptr [ESI + 0xa],DI
+0042bf40	5d	POP	EBP	POP EBP
+0042bf41	5f	POP	EDI	POP EDI
+0042bf42	5e	POP	ESI	POP ESI
+0042bf43	5b	POP	EBX	POP EBX
+0042bf44	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+0042bf47	c3	RET		RET

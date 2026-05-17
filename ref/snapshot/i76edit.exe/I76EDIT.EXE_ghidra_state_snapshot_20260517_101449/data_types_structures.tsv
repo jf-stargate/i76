@@ -1,0 +1,356 @@
+structure_name	category	length	field_ordinal	field_offset	field_length	field_name	field_type	field_comment
+__lc_time_data	/crtdefs.h	356	0	0	28	wday_abbr	char *[7]	
+__lc_time_data	/crtdefs.h	356	1	28	28	wday	char *[7]	
+__lc_time_data	/crtdefs.h	356	2	56	48	month_abbr	char *[12]	
+__lc_time_data	/crtdefs.h	356	3	104	48	month	char *[12]	
+__lc_time_data	/crtdefs.h	356	4	152	8	ampm	char *[2]	
+__lc_time_data	/crtdefs.h	356	5	160	4	ww_sdatefmt	char *	
+__lc_time_data	/crtdefs.h	356	6	164	4	ww_ldatefmt	char *	
+__lc_time_data	/crtdefs.h	356	7	168	4	ww_timefmt	char *	
+__lc_time_data	/crtdefs.h	356	8	172	4	ww_caltype	int	
+__lc_time_data	/crtdefs.h	356	9	176	4	refcount	int	
+__lc_time_data	/crtdefs.h	356	10	180	28	_W_wday_abbr	wchar_t *[7]	
+__lc_time_data	/crtdefs.h	356	11	208	28	_W_wday	wchar_t *[7]	
+__lc_time_data	/crtdefs.h	356	12	236	48	_W_month_abbr	wchar_t *[12]	
+__lc_time_data	/crtdefs.h	356	13	284	48	_W_month	wchar_t *[12]	
+__lc_time_data	/crtdefs.h	356	14	332	8	_W_ampm	wchar_t *[2]	
+__lc_time_data	/crtdefs.h	356	15	340	4	_W_ww_sdatefmt	wchar_t *	
+__lc_time_data	/crtdefs.h	356	16	344	4	_W_ww_ldatefmt	wchar_t *	
+__lc_time_data	/crtdefs.h	356	17	348	4	_W_ww_timefmt	wchar_t *	
+__lc_time_data	/crtdefs.h	356	18	352	4	_W_ww_locale_name	wchar_t *	
+_CONTEXT	/excpt.h	716	0	0	4	ContextFlags	DWORD	
+_CONTEXT	/excpt.h	716	1	4	4	Dr0	DWORD	
+_CONTEXT	/excpt.h	716	2	8	4	Dr1	DWORD	
+_CONTEXT	/excpt.h	716	3	12	4	Dr2	DWORD	
+_CONTEXT	/excpt.h	716	4	16	4	Dr3	DWORD	
+_CONTEXT	/excpt.h	716	5	20	4	Dr6	DWORD	
+_CONTEXT	/excpt.h	716	6	24	4	Dr7	DWORD	
+_CONTEXT	/excpt.h	716	7	28	112	FloatSave	FLOATING_SAVE_AREA	
+_CONTEXT	/excpt.h	716	8	140	4	SegGs	DWORD	
+_CONTEXT	/excpt.h	716	9	144	4	SegFs	DWORD	
+_CONTEXT	/excpt.h	716	10	148	4	SegEs	DWORD	
+_CONTEXT	/excpt.h	716	11	152	4	SegDs	DWORD	
+_CONTEXT	/excpt.h	716	12	156	4	Edi	DWORD	
+_CONTEXT	/excpt.h	716	13	160	4	Esi	DWORD	
+_CONTEXT	/excpt.h	716	14	164	4	Ebx	DWORD	
+_CONTEXT	/excpt.h	716	15	168	4	Edx	DWORD	
+_CONTEXT	/excpt.h	716	16	172	4	Ecx	DWORD	
+_CONTEXT	/excpt.h	716	17	176	4	Eax	DWORD	
+_CONTEXT	/excpt.h	716	18	180	4	Ebp	DWORD	
+_CONTEXT	/excpt.h	716	19	184	4	Eip	DWORD	
+_CONTEXT	/excpt.h	716	20	188	4	SegCs	DWORD	
+_CONTEXT	/excpt.h	716	21	192	4	EFlags	DWORD	
+_CONTEXT	/excpt.h	716	22	196	4	Esp	DWORD	
+_CONTEXT	/excpt.h	716	23	200	4	SegSs	DWORD	
+_CONTEXT	/excpt.h	716	24	204	512	ExtendedRegisters	BYTE[512]	
+_cpinfo	/winnls.h	20	0	0	4	MaxCharSize	UINT	
+_cpinfo	/winnls.h	20	1	4	2	DefaultChar	BYTE[2]	
+_cpinfo	/winnls.h	20	2	6	12	LeadByte	BYTE[12]	
+_CRT_DOUBLE	/stdlib.h	8	0	0	8	x	double	
+_CRT_FLOAT	/stdlib.h	4	0	0	4	f	float	
+_EXCEPTION_POINTERS	/excpt.h	8	0	0	4	ExceptionRecord	PEXCEPTION_RECORD	
+_EXCEPTION_POINTERS	/excpt.h	8	1	4	4	ContextRecord	PCONTEXT	
+_EXCEPTION_RECORD	/excpt.h	80	0	0	4	ExceptionCode	DWORD	
+_EXCEPTION_RECORD	/excpt.h	80	1	4	4	ExceptionFlags	DWORD	
+_EXCEPTION_RECORD	/excpt.h	80	2	8	4	ExceptionRecord	_EXCEPTION_RECORD *	
+_EXCEPTION_RECORD	/excpt.h	80	3	12	4	ExceptionAddress	PVOID	
+_EXCEPTION_RECORD	/excpt.h	80	4	16	4	NumberParameters	DWORD	
+_EXCEPTION_RECORD	/excpt.h	80	5	20	60	ExceptionInformation	ULONG_PTR[15]	
+_FLOATING_SAVE_AREA	/winnt.h	112	0	0	4	ControlWord	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	1	4	4	StatusWord	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	2	8	4	TagWord	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	3	12	4	ErrorOffset	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	4	16	4	ErrorSelector	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	5	20	4	DataOffset	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	6	24	4	DataSelector	DWORD	
+_FLOATING_SAVE_AREA	/winnt.h	112	7	28	80	RegisterArea	BYTE[80]	
+_FLOATING_SAVE_AREA	/winnt.h	112	8	108	4	Cr0NpxState	DWORD	
+_iobuf	/mbstring.h	32	0	0	4	_ptr	char *	
+_iobuf	/mbstring.h	32	1	4	4	_cnt	int	
+_iobuf	/mbstring.h	32	2	8	4	_base	char *	
+_iobuf	/mbstring.h	32	3	12	4	_flag	int	
+_iobuf	/mbstring.h	32	4	16	4	_file	int	
+_iobuf	/mbstring.h	32	5	20	4	_charbuf	int	
+_iobuf	/mbstring.h	32	6	24	4	_bufsiz	int	
+_iobuf	/mbstring.h	32	7	28	4	_tmpfname	char *	
+_LDBL12	/stdlib.h	12	0	0	12	ld12	uchar[12]	
+_OVERLAPPED	/winbase.h	20	0	0	4	Internal	ULONG_PTR	
+_OVERLAPPED	/winbase.h	20	1	4	4	InternalHigh	ULONG_PTR	
+_OVERLAPPED	/winbase.h	20	2	8	8	u	_union_518	
+_OVERLAPPED	/winbase.h	20	3	16	4	hEvent	HANDLE	
+_PROCESS_INFORMATION	/winbase.h	16	0	0	4	hProcess	HANDLE	
+_PROCESS_INFORMATION	/winbase.h	16	1	4	4	hThread	HANDLE	
+_PROCESS_INFORMATION	/winbase.h	16	2	8	4	dwProcessId	DWORD	
+_PROCESS_INFORMATION	/winbase.h	16	3	12	4	dwThreadId	DWORD	
+_SECURITY_ATTRIBUTES	/winbase.h	12	0	0	4	nLength	DWORD	
+_SECURITY_ATTRIBUTES	/winbase.h	12	1	4	4	lpSecurityDescriptor	LPVOID	
+_SECURITY_ATTRIBUTES	/winbase.h	12	2	8	4	bInheritHandle	BOOL	
+_STARTUPINFOA	/winbase.h	68	0	0	4	cb	DWORD	
+_STARTUPINFOA	/winbase.h	68	1	4	4	lpReserved	LPSTR	
+_STARTUPINFOA	/winbase.h	68	2	8	4	lpDesktop	LPSTR	
+_STARTUPINFOA	/winbase.h	68	3	12	4	lpTitle	LPSTR	
+_STARTUPINFOA	/winbase.h	68	4	16	4	dwX	DWORD	
+_STARTUPINFOA	/winbase.h	68	5	20	4	dwY	DWORD	
+_STARTUPINFOA	/winbase.h	68	6	24	4	dwXSize	DWORD	
+_STARTUPINFOA	/winbase.h	68	7	28	4	dwYSize	DWORD	
+_STARTUPINFOA	/winbase.h	68	8	32	4	dwXCountChars	DWORD	
+_STARTUPINFOA	/winbase.h	68	9	36	4	dwYCountChars	DWORD	
+_STARTUPINFOA	/winbase.h	68	10	40	4	dwFillAttribute	DWORD	
+_STARTUPINFOA	/winbase.h	68	11	44	4	dwFlags	DWORD	
+_STARTUPINFOA	/winbase.h	68	12	48	2	wShowWindow	WORD	
+_STARTUPINFOA	/winbase.h	68	13	50	2	cbReserved2	WORD	
+_STARTUPINFOA	/winbase.h	68	14	52	4	lpReserved2	LPBYTE	
+_STARTUPINFOA	/winbase.h	68	15	56	4	hStdInput	HANDLE	
+_STARTUPINFOA	/winbase.h	68	16	60	4	hStdOutput	HANDLE	
+_STARTUPINFOA	/winbase.h	68	17	64	4	hStdError	HANDLE	
+_strflt	/fltintrn.h	16	0	0	4	sign	int	
+_strflt	/fltintrn.h	16	1	4	4	decpt	int	
+_strflt	/fltintrn.h	16	2	8	4	flag	int	
+_strflt	/fltintrn.h	16	3	12	4	mantissa	char *	
+_struct_519	/winbase.h	8	0	0	4	Offset	DWORD	
+_struct_519	/winbase.h	8	1	4	4	OffsetHigh	DWORD	
+_TBBUTTON	/commctrl.h	20	0	0	4	iBitmap	int	
+_TBBUTTON	/commctrl.h	20	1	4	4	idCommand	int	
+_TBBUTTON	/commctrl.h	20	2	8	1	fsState	BYTE	
+_TBBUTTON	/commctrl.h	20	3	9	1	fsStyle	BYTE	
+_TBBUTTON	/commctrl.h	20	4	10	2	bReserved	BYTE[2]	
+_TBBUTTON	/commctrl.h	20	5	12	4	dwData	DWORD_PTR	
+_TBBUTTON	/commctrl.h	20	6	16	4	iString	INT_PTR	
+HBITMAP__	/WinDef.h	4	0	0	4	unused	int	
+HBRUSH__	/WinDef.h	4	0	0	4	unused	int	
+HDC__	/WinDef.h	4	0	0	4	unused	int	
+HICON__	/WinDef.h	4	0	0	4	unused	int	
+HINSTANCE__	/WinDef.h	4	0	0	4	unused	int	
+HMENU__	/WinDef.h	4	0	0	4	unused	int	
+HPEN__	/WinDef.h	4	0	0	4	unused	int	
+HRGN__	/WinDef.h	4	0	0	4	unused	int	
+HWND__	/WinDef.h	4	0	0	4	unused	int	
+IMAGE_DATA_DIRECTORY	/PE	8	0	0	4	VirtualAddress	ImageBaseOffset32	
+IMAGE_DATA_DIRECTORY	/PE	8	1	4	4	Size	dword	
+IMAGE_DOS_HEADER	/DOS	128	0	0	2	e_magic	char[2]	Magic number
+IMAGE_DOS_HEADER	/DOS	128	1	2	2	e_cblp	word	Bytes of last page
+IMAGE_DOS_HEADER	/DOS	128	2	4	2	e_cp	word	Pages in file
+IMAGE_DOS_HEADER	/DOS	128	3	6	2	e_crlc	word	Relocations
+IMAGE_DOS_HEADER	/DOS	128	4	8	2	e_cparhdr	word	Size of header in paragraphs
+IMAGE_DOS_HEADER	/DOS	128	5	10	2	e_minalloc	word	Minimum extra paragraphs needed
+IMAGE_DOS_HEADER	/DOS	128	6	12	2	e_maxalloc	word	Maximum extra paragraphs needed
+IMAGE_DOS_HEADER	/DOS	128	7	14	2	e_ss	word	Initial (relative) SS value
+IMAGE_DOS_HEADER	/DOS	128	8	16	2	e_sp	word	Initial SP value
+IMAGE_DOS_HEADER	/DOS	128	9	18	2	e_csum	word	Checksum
+IMAGE_DOS_HEADER	/DOS	128	10	20	2	e_ip	word	Initial IP value
+IMAGE_DOS_HEADER	/DOS	128	11	22	2	e_cs	word	Initial (relative) CS value
+IMAGE_DOS_HEADER	/DOS	128	12	24	2	e_lfarlc	word	File address of relocation table
+IMAGE_DOS_HEADER	/DOS	128	13	26	2	e_ovno	word	Overlay number
+IMAGE_DOS_HEADER	/DOS	128	14	28	8	e_res[4]	word[4]	Reserved words
+IMAGE_DOS_HEADER	/DOS	128	15	36	2	e_oemid	word	OEM identifier (for e_oeminfo)
+IMAGE_DOS_HEADER	/DOS	128	16	38	2	e_oeminfo	word	OEM information; e_oemid specific
+IMAGE_DOS_HEADER	/DOS	128	17	40	20	e_res2[10]	word[10]	Reserved words
+IMAGE_DOS_HEADER	/DOS	128	18	60	4	e_lfanew	dword	File address of new exe header
+IMAGE_DOS_HEADER	/DOS	128	19	64	64	e_program	byte[64]	Actual DOS program
+IMAGE_FILE_HEADER	/PE	20	0	0	2	Machine	word	332
+IMAGE_FILE_HEADER	/PE	20	1	2	2	NumberOfSections	word	
+IMAGE_FILE_HEADER	/PE	20	2	4	4	TimeDateStamp	dword	
+IMAGE_FILE_HEADER	/PE	20	3	8	4	PointerToSymbolTable	dword	
+IMAGE_FILE_HEADER	/PE	20	4	12	4	NumberOfSymbols	dword	
+IMAGE_FILE_HEADER	/PE	20	5	16	2	SizeOfOptionalHeader	word	
+IMAGE_FILE_HEADER	/PE	20	6	18	2	Characteristics	word	
+IMAGE_NT_HEADERS32	/PE	248	0	0	4	Signature	char[4]	
+IMAGE_NT_HEADERS32	/PE	248	1	4	20	FileHeader	IMAGE_FILE_HEADER	
+IMAGE_NT_HEADERS32	/PE	248	2	24	224	OptionalHeader	IMAGE_OPTIONAL_HEADER32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	0	0	2	Magic	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	1	2	1	MajorLinkerVersion	byte	
+IMAGE_OPTIONAL_HEADER32	/PE	224	2	3	1	MinorLinkerVersion	byte	
+IMAGE_OPTIONAL_HEADER32	/PE	224	3	4	4	SizeOfCode	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	4	8	4	SizeOfInitializedData	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	5	12	4	SizeOfUninitializedData	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	6	16	4	AddressOfEntryPoint	ImageBaseOffset32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	7	20	4	BaseOfCode	ImageBaseOffset32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	8	24	4	BaseOfData	ImageBaseOffset32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	9	28	4	ImageBase	pointer32	
+IMAGE_OPTIONAL_HEADER32	/PE	224	10	32	4	SectionAlignment	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	11	36	4	FileAlignment	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	12	40	2	MajorOperatingSystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	13	42	2	MinorOperatingSystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	14	44	2	MajorImageVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	15	46	2	MinorImageVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	16	48	2	MajorSubsystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	17	50	2	MinorSubsystemVersion	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	18	52	4	Win32VersionValue	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	19	56	4	SizeOfImage	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	20	60	4	SizeOfHeaders	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	21	64	4	CheckSum	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	22	68	2	Subsystem	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	23	70	2	DllCharacteristics	word	
+IMAGE_OPTIONAL_HEADER32	/PE	224	24	72	4	SizeOfStackReserve	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	25	76	4	SizeOfStackCommit	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	26	80	4	SizeOfHeapReserve	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	27	84	4	SizeOfHeapCommit	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	28	88	4	LoaderFlags	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	29	92	4	NumberOfRvaAndSizes	dword	
+IMAGE_OPTIONAL_HEADER32	/PE	224	30	96	128	DataDirectory	IMAGE_DATA_DIRECTORY[16]	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	0	0	4	OffsetToData	dword	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	1	4	4	Size	dword	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	2	8	4	CodePage	dword	
+IMAGE_RESOURCE_DATA_ENTRY	/PE	16	3	12	4	Reserved	dword	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	0	0	4	Characteristics	dword	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	1	4	4	TimeDateStamp	dword	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	2	8	2	MajorVersion	word	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	3	10	2	MinorVersion	word	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	4	12	2	NumberOfNamedEntries	word	
+IMAGE_RESOURCE_DIRECTORY	/PE	16	5	14	2	NumberOfIdEntries	word	
+IMAGE_RESOURCE_DIRECTORY_ENTRY	/PE	8	0	0	4	NameUnion	IMAGE_RESOURCE_DIRECTORY_ENTRY_NameUnion	
+IMAGE_RESOURCE_DIRECTORY_ENTRY	/PE	8	1	4	4	DirectoryUnion	IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryUnion	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct	/	4	0	0	4	OffsetToDirectory	dword:31	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_DirectoryStruct	/	4	1	3	1	DataIsDirectory	dword:1	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct	/PE	4	0	0	4	NameOffset	dword:31	
+IMAGE_RESOURCE_DIRECTORY_ENTRY_NameStruct	/PE	4	1	3	1	NameIsString	dword:1	
+IMAGE_SECTION_HEADER	/PE	40	0	0	8	Name	char[8]	
+IMAGE_SECTION_HEADER	/PE	40	1	8	4	Misc	Misc	
+IMAGE_SECTION_HEADER	/PE	40	2	12	4	VirtualAddress	ImageBaseOffset32	
+IMAGE_SECTION_HEADER	/PE	40	3	16	4	SizeOfRawData	dword	
+IMAGE_SECTION_HEADER	/PE	40	4	20	4	PointerToRawData	dword	
+IMAGE_SECTION_HEADER	/PE	40	5	24	4	PointerToRelocations	dword	
+IMAGE_SECTION_HEADER	/PE	40	6	28	4	PointerToLinenumbers	dword	
+IMAGE_SECTION_HEADER	/PE	40	7	32	2	NumberOfRelocations	word	
+IMAGE_SECTION_HEADER	/PE	40	8	34	2	NumberOfLinenumbers	word	
+IMAGE_SECTION_HEADER	/PE	40	9	36	4	Characteristics	SectionFlags	
+lconv	/crtdefs.h	80	0	0	4	decimal_point	char *	
+lconv	/crtdefs.h	80	1	4	4	thousands_sep	char *	
+lconv	/crtdefs.h	80	2	8	4	grouping	char *	
+lconv	/crtdefs.h	80	3	12	4	int_curr_symbol	char *	
+lconv	/crtdefs.h	80	4	16	4	currency_symbol	char *	
+lconv	/crtdefs.h	80	5	20	4	mon_decimal_point	char *	
+lconv	/crtdefs.h	80	6	24	4	mon_thousands_sep	char *	
+lconv	/crtdefs.h	80	7	28	4	mon_grouping	char *	
+lconv	/crtdefs.h	80	8	32	4	positive_sign	char *	
+lconv	/crtdefs.h	80	9	36	4	negative_sign	char *	
+lconv	/crtdefs.h	80	10	40	1	int_frac_digits	char	
+lconv	/crtdefs.h	80	11	41	1	frac_digits	char	
+lconv	/crtdefs.h	80	12	42	1	p_cs_precedes	char	
+lconv	/crtdefs.h	80	13	43	1	p_sep_by_space	char	
+lconv	/crtdefs.h	80	14	44	1	n_cs_precedes	char	
+lconv	/crtdefs.h	80	15	45	1	n_sep_by_space	char	
+lconv	/crtdefs.h	80	16	46	1	p_sign_posn	char	
+lconv	/crtdefs.h	80	17	47	1	n_sign_posn	char	
+lconv	/crtdefs.h	80	18	48	4	_W_decimal_point	wchar_t *	
+lconv	/crtdefs.h	80	19	52	4	_W_thousands_sep	wchar_t *	
+lconv	/crtdefs.h	80	20	56	4	_W_int_curr_symbol	wchar_t *	
+lconv	/crtdefs.h	80	21	60	4	_W_currency_symbol	wchar_t *	
+lconv	/crtdefs.h	80	22	64	4	_W_mon_decimal_point	wchar_t *	
+lconv	/crtdefs.h	80	23	68	4	_W_mon_thousands_sep	wchar_t *	
+lconv	/crtdefs.h	80	24	72	4	_W_positive_sign	wchar_t *	
+lconv	/crtdefs.h	80	25	76	4	_W_negative_sign	wchar_t *	
+localeinfo_struct	/crtdefs.h	8	0	0	4	locinfo	pthreadlocinfo	
+localeinfo_struct	/crtdefs.h	8	1	4	4	mbcinfo	pthreadmbcinfo	
+localerefcount	/crtdefs.h	16	0	0	4	locale	char *	
+localerefcount	/crtdefs.h	16	1	4	4	wlocale	wchar_t *	
+localerefcount	/crtdefs.h	16	2	8	4	refcount	int *	
+localerefcount	/crtdefs.h	16	3	12	4	wrefcount	int *	
+StringFileInfo	/PE	6	0	0	2	wLength	word	
+StringFileInfo	/PE	6	1	2	2	wValueLength	word	
+StringFileInfo	/PE	6	2	4	2	wType	word	
+StringInfo	/PE	6	0	0	2	wLength	word	
+StringInfo	/PE	6	1	2	2	wValueLength	word	
+StringInfo	/PE	6	2	4	2	wType	word	
+StringTable	/PE	6	0	0	2	wLength	word	
+StringTable	/PE	6	1	2	2	wValueLength	word	
+StringTable	/PE	6	2	4	2	wType	word	
+tagMSG	/winuser.h	28	0	0	4	hwnd	HWND	
+tagMSG	/winuser.h	28	1	4	4	message	UINT	
+tagMSG	/winuser.h	28	2	8	4	wParam	WPARAM	
+tagMSG	/winuser.h	28	3	12	4	lParam	LPARAM	
+tagMSG	/winuser.h	28	4	16	4	time	DWORD	
+tagMSG	/winuser.h	28	5	20	8	pt	POINT	
+tagOFNA	/commdlg.h	88	0	0	4	lStructSize	DWORD	
+tagOFNA	/commdlg.h	88	1	4	4	hwndOwner	HWND	
+tagOFNA	/commdlg.h	88	2	8	4	hInstance	HINSTANCE	
+tagOFNA	/commdlg.h	88	3	12	4	lpstrFilter	LPCSTR	
+tagOFNA	/commdlg.h	88	4	16	4	lpstrCustomFilter	LPSTR	
+tagOFNA	/commdlg.h	88	5	20	4	nMaxCustFilter	DWORD	
+tagOFNA	/commdlg.h	88	6	24	4	nFilterIndex	DWORD	
+tagOFNA	/commdlg.h	88	7	28	4	lpstrFile	LPSTR	
+tagOFNA	/commdlg.h	88	8	32	4	nMaxFile	DWORD	
+tagOFNA	/commdlg.h	88	9	36	4	lpstrFileTitle	LPSTR	
+tagOFNA	/commdlg.h	88	10	40	4	nMaxFileTitle	DWORD	
+tagOFNA	/commdlg.h	88	11	44	4	lpstrInitialDir	LPCSTR	
+tagOFNA	/commdlg.h	88	12	48	4	lpstrTitle	LPCSTR	
+tagOFNA	/commdlg.h	88	13	52	4	Flags	DWORD	
+tagOFNA	/commdlg.h	88	14	56	2	nFileOffset	WORD	
+tagOFNA	/commdlg.h	88	15	58	2	nFileExtension	WORD	
+tagOFNA	/commdlg.h	88	16	60	4	lpstrDefExt	LPCSTR	
+tagOFNA	/commdlg.h	88	17	64	4	lCustData	LPARAM	
+tagOFNA	/commdlg.h	88	18	68	4	lpfnHook	LPOFNHOOKPROC	
+tagOFNA	/commdlg.h	88	19	72	4	lpTemplateName	LPCSTR	
+tagOFNA	/commdlg.h	88	20	76	4	pvReserved	void *	
+tagOFNA	/commdlg.h	88	21	80	4	dwReserved	DWORD	
+tagOFNA	/commdlg.h	88	22	84	4	FlagsEx	DWORD	
+tagPAINTSTRUCT	/winuser.h	64	0	0	4	hdc	HDC	
+tagPAINTSTRUCT	/winuser.h	64	1	4	4	fErase	BOOL	
+tagPAINTSTRUCT	/winuser.h	64	2	8	16	rcPaint	RECT	
+tagPAINTSTRUCT	/winuser.h	64	3	24	4	fRestore	BOOL	
+tagPAINTSTRUCT	/winuser.h	64	4	28	4	fIncUpdate	BOOL	
+tagPAINTSTRUCT	/winuser.h	64	5	32	32	rgbReserved	BYTE[32]	
+tagPOINT	/WinDef.h	8	0	0	4	x	LONG	
+tagPOINT	/WinDef.h	8	1	4	4	y	LONG	
+tagRECT	/WinDef.h	16	0	0	4	left	LONG	
+tagRECT	/WinDef.h	16	1	4	4	top	LONG	
+tagRECT	/WinDef.h	16	2	8	4	right	LONG	
+tagRECT	/WinDef.h	16	3	12	4	bottom	LONG	
+tagSIZE	/WinDef.h	8	0	0	4	cx	LONG	
+tagSIZE	/WinDef.h	8	1	4	4	cy	LONG	
+tagWNDCLASSA	/winuser.h	40	0	0	4	style	UINT	
+tagWNDCLASSA	/winuser.h	40	1	4	4	lpfnWndProc	WNDPROC	
+tagWNDCLASSA	/winuser.h	40	2	8	4	cbClsExtra	int	
+tagWNDCLASSA	/winuser.h	40	3	12	4	cbWndExtra	int	
+tagWNDCLASSA	/winuser.h	40	4	16	4	hInstance	HINSTANCE	
+tagWNDCLASSA	/winuser.h	40	5	20	4	hIcon	HICON	
+tagWNDCLASSA	/winuser.h	40	6	24	4	hCursor	HCURSOR	
+tagWNDCLASSA	/winuser.h	40	7	28	4	hbrBackground	HBRUSH	
+tagWNDCLASSA	/winuser.h	40	8	32	4	lpszMenuName	LPCSTR	
+tagWNDCLASSA	/winuser.h	40	9	36	4	lpszClassName	LPCSTR	
+threadlocaleinfostruct	/crtdefs.h	184	0	0	4	refcount	int	
+threadlocaleinfostruct	/crtdefs.h	184	1	4	4	lc_codepage	uint	
+threadlocaleinfostruct	/crtdefs.h	184	2	8	4	lc_collate_cp	uint	
+threadlocaleinfostruct	/crtdefs.h	184	3	12	4	lc_time_cp	uint	
+threadlocaleinfostruct	/crtdefs.h	184	4	16	96	lc_category	locrefcount[6]	
+threadlocaleinfostruct	/crtdefs.h	184	5	112	4	lc_clike	int	
+threadlocaleinfostruct	/crtdefs.h	184	6	116	4	mb_cur_max	int	
+threadlocaleinfostruct	/crtdefs.h	184	7	120	4	lconv_intl_refcount	int *	
+threadlocaleinfostruct	/crtdefs.h	184	8	124	4	lconv_num_refcount	int *	
+threadlocaleinfostruct	/crtdefs.h	184	9	128	4	lconv_mon_refcount	int *	
+threadlocaleinfostruct	/crtdefs.h	184	10	132	4	lconv	lconv *	
+threadlocaleinfostruct	/crtdefs.h	184	11	136	4	ctype1_refcount	int *	
+threadlocaleinfostruct	/crtdefs.h	184	12	140	4	ctype1	ushort *	
+threadlocaleinfostruct	/crtdefs.h	184	13	144	4	pctype	ushort *	
+threadlocaleinfostruct	/crtdefs.h	184	14	148	4	pclmap	uchar *	
+threadlocaleinfostruct	/crtdefs.h	184	15	152	4	pcumap	uchar *	
+threadlocaleinfostruct	/crtdefs.h	184	16	156	4	lc_time_curr	__lc_time_data *	
+threadlocaleinfostruct	/crtdefs.h	184	17	160	24	locale_name	wchar_t *[6]	
+threadmbcinfostruct	/crtdefs.h	544	0	0	4	refcount	int	
+threadmbcinfostruct	/crtdefs.h	544	1	4	4	mbcodepage	int	
+threadmbcinfostruct	/crtdefs.h	544	2	8	4	ismbcodepage	int	
+threadmbcinfostruct	/crtdefs.h	544	3	12	12	mbulinfo	ushort[6]	
+threadmbcinfostruct	/crtdefs.h	544	4	24	257	mbctype	uchar[257]	
+threadmbcinfostruct	/crtdefs.h	544	5	281	256	mbcasemap	uchar[256]	
+threadmbcinfostruct	/crtdefs.h	544	6	540	4	mblocalename	wchar_t *	
+Var	/PE	6	0	0	2	wLength	word	
+Var	/PE	6	1	2	2	wValueLength	word	
+Var	/PE	6	2	4	2	wType	word	
+VarFileInfo	/PE	6	0	0	2	wLength	word	
+VarFileInfo	/PE	6	1	2	2	wValueLength	word	
+VarFileInfo	/PE	6	2	4	2	wType	word	
+VS_VERSION_INFO	/PE	92	0	0	2	StructLength	word	
+VS_VERSION_INFO	/PE	92	1	2	2	ValueLength	word	
+VS_VERSION_INFO	/PE	92	2	4	2	StructType	word	
+VS_VERSION_INFO	/PE	92	3	6	32	Info	unicode	
+VS_VERSION_INFO	/PE	92	4	38	2	Padding	byte[2]	
+VS_VERSION_INFO	/PE	92	5	40	4	Signature	dword	
+VS_VERSION_INFO	/PE	92	6	44	4	StructVersion	word[2]	
+VS_VERSION_INFO	/PE	92	7	48	8	FileVersion	word[4]	
+VS_VERSION_INFO	/PE	92	8	56	8	ProductVersion	word[4]	
+VS_VERSION_INFO	/PE	92	9	64	8	FileFlagsMask	dword[2]	
+VS_VERSION_INFO	/PE	92	10	72	4	FileFlags	dword	
+VS_VERSION_INFO	/PE	92	11	76	4	FileOS	dword	
+VS_VERSION_INFO	/PE	92	12	80	4	FileType	dword	
+VS_VERSION_INFO	/PE	92	13	84	4	FileSubtype	dword	
+VS_VERSION_INFO	/PE	92	14	88	4	FileTimestamp	dword	

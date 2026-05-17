@@ -1,0 +1,23 @@
+address	bytes	mnemonic	operands	instruction
+00427c10	83 7c 24 04 00	CMP	dword ptr [ESP + 0x4], 0x0	CMP dword ptr [ESP + 0x4],0x0
+00427c15	56	PUSH	ESI	PUSH ESI
+00427c16	8b 74 24 0c	MOV	ESI, dword ptr [ESP + 0xc]	MOV ESI,dword ptr [ESP + 0xc]
+00427c1a	74 2c	JZ	0x00427c48	JZ 0x00427c48
+00427c1c	f6 46 0d 10	TEST	byte ptr [ESI + 0xd], 0x10	TEST byte ptr [ESI + 0xd],0x10
+00427c20	74 35	JZ	0x00427c57	JZ 0x00427c57
+00427c22	56	PUSH	ESI	PUSH ESI
+00427c23	e8 e8 de ff ff	CALL	0x00425b10	CALL 0x00425b10
+00427c28	81 66 0c ff ee ff ff	AND	dword ptr [ESI + 0xc], 0xffffeeff	AND dword ptr [ESI + 0xc],0xffffeeff
+00427c2f	c7 46 18 00 00 00 00	MOV	dword ptr [ESI + 0x18], 0x0	MOV dword ptr [ESI + 0x18],0x0
+00427c36	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00427c39	c7 06 00 00 00 00	MOV	dword ptr [ESI], 0x0	MOV dword ptr [ESI],0x0
+00427c3f	c7 46 08 00 00 00 00	MOV	dword ptr [ESI + 0x8], 0x0	MOV dword ptr [ESI + 0x8],0x0
+00427c46	5e	POP	ESI	POP ESI
+00427c47	c3	RET		RET
+00427c48	f6 46 0d 10	TEST	byte ptr [ESI + 0xd], 0x10	TEST byte ptr [ESI + 0xd],0x10
+00427c4c	74 09	JZ	0x00427c57	JZ 0x00427c57
+00427c4e	56	PUSH	ESI	PUSH ESI
+00427c4f	e8 bc de ff ff	CALL	0x00425b10	CALL 0x00425b10
+00427c54	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00427c57	5e	POP	ESI	POP ESI
+00427c58	c3	RET		RET

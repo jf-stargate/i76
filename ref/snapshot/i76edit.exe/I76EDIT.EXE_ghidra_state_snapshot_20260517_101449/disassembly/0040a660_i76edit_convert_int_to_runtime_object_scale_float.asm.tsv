@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+0040a660	db 44 24 04	FILD	dword ptr [ESP + 0x4]	FILD dword ptr [ESP + 0x4]
+0040a664	83 ec 04	SUB	ESP, 0x4	SUB ESP,0x4
+0040a667	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0040a66a	d8 0d bc 20 43 00	FMUL	float ptr [0x004320bc]	FMUL float ptr [0x004320bc]
+0040a670	c3	RET		RET

@@ -1,0 +1,20 @@
+address	bytes	mnemonic	operands	instruction
+00426280	83 ec 18	SUB	ESP, 0x18	SUB ESP,0x18
+00426283	c7 44 24 08 00 00 00 80	MOV	dword ptr [ESP + 0x8], 0x80000000	MOV dword ptr [ESP + 0x8],0x80000000
+0042628b	c7 44 24 0c ff ff 47 41	MOV	dword ptr [ESP + 0xc], 0x4147ffff	MOV dword ptr [ESP + 0xc],0x4147ffff
+00426293	c7 44 24 00 00 00 00 c0	MOV	dword ptr [ESP], 0xc0000000	MOV dword ptr [ESP],0xc0000000
+0042629b	c7 44 24 04 7e 01 50 41	MOV	dword ptr [ESP + 0x4], 0x4150017e	MOV dword ptr [ESP + 0x4],0x4150017e
+004262a3	dd 44 24 00	FLD	double ptr [ESP]	FLD double ptr [ESP]
+004262a7	dc 74 24 08	FDIV	double ptr [ESP + 0x8]	FDIV double ptr [ESP + 0x8]
+004262ab	dc 4c 24 08	FMUL	double ptr [ESP + 0x8]	FMUL double ptr [ESP + 0x8]
+004262af	dc 6c 24 00	FSUBR	double ptr [ESP]	FSUBR double ptr [ESP]
+004262b3	dd 5c 24 10	FSTP	double ptr [ESP + 0x10]	FSTP double ptr [ESP + 0x10]
+004262b7	d9 e8	FLD1		FLD1
+004262b9	dc 5c 24 10	FCOMP	double ptr [ESP + 0x10]	FCOMP double ptr [ESP + 0x10]
+004262bd	df e0	FNSTSW	AX	FNSTSW AX
+004262bf	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+004262c2	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004262c7	75 02	JNZ	0x004262cb	JNZ 0x004262cb
+004262c9	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+004262cb	83 c4 18	ADD	ESP, 0x18	ADD ESP,0x18
+004262ce	c3	RET		RET

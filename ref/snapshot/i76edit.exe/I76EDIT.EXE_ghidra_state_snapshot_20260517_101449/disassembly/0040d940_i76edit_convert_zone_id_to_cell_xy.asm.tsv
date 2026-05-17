@@ -1,0 +1,37 @@
+address	bytes	mnemonic	operands	instruction
+0040d940	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0040d944	83 ec 0c	SUB	ESP, 0xc	SUB ESP,0xc
+0040d947	89 44 24 00	MOV	dword ptr [ESP], EAX	MOV dword ptr [ESP],EAX
+0040d94b	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0040d94d	89 44 24 04	MOV	dword ptr [ESP + 0x4], EAX	MOV dword ptr [ESP + 0x4],EAX
+0040d951	50	PUSH	EAX	PUSH EAX
+0040d952	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0040d956	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+0040d95a	51	PUSH	ECX	PUSH ECX
+0040d95b	52	PUSH	EDX	PUSH EDX
+0040d95c	e8 a7 38 ff ff	CALL	0x00401208	CALL 0x00401208
+0040d961	89 54 24 10	MOV	dword ptr [ESP + 0x10], EDX	MOV dword ptr [ESP + 0x10],EDX
+0040d965	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+0040d968	83 f8 ff	CMP	EAX, -0x1	CMP EAX,-0x1
+0040d96b	75 18	JNZ	0x0040d985	JNZ 0x0040d985
+0040d96d	8b 4c 24 14	MOV	ECX, dword ptr [ESP + 0x14]	MOV ECX,dword ptr [ESP + 0x14]
+0040d971	8b 44 24 18	MOV	EAX, dword ptr [ESP + 0x18]	MOV EAX,dword ptr [ESP + 0x18]
+0040d975	c7 01 ff ff ff ff	MOV	dword ptr [ECX], 0xffffffff	MOV dword ptr [ECX],0xffffffff
+0040d97b	c7 00 ff ff ff ff	MOV	dword ptr [EAX], 0xffffffff	MOV dword ptr [EAX],0xffffffff
+0040d981	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+0040d984	c3	RET		RET
+0040d985	99	CDQ		CDQ
+0040d986	83 e2 7f	AND	EDX, 0x7f	AND EDX,0x7f
+0040d989	8b 4c 24 14	MOV	ECX, dword ptr [ESP + 0x14]	MOV ECX,dword ptr [ESP + 0x14]
+0040d98d	03 c2	ADD	EAX, EDX	ADD EAX,EDX
+0040d98f	c1 f8 07	SAR	EAX, 0x7	SAR EAX,0x7
+0040d992	89 01	MOV	dword ptr [ECX], EAX	MOV dword ptr [ECX],EAX
+0040d994	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0040d998	99	CDQ		CDQ
+0040d999	83 e2 7f	AND	EDX, 0x7f	AND EDX,0x7f
+0040d99c	03 c2	ADD	EAX, EDX	ADD EAX,EDX
+0040d99e	8b 54 24 18	MOV	EDX, dword ptr [ESP + 0x18]	MOV EDX,dword ptr [ESP + 0x18]
+0040d9a2	c1 f8 07	SAR	EAX, 0x7	SAR EAX,0x7
+0040d9a5	89 02	MOV	dword ptr [EDX], EAX	MOV dword ptr [EDX],EAX
+0040d9a7	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+0040d9aa	c3	RET		RET

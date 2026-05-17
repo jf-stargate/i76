@@ -1,0 +1,15 @@
+address	bytes	mnemonic	operands	instruction
+0042bd40	56	PUSH	ESI	PUSH ESI
+0042bd41	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0042bd43	8b 54 24 0c	MOV	EDX, dword ptr [ESP + 0xc]	MOV EDX,dword ptr [ESP + 0xc]
+0042bd47	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0042bd4b	8d 34 11	LEA	ESI, [ECX + EDX*0x1]	LEA ESI,[ECX + EDX*0x1]
+0042bd4e	3b ce	CMP	ECX, ESI	CMP ECX,ESI
+0042bd50	77 04	JA	0x0042bd56	JA 0x0042bd56
+0042bd52	3b d6	CMP	EDX, ESI	CMP EDX,ESI
+0042bd54	76 05	JBE	0x0042bd5b	JBE 0x0042bd5b
+0042bd56	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+0042bd5b	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+0042bd5f	89 31	MOV	dword ptr [ECX], ESI	MOV dword ptr [ECX],ESI
+0042bd61	5e	POP	ESI	POP ESI
+0042bd62	c3	RET		RET
