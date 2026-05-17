@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+00423680	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00423684	50	PUSH	EAX	PUSH EAX
+00423685	e8 46 ff ff ff	CALL	0x004235d0	CALL 0x004235d0
+0042368a	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0042368d	c3	RET		RET

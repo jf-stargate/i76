@@ -1,0 +1,9 @@
+address	bytes	mnemonic	operands	instruction
+00429e60	83 ec 04	SUB	ESP, 0x4	SUB ESP,0x4
+00429e63	dd 7c 24 02	FNSTSW	word ptr [ESP + 0x2]	FNSTSW word ptr [ESP + 0x2]
+00429e67	db e2	FNCLEX		FNCLEX
+00429e69	8b 44 24 02	MOV	EAX, dword ptr [ESP + 0x2]	MOV EAX,dword ptr [ESP + 0x2]
+00429e6d	50	PUSH	EAX	PUSH EAX
+00429e6e	e8 ed 01 00 00	CALL	0x0042a060	CALL 0x0042a060
+00429e73	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+00429e76	c3	RET		RET

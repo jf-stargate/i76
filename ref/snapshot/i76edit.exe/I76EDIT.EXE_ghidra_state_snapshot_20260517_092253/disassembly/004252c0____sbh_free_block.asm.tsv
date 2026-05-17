@@ -1,0 +1,20 @@
+address	bytes	mnemonic	operands	instruction
+004252c0	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+004252c4	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004252c8	2b 88 10 08 00 00	SUB	ECX, dword ptr [EAX + 0x810]	SUB ECX,dword ptr [EAX + 0x810]
+004252ce	c1 f9 0c	SAR	ECX, 0xc	SAR ECX,0xc
+004252d1	03 c8	ADD	ECX, EAX	ADD ECX,EAX
+004252d3	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+004252d7	8a 10	MOV	DL, byte ptr [EAX]	MOV DL,byte ptr [EAX]
+004252d9	00 51 10	ADD	byte ptr [ECX + 0x10], DL	ADD byte ptr [ECX + 0x10],DL
+004252dc	c6 00 00	MOV	byte ptr [EAX], 0x0	MOV byte ptr [EAX],0x0
+004252df	c6 81 10 04 00 00 f1	MOV	byte ptr [ECX + 0x410], 0xf1	MOV byte ptr [ECX + 0x410],0xf1
+004252e6	80 79 10 f0	CMP	byte ptr [ECX + 0x10], 0xf0	CMP byte ptr [ECX + 0x10],0xf0
+004252ea	75 19	JNZ	0x00425305	JNZ 0x00425305
+004252ec	ff 05 70 86 43 00	INC	dword ptr [0x00438670]	INC dword ptr [0x00438670]
+004252f2	83 3d 70 86 43 00 20	CMP	dword ptr [0x00438670], 0x20	CMP dword ptr [0x00438670],0x20
+004252f9	75 0a	JNZ	0x00425305	JNZ 0x00425305
+004252fb	6a 10	PUSH	0x10	PUSH 0x10
+004252fd	e8 7e fe ff ff	CALL	0x00425180	CALL 0x00425180
+00425302	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00425305	c3	RET		RET

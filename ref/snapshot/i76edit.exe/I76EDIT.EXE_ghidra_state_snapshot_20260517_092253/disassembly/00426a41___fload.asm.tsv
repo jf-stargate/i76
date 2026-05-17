@@ -1,0 +1,23 @@
+address	bytes	mnemonic	operands	instruction
+00426a41	55	PUSH	EBP	PUSH EBP
+00426a42	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+00426a44	83 c4 f4	ADD	ESP, -0xc	ADD ESP,-0xc
+00426a47	53	PUSH	EBX	PUSH EBX
+00426a48	66 8b 45 0e	MOV	AX, word ptr [EBP + 0xe]	MOV AX,word ptr [EBP + 0xe]
+00426a4c	66 8b d8	MOV	BX, AX	MOV BX,AX
+00426a4f	66 25 f0 7f	AND	AX, 0x7ff0	AND AX,0x7ff0
+00426a53	66 3d f0 7f	CMP	AX, 0x7ff0	CMP AX,0x7ff0
+00426a57	75 1e	JNZ	0x00426a77	JNZ 0x00426a77
+00426a59	66 81 cb ff 7f	OR	BX, 0x7fff	OR BX,0x7fff
+00426a5e	66 89 5d fe	MOV	word ptr [EBP + -0x2], BX	MOV word ptr [EBP + -0x2],BX
+00426a62	8b 45 0c	MOV	EAX, dword ptr [EBP + 0xc]	MOV EAX,dword ptr [EBP + 0xc]
+00426a65	8b 5d 08	MOV	EBX, dword ptr [EBP + 0x8]	MOV EBX,dword ptr [EBP + 0x8]
+00426a68	0f a4 d8 0b	SHLD	EAX, EBX, 0xb	SHLD EAX,EBX,0xb
+00426a6c	89 45 fa	MOV	dword ptr [EBP + -0x6], EAX	MOV dword ptr [EBP + -0x6],EAX
+00426a6f	89 5d f6	MOV	dword ptr [EBP + -0xa], EBX	MOV dword ptr [EBP + -0xa],EBX
+00426a72	db 6d f6	FLD	extended double ptr [EBP + -0xa]	FLD extended double ptr [EBP + -0xa]
+00426a75	eb 03	JMP	0x00426a7a	JMP 0x00426a7a
+00426a77	dd 45 08	FLD	double ptr [EBP + 0x8]	FLD double ptr [EBP + 0x8]
+00426a7a	5b	POP	EBX	POP EBX
+00426a7b	c9	LEAVE		LEAVE
+00426a7c	c3	RET		RET

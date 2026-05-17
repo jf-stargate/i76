@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+0042ccf0	83 ec 04	SUB	ESP, 0x4	SUB ESP,0x4
+0042ccf3	9b dd 7c 24 02	FSTSW	word ptr [ESP + 0x2]	FSTSW word ptr [ESP + 0x2]
+0042ccf8	0f bf 44 24 02	MOVSX	EAX, word ptr [ESP + 0x2]	MOVSX EAX,word ptr [ESP + 0x2]
+0042ccfd	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0042cd00	c3	RET		RET

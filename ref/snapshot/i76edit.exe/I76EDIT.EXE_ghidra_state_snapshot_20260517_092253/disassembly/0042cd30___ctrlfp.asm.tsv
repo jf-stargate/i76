@@ -1,0 +1,14 @@
+address	bytes	mnemonic	operands	instruction
+0042cd30	83 ec 04	SUB	ESP, 0x4	SUB ESP,0x4
+0042cd33	9b d9 7c 24 00	FSTCW	word ptr [ESP]	FSTCW word ptr [ESP]
+0042cd38	66 8b 44 24 0c	MOV	AX, word ptr [ESP + 0xc]	MOV AX,word ptr [ESP + 0xc]
+0042cd3d	66 8b d0	MOV	DX, AX	MOV DX,AX
+0042cd40	66 f7 d2	NOT	DX	NOT DX
+0042cd43	66 23 54 24 00	AND	DX, word ptr [ESP]	AND DX,word ptr [ESP]
+0042cd48	66 23 44 24 08	AND	AX, word ptr [ESP + 0x8]	AND AX,word ptr [ESP + 0x8]
+0042cd4d	66 0b d0	OR	DX, AX	OR DX,AX
+0042cd50	66 89 54 24 02	MOV	word ptr [ESP + 0x2], DX	MOV word ptr [ESP + 0x2],DX
+0042cd55	d9 6c 24 02	FLDCW	word ptr [ESP + 0x2]	FLDCW word ptr [ESP + 0x2]
+0042cd59	0f bf 44 24 00	MOVSX	EAX, word ptr [ESP]	MOVSX EAX,word ptr [ESP]
+0042cd5e	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0042cd61	c3	RET		RET

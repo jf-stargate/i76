@@ -1,0 +1,18 @@
+address	bytes	mnemonic	operands	instruction
+00425a80	56	PUSH	ESI	PUSH ESI
+00425a81	8b 74 24 08	MOV	ESI, dword ptr [ESP + 0x8]	MOV ESI,dword ptr [ESP + 0x8]
+00425a85	8b 46 0c	MOV	EAX, dword ptr [ESI + 0xc]	MOV EAX,dword ptr [ESI + 0xc]
+00425a88	a8 83	TEST	AL, 0x83	TEST AL,0x83
+00425a8a	74 2b	JZ	0x00425ab7	JZ 0x00425ab7
+00425a8c	a8 08	TEST	AL, 0x8	TEST AL,0x8
+00425a8e	74 27	JZ	0x00425ab7	JZ 0x00425ab7
+00425a90	8b 46 08	MOV	EAX, dword ptr [ESI + 0x8]	MOV EAX,dword ptr [ESI + 0x8]
+00425a93	50	PUSH	EAX	PUSH EAX
+00425a94	e8 07 d5 ff ff	CALL	0x00422fa0	CALL 0x00422fa0
+00425a99	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00425a9c	c7 06 00 00 00 00	MOV	dword ptr [ESI], 0x0	MOV dword ptr [ESI],0x0
+00425aa2	81 66 0c f7 fb ff ff	AND	dword ptr [ESI + 0xc], 0xfffffbf7	AND dword ptr [ESI + 0xc],0xfffffbf7
+00425aa9	c7 46 08 00 00 00 00	MOV	dword ptr [ESI + 0x8], 0x0	MOV dword ptr [ESI + 0x8],0x0
+00425ab0	c7 46 04 00 00 00 00	MOV	dword ptr [ESI + 0x4], 0x0	MOV dword ptr [ESI + 0x4],0x0
+00425ab7	5e	POP	ESI	POP ESI
+00425ab8	c3	RET		RET

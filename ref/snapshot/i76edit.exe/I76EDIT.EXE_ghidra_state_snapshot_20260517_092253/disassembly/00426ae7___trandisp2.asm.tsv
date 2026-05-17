@@ -1,0 +1,44 @@
+address	bytes	mnemonic	operands	instruction
+00426ae7	80 7a 0e 05	CMP	byte ptr [EDX + 0xe], 0x5	CMP byte ptr [EDX + 0xe],0x5
+00426aeb	75 11	JNZ	0x00426afe	JNZ 0x00426afe
+00426aed	66 8b 9d 5c ff ff ff	MOV	BX, word ptr [EBP + 0xffffff5c]	MOV BX,word ptr [EBP + 0xffffff5c]
+00426af4	80 cf 02	OR	BH, 0x2	OR BH,0x2
+00426af7	80 e7 fe	AND	BH, 0xfe	AND BH,0xfe
+00426afa	b3 3f	MOV	BL, 0x3f	MOV BL,0x3f
+00426afc	eb 04	JMP	0x00426b02	JMP 0x00426b02
+00426afe	66 bb 3f 13	MOV	BX, 0x133f	MOV BX,0x133f
+00426b02	66 89 9d 5e ff ff ff	MOV	word ptr [EBP + 0xffffff5e], BX	MOV word ptr [EBP + 0xffffff5e],BX
+00426b09	d9 ad 5e ff ff ff	FLDCW	word ptr [EBP + 0xffffff5e]	FLDCW word ptr [EBP + 0xffffff5e]
+00426b0f	bb cd 86 43 00	MOV	EBX, 0x4386cd	MOV EBX,0x4386cd
+00426b14	d9 e5	FXAM		FXAM
+00426b16	89 95 6c ff ff ff	MOV	dword ptr [EBP + 0xffffff6c], EDX	MOV dword ptr [EBP + 0xffffff6c],EDX
+00426b1c	9b dd bd 60 ff ff ff	FSTSW	word ptr [EBP + 0xffffff60]	FSTSW word ptr [EBP + 0xffffff60]
+00426b23	c6 85 70 ff ff ff 00	MOV	byte ptr [EBP + 0xffffff70], 0x0	MOV byte ptr [EBP + 0xffffff70],0x0
+00426b2a	d9 c9	FXCH		FXCH
+00426b2c	8a 8d 61 ff ff ff	MOV	CL, byte ptr [EBP + 0xffffff61]	MOV CL,byte ptr [EBP + 0xffffff61]
+00426b32	d9 e5	FXAM		FXAM
+00426b34	9b dd bd 60 ff ff ff	FSTSW	word ptr [EBP + 0xffffff60]	FSTSW word ptr [EBP + 0xffffff60]
+00426b3b	d9 c9	FXCH		FXCH
+00426b3d	8a ad 61 ff ff ff	MOV	CH, byte ptr [EBP + 0xffffff61]	MOV CH,byte ptr [EBP + 0xffffff61]
+00426b43	d0 e5	SHL	CH, 0x1	SHL CH,0x1
+00426b45	d0 fd	SAR	CH, 0x1	SAR CH,0x1
+00426b47	d0 c5	ROL	CH, 0x1	ROL CH,0x1
+00426b49	8a c5	MOV	AL, CH	MOV AL,CH
+00426b4b	24 0f	AND	AL, 0xf	AND AL,0xf
+00426b4d	d7	XLAT	, EBX	XLAT EBX
+00426b4e	8a e0	MOV	AH, AL	MOV AH,AL
+00426b50	d0 e1	SHL	CL, 0x1	SHL CL,0x1
+00426b52	d0 f9	SAR	CL, 0x1	SAR CL,0x1
+00426b54	d0 c1	ROL	CL, 0x1	ROL CL,0x1
+00426b56	8a c1	MOV	AL, CL	MOV AL,CL
+00426b58	24 0f	AND	AL, 0xf	AND AL,0xf
+00426b5a	d7	XLAT	, EBX	XLAT EBX
+00426b5b	d0 e4	SHL	AH, 0x1	SHL AH,0x1
+00426b5d	d0 e4	SHL	AH, 0x1	SHL AH,0x1
+00426b5f	0a c4	OR	AL, AH	OR AL,AH
+00426b61	0f be c0	MOVSX	EAX, AL	MOVSX EAX,AL
+00426b64	81 e1 04 04 00 00	AND	ECX, 0x404	AND ECX,0x404
+00426b6a	8b da	MOV	EBX, EDX	MOV EBX,EDX
+00426b6c	03 d8	ADD	EBX, EAX	ADD EBX,EAX
+00426b6e	83 c3 10	ADD	EBX, 0x10	ADD EBX,0x10
+00426b71	ff 23	JMP	dword ptr [EBX]	JMP dword ptr [EBX]

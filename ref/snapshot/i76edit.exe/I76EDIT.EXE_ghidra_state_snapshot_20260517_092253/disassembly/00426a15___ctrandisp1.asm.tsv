@@ -1,0 +1,15 @@
+address	bytes	mnemonic	operands	instruction
+00426a15	55	PUSH	EBP	PUSH EBP
+00426a16	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+00426a18	81 c4 60 fd ff ff	ADD	ESP, 0xfffffd60	ADD ESP,0xfffffd60
+00426a1e	53	PUSH	EBX	PUSH EBX
+00426a1f	ff 75 0c	PUSH	dword ptr [EBP + 0xc]	PUSH dword ptr [EBP + 0xc]
+00426a22	ff 75 08	PUSH	dword ptr [EBP + 0x8]	PUSH dword ptr [EBP + 0x8]
+00426a25	e8 17 00 00 00	CALL	0x00426a41	CALL 0x00426a41
+00426a2a	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+00426a2d	9b d9 bd 5c ff ff ff	FSTCW	word ptr [EBP + 0xffffff5c]	FSTCW word ptr [EBP + 0xffffff5c]
+00426a34	e8 47 00 00 00	CALL	0x00426a80	CALL 0x00426a80
+00426a39	e8 a0 fe ff ff	CALL	0x004268de	CALL 0x004268de
+00426a3e	5b	POP	EBX	POP EBX
+00426a3f	c9	LEAVE		LEAVE
+00426a40	c3	RET		RET

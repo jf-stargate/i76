@@ -1,0 +1,16 @@
+address	bytes	mnemonic	operands	instruction
+004235a4	55	PUSH	EBP	PUSH EBP
+004235a5	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+004235a7	83 c4 f4	ADD	ESP, -0xc	ADD ESP,-0xc
+004235aa	9b d9 7d fe	FSTCW	word ptr [EBP + -0x2]	FSTCW word ptr [EBP + -0x2]
+004235ae	9b	WAIT		WAIT
+004235af	66 8b 45 fe	MOV	AX, word ptr [EBP + -0x2]	MOV AX,word ptr [EBP + -0x2]
+004235b3	80 cc 0c	OR	AH, 0xc	OR AH,0xc
+004235b6	66 89 45 fc	MOV	word ptr [EBP + -0x4], AX	MOV word ptr [EBP + -0x4],AX
+004235ba	d9 6d fc	FLDCW	word ptr [EBP + -0x4]	FLDCW word ptr [EBP + -0x4]
+004235bd	df 7d f4	FISTP	qword ptr [EBP + -0xc]	FISTP qword ptr [EBP + -0xc]
+004235c0	d9 6d fe	FLDCW	word ptr [EBP + -0x2]	FLDCW word ptr [EBP + -0x2]
+004235c3	8b 45 f4	MOV	EAX, dword ptr [EBP + -0xc]	MOV EAX,dword ptr [EBP + -0xc]
+004235c6	8b 55 f8	MOV	EDX, dword ptr [EBP + -0x8]	MOV EDX,dword ptr [EBP + -0x8]
+004235c9	c9	LEAVE		LEAVE
+004235ca	c3	RET		RET
