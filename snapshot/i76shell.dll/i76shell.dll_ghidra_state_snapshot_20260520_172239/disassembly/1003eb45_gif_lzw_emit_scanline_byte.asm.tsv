@@ -1,0 +1,35 @@
+address	bytes	mnemonic	operands	instruction
+1003eb45	8b 5f 08	MOV	EBX, dword ptr [EDI + 0x8]	MOV EBX,dword ptr [EDI + 0x8]
+1003eb48	88 83 25 db 04 10	MOV	byte ptr [EBX + 0x1004db25], AL	MOV byte ptr [EBX + 0x1004db25],AL
+1003eb4e	ff 47 08	INC	dword ptr [EDI + 0x8]	INC dword ptr [EDI + 0x8]
+1003eb51	ff 4f 20	DEC	dword ptr [EDI + 0x20]	DEC dword ptr [EDI + 0x20]
+1003eb54	83 7f 20 00	CMP	dword ptr [EDI + 0x20], 0x0	CMP dword ptr [EDI + 0x20],0x0
+1003eb58	75 67	JNZ	0x1003ebc1	JNZ 0x1003ebc1
+1003eb5a	ff 77 24	PUSH	dword ptr [EDI + 0x24]	PUSH dword ptr [EDI + 0x24]
+1003eb5d	68 25 db 04 10	PUSH	0x1004db25	PUSH 0x1004db25
+1003eb62	ff 77 0c	PUSH	dword ptr [EDI + 0xc]	PUSH dword ptr [EDI + 0xc]
+1003eb65	ff 35 38 ee 04 10	PUSH	dword ptr [0x1004ee38]	PUSH dword ptr [0x1004ee38]
+1003eb6b	e8 9e fa ff ff	CALL	0x1003e60e	CALL 0x1003e60e
+1003eb70	83 c4 10	ADD	ESP, 0x10	ADD ESP,0x10
+1003eb73	c7 47 08 00 00 00 00	MOV	dword ptr [EDI + 0x8], 0x0	MOV dword ptr [EDI + 0x8],0x0
+1003eb7a	8b 47 24	MOV	EAX, dword ptr [EDI + 0x24]	MOV EAX,dword ptr [EDI + 0x24]
+1003eb7d	89 47 20	MOV	dword ptr [EDI + 0x20], EAX	MOV dword ptr [EDI + 0x20],EAX
+1003eb80	80 7f 2c 00	CMP	byte ptr [EDI + 0x2c], 0x0	CMP byte ptr [EDI + 0x2c],0x0
+1003eb84	74 29	JZ	0x1003ebaf	JZ 0x1003ebaf
+1003eb86	0f b6 5f 2d	MOVZX	EBX, byte ptr [EDI + 0x2d]	MOVZX EBX,byte ptr [EDI + 0x2d]
+1003eb8a	0f b6 83 2e ee 04 10	MOVZX	EAX, byte ptr [EBX + 0x1004ee2e]	MOVZX EAX,byte ptr [EBX + 0x1004ee2e]
+1003eb91	01 47 0c	ADD	dword ptr [EDI + 0xc], EAX	ADD dword ptr [EDI + 0xc],EAX
+1003eb94	8b 47 0c	MOV	EAX, dword ptr [EDI + 0xc]	MOV EAX,dword ptr [EDI + 0xc]
+1003eb97	3b 47 28	CMP	EAX, dword ptr [EDI + 0x28]	CMP EAX,dword ptr [EDI + 0x28]
+1003eb9a	7c 11	JL	0x1003ebad	JL 0x1003ebad
+1003eb9c	fe 47 2d	INC	byte ptr [EDI + 0x2d]	INC byte ptr [EDI + 0x2d]
+1003eb9f	0f b6 5f 2d	MOVZX	EBX, byte ptr [EDI + 0x2d]	MOVZX EBX,byte ptr [EDI + 0x2d]
+1003eba3	0f b6 83 33 ee 04 10	MOVZX	EAX, byte ptr [EBX + 0x1004ee33]	MOVZX EAX,byte ptr [EBX + 0x1004ee33]
+1003ebaa	89 47 0c	MOV	dword ptr [EDI + 0xc], EAX	MOV dword ptr [EDI + 0xc],EAX
+1003ebad	eb 12	JMP	0x1003ebc1	JMP 0x1003ebc1
+1003ebaf	ff 47 0c	INC	dword ptr [EDI + 0xc]	INC dword ptr [EDI + 0xc]
+1003ebb2	8b 47 0c	MOV	EAX, dword ptr [EDI + 0xc]	MOV EAX,dword ptr [EDI + 0xc]
+1003ebb5	3b 47 28	CMP	EAX, dword ptr [EDI + 0x28]	CMP EAX,dword ptr [EDI + 0x28]
+1003ebb8	7c 07	JL	0x1003ebc1	JL 0x1003ebc1
+1003ebba	c7 47 0c 00 00 00 00	MOV	dword ptr [EDI + 0xc], 0x0	MOV dword ptr [EDI + 0xc],0x0
+1003ebc1	c3	RET		RET

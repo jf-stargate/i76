@@ -1,0 +1,33 @@
+address	bytes	mnemonic	operands	instruction
+1002f178	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+1002f17c	56	PUSH	ESI	PUSH ESI
+1002f17d	89 0d 1c 23 0f 10	MOV	dword ptr [0x100f231c], ECX	MOV dword ptr [0x100f231c],ECX
+1002f183	f6 01 10	TEST	byte ptr [ECX], 0x10	TEST byte ptr [ECX],0x10
+1002f186	74 09	JZ	0x1002f191	JZ 0x1002f191
+1002f188	66 c7 05 dc ce 04 10 76 27	MOV	word ptr [0x1004cedc], 0x2776	MOV word ptr [0x1004cedc],0x2776
+1002f191	f6 01 20	TEST	byte ptr [ECX], 0x20	TEST byte ptr [ECX],0x20
+1002f194	74 09	JZ	0x1002f19f	JZ 0x1002f19f
+1002f196	66 c7 05 dc ce 04 10 2f 01	MOV	word ptr [0x1004cedc], 0x12f	MOV word ptr [0x1004cedc],0x12f
+1002f19f	8b 41 08	MOV	EAX, dword ptr [ECX + 0x8]	MOV EAX,dword ptr [ECX + 0x8]
+1002f1a2	33 f6	XOR	ESI, ESI	XOR ESI,ESI
+1002f1a4	3b c6	CMP	EAX, ESI	CMP EAX,ESI
+1002f1a6	74 4a	JZ	0x1002f1f2	JZ 0x1002f1f2
+1002f1a8	a3 e8 4e 0f 10	MOV	[0x100f4ee8], EAX	MOV [0x100f4ee8],EAX
+1002f1ad	89 35 cc 21 0f 10	MOV	dword ptr [0x100f21cc], ESI	MOV dword ptr [0x100f21cc],ESI
+1002f1b3	89 35 dc 21 0f 10	MOV	dword ptr [0x100f21dc], ESI	MOV dword ptr [0x100f21dc],ESI
+1002f1b9	89 b1 94 00 00 00	MOV	dword ptr [ECX + 0x94], ESI	MOV dword ptr [ECX + 0x94],ESI
+1002f1bf	a1 1c 23 0f 10	MOV	EAX, [0x100f231c]	MOV EAX,[0x100f231c]
+1002f1c4	8b 15 e8 4e 0f 10	MOV	EDX, dword ptr [0x100f4ee8]	MOV EDX,dword ptr [0x100f4ee8]
+1002f1ca	66 8b 48 0c	MOV	CX, word ptr [EAX + 0xc]	MOV CX,word ptr [EAX + 0xc]
+1002f1ce	51	PUSH	ECX	PUSH ECX
+1002f1cf	52	PUSH	EDX	PUSH EDX
+1002f1d0	ff 15 70 12 04 10	CALL	dword ptr [0x10041270]	CALL dword ptr [0x10041270]
+1002f1d6	a1 1c 23 0f 10	MOV	EAX, [0x100f231c]	MOV EAX,[0x100f231c]
+1002f1db	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+1002f1de	66 89 70 0c	MOV	word ptr [EAX + 0xc], SI	MOV word ptr [EAX + 0xc],SI
+1002f1e2	8b 0d e8 4e 0f 10	MOV	ECX, dword ptr [0x100f4ee8]	MOV ECX,dword ptr [0x100f4ee8]
+1002f1e8	51	PUSH	ECX	PUSH ECX
+1002f1e9	ff 15 84 12 04 10	CALL	dword ptr [0x10041284]	CALL dword ptr [0x10041284]
+1002f1ef	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+1002f1f2	5e	POP	ESI	POP ESI
+1002f1f3	c3	RET		RET

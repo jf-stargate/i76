@@ -1,0 +1,24 @@
+address	bytes	mnemonic	operands	instruction
+1003eab9	83 7f 18 00	CMP	dword ptr [EDI + 0x18], 0x0	CMP dword ptr [EDI + 0x18],0x0
+1003eabd	75 0f	JNZ	0x1003eace	JNZ 0x1003eace
+1003eabf	e8 dc ff ff ff	CALL	0x1003eaa0	CALL 0x1003eaa0
+1003eac4	89 47 14	MOV	dword ptr [EDI + 0x14], EAX	MOV dword ptr [EDI + 0x14],EAX
+1003eac7	c7 47 18 08 00 00 00	MOV	dword ptr [EDI + 0x18], 0x8	MOV dword ptr [EDI + 0x18],0x8
+1003eace	8b c2	MOV	EAX, EDX	MOV EAX,EDX
+1003ead0	39 47 18	CMP	dword ptr [EDI + 0x18], EAX	CMP dword ptr [EDI + 0x18],EAX
+1003ead3	7d 11	JGE	0x1003eae6	JGE 0x1003eae6
+1003ead5	e8 c6 ff ff ff	CALL	0x1003eaa0	CALL 0x1003eaa0
+1003eada	8b 4f 18	MOV	ECX, dword ptr [EDI + 0x18]	MOV ECX,dword ptr [EDI + 0x18]
+1003eadd	d3 e0	SHL	EAX, CL	SHL EAX,CL
+1003eadf	09 47 14	OR	dword ptr [EDI + 0x14], EAX	OR dword ptr [EDI + 0x14],EAX
+1003eae2	83 47 18 08	ADD	dword ptr [EDI + 0x18], 0x8	ADD dword ptr [EDI + 0x18],0x8
+1003eae6	8b da	MOV	EBX, EDX	MOV EBX,EDX
+1003eae8	0f b6 83 25 ee 04 10	MOVZX	EAX, byte ptr [EBX + 0x1004ee25]	MOVZX EAX,byte ptr [EBX + 0x1004ee25]
+1003eaef	8b 5f 14	MOV	EBX, dword ptr [EDI + 0x14]	MOV EBX,dword ptr [EDI + 0x14]
+1003eaf2	23 d8	AND	EBX, EAX	AND EBX,EAX
+1003eaf4	53	PUSH	EBX	PUSH EBX
+1003eaf5	29 57 18	SUB	dword ptr [EDI + 0x18], EDX	SUB dword ptr [EDI + 0x18],EDX
+1003eaf8	8b ca	MOV	ECX, EDX	MOV ECX,EDX
+1003eafa	d3 6f 14	SHR	dword ptr [EDI + 0x14], CL	SHR dword ptr [EDI + 0x14],CL
+1003eafd	58	POP	EAX	POP EAX
+1003eafe	c3	RET		RET

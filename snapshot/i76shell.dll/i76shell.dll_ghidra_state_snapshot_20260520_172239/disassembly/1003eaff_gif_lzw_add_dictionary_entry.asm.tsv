@@ -1,0 +1,23 @@
+address	bytes	mnemonic	operands	instruction
+1003eaff	53	PUSH	EBX	PUSH EBX
+1003eb00	8b 1f	MOV	EBX, dword ptr [EDI]	MOV EBX,dword ptr [EDI]
+1003eb02	66 89 8c 5f 2e 30 00 00	MOV	word ptr [EDI + EBX*0x2 + 0x302e], CX	MOV word ptr [EDI + EBX*0x2 + 0x302e],CX
+1003eb0a	5b	POP	EBX	POP EBX
+1003eb0b	53	PUSH	EBX	PUSH EBX
+1003eb0c	8a 84 3b 2e 10 00 00	MOV	AL, byte ptr [EBX + EDI*0x1 + 0x102e]	MOV AL,byte ptr [EBX + EDI*0x1 + 0x102e]
+1003eb13	8b 1f	MOV	EBX, dword ptr [EDI]	MOV EBX,dword ptr [EDI]
+1003eb15	88 84 3b 2e 20 00 00	MOV	byte ptr [EBX + EDI*0x1 + 0x202e], AL	MOV byte ptr [EBX + EDI*0x1 + 0x202e],AL
+1003eb1c	8b d9	MOV	EBX, ECX	MOV EBX,ECX
+1003eb1e	8a 84 3b 2e 10 00 00	MOV	AL, byte ptr [EBX + EDI*0x1 + 0x102e]	MOV AL,byte ptr [EBX + EDI*0x1 + 0x102e]
+1003eb25	8b 1f	MOV	EBX, dword ptr [EDI]	MOV EBX,dword ptr [EDI]
+1003eb27	88 84 3b 2e 10 00 00	MOV	byte ptr [EBX + EDI*0x1 + 0x102e], AL	MOV byte ptr [EBX + EDI*0x1 + 0x102e],AL
+1003eb2e	5b	POP	EBX	POP EBX
+1003eb2f	ff 07	INC	dword ptr [EDI]	INC dword ptr [EDI]
+1003eb31	8b 07	MOV	EAX, dword ptr [EDI]	MOV EAX,dword ptr [EDI]
+1003eb33	3b 47 04	CMP	EAX, dword ptr [EDI + 0x4]	CMP EAX,dword ptr [EDI + 0x4]
+1003eb36	75 0c	JNZ	0x1003eb44	JNZ 0x1003eb44
+1003eb38	83 7f 1c 0c	CMP	dword ptr [EDI + 0x1c], 0xc	CMP dword ptr [EDI + 0x1c],0xc
+1003eb3c	7d 06	JGE	0x1003eb44	JGE 0x1003eb44
+1003eb3e	ff 47 1c	INC	dword ptr [EDI + 0x1c]	INC dword ptr [EDI + 0x1c]
+1003eb41	d1 67 04	SHL	dword ptr [EDI + 0x4], 0x1	SHL dword ptr [EDI + 0x4],0x1
+1003eb44	c3	RET		RET

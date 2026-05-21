@@ -1,0 +1,27 @@
+address	bytes	mnemonic	operands	instruction
+10037d60	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+10037d64	8b 54 24 0c	MOV	EDX, dword ptr [ESP + 0xc]	MOV EDX,dword ptr [ESP + 0xc]
+10037d68	53	PUSH	EBX	PUSH EBX
+10037d69	8b 99 98 00 00 00	MOV	EBX, dword ptr [ECX + 0x98]	MOV EBX,dword ptr [ECX + 0x98]
+10037d6f	56	PUSH	ESI	PUSH ESI
+10037d70	57	PUSH	EDI	PUSH EDI
+10037d71	8b 7c 24 1c	MOV	EDI, dword ptr [ESP + 0x1c]	MOV EDI,dword ptr [ESP + 0x1c]
+10037d75	8d 74 02 ff	LEA	ESI, [EDX + EAX*0x1 + -0x1]	LEA ESI,[EDX + EAX*0x1 + -0x1]
+10037d79	8b 54 24 14	MOV	EDX, dword ptr [ESP + 0x14]	MOV EDX,dword ptr [ESP + 0x14]
+10037d7d	3b c3	CMP	EAX, EBX	CMP EAX,EBX
+10037d7f	8d 7c 17 ff	LEA	EDI, [EDI + EDX*0x1 + -0x1]	LEA EDI,[EDI + EDX*0x1 + -0x1]
+10037d83	7d 06	JGE	0x10037d8b	JGE 0x10037d8b
+10037d85	89 81 98 00 00 00	MOV	dword ptr [ECX + 0x98], EAX	MOV dword ptr [ECX + 0x98],EAX
+10037d8b	3b 91 9c 00 00 00	CMP	EDX, dword ptr [ECX + 0x9c]	CMP EDX,dword ptr [ECX + 0x9c]
+10037d91	7d 06	JGE	0x10037d99	JGE 0x10037d99
+10037d93	89 91 9c 00 00 00	MOV	dword ptr [ECX + 0x9c], EDX	MOV dword ptr [ECX + 0x9c],EDX
+10037d99	3b b1 a0 00 00 00	CMP	ESI, dword ptr [ECX + 0xa0]	CMP ESI,dword ptr [ECX + 0xa0]
+10037d9f	7e 06	JLE	0x10037da7	JLE 0x10037da7
+10037da1	89 b1 a0 00 00 00	MOV	dword ptr [ECX + 0xa0], ESI	MOV dword ptr [ECX + 0xa0],ESI
+10037da7	3b b9 a4 00 00 00	CMP	EDI, dword ptr [ECX + 0xa4]	CMP EDI,dword ptr [ECX + 0xa4]
+10037dad	7e 06	JLE	0x10037db5	JLE 0x10037db5
+10037daf	89 b9 a4 00 00 00	MOV	dword ptr [ECX + 0xa4], EDI	MOV dword ptr [ECX + 0xa4],EDI
+10037db5	5f	POP	EDI	POP EDI
+10037db6	5e	POP	ESI	POP ESI
+10037db7	5b	POP	EBX	POP EBX
+10037db8	c2 10 00	RET	0x10	RET 0x10

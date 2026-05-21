@@ -1,0 +1,11 @@
+address	bytes	mnemonic	operands	instruction
+1000cd60	a1 dc 33 05 10	MOV	EAX, [0x100533dc]	MOV EAX,[0x100533dc]
+1000cd65	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+1000cd67	74 03	JZ	0x1000cd6c	JZ 0x1000cd6c
+1000cd69	ff 50 14	CALL	dword ptr [EAX + 0x14]	CALL dword ptr [EAX + 0x14]
+1000cd6c	a1 d8 33 05 10	MOV	EAX, [0x100533d8]	MOV EAX,[0x100533d8]
+1000cd71	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+1000cd73	74 03	JZ	0x1000cd78	JZ 0x1000cd78
+1000cd75	ff 50 10	CALL	dword ptr [EAX + 0x10]	CALL dword ptr [EAX + 0x10]
+1000cd78	c7 05 f4 42 04 10 01 00 00 00	MOV	dword ptr [0x100442f4], 0x1	MOV dword ptr [0x100442f4],0x1
+1000cd82	c3	RET		RET

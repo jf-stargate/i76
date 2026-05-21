@@ -1,0 +1,11 @@
+address	bytes	mnemonic	operands	instruction
+10037e60	8b 41 24	MOV	EAX, dword ptr [ECX + 0x24]	MOV EAX,dword ptr [ECX + 0x24]
+10037e63	81 c1 bc 00 00 00	ADD	ECX, 0xbc	ADD ECX,0xbc
+10037e69	50	PUSH	EAX	PUSH EAX
+10037e6a	51	PUSH	ECX	PUSH ECX
+10037e6b	8b 0d d8 33 05 10	MOV	ECX, dword ptr [0x100533d8]	MOV ECX,dword ptr [0x100533d8]
+10037e71	68 00 01 00 00	PUSH	0x100	PUSH 0x100
+10037e76	6a 00	PUSH	0x0	PUSH 0x0
+10037e78	ff 51 14	CALL	dword ptr [ECX + 0x14]	CALL dword ptr [ECX + 0x14]
+10037e7b	83 c4 10	ADD	ESP, 0x10	ADD ESP,0x10
+10037e7e	c3	RET		RET

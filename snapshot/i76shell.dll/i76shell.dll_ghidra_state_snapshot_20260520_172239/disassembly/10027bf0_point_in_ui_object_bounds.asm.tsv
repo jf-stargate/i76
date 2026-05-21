@@ -1,0 +1,17 @@
+address	bytes	mnemonic	operands	instruction
+10027bf0	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+10027bf4	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+10027bf8	3b 48 04	CMP	ECX, dword ptr [EAX + 0x4]	CMP ECX,dword ptr [EAX + 0x4]
+10027bfb	7e 1b	JLE	0x10027c18	JLE 0x10027c18
+10027bfd	3b 48 08	CMP	ECX, dword ptr [EAX + 0x8]	CMP ECX,dword ptr [EAX + 0x8]
+10027c00	7d 16	JGE	0x10027c18	JGE 0x10027c18
+10027c02	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+10027c06	8b 50 0c	MOV	EDX, dword ptr [EAX + 0xc]	MOV EDX,dword ptr [EAX + 0xc]
+10027c09	3b ca	CMP	ECX, EDX	CMP ECX,EDX
+10027c0b	7e 0b	JLE	0x10027c18	JLE 0x10027c18
+10027c0d	3b 48 10	CMP	ECX, dword ptr [EAX + 0x10]	CMP ECX,dword ptr [EAX + 0x10]
+10027c10	7d 06	JGE	0x10027c18	JGE 0x10027c18
+10027c12	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+10027c17	c3	RET		RET
+10027c18	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+10027c1a	c3	RET		RET

@@ -1,0 +1,529 @@
+entry	name	module_guess	module_evidence	is_semantic	comment
+10001000	allocate_shell_string_or_die	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+100010a0	FUN_100010a0	unknown		false	
+100010f0	FUN_100010f0	unknown		false	
+10001340	FUN_10001340	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10001820	FUN_10001820	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10002130	populate_current_mission_vehicle_selection_list	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+10002750	dispatch_selected_mission_or_vehicle_config_transition	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	i76shell first-pass rename old_name: FUN_10002750 suggested_name: shell_menu_transition_or_dispatch basis: Shell UI/menu transition candidate referenced from ShellWindowProc/ShellMain neighborhood.
+100029d0	apply_loaded_mission_vehicle_slot_defaults	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+100031d0	FUN_100031d0	unknown		false	
+100031e0	create_pointer_collection	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+100032d0	FUN_100032d0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10003370	expand_pointer_collection	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10003440	FUN_10003440	unknown		false	
+100034a0	FUN_100034a0	unknown		false	
+100035a0	FUN_100035a0	unknown		false	
+100035d0	FUN_100035d0	unknown		false	
+10003610	FUN_10003610	unknown		false	
+10003660	FUN_10003660	unknown		false	
+100036b0	clear_pointer_collection	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10003780	reset_vehicle_config_ui_globals	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10003ac0	shell_ui_object_event_handler	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	i76shell first-pass rename old_name: FUN_10003ac0 suggested_name: shell_ui_object_event_handler basis: Shell UI object/event candidate from ShellWindowProc neighborhood.
+10005310	update_vehicle_config_screen_layout_and_callbacks	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10005400	initialize_vehicle_config_ui_lists	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10005680	destroy_vehicle_config_ui_lists	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10005820	draw_vehicle_config_section_labels	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10005a30	draw_vehicle_part_list_column	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10005ad0	draw_vehicle_part_list_column_indented	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10005b80	draw_vehicle_part_inventory_scroll_list	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10005cb0	FUN_10005cb0	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+10005e20	redraw_vehicle_config_screen	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10006240	FUN_10006240	unknown		false	
+10006280	build_vehicle_hardpoint_slot_labels	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10006580	FUN_10006580	unknown		false	
+10006650	FUN_10006650	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	false	
+10006b70	open_vehicle_part_subtype_choice_dialog	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10006f00	open_vehicle_part_inventory_choice_dialog	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10007180	open_current_mission_vehicle_choice_dialog	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+10007310	FUN_10007310	unknown		false	
+10007340	validate_required_vehicle_parts_selected	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+100076c0	FUN_100076c0	unknown		false	
+100076d0	show_vehicle_weight_limit_warning	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+100076f0	FUN_100076f0	unknown		false	
+10007700	FUN_10007700	unknown		false	
+10007720	calculate_current_vehicle_config_weight	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10007930	init_shell_ui_state	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell first-pass rename old_name: FUN_10007930 suggested_name: init_shell_ui_state basis: Shell UI state/init candidate from ShellMain neighborhood.
+10007b20	FUN_10007b20	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10007c70	FUN_10007c70	unknown		false	
+10007f60	debug_dump_mpack_database_index	unknown		true	
+10007fd0	open_mpack_database	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell first-pass rename old_name: FUN_10007fd0 suggested_name: open_mpack_database basis: References diagnostic string: Could not open mpack DB: %s.
+10008180	FUN_10008180	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10008240	mpack_database_get_item	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell first-pass rename old_name: FUN_10008240 suggested_name: mpack_database_get_item basis: TMPackDataBaseObj::GetDBItem candidate from mpack/database diagnostic strings.
+10008320	mpack_database_get_item_alloc_or_alias	file_io_runtime	score=40; file API evidence	true	
+10008520	FUN_10008520	file_io_runtime	score=40; file API evidence	false	
+10008590	FUN_10008590	unknown		false	
+10008670	FUN_10008670	unknown		false	
+10008980	FUN_10008980	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+10008b80	read_i76car_vehicle_definition_file	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10008cf0	write_i76car_vehicle_definition_file	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10008d50	FUN_10008d50	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	false	
+10009010	write_multicar_vehicle_definition_file	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+100090d0	set_modal_list_previous_callback	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+100090e0	FUN_100090e0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100094c0	open_vehicle_part_selection_list_dialog	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1000a360	close_active_modal_list_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000a440	redraw_vehicle_part_dialog_list_entries	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1000a5e0	open_vehicle_part_category_screen	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1000a910	handle_vehicle_part_category_click	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1000a9d0	FUN_1000a9d0	unknown		false	
+1000ab10	toggle_vehicle_part_dialog_selection	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1000b020	open_equipped_vehicle_part_replacement_dialog	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1000b080	open_modal_scroll_list_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000b2e0	open_modal_scroll_list_dialog_with_selection	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000b550	FUN_1000b550	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+1000b660	show_modal_ok_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000b800	FUN_1000b800	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+1000b980	FUN_1000b980	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+1000bad0	handle_modal_dialog_confirm_or_default	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell first-pass rename old_name: FUN_1000bad0 suggested_name: shell_screen_state_handler_a basis: Shell screen/state candidate; name intentionally cautious.
+1000bc40	show_modal_two_button_choice_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000bdd0	handle_modal_dialog_escape_or_cancel	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000c160	restore_previous_shell_dialog_state	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000c250	FUN_1000c250	unknown		false	
+1000c2a0	FUN_1000c2a0	unknown		false	
+1000c2d0	open_phonebook_entry_list_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000c520	open_internet_entry_list_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000c770	open_multiplayer_connection_progress_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1000ca90	FUN_1000ca90	unknown		false	
+1000cb40	select_shell_display_mode_and_backend	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+1000cd60	shutdown_shell_display_backend_candidate	unknown		true	
+1000d040	FUN_1000d040	unknown		false	
+1000d0a0	FUN_1000d0a0	unknown		false	
+1000d430	handle_audio_options_screen	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+1000dae0	shell_screen_state_handler_b	audio_runtime	score=60; DirectSound/WAV/audio evidence	true	i76shell first-pass rename old_name: FUN_1000dae0 suggested_name: shell_screen_state_handler_b basis: Shell screen/state candidate; name intentionally cautious.
+1000db90	FUN_1000db90	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	false	
+1000dcc0	FUN_1000dcc0	unknown		false	
+1000df00	FUN_1000df00	unknown		false	
+1000df50	FUN_1000df50	unknown		false	
+1000e2e0	handle_play_options_screen	audio_runtime	score=60; DirectSound/WAV/audio evidence	true	
+1000e6b0	handle_static_menu_descriptor_selection	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1000e930	FUN_1000e930	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	false	
+1000eae0	FUN_1000eae0	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	false	
+1000eb80	handle_input_mapping_screen	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+1000f310	FUN_1000f310	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1000f390	parse_input_mapping_file	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+1000fb90	FUN_1000fb90	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	false	
+1000fd30	write_input_mapping_file	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+100102d0	scan_configured_input_devices	unknown		true	
+100103d0	FUN_100103d0	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	false	
+10010420	FUN_10010420	unknown		false	
+10010530	populate_input_binding_device_action_list	unknown		true	
+10010790	handle_input_binding_selection_screen	unknown		true	
+100115d0	open_input_binding_action_choice_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+10011710	format_input_binding_display_name	unknown		true	
+10011b70	FUN_10011b70	unknown		false	
+10011ba0	FUN_10011ba0	unknown		false	
+10011c20	FUN_10011c20	unknown		false	
+10011cb0	confirm_leave_game_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+10011dc0	FUN_10011dc0	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	false	
+10011fd0	handle_video_options_screen	terrain_runtime	score=80; terrain/ZMAP/TDEF/TER/page-grid evidence	true	
+10012fe0	FUN_10012fe0	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	false	
+10013380	commit_selected_savegame_and_launch_session	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+10013670	draw_load_game_scene_list	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+100137d0	initialize_load_game_screen	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10013950	handle_modem_setup_screen	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10013ea0	draw_modem_setup_current_values	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10014020	read_modem_ini_settings	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10014270	handle_gameplay_options_screen	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10014410	FUN_10014410	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	false	
+100145f0	handle_save_game_prompt	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+100147a0	handle_save_game_scene_selection	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+100150a0	draw_save_game_scene_list	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10015530	construct_shell_glyph_sheet	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell glyph/font rename old_name: FUN_10015530 suggested_name: construct_shell_glyph_bitmap_table basis: ShellMain feeds DATABASE.MW2 records 65-71 into this constructor/parser; records are confirmed glyph sheets.  i76shell text/glyph rename old_name: construct_shell_glyph_bitmap_table suggested_name: construct_shell_glyph_sheet basis: Constructs a thin wrapper around raw DATABASE.MW2 glyph-sheet records 65-71.  i76shell forced text/glyph rename old_name: construct_shell_glyph_bitmap_table forced_name: construct_shell_glyph_sheet basis: Constructs shell glyph-sheet wrapper from DATABASE.MW2 records 65-71.
+10015580	measure_string_width_from_glyph_sheet	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell forced text/glyph rename old_name: FUN_10015580 forced_name: measure_string_width_from_glyph_sheet basis: Walks string, gets each glyph width, and accumulates text width.  i76shell locale/rich-text rename old_name: measure_string_width_from_glyph_sheet forced_name: measure_string_width_from_glyph_sheet basis: Uses DAT_1004efa0 stride and sums glyph widths.
+100155d0	get_wrapped_glyph_width	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell forced text/glyph rename old_name: FUN_100155d0 forced_name: get_wrapped_glyph_width basis: Wrapper method around get_glyph_width for glyph-sheet object.
+100155f0	FUN_100155f0	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+10015680	FUN_10015680	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+10015710	FUN_10015710	unknown		false	
+100157a0	draw_string_from_glyph_sheet_object	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell localized glyph rename old_name: FUN_100157a0 forced_name: draw_string_from_glyph_sheet_object basis: Object wrapper for drawing a string from a glyph sheet.
+100157d0	draw_glyph_from_glyph_sheet_object	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell locale/rich-text rename old_name: FUN_100157d0 forced_name: draw_glyph_from_glyph_sheet_object basis: Wrapper that draws one glyph from shell glyph-sheet object through draw_single_glyph_to_shell_surfaces.
+10015800	draw_edit_buffer_glyph_or_control	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell localized glyph rename old_name: FUN_10015800 forced_name: draw_edit_buffer_glyph_or_control basis: Draws or handles edit-buffer glyph/control input; name still slightly cautious.
+100159d0	FUN_100159d0	unknown		false	
+10015af0	FUN_10015af0	unknown		false	
+10015b90	FUN_10015b90	unknown		false	
+10015c10	FUN_10015c10	unknown		false	
+10015ce0	convert_shell_palette_entry_via_channel_table	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10015d20	FUN_10015d20	unknown		false	
+10015e60	FUN_10015e60	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10015fd0	FUN_10015fd0	unknown		false	
+10016160	FUN_10016160	unknown		false	
+10016300	FUN_10016300	unknown		false	
+100163e0	FUN_100163e0	unknown		false	
+10016490	FUN_10016490	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+10016560	FUN_10016560	unknown		false	
+10016600	FUN_10016600	unknown		false	
+100166f0	FUN_100166f0	unknown		false	
+10016760	destroy_static_ui_descriptor_widgets	unknown		true	
+100167a0	hit_test_static_ui_descriptor_table	unknown		true	
+100169e0	FUN_100169e0	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	false	
+10016a20	launch_single_player_arcade_seed_session	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+10016b50	launch_single_player_trip_seed_session	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10016f70	read_player_definition_file	file_io_runtime	score=40; file API evidence	true	
+10017050	write_player_definition_file	file_io_runtime	score=40; file API evidence	true	
+10017300	write_default_player_definition_file	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+10017630	read_user_vehicle_lookup_table	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10017710	write_user_vehicle_lookup_table	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+100177e0	FUN_100177e0	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	false	
+10017e90	FUN_10017e90	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	false	
+10017f80	initialize_builtin_vehicle_catalog	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+100184b0	FUN_100184b0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10018610	FUN_10018610	unknown		false	
+10018640	FUN_10018640	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10018a20	reset_shell_session_resource_globals	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10018ae0	FUN_10018ae0	unknown		false	
+10019440	FUN_10019440	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100196b0	FUN_100196b0	unknown		false	
+10019750	FUN_10019750	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100197c0	FUN_100197c0	unknown		false	
+10019a20	FUN_10019a20	unknown		false	
+10019a70	FUN_10019a70	unknown		false	
+10019f40	draw_vehicle_part_damage_indicator	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+1001a010	FUN_1001a010	unknown		false	
+1001a2a0	FUN_1001a2a0	unknown		false	
+1001a370	FUN_1001a370	unknown		false	
+1001a430	FUN_1001a430	unknown		false	
+1001a550	FUN_1001a550	unknown		false	
+1001a6e0	FUN_1001a6e0	unknown		false	
+1001b050	FUN_1001b050	unknown		false	
+1001b0e0	FUN_1001b0e0	unknown		false	
+1001b210	FUN_1001b210	unknown		false	
+1001b900	FUN_1001b900	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+1001bda0	query_joystick_oem_registry_settings	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+1001bee0	classify_joystick_oem_name	unknown		true	
+1001c040	FUN_1001c040	unknown		false	
+1001c090	FUN_1001c090	unknown		false	
+1001c0a0	FUN_1001c0a0	unknown		false	
+1001c0c0	FUN_1001c0c0	unknown		false	
+1001c110	poll_keyboard_control_result	unknown		true	
+1001c240	FUN_1001c240	unknown		false	
+1001c320	FUN_1001c320	unknown		false	
+1001c430	FUN_1001c430	unknown		false	
+1001c7b0	FUN_1001c7b0	unknown		false	
+1001cd50	FUN_1001cd50	unknown		false	
+1001cd60	format_keyboard_key_display_name	unknown		true	
+1001ce70	FUN_1001ce70	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1001d030	FUN_1001d030	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1001d1f0	FUN_1001d1f0	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1001d440	FUN_1001d440	unknown		false	
+1001d630	FUN_1001d630	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1001d850	FUN_1001d850	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1001d960	FUN_1001d960	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1001da10	ShellWindowProc	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+1001e260	ShellMain	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+1001eca0	FUN_1001eca0	unknown		false	
+1001ecb0	FUN_1001ecb0	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+1001ed30	FUN_1001ed30	unknown		false	
+1001ed40	FUN_1001ed40	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+1001f3e0	FUN_1001f3e0	unknown		false	
+1001f650	FUN_1001f650	unknown		false	
+1001f660	format_mouse_binding_display_name	unknown		true	
+1001fa40	FUN_1001fa40	unknown		false	
+1001fae0	FUN_1001fae0	unknown		false	
+1001fb10	FUN_1001fb10	unknown		false	
+1001fb20	FUN_1001fb20	unknown		false	
+1001fb30	FUN_1001fb30	unknown		false	
+1001fb40	FUN_1001fb40	unknown		false	
+1001fbf0	update_debug_mouse_coordinate_overlay	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	i76shell text/glyph render rename old_name: FUN_1001fbf0 suggested_name: update_debug_mouse_coordinate_overlay basis: Builds mouse coordinate string with sprintf and updates text overlay.  i76shell text/glyph rename old_name: update_debug_mouse_coordinate_overlay suggested_name: update_debug_mouse_coordinate_overlay basis: Builds mouse coordinate string with sprintf and updates a glyph-rendered text overlay.  i76shell forced text/glyph rename old_name: update_debug_mouse_coordinate_overlay forced_name: update_debug_mouse_coordinate_overlay basis: Builds mouse coordinate text and updates a glyph-rendered overlay.
+10020590	display_dib_set_palette_entries_candidate	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+10021d40	FUN_10021d40	unknown		false	
+10021fb0	log_or_report_shell_ddraw_error_candidate	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+100224d0	FUN_100224d0	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+100225a0	FUN_100225a0	unknown		false	
+100225f0	set_shell_gdi_palette_entries_from_rgb6	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10022730	cache_system_palette_reserved_entries	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10022900	install_shell_palette_from_rgb_triplets	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+10022bc0	FUN_10022bc0	file_io_runtime	score=40; file API evidence	false	
+10022ca0	create_or_open_directplay_interface	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10022d10	release_directplay_interface	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10022d50	query_directplay_service_provider_caps_or_guid	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10023b60	preload_final_mission_special_menu_record_0x40	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+10023fc0	FUN_10023fc0	unknown		false	
+10024af0	FUN_10024af0	file_io_runtime	score=40; file API evidence	false	
+10024b80	FUN_10024b80	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10024cf0	FUN_10024cf0	unknown		false	
+10024db0	FUN_10024db0	unknown		false	
+100255a0	FUN_100255a0	unknown		false	
+10025600	FUN_10025600	unknown		false	
+100258f0	FUN_100258f0	unknown		false	
+10025910	FUN_10025910	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+10025980	FUN_10025980	unknown		false	
+10026a80	FUN_10026a80	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+10026f20	FUN_10026f20	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+10027800	create_pointer_list_default_16	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10027870	create_pointer_list_with_capacity	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+100278f0	destroy_pointer_list_with_optional_item_destructor	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10027970	insert_pointer_list_item_sorted_or_append	unknown		true	
+100279f0	FUN_100279f0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10027a90	remove_pointer_list_item	unknown		true	
+10027af0	find_pointer_list_item_index	unknown		true	
+10027b20	clear_pointer_list	unknown		true	
+10027b50	hit_test_ui_object_list_by_point	unknown		true	
+10027ba0	FUN_10027ba0	unknown		false	
+10027bf0	point_in_ui_object_bounds	unknown		true	
+10027c20	allocate_shell_ui_object_0x20	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10027c40	FUN_10027c40	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10027c80	initialize_single_player_shell_session_defaults	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10027f20	handle_mission_selection_screen	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+100285c0	FUN_100285c0	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	false	
+1002a3b0	FUN_1002a3b0	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	false	
+1002a900	FUN_1002a900	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+1002af00	FUN_1002af00	unknown		false	
+1002b180	draw_multiplayer_provider_status_panel	unknown		true	
+1002b350	draw_multiplayer_map_or_mission_list_page	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+1002b450	draw_available_multiplayer_games_list	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+1002b5b0	redraw_multiplayer_lobby_browser_screen	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+1002bc10	FUN_1002bc10	unknown		false	
+1002c1c0	open_network_provider_choice_dialog	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002c2b0	FUN_1002c2b0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+1002c2f0	populate_vehicle_parts_by_allowed_mission_inventory	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+1002c850	FUN_1002c850	unknown		false	
+1002cbc0	FUN_1002cbc0	unknown		false	
+1002cbf0	FUN_1002cbf0	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	false	
+1002cca0	FUN_1002cca0	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	false	
+1002ccd0	FUN_1002ccd0	unknown		false	
+1002cd50	FUN_1002cd50	unknown		false	
+1002ce70	FUN_1002ce70	unknown		false	
+1002cea0	FUN_1002cea0	unknown		false	
+1002cec0	FUN_1002cec0	unknown		false	
+1002d250	directplay_provider_enum_callback	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002d260	directplay_session_enum_callback	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002d280	directplay_player_enum_callback	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002d290	copy_directplay_guid_or_descriptor_blob	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002d2d0	format_launch_config_resource_path_at_0x4e	unknown		true	
+1002d310	free_directplay_session_descriptor	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002d320	format_directplay_session_descriptor	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002d340	update_victory_record_for_selected_map	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+1002d540	FUN_1002d540	unknown		false	
+1002d650	FUN_1002d650	unknown		false	
+1002e250	FUN_1002e250	unknown		false	
+1002e2b0	FUN_1002e2b0	unknown		false	
+1002e2c0	draw_shell_text_at_position	unknown		true	
+1002e2f0	initialize_directplay_connection_for_mode	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002e3d0	poll_directplay_session_enumeration	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002e487	join_selected_multiplayer_session	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002e9b7	shutdown_directplay_session_and_thread	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002eb17	redraw_multiplayer_connection_status_dialog	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+1002ed57	refresh_directplay_session_list_async	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002f018	open_directplay_session_connection_dialog	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002f178	bind_shell_launch_config_block_and_close_previous_directplay	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002f1f8	destroy_directplay_connection_handle	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1002f2c8	is_multiplayer_connection_active	unknown		true	
+1002f368	start_hosted_multiplayer_game_session_and_fill_launch_config	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+1002fcd8	validate_joined_multiplayer_session_and_fill_launch_config	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+10030338	compact_or_update_directplay_player_records	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+100304e8	rebuild_directplay_session_pointer_list	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10030748	find_current_directplay_session_desc	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10030c80	read_phone_list_file	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+10030e70	read_internet_list_file	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+10031060	FUN_10031060	unknown		false	
+10031120	FUN_10031120	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100312a0	FUN_100312a0	unknown		false	
+10031350	FUN_10031350	unknown		false	
+10031400	clear_preloaded_shell_ui_image_record_globals	unknown		true	
+100314a0	preload_shell_image_records_0x3c_0x3d	unknown		true	
+100314f0	FUN_100314f0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10031540	FUN_10031540	unknown		false	
+10031570	FUN_10031570	unknown		false	
+100315d0	FUN_100315d0	unknown		false	
+10031600	FUN_10031600	unknown		false	
+10031640	preload_shell_image_record_0x24	unknown		true	
+10031670	preload_shell_image_record_0x3e	unknown		true	
+100316a0	preload_shell_ui_image_records	unknown		true	
+10031870	FUN_10031870	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100318a0	FUN_100318a0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100318d0	FUN_100318d0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10031a30	draw_ui_image_subrect_with_optional_restore	unknown		true	
+10031b20	draw_vehicle_config_component_ui_overlays	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10032920	FUN_10032920	unknown		false	
+10032980	write_vehicle_scene_config_file	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10032bf0	read_spc_or_cmp_mission_vehicle_config	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	true	
+10032f80	enumerate_savegame_directory	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10033020	read_savegame_directory_index	file_io_runtime	score=40; file API evidence	true	
+10033120	write_user_mel_file	file_io_runtime	score=40; file API evidence	true	
+100331e0	read_user_mel_file	file_io_runtime	score=40; file API evidence	true	
+100332c0	build_special_equipment_name_list	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10033510	init_ui_image_rect_descriptor	unknown		true	
+10033570	FUN_10033570	unknown		false	
+100335e0	FUN_100335e0	unknown		false	
+10033640	FUN_10033640	unknown		false	
+100337b0	find_current_vehicle_part_by_type_and_name	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+100338d0	populate_matching_vehicle_part_selection_list	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10033b00	find_profile_vehicle_part_by_type_and_name	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10033c00	FUN_10033c00	unknown		false	
+10033d90	populate_equipped_vehicle_part_selection_list	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10033f80	populate_vehicle_part_list_by_current_slot_names	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10034170	FUN_10034170	unknown		false	
+100342f0	is_special_equipment_part_type	unknown		true	
+10034320	FUN_10034320	unknown		false	
+10034340	FUN_10034340	unknown		false	
+10034380	FUN_10034380	unknown		false	
+100343a0	FUN_100343a0	unknown		false	
+10034420	write_user_repair_profile_file	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+100347d0	read_user_repair_profile_file	file_io_runtime	score=40; file API evidence	true	
+10034e20	destroy_repair_profile_pointer_list	unknown		true	
+10034e50	delete_user_repair_profile_file	unknown		true	
+10034e60	destroy_vehicle_part_category_lists	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10034f70	build_vehicle_part_category_lists	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10035250	export_current_vehicle_config_with_parts	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10035930	export_vehicle_scene_with_selected_parts	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10035f30	remove_pointer_list_items_present_in_other_list	unknown		true	
+10035f70	write_vehicle_part_pointer_list_records	vehicle_geometry_runtime	score=70; vehicle/VCF/VDF/WDF/GEO evidence	true	
+10035fd0	FUN_10035fd0	unknown		false	
+10036000	FUN_10036000	unknown		false	
+10036010	create_multiplayer_connection	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10036350	construct_multiplayer_connection_state	unknown		true	
+10036410	destroy_multiplayer_connection_state	unknown		true	
+100364b0	initialize_multiplayer_connection_callbacks	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	
+10036550	reset_multiplayer_connection_session_state	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+10036610	FUN_10036610	unknown		false	
+10036620	FUN_10036620	unknown		false	
+10036640	FUN_10036640	unknown		false	
+10036660	FUN_10036660	unknown		false	
+100366b0	FUN_100366b0	unknown		false	
+100366d0	FUN_100366d0	unknown		false	
+100367a0	FUN_100367a0	unknown		false	
+100370e0	compare_localized_string_resource_key	unknown		true	
+10037180	resolve_localized_shell_string_cached	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10037260	FUN_10037260	unknown		false	
+10037280	FUN_10037280	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100372b0	FUN_100372b0	unknown		false	
+100372d0	FUN_100372d0	unknown		false	
+10037350	FUN_10037350	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	false	
+10037380	FUN_10037380	unknown		false	
+100373e0	render_rich_text_object	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	i76shell localized glyph rename old_name: FUN_100373e0 forced_name: render_rich_text_object basis: High-level rich-text object render path.
+10037490	rewind_and_render_rich_text_to_position	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	i76shell localized glyph rename old_name: FUN_10037490 forced_name: rewind_and_render_rich_text_to_position basis: Rich-text object positioning/render helper.
+100374c0	process_rich_text_glyph_stream	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell locale/rich-text rename old_name: FUN_100374c0 forced_name: process_rich_text_glyph_stream basis: Walks byte/DBCS-like text stream, handles backslash control sequences, and emits glyph codes.
+100377c0	step_rich_text_object	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell localized glyph rename old_name: FUN_100377c0 forced_name: step_rich_text_object basis: Steps rich-text object state/iterator.
+100377f0	FUN_100377f0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+100378b0	FUN_100378b0	unknown		false	
+100378f0	FUN_100378f0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10037940	FUN_10037940	unknown		false	
+10037a50	construct_shell_surface_context	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+10037ca0	FUN_10037ca0	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10037d00	FUN_10037d00	unknown		false	
+10037d60	mark_shell_surface_dirty_rect	unknown		true	
+10037e60	apply_shell_surface_palette_to_backend	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10037e80	flush_or_repaint_shell_surface_context	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell first-pass rename old_name: FUN_10037e80 suggested_name: shell_ui_object_method_high_fan_in basis: High-fan-in shell/UI object method; name intentionally cautious.
+100382e0	shell_surface_repaint_or_flip_with_palette_update	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10038530	copy_shell_surface_palette_out	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10038550	set_shell_surface_palette_from_rgb6	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10038580	FUN_10038580	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	false	
+10038630	load_shell_rle_bitmap_surface_from_buffer	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	
+100387d0	load_or_apply_shell_surface_record_by_id_candidate	memory_cache_runtime	score=35; heap/alloc/cache evidence	true	
+10038a70	FUN_10038a70	unknown		false	
+10038b70	fill_shell_surface_rect_from_buffer	unknown		true	
+10038fd0	clear_text_rect	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	i76shell text/glyph render rename old_name: FUN_10038fd0 suggested_name: destroy_or_clear_text_label basis: Called before recreating cursor/debug text; likely clears old text handle/object.  i76shell text/glyph rename old_name: destroy_or_clear_text_label suggested_name: clear_text_rect basis: Clears/fills the previous text rectangle using the clipped rect primitive.  i76shell forced text/glyph rename old_name: destroy_or_clear_text_label forced_name: clear_text_rect basis: Clears/fills a text rectangle using the clipped rect primitive.
+10039230	load_shell_rle_bitmap_surface_from_database_record	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+10039390	draw_mw2_image_subresource_to_shell_surface	unknown		true	
+100395b0	measure_and_draw_string_from_glyph_sheet	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	i76shell text/glyph render rename old_name: FUN_100395b0 suggested_name: draw_or_create_text_label_from_glyph_sheet basis: Called with glyph sheet record buffer and string; likely creates/draws text label.  i76shell text/glyph rename old_name: draw_or_create_text_label_from_glyph_sheet suggested_name: measure_and_draw_string_from_glyph_sheet basis: Measures string width by summing glyph widths, then draws text to destination surfaces/regions.  i76shell forced text/glyph rename old_name: draw_or_create_text_label_from_glyph_sheet forced_name: measure_and_draw_string_from_glyph_sheet basis: Measures string width and draws text using glyph-sheet renderer.  i76shell locale/rich-text rename old_name: measure_and_draw_string_from_glyph_sheet forced_name: measure_and_draw_string_from_glyph_sheet basis: Uses DAT_1004efa0 stride, measures width, and draws string.
+10039750	draw_single_glyph_to_shell_surfaces	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell forced text/glyph rename old_name: FUN_10039750 forced_name: draw_single_glyph_to_shell_surfaces basis: Draws one glyph to shell front/back surfaces and updates dirty region.  i76shell locale/rich-text rename old_name: draw_single_glyph_to_shell_surfaces forced_name: draw_single_glyph_to_shell_surfaces basis: Draws one glyph to shell surfaces and updates dirty bounds.
+100398b0	prepare_or_clear_text_draw_context	render_display_runtime	score=65; DirectDraw/D3D/Glide/render/raster evidence	true	i76shell localized glyph rename old_name: FUN_100398b0 forced_name: prepare_or_clear_text_draw_context basis: Prepares or clears shell text draw context before text rendering.
+100398e0	FUN_100398e0	unknown		false	
+10039960	shell_shared_ui_helper	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell first-pass rename old_name: FUN_10039960 suggested_name: shell_shared_ui_helper basis: Helper shared by ShellMain/ShellWindowProc neighborhoods.
+100399f0	unlock_shell_surface_after_draw	unknown		true	
+10039a10	lock_shell_surface_for_draw	unknown		true	
+10039a60	FUN_10039a60	unknown		false	
+10039a80	FUN_10039a80	unknown		false	
+10039bc0	FUN_10039bc0	unknown		false	
+10039be9	FUN_10039be9	unknown		false	
+10039c08	FUN_10039c08	unknown		false	
+10039ce3	FUN_10039ce3	unknown		false	
+10039db9	FUN_10039db9	unknown		false	
+1003a7bb	FUN_1003a7bb	unknown		false	
+1003a8f4	blit_mw2_image_subresource_rle_clipped	unknown		true	
+1003ad68	blit_mw2_image_subresource_rle_unclipped	unknown		true	
+1003ae6b	set_shell_image_palette_remap_table	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+1003ae8a	blit_mw2_image_subresource_rle_transparent_remap	unknown		true	
+1003b2f0	blit_mw2_image_subresource_rle_transparent_remap_unclipped	unknown		true	
+1003b3e6	blit_mw2_image_subresource_transformed_or_masked	unknown		true	
+1003bf92	FUN_1003bf92	unknown		false	
+1003c10a	FUN_1003c10a	unknown		false	
+1003c38d	remap_mw2_image_record_rle_stream_in_place	unknown		true	
+1003c41f	FUN_1003c41f	unknown		false	
+1003c5a8	FUN_1003c5a8	unknown		false	
+1003c785	FUN_1003c785	unknown		false	
+1003c888	blit_or_fill_rect_clipped	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell text/glyph rename old_name: FUN_1003c888 suggested_name: blit_or_fill_rect_clipped basis: Clipped rectangle primitive; fills a rect or copies pixels depending on high bits of parameter flags.  i76shell forced text/glyph rename old_name: blit_or_fill_rect_clipped forced_name: blit_or_fill_rect_clipped basis: Clipped rectangle primitive; fills or copies depending on flags.
+1003cc24	FUN_1003cc24	unknown		false	
+1003ce21	FUN_1003ce21	unknown		false	
+1003d162	FUN_1003d162	unknown		false	
+1003e274	FUN_1003e274	unknown		false	
+1003e32c	FUN_1003e32c	unknown		false	
+1003e352	transform_image_point_fixed	unknown		true	
+1003e419	get_shell_glyph_sheet_height	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell glyph/font rename old_name: FUN_1003e419 suggested_name: parse_shell_glyph_bitmap_table_header basis: Candidate helper referenced by glyph-sheet object construction/use path; name cautious.  i76shell text/glyph rename old_name: parse_shell_glyph_bitmap_table_header suggested_name: get_shell_glyph_sheet_height basis: Returns *(glyph_sheet + 8), the glyph sheet height.  i76shell forced text/glyph rename old_name: parse_shell_glyph_bitmap_table_header forced_name: get_shell_glyph_sheet_height basis: Returns *(glyph_sheet + 8), confirmed glyph height.
+1003e42c	get_glyph_width	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell text/glyph rename old_name: FUN_1003e42c suggested_name: get_glyph_width basis: Reads glyph offset table and returns the first dword of a glyph payload, confirmed as glyph width.  i76shell forced text/glyph rename old_name: get_glyph_width forced_name: get_glyph_width basis: Reads glyph offset table and returns first dword of glyph payload.
+1003e44c	blit_glyph_to_surface	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell text/glyph rename old_name: FUN_1003e44c suggested_name: blit_glyph_to_surface basis: Blits one glyph from a glyph sheet to a destination surface/clip region, with optional translation table.  i76shell forced text/glyph rename old_name: blit_glyph_to_surface forced_name: blit_glyph_to_surface basis: Blits one glyph to a destination surface/clip region.
+1003e5d7	draw_ascii_string_from_glyph_sheet	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell text/glyph rename old_name: FUN_1003e5d7 suggested_name: draw_string_from_glyph_sheet basis: Loops over byte string, blits each glyph, and advances x by glyph width.  i76shell forced text/glyph rename old_name: draw_string_from_glyph_sheet forced_name: draw_ascii_string_from_glyph_sheet basis: Byte-indexed string draw loop using glyph-sheet character indices.  i76shell locale/rich-text rename old_name: draw_ascii_string_from_glyph_sheet forced_name: draw_ascii_string_from_glyph_sheet basis: Simple byte-indexed draw loop.
+1003e60e	write_decoded_image_scanline_to_shell_surface	unknown		true	
+1003e71d	find_iff_chunk_by_fourcc	unknown		true	
+1003e75f	decode_iff_ilbm_to_shell_surface	unknown		true	
+1003e926	FUN_1003e926	unknown		false	
+1003e957	FUN_1003e957	unknown		false	
+1003e984	decode_simple_rle_bitmap_to_shell_surface	unknown		true	
+1003ea06	extract_shell_bitmap_palette_from_buffer	texture_material_runtime	score=60; texture/material/MAP/M16/VQM/CBK evidence	true	
+1003ea31	get_shell_bitmap_dimensions_packed	unknown		true	
+1003ea58	gif_lzw_reset_dictionary	unknown		true	
+1003eaa0	gif_read_subblock_byte	unknown		true	
+1003eab9	gif_lzw_read_bits	unknown		true	
+1003eaff	gif_lzw_add_dictionary_entry	unknown		true	
+1003eb45	gif_lzw_emit_scanline_byte	unknown		true	
+1003ebc2	decode_gif_lzw_image_data_to_shell_surface	unknown		true	
+1003eddb	FUN_1003eddb	unknown		false	
+1003ee3c	FUN_1003ee3c	unknown		false	
+1003ee74	FUN_1003ee74	unknown		false	
+1003ee96	FUN_1003ee96	unknown		false	
+1003eeb9	get_mw2_image_subresource_dimensions	unknown		true	
+1003eeed	get_mw2_image_subresource_origin	unknown		true	
+1003ef17	FUN_1003ef17	unknown		false	
+1003ef62	FUN_1003ef62	unknown		false	
+1003efaa	FUN_1003efaa	unknown		false	
+1003eff4	FUN_1003eff4	unknown		false	
+1003f007	FUN_1003f007	unknown		false	
+1003f069	FUN_1003f069	unknown		false	
+1003f3be	FUN_1003f3be	unknown		false	
+1003f542	FUN_1003f542	unknown		false	
+1003f5d0	get_localized_glyph_width_and_set_stride	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell locale/rich-text rename old_name: FUN_1003f5d0 forced_name: set_single_byte_text_mode_candidate basis: Writes DAT_1004efa0; likely character stride/text mode initialization path.  i76shell localized glyph rename old_name: set_single_byte_text_mode_candidate forced_name: get_localized_glyph_width_and_set_stride basis: Maps a byte/DBCS character through DAT_1004ef9c, sets DAT_1004efa0 to 1 or 2, and returns localized glyph width.
+1003f620	blit_localized_glyph_to_surface	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell locale/rich-text rename old_name: FUN_1003f620 forced_name: set_character_stride_or_locale_mode basis: Writes DAT_1004efa0; likely switches between single-byte and two-byte text modes.  i76shell localized glyph rename old_name: set_character_stride_or_locale_mode forced_name: blit_localized_glyph_to_surface basis: Maps localized/DBCS glyph code, reads record-65 1bpp bit-packed glyph payload, and blits to destination surface.
+1003f7e5	draw_localized_string_to_surface	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell locale/rich-text rename old_name: FUN_1003f7e5 forced_name: get_or_update_character_stride basis: Reads DAT_1004efa0 and calls set_character_stride_or_locale_mode.  i76shell localized glyph rename old_name: get_or_update_character_stride forced_name: draw_localized_string_to_surface basis: Localized string draw loop; advances source pointer by DAT_1004efa0 after each glyph.
+1003f830	FUN_1003f830	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	false	
+1003f980	FUN_1003f980	platform_win32_runtime	score=45; WinMain/WindowProc/registry/command-line evidence	false	
+1003fb40	load_network_score_records	network_multiplayer_runtime	score=60; DirectPlay/network/session evidence	true	
+1003fcf0	FUN_1003fcf0	mission_level_runtime	score=70; mission/BWD2/WDEF/MSN evidence	false	
+1003ff10	operator_delete	unknown		true	
+1003ff16	operator_new	unknown		true	
+1003ff30	ftol	unknown		true	
+1003ff36	_CIpow	unknown		true	
+1003ff40	FUN_1003ff40	unknown		false	
+1003ff70	FUN_1003ff70	memory_cache_runtime	score=35; heap/alloc/cache evidence	false	
+10040040	dll_crt_entry	shell_ui_contract	score=60; shell/menu/dialog/callback evidence	true	i76shell first-pass rename old_name: entry suggested_name: dll_crt_entry basis: DLL/CRT entry point.
+100400f0	initterm	unknown		true	
+10040100	FUN_10040100	unknown		false	
+10040130	Unwind@10040130	unknown		true	
+1004013b	Unwind@1004013b	unknown		true	
+10040146	Unwind@10040146	unknown		true	
+10040151	Unwind@10040151	unknown		true	
+10040170	Unwind@10040170	unknown		true	
+10040190	Unwind@10040190	unknown		true	
+100401a5	Unwind@100401a5	unknown		true	
+100401ba	Unwind@100401ba	unknown		true	
+100401d0	Unwind@100401d0	unknown		true	
+100401e5	Unwind@100401e5	unknown		true	
+10040200	Unwind@10040200	unknown		true	
+1004020b	Unwind@1004020b	unknown		true	
+10040216	Unwind@10040216	unknown		true	
+10040221	Unwind@10040221	unknown		true	
+1004022c	Unwind@1004022c	unknown		true	
+10040237	Unwind@10040237	unknown		true	
+10040250	Unwind@10040250	unknown		true	
+1004025b	Unwind@1004025b	unknown		true	
+10040266	Unwind@10040266	unknown		true	
+10040271	Unwind@10040271	unknown		true	
+1004027c	Unwind@1004027c	unknown		true	
+10040287	Unwind@10040287	unknown		true	
+10040292	Unwind@10040292	unknown		true	
+1004029d	Unwind@1004029d	unknown		true	
+100402a8	Unwind@100402a8	unknown		true	
+100402c0	Unwind@100402c0	unknown		true	
+100402e0	Unwind@100402e0	unknown		true	
+10040300	Unwind@10040300	unknown		true	
+10040320	Unwind@10040320	unknown		true	
+1004032b	Unwind@1004032b	unknown		true	

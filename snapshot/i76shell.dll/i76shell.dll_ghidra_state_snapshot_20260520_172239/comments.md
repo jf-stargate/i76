@@ -1,0 +1,545 @@
+# Comments
+
+| Address | Function | Type | Comment |
+|---|---|---|---|
+| `10000000` | `` | eol | Magic number |
+| `100001b8` | `` | eol | .text |
+| `100001e0` | `` | eol | .rdata |
+| `10000208` | `` | eol | .data |
+| `10000230` | `` | eol | .reloc |
+| `10002750` | `dispatch_selected_mission_or_vehicle_config_transition` | plate | i76shell first-pass rename<br>old_name: FUN_10002750<br>suggested_name: shell_menu_transition_or_dispatch<br>basis: Shell UI/menu transition candidate referenced from ShellWindowProc/ShellMain neighborhood. |
+| `10003ac0` | `shell_ui_object_event_handler` | plate | i76shell first-pass rename<br>old_name: FUN_10003ac0<br>suggested_name: shell_ui_object_event_handler<br>basis: Shell UI object/event candidate from ShellWindowProc neighborhood. |
+| `10007930` | `init_shell_ui_state` | plate | i76shell first-pass rename<br>old_name: FUN_10007930<br>suggested_name: init_shell_ui_state<br>basis: Shell UI state/init candidate from ShellMain neighborhood. |
+| `10007fd0` | `open_mpack_database` | plate | i76shell first-pass rename<br>old_name: FUN_10007fd0<br>suggested_name: open_mpack_database<br>basis: References diagnostic string: Could not open mpack DB: %s. |
+| `10008240` | `mpack_database_get_item` | plate | i76shell first-pass rename<br>old_name: FUN_10008240<br>suggested_name: mpack_database_get_item<br>basis: TMPackDataBaseObj::GetDBItem candidate from mpack/database diagnostic strings. |
+| `1000bad0` | `handle_modal_dialog_confirm_or_default` | plate | i76shell first-pass rename<br>old_name: FUN_1000bad0<br>suggested_name: shell_screen_state_handler_a<br>basis: Shell screen/state candidate; name intentionally cautious. |
+| `1000dae0` | `shell_screen_state_handler_b` | plate | i76shell first-pass rename<br>old_name: FUN_1000dae0<br>suggested_name: shell_screen_state_handler_b<br>basis: Shell screen/state candidate; name intentionally cautious. |
+| `10015530` | `construct_shell_glyph_sheet` | plate | i76shell glyph/font rename<br>old_name: FUN_10015530<br>suggested_name: construct_shell_glyph_bitmap_table<br>basis: ShellMain feeds DATABASE.MW2 records 65-71 into this constructor/parser; records are confirmed glyph sheets.<br><br>i76shell text/glyph rename<br>old_name: construct_shell_glyph_bitmap_table<br>suggested_name: construct_shell_glyph_sheet<br>basis: Constructs a thin wrapper around raw DATABASE.MW2 glyph-sheet records 65-71.<br><br>i76shell forced text/glyph rename<br>old_name: construct_shell_glyph_bitmap_table<br>forced_name: construct_shell_glyph_sheet<br>basis: Constructs shell glyph-sheet wrapper from DATABASE.MW2 records 65-71. |
+| `10015580` | `measure_string_width_from_glyph_sheet` | plate | i76shell forced text/glyph rename<br>old_name: FUN_10015580<br>forced_name: measure_string_width_from_glyph_sheet<br>basis: Walks string, gets each glyph width, and accumulates text width.<br><br>i76shell locale/rich-text rename<br>old_name: measure_string_width_from_glyph_sheet<br>forced_name: measure_string_width_from_glyph_sheet<br>basis: Uses DAT_1004efa0 stride and sums glyph widths. |
+| `100155d0` | `get_wrapped_glyph_width` | plate | i76shell forced text/glyph rename<br>old_name: FUN_100155d0<br>forced_name: get_wrapped_glyph_width<br>basis: Wrapper method around get_glyph_width for glyph-sheet object. |
+| `100157a0` | `draw_string_from_glyph_sheet_object` | plate | i76shell localized glyph rename<br>old_name: FUN_100157a0<br>forced_name: draw_string_from_glyph_sheet_object<br>basis: Object wrapper for drawing a string from a glyph sheet. |
+| `100157d0` | `draw_glyph_from_glyph_sheet_object` | plate | i76shell locale/rich-text rename<br>old_name: FUN_100157d0<br>forced_name: draw_glyph_from_glyph_sheet_object<br>basis: Wrapper that draws one glyph from shell glyph-sheet object through draw_single_glyph_to_shell_surfaces. |
+| `10015800` | `draw_edit_buffer_glyph_or_control` | plate | i76shell localized glyph rename<br>old_name: FUN_10015800<br>forced_name: draw_edit_buffer_glyph_or_control<br>basis: Draws or handles edit-buffer glyph/control input; name still slightly cautious. |
+| `1001da10` | `ShellWindowProc` | pre | 0x1da10  2  ShellWindowProc |
+| `1001e260` | `ShellMain` | pre | 0x1e260  1  ShellMain |
+| `1001fbf0` | `update_debug_mouse_coordinate_overlay` | plate | i76shell text/glyph render rename<br>old_name: FUN_1001fbf0<br>suggested_name: update_debug_mouse_coordinate_overlay<br>basis: Builds mouse coordinate string with sprintf and updates text overlay.<br><br>i76shell text/glyph rename<br>old_name: update_debug_mouse_coordinate_overlay<br>suggested_name: update_debug_mouse_coordinate_overlay<br>basis: Builds mouse coordinate string with sprintf and updates a glyph-rendered text overlay.<br><br>i76shell forced text/glyph rename<br>old_name: update_debug_mouse_coordinate_overlay<br>forced_name: update_debug_mouse_coordinate_overlay<br>basis: Builds mouse coordinate text and updates a glyph-rendered overlay. |
+| `100373e0` | `render_rich_text_object` | plate | i76shell localized glyph rename<br>old_name: FUN_100373e0<br>forced_name: render_rich_text_object<br>basis: High-level rich-text object render path. |
+| `10037490` | `rewind_and_render_rich_text_to_position` | plate | i76shell localized glyph rename<br>old_name: FUN_10037490<br>forced_name: rewind_and_render_rich_text_to_position<br>basis: Rich-text object positioning/render helper. |
+| `100374c0` | `process_rich_text_glyph_stream` | plate | i76shell locale/rich-text rename<br>old_name: FUN_100374c0<br>forced_name: process_rich_text_glyph_stream<br>basis: Walks byte/DBCS-like text stream, handles backslash control sequences, and emits glyph codes. |
+| `100377c0` | `step_rich_text_object` | plate | i76shell localized glyph rename<br>old_name: FUN_100377c0<br>forced_name: step_rich_text_object<br>basis: Steps rich-text object state/iterator. |
+| `10037e80` | `flush_or_repaint_shell_surface_context` | plate | i76shell first-pass rename<br>old_name: FUN_10037e80<br>suggested_name: shell_ui_object_method_high_fan_in<br>basis: High-fan-in shell/UI object method; name intentionally cautious. |
+| `10038fd0` | `clear_text_rect` | plate | i76shell text/glyph render rename<br>old_name: FUN_10038fd0<br>suggested_name: destroy_or_clear_text_label<br>basis: Called before recreating cursor/debug text; likely clears old text handle/object.<br><br>i76shell text/glyph rename<br>old_name: destroy_or_clear_text_label<br>suggested_name: clear_text_rect<br>basis: Clears/fills the previous text rectangle using the clipped rect primitive.<br><br>i76shell forced text/glyph rename<br>old_name: destroy_or_clear_text_label<br>forced_name: clear_text_rect<br>basis: Clears/fills a text rectangle using the clipped rect primitive. |
+| `100395b0` | `measure_and_draw_string_from_glyph_sheet` | plate | i76shell text/glyph render rename<br>old_name: FUN_100395b0<br>suggested_name: draw_or_create_text_label_from_glyph_sheet<br>basis: Called with glyph sheet record buffer and string; likely creates/draws text label.<br><br>i76shell text/glyph rename<br>old_name: draw_or_create_text_label_from_glyph_sheet<br>suggested_name: measure_and_draw_string_from_glyph_sheet<br>basis: Measures string width by summing glyph widths, then draws text to destination surfaces/regions.<br><br>i76shell forced text/glyph rename<br>old_name: draw_or_create_text_label_from_glyph_sheet<br>forced_name: measure_and_draw_string_from_glyph_sheet<br>basis: Measures string width and draws text using glyph-sheet renderer.<br><br>i76shell locale/rich-text rename<br>old_name: measure_and_draw_string_from_glyph_sheet<br>forced_name: measure_and_draw_string_from_glyph_sheet<br>basis: Uses DAT_1004efa0 stride, measures width, and draws string. |
+| `10039750` | `draw_single_glyph_to_shell_surfaces` | plate | i76shell forced text/glyph rename<br>old_name: FUN_10039750<br>forced_name: draw_single_glyph_to_shell_surfaces<br>basis: Draws one glyph to shell front/back surfaces and updates dirty region.<br><br>i76shell locale/rich-text rename<br>old_name: draw_single_glyph_to_shell_surfaces<br>forced_name: draw_single_glyph_to_shell_surfaces<br>basis: Draws one glyph to shell surfaces and updates dirty bounds. |
+| `100398b0` | `prepare_or_clear_text_draw_context` | plate | i76shell localized glyph rename<br>old_name: FUN_100398b0<br>forced_name: prepare_or_clear_text_draw_context<br>basis: Prepares or clears shell text draw context before text rendering. |
+| `10039960` | `shell_shared_ui_helper` | plate | i76shell first-pass rename<br>old_name: FUN_10039960<br>suggested_name: shell_shared_ui_helper<br>basis: Helper shared by ShellMain/ShellWindowProc neighborhoods. |
+| `1003c888` | `blit_or_fill_rect_clipped` | plate | i76shell text/glyph rename<br>old_name: FUN_1003c888<br>suggested_name: blit_or_fill_rect_clipped<br>basis: Clipped rectangle primitive; fills a rect or copies pixels depending on high bits of parameter flags.<br><br>i76shell forced text/glyph rename<br>old_name: blit_or_fill_rect_clipped<br>forced_name: blit_or_fill_rect_clipped<br>basis: Clipped rectangle primitive; fills or copies depending on flags. |
+| `1003e419` | `get_shell_glyph_sheet_height` | plate | i76shell glyph/font rename<br>old_name: FUN_1003e419<br>suggested_name: parse_shell_glyph_bitmap_table_header<br>basis: Candidate helper referenced by glyph-sheet object construction/use path; name cautious.<br><br>i76shell text/glyph rename<br>old_name: parse_shell_glyph_bitmap_table_header<br>suggested_name: get_shell_glyph_sheet_height<br>basis: Returns *(glyph_sheet + 8), the glyph sheet height.<br><br>i76shell forced text/glyph rename<br>old_name: parse_shell_glyph_bitmap_table_header<br>forced_name: get_shell_glyph_sheet_height<br>basis: Returns *(glyph_sheet + 8), confirmed glyph height. |
+| `1003e42c` | `get_glyph_width` | plate | i76shell text/glyph rename<br>old_name: FUN_1003e42c<br>suggested_name: get_glyph_width<br>basis: Reads glyph offset table and returns the first dword of a glyph payload, confirmed as glyph width.<br><br>i76shell forced text/glyph rename<br>old_name: get_glyph_width<br>forced_name: get_glyph_width<br>basis: Reads glyph offset table and returns first dword of glyph payload. |
+| `1003e44c` | `blit_glyph_to_surface` | plate | i76shell text/glyph rename<br>old_name: FUN_1003e44c<br>suggested_name: blit_glyph_to_surface<br>basis: Blits one glyph from a glyph sheet to a destination surface/clip region, with optional translation table.<br><br>i76shell forced text/glyph rename<br>old_name: blit_glyph_to_surface<br>forced_name: blit_glyph_to_surface<br>basis: Blits one glyph to a destination surface/clip region. |
+| `1003e5d7` | `draw_ascii_string_from_glyph_sheet` | plate | i76shell text/glyph rename<br>old_name: FUN_1003e5d7<br>suggested_name: draw_string_from_glyph_sheet<br>basis: Loops over byte string, blits each glyph, and advances x by glyph width.<br><br>i76shell forced text/glyph rename<br>old_name: draw_string_from_glyph_sheet<br>forced_name: draw_ascii_string_from_glyph_sheet<br>basis: Byte-indexed string draw loop using glyph-sheet character indices.<br><br>i76shell locale/rich-text rename<br>old_name: draw_ascii_string_from_glyph_sheet<br>forced_name: draw_ascii_string_from_glyph_sheet<br>basis: Simple byte-indexed draw loop. |
+| `1003f5d0` | `get_localized_glyph_width_and_set_stride` | plate | i76shell locale/rich-text rename<br>old_name: FUN_1003f5d0<br>forced_name: set_single_byte_text_mode_candidate<br>basis: Writes DAT_1004efa0; likely character stride/text mode initialization path.<br><br>i76shell localized glyph rename<br>old_name: set_single_byte_text_mode_candidate<br>forced_name: get_localized_glyph_width_and_set_stride<br>basis: Maps a byte/DBCS character through DAT_1004ef9c, sets DAT_1004efa0 to 1 or 2, and returns localized glyph width. |
+| `1003f620` | `blit_localized_glyph_to_surface` | plate | i76shell locale/rich-text rename<br>old_name: FUN_1003f620<br>forced_name: set_character_stride_or_locale_mode<br>basis: Writes DAT_1004efa0; likely switches between single-byte and two-byte text modes.<br><br>i76shell localized glyph rename<br>old_name: set_character_stride_or_locale_mode<br>forced_name: blit_localized_glyph_to_surface<br>basis: Maps localized/DBCS glyph code, reads record-65 1bpp bit-packed glyph payload, and blits to destination surface. |
+| `1003f7e5` | `draw_localized_string_to_surface` | plate | i76shell locale/rich-text rename<br>old_name: FUN_1003f7e5<br>forced_name: get_or_update_character_stride<br>basis: Reads DAT_1004efa0 and calls set_character_stride_or_locale_mode.<br><br>i76shell localized glyph rename<br>old_name: get_or_update_character_stride<br>forced_name: draw_localized_string_to_surface<br>basis: Localized string draw loop; advances source pointer by DAT_1004efa0 after each glyph. |
+| `10040040` | `dll_crt_entry` | plate | i76shell first-pass rename<br>old_name: entry<br>suggested_name: dll_crt_entry<br>basis: DLL/CRT entry point. |
+| `10041000` | `` | pre | 302  RegOpenKeyExA  <<not bound>> |
+| `10041004` | `` | pre | 310  RegQueryValueExA  <<not bound>> |
+| `10041008` | `` | pre | 279  RegCloseKey  <<not bound>> |
+| `10041010` | `` | pre | 31  CreateCompatibleDC  <<not bound>> |
+| `10041014` | `` | pre | 382  StretchBlt  <<not bound>> |
+| `10041018` | `` | pre | 10  BitBlt  <<not bound>> |
+| `1004101c` | `` | pre | 342  SetDIBColorTable  <<not bound>> |
+| `10041020` | `` | pre | 36  CreateDIBSection  <<not bound>> |
+| `10041024` | `` | pre | 67  DeleteDC  <<not bound>> |
+| `10041028` | `` | pre | 330  SelectObject  <<not bound>> |
+| `1004102c` | `` | pre | 358  SetPaletteEntries  <<not bound>> |
+| `10041030` | `` | pre | 331  SelectPalette  <<not bound>> |
+| `10041034` | `` | pre | 53  CreatePalette  <<not bound>> |
+| `10041038` | `` | pre | 252  GetSystemPaletteEntries  <<not bound>> |
+| `1004103c` | `` | pre | 199  GetDeviceCaps  <<not bound>> |
+| `10041040` | `` | pre | 70  DeleteObject  <<not bound>> |
+| `10041044` | `` | pre | 311  RealizePalette  <<not bound>> |
+| `10041048` | `` | pre | 367  SetSystemPaletteUse  <<not bound>> |
+| `10041050` | `` | pre | 81  DisableThreadLibraryCalls  <<not bound>> |
+| `10041054` | `` | pre | 37  CopyFileA  <<not bound>> |
+| `10041058` | `` | pre | 325  GetTickCount  <<not bound>> |
+| `1004105c` | `` | pre | 244  GetLastError  <<not bound>> |
+| `10041060` | `` | pre | 364  HeapDestroy  <<not bound>> |
+| `10041064` | `` | pre | 360  HeapAlloc  <<not bound>> |
+| `10041068` | `` | pre | 366  HeapFree  <<not bound>> |
+| `1004106c` | `` | pre | 369  HeapReAlloc  <<not bound>> |
+| `10041070` | `` | pre | 442  OutputDebugStringA  <<not bound>> |
+| `10041074` | `` | pre | 575  Sleep  <<not bound>> |
+| `10041078` | `` | pre | 453  QueryPerformanceCounter  <<not bound>> |
+| `1004107c` | `` | pre | 61  CreateProcessA  <<not bound>> |
+| `10041080` | `` | pre | 337  GetWindowsDirectoryA  <<not bound>> |
+| `10041084` | `` | pre | 470  ReadFile  <<not bound>> |
+| `10041088` | `` | pre | 223  GetDriveTypeA  <<not bound>> |
+| `1004108c` | `` | pre | 362  HeapCreate  <<not bound>> |
+| `10041090` | `` | pre | 404  LoadModule  <<not bound>> |
+| `10041094` | `` | pre | 24  CloseHandle  <<not bound>> |
+| `10041098` | `` | pre | 67  CreateThread  <<not bound>> |
+| `1004109c` | `` | pre | 248  GetLogicalDriveStringsA  <<not bound>> |
+| `100410a0` | `` | pre | 618  WaitForSingleObject  <<not bound>> |
+| `100410a4` | `` | pre | 49  CreateFileA  <<not bound>> |
+| `100410ac` | `` | pre | 573  calloc  <<not bound>> |
+| `100410b0` | `` | pre | 654  malloc  <<not bound>> |
+| `100410b4` | `` | pre | 689  srand  <<not bound>> |
+| `100410b8` | `` | pre | 706  strstr  <<not bound>> |
+| `100410bc` | `` | pre | 717  time  <<not bound>> |
+| `100410c0` | `` | pre | 676  realloc  <<not bound>> |
+| `100410c4` | `` | pre | 724  ungetc  <<not bound>> |
+| `100410c8` | `` | pre | 220  _findclose  <<not bound>> |
+| `100410cc` | `` | pre | 223  _findnext  <<not bound>> |
+| `100410d0` | `` | pre | 221  _findfirst  <<not bound>> |
+| `100410d4` | `` | pre | 474  _unlink  <<not bound>> |
+| `100410d8` | `` | pre | 580  difftime  <<not bound>> |
+| `100410dc` | `` | pre | 448  _strlwr  <<not bound>> |
+| `100410e0` | `` | pre | 576  clock  <<not bound>> |
+| `100410e4` | `` | pre | 613  getc  <<not bound>> |
+| `100410e8` | `` | pre | 446  _stricmp  <<not bound>> |
+| `100410ec` | `` | pre | 450  _strnicmp  <<not bound>> |
+| `100410f0` | `` | pre | 305  _itoa  <<not bound>> |
+| `100410f4` | `` | pre | 268  _initterm  <<not bound>> |
+| `100410f8` | `` | pre | 155  _adjust_fdiv  <<not bound>> |
+| `100410fc` | `` | pre | 59  _CIpow  <<not bound>> |
+| `10041100` | `` | pre | 630  isspace  <<not bound>> |
+| `10041104` | `` | pre | 570  atoi  <<not bound>> |
+| `10041108` | `` | pre | 591  fgets  <<not bound>> |
+| `1004110c` | `` | pre | 478  _vsnprintf  <<not bound>> |
+| `10041110` | `` | pre | 690  sscanf  <<not bound>> |
+| `10041114` | `` | pre | 383  _mkdir  <<not bound>> |
+| `10041118` | `` | pre | 611  fwrite  <<not bound>> |
+| `1004111c` | `` | pre | 661  memmove  <<not bound>> |
+| `10041120` | `` | pre | 589  fgetc  <<not bound>> |
+| `10041124` | `` | pre | 585  fclose  <<not bound>> |
+| `10041128` | `` | pre | 596  fopen  <<not bound>> |
+| `1004112c` | `` | pre | 683  setvbuf  <<not bound>> |
+| `10041130` | `` | pre | 602  fread  <<not bound>> |
+| `10041134` | `` | pre | 607  fseek  <<not bound>> |
+| `10041138` | `` | pre | 609  ftell  <<not bound>> |
+| `1004113c` | `` | pre | 702  strncpy  <<not bound>> |
+| `10041140` | `` | pre | 238  _ftol  <<not bound>> |
+| `10041144` | `` | pre | 73  __CxxFrameHandler  <<not bound>> |
+| `10041148` | `` | pre | 603  free  <<not bound>> |
+| `1004114c` | `` | pre | 15  ??2@YAPAXI@Z  <<not bound>> |
+| `10041150` | `` | pre | 16  ??3@YAXPAX@Z  <<not bound>> |
+| `10041154` | `` | pre | 572  bsearch  <<not bound>> |
+| `10041158` | `` | pre | 673  qsort  <<not bound>> |
+| `1004115c` | `` | pre | 701  strncmp  <<not bound>> |
+| `10041160` | `` | pre | 438  _splitpath  <<not bound>> |
+| `10041164` | `` | pre | 687  sprintf  <<not bound>> |
+| `10041168` | `` | pre | 675  rand  <<not bound>> |
+| `1004116c` | `` | pre | 158  _assert  <<not bound>> |
+| `10041170` | `` | pre | 721  toupper  <<not bound>> |
+| `10041174` | `` | pre | 272  _iob  <<not bound>> |
+| `10041178` | `` | pre | 597  fprintf  <<not bound>> |
+| `1004117c` | `` | pre | 588  fflush  <<not bound>> |
+| `10041180` | `` | pre | 599  fputs  <<not bound>> |
+| `10041184` | `` | pre | 582  exit  <<not bound>> |
+| `1004118c` | `` | pre | 542  SetWindowPos  <<not bound>> |
+| `10041190` | `` | pre | 539  SetWindowLongA  <<not bound>> |
+| `10041194` | `` | pre | 370  LoadCursorA  <<not bound>> |
+| `10041198` | `` | pre | 498  SetDlgItemTextA  <<not bound>> |
+| `1004119c` | `` | pre | 142  DialogBoxParamA  <<not bound>> |
+| `100411a0` | `` | pre | 215  GetAsyncKeyState  <<not bound>> |
+| `100411a4` | `` | pre | 405  MessageBoxA  <<not bound>> |
+| `100411a8` | `` | pre | 612  wsprintfA  <<not bound>> |
+| `100411ac` | `` | pre | 492  SetCursor  <<not bound>> |
+| `100411b0` | `` | pre | 433  PostMessageA  <<not bound>> |
+| `100411b4` | `` | pre | 180  EndDialog  <<not bound>> |
+| `100411b8` | `` | pre | 614  wvsprintfA  <<not bound>> |
+| `100411bc` | `` | pre | 570  ToAscii  <<not bound>> |
+| `100411c0` | `` | pre | 501  SetFocus  <<not bound>> |
+| `100411c4` | `` | pre | 472  SendDlgItemMessageA  <<not bound>> |
+| `100411c8` | `` | pre | 243  GetDlgItem  <<not bound>> |
+| `100411cc` | `` | pre | 245  GetDlgItemTextA  <<not bound>> |
+| `100411d0` | `` | pre | 314  GetWindowLongA  <<not bound>> |
+| `100411d4` | `` | pre | 85  CreateWindowExA  <<not bound>> |
+| `100411d8` | `` | pre | 238  GetDC  <<not bound>> |
+| `100411dc` | `` | pre | 461  ReleaseDC  <<not bound>> |
+| `100411e0` | `` | pre | 467  ScreenToClient  <<not bound>> |
+| `100411e4` | `` | pre | 54  ClientToScreen  <<not bound>> |
+| `100411e8` | `` | pre | 494  SetCursorPos  <<not bound>> |
+| `100411ec` | `` | pre | 605  WaitMessage  <<not bound>> |
+| `100411f0` | `` | pre | 228  GetClientRect  <<not bound>> |
+| `100411f4` | `` | pre | 371  LoadCursorFromFileA  <<not bound>> |
+| `100411f8` | `` | pre | 55  ClipCursor  <<not bound>> |
+| `100411fc` | `` | pre | 474  SendMessageA  <<not bound>> |
+| `10041200` | `` | pre | 144  DispatchMessageA  <<not bound>> |
+| `10041204` | `` | pre | 507  SetMenu  <<not bound>> |
+| `10041208` | `` | pre | 435  PostQuitMessage  <<not bound>> |
+| `1004120c` | `` | pre | 9  BeginPaint  <<not bound>> |
+| `10041210` | `` | pre | 1  AdjustWindowRect  <<not bound>> |
+| `10041214` | `` | pre | 128  DefWindowProcA  <<not bound>> |
+| `10041218` | `` | pre | 431  PeekMessageA  <<not bound>> |
+| `1004121c` | `` | pre | 257  GetKeyState  <<not bound>> |
+| `10041220` | `` | pre | 553  ShowCursor  <<not bound>> |
+| `10041224` | `` | pre | 581  TranslateMessage  <<not bound>> |
+| `10041228` | `` | pre | 300  GetSystemMetrics  <<not bound>> |
+| `1004122c` | `` | pre | 557  ShowWindow  <<not bound>> |
+| `10041230` | `` | pre | 182  EndPaint  <<not bound>> |
+| `10041234` | `` | pre | 237  GetCursorPos  <<not bound>> |
+| `1004123c` | `` | pre | 28  joyGetNumDevs  <<not bound>> |
+| `10041240` | `` | pre | 26  joyGetDevCapsA  <<not bound>> |
+| `10041244` | `` | pre | 30  joyGetPosEx  <<not bound>> |
+| `10041248` | `` | pre | 29  joyGetPos  <<not bound>> |
+| `1004124c` | `` | pre | 151  timeGetTime  <<not bound>> |
+| `10041254` | `` | pre | 5  dpCreateGroup  <<not bound>> |
+| `10041258` | `` | pre | 17  dpEnumTransports  <<not bound>> |
+| `1004125c` | `` | pre | 36  dp_enableDebugPrint  <<not bound>> |
+| `10041260` | `` | pre | 4  dpCreate  <<not bound>> |
+| `10041264` | `` | pre | 22  dpGetSessionDesc  <<not bound>> |
+| `10041268` | `` | pre | 16  dpEnumSessions  <<not bound>> |
+| `1004126c` | `` | pre | 18  dpFreeze  <<not bound>> |
+| `10041270` | `` | pre | 11  dpDestroyPlayer  <<not bound>> |
+| `10041274` | `` | pre | 33  dpSetGameServer  <<not bound>> |
+| `10041278` | `` | pre | 29  dpReceive  <<not bound>> |
+| `1004127c` | `` | pre | 9  dpDestroy  <<not bound>> |
+| `10041280` | `` | pre | 26  dpOpen  <<not bound>> |
+| `10041284` | `` | pre | 1  dpClose  <<not bound>> |
+| `10041288` | `` | pre | 6  dpCreatePlayer  <<not bound>> |
+| `1004128c` | `` | pre | 34  dpSetPlayerData  <<not bound>> |
+| `10041290` | `` | pre | 31  dpSend  <<not bound>> |
+| `10041294` | `` | pre | 20  dpGetPlayerData  <<not bound>> |
+| `10041298` | `` | pre | 15  dpEnumPlayers  <<not bound>> |
+| `10042168` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `1004217c` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `10042190` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `100421a4` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `100421b8` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `100421cc` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `100421e0` | `` | plate | IMAGE_IMPORT_DESCRIPTOR |
+| `10042208` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004220c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042210` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042218` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004221c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042220` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042224` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042228` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004222c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042230` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042234` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042238` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004223c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042240` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042244` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042248` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004224c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042250` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042258` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004225c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042260` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042264` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042268` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004226c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042270` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042274` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042278` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004227c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042280` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042284` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042288` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004228c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042290` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042294` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042298` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004229c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422a0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422a4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422a8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422ac` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422b4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422b8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422bc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422c0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422c4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422c8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422cc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422d0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422d4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422d8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422dc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422e0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422e4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422e8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422ec` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422f0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422f4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422f8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100422fc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042300` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042304` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042308` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004230c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042310` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042314` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042318` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004231c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042320` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042324` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042328` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004232c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042330` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042334` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042338` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004233c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042340` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042344` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042348` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004234c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042350` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042354` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042358` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004235c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042360` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042364` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042368` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004236c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042370` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042374` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042378` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004237c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042380` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042384` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042388` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004238c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042394` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042398` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004239c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423a0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423a4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423a8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423ac` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423b0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423b4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423b8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423bc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423c0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423c4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423c8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423cc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423d0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423d4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423d8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423dc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423e0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423e4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423e8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423ec` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423f0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423f4` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423f8` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100423fc` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042400` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042404` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042408` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004240c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042410` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042414` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042418` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004241c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042420` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042424` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042428` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004242c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042430` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042434` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042438` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004243c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042444` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042448` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004244c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042450` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042454` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004245c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042460` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042464` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042468` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004246c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042470` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042474` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042478` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004247c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042480` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042484` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042488` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004248c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042490` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042494` | `` | eol | IMAGE_THUNK_DATA32 |
+| `10042498` | `` | eol | IMAGE_THUNK_DATA32 |
+| `1004249c` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100424a0` | `` | eol | IMAGE_THUNK_DATA32 |
+| `100424a8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100424ba` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100424ca` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100424dc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100424e6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100424f8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004250a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042514` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004251e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004252a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042536` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042548` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004255a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042566` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042576` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004258a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042596` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100425ac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100425c0` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `100425cc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100425da` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100425e6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100425f4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042606` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042616` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `10042620` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004262c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042638` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042646` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004265c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042664` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004267e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042690` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100426a8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100426b4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100426c4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100426d2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100426e0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100426ee` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100426fc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042708` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042718` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042732` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042748` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042758` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042768` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042776` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `10042784` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042794` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100427a0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100427ac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100427ba` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100427ce` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100427e2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100427f6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042804` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042814` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042826` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042834` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042846` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042858` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042864` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042872` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004287c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042888` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004289e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100428ac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100428be` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100428d2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100428e4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100428f2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042902` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042910` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004291c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004292a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004293c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042946` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004295a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004296a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042978` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004298e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `1004299e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100429ac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100429bc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100429ce` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100429e0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100429f0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `100429fc` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a04` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a16` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a28` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `10042a34` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a44` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a50` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a60` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a74` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a8a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042a98` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042aa2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042ab6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042ac8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042ade` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042af2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b02` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b12` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b2c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b3c` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `10042b46` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b54` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b68` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b78` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `10042b86` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b8e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042b98` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042ba2` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042baa` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042bb4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042bbe` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042bc6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042bd0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042bde` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042be8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042bf0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042bfa` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c0a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c1a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c2e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c36` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c40` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c48` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c50` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c58` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c62` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c6a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c74` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c7c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c86` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c8e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042c9c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042ca6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cae` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cb8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cc0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cca` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cd4` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cde` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042ce6` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cf0` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042cfa` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d04` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d0c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d14` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d1e` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d28` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d36` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d42` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d50` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d5a` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d66` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d70` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d78` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d80` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d8c` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042d98` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042da0` | `` | plate | IMAGE_IMPORT_DESCRIPTOR - DLL NAME |
+| `10042dac` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042db8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042dc8` | `` | plate | IMAGE_IMPORT_BY_NAME |
+| `10042e18` | `` | plate | Export Function Pointers |
+| `10042e20` | `` | plate | Export Name Pointers |
+| `10042e28` | `` | plate | Export Ordinal Values |
+| `10042e2c` | `` | plate | Export Library Name |

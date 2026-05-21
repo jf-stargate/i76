@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+1003eaa0	83 7f 10 00	CMP	dword ptr [EDI + 0x10], 0x0	CMP dword ptr [EDI + 0x10],0x0
+1003eaa4	75 09	JNZ	0x1003eaaf	JNZ 0x1003eaaf
+1003eaa6	ac	LODSB	ESI	LODSB ESI
+1003eaa7	25 ff 00 00 00	AND	EAX, 0xff	AND EAX,0xff
+1003eaac	89 47 10	MOV	dword ptr [EDI + 0x10], EAX	MOV dword ptr [EDI + 0x10],EAX
+1003eaaf	ac	LODSB	ESI	LODSB ESI
+1003eab0	25 ff 00 00 00	AND	EAX, 0xff	AND EAX,0xff
+1003eab5	ff 4f 10	DEC	dword ptr [EDI + 0x10]	DEC dword ptr [EDI + 0x10]
+1003eab8	c3	RET		RET

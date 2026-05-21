@@ -1,0 +1,21 @@
+address	bytes	mnemonic	operands	instruction
+1003ea58	bb 00 00 00 00	MOV	EBX, 0x0	MOV EBX,0x0
+1003ea5d	8b c1	MOV	EAX, ECX	MOV EAX,ECX
+1003ea5f	83 c0 02	ADD	EAX, 0x2	ADD EAX,0x2
+1003ea62	89 07	MOV	dword ptr [EDI], EAX	MOV dword ptr [EDI],EAX
+1003ea64	8b c1	MOV	EAX, ECX	MOV EAX,ECX
+1003ea66	d1 e0	SHL	EAX, 0x1	SHL EAX,0x1
+1003ea68	89 47 04	MOV	dword ptr [EDI + 0x4], EAX	MOV dword ptr [EDI + 0x4],EAX
+1003ea6b	3b d9	CMP	EBX, ECX	CMP EBX,ECX
+1003ea6d	7d 1b	JGE	0x1003ea8a	JGE 0x1003ea8a
+1003ea6f	88 9c 3b 2e 10 00 00	MOV	byte ptr [EBX + EDI*0x1 + 0x102e], BL	MOV byte ptr [EBX + EDI*0x1 + 0x102e],BL
+1003ea76	88 9c 3b 2e 20 00 00	MOV	byte ptr [EBX + EDI*0x1 + 0x202e], BL	MOV byte ptr [EBX + EDI*0x1 + 0x202e],BL
+1003ea7d	66 c7 84 5f 2e 30 00 00 ff ff	MOV	word ptr [EDI + EBX*0x2 + 0x302e], 0xffff	MOV word ptr [EDI + EBX*0x2 + 0x302e],0xffff
+1003ea87	43	INC	EBX	INC EBX
+1003ea88	eb e1	JMP	0x1003ea6b	JMP 0x1003ea6b
+1003ea8a	81 fb 00 10 00 00	CMP	EBX, 0x1000	CMP EBX,0x1000
+1003ea90	7d 0d	JGE	0x1003ea9f	JGE 0x1003ea9f
+1003ea92	66 c7 84 5f 2e 30 00 00 fe ff	MOV	word ptr [EDI + EBX*0x2 + 0x302e], 0xfffe	MOV word ptr [EDI + EBX*0x2 + 0x302e],0xfffe
+1003ea9c	43	INC	EBX	INC EBX
+1003ea9d	eb eb	JMP	0x1003ea8a	JMP 0x1003ea8a
+1003ea9f	c3	RET		RET
