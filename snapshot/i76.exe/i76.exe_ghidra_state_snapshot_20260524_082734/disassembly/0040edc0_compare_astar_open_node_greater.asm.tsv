@@ -1,0 +1,41 @@
+address	bytes	mnemonic	operands	instruction
+0040edc0	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+0040edc4	56	PUSH	ESI	PUSH ESI
+0040edc5	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0040edc7	74 3e	JZ	0x0040ee07	JZ 0x0040ee07
+0040edc9	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0040edcd	8b 54 24 0c	MOV	EDX, dword ptr [ESP + 0xc]	MOV EDX,dword ptr [ESP + 0xc]
+0040edd1	dd 41 18	FLD	double ptr [ECX + 0x18]	FLD double ptr [ECX + 0x18]
+0040edd4	dc 5a 18	FCOMP	double ptr [EDX + 0x18]	FCOMP double ptr [EDX + 0x18]
+0040edd7	df e0	FNSTSW	AX	FNSTSW AX
+0040edd9	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0040eddc	75 07	JNZ	0x0040ede5	JNZ 0x0040ede5
+0040edde	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+0040ede3	5e	POP	ESI	POP ESI
+0040ede4	c3	RET		RET
+0040ede5	dd 41 18	FLD	double ptr [ECX + 0x18]	FLD double ptr [ECX + 0x18]
+0040ede8	dc 5a 18	FCOMP	double ptr [EDX + 0x18]	FCOMP double ptr [EDX + 0x18]
+0040edeb	df e0	FNSTSW	AX	FNSTSW AX
+0040eded	f6 c4 40	TEST	AH, 0x40	TEST AH,0x40
+0040edf0	74 11	JZ	0x0040ee03	JZ 0x0040ee03
+0040edf2	8b 41 0c	MOV	EAX, dword ptr [ECX + 0xc]	MOV EAX,dword ptr [ECX + 0xc]
+0040edf5	8b 72 0c	MOV	ESI, dword ptr [EDX + 0xc]	MOV ESI,dword ptr [EDX + 0xc]
+0040edf8	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+0040edfa	3b c6	CMP	EAX, ESI	CMP EAX,ESI
+0040edfc	0f 9f c1	SETG	CL	SETG CL
+0040edff	8b c1	MOV	EAX, ECX	MOV EAX,ECX
+0040ee01	5e	POP	ESI	POP ESI
+0040ee02	c3	RET		RET
+0040ee03	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0040ee05	5e	POP	ESI	POP ESI
+0040ee06	c3	RET		RET
+0040ee07	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+0040ee0b	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+0040ee0d	8b 42 0c	MOV	EAX, dword ptr [EDX + 0xc]	MOV EAX,dword ptr [EDX + 0xc]
+0040ee10	8b 54 24 0c	MOV	EDX, dword ptr [ESP + 0xc]	MOV EDX,dword ptr [ESP + 0xc]
+0040ee14	8b 72 0c	MOV	ESI, dword ptr [EDX + 0xc]	MOV ESI,dword ptr [EDX + 0xc]
+0040ee17	3b c6	CMP	EAX, ESI	CMP EAX,ESI
+0040ee19	5e	POP	ESI	POP ESI
+0040ee1a	0f 9f c1	SETG	CL	SETG CL
+0040ee1d	8b c1	MOV	EAX, ECX	MOV EAX,ECX
+0040ee1f	c3	RET		RET

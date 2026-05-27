@@ -1,0 +1,22 @@
+address	bytes	mnemonic	operands	instruction
+00458a30	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+00458a34	d8 5c 24 04	FCOMP	float ptr [ESP + 0x4]	FCOMP float ptr [ESP + 0x4]
+00458a38	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+00458a3c	d8 64 24 04	FSUB	float ptr [ESP + 0x4]	FSUB float ptr [ESP + 0x4]
+00458a40	df e0	FNSTSW	AX	FNSTSW AX
+00458a42	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+00458a45	74 06	JZ	0x00458a4d	JZ 0x00458a4d
+00458a47	d8 25 c8 df 4b 00	FSUB	float ptr [0x004bdfc8]	FSUB float ptr [0x004bdfc8]
+00458a4d	d8 15 cc df 4b 00	FCOM	float ptr [0x004bdfcc]	FCOM float ptr [0x004bdfcc]
+00458a53	df e0	FNSTSW	AX	FNSTSW AX
+00458a55	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+00458a58	75 08	JNZ	0x00458a62	JNZ 0x00458a62
+00458a5a	d8 25 cc df 4b 00	FSUB	float ptr [0x004bdfcc]	FSUB float ptr [0x004bdfcc]
+00458a60	eb 06	JMP	0x00458a68	JMP 0x00458a68
+00458a62	d8 25 d0 df 4b 00	FSUB	float ptr [0x004bdfd0]	FSUB float ptr [0x004bdfd0]
+00458a68	d8 0d d4 df 4b 00	FMUL	float ptr [0x004bdfd4]	FMUL float ptr [0x004bdfd4]
+00458a6e	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+00458a71	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+00458a74	ff 15 1c c2 4b 00	CALL	dword ptr [0x004bc21c]	CALL dword ptr [0x004bc21c]
+00458a7a	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+00458a7d	e9 0e 16 06 00	JMP	0x004ba090	JMP 0x004ba090

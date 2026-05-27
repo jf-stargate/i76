@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+00493c10	68 68 60 5a 00	PUSH	0x5a6068	PUSH 0x5a6068
+00493c15	e8 26 d9 fd ff	CALL	0x00471540	CALL 0x00471540
+00493c1a	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00493c1d	68 80 00 00 00	PUSH	0x80	PUSH 0x80
+00493c22	68 a4 ae 4f 00	PUSH	0x4faea4	PUSH 0x4faea4
+00493c27	ff 15 18 c1 4b 00	CALL	dword ptr [0x004bc118]	CALL dword ptr [0x004bc118]
+00493c2d	68 a4 ae 4f 00	PUSH	0x4faea4	PUSH 0x4faea4
+00493c32	ff 15 f0 c0 4b 00	CALL	dword ptr [0x004bc0f0]	CALL dword ptr [0x004bc0f0]
+00493c38	c3	RET		RET

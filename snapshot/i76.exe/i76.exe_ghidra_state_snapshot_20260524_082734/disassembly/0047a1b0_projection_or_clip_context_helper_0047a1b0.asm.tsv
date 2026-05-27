@@ -1,0 +1,46 @@
+address	bytes	mnemonic	operands	instruction
+0047a1b0	55	PUSH	EBP	PUSH EBP
+0047a1b1	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0047a1b3	53	PUSH	EBX	PUSH EBX
+0047a1b4	56	PUSH	ESI	PUSH ESI
+0047a1b5	57	PUSH	EDI	PUSH EDI
+0047a1b6	8b 7d 08	MOV	EDI, dword ptr [EBP + 0x8]	MOV EDI,dword ptr [EBP + 0x8]
+0047a1b9	8b 75 0c	MOV	ESI, dword ptr [EBP + 0xc]	MOV ESI,dword ptr [EBP + 0xc]
+0047a1bc	33 d2	XOR	EDX, EDX	XOR EDX,EDX
+0047a1be	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0047a1c0	8b 5f 04	MOV	EBX, dword ptr [EDI + 0x4]	MOV EBX,dword ptr [EDI + 0x4]
+0047a1c3	81 e3 ff ff 00 00	AND	EBX, 0xffff	AND EBX,0xffff
+0047a1c9	0f af 1f	IMUL	EBX, dword ptr [EDI]	IMUL EBX,dword ptr [EDI]
+0047a1cc	8b 7f 14	MOV	EDI, dword ptr [EDI + 0x14]	MOV EDI,dword ptr [EDI + 0x14]
+0047a1cf	83 fb 00	CMP	EBX, 0x0	CMP EBX,0x0
+0047a1d2	74 41	JZ	0x0047a215	JZ 0x0047a215
+0047a1d4	83 fb 04	CMP	EBX, 0x4	CMP EBX,0x4
+0047a1d7	7c 30	JL	0x0047a209	JL 0x0047a209
+0047a1d9	83 eb 04	SUB	EBX, 0x4	SUB EBX,0x4
+0047a1dc	8a 07	MOV	AL, byte ptr [EDI]	MOV AL,byte ptr [EDI]
+0047a1de	8a 57 01	MOV	DL, byte ptr [EDI + 0x1]	MOV DL,byte ptr [EDI + 0x1]
+0047a1e1	8a 0c 06	MOV	CL, byte ptr [ESI + EAX*0x1]	MOV CL,byte ptr [ESI + EAX*0x1]
+0047a1e4	8a 2c 16	MOV	CH, byte ptr [ESI + EDX*0x1]	MOV CH,byte ptr [ESI + EDX*0x1]
+0047a1e7	c1 e1 10	SHL	ECX, 0x10	SHL ECX,0x10
+0047a1ea	8a 47 02	MOV	AL, byte ptr [EDI + 0x2]	MOV AL,byte ptr [EDI + 0x2]
+0047a1ed	8a 57 03	MOV	DL, byte ptr [EDI + 0x3]	MOV DL,byte ptr [EDI + 0x3]
+0047a1f0	83 c7 04	ADD	EDI, 0x4	ADD EDI,0x4
+0047a1f3	8a 0c 06	MOV	CL, byte ptr [ESI + EAX*0x1]	MOV CL,byte ptr [ESI + EAX*0x1]
+0047a1f6	8a 2c 16	MOV	CH, byte ptr [ESI + EDX*0x1]	MOV CH,byte ptr [ESI + EDX*0x1]
+0047a1f9	c1 c9 10	ROR	ECX, 0x10	ROR ECX,0x10
+0047a1fc	83 eb 04	SUB	EBX, 0x4	SUB EBX,0x4
+0047a1ff	89 4f fc	MOV	dword ptr [EDI + -0x4], ECX	MOV dword ptr [EDI + -0x4],ECX
+0047a202	7d d8	JGE	0x0047a1dc	JGE 0x0047a1dc
+0047a204	83 c3 04	ADD	EBX, 0x4	ADD EBX,0x4
+0047a207	eb 0a	JMP	0x0047a213	JMP 0x0047a213
+0047a209	8a 07	MOV	AL, byte ptr [EDI]	MOV AL,byte ptr [EDI]
+0047a20b	47	INC	EDI	INC EDI
+0047a20c	8a 04 06	MOV	AL, byte ptr [ESI + EAX*0x1]	MOV AL,byte ptr [ESI + EAX*0x1]
+0047a20f	4b	DEC	EBX	DEC EBX
+0047a210	88 47 ff	MOV	byte ptr [EDI + -0x1], AL	MOV byte ptr [EDI + -0x1],AL
+0047a213	75 f4	JNZ	0x0047a209	JNZ 0x0047a209
+0047a215	5f	POP	EDI	POP EDI
+0047a216	5e	POP	ESI	POP ESI
+0047a217	5b	POP	EBX	POP EBX
+0047a218	5d	POP	EBP	POP EBP
+0047a219	c3	RET		RET

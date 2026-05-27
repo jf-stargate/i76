@@ -1,0 +1,27 @@
+address	bytes	mnemonic	operands	instruction
+004aa0f0	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+004aa0f3	d9 05 c4 42 64 00	FLD	float ptr [0x006442c4]	FLD float ptr [0x006442c4]
+004aa0f9	dc 4c 24 0c	FMUL	double ptr [ESP + 0xc]	FMUL double ptr [ESP + 0xc]
+004aa0fd	56	PUSH	ESI	PUSH ESI
+004aa0fe	b8 00 28 00 00	MOV	EAX, 0x2800	MOV EAX,0x2800
+004aa103	be 00 28 00 00	MOV	ESI, 0x2800	MOV ESI,0x2800
+004aa108	dc 05 18 af 4f 00	FADD	double ptr [0x004faf18]	FADD double ptr [0x004faf18]
+004aa10e	dd 5c 24 04	FSTP	double ptr [ESP + 0x4]	FSTP double ptr [ESP + 0x4]
+004aa112	d9 05 c4 42 64 00	FLD	float ptr [0x006442c4]	FLD float ptr [0x006442c4]
+004aa118	dc 4c 24 18	FMUL	double ptr [ESP + 0x18]	FMUL double ptr [ESP + 0x18]
+004aa11c	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+004aa120	2b f2	SUB	ESI, EDX	SUB ESI,EDX
+004aa122	dc 05 18 af 4f 00	FADD	double ptr [0x004faf18]	FADD double ptr [0x004faf18]
+004aa128	dd 5c 24 10	FSTP	double ptr [ESP + 0x10]	FSTP double ptr [ESP + 0x10]
+004aa12c	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+004aa130	2b c1	SUB	EAX, ECX	SUB EAX,ECX
+004aa132	0b c6	OR	EAX, ESI	OR EAX,ESI
+004aa134	5e	POP	ESI	POP ESI
+004aa135	0b c1	OR	EAX, ECX	OR EAX,ECX
+004aa137	0b c2	OR	EAX, EDX	OR EAX,EDX
+004aa139	25 00 00 00 80	AND	EAX, 0x80000000	AND EAX,0x80000000
+004aa13e	f7 d8	NEG	EAX	NEG EAX
+004aa140	1b c0	SBB	EAX, EAX	SBB EAX,EAX
+004aa142	40	INC	EAX	INC EAX
+004aa143	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+004aa146	c3	RET		RET

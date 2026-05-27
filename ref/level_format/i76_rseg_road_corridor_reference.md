@@ -1,68 +1,191 @@
 # Interstate '76 RSEG Road / Corridor Reference
 
-This page documents the current interpretation of `RDEF/RSEG` records. The format is stable enough
-for visualization, but some field names remain provisional.
+This document summarizes the current understanding of `RDEF/RSEG` records and their use in level reconstruction.
 
-## Descriptor context
+## Current conclusion
 
-| Section | Tag  | Handler  | Role                                          |
-|---------|------|----------|-----------------------------------------------|
-| RDEF    | RREV | 004b4610 | Revision validation                           |
-| RDEF    | RSEG | 004b8780 | Serialized route/road/corridor segment loader |
-| RDEF    | ISEG | 004b8960 | Related segment-like record path              |
-| RDEF    | TSEG | 004b8960 | Related segment-like record path              |
+`RDEF/RSEG` records are route/road/corridor records. Serialized records carry paired left/right edge samples rather than single centerline points.
 
-## Serialized RSEG shape
-
-| Offset | Type               | Current interpretation                 |
-|--------|--------------------|----------------------------------------|
-| +0x00  | uint32             | kind                                   |
-| +0x04  | uint32             | count                                  |
-| +0x08  | point[count][0x18] | Serialized point/cross-section records |
-
-The size invariant is:
+Current reconstruction use:
 
 ```text
-payload_size == 8 + count * 0x18
+Use                         Status
+------------------------    ------------------------------------------------------------
+RSEG overlay lines          useful and stable
+RSEG height                 sample terrain height; do not use serialized +0x10
+RSEG road mesh              experimental visual overlay
+RSEG road material          unresolved
+RSEG road UVs               unresolved
+Runtime road type mapping   requires further game/editor tracing
 ```
 
-## Point record interpretation
+## Serialized layout
 
-The six floats read naturally as paired road/corridor edge coordinates, not a single 3D point.
+Current serialized layout:
 
-| Offset | Float | Working name | Notes                                                |
-|--------|-------|--------------|------------------------------------------------------|
-| +0x00  | f0    | left_x       | Left/candidate edge X                                |
-| +0x04  | f1    | left_z       | Left/candidate edge Z                                |
-| +0x08  | f2    | aux_z_or_mid | Often tracks Z or center/control value               |
-| +0x0c  | f3    | right_x      | Right/candidate edge X                               |
-| +0x10  | f4    | unknown_10   | Not reliable vertical height; can spike at endpoints |
-| +0x14  | f5    | right_z      | Right/candidate edge Z                               |
+```c
+struct i76_rseg_serialized {
+    uint32_t kind;
+    uint32_t count;
+    struct i76_rseg_point points[count];
+};
 
-`+0x10` was initially treated as height but produced large endpoint jumps. Current visualization samples
-terrain height instead.
+struct i76_rseg_point {
+    float left_x;       // +0x00
+    float left_z;       // +0x04
+    float aux_z_or_mid; // +0x08
+    float right_x;      // +0x0c
+    float unknown_10;   // +0x10
+    float right_z;      // +0x14
+}; // 0x18
+```
 
-## Runtime chunking
+Field interpretation:
 
-The runtime loader does not necessarily allocate one runtime node per serialized RSEG. It chunks large
-segments into nodes of at most 0x18 point records.
+```text
+Offset    Field          Current interpretation
+------    -----------    ------------------------------------------------------------
++0x00     left_x         left corridor/road-edge x
++0x04     left_z         left corridor/road-edge z
++0x08     aux_z_or_mid   auxiliary z/mid/corridor value; not final height
++0x0c     right_x        right corridor/road-edge x
++0x10     unknown_10     not reliable vertical height
++0x14     right_z        right corridor/road-edge z
+```
 
-| Runtime behavior          | Evidence                             |
-|---------------------------|--------------------------------------|
-| Node allocation size      | 0x2c + point_count * 0x18            |
-| Maximum chunk point count | 0x18                                 |
-| Global list head          | 005db988                             |
-| Global count              | 005db98c                             |
-| Point copy source         | payload + 0x10 + source_index * 0x18 |
+Important correction:
 
-## Visualization policy
+```text
++0x10 is not reliable height.
+```
 
-| Overlay    | Coordinates                   | Height                  |
-|------------|-------------------------------|-------------------------|
-| left_edge  | left_x / left_z               | terrain sample + offset |
-| right_edge | right_x / right_z             | terrain sample + offset |
-| centerline | average of left/right edge    | terrain sample + offset |
-| crossbars  | left-to-right lines per point | terrain sample + offset |
+Some records contain large values at `+0x10`. Visual overlays should sample terrain height at the relevant x/z location and then add a small offset to avoid z-fighting.
 
-The RSEG overlay is a diagnostic road/corridor layer. It should not yet be treated as collision,
-AI navigation, or rendered road mesh until the runtime consumers of the chunked nodes are traced.
+## Runtime loader
+
+Runtime loader:
+
+```text
+Address     Symbol
+--------    ---------------------------------------------
+004b8780    load_rseg_route_corridor_records
+```
+
+Runtime globals:
+
+```text
+Address     Symbol
+--------    ---------------------------------------------
+005db988    g_runtime_rseg_node_list_head
+005db98c    g_runtime_rseg_node_count
+```
+
+The runtime chunks large serialized RSEG records into linked runtime nodes:
+
+```text
+Runtime node allocation size = 0x2c + point_count * 0x18
+point_count <= 0x18
+```
+
+Kind `3072` appears as a rare count-zero record and should be treated as a sentinel/control entry until proven otherwise.
+
+## M06 surface-class correlation
+
+M06 terrain/RSEG correlation strongly supports surface class `3` as the road surface candidate and surface class `7` as roadbed/shoulder/adjacent road area.
+
+```text
+Surface class    RSEG centerline overlap    RSEG left-edge overlap    RSEG right-edge overlap
+-------------    -----------------------    ----------------------    -----------------------
+3                about 95.66%               about 95.59%             about 95.79%
+7                about 4.21%                about 4.14%              about 3.54%
+```
+
+Current interpretation:
+
+```text
+Surface class    Role hypothesis
+-------------    ------------------------------------------------------------
+3                primary road/corridor surface
+7                roadbed, shoulder, or adjacent road transition
+1                dominant base terrain
+5                secondary ground/pad/local surface
+0                minor default/boundary/filler surface
+```
+
+## RSEG road mesh overlay
+
+The exporter can generate an experimental road mesh from RSEG left/right samples.
+
+Current behavior:
+
+```text
+Step                    Current behavior
+--------------------    ------------------------------------------------------------
+left/right edges        from serialized RSEG point records
+height                  terrain sampled at left/right positions
+height offset           small positive offset for visibility
+faces                   strip quads between consecutive samples
+texture source          experimental static road/junction texture family
+UV modes                strip, strip-swapped, world-repeat, world-repeat-swapped
+```
+
+Useful exporter options:
+
+```text
+Option                                  Purpose
+------------------------------------    ----------------------------------------------
+--write-rseg-road-mesh                  write experimental road/corridor surface mesh
+--rseg-road-height-offset N             lift overlay above terrain to avoid z-fighting
+--rseg-road-texture-source MODE         static-pattern, terrain-candidate, or none
+--rseg-road-static-texture-pattern PAT   choose road texture family, e.g. I2DNG*
+--rseg-road-uv-mode MODE                strip/world-repeat variants
+--rseg-road-uv-repeat N                 road texture repeat scale
+--rseg-road-uv-rotate DEG               0/90/180/270 diagnostic rotation
+--rseg-road-uv-v-flip                   diagnostic V flip
+```
+
+## Current road-material status
+
+The road mesh placement is broadly correct, but material/UV assignment is not solved.
+
+Observed status:
+
+```text
+Aspect              Status
+----------------    ------------------------------------------------------------
+placement           correct enough for visual validation
+height              correct when terrain-sampled
+basic material       closer using I2D* road/junction texture families
+texture mapping      still rotated/stretched/wrong in places
+road type mapping    unresolved
+```
+
+The current evidence suggests that each level supports multiple road types and/or road material families. The simple single-texture RSEG overlay cannot represent this faithfully.
+
+## Known road/junction texture families
+
+M06 static object exports include several road/intersection-like families:
+
+```text
+Pattern     Current interpretation
+-------     ------------------------------------------------------------
+I2DNG*      road/intersection/junction candidate
+I2DNT*      road/intersection/junction candidate
+I2DNX*      road/intersection/junction candidate
+```
+
+These are useful test textures but not proof of runtime RSEG material selection.
+
+## Recommended next tracing
+
+The next correct step is binary/editor tracing, not further heuristic UV tuning.
+
+```text
+Target                            Reason
+------------------------------    ------------------------------------------------------------
+game RSEG render/material path     find runtime road texture/type selection
+editor road authoring path         likely reveals road type/material fields
+RDEF/RSEG sibling tags             ISEG/TSEG may carry road type/material metadata
+WRLD terrain/surface handlers      may connect surface texture and road material resources
+static I2D material users          understand road junction material conventions
+```

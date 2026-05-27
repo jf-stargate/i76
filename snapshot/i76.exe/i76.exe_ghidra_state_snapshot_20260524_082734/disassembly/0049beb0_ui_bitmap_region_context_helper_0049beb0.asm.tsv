@@ -1,0 +1,13 @@
+address	bytes	mnemonic	operands	instruction
+0049beb0	a1 98 7d 5a 00	MOV	EAX, [0x005a7d98]	MOV EAX,[0x005a7d98]
+0049beb5	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0049beb7	74 16	JZ	0x0049becf	JZ 0x0049becf
+0049beb9	b9 00 01 00 00	MOV	ECX, 0x100	MOV ECX,0x100
+0049bebe	8b 50 08	MOV	EDX, dword ptr [EAX + 0x8]	MOV EDX,dword ptr [EAX + 0x8]
+0049bec1	85 8a b0 00 00 00	TEST	dword ptr [EDX + 0xb0], ECX	TEST dword ptr [EDX + 0xb0],ECX
+0049bec7	75 08	JNZ	0x0049bed1	JNZ 0x0049bed1
+0049bec9	8b 00	MOV	EAX, dword ptr [EAX]	MOV EAX,dword ptr [EAX]
+0049becb	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0049becd	75 ef	JNZ	0x0049bebe	JNZ 0x0049bebe
+0049becf	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0049bed1	c3	RET		RET

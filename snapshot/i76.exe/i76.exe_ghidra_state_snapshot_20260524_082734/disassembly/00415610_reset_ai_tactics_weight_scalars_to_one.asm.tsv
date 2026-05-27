@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+00415610	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00415614	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+00415617	8b 81 08 01 00 00	MOV	EAX, dword ptr [ECX + 0x108]	MOV EAX,dword ptr [ECX + 0x108]
+0041561d	b9 00 00 80 3f	MOV	ECX, 0x3f800000	MOV ECX,0x3f800000
+00415622	89 88 58 9d 00 00	MOV	dword ptr [EAX + 0x9d58], ECX	MOV dword ptr [EAX + 0x9d58],ECX
+00415628	89 88 5c 9d 00 00	MOV	dword ptr [EAX + 0x9d5c], ECX	MOV dword ptr [EAX + 0x9d5c],ECX
+0041562e	89 88 60 9d 00 00	MOV	dword ptr [EAX + 0x9d60], ECX	MOV dword ptr [EAX + 0x9d60],ECX
+00415634	89 88 64 9d 00 00	MOV	dword ptr [EAX + 0x9d64], ECX	MOV dword ptr [EAX + 0x9d64],ECX
+0041563a	c3	RET		RET

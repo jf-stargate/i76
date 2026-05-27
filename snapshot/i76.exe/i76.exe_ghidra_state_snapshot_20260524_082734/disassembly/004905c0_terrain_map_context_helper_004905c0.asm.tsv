@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+004905c0	a1 c0 43 65 00	MOV	EAX, [0x006543c0]	MOV EAX,[0x006543c0]
+004905c5	8b 48 0c	MOV	ECX, dword ptr [EAX + 0xc]	MOV ECX,dword ptr [EAX + 0xc]
+004905c8	8b 14 8d e0 ac 4f 00	MOV	EDX, dword ptr [ECX*0x4 + 0x4face0]	MOV EDX,dword ptr [ECX*0x4 + 0x4face0]
+004905cf	8d 44 10 1c	LEA	EAX, [EAX + EDX*0x1 + 0x1c]	LEA EAX,[EAX + EDX*0x1 + 0x1c]
+004905d3	a3 c0 43 65 00	MOV	[0x006543c0], EAX	MOV [0x006543c0],EAX
+004905d8	c3	RET		RET

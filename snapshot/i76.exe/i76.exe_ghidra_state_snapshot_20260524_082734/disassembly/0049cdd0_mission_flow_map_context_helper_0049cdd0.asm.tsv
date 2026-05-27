@@ -1,0 +1,8 @@
+address	bytes	mnemonic	operands	instruction
+0049cdd0	a1 34 e5 4f 00	MOV	EAX, [0x004fe534]	MOV EAX,[0x004fe534]
+0049cdd5	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+0049cdd9	3b c1	CMP	EAX, ECX	CMP EAX,ECX
+0049cddb	c7 05 34 e5 4f 00 01 00 00 00	MOV	dword ptr [0x004fe534], 0x1	MOV dword ptr [0x004fe534],0x1
+0049cde5	74 06	JZ	0x0049cded	JZ 0x0049cded
+0049cde7	89 0d 34 e5 4f 00	MOV	dword ptr [0x004fe534], ECX	MOV dword ptr [0x004fe534],ECX
+0049cded	c3	RET		RET

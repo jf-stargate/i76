@@ -1,0 +1,6 @@
+address	bytes	mnemonic	operands	instruction
+00453a90	66 83 3d 00 10 54 00 00	CMP	word ptr [0x00541000], 0x0	CMP word ptr [0x00541000],0x0
+00453a98	75 0b	JNZ	0x00453aa5	JNZ 0x00453aa5
+00453a9a	66 8b 44 24 04	MOV	AX, word ptr [ESP + 0x4]	MOV AX,word ptr [ESP + 0x4]
+00453a9f	66 a3 00 10 54 00	MOV	[0x00541000], AX	MOV [0x00541000],AX
+00453aa5	c3	RET		RET

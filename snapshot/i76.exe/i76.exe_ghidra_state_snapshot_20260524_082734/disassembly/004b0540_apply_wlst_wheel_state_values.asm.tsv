@@ -1,0 +1,57 @@
+address	bytes	mnemonic	operands	instruction
+004b0540	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004b0544	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+004b0548	56	PUSH	ESI	PUSH ESI
+004b0549	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+004b054b	8b 49 70	MOV	ECX, dword ptr [ECX + 0x70]	MOV ECX,dword ptr [ECX + 0x70]
+004b054e	8b 81 a8 03 00 00	MOV	EAX, dword ptr [ECX + 0x3a8]	MOV EAX,dword ptr [ECX + 0x3a8]
+004b0554	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b0556	74 0d	JZ	0x004b0565	JZ 0x004b0565
+004b0558	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004b055b	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b055d	74 06	JZ	0x004b0565	JZ 0x004b0565
+004b055f	8b 72 08	MOV	ESI, dword ptr [EDX + 0x8]	MOV ESI,dword ptr [EDX + 0x8]
+004b0562	89 70 04	MOV	dword ptr [EAX + 0x4], ESI	MOV dword ptr [EAX + 0x4],ESI
+004b0565	8b 81 ac 03 00 00	MOV	EAX, dword ptr [ECX + 0x3ac]	MOV EAX,dword ptr [ECX + 0x3ac]
+004b056b	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b056d	74 0d	JZ	0x004b057c	JZ 0x004b057c
+004b056f	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004b0572	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b0574	74 06	JZ	0x004b057c	JZ 0x004b057c
+004b0576	8b 72 0c	MOV	ESI, dword ptr [EDX + 0xc]	MOV ESI,dword ptr [EDX + 0xc]
+004b0579	89 70 04	MOV	dword ptr [EAX + 0x4], ESI	MOV dword ptr [EAX + 0x4],ESI
+004b057c	8b 81 b0 03 00 00	MOV	EAX, dword ptr [ECX + 0x3b0]	MOV EAX,dword ptr [ECX + 0x3b0]
+004b0582	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b0584	74 0d	JZ	0x004b0593	JZ 0x004b0593
+004b0586	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004b0589	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b058b	74 06	JZ	0x004b0593	JZ 0x004b0593
+004b058d	8b 72 10	MOV	ESI, dword ptr [EDX + 0x10]	MOV ESI,dword ptr [EDX + 0x10]
+004b0590	89 70 04	MOV	dword ptr [EAX + 0x4], ESI	MOV dword ptr [EAX + 0x4],ESI
+004b0593	8b 81 b4 03 00 00	MOV	EAX, dword ptr [ECX + 0x3b4]	MOV EAX,dword ptr [ECX + 0x3b4]
+004b0599	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b059b	74 0d	JZ	0x004b05aa	JZ 0x004b05aa
+004b059d	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004b05a0	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b05a2	74 06	JZ	0x004b05aa	JZ 0x004b05aa
+004b05a4	8b 72 14	MOV	ESI, dword ptr [EDX + 0x14]	MOV ESI,dword ptr [EDX + 0x14]
+004b05a7	89 70 04	MOV	dword ptr [EAX + 0x4], ESI	MOV dword ptr [EAX + 0x4],ESI
+004b05aa	8b 81 b8 03 00 00	MOV	EAX, dword ptr [ECX + 0x3b8]	MOV EAX,dword ptr [ECX + 0x3b8]
+004b05b0	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b05b2	74 0d	JZ	0x004b05c1	JZ 0x004b05c1
+004b05b4	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004b05b7	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004b05b9	74 06	JZ	0x004b05c1	JZ 0x004b05c1
+004b05bb	8b 72 18	MOV	ESI, dword ptr [EDX + 0x18]	MOV ESI,dword ptr [EDX + 0x18]
+004b05be	89 70 04	MOV	dword ptr [EAX + 0x4], ESI	MOV dword ptr [EAX + 0x4],ESI
+004b05c1	8b 89 bc 03 00 00	MOV	ECX, dword ptr [ECX + 0x3bc]	MOV ECX,dword ptr [ECX + 0x3bc]
+004b05c7	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+004b05c9	74 0d	JZ	0x004b05d8	JZ 0x004b05d8
+004b05cb	8b 49 70	MOV	ECX, dword ptr [ECX + 0x70]	MOV ECX,dword ptr [ECX + 0x70]
+004b05ce	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+004b05d0	74 06	JZ	0x004b05d8	JZ 0x004b05d8
+004b05d2	8b 52 1c	MOV	EDX, dword ptr [EDX + 0x1c]	MOV EDX,dword ptr [EDX + 0x1c]
+004b05d5	89 51 04	MOV	dword ptr [ECX + 0x4], EDX	MOV dword ptr [ECX + 0x4],EDX
+004b05d8	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004b05dd	5e	POP	ESI	POP ESI
+004b05de	c3	RET		RET

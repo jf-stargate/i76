@@ -1,0 +1,40 @@
+address	bytes	mnemonic	operands	instruction
+00421fb0	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00421fb4	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+00421fb8	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00421fba	75 04	JNZ	0x00421fc0	JNZ 0x00421fc0
+00421fbc	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+00421fbe	74 67	JZ	0x00422027	JZ 0x00422027
+00421fc0	8b 11	MOV	EDX, dword ptr [ECX]	MOV EDX,dword ptr [ECX]
+00421fc2	89 10	MOV	dword ptr [EAX], EDX	MOV dword ptr [EAX],EDX
+00421fc4	8b 51 04	MOV	EDX, dword ptr [ECX + 0x4]	MOV EDX,dword ptr [ECX + 0x4]
+00421fc7	83 fa ff	CMP	EDX, -0x1	CMP EDX,-0x1
+00421fca	75 09	JNZ	0x00421fd5	JNZ 0x00421fd5
+00421fcc	c7 40 04 32 00 00 00	MOV	dword ptr [EAX + 0x4], 0x32	MOV dword ptr [EAX + 0x4],0x32
+00421fd3	eb 03	JMP	0x00421fd8	JMP 0x00421fd8
+00421fd5	89 50 04	MOV	dword ptr [EAX + 0x4], EDX	MOV dword ptr [EAX + 0x4],EDX
+00421fd8	8b 51 08	MOV	EDX, dword ptr [ECX + 0x8]	MOV EDX,dword ptr [ECX + 0x8]
+00421fdb	83 fa ff	CMP	EDX, -0x1	CMP EDX,-0x1
+00421fde	75 09	JNZ	0x00421fe9	JNZ 0x00421fe9
+00421fe0	c7 40 08 01 00 00 00	MOV	dword ptr [EAX + 0x8], 0x1	MOV dword ptr [EAX + 0x8],0x1
+00421fe7	eb 03	JMP	0x00421fec	JMP 0x00421fec
+00421fe9	89 50 08	MOV	dword ptr [EAX + 0x8], EDX	MOV dword ptr [EAX + 0x8],EDX
+00421fec	8b 51 0c	MOV	EDX, dword ptr [ECX + 0xc]	MOV EDX,dword ptr [ECX + 0xc]
+00421fef	83 fa ff	CMP	EDX, -0x1	CMP EDX,-0x1
+00421ff2	75 09	JNZ	0x00421ffd	JNZ 0x00421ffd
+00421ff4	c7 40 0c 00 00 00 00	MOV	dword ptr [EAX + 0xc], 0x0	MOV dword ptr [EAX + 0xc],0x0
+00421ffb	eb 03	JMP	0x00422000	JMP 0x00422000
+00421ffd	89 50 0c	MOV	dword ptr [EAX + 0xc], EDX	MOV dword ptr [EAX + 0xc],EDX
+00422000	8b 51 14	MOV	EDX, dword ptr [ECX + 0x14]	MOV EDX,dword ptr [ECX + 0x14]
+00422003	83 fa ff	CMP	EDX, -0x1	CMP EDX,-0x1
+00422006	75 09	JNZ	0x00422011	JNZ 0x00422011
+00422008	c7 40 14 00 00 00 00	MOV	dword ptr [EAX + 0x14], 0x0	MOV dword ptr [EAX + 0x14],0x0
+0042200f	eb 03	JMP	0x00422014	JMP 0x00422014
+00422011	89 50 14	MOV	dword ptr [EAX + 0x14], EDX	MOV dword ptr [EAX + 0x14],EDX
+00422014	8b 49 10	MOV	ECX, dword ptr [ECX + 0x10]	MOV ECX,dword ptr [ECX + 0x10]
+00422017	83 f9 ff	CMP	ECX, -0x1	CMP ECX,-0x1
+0042201a	75 08	JNZ	0x00422024	JNZ 0x00422024
+0042201c	c7 40 10 64 00 00 00	MOV	dword ptr [EAX + 0x10], 0x64	MOV dword ptr [EAX + 0x10],0x64
+00422023	c3	RET		RET
+00422024	89 48 10	MOV	dword ptr [EAX + 0x10], ECX	MOV dword ptr [EAX + 0x10],ECX
+00422027	c3	RET		RET

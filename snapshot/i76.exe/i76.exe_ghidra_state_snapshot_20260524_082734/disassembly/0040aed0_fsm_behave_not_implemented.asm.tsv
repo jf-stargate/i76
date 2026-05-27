@@ -1,0 +1,9 @@
+address	bytes	mnemonic	operands	instruction
+0040aed0	a1 a0 2a 4c 00	MOV	EAX, [0x004c2aa0]	MOV EAX,[0x004c2aa0]
+0040aed5	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0040aed7	74 17	JZ	0x0040aef0	JZ 0x0040aef0
+0040aed9	68 b4 2a 4c 00	PUSH	0x4c2ab4	PUSH 0x4c2ab4
+0040aede	e8 ed 26 02 00	CALL	0x0042d5d0	CALL 0x0042d5d0
+0040aee3	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0040aee6	c7 05 a0 2a 4c 00 00 00 00 00	MOV	dword ptr [0x004c2aa0], 0x0	MOV dword ptr [0x004c2aa0],0x0
+0040aef0	c3	RET		RET

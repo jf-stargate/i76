@@ -1,0 +1,34 @@
+address	bytes	mnemonic	operands	instruction
+00466ac0	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00466ac4	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+00466ac8	8b 84 81 a8 03 00 00	MOV	EAX, dword ptr [ECX + EAX*0x4 + 0x3a8]	MOV EAX,dword ptr [ECX + EAX*0x4 + 0x3a8]
+00466acf	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00466ad1	74 4b	JZ	0x00466b1e	JZ 0x00466b1e
+00466ad3	8b 48 6c	MOV	ECX, dword ptr [EAX + 0x6c]	MOV ECX,dword ptr [EAX + 0x6c]
+00466ad6	83 c1 ec	ADD	ECX, -0x14	ADD ECX,-0x14
+00466ad9	83 f9 1e	CMP	ECX, 0x1e	CMP ECX,0x1e
+00466adc	77 40	JA	0x00466b1e	JA 0x00466b1e
+00466ade	33 d2	XOR	EDX, EDX	XOR EDX,EDX
+00466ae0	8a 91 44 6b 46 00	MOV	DL, byte ptr [ECX + 0x466b44]	MOV DL,byte ptr [ECX + 0x466b44]
+00466ae6	ff 24 95 24 6b 46 00	JMP	dword ptr [EDX*0x4 + 0x466b24]	JMP dword ptr [EDX*0x4 + 0x466b24]
+00466af3	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+00466af6	8b 41 04	MOV	EAX, dword ptr [ECX + 0x4]	MOV EAX,dword ptr [ECX + 0x4]
+00466af9	c3	RET		RET
+00466afa	8b 50 70	MOV	EDX, dword ptr [EAX + 0x70]	MOV EDX,dword ptr [EAX + 0x70]
+00466afd	8b 42 04	MOV	EAX, dword ptr [EDX + 0x4]	MOV EAX,dword ptr [EDX + 0x4]
+00466b00	c3	RET		RET
+00466b01	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+00466b04	8b 00	MOV	EAX, dword ptr [EAX]	MOV EAX,dword ptr [EAX]
+00466b06	c3	RET		RET
+00466b07	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+00466b0a	8b 01	MOV	EAX, dword ptr [ECX]	MOV EAX,dword ptr [ECX]
+00466b0c	c3	RET		RET
+00466b0d	8b 50 70	MOV	EDX, dword ptr [EAX + 0x70]	MOV EDX,dword ptr [EAX + 0x70]
+00466b10	8b 42 08	MOV	EAX, dword ptr [EDX + 0x8]	MOV EAX,dword ptr [EDX + 0x8]
+00466b13	c3	RET		RET
+00466b14	50	PUSH	EAX	PUSH EAX
+00466b15	e8 36 e1 03 00	CALL	0x004a4c50	CALL 0x004a4c50
+00466b1a	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00466b1d	c3	RET		RET
+00466b1e	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+00466b20	c3	RET		RET

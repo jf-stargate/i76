@@ -1,0 +1,46 @@
+address	bytes	mnemonic	operands	instruction
+0046a0c0	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+0046a0c4	d8 5c 24 0c	FCOMP	float ptr [ESP + 0xc]	FCOMP float ptr [ESP + 0xc]
+0046a0c8	df e0	FNSTSW	AX	FNSTSW AX
+0046a0ca	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0046a0cd	75 6d	JNZ	0x0046a13c	JNZ 0x0046a13c
+0046a0cf	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+0046a0d3	d8 5c 24 14	FCOMP	float ptr [ESP + 0x14]	FCOMP float ptr [ESP + 0x14]
+0046a0d7	df e0	FNSTSW	AX	FNSTSW AX
+0046a0d9	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0046a0dc	74 5e	JZ	0x0046a13c	JZ 0x0046a13c
+0046a0de	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0046a0e2	d8 5c 24 10	FCOMP	float ptr [ESP + 0x10]	FCOMP float ptr [ESP + 0x10]
+0046a0e6	df e0	FNSTSW	AX	FNSTSW AX
+0046a0e8	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0046a0eb	75 4f	JNZ	0x0046a13c	JNZ 0x0046a13c
+0046a0ed	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0046a0f1	d8 5c 24 18	FCOMP	float ptr [ESP + 0x18]	FCOMP float ptr [ESP + 0x18]
+0046a0f5	df e0	FNSTSW	AX	FNSTSW AX
+0046a0f7	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0046a0fa	74 40	JZ	0x0046a13c	JZ 0x0046a13c
+0046a0fc	d9 44 24 14	FLD	float ptr [ESP + 0x14]	FLD float ptr [ESP + 0x14]
+0046a100	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0046a104	d8 64 24 18	FSUB	float ptr [ESP + 0x18]	FSUB float ptr [ESP + 0x18]
+0046a108	d9 c9	FXCH		FXCH
+0046a10a	d8 64 24 0c	FSUB	float ptr [ESP + 0xc]	FSUB float ptr [ESP + 0xc]
+0046a10e	d9 44 24 18	FLD	float ptr [ESP + 0x18]	FLD float ptr [ESP + 0x18]
+0046a112	d8 64 24 10	FSUB	float ptr [ESP + 0x10]	FSUB float ptr [ESP + 0x10]
+0046a116	d9 c9	FXCH		FXCH
+0046a118	de ca	FMULP	ST2	FMULP ST2
+0046a11a	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+0046a11e	d9 c9	FXCH		FXCH
+0046a120	de fa	FDIVP	ST2, ST0	FDIVP ST2,ST0
+0046a122	d9 c9	FXCH		FXCH
+0046a124	d8 4c 24 14	FMUL	float ptr [ESP + 0x14]	FMUL float ptr [ESP + 0x14]
+0046a128	d9 c9	FXCH		FXCH
+0046a12a	de d9	FCOMPP		FCOMPP
+0046a12c	df e0	FNSTSW	AX	FNSTSW AX
+0046a12e	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0046a131	75 06	JNZ	0x0046a139	JNZ 0x0046a139
+0046a133	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+0046a138	c3	RET		RET
+0046a139	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0046a13b	c3	RET		RET
+0046a13c	83 c8 ff	OR	EAX, 0xffffffff	OR EAX,0xffffffff
+0046a13f	c3	RET		RET

@@ -1,0 +1,57 @@
+address	bytes	mnemonic	operands	instruction
+00479860	55	PUSH	EBP	PUSH EBP
+00479861	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+00479863	83 e4 f8	AND	ESP, 0xfffffff8	AND ESP,0xfffffff8
+00479866	83 ec 5c	SUB	ESP, 0x5c	SUB ESP,0x5c
+00479869	53	PUSH	EBX	PUSH EBX
+0047986a	56	PUSH	ESI	PUSH ESI
+0047986b	57	PUSH	EDI	PUSH EDI
+0047986c	c7 44 24 18 9a 99 99 99	MOV	dword ptr [ESP + 0x18], 0x9999999a	MOV dword ptr [ESP + 0x18],0x9999999a
+00479874	c7 44 24 1c 99 99 e9 3f	MOV	dword ptr [ESP + 0x1c], 0x3fe99999	MOV dword ptr [ESP + 0x1c],0x3fe99999
+0047987c	c7 44 24 20 cd cc cc cc	MOV	dword ptr [ESP + 0x20], 0xcccccccd	MOV dword ptr [ESP + 0x20],0xcccccccd
+00479884	c7 44 24 24 cc cc ec 3f	MOV	dword ptr [ESP + 0x24], 0x3feccccc	MOV dword ptr [ESP + 0x24],0x3feccccc
+0047988c	c7 44 24 28 00 00 00 00	MOV	dword ptr [ESP + 0x28], 0x0	MOV dword ptr [ESP + 0x28],0x0
+00479894	c7 44 24 2c 00 00 f0 3f	MOV	dword ptr [ESP + 0x2c], 0x3ff00000	MOV dword ptr [ESP + 0x2c],0x3ff00000
+0047989c	c7 44 24 30 33 33 33 33	MOV	dword ptr [ESP + 0x30], 0x33333333	MOV dword ptr [ESP + 0x30],0x33333333
+004798a4	c7 44 24 34 33 33 f3 3f	MOV	dword ptr [ESP + 0x34], 0x3ff33333	MOV dword ptr [ESP + 0x34],0x3ff33333
+004798ac	c7 44 24 38 66 66 66 66	MOV	dword ptr [ESP + 0x38], 0x66666666	MOV dword ptr [ESP + 0x38],0x66666666
+004798b4	c7 44 24 3c 66 66 f6 3f	MOV	dword ptr [ESP + 0x3c], 0x3ff66666	MOV dword ptr [ESP + 0x3c],0x3ff66666
+004798bc	c7 44 24 40 9a 99 99 99	MOV	dword ptr [ESP + 0x40], 0x9999999a	MOV dword ptr [ESP + 0x40],0x9999999a
+004798c4	c7 44 24 44 99 99 f9 3f	MOV	dword ptr [ESP + 0x44], 0x3ff99999	MOV dword ptr [ESP + 0x44],0x3ff99999
+004798cc	c7 44 24 48 cd cc cc cc	MOV	dword ptr [ESP + 0x48], 0xcccccccd	MOV dword ptr [ESP + 0x48],0xcccccccd
+004798d4	c7 44 24 4c cc cc fc 3f	MOV	dword ptr [ESP + 0x4c], 0x3ffccccc	MOV dword ptr [ESP + 0x4c],0x3ffccccc
+004798dc	c7 44 24 50 00 00 00 00	MOV	dword ptr [ESP + 0x50], 0x0	MOV dword ptr [ESP + 0x50],0x0
+004798e4	c7 44 24 54 00 00 00 40	MOV	dword ptr [ESP + 0x54], 0x40000000	MOV dword ptr [ESP + 0x54],0x40000000
+004798ec	c7 44 24 58 9a 99 99 99	MOV	dword ptr [ESP + 0x58], 0x9999999a	MOV dword ptr [ESP + 0x58],0x9999999a
+004798f4	c7 44 24 5c 99 99 01 40	MOV	dword ptr [ESP + 0x5c], 0x40019999	MOV dword ptr [ESP + 0x5c],0x40019999
+004798fc	c7 44 24 60 00 00 00 00	MOV	dword ptr [ESP + 0x60], 0x0	MOV dword ptr [ESP + 0x60],0x0
+00479904	c7 44 24 64 00 00 04 40	MOV	dword ptr [ESP + 0x64], 0x40040000	MOV dword ptr [ESP + 0x64],0x40040000
+0047990c	bf a0 95 60 00	MOV	EDI, 0x6095a0	MOV EDI,0x6095a0
+00479911	8d 5c 24 18	LEA	EBX, [ESP + 0x18]	LEA EBX,[ESP + 0x18]
+00479915	dd 05 00 e7 4b 00	FLD	double ptr [0x004be700]	FLD double ptr [0x004be700]
+0047991b	dc 33	FDIV	double ptr [EBX]	FDIV double ptr [EBX]
+0047991d	33 f6	XOR	ESI, ESI	XOR ESI,ESI
+0047991f	89 74 24 0c	MOV	dword ptr [ESP + 0xc], ESI	MOV dword ptr [ESP + 0xc],ESI
+00479923	dd 5c 24 10	FSTP	double ptr [ESP + 0x10]	FSTP double ptr [ESP + 0x10]
+00479927	dd 44 24 10	FLD	double ptr [ESP + 0x10]	FLD double ptr [ESP + 0x10]
+0047992b	db 44 24 0c	FILD	dword ptr [ESP + 0xc]	FILD dword ptr [ESP + 0xc]
+0047992f	dc 0d 40 e7 4b 00	FMUL	double ptr [0x004be740]	FMUL double ptr [0x004be740]
+00479935	d9 c9	FXCH		FXCH
+00479937	e8 7a 09 04 00	CALL	0x004ba2b6	CALL 0x004ba2b6
+0047993c	dc 0d 48 e7 4b 00	FMUL	double ptr [0x004be748]	FMUL double ptr [0x004be748]
+00479942	e8 49 07 04 00	CALL	0x004ba090	CALL 0x004ba090
+00479947	88 04 3e	MOV	byte ptr [ESI + EDI*0x1], AL	MOV byte ptr [ESI + EDI*0x1],AL
+0047994a	46	INC	ESI	INC ESI
+0047994b	81 fe 00 01 00 00	CMP	ESI, 0x100	CMP ESI,0x100
+00479951	89 74 24 0c	MOV	dword ptr [ESP + 0xc], ESI	MOV dword ptr [ESP + 0xc],ESI
+00479955	7c d0	JL	0x00479927	JL 0x00479927
+00479957	81 c7 00 01 00 00	ADD	EDI, 0x100	ADD EDI,0x100
+0047995d	83 c3 08	ADD	EBX, 0x8	ADD EBX,0x8
+00479960	81 ff a0 9f 60 00	CMP	EDI, 0x609fa0	CMP EDI,0x609fa0
+00479966	7c ad	JL	0x00479915	JL 0x00479915
+00479968	5f	POP	EDI	POP EDI
+00479969	5e	POP	ESI	POP ESI
+0047996a	5b	POP	EBX	POP EBX
+0047996b	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0047996d	5d	POP	EBP	POP EBP
+0047996e	c3	RET		RET

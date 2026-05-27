@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+0046dfc0	6a 10	PUSH	0x10	PUSH 0x10
+0046dfc2	e8 19 bd 02 00	CALL	0x00499ce0	CALL 0x00499ce0
+0046dfc7	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+0046dfc9	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0046dfcc	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+0046dfce	89 48 04	MOV	dword ptr [EAX + 0x4], ECX	MOV dword ptr [EAX + 0x4],ECX
+0046dfd1	89 48 08	MOV	dword ptr [EAX + 0x8], ECX	MOV dword ptr [EAX + 0x8],ECX
+0046dfd4	89 48 0c	MOV	dword ptr [EAX + 0xc], ECX	MOV dword ptr [EAX + 0xc],ECX
+0046dfd7	c3	RET		RET

@@ -1,0 +1,25 @@
+address	bytes	mnemonic	operands	instruction
+00495e40	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00495e44	83 c0 fa	ADD	EAX, -0x6	ADD EAX,-0x6
+00495e47	83 f8 03	CMP	EAX, 0x3	CMP EAX,0x3
+00495e4a	77 4f	JA	0x00495e9b	JA 0x00495e9b
+00495e4c	ff 24 85 a4 5e 49 00	JMP	dword ptr [EAX*0x4 + 0x495ea4]	JMP dword ptr [EAX*0x4 + 0x495ea4]
+00495e53	8b 0d 9c 4b 65 00	MOV	ECX, dword ptr [0x00654b9c]	MOV ECX,dword ptr [0x00654b9c]
+00495e59	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+00495e5d	81 e1 ff 00 00 00	AND	ECX, 0xff	AND ECX,0xff
+00495e63	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+00495e68	89 4a 18	MOV	dword ptr [EDX + 0x18], ECX	MOV dword ptr [EDX + 0x18],ECX
+00495e6b	c3	RET		RET
+00495e6c	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00495e70	8a 48 18	MOV	CL, byte ptr [EAX + 0x18]	MOV CL,byte ptr [EAX + 0x18]
+00495e73	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+00495e78	88 0d 9c 4b 65 00	MOV	byte ptr [0x00654b9c], CL	MOV byte ptr [0x00654b9c],CL
+00495e7e	c3	RET		RET
+00495e7f	8a 15 9c 4b 65 00	MOV	DL, byte ptr [0x00654b9c]	MOV DL,byte ptr [0x00654b9c]
+00495e85	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+00495e8a	88 15 fc 4b 65 00	MOV	byte ptr [0x00654bfc], DL	MOV byte ptr [0x00654bfc],DL
+00495e90	c3	RET		RET
+00495e91	a0 fc 4b 65 00	MOV	AL, [0x00654bfc]	MOV AL,[0x00654bfc]
+00495e96	a2 9c 4b 65 00	MOV	[0x00654b9c], AL	MOV [0x00654b9c],AL
+00495e9b	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+00495ea0	c3	RET		RET

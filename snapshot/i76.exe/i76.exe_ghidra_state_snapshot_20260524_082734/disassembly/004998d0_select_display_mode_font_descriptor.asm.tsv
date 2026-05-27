@@ -1,0 +1,12 @@
+address	bytes	mnemonic	operands	instruction
+004998d0	8b 0d 94 e1 4f 00	MOV	ECX, dword ptr [0x004fe194]	MOV ECX,dword ptr [0x004fe194]
+004998d6	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+004998d8	74 10	JZ	0x004998ea	JZ 0x004998ea
+004998da	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004998de	83 f8 07	CMP	EAX, 0x7	CMP EAX,0x7
+004998e1	7f 07	JG	0x004998ea	JG 0x004998ea
+004998e3	8b 49 04	MOV	ECX, dword ptr [ECX + 0x4]	MOV ECX,dword ptr [ECX + 0x4]
+004998e6	8b 04 81	MOV	EAX, dword ptr [ECX + EAX*0x4]	MOV EAX,dword ptr [ECX + EAX*0x4]
+004998e9	c3	RET		RET
+004998ea	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+004998ee	c3	RET		RET

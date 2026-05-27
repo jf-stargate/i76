@@ -1,0 +1,13 @@
+address	bytes	mnemonic	operands	instruction
+0049d400	55	PUSH	EBP	PUSH EBP
+0049d401	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+0049d403	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0049d406	d9 45 08	FLD	float ptr [EBP + 0x8]	FLD float ptr [EBP + 0x8]
+0049d409	d9 fb	FSINCOS		FSINCOS
+0049d40b	d9 5d fc	FSTP	float ptr [EBP + -0x4]	FSTP float ptr [EBP + -0x4]
+0049d40e	d9 5d f8	FSTP	float ptr [EBP + -0x8]	FSTP float ptr [EBP + -0x8]
+0049d411	8b 45 f8	MOV	EAX, dword ptr [EBP + -0x8]	MOV EAX,dword ptr [EBP + -0x8]
+0049d414	8b 55 fc	MOV	EDX, dword ptr [EBP + -0x4]	MOV EDX,dword ptr [EBP + -0x4]
+0049d417	8b e5	MOV	ESP, EBP	MOV ESP,EBP
+0049d419	5d	POP	EBP	POP EBP
+0049d41a	c3	RET		RET

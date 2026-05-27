@@ -1,0 +1,16 @@
+address	bytes	mnemonic	operands	instruction
+00417e50	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+00417e54	d8 64 24 04	FSUB	float ptr [ESP + 0x4]	FSUB float ptr [ESP + 0x4]
+00417e58	d9 05 f4 c8 4b 00	FLD	float ptr [0x004bc8f4]	FLD float ptr [0x004bc8f4]
+00417e5e	d8 d9	FCOMP		FCOMP
+00417e60	df e0	FNSTSW	AX	FNSTSW AX
+00417e62	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+00417e65	74 07	JZ	0x00417e6e	JZ 0x00417e6e
+00417e67	d8 25 f8 c8 4b 00	FSUB	float ptr [0x004bc8f8]	FSUB float ptr [0x004bc8f8]
+00417e6d	c3	RET		RET
+00417e6e	d8 15 fc c8 4b 00	FCOM	float ptr [0x004bc8fc]	FCOM float ptr [0x004bc8fc]
+00417e74	df e0	FNSTSW	AX	FNSTSW AX
+00417e76	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+00417e79	74 06	JZ	0x00417e81	JZ 0x00417e81
+00417e7b	d8 25 00 c9 4b 00	FSUB	float ptr [0x004bc900]	FSUB float ptr [0x004bc900]
+00417e81	c3	RET		RET

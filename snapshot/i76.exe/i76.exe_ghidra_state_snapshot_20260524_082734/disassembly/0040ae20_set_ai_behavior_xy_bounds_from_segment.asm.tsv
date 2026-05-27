@@ -1,0 +1,37 @@
+address	bytes	mnemonic	operands	instruction
+0040ae20	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0040ae24	d8 5c 24 10	FCOMP	float ptr [ESP + 0x10]	FCOMP float ptr [ESP + 0x10]
+0040ae28	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0040ae2c	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+0040ae2f	df e0	FNSTSW	AX	FNSTSW AX
+0040ae31	8b 89 08 01 00 00	MOV	ECX, dword ptr [ECX + 0x108]	MOV ECX,dword ptr [ECX + 0x108]
+0040ae37	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0040ae3a	74 0a	JZ	0x0040ae46	JZ 0x0040ae46
+0040ae3c	d9 44 24 10	FLD	float ptr [ESP + 0x10]	FLD float ptr [ESP + 0x10]
+0040ae40	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0040ae44	eb 08	JMP	0x0040ae4e	JMP 0x0040ae4e
+0040ae46	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0040ae4a	d9 44 24 10	FLD	float ptr [ESP + 0x10]	FLD float ptr [ESP + 0x10]
+0040ae4e	d8 25 10 c6 4b 00	FSUB	float ptr [0x004bc610]	FSUB float ptr [0x004bc610]
+0040ae54	d9 c9	FXCH		FXCH
+0040ae56	d8 25 14 c6 4b 00	FSUB	float ptr [0x004bc614]	FSUB float ptr [0x004bc614]
+0040ae5c	d9 c9	FXCH		FXCH
+0040ae5e	d9 99 40 9d 00 00	FSTP	float ptr [ECX + 0x9d40]	FSTP float ptr [ECX + 0x9d40]
+0040ae64	d9 99 4c 9d 00 00	FSTP	float ptr [ECX + 0x9d4c]	FSTP float ptr [ECX + 0x9d4c]
+0040ae6a	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0040ae6e	d8 5c 24 14	FCOMP	float ptr [ESP + 0x14]	FCOMP float ptr [ESP + 0x14]
+0040ae72	df e0	FNSTSW	AX	FNSTSW AX
+0040ae74	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+0040ae77	74 0a	JZ	0x0040ae83	JZ 0x0040ae83
+0040ae79	d9 44 24 14	FLD	float ptr [ESP + 0x14]	FLD float ptr [ESP + 0x14]
+0040ae7d	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0040ae81	eb 08	JMP	0x0040ae8b	JMP 0x0040ae8b
+0040ae83	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0040ae87	d9 44 24 14	FLD	float ptr [ESP + 0x14]	FLD float ptr [ESP + 0x14]
+0040ae8b	d8 25 10 c6 4b 00	FSUB	float ptr [0x004bc610]	FSUB float ptr [0x004bc610]
+0040ae91	d9 c9	FXCH		FXCH
+0040ae93	d8 25 14 c6 4b 00	FSUB	float ptr [0x004bc614]	FSUB float ptr [0x004bc614]
+0040ae99	d9 c9	FXCH		FXCH
+0040ae9b	d9 99 48 9d 00 00	FSTP	float ptr [ECX + 0x9d48]	FSTP float ptr [ECX + 0x9d48]
+0040aea1	d9 99 54 9d 00 00	FSTP	float ptr [ECX + 0x9d54]	FSTP float ptr [ECX + 0x9d54]
+0040aea7	c3	RET		RET

@@ -1,0 +1,124 @@
+address	bytes	mnemonic	operands	instruction
+0042cd90	81 ec 88 04 00 00	SUB	ESP, 0x488	SUB ESP,0x488
+0042cd96	53	PUSH	EBX	PUSH EBX
+0042cd97	8d 44 24 04	LEA	EAX, [ESP + 0x4]	LEA EAX,[ESP + 0x4]
+0042cd9b	56	PUSH	ESI	PUSH ESI
+0042cd9c	50	PUSH	EAX	PUSH EAX
+0042cd9d	8d 4c 24 14	LEA	ECX, [ESP + 0x14]	LEA ECX,[ESP + 0x14]
+0042cda1	6a 04	PUSH	0x4	PUSH 0x4
+0042cda3	51	PUSH	ECX	PUSH ECX
+0042cda4	bb 01 00 00 00	MOV	EBX, 0x1	MOV EBX,0x1
+0042cda9	be 00 00 00 ff	MOV	ESI, 0xff000000	MOV ESI,0xff000000
+0042cdae	6a 00	PUSH	0x0	PUSH 0x0
+0042cdb0	6a 0f	PUSH	0xf	PUSH 0xf
+0042cdb2	c7 44 24 24 00 00 00 00	MOV	dword ptr [ESP + 0x24], 0x0	MOV dword ptr [ESP + 0x24],0x0
+0042cdba	c7 44 24 28 00 80 ef 43	MOV	dword ptr [ESP + 0x28], 0x43ef8000	MOV dword ptr [ESP + 0x28],0x43ef8000
+0042cdc2	c7 44 24 2c 00 00 80 3f	MOV	dword ptr [ESP + 0x2c], 0x3f800000	MOV dword ptr [ESP + 0x2c],0x3f800000
+0042cdca	c7 44 24 30 00 00 80 3f	MOV	dword ptr [ESP + 0x30], 0x3f800000	MOV dword ptr [ESP + 0x30],0x3f800000
+0042cdd2	89 5c 24 34	MOV	dword ptr [ESP + 0x34], EBX	MOV dword ptr [ESP + 0x34],EBX
+0042cdd6	88 5c 24 38	MOV	byte ptr [ESP + 0x38], BL	MOV byte ptr [ESP + 0x38],BL
+0042cdda	88 5c 24 39	MOV	byte ptr [ESP + 0x39], BL	MOV byte ptr [ESP + 0x39],BL
+0042cdde	88 5c 24 3a	MOV	byte ptr [ESP + 0x3a], BL	MOV byte ptr [ESP + 0x3a],BL
+0042cde2	c6 44 24 3b ff	MOV	byte ptr [ESP + 0x3b], 0xff	MOV byte ptr [ESP + 0x3b],0xff
+0042cde7	89 74 24 3c	MOV	dword ptr [ESP + 0x3c], ESI	MOV dword ptr [ESP + 0x3c],ESI
+0042cdeb	c7 44 24 40 00 00 00 00	MOV	dword ptr [ESP + 0x40], 0x0	MOV dword ptr [ESP + 0x40],0x0
+0042cdf3	c7 44 24 44 00 00 00 00	MOV	dword ptr [ESP + 0x44], 0x0	MOV dword ptr [ESP + 0x44],0x0
+0042cdfb	c7 44 24 48 00 00 20 44	MOV	dword ptr [ESP + 0x48], 0x44200000	MOV dword ptr [ESP + 0x48],0x44200000
+0042ce03	c7 44 24 4c 00 80 ef 43	MOV	dword ptr [ESP + 0x4c], 0x43ef8000	MOV dword ptr [ESP + 0x4c],0x43ef8000
+0042ce0b	c7 44 24 50 00 00 80 3f	MOV	dword ptr [ESP + 0x50], 0x3f800000	MOV dword ptr [ESP + 0x50],0x3f800000
+0042ce13	c7 44 24 54 00 00 80 3f	MOV	dword ptr [ESP + 0x54], 0x3f800000	MOV dword ptr [ESP + 0x54],0x3f800000
+0042ce1b	89 5c 24 58	MOV	dword ptr [ESP + 0x58], EBX	MOV dword ptr [ESP + 0x58],EBX
+0042ce1f	88 5c 24 5c	MOV	byte ptr [ESP + 0x5c], BL	MOV byte ptr [ESP + 0x5c],BL
+0042ce23	88 5c 24 5d	MOV	byte ptr [ESP + 0x5d], BL	MOV byte ptr [ESP + 0x5d],BL
+0042ce27	88 5c 24 5e	MOV	byte ptr [ESP + 0x5e], BL	MOV byte ptr [ESP + 0x5e],BL
+0042ce2b	c6 44 24 5f ff	MOV	byte ptr [ESP + 0x5f], 0xff	MOV byte ptr [ESP + 0x5f],0xff
+0042ce30	89 74 24 60	MOV	dword ptr [ESP + 0x60], ESI	MOV dword ptr [ESP + 0x60],ESI
+0042ce34	c7 44 24 64 00 00 00 00	MOV	dword ptr [ESP + 0x64], 0x0	MOV dword ptr [ESP + 0x64],0x0
+0042ce3c	c7 44 24 68 00 00 00 00	MOV	dword ptr [ESP + 0x68], 0x0	MOV dword ptr [ESP + 0x68],0x0
+0042ce44	c7 44 24 6c 00 00 20 44	MOV	dword ptr [ESP + 0x6c], 0x44200000	MOV dword ptr [ESP + 0x6c],0x44200000
+0042ce4c	c7 44 24 70 00 00 f0 43	MOV	dword ptr [ESP + 0x70], 0x43f00000	MOV dword ptr [ESP + 0x70],0x43f00000
+0042ce54	c7 44 24 74 00 00 80 3f	MOV	dword ptr [ESP + 0x74], 0x3f800000	MOV dword ptr [ESP + 0x74],0x3f800000
+0042ce5c	c7 44 24 78 00 00 80 3f	MOV	dword ptr [ESP + 0x78], 0x3f800000	MOV dword ptr [ESP + 0x78],0x3f800000
+0042ce64	89 5c 24 7c	MOV	dword ptr [ESP + 0x7c], EBX	MOV dword ptr [ESP + 0x7c],EBX
+0042ce68	88 9c 24 80 00 00 00	MOV	byte ptr [ESP + 0x80], BL	MOV byte ptr [ESP + 0x80],BL
+0042ce6f	88 9c 24 81 00 00 00	MOV	byte ptr [ESP + 0x81], BL	MOV byte ptr [ESP + 0x81],BL
+0042ce76	88 9c 24 82 00 00 00	MOV	byte ptr [ESP + 0x82], BL	MOV byte ptr [ESP + 0x82],BL
+0042ce7d	c6 84 24 83 00 00 00 ff	MOV	byte ptr [ESP + 0x83], 0xff	MOV byte ptr [ESP + 0x83],0xff
+0042ce85	89 b4 24 84 00 00 00	MOV	dword ptr [ESP + 0x84], ESI	MOV dword ptr [ESP + 0x84],ESI
+0042ce8c	c7 84 24 88 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0x88], 0x0	MOV dword ptr [ESP + 0x88],0x0
+0042ce97	c7 84 24 8c 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0x8c], 0x0	MOV dword ptr [ESP + 0x8c],0x0
+0042cea2	c7 84 24 90 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0x90], 0x0	MOV dword ptr [ESP + 0x90],0x0
+0042cead	c7 84 24 94 00 00 00 00 00 f0 43	MOV	dword ptr [ESP + 0x94], 0x43f00000	MOV dword ptr [ESP + 0x94],0x43f00000
+0042ceb8	c7 84 24 98 00 00 00 00 00 80 3f	MOV	dword ptr [ESP + 0x98], 0x3f800000	MOV dword ptr [ESP + 0x98],0x3f800000
+0042cec3	c7 84 24 9c 00 00 00 00 00 80 3f	MOV	dword ptr [ESP + 0x9c], 0x3f800000	MOV dword ptr [ESP + 0x9c],0x3f800000
+0042cece	89 9c 24 a0 00 00 00	MOV	dword ptr [ESP + 0xa0], EBX	MOV dword ptr [ESP + 0xa0],EBX
+0042ced5	88 9c 24 a4 00 00 00	MOV	byte ptr [ESP + 0xa4], BL	MOV byte ptr [ESP + 0xa4],BL
+0042cedc	88 9c 24 a5 00 00 00	MOV	byte ptr [ESP + 0xa5], BL	MOV byte ptr [ESP + 0xa5],BL
+0042cee3	88 9c 24 a6 00 00 00	MOV	byte ptr [ESP + 0xa6], BL	MOV byte ptr [ESP + 0xa6],BL
+0042ceea	c6 84 24 a7 00 00 00 ff	MOV	byte ptr [ESP + 0xa7], 0xff	MOV byte ptr [ESP + 0xa7],0xff
+0042cef2	89 b4 24 a8 00 00 00	MOV	dword ptr [ESP + 0xa8], ESI	MOV dword ptr [ESP + 0xa8],ESI
+0042cef9	c7 84 24 ac 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0xac], 0x0	MOV dword ptr [ESP + 0xac],0x0
+0042cf04	c7 84 24 b0 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0xb0], 0x0	MOV dword ptr [ESP + 0xb0],0x0
+0042cf0f	ff 15 b0 8b 60 00	CALL	dword ptr [0x00608bb0]	CALL dword ptr [0x00608bb0]
+0042cf15	83 c4 14	ADD	ESP, 0x14	ADD ESP,0x14
+0042cf18	c7 44 24 10 00 c0 1f 44	MOV	dword ptr [ESP + 0x10], 0x441fc000	MOV dword ptr [ESP + 0x10],0x441fc000
+0042cf20	c7 44 24 14 00 00 00 00	MOV	dword ptr [ESP + 0x14], 0x0	MOV dword ptr [ESP + 0x14],0x0
+0042cf28	c7 44 24 18 00 00 80 3f	MOV	dword ptr [ESP + 0x18], 0x3f800000	MOV dword ptr [ESP + 0x18],0x3f800000
+0042cf30	c7 44 24 1c 00 00 80 3f	MOV	dword ptr [ESP + 0x1c], 0x3f800000	MOV dword ptr [ESP + 0x1c],0x3f800000
+0042cf38	89 5c 24 20	MOV	dword ptr [ESP + 0x20], EBX	MOV dword ptr [ESP + 0x20],EBX
+0042cf3c	88 5c 24 24	MOV	byte ptr [ESP + 0x24], BL	MOV byte ptr [ESP + 0x24],BL
+0042cf40	88 5c 24 25	MOV	byte ptr [ESP + 0x25], BL	MOV byte ptr [ESP + 0x25],BL
+0042cf44	88 5c 24 26	MOV	byte ptr [ESP + 0x26], BL	MOV byte ptr [ESP + 0x26],BL
+0042cf48	c6 44 24 27 ff	MOV	byte ptr [ESP + 0x27], 0xff	MOV byte ptr [ESP + 0x27],0xff
+0042cf4d	89 74 24 28	MOV	dword ptr [ESP + 0x28], ESI	MOV dword ptr [ESP + 0x28],ESI
+0042cf51	c7 44 24 2c 00 00 00 00	MOV	dword ptr [ESP + 0x2c], 0x0	MOV dword ptr [ESP + 0x2c],0x0
+0042cf59	c7 44 24 30 00 00 00 00	MOV	dword ptr [ESP + 0x30], 0x0	MOV dword ptr [ESP + 0x30],0x0
+0042cf61	c7 44 24 34 00 00 20 44	MOV	dword ptr [ESP + 0x34], 0x44200000	MOV dword ptr [ESP + 0x34],0x44200000
+0042cf69	c7 44 24 38 00 00 00 00	MOV	dword ptr [ESP + 0x38], 0x0	MOV dword ptr [ESP + 0x38],0x0
+0042cf71	c7 44 24 3c 00 00 80 3f	MOV	dword ptr [ESP + 0x3c], 0x3f800000	MOV dword ptr [ESP + 0x3c],0x3f800000
+0042cf79	c7 44 24 40 00 00 80 3f	MOV	dword ptr [ESP + 0x40], 0x3f800000	MOV dword ptr [ESP + 0x40],0x3f800000
+0042cf81	89 5c 24 44	MOV	dword ptr [ESP + 0x44], EBX	MOV dword ptr [ESP + 0x44],EBX
+0042cf85	88 5c 24 48	MOV	byte ptr [ESP + 0x48], BL	MOV byte ptr [ESP + 0x48],BL
+0042cf89	88 5c 24 49	MOV	byte ptr [ESP + 0x49], BL	MOV byte ptr [ESP + 0x49],BL
+0042cf8d	88 5c 24 4a	MOV	byte ptr [ESP + 0x4a], BL	MOV byte ptr [ESP + 0x4a],BL
+0042cf91	8d 54 24 08	LEA	EDX, [ESP + 0x8]	LEA EDX,[ESP + 0x8]
+0042cf95	8d 44 24 10	LEA	EAX, [ESP + 0x10]	LEA EAX,[ESP + 0x10]
+0042cf99	52	PUSH	EDX	PUSH EDX
+0042cf9a	6a 04	PUSH	0x4	PUSH 0x4
+0042cf9c	50	PUSH	EAX	PUSH EAX
+0042cf9d	6a 00	PUSH	0x0	PUSH 0x0
+0042cf9f	6a 0f	PUSH	0xf	PUSH 0xf
+0042cfa1	c6 44 24 5f ff	MOV	byte ptr [ESP + 0x5f], 0xff	MOV byte ptr [ESP + 0x5f],0xff
+0042cfa6	89 74 24 60	MOV	dword ptr [ESP + 0x60], ESI	MOV dword ptr [ESP + 0x60],ESI
+0042cfaa	c7 44 24 64 00 00 00 00	MOV	dword ptr [ESP + 0x64], 0x0	MOV dword ptr [ESP + 0x64],0x0
+0042cfb2	c7 44 24 68 00 00 00 00	MOV	dword ptr [ESP + 0x68], 0x0	MOV dword ptr [ESP + 0x68],0x0
+0042cfba	c7 44 24 6c 00 00 20 44	MOV	dword ptr [ESP + 0x6c], 0x44200000	MOV dword ptr [ESP + 0x6c],0x44200000
+0042cfc2	c7 44 24 70 00 00 f0 43	MOV	dword ptr [ESP + 0x70], 0x43f00000	MOV dword ptr [ESP + 0x70],0x43f00000
+0042cfca	c7 44 24 74 00 00 80 3f	MOV	dword ptr [ESP + 0x74], 0x3f800000	MOV dword ptr [ESP + 0x74],0x3f800000
+0042cfd2	c7 44 24 78 00 00 80 3f	MOV	dword ptr [ESP + 0x78], 0x3f800000	MOV dword ptr [ESP + 0x78],0x3f800000
+0042cfda	89 5c 24 7c	MOV	dword ptr [ESP + 0x7c], EBX	MOV dword ptr [ESP + 0x7c],EBX
+0042cfde	88 9c 24 80 00 00 00	MOV	byte ptr [ESP + 0x80], BL	MOV byte ptr [ESP + 0x80],BL
+0042cfe5	88 9c 24 81 00 00 00	MOV	byte ptr [ESP + 0x81], BL	MOV byte ptr [ESP + 0x81],BL
+0042cfec	88 9c 24 82 00 00 00	MOV	byte ptr [ESP + 0x82], BL	MOV byte ptr [ESP + 0x82],BL
+0042cff3	c6 84 24 83 00 00 00 ff	MOV	byte ptr [ESP + 0x83], 0xff	MOV byte ptr [ESP + 0x83],0xff
+0042cffb	89 b4 24 84 00 00 00	MOV	dword ptr [ESP + 0x84], ESI	MOV dword ptr [ESP + 0x84],ESI
+0042d002	c7 84 24 88 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0x88], 0x0	MOV dword ptr [ESP + 0x88],0x0
+0042d00d	c7 84 24 8c 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0x8c], 0x0	MOV dword ptr [ESP + 0x8c],0x0
+0042d018	c7 84 24 90 00 00 00 00 c0 1f 44	MOV	dword ptr [ESP + 0x90], 0x441fc000	MOV dword ptr [ESP + 0x90],0x441fc000
+0042d023	c7 84 24 94 00 00 00 00 00 f0 43	MOV	dword ptr [ESP + 0x94], 0x43f00000	MOV dword ptr [ESP + 0x94],0x43f00000
+0042d02e	c7 84 24 98 00 00 00 00 00 80 3f	MOV	dword ptr [ESP + 0x98], 0x3f800000	MOV dword ptr [ESP + 0x98],0x3f800000
+0042d039	c7 84 24 9c 00 00 00 00 00 80 3f	MOV	dword ptr [ESP + 0x9c], 0x3f800000	MOV dword ptr [ESP + 0x9c],0x3f800000
+0042d044	89 9c 24 a0 00 00 00	MOV	dword ptr [ESP + 0xa0], EBX	MOV dword ptr [ESP + 0xa0],EBX
+0042d04b	88 9c 24 a4 00 00 00	MOV	byte ptr [ESP + 0xa4], BL	MOV byte ptr [ESP + 0xa4],BL
+0042d052	88 9c 24 a5 00 00 00	MOV	byte ptr [ESP + 0xa5], BL	MOV byte ptr [ESP + 0xa5],BL
+0042d059	88 9c 24 a6 00 00 00	MOV	byte ptr [ESP + 0xa6], BL	MOV byte ptr [ESP + 0xa6],BL
+0042d060	c6 84 24 a7 00 00 00 ff	MOV	byte ptr [ESP + 0xa7], 0xff	MOV byte ptr [ESP + 0xa7],0xff
+0042d068	89 b4 24 a8 00 00 00	MOV	dword ptr [ESP + 0xa8], ESI	MOV dword ptr [ESP + 0xa8],ESI
+0042d06f	c7 84 24 ac 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0xac], 0x0	MOV dword ptr [ESP + 0xac],0x0
+0042d07a	c7 84 24 b0 00 00 00 00 00 00 00	MOV	dword ptr [ESP + 0xb0], 0x0	MOV dword ptr [ESP + 0xb0],0x0
+0042d085	ff 15 b0 8b 60 00	CALL	dword ptr [0x00608bb0]	CALL dword ptr [0x00608bb0]
+0042d08b	83 c4 14	ADD	ESP, 0x14	ADD ESP,0x14
+0042d08e	5e	POP	ESI	POP ESI
+0042d08f	5b	POP	EBX	POP EBX
+0042d090	81 c4 88 04 00 00	ADD	ESP, 0x488	ADD ESP,0x488
+0042d096	c3	RET		RET

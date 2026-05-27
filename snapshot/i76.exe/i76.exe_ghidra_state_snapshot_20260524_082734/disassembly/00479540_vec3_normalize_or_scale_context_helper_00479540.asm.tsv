@@ -1,0 +1,25 @@
+address	bytes	mnemonic	operands	instruction
+00479540	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00479544	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+00479546	8b 54 24 08	MOV	EDX, dword ptr [ESP + 0x8]	MOV EDX,dword ptr [ESP + 0x8]
+0047954a	8d 04 40	LEA	EAX, [EAX + EAX*0x2]	LEA EAX,[EAX + EAX*0x2]
+0047954d	8a 88 e0 32 64 00	MOV	CL, byte ptr [EAX + 0x6432e0]	MOV CL,byte ptr [EAX + 0x6432e0]
+00479553	89 4c 24 04	MOV	dword ptr [ESP + 0x4], ECX	MOV dword ptr [ESP + 0x4],ECX
+00479557	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+00479559	db 44 24 04	FILD	dword ptr [ESP + 0x4]	FILD dword ptr [ESP + 0x4]
+0047955d	d8 0d 98 e6 4b 00	FMUL	float ptr [0x004be698]	FMUL float ptr [0x004be698]
+00479563	d9 1a	FSTP	float ptr [EDX]	FSTP float ptr [EDX]
+00479565	8a 88 e1 32 64 00	MOV	CL, byte ptr [EAX + 0x6432e1]	MOV CL,byte ptr [EAX + 0x6432e1]
+0047956b	8b 54 24 0c	MOV	EDX, dword ptr [ESP + 0xc]	MOV EDX,dword ptr [ESP + 0xc]
+0047956f	89 4c 24 04	MOV	dword ptr [ESP + 0x4], ECX	MOV dword ptr [ESP + 0x4],ECX
+00479573	33 c9	XOR	ECX, ECX	XOR ECX,ECX
+00479575	db 44 24 04	FILD	dword ptr [ESP + 0x4]	FILD dword ptr [ESP + 0x4]
+00479579	d8 0d 98 e6 4b 00	FMUL	float ptr [0x004be698]	FMUL float ptr [0x004be698]
+0047957f	d9 1a	FSTP	float ptr [EDX]	FSTP float ptr [EDX]
+00479581	8a 88 e2 32 64 00	MOV	CL, byte ptr [EAX + 0x6432e2]	MOV CL,byte ptr [EAX + 0x6432e2]
+00479587	8b 54 24 10	MOV	EDX, dword ptr [ESP + 0x10]	MOV EDX,dword ptr [ESP + 0x10]
+0047958b	89 4c 24 04	MOV	dword ptr [ESP + 0x4], ECX	MOV dword ptr [ESP + 0x4],ECX
+0047958f	db 44 24 04	FILD	dword ptr [ESP + 0x4]	FILD dword ptr [ESP + 0x4]
+00479593	d8 0d 98 e6 4b 00	FMUL	float ptr [0x004be698]	FMUL float ptr [0x004be698]
+00479599	d9 1a	FSTP	float ptr [EDX]	FSTP float ptr [EDX]
+0047959b	c3	RET		RET

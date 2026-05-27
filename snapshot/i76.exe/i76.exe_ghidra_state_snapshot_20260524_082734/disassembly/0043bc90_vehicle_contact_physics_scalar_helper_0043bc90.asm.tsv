@@ -1,0 +1,30 @@
+address	bytes	mnemonic	operands	instruction
+0043bc90	dd 44 24 28	FLD	double ptr [ESP + 0x28]	FLD double ptr [ESP + 0x28]
+0043bc94	dd 44 24 30	FLD	double ptr [ESP + 0x30]	FLD double ptr [ESP + 0x30]
+0043bc98	dd 44 24 38	FLD	double ptr [ESP + 0x38]	FLD double ptr [ESP + 0x38]
+0043bc9c	d9 ca	FXCH	ST2	FXCH ST2
+0043bc9e	dc 4c 24 20	FMUL	double ptr [ESP + 0x20]	FMUL double ptr [ESP + 0x20]
+0043bca2	d9 c9	FXCH		FXCH
+0043bca4	dc 4c 24 20	FMUL	double ptr [ESP + 0x20]	FMUL double ptr [ESP + 0x20]
+0043bca8	d9 c9	FXCH		FXCH
+0043bcaa	dc 44 24 08	FADD	double ptr [ESP + 0x8]	FADD double ptr [ESP + 0x8]
+0043bcae	d9 ca	FXCH	ST2	FXCH ST2
+0043bcb0	dc 4c 24 20	FMUL	double ptr [ESP + 0x20]	FMUL double ptr [ESP + 0x20]
+0043bcb4	d9 c9	FXCH		FXCH
+0043bcb6	dc 44 24 10	FADD	double ptr [ESP + 0x10]	FADD double ptr [ESP + 0x10]
+0043bcba	d9 c9	FXCH		FXCH
+0043bcbc	dc 44 24 18	FADD	double ptr [ESP + 0x18]	FADD double ptr [ESP + 0x18]
+0043bcc0	d9 ca	FXCH	ST2	FXCH ST2
+0043bcc2	dd 5c 24 28	FSTP	double ptr [ESP + 0x28]	FSTP double ptr [ESP + 0x28]
+0043bcc6	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0043bcca	56	PUSH	ESI	PUSH ESI
+0043bccb	dd 5c 24 34	FSTP	double ptr [ESP + 0x34]	FSTP double ptr [ESP + 0x34]
+0043bccf	57	PUSH	EDI	PUSH EDI
+0043bcd0	b9 06 00 00 00	MOV	ECX, 0x6	MOV ECX,0x6
+0043bcd5	dd 5c 24 40	FSTP	double ptr [ESP + 0x40]	FSTP double ptr [ESP + 0x40]
+0043bcd9	8d 74 24 30	LEA	ESI, [ESP + 0x30]	LEA ESI,[ESP + 0x30]
+0043bcdd	8b f8	MOV	EDI, EAX	MOV EDI,EAX
+0043bcdf	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+0043bce1	5f	POP	EDI	POP EDI
+0043bce2	5e	POP	ESI	POP ESI
+0043bce3	c3	RET		RET

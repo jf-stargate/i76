@@ -1,0 +1,17 @@
+address	bytes	mnemonic	operands	instruction
+004ae570	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004ae574	56	PUSH	ESI	PUSH ESI
+004ae575	57	PUSH	EDI	PUSH EDI
+004ae576	8d 70 08	LEA	ESI, [EAX + 0x8]	LEA ESI,[EAX + 0x8]
+004ae579	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+004ae57d	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+004ae57f	83 79 6c 08	CMP	dword ptr [ECX + 0x6c], 0x8	CMP dword ptr [ECX + 0x6c],0x8
+004ae583	74 11	JZ	0x004ae596	JZ 0x004ae596
+004ae585	8d 78 0c	LEA	EDI, [EAX + 0xc]	LEA EDI,[EAX + 0xc]
+004ae588	b9 0c 00 00 00	MOV	ECX, 0xc	MOV ECX,0xc
+004ae58d	f3 a5	MOVSD.REP	ES:EDI, ESI	MOVSD.REP ES:EDI,ESI
+004ae58f	c7 40 08 01 00 00 00	MOV	dword ptr [EAX + 0x8], 0x1	MOV dword ptr [EAX + 0x8],0x1
+004ae596	5f	POP	EDI	POP EDI
+004ae597	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+004ae59c	5e	POP	ESI	POP ESI
+004ae59d	c3	RET		RET

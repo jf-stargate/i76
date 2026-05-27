@@ -1,0 +1,31 @@
+address	bytes	mnemonic	operands	instruction
+00444ed0	a1 98 bb 52 00	MOV	EAX, [0x0052bb98]	MOV EAX,[0x0052bb98]
+00444ed5	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+00444ed7	74 6b	JZ	0x00444f44	JZ 0x00444f44
+00444ed9	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+00444edd	c7 40 10 01 00 00 00	MOV	dword ptr [EAX + 0x10], 0x1	MOV dword ptr [EAX + 0x10],0x1
+00444ee4	a1 98 bb 52 00	MOV	EAX, [0x0052bb98]	MOV EAX,[0x0052bb98]
+00444ee9	89 48 08	MOV	dword ptr [EAX + 0x8], ECX	MOV dword ptr [EAX + 0x8],ECX
+00444eec	a1 98 bb 52 00	MOV	EAX, [0x0052bb98]	MOV EAX,[0x0052bb98]
+00444ef1	8b 15 94 bb 52 00	MOV	EDX, dword ptr [0x0052bb94]	MOV EDX,dword ptr [0x0052bb94]
+00444ef7	89 50 04	MOV	dword ptr [EAX + 0x4], EDX	MOV dword ptr [EAX + 0x4],EDX
+00444efa	a1 94 bb 52 00	MOV	EAX, [0x0052bb94]	MOV EAX,[0x0052bb94]
+00444eff	40	INC	EAX	INC EAX
+00444f00	a3 94 bb 52 00	MOV	[0x0052bb94], EAX	MOV [0x0052bb94],EAX
+00444f05	e8 b6 79 05 00	CALL	0x0049c8c0	CALL 0x0049c8c0
+00444f0a	d8 25 48 d3 4b 00	FSUB	float ptr [0x004bd348]	FSUB float ptr [0x004bd348]
+00444f10	8b 0d 98 bb 52 00	MOV	ECX, dword ptr [0x0052bb98]	MOV ECX,dword ptr [0x0052bb98]
+00444f16	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00444f1a	d9 59 0c	FSTP	float ptr [ECX + 0xc]	FSTP float ptr [ECX + 0xc]
+00444f1d	8b 15 98 bb 52 00	MOV	EDX, dword ptr [0x0052bb98]	MOV EDX,dword ptr [0x0052bb98]
+00444f23	8b 08	MOV	ECX, dword ptr [EAX]	MOV ECX,dword ptr [EAX]
+00444f25	83 c2 14	ADD	EDX, 0x14	ADD EDX,0x14
+00444f28	89 0a	MOV	dword ptr [EDX], ECX	MOV dword ptr [EDX],ECX
+00444f2a	8b 48 04	MOV	ECX, dword ptr [EAX + 0x4]	MOV ECX,dword ptr [EAX + 0x4]
+00444f2d	89 4a 04	MOV	dword ptr [EDX + 0x4], ECX	MOV dword ptr [EDX + 0x4],ECX
+00444f30	8b 40 08	MOV	EAX, dword ptr [EAX + 0x8]	MOV EAX,dword ptr [EAX + 0x8]
+00444f33	89 42 08	MOV	dword ptr [EDX + 0x8], EAX	MOV dword ptr [EDX + 0x8],EAX
+00444f36	8b 0d 98 bb 52 00	MOV	ECX, dword ptr [0x0052bb98]	MOV ECX,dword ptr [0x0052bb98]
+00444f3c	8b 11	MOV	EDX, dword ptr [ECX]	MOV EDX,dword ptr [ECX]
+00444f3e	89 15 98 bb 52 00	MOV	dword ptr [0x0052bb98], EDX	MOV dword ptr [0x0052bb98],EDX
+00444f44	c3	RET		RET

@@ -1,0 +1,38 @@
+address	bytes	mnemonic	operands	instruction
+0045ed00	56	PUSH	ESI	PUSH ESI
+0045ed01	8b 74 24 08	MOV	ESI, dword ptr [ESP + 0x8]	MOV ESI,dword ptr [ESP + 0x8]
+0045ed05	85 f6	TEST	ESI, ESI	TEST ESI,ESI
+0045ed07	57	PUSH	EDI	PUSH EDI
+0045ed08	74 57	JZ	0x0045ed61	JZ 0x0045ed61
+0045ed0a	a1 3c ad 54 00	MOV	EAX, [0x0054ad3c]	MOV EAX,[0x0054ad3c]
+0045ed0f	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0045ed11	74 22	JZ	0x0045ed35	JZ 0x0045ed35
+0045ed13	8b 7c 24 10	MOV	EDI, dword ptr [ESP + 0x10]	MOV EDI,dword ptr [ESP + 0x10]
+0045ed17	8b 4e 0c	MOV	ECX, dword ptr [ESI + 0xc]	MOV ECX,dword ptr [ESI + 0xc]
+0045ed1a	8b 46 64	MOV	EAX, dword ptr [ESI + 0x64]	MOV EAX,dword ptr [ESI + 0x64]
+0045ed1d	41	INC	ECX	INC ECX
+0045ed1e	57	PUSH	EDI	PUSH EDI
+0045ed1f	50	PUSH	EAX	PUSH EAX
+0045ed20	89 4e 0c	MOV	dword ptr [ESI + 0xc], ECX	MOV dword ptr [ESI + 0xc],ECX
+0045ed23	e8 d8 ff ff ff	CALL	0x0045ed00	CALL 0x0045ed00
+0045ed28	8b 76 60	MOV	ESI, dword ptr [ESI + 0x60]	MOV ESI,dword ptr [ESI + 0x60]
+0045ed2b	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0045ed2e	85 f6	TEST	ESI, ESI	TEST ESI,ESI
+0045ed30	75 e5	JNZ	0x0045ed17	JNZ 0x0045ed17
+0045ed32	5f	POP	EDI	POP EDI
+0045ed33	5e	POP	ESI	POP ESI
+0045ed34	c3	RET		RET
+0045ed35	8b 7e 0c	MOV	EDI, dword ptr [ESI + 0xc]	MOV EDI,dword ptr [ESI + 0xc]
+0045ed38	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+0045ed3c	47	INC	EDI	INC EDI
+0045ed3d	51	PUSH	ECX	PUSH ECX
+0045ed3e	89 7e 0c	MOV	dword ptr [ESI + 0xc], EDI	MOV dword ptr [ESI + 0xc],EDI
+0045ed41	c7 05 3c ad 54 00 01 00 00 00	MOV	dword ptr [0x0054ad3c], 0x1	MOV dword ptr [0x0054ad3c],0x1
+0045ed4b	8b 56 64	MOV	EDX, dword ptr [ESI + 0x64]	MOV EDX,dword ptr [ESI + 0x64]
+0045ed4e	52	PUSH	EDX	PUSH EDX
+0045ed4f	e8 ac ff ff ff	CALL	0x0045ed00	CALL 0x0045ed00
+0045ed54	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0045ed57	c7 05 3c ad 54 00 00 00 00 00	MOV	dword ptr [0x0054ad3c], 0x0	MOV dword ptr [0x0054ad3c],0x0
+0045ed61	5f	POP	EDI	POP EDI
+0045ed62	5e	POP	ESI	POP ESI
+0045ed63	c3	RET		RET

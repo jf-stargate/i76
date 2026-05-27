@@ -1,0 +1,16 @@
+address	bytes	mnemonic	operands	instruction
+00414fb0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00414fb4	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+00414fb8	d9 40 08	FLD	float ptr [EAX + 0x8]	FLD float ptr [EAX + 0x8]
+00414fbb	d9 40 04	FLD	float ptr [EAX + 0x4]	FLD float ptr [EAX + 0x4]
+00414fbe	d8 49 04	FMUL	float ptr [ECX + 0x4]	FMUL float ptr [ECX + 0x4]
+00414fc1	d9 01	FLD	float ptr [ECX]	FLD float ptr [ECX]
+00414fc3	d9 ca	FXCH	ST2	FXCH ST2
+00414fc5	d8 49 08	FMUL	float ptr [ECX + 0x8]	FMUL float ptr [ECX + 0x8]
+00414fc8	d9 ca	FXCH	ST2	FXCH ST2
+00414fca	d8 08	FMUL	float ptr [EAX]	FMUL float ptr [EAX]
+00414fcc	d9 ca	FXCH	ST2	FXCH ST2
+00414fce	de c1	FADDP		FADDP
+00414fd0	d9 c9	FXCH		FXCH
+00414fd2	de c1	FADDP		FADDP
+00414fd4	c3	RET		RET

@@ -1,0 +1,38 @@
+address	bytes	mnemonic	operands	instruction
+0043a210	d9 44 24 1c	FLD	float ptr [ESP + 0x1c]	FLD float ptr [ESP + 0x1c]
+0043a214	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0043a218	d8 4c 24 08	FMUL	float ptr [ESP + 0x8]	FMUL float ptr [ESP + 0x8]
+0043a21c	d9 44 24 10	FLD	float ptr [ESP + 0x10]	FLD float ptr [ESP + 0x10]
+0043a220	d9 ca	FXCH	ST2	FXCH ST2
+0043a222	d8 4c 24 18	FMUL	float ptr [ESP + 0x18]	FMUL float ptr [ESP + 0x18]
+0043a226	d9 44 24 20	FLD	float ptr [ESP + 0x20]	FLD float ptr [ESP + 0x20]
+0043a22a	d9 cb	FXCH	ST3	FXCH ST3
+0043a22c	d8 4c 24 08	FMUL	float ptr [ESP + 0x8]	FMUL float ptr [ESP + 0x8]
+0043a230	d9 44 24 14	FLD	float ptr [ESP + 0x14]	FLD float ptr [ESP + 0x14]
+0043a234	d9 cc	FXCH	ST4	FXCH ST4
+0043a236	d8 4c 24 18	FMUL	float ptr [ESP + 0x18]	FMUL float ptr [ESP + 0x18]
+0043a23a	d9 44 24 24	FLD	float ptr [ESP + 0x24]	FLD float ptr [ESP + 0x24]
+0043a23e	d9 cb	FXCH	ST3	FXCH ST3
+0043a240	de c4	FADDP	ST4, ST0	FADDP ST4,ST0
+0043a242	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0043a246	56	PUSH	ESI	PUSH ESI
+0043a247	8b d0	MOV	EDX, EAX	MOV EDX,EAX
+0043a249	de c1	FADDP		FADDP
+0043a24b	d9 cb	FXCH	ST3	FXCH ST3
+0043a24d	d8 4c 24 0c	FMUL	float ptr [ESP + 0xc]	FMUL float ptr [ESP + 0xc]
+0043a251	d9 ca	FXCH	ST2	FXCH ST2
+0043a253	d9 5c 24 10	FSTP	float ptr [ESP + 0x10]	FSTP float ptr [ESP + 0x10]
+0043a257	d9 ca	FXCH	ST2	FXCH ST2
+0043a259	d9 5c 24 14	FSTP	float ptr [ESP + 0x14]	FSTP float ptr [ESP + 0x14]
+0043a25d	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+0043a261	8b 74 24 14	MOV	ESI, dword ptr [ESP + 0x14]	MOV ESI,dword ptr [ESP + 0x14]
+0043a265	d9 c9	FXCH		FXCH
+0043a267	d8 4c 24 1c	FMUL	float ptr [ESP + 0x1c]	FMUL float ptr [ESP + 0x1c]
+0043a26b	89 0a	MOV	dword ptr [EDX], ECX	MOV dword ptr [EDX],ECX
+0043a26d	de c1	FADDP		FADDP
+0043a26f	89 72 04	MOV	dword ptr [EDX + 0x4], ESI	MOV dword ptr [EDX + 0x4],ESI
+0043a272	5e	POP	ESI	POP ESI
+0043a273	d9 5c 24 14	FSTP	float ptr [ESP + 0x14]	FSTP float ptr [ESP + 0x14]
+0043a277	8b 4c 24 14	MOV	ECX, dword ptr [ESP + 0x14]	MOV ECX,dword ptr [ESP + 0x14]
+0043a27b	89 4a 08	MOV	dword ptr [EDX + 0x8], ECX	MOV dword ptr [EDX + 0x8],ECX
+0043a27e	c3	RET		RET

@@ -1,0 +1,14 @@
+address	bytes	mnemonic	operands	instruction
+004676b0	6a 18	PUSH	0x18	PUSH 0x18
+004676b2	e8 f9 7c ff ff	CALL	0x0045f3b0	CALL 0x0045f3b0
+004676b7	33 d2	XOR	EDX, EDX	XOR EDX,EDX
+004676b9	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+004676bc	3b c2	CMP	EAX, EDX	CMP EAX,EDX
+004676be	74 13	JZ	0x004676d3	JZ 0x004676d3
+004676c0	b9 0a 00 00 00	MOV	ECX, 0xa	MOV ECX,0xa
+004676c5	89 10	MOV	dword ptr [EAX], EDX	MOV dword ptr [EAX],EDX
+004676c7	89 50 04	MOV	dword ptr [EAX + 0x4], EDX	MOV dword ptr [EAX + 0x4],EDX
+004676ca	89 48 08	MOV	dword ptr [EAX + 0x8], ECX	MOV dword ptr [EAX + 0x8],ECX
+004676cd	89 48 0c	MOV	dword ptr [EAX + 0xc], ECX	MOV dword ptr [EAX + 0xc],ECX
+004676d0	89 50 10	MOV	dword ptr [EAX + 0x10], EDX	MOV dword ptr [EAX + 0x10],EDX
+004676d3	c3	RET		RET

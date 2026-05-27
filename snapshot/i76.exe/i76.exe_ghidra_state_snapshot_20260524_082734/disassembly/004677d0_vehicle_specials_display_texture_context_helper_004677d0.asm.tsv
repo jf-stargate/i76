@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+004677d0	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+004677d4	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+004677d6	74 06	JZ	0x004677de	JZ 0x004677de
+004677d8	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+004677db	ff 48 04	DEC	dword ptr [EAX + 0x4]	DEC dword ptr [EAX + 0x4]
+004677de	c3	RET		RET

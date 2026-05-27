@@ -1,0 +1,53 @@
+address	bytes	mnemonic	operands	instruction
+00494ef0	55	PUSH	EBP	PUSH EBP
+00494ef1	8b ec	MOV	EBP, ESP	MOV EBP,ESP
+00494ef3	53	PUSH	EBX	PUSH EBX
+00494ef4	8b 4d 10	MOV	ECX, dword ptr [EBP + 0x10]	MOV ECX,dword ptr [EBP + 0x10]
+00494ef7	8b 5d 0c	MOV	EBX, dword ptr [EBP + 0xc]	MOV EBX,dword ptr [EBP + 0xc]
+00494efa	8b 45 08	MOV	EAX, dword ptr [EBP + 0x8]	MOV EAX,dword ptr [EBP + 0x8]
+00494efd	d9 01	FLD	float ptr [ECX]	FLD float ptr [ECX]
+00494eff	d8 0b	FMUL	float ptr [EBX]	FMUL float ptr [EBX]
+00494f01	d9 41 04	FLD	float ptr [ECX + 0x4]	FLD float ptr [ECX + 0x4]
+00494f04	d8 0b	FMUL	float ptr [EBX]	FMUL float ptr [EBX]
+00494f06	d9 41 08	FLD	float ptr [ECX + 0x8]	FLD float ptr [ECX + 0x8]
+00494f09	d8 0b	FMUL	float ptr [EBX]	FMUL float ptr [EBX]
+00494f0b	d9 41 0c	FLD	float ptr [ECX + 0xc]	FLD float ptr [ECX + 0xc]
+00494f0e	d8 4b 04	FMUL	float ptr [EBX + 0x4]	FMUL float ptr [EBX + 0x4]
+00494f11	d9 41 10	FLD	float ptr [ECX + 0x10]	FLD float ptr [ECX + 0x10]
+00494f14	d8 4b 04	FMUL	float ptr [EBX + 0x4]	FMUL float ptr [EBX + 0x4]
+00494f17	d9 41 14	FLD	float ptr [ECX + 0x14]	FLD float ptr [ECX + 0x14]
+00494f1a	d8 4b 04	FMUL	float ptr [EBX + 0x4]	FMUL float ptr [EBX + 0x4]
+00494f1d	d9 ca	FXCH	ST2	FXCH ST2
+00494f1f	de c5	FADDP	ST5, ST0	FADDP ST5,ST0
+00494f21	de c3	FADDP	ST3, ST0	FADDP ST3,ST0
+00494f23	de c1	FADDP		FADDP
+00494f25	d9 41 18	FLD	float ptr [ECX + 0x18]	FLD float ptr [ECX + 0x18]
+00494f28	d8 4b 08	FMUL	float ptr [EBX + 0x8]	FMUL float ptr [EBX + 0x8]
+00494f2b	d9 41 1c	FLD	float ptr [ECX + 0x1c]	FLD float ptr [ECX + 0x1c]
+00494f2e	d8 4b 08	FMUL	float ptr [EBX + 0x8]	FMUL float ptr [EBX + 0x8]
+00494f31	d9 41 20	FLD	float ptr [ECX + 0x20]	FLD float ptr [ECX + 0x20]
+00494f34	d8 4b 08	FMUL	float ptr [EBX + 0x8]	FMUL float ptr [EBX + 0x8]
+00494f37	d9 ca	FXCH	ST2	FXCH ST2
+00494f39	de c5	FADDP	ST5, ST0	FADDP ST5,ST0
+00494f3b	de c3	FADDP	ST3, ST0	FADDP ST3,ST0
+00494f3d	de c1	FADDP		FADDP
+00494f3f	d9 c2	FLD	ST2	FLD ST2
+00494f41	dc 49 28	FMUL	double ptr [ECX + 0x28]	FMUL double ptr [ECX + 0x28]
+00494f44	d9 c2	FLD	ST2	FLD ST2
+00494f46	dc 49 30	FMUL	double ptr [ECX + 0x30]	FMUL double ptr [ECX + 0x30]
+00494f49	d9 c2	FLD	ST2	FLD ST2
+00494f4b	dc 49 38	FMUL	double ptr [ECX + 0x38]	FMUL double ptr [ECX + 0x38]
+00494f4e	d9 ca	FXCH	ST2	FXCH ST2
+00494f50	de c1	FADDP		FADDP
+00494f52	d9 cc	FXCH	ST4	FXCH ST4
+00494f54	d9 18	FSTP	float ptr [EAX]	FSTP float ptr [EAX]
+00494f56	de c3	FADDP	ST3, ST0	FADDP ST3,ST0
+00494f58	d9 58 08	FSTP	float ptr [EAX + 0x8]	FSTP float ptr [EAX + 0x8]
+00494f5b	d9 c9	FXCH		FXCH
+00494f5d	d8 6b 0c	FSUBR	float ptr [EBX + 0xc]	FSUBR float ptr [EBX + 0xc]
+00494f60	d9 c9	FXCH		FXCH
+00494f62	d9 58 04	FSTP	float ptr [EAX + 0x4]	FSTP float ptr [EAX + 0x4]
+00494f65	5b	POP	EBX	POP EBX
+00494f66	5d	POP	EBP	POP EBP
+00494f67	d9 58 0c	FSTP	float ptr [EAX + 0xc]	FSTP float ptr [EAX + 0xc]
+00494f6a	c3	RET		RET

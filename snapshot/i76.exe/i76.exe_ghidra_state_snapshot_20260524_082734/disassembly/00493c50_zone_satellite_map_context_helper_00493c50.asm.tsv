@@ -1,0 +1,22 @@
+address	bytes	mnemonic	operands	instruction
+00493c50	83 ec 10	SUB	ESP, 0x10	SUB ESP,0x10
+00493c53	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+00493c55	89 44 24 00	MOV	dword ptr [ESP], EAX	MOV dword ptr [ESP],EAX
+00493c59	8b c8	MOV	ECX, EAX	MOV ECX,EAX
+00493c5b	81 c9 00 ff 01 00	OR	ECX, 0x1ff00	OR ECX,0x1ff00
+00493c61	c1 e1 0d	SHL	ECX, 0xd	SHL ECX,0xd
+00493c64	89 4c 24 04	MOV	dword ptr [ESP + 0x4], ECX	MOV dword ptr [ESP + 0x4],ECX
+00493c68	dd 44 24 00	FLD	double ptr [ESP]	FLD double ptr [ESP]
+00493c6c	d9 fa	FSQRT		FSQRT
+00493c6e	dc 3d c0 e8 4b 00	FDIVR	double ptr [0x004be8c0]	FDIVR double ptr [0x004be8c0]
+00493c74	dd 5c 24 08	FSTP	double ptr [ESP + 0x8]	FSTP double ptr [ESP + 0x8]
+00493c78	8b 54 24 0c	MOV	EDX, dword ptr [ESP + 0xc]	MOV EDX,dword ptr [ESP + 0xc]
+00493c7c	81 c2 00 04 00 00	ADD	EDX, 0x400	ADD EDX,0x400
+00493c82	c1 fa 0c	SAR	EDX, 0xc	SAR EDX,0xc
+00493c85	88 90 80 51 65 00	MOV	byte ptr [EAX + 0x655180], DL	MOV byte ptr [EAX + 0x655180],DL
+00493c8b	40	INC	EAX	INC EAX
+00493c8c	3d 00 01 00 00	CMP	EAX, 0x100	CMP EAX,0x100
+00493c91	7c c6	JL	0x00493c59	JL 0x00493c59
+00493c93	c6 05 00 52 65 00 ff	MOV	byte ptr [0x00655200], 0xff	MOV byte ptr [0x00655200],0xff
+00493c9a	83 c4 10	ADD	ESP, 0x10	ADD ESP,0x10
+00493c9d	c3	RET		RET

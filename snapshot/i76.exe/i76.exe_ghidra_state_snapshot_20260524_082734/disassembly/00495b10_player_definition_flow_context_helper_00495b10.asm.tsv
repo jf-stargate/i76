@@ -1,0 +1,9 @@
+address	bytes	mnemonic	operands	instruction
+00495b10	83 7c 24 08 04	CMP	dword ptr [ESP + 0x8], 0x4	CMP dword ptr [ESP + 0x8],0x4
+00495b15	75 17	JNZ	0x00495b2e	JNZ 0x00495b2e
+00495b17	68 c0 ce 4f 00	PUSH	0x4fcec0	PUSH 0x4fcec0
+00495b1c	c7 05 d8 cd 4f 00 10 68 49 00	MOV	dword ptr [0x004fcdd8], 0x496810	MOV dword ptr [0x004fcdd8],0x496810
+00495b26	e8 b5 fb ff ff	CALL	0x004956e0	CALL 0x004956e0
+00495b2b	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00495b2e	b8 01 00 00 00	MOV	EAX, 0x1	MOV EAX,0x1
+00495b33	c3	RET		RET

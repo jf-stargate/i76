@@ -1,0 +1,69 @@
+address	bytes	mnemonic	operands	instruction
+0040e9d0	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040e9d3	db 44 24 18	FILD	dword ptr [ESP + 0x18]	FILD dword ptr [ESP + 0x18]
+0040e9d7	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040e9da	c7 44 24 0c 00 00 00 00	MOV	dword ptr [ESP + 0xc], 0x0	MOV dword ptr [ESP + 0xc],0x0
+0040e9e2	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040e9e5	db 44 24 1c	FILD	dword ptr [ESP + 0x1c]	FILD dword ptr [ESP + 0x1c]
+0040e9e9	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040e9ec	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040e9ef	e8 bc 3d 08 00	CALL	0x004927b0	CALL 0x004927b0
+0040e9f4	83 c0 fe	ADD	EAX, -0x2	ADD EAX,-0x2
+0040e9f7	83 c4 10	ADD	ESP, 0x10	ADD ESP,0x10
+0040e9fa	83 f8 05	CMP	EAX, 0x5	CMP EAX,0x5
+0040e9fd	77 39	JA	0x0040ea38	JA 0x0040ea38
+0040e9ff	ff 24 85 cc ea 40 00	JMP	dword ptr [EAX*0x4 + 0x40eacc]	JMP dword ptr [EAX*0x4 + 0x40eacc]
+0040ea06	8b 44 24 10	MOV	EAX, dword ptr [ESP + 0x10]	MOV EAX,dword ptr [ESP + 0x10]
+0040ea0a	c7 44 24 00 00 00 00 3f	MOV	dword ptr [ESP], 0x3f000000	MOV dword ptr [ESP],0x3f000000
+0040ea12	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+0040ea16	c7 40 10 01 00 00 00	MOV	dword ptr [EAX + 0x10], 0x1	MOV dword ptr [EAX + 0x10],0x1
+0040ea1d	eb 68	JMP	0x0040ea87	JMP 0x0040ea87
+0040ea1f	8b 4c 24 10	MOV	ECX, dword ptr [ESP + 0x10]	MOV ECX,dword ptr [ESP + 0x10]
+0040ea23	c7 44 24 00 00 00 00 3f	MOV	dword ptr [ESP], 0x3f000000	MOV dword ptr [ESP],0x3f000000
+0040ea2b	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+0040ea2f	c7 41 10 00 00 00 00	MOV	dword ptr [ECX + 0x10], 0x0	MOV dword ptr [ECX + 0x10],0x0
+0040ea36	eb 4f	JMP	0x0040ea87	JMP 0x0040ea87
+0040ea38	8b 54 24 10	MOV	EDX, dword ptr [ESP + 0x10]	MOV EDX,dword ptr [ESP + 0x10]
+0040ea3c	8b 44 24 0c	MOV	EAX, dword ptr [ESP + 0xc]	MOV EAX,dword ptr [ESP + 0xc]
+0040ea40	c7 44 24 00 00 00 70 41	MOV	dword ptr [ESP], 0x41700000	MOV dword ptr [ESP],0x41700000
+0040ea48	c7 42 10 00 00 00 00	MOV	dword ptr [EDX + 0x10], 0x0	MOV dword ptr [EDX + 0x10],0x0
+0040ea4f	8b 88 14 9d 00 00	MOV	ECX, dword ptr [EAX + 0x9d14]	MOV ECX,dword ptr [EAX + 0x9d14]
+0040ea55	85 c9	TEST	ECX, ECX	TEST ECX,ECX
+0040ea57	74 28	JZ	0x0040ea81	JZ 0x0040ea81
+0040ea59	db 44 24 18	FILD	dword ptr [ESP + 0x18]	FILD dword ptr [ESP + 0x18]
+0040ea5d	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040ea60	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040ea63	db 44 24 1c	FILD	dword ptr [ESP + 0x1c]	FILD dword ptr [ESP + 0x1c]
+0040ea67	83 ec 08	SUB	ESP, 0x8	SUB ESP,0x8
+0040ea6a	dd 1c 24	FSTP	double ptr [ESP]	FSTP double ptr [ESP]
+0040ea6d	e8 7e 3c 08 00	CALL	0x004926f0	CALL 0x004926f0
+0040ea72	83 c4 10	ADD	ESP, 0x10	ADD ESP,0x10
+0040ea75	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0040ea77	74 08	JZ	0x0040ea81	JZ 0x0040ea81
+0040ea79	d9 05 dc c6 4b 00	FLD	float ptr [0x004bc6dc]	FLD float ptr [0x004bc6dc]
+0040ea7f	eb 06	JMP	0x0040ea87	JMP 0x0040ea87
+0040ea81	d9 05 b4 c6 4b 00	FLD	float ptr [0x004bc6b4]	FLD float ptr [0x004bc6b4]
+0040ea87	8b 4c 24 14	MOV	ECX, dword ptr [ESP + 0x14]	MOV ECX,dword ptr [ESP + 0x14]
+0040ea8b	8b 44 24 1c	MOV	EAX, dword ptr [ESP + 0x1c]	MOV EAX,dword ptr [ESP + 0x1c]
+0040ea8f	3b c8	CMP	ECX, EAX	CMP ECX,EAX
+0040ea91	74 22	JZ	0x0040eab5	JZ 0x0040eab5
+0040ea93	8b 54 24 18	MOV	EDX, dword ptr [ESP + 0x18]	MOV EDX,dword ptr [ESP + 0x18]
+0040ea97	8b 44 24 20	MOV	EAX, dword ptr [ESP + 0x20]	MOV EAX,dword ptr [ESP + 0x20]
+0040ea9b	3b d0	CMP	EDX, EAX	CMP EDX,EAX
+0040ea9d	74 16	JZ	0x0040eab5	JZ 0x0040eab5
+0040ea9f	dd 05 f0 c6 4b 00	FLD	double ptr [0x004bc6f0]	FLD double ptr [0x004bc6f0]
+0040eaa5	d9 c9	FXCH		FXCH
+0040eaa7	d8 44 24 00	FADD	float ptr [ESP]	FADD float ptr [ESP]
+0040eaab	d8 c9	FMUL	ST1	FMUL ST1
+0040eaad	d9 c9	FXCH		FXCH
+0040eaaf	dd d8	FSTP	ST0	FSTP ST0
+0040eab1	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040eab4	c3	RET		RET
+0040eab5	dd 05 70 c6 4b 00	FLD	double ptr [0x004bc670]	FLD double ptr [0x004bc670]
+0040eabb	d9 c9	FXCH		FXCH
+0040eabd	d8 44 24 00	FADD	float ptr [ESP]	FADD float ptr [ESP]
+0040eac1	d8 c9	FMUL	ST1	FMUL ST1
+0040eac3	d9 c9	FXCH		FXCH
+0040eac5	dd d8	FSTP	ST0	FSTP ST0
+0040eac7	83 c4 08	ADD	ESP, 0x8	ADD ESP,0x8
+0040eaca	c3	RET		RET
