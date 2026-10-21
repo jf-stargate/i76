@@ -4,6 +4,8 @@
 
 The current [retail mission execution contract](ref/mission_execution/README.md) includes the 96-command host ABI, BWD2/FSM loader validation, original-code x86 parser/loader emulation and the latest [v97 annotated listings](snapshot/i76.exe/i76.exe_ghidra_state_snapshot_20261021_v97/README.md). The October 19 program snapshot remains a historical baseline. These results describe **retail `i76.exe`** and are distinct from the separate `i76edit.exe` investigation.
 
+**Editor reference update (2026-10-21):** [original `I76EDIT.EXE` reference](ref/editor/README.md), [road/terrain serialization](ref/editor/road_terrain_serialization.md), and [intersection and wheel-contact limitations](ref/editor/intersection_geometry_and_driving_surface.md). The terrain **road-kind-to-material-index** mapping is now established; rendered road textures/UVs remain incompletely resolved.
+
 
 This directory is the durable human-readable reference set for the current
 Interstate '76 reconstruction work.  It is intentionally organized by runtime
@@ -16,6 +18,7 @@ system rather than by individual exporter revision.
 | Folder                       | Contents                                                     |
 +------------------------------+--------------------------------------------------------------+
 | ref/level_format/            | Mission/terrain/RSEG/ODEF/SDF/static-object reconstruction   |
+| ref/editor/                  | Original builder: roads/terrain/intersections, OBJ and FSM   |
 | ref/material_format/         | Indexed texture, MAP/M16/VQM/CBK, palette, alpha policy      |
 | ref/model_format/            | VCF/VDF/VTF/VGEO/GEO vehicle and reusable GEO model details  |
 | ref/zfs/                     | ZFSF archive structure, LZO decode, PIX/PAK resource index   |
@@ -41,7 +44,7 @@ system rather than by individual exporter revision.
 | Static UVs               | GEO UVs with V flip required                                 |
 | Static alpha             | targeted black-key alpha for cutout textures                 |
 | Sky                      | hemisphere validation object from mission sky/environment MAP|
-| RSEG road geometry       | placement useful; material/type mapping unresolved           |
+| RSEG road geometry       | terrain material mapping established; texture/UV rules open           |
 +--------------------------+--------------------------------------------------------------+
 ```
 
@@ -51,8 +54,8 @@ system rather than by individual exporter revision.
 +--------------------------+--------------------------------------------------------------+
 | Topic                    | Next evidence needed                                         |
 +--------------------------+--------------------------------------------------------------+
-| RSEG road materials      | Trace game/editor road material/type selection               |
-| Multiple road types      | Determine how road kind/table chooses I2D* or other textures |
+| RSEG road textures       | Terrain material mapping established; investigate render texture selection               |
+| Multiple road textures   | Investigate how road kind selects I2D* or other textures |
 | Road UVs                 | Trace runtime/editor road mesh UV generation                 |
 | LUM/TBL/PCF color tables | Determine whether static/terrain palettes are remapped       |
 | Runtime render states    | Trace blend/clamp/filter/alpha flags beyond OBJ approximation|

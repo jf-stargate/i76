@@ -1,0 +1,7 @@
+# Editor investigations v01–v20 — research provenance
+
+The original full-length research reports and evidence packages remain preserved in **versioned checkpoint ZIPs**. The GitHub reference pages in this directory are the current curated summaries and do not claim to reproduce every assembly listing or validation artifact. The comprehensive v01–v20 Markdown report update, including report SHA-256 checksums, is also available as a separate reviewable local Git patch generated against commit `868b8494b838914c0912e1bd0d7c06c726b53bc3`.
+
+**Report sequence:** v01–v05: FSM compiler/actor identity, export-side keys, collision and SDF loading; v06–v07: OBJ ABI and class/status; v08–v15: retail class/vehicle/component ownership; v16: original road graph and terrain/material pipeline; v17: endpoint/seam diagnostics; v18: intersection resource/socket placement; v19: indexed GEO face topology and vertical joins; v20: terrain contact/materials under intersection polygons.
+
+Historical conclusions must be checked against later binary/asset evidence. The missing `fsmcomp` tool, lack of editable `.I76` roundtrip fixture, inability to establish real-time static-scene collision from wheel-probe code, and untested authored game-content compatibility remain explicit limitations. Do not interpret the existence of this index as an assertion that the full original report files are all stored in this GitHub directory.

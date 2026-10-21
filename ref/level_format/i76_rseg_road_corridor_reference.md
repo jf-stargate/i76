@@ -1,5 +1,8 @@
 # Interstate '76 RSEG Road / Corridor Reference
 
+> **2026-10-21: historical RSEG note.** The original editor/game analysis establishes road-kind-to-*terrain-material* indices (0→2 paved, 1→3 dirt, 2→4 wash) and resampled runtime road heights. Rendered road texture/UV selection remains unresolved. See [editor road reference](../editor/road_terrain_serialization.md). Earlier unresolved statements below are retained as history.
+
+
 This document summarizes the current understanding of `RDEF/RSEG` records and their use in level reconstruction.
 
 ## Current conclusion

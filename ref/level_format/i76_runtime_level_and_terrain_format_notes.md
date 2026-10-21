@@ -1,5 +1,8 @@
 # Interstate '76 Runtime Level, Terrain, Object, and Reconstruction Format Notes
 
+> **2026-10-21: editor research supplement.** Original builder authoring, WREV 8 versus 9, cubic road curves, material packing, intersection polygon sockets and contact limits are detailed in [editor road reference](../editor/road_terrain_serialization.md) and [intersection reference](../editor/intersection_geometry_and_driving_surface.md). Earlier reconstruction notes remain historical evidence.
+
+
 This document summarizes the current reverse-engineering baseline for Interstate '76 runtime level loading, terrain reconstruction, mission object placement, static object geometry, materials, and current exporter behavior.
 
 The scope is the shipped runtime resources used by the retail game, not the original editor workspace format. The current practical goal is to reconstruct shipped missions in Blender or a modern engine using the runtime mission streams, sidecar terrain pages, ZFS/PIX/PAK resources, and binary-backed dispatch behavior.
