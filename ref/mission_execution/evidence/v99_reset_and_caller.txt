@@ -1,0 +1,159 @@
+
+==== 004b84e0 reset_mission_resource_parse_callbacks ====
+
+/* [cgpt i76.exe mission/runtime rename v14; confidence=medium_high] Registers/reset mission
+   resource parse callback state through FUN_00457290 before selected mission parse. */
+
+undefined4 reset_mission_resource_parse_callbacks(void)
+
+{
+  register_world_object_tree_callback(clear_mission_parse_object_callback_state);
+  return 1;
+}
+
+
+count instructions=5
+
+==== 00402b30 winmain_top_level_game_fsm ====
+count instructions=1961
+
+==== 004b41e0 parse_bwd2_resource_with_descriptor_table ====
+
+/* [cgpt i76.exe vehicle asset format renames v16; confidence=high] Opens a named resource,
+   validates the generic BWD2 descriptor, then parses a caller-supplied tagged chunk descriptor
+   table.
+   
+   [cgpt_i76exe_runtime_level_loader_v1] proposed=parse_bwd2_resource_with_descriptor_table ::
+   Generic named-resource BWD2 loader that validates BWD2 then parses a caller-supplied descriptor
+   table.
+   
+   I76 rename v43: parse_bwd2_resource_with_descriptor_table
+   Opens named resource into memory, gets size, dispatches descriptor table, releases resource ref.
+    */
+
+bool __cdecl
+parse_bwd2_resource_with_descriptor_table(byte *param_1,byte *param_2,int param_3,byte *param_4)
+
+{
+  int iVar1;
+  
+  if (param_1 == (byte *)0x0) {
+    return false;
+  }
+  iVar1 = _strnicmp((char *)param_1,s_null_004c3280,4);
+  if (iVar1 == 0) {
+    return true;
+  }
+  g_current_bwd2_parse_cursor = open_resource_file_into_memory((char *)param_1);
+  if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+    iVar1 = get_loaded_resource_file_size((char *)param_1);
+    g_current_bwd2_parse_end = (int *)(iVar1 + (int)g_current_bwd2_parse_cursor);
+    g_current_bwd2_parse_cursor =
+         (uint *)parse_tagged_chunk_descriptor_table
+                           ((int *)g_current_bwd2_parse_cursor,&g_bwd2_descriptor_table,2,
+                            (byte *)0x0,param_1,1,g_current_bwd2_parse_end);
+    if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+      g_current_bwd2_parse_cursor =
+           (uint *)parse_tagged_chunk_descriptor_table
+                             ((int *)g_current_bwd2_parse_cursor,param_2,param_3,param_4,param_1,1,
+                              g_current_bwd2_parse_end);
+    }
+    release_named_cached_resource_reference((char *)param_1);
+  }
+  return g_current_bwd2_parse_cursor != (uint *)0x0;
+}
+
+
+count instructions=65
+
+==== 004b4550 i76_runtime_wdef_section_handler ====
+
+/* cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context
+   helper based on adjacent named subsystem context.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_wdef_section_handler :: WDEF mission
+   section wrapper; forwards descriptor parser callback args to 004b89e0. */
+
+void __cdecl i76_runtime_wdef_section_handler(int *param_1,byte *param_2,int *param_3)
+
+{
+  parse_wdef_world_resource_config(param_1,param_2,param_3);
+  return;
+}
+
+
+count instructions=9
+
+==== 004b4570 i76_runtime_tdef_section_handler ====
+
+/* cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context
+   helper based on adjacent named subsystem context.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_tdef_section_handler :: TDEF terrain
+   section wrapper; forwards callback args to terrain parser 00493910. */
+
+void __cdecl i76_runtime_tdef_section_handler(int *param_1,byte *param_2,int *param_3)
+
+{
+  terrain_reverse_tag_handler(param_1,param_2,param_3);
+  return;
+}
+
+
+count instructions=9
+
+==== 004b4590 i76_runtime_rdef_section_handler ====
+
+/* [i76 road/material/RSEG baseline v57]
+   name: i76_runtime_rdef_section_handler
+   confidence: high
+   module: road_parser
+   RDEF section handler that dispatches route/road definition data into the runtime road/RSEG
+   loading path.
+   note: Name already matches road baseline. */
+
+void __cdecl i76_runtime_rdef_section_handler(int *param_1,byte *param_2,int *param_3)
+
+{
+  parse_rdef_route_segment_chunks(param_1,param_2,param_3);
+  return;
+}
+
+
+count instructions=9
+
+==== 004b45b0 i76_runtime_odef_section_handler ====
+
+/* cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context
+   helper based on adjacent named subsystem context.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_odef_section_handler :: ODEF object
+   section wrapper; forwards callback args to 004b7a90. */
+
+void __cdecl i76_runtime_odef_section_handler(int *param_1,byte *param_2,int *param_3)
+
+{
+  parse_odef_object_placement_chunks(param_1,param_2,param_3);
+  return;
+}
+
+
+count instructions=9
+
+==== 004b45d0 i76_runtime_ldef_section_handler ====
+
+/* cgpt readability rename set E v17: Readability pass set E: vehicle vdf chunk callback context
+   helper based on adjacent named subsystem context.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_ldef_section_handler :: LDEF
+   linked-object/world-reader section wrapper; forwards callback args to 004b8f40. */
+
+void __cdecl i76_runtime_ldef_section_handler(int *param_1,byte *param_2,int *param_3)
+
+{
+  parse_ldef_static_world_object_chunks(param_1,param_2,param_3);
+  return;
+}
+
+
+count instructions=9

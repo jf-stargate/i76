@@ -1,0 +1,345 @@
+scenario	type	pc	detail
+W01_stock_cold	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W01_stock_cold	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W01_stock_cold	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W01_stock_cold	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W01_stock_cold	ORIGINAL_REVISION	004B4610	original revision callback
+W01_stock_cold	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W01_stock_cold	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W01_stock_cold	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W01_stock_cold	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W01_stock_cold	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W01_stock_cold	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W01_stock_cold	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W01_stock_cold	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002006
+W01_stock_cold	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W01_stock_cold	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W01_stock_cold	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002004
+W01_stock_cold	ORIGINAL_REVISION	004B4610	original revision callback
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500D30 flags=00000001
+W01_stock_cold	ORIGINAL_FSM_IMPORT	00409740	original retail FSM importer and finalizer executed
+W01_stock_cold	STUB_STDCALL	000C0FE2	Windows HeapCreate -> synthetic handle; original FSM caller executes
+W01_stock_cold	STUB_STDCALL	000C0FFE	HeapAlloc native import simulated size=19200 ptr=22000000
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500D40 flags=00001000
+W01_stock_cold	ORIGINAL_CALLBACK	004B4290	wrapper/nested or exit callback
+W01_stock_cold	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002000
+W01_stock_cold	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W01_stock_cold	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W01_stock_cold	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W02_missing_cold	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W02_missing_cold	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W02_missing_cold	STUB_BOUNDARY	0046FEE0	resource logical byte length 47806
+W02_missing_cold	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W02_missing_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W02_missing_cold	ORIGINAL_REVISION	004B4610	original revision callback
+W02_missing_cold	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W02_missing_cold	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W02_missing_cold	CRT_strncpy_stub	000C0C2A	bytes=4
+W02_missing_cold	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W02_missing_cold	PARSER_NULL_PATH	004B41AF	original null branch
+W02_missing_cold	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W02_missing_cold	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W03_bad_rev_cold	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W03_bad_rev_cold	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W03_bad_rev_cold	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W03_bad_rev_cold	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W03_bad_rev_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W03_bad_rev_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W03_bad_rev_cold	ORIGINAL_REVISION	004B4610	original revision callback
+W03_bad_rev_cold	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W03_bad_rev_cold	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W03_bad_rev_cold	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W03_bad_rev_cold	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W03_bad_rev_cold	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W07_wrong_AREV	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W07_wrong_AREV	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W07_wrong_AREV	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W07_wrong_AREV	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W07_wrong_AREV	ORIGINAL_REVISION	004B4610	original revision callback
+W07_wrong_AREV	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W07_wrong_AREV	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W07_wrong_AREV	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W07_wrong_AREV	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W07_wrong_AREV	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W07_wrong_AREV	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W07_wrong_AREV	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W07_wrong_AREV	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002006
+W07_wrong_AREV	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W07_wrong_AREV	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W07_wrong_AREV	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002004
+W07_wrong_AREV	ORIGINAL_REVISION	004B4610	original revision callback
+W07_wrong_AREV	CRT_strncpy_stub	000C0C2A	bytes=4
+W07_wrong_AREV	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W07_wrong_AREV	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500D30 flags=00000001
+W07_wrong_AREV	ORIGINAL_FSM_IMPORT	00409740	original retail FSM importer and finalizer executed
+W07_wrong_AREV	STUB_STDCALL	000C0FE2	Windows HeapCreate -> synthetic handle; original FSM caller executes
+W07_wrong_AREV	STUB_STDCALL	000C0FFE	HeapAlloc native import simulated size=19200 ptr=22004B10
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=00500D40 flags=00001000
+W07_wrong_AREV	ORIGINAL_CALLBACK	004B4290	wrapper/nested or exit callback
+W07_wrong_AREV	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002000
+W07_wrong_AREV	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W07_wrong_AREV	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W07_wrong_AREV	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W08_missing_FSM	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W08_missing_FSM	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W08_missing_FSM	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W08_missing_FSM	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W08_missing_FSM	ORIGINAL_REVISION	004B4610	original revision callback
+W08_missing_FSM	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W08_missing_FSM	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W08_missing_FSM	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W08_missing_FSM	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W08_missing_FSM	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W08_missing_FSM	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W08_missing_FSM	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W08_missing_FSM	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002006
+W08_missing_FSM	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W08_missing_FSM	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W08_missing_FSM	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002004
+W08_missing_FSM	ORIGINAL_REVISION	004B4610	original revision callback
+W08_missing_FSM	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002000
+W08_missing_FSM	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W08_missing_FSM	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W08_missing_FSM	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W09_missing_ADEF	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W09_missing_ADEF	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W09_missing_ADEF	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W09_missing_ADEF	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W09_missing_ADEF	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W09_missing_ADEF	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W09_missing_ADEF	ORIGINAL_REVISION	004B4610	original revision callback
+W09_missing_ADEF	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W09_missing_ADEF	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W09_missing_ADEF	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W09_missing_ADEF	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W09_missing_ADEF	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W09_missing_ADEF	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W09_missing_ADEF	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W09_missing_ADEF	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W09_missing_ADEF	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W09_missing_ADEF	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W09_missing_ADEF	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W09_missing_ADEF	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W09_missing_ADEF	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W09_missing_ADEF	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W10_missing_ADEF_EXIT	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W10_missing_ADEF_EXIT	ORIGINAL_REVISION	004B4610	original revision callback
+W10_missing_ADEF_EXIT	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W10_missing_ADEF_EXIT	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W10_missing_ADEF_EXIT	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002006
+W10_missing_ADEF_EXIT	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W10_missing_ADEF_EXIT	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W10_missing_ADEF_EXIT	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002004
+W10_missing_ADEF_EXIT	ORIGINAL_REVISION	004B4610	original revision callback
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=00500D30 flags=00000001
+W10_missing_ADEF_EXIT	ORIGINAL_FSM_IMPORT	00409740	original retail FSM importer and finalizer executed
+W10_missing_ADEF_EXIT	STUB_STDCALL	000C0FE2	Windows HeapCreate -> synthetic handle; original FSM caller executes
+W10_missing_ADEF_EXIT	STUB_STDCALL	000C0FFE	HeapAlloc native import simulated size=19200 ptr=22009620
+W10_missing_ADEF_EXIT	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002000
+W10_missing_ADEF_EXIT	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W10_missing_ADEF_EXIT	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W04a_valid	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W04a_valid	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W04a_valid	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W04a_valid	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W04a_valid	ORIGINAL_REVISION	004B4610	original revision callback
+W04a_valid	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W04a_valid	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W04a_valid	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W04a_valid	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W04a_valid	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W04a_valid	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W04a_valid	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W04a_valid	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002006
+W04a_valid	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W04a_valid	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W04a_valid	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002004
+W04a_valid	ORIGINAL_REVISION	004B4610	original revision callback
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500D30 flags=00000001
+W04a_valid	STUB_BOUNDARY	00409740	FSM callback simulated on repeated-load tests; no FSM teardown state modeled
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=00500D40 flags=00001000
+W04a_valid	ORIGINAL_CALLBACK	004B4290	wrapper/nested or exit callback
+W04a_valid	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002000
+W04a_valid	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W04a_valid	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W04a_valid	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W04b_missing_warm	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W04b_missing_warm	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W04b_missing_warm	STUB_BOUNDARY	0046FEE0	resource logical byte length 47806
+W04b_missing_warm	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=000020A0
+W04b_missing_warm	ORIGINAL_REVISION	004B4610	original revision callback
+W04b_missing_warm	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W04b_missing_warm	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W04b_missing_warm	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002086
+W04b_missing_warm	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002086
+W04b_missing_warm	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002086
+W04b_missing_warm	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002086
+W04b_missing_warm	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002086
+W04b_missing_warm	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002086
+W04b_missing_warm	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W04b_missing_warm	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W04b_missing_warm	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002084
+W04b_missing_warm	ORIGINAL_REVISION	004B4610	original revision callback
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500D30 flags=00000081
+W04b_missing_warm	STUB_BOUNDARY	00409740	FSM callback simulated on repeated-load tests; no FSM teardown state modeled
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500D40 flags=00001080
+W04b_missing_warm	ORIGINAL_CALLBACK	004B4290	wrapper/nested or exit callback
+W04b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002080
+W04b_missing_warm	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W04b_missing_warm	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W04b_missing_warm	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W05a_wrong_rev	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W05a_wrong_rev	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W05a_wrong_rev	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W05a_wrong_rev	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W05a_wrong_rev	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W05a_wrong_rev	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W05a_wrong_rev	ORIGINAL_REVISION	004B4610	original revision callback
+W05a_wrong_rev	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W05a_wrong_rev	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W05a_wrong_rev	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W05a_wrong_rev	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W05a_wrong_rev	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W05b_missing_warm	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W05b_missing_warm	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W05b_missing_warm	STUB_BOUNDARY	0046FEE0	resource logical byte length 47806
+W05b_missing_warm	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=000020A0
+W05b_missing_warm	ORIGINAL_REVISION	004B4610	original revision callback
+W05b_missing_warm	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W05b_missing_warm	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W05b_missing_warm	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W05b_missing_warm	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W05b_missing_warm	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W05b_missing_warm	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W05b_missing_warm	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W05b_missing_warm	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002006
+W05b_missing_warm	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W05b_missing_warm	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W05b_missing_warm	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002004
+W05b_missing_warm	ORIGINAL_REVISION	004B4610	original revision callback
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500D30 flags=00000001
+W05b_missing_warm	STUB_BOUNDARY	00409740	FSM callback simulated on repeated-load tests; no FSM teardown state modeled
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=00500D40 flags=00001000
+W05b_missing_warm	ORIGINAL_CALLBACK	004B4290	wrapper/nested or exit callback
+W05b_missing_warm	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002000
+W05b_missing_warm	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W05b_missing_warm	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W05b_missing_warm	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W06a_missing_cold	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W06a_missing_cold	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W06a_missing_cold	STUB_BOUNDARY	0046FEE0	resource logical byte length 47806
+W06a_missing_cold	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W06a_missing_cold	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=00002020
+W06a_missing_cold	ORIGINAL_REVISION	004B4610	original revision callback
+W06a_missing_cold	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W06a_missing_cold	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W06a_missing_cold	CRT_strncpy_stub	000C0C2A	bytes=4
+W06a_missing_cold	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W06a_missing_cold	PARSER_NULL_PATH	004B41AF	original null branch
+W06a_missing_cold	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)
+W06a_missing_cold	ORIGINAL_NOOP_REPORT	0042D5D0	retail one-instruction reporter
+W06b_valid_after	STUB_BOUNDARY	000C173A	resource selector mismatch (intentionally choose ordinary mission path)
+W06b_valid_after	STUB_BOUNDARY	0046FFC0	resource buffer -> supplied retail mission bytes; isolated in-memory fixture
+W06b_valid_after	STUB_BOUNDARY	0046FEE0	resource logical byte length 47814
+W06b_valid_after	WRAPPER_ROOT_PARSER	004B44C8	original wrapper calls original root parser
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500328 flags=00000044
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500338 flags=000020A0
+W06b_valid_after	ORIGINAL_REVISION	004B4610	original revision callback
+W06b_valid_after	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+W06b_valid_after	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+W06b_valid_after	WRAPPER_WORLD_PARSER	004B44F1	original wrapper calls original world parser
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500348 flags=00002006
+W06b_valid_after	STUB_BOUNDARY	004B89E0	opaque world-section producer; original forwarding wrapper still executes
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500358 flags=00002006
+W06b_valid_after	STUB_BOUNDARY	00493910	opaque world-section producer; original forwarding wrapper still executes
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500368 flags=00002006
+W06b_valid_after	STUB_BOUNDARY	004B8750	opaque world-section producer; original forwarding wrapper still executes
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500378 flags=00002006
+W06b_valid_after	STUB_BOUNDARY	004B7A90	opaque world-section producer; original forwarding wrapper still executes
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500388 flags=00002006
+W06b_valid_after	STUB_BOUNDARY	004B8F40	opaque world-section producer; original forwarding wrapper still executes
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500398 flags=00002006
+W06b_valid_after	ORIGINAL_CALLBACK	004B45F0	wrapper/nested or exit callback
+W06b_valid_after	ORIGINAL_CALLBACK	004B89B0	wrapper/nested or exit callback
+W06b_valid_after	NESTED_ADEF_PARSER	004B89CA	original nested ADEF parser call
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500D20 flags=00002004
+W06b_valid_after	ORIGINAL_REVISION	004B4610	original revision callback
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500D30 flags=00000001
+W06b_valid_after	STUB_BOUNDARY	00409740	FSM callback simulated on repeated-load tests; no FSM teardown state modeled
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=00500D40 flags=00001000
+W06b_valid_after	ORIGINAL_CALLBACK	004B4290	wrapper/nested or exit callback
+W06b_valid_after	DESCRIPTOR_SEEN	004B3F31	entry=005003A8 flags=00002000
+W06b_valid_after	ORIGINAL_CALLBACK	004B4790	wrapper/nested or exit callback
+W06b_valid_after	STUB_BOUNDARY	00401320	player object exists in synthetic world context
+W06b_valid_after	STUB_BOUNDARY	0046FD40	resource-release operation (no live cache)

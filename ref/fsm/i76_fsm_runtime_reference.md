@@ -1,5 +1,8 @@
 # Interstate '76 — FSM runtime, events, and scheduler reference
 
+> **Archived v76 research:** The current v97 mission-runtime specification and emulation results are in [ref/mission_execution](../mission_execution/README.md). This page is preserved to show the earlier evidence and may contain names or assumptions since corrected.
+
+
 **Evidence cutoff:** original retail `i76.exe`, Ghidra state export `20261019_205431` (2026-10-19 20:54:59 PDT), research iterations v57–v76. Executable MD5 `a640ea0097dbb62e0c77b7f2847c7161`. All addresses are image-base `0x00400000` virtual addresses. **This describes static binary evidence and prior offline mission-corpus tests; it is not a validated live-game, full-world replay.**
 
 The companion [vehicle object runtime reference](../vehicle_object_model/i76_vehicle_object_runtime_reference.md) documents the object and AI-state fields consumed by FSM commands. The [October 2026 research checkpoint](../game/i76_research_checkpoint_20261019.md) records evidence provenance, known gaps, and proposed next work.

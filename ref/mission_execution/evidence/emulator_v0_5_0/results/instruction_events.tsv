@@ -1,0 +1,124 @@
+scenario	type	pc	detail
+C01_stock_cold	seen_store	004B3F31	descriptor=00500328 flags_before=00000044
+C01_stock_cold	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C01_stock_cold	REV_callback_enter	004B4610	original retail body
+C01_stock_cold	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C01_stock_cold	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C01_stock_cold	required_check	004B4160	flags=000000C4
+C01_stock_cold	required_check	004B4163	flags=000000C4
+C01_stock_cold	required_check	004B4160	flags=000000C4
+C01_stock_cold	required_check	004B4163	flags=000000C4
+C01_stock_cold	parser_nonnull_branch	004B41BB	readable cursor expected
+C02_missing_cold	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C02_missing_cold	REV_callback_enter	004B4610	original retail body
+C02_missing_cold	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C02_missing_cold	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C02_missing_cold	required_check	004B4160	flags=00000044
+C02_missing_cold	required_check	004B4163	flags=00000044
+C02_missing_cold	required_error	004B4177	required BWD2 absent from descriptor history
+C02_missing_cold	CRT_strncpy_stub	000C0C2A	from=00500328 to=3000EFF8 count=4
+C02_missing_cold	parser_null_branch	004B41AF	EAX will be cleared
+C03_missing_warm	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C03_missing_warm	REV_callback_enter	004B4610	original retail body
+C03_missing_warm	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C03_missing_warm	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C03_missing_warm	required_check	004B4160	flags=000000C4
+C03_missing_warm	required_check	004B4163	flags=000000C4
+C03_missing_warm	required_check	004B4160	flags=000000C4
+C03_missing_warm	required_check	004B4163	flags=000000C4
+C03_missing_warm	parser_nonnull_branch	004B41BB	readable cursor expected
+C04_stock_warm	seen_store	004B3F31	descriptor=00500328 flags_before=000000C4
+C04_stock_warm	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C04_stock_warm	REV_callback_enter	004B4610	original retail body
+C04_stock_warm	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C04_stock_warm	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C04_stock_warm	required_check	004B4160	flags=000000C4
+C04_stock_warm	required_check	004B4163	flags=000000C4
+C04_stock_warm	required_check	004B4160	flags=000000C4
+C04_stock_warm	required_check	004B4163	flags=000000C4
+C04_stock_warm	parser_nonnull_branch	004B41BB	readable cursor expected
+C05_rev_rejected	seen_store	004B3F31	descriptor=00500328 flags_before=00000044
+C05_rev_rejected	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C05_rev_rejected	REV_callback_enter	004B4610	original retail body
+C05_rev_rejected	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C05_rev_rejected	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C06a_session1_stock	seen_store	004B3F31	descriptor=00500328 flags_before=00000044
+C06a_session1_stock	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C06a_session1_stock	REV_callback_enter	004B4610	original retail body
+C06a_session1_stock	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C06a_session1_stock	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C06a_session1_stock	required_check	004B4160	flags=000000C4
+C06a_session1_stock	required_check	004B4163	flags=000000C4
+C06a_session1_stock	required_check	004B4160	flags=000000C4
+C06a_session1_stock	required_check	004B4163	flags=000000C4
+C06a_session1_stock	parser_nonnull_branch	004B41BB	readable cursor expected
+C06b_session1_missing	seen_store	004B3F31	descriptor=00500338 flags_before=000020A0
+C06b_session1_missing	REV_callback_enter	004B4610	original retail body
+C06b_session1_missing	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C06b_session1_missing	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C06b_session1_missing	required_check	004B4160	flags=000000C4
+C06b_session1_missing	required_check	004B4163	flags=000000C4
+C06b_session1_missing	required_check	004B4160	flags=000000C4
+C06b_session1_missing	required_check	004B4163	flags=000000C4
+C06b_session1_missing	parser_nonnull_branch	004B41BB	readable cursor expected
+C07a_session2_missing	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C07a_session2_missing	REV_callback_enter	004B4610	original retail body
+C07a_session2_missing	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C07a_session2_missing	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C07a_session2_missing	required_check	004B4160	flags=00000044
+C07a_session2_missing	required_check	004B4163	flags=00000044
+C07a_session2_missing	required_error	004B4177	required BWD2 absent from descriptor history
+C07a_session2_missing	CRT_strncpy_stub	000C0C2A	from=00500328 to=3000EFF8 count=4
+C07a_session2_missing	parser_null_branch	004B41AF	EAX will be cleared
+C07b_session2_stock	seen_store	004B3F31	descriptor=00500328 flags_before=00000044
+C07b_session2_stock	seen_store	004B3F31	descriptor=00500338 flags_before=000020A0
+C07b_session2_stock	REV_callback_enter	004B4610	original retail body
+C07b_session2_stock	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C07b_session2_stock	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C07b_session2_stock	required_check	004B4160	flags=000000C4
+C07b_session2_stock	required_check	004B4163	flags=000000C4
+C07b_session2_stock	required_check	004B4160	flags=000000C4
+C07b_session2_stock	required_check	004B4163	flags=000000C4
+C07b_session2_stock	parser_nonnull_branch	004B41BB	readable cursor expected
+C08a_session3_stock	seen_store	004B3F31	descriptor=00500328 flags_before=00000044
+C08a_session3_stock	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C08a_session3_stock	REV_callback_enter	004B4610	original retail body
+C08a_session3_stock	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C08a_session3_stock	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C08a_session3_stock	required_check	004B4160	flags=000000C4
+C08a_session3_stock	required_check	004B4163	flags=000000C4
+C08a_session3_stock	required_check	004B4160	flags=000000C4
+C08a_session3_stock	required_check	004B4163	flags=000000C4
+C08a_session3_stock	parser_nonnull_branch	004B41BB	readable cursor expected
+C08b_session3_rev_reject	seen_store	004B3F31	descriptor=00500328 flags_before=000000C4
+C08b_session3_rev_reject	seen_store	004B3F31	descriptor=00500338 flags_before=000020A0
+C08b_session3_rev_reject	REV_callback_enter	004B4610	original retail body
+C08b_session3_rev_reject	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C08b_session3_rev_reject	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C09a_session4_bad_rev	seen_store	004B3F31	descriptor=00500328 flags_before=00000044
+C09a_session4_bad_rev	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C09a_session4_bad_rev	REV_callback_enter	004B4610	original retail body
+C09a_session4_bad_rev	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C09a_session4_bad_rev	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C09b_session4_missing	seen_store	004B3F31	descriptor=00500338 flags_before=000020A0
+C09b_session4_missing	REV_callback_enter	004B4610	original retail body
+C09b_session4_missing	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C09b_session4_missing	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C09b_session4_missing	required_check	004B4160	flags=000000C4
+C09b_session4_missing	required_check	004B4163	flags=000000C4
+C09b_session4_missing	required_check	004B4160	flags=000000C4
+C09b_session4_missing	required_check	004B4163	flags=000000C4
+C09b_session4_missing	parser_nonnull_branch	004B41BB	readable cursor expected
+C10a_session5_missing_bad_rev	seen_store	004B3F31	descriptor=00500338 flags_before=00002020
+C10a_session5_missing_bad_rev	REV_callback_enter	004B4610	original retail body
+C10a_session5_missing_bad_rev	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C10a_session5_missing_bad_rev	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C10b_session5_missing_valid_rev	seen_store	004B3F31	descriptor=00500338 flags_before=000020A0
+C10b_session5_missing_valid_rev	REV_callback_enter	004B4610	original retail body
+C10b_session5_missing_valid_rev	CRT_splitpath_stub	000C0BB6	M06.MSN -> ext=.MSN
+C10b_session5_missing_valid_rev	CRT_stricmp_stub	000C0CA8	.msn vs .MSN -> 0
+C10b_session5_missing_valid_rev	required_check	004B4160	flags=00000044
+C10b_session5_missing_valid_rev	required_check	004B4163	flags=00000044
+C10b_session5_missing_valid_rev	required_error	004B4177	required BWD2 absent from descriptor history
+C10b_session5_missing_valid_rev	CRT_strncpy_stub	000C0C2A	from=00500328 to=3000EFF8 count=4
+C10b_session5_missing_valid_rev	parser_null_branch	004B41AF	EAX will be cleared

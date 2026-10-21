@@ -1,0 +1,748 @@
+
+===== 004b42b0 load_and_parse_selected_mission_resource =====
+
+/* [cgpt i76.exe mission/resource rename v13; confidence=high] Parses selected .msn name/family,
+   stores mission-number/family globals, resolves registered resource path, loads resource,
+   validates BWD2, then parses WDEF mission descriptor table.
+   
+   [cgpt_i76exe_runtime_level_loader_v1] proposed=load_and_parse_selected_mission_resource :: Loads
+   selected mission resource, validates BWD2, then parses WDEF mission descriptor table.
+   
+   I76 rename v43: load_and_parse_selected_mission_resource
+   Mission/resource loader path that opens/parses selected BWD2 resource. */
+
+undefined4 __cdecl load_and_parse_selected_mission_resource(char *param_1)
+
+{
+  byte bVar1;
+  char cVar2;
+  char *pcVar3;
+  int iVar4;
+  int iVar5;
+  uint uVar6;
+  uint uVar7;
+  byte *pbVar8;
+  char *pcVar9;
+  byte *pbVar10;
+  bool bVar11;
+  char local_314 [4];
+  byte local_310 [16];
+  char local_300 [256];
+  char local_200 [256];
+  char local_100 [256];
+  
+  reset_mission_resource_parse_callbacks();
+  strncpy((char *)local_310,param_1,0x10);
+  _splitpath((char *)local_310,local_314,local_100,local_300,local_200);
+  _strlwr((char *)local_310);
+  iVar5 = -1;
+  pcVar3 = local_300;
+  do {
+    if (iVar5 == 0) break;
+    iVar5 = iVar5 + -1;
+    cVar2 = *pcVar3;
+    pcVar3 = pcVar3 + 1;
+  } while (cVar2 != '\0');
+  g_selected_mission_family = 0;
+  g_selected_mission_number = 0x27;
+  if (iVar5 == -5) {
+    iVar5 = _stricmp(local_200,&DAT_00500678);
+    if (iVar5 == 0) {
+      g_selected_mission_number = atol(local_300 + 1);
+      if (0 < g_selected_mission_number) {
+        if (local_300[0] != 'm') {
+          if (local_300[0] == 't') {
+            g_selected_mission_family = 2;
+            goto LAB_004b43ac;
+          }
+          if (local_300[0] == 's') {
+            g_selected_mission_family = 3;
+            goto LAB_004b43ac;
+          }
+          if (local_300[0] == 'p') {
+            g_selected_mission_family = 3;
+            goto LAB_004b43ac;
+          }
+          if (local_300[0] != 'n') goto LAB_004b43ac;
+        }
+        g_selected_mission_family = 1;
+      }
+    }
+  }
+LAB_004b43ac:
+  if (local_200[0] == '\0') {
+    uVar6 = 0xffffffff;
+    pcVar3 = &DAT_00500678;
+    do {
+      pcVar9 = pcVar3;
+      if (uVar6 == 0) break;
+      uVar6 = uVar6 - 1;
+      pcVar9 = pcVar3 + 1;
+      cVar2 = *pcVar3;
+      pcVar3 = pcVar9;
+    } while (cVar2 != '\0');
+    uVar6 = ~uVar6;
+    iVar5 = -1;
+    pbVar8 = local_310;
+    do {
+      pbVar10 = pbVar8;
+      if (iVar5 == 0) break;
+      iVar5 = iVar5 + -1;
+      pbVar10 = pbVar8 + 1;
+      bVar1 = *pbVar8;
+      pbVar8 = pbVar10;
+    } while (bVar1 != 0);
+    pbVar8 = (byte *)(pcVar9 + -uVar6);
+    pbVar10 = pbVar10 + -1;
+    for (uVar7 = uVar6 >> 2; uVar7 != 0; uVar7 = uVar7 - 1) {
+      *(undefined4 *)pbVar10 = *(undefined4 *)pbVar8;
+      pbVar8 = pbVar8 + 4;
+      pbVar10 = pbVar10 + 4;
+    }
+    for (uVar6 = uVar6 & 3; uVar6 != 0; uVar6 = uVar6 - 1) {
+      *pbVar10 = *pbVar8;
+      pbVar8 = pbVar8 + 1;
+      pbVar10 = pbVar10 + 1;
+    }
+  }
+  pcVar3 = (char *)format_registered_resource_record_path((undefined4 *)local_310);
+  if (pcVar3 == (char *)0x0) {
+    report_error();
+  }
+  _splitpath(pcVar3,local_314,local_100,local_300,local_200);
+  cVar2 = get_active_cdrom_drive_letter();
+  iVar5 = toupper((int)cVar2);
+  iVar4 = toupper((int)local_314[0]);
+  if (iVar4 == iVar5) {
+    stop_cd_audio_track_if_playing();
+  }
+  if (&stack0x00000000 == (undefined1 *)0x310) {
+    bVar11 = false;
+  }
+  else {
+    iVar5 = _strnicmp((char *)local_310,s_null_004c3280,4);
+    if (iVar5 == 0) {
+      bVar11 = true;
+    }
+    else {
+      g_current_bwd2_parse_cursor = open_resource_file_into_memory((char *)local_310);
+      if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+        iVar5 = get_loaded_resource_file_size((char *)local_310);
+        g_current_bwd2_parse_end = (int *)(iVar5 + (int)g_current_bwd2_parse_cursor);
+        g_current_bwd2_parse_cursor =
+             (uint *)parse_tagged_chunk_descriptor_table
+                               ((int *)g_current_bwd2_parse_cursor,&g_bwd2_descriptor_table,2,
+                                (byte *)0x0,local_310,1,g_current_bwd2_parse_end);
+        if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+          g_current_bwd2_parse_cursor =
+               (uint *)parse_tagged_chunk_descriptor_table
+                                 ((int *)g_current_bwd2_parse_cursor,
+                                  &g_wdef_mission_descriptor_table,7,(byte *)0x0,local_310,1,
+                                  g_current_bwd2_parse_end);
+        }
+        release_named_cached_resource_reference((char *)local_310);
+      }
+      bVar11 = g_current_bwd2_parse_cursor != (uint *)0x0;
+    }
+  }
+  if (!bVar11) {
+    report_error();
+  }
+  return 1;
+}
+
+
+
+===== 004b89b0 parse_adef_fsm_script_chunks =====
+
+/* cgpt readability rename set E v17: Readability pass set E: world reader record table context
+   helper based on adjacent named subsystem context.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_parse_adef_actor_fsm_payload ::
+   Handler target for ADEF section. Needs deeper trace.
+   [cgpt-i76-v36 high] ADEF wrapper; dispatches AREV/FSM mission behavior script.
+   [I76 FSM v58] Passes the AREV/FSM/EXIT chunk table at 00500D20 to generic dispatcher 004B3DB0. */
+
+bool __cdecl parse_adef_fsm_script_chunks(int *param_1,byte *param_2,int *param_3)
+
+{
+  int *piVar1;
+  
+  piVar1 = parse_tagged_chunk_descriptor_table
+                     (param_1,&g_adef_descriptor_table,3,(byte *)0x0,param_2,1,param_3);
+  return piVar1 != (int *)0x0;
+}
+
+
+
+===== 004b89e0 parse_wdef_world_resource_config =====
+
+/* cgpt readability rename set E v17: Readability pass set E: world reader record table context
+   helper based on adjacent named subsystem context.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_parse_wdef_world_payload :: Handler
+   target for WDEF section. Needs deeper trace; name is wrapper-derived.
+   [cgpt-i76-v36 high] WDEF wrapper; dispatches WREV/WRLD resource config. */
+
+bool __cdecl parse_wdef_world_resource_config(int *param_1,byte *param_2,int *param_3)
+
+{
+  int *piVar1;
+  
+  piVar1 = parse_tagged_chunk_descriptor_table
+                     (param_1,&g_wdef_descriptor_table,3,(byte *)0x0,param_2,1,param_3);
+  return piVar1 != (int *)0x0;
+}
+
+
+
+===== 004b4a80 load_bwd2_wdef_resource_text =====
+
+/* [cgpt i76.exe vehicle/resource rename v4; confidence=high] Shell callback +0x58. Opens a
+   resource, parses BWD2/WDEF chunks, copies the WDEF text/name payload to caller buffer, and
+   NUL-terminates it. */
+
+undefined4 __cdecl load_bwd2_wdef_resource_text(byte *param_1,char *param_2,size_t param_3)
+
+{
+  int iVar1;
+  bool bVar2;
+  byte local_100 [256];
+  
+  if (param_1 == (byte *)0x0) {
+    bVar2 = false;
+  }
+  else {
+    iVar1 = _strnicmp((char *)param_1,s_null_004c3280,4);
+    if (iVar1 == 0) {
+      bVar2 = true;
+    }
+    else {
+      g_current_bwd2_parse_cursor = open_resource_file_into_memory((char *)param_1);
+      if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+        iVar1 = get_loaded_resource_file_size((char *)param_1);
+        g_current_bwd2_parse_end = (int *)(iVar1 + (int)g_current_bwd2_parse_cursor);
+        g_current_bwd2_parse_cursor =
+             (uint *)parse_tagged_chunk_descriptor_table
+                               ((int *)g_current_bwd2_parse_cursor,&g_bwd2_descriptor_table,2,
+                                (byte *)0x0,param_1,1,g_current_bwd2_parse_end);
+        if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+          g_current_bwd2_parse_cursor =
+               (uint *)parse_tagged_chunk_descriptor_table
+                                 ((int *)g_current_bwd2_parse_cursor,&DAT_00500610,1,local_100,
+                                  param_1,1,g_current_bwd2_parse_end);
+        }
+        release_named_cached_resource_reference((char *)param_1);
+      }
+      bVar2 = g_current_bwd2_parse_cursor != (uint *)0x0;
+    }
+  }
+  if (bVar2) {
+    strncpy(param_2,(char *)local_100,param_3);
+    param_2[param_3 - 1] = '\0';
+    return 1;
+  }
+  return 0;
+}
+
+
+
+===== 004b7a90 parse_odef_object_placement_chunks =====
+
+/* cgpt label refinement v20: was vehicle_vdf_geometry_part_context_helper_004b7a90. Shorten
+   readability label.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_parse_odef_object_payload :: Handler
+   target for ODEF section. Existing label references geometry/object context; needs deeper trace.
+   [cgpt-i76-v36 high] ODEF wrapper for mission object placement OBJ records.
+   
+   I76 rename v43: parse_odef_object_definition_section
+   ODEF top-level descriptor-table section handler. */
+
+bool __cdecl parse_odef_object_placement_chunks(int *param_1,byte *param_2,int *param_3)
+
+{
+  int *piVar1;
+  
+  piVar1 = parse_tagged_chunk_descriptor_table
+                     (param_1,&g_odef_descriptor_table,3,(byte *)0x0,param_2,1,param_3);
+  return piVar1 != (int *)0x0;
+}
+
+
+
+===== 004b8750 parse_rdef_route_segment_chunks =====
+
+/* [i76 road/material/RSEG baseline v57]
+   name: parse_rdef_route_segment_chunks
+   confidence: high
+   module: road_parser
+   RDEF/RSEG chunk parser wrapper that feeds route corridor records into the runtime RSEG node
+   builder.
+   note: Name already matches road baseline. */
+
+bool __cdecl parse_rdef_route_segment_chunks(int *param_1,byte *param_2,int *param_3)
+
+{
+  int *piVar1;
+  
+  piVar1 = parse_tagged_chunk_descriptor_table
+                     (param_1,&g_rdef_descriptor_table,5,(byte *)0x0,param_2,1,param_3);
+  return piVar1 != (int *)0x0;
+}
+
+
+
+===== 004b8f40 parse_ldef_static_world_object_chunks =====
+
+/* cgpt label refinement v20: was world_reader_parse_context_helper_004b8f40. Normalize parser
+   wording.
+   
+   [cgpt_i76exe_runtime_section_names_v2] proposed=i76_runtime_parse_ldef_linked_payload :: Handler
+   target for LDEF section. Needs deeper trace.
+   [cgpt-i76-v36 high] LDEF wrapper for static scene object OBJ records.
+   
+   I76 rename v43: parse_ldef_static_entity_section
+   LDEF top-level descriptor-table section handler. */
+
+bool __cdecl parse_ldef_static_world_object_chunks(int *param_1,byte *param_2,int *param_3)
+
+{
+  int *piVar1;
+  
+  piVar1 = parse_tagged_chunk_descriptor_table
+                     (param_1,&g_ldef_descriptor_table,3,(byte *)0x0,param_2,1,param_3);
+  return piVar1 != (int *)0x0;
+}
+
+
+
+===== 004b3db0 parse_tagged_chunk_descriptor_table =====
+
+/* [cgpt i76.exe vehicle asset format renames v16; confidence=high] Generic tagged chunk
+   descriptor-table parser used by VDF/VCF/VTF/WDF/SOBJ/BWD2 style resources.
+   
+   [cgpt_i76exe_runtime_level_loader_v1] proposed=parse_tagged_chunk_descriptor_table :: Generic
+   BWD2-style descriptor-table parser. Entry descriptors appear to be 0x10 bytes: tag, arg/extension
+   pointer, callback, flags.
+   
+   I76 rename v43: parse_tagged_chunk_descriptor_table
+   Core BWD2 descriptor-table dispatcher used by mission/resource sections. */
+
+int * __cdecl
+parse_tagged_chunk_descriptor_table
+          (int *param_1,byte *param_2,int param_3,byte *param_4,byte *param_5,int param_6,
+          int *param_7)
+
+{
+  byte bVar1;
+  uint uVar2;
+  bool bVar3;
+  int iVar4;
+  int *_Source;
+  byte *pbVar5;
+  byte *pbVar6;
+  byte *pbVar7;
+  byte *pbVar8;
+  bool bVar9;
+  int local_24;
+  int local_20;
+  int local_1c;
+  int local_18;
+  int local_14;
+  int local_10;
+  int local_c;
+  char local_8 [8];
+  
+  local_10 = 1;
+  local_20 = 1;
+  local_8[0] = '\0';
+  local_8[1] = 0;
+  local_8[2] = 0;
+  local_8[3] = 0;
+  local_8[4] = 0;
+  local_c = param_3;
+  local_14 = 0;
+  local_1c = 0;
+  bVar3 = false;
+  local_24 = 0;
+  _Source = param_1;
+  pbVar8 = param_2;
+LAB_004b3dfa:
+  iVar4 = 0;
+  if (local_20 == 0) {
+    if (((param_7 != (int *)0x0) && (param_7 <= _Source)) ||
+       ((_Source = (int *)((int)_Source + _Source[1]), param_1 = _Source, param_7 != (int *)0x0 &&
+        (param_7 <= _Source)))) goto LAB_004b4152;
+  }
+  else {
+    local_20 = 0;
+  }
+  pbVar5 = (byte *)0x0;
+  if (param_6 == 0) {
+    bVar9 = param_3 == 0;
+    pbVar8 = param_2;
+    if (0 < param_3) {
+      do {
+        if (*_Source == *(int *)pbVar8) break;
+        iVar4 = iVar4 + 1;
+        pbVar8 = pbVar8 + 0x10;
+      } while (iVar4 < param_3);
+      bVar9 = iVar4 == param_3;
+    }
+    if (bVar9) {
+      strncpy(local_8,(char *)_Source,4);
+      local_8[4] = 0;
+      report_error();
+    }
+    if (*_Source == 0x54495845) goto LAB_004b4152;
+  }
+  else {
+    if (*_Source == *(int *)pbVar8) {
+      *(uint *)(pbVar8 + 0xc) = *(uint *)(pbVar8 + 0xc) | 0x80;
+      goto LAB_004b3f34;
+    }
+    if ((bVar3) || (local_14 == 0)) {
+      param_3 = param_3 + -1;
+      if (param_3 == 0) goto LAB_004b4152;
+      bVar3 = false;
+      local_24 = 0;
+      pbVar8 = pbVar8 + 0x10;
+      if (*_Source != 0x54495845) {
+        local_20 = 1;
+      }
+      goto LAB_004b3dfa;
+    }
+    if ((pbVar8[0xc] & 4) != 0) {
+      report_error();
+      goto LAB_004b3f34;
+    }
+    pbVar6 = &DAT_00500680;
+    pbVar7 = pbVar8;
+    do {
+      bVar1 = *pbVar7;
+      bVar9 = bVar1 < *pbVar6;
+      if (bVar1 != *pbVar6) {
+LAB_004b3ee9:
+        iVar4 = (1 - (uint)bVar9) - (uint)(bVar9 != 0);
+        goto LAB_004b3eee;
+      }
+      if (bVar1 == 0) break;
+      bVar1 = pbVar7[1];
+      bVar9 = bVar1 < pbVar6[1];
+      if (bVar1 != pbVar6[1]) goto LAB_004b3ee9;
+      pbVar7 = pbVar7 + 2;
+      pbVar6 = pbVar6 + 2;
+    } while (bVar1 != 0);
+    iVar4 = 0;
+LAB_004b3eee:
+    if (iVar4 != 0) {
+      if ((pbVar8[0xc] & 8) != 0) {
+        report_error();
+      }
+      if ((*(uint *)(pbVar8 + 0xc) & 0x10) != 0) {
+        return _Source;
+      }
+      if ((*(uint *)(pbVar8 + 0xc) & 0x20) != 0) {
+        return (int *)0x0;
+      }
+LAB_004b4152:
+      iVar4 = 0;
+      if (0 < local_c) {
+        do {
+          if (((*(uint *)(param_2 + 0xc) & 0x40) != 0) && ((*(uint *)(param_2 + 0xc) & 0x80) == 0))
+          {
+            strncpy(local_8,(char *)param_2,4);
+            local_8[4] = 0;
+            report_error();
+            local_10 = 0;
+            break;
+          }
+          iVar4 = iVar4 + 1;
+          param_2 = param_2 + 0x10;
+        } while (iVar4 < local_c);
+      }
+      if (local_10 != 0) {
+        if ((param_7 == (int *)0x0) || (_Source < param_7)) {
+          _Source = (int *)((int)_Source + _Source[1]);
+        }
+        return _Source;
+      }
+      return (int *)0x0;
+    }
+  }
+LAB_004b3f34:
+  uVar2 = *(uint *)(pbVar8 + 0xc);
+  if ((uVar2 & 0x100) == 0) {
+    if ((uVar2 & 0x200) == 0) {
+      if ((bVar3) && (local_24 != 0)) {
+        report_error();
+      }
+      else if ((uVar2 & 0x400) != 0) {
+        bVar3 = true;
+      }
+    }
+    else {
+      if (!bVar3) {
+        bVar3 = true;
+        local_14 = 1;
+        if (local_1c == 0) {
+          local_24 = 0;
+          local_18 = 1;
+          goto LAB_004b3fd0;
+        }
+        local_1c = 0;
+      }
+      local_18 = local_18 + 1;
+    }
+  }
+  else {
+    if (bVar3) {
+      report_error();
+    }
+    pbVar5 = (byte *)&local_24;
+    local_18 = 0;
+    local_1c = 1;
+  }
+LAB_004b3fd0:
+  pbVar7 = pbVar5;
+  if (((*(uint *)(pbVar8 + 0xc) & 0x800) != 0) && (pbVar7 = param_4, pbVar5 != (byte *)0x0)) {
+    report_error();
+  }
+  pbVar5 = pbVar7;
+  if (((*(uint *)(pbVar8 + 0xc) & 0x1000) != 0) && (pbVar5 = pbVar8, pbVar7 != (byte *)0x0)) {
+    report_error();
+  }
+  pbVar7 = pbVar5;
+  if (((*(uint *)(pbVar8 + 0xc) & 0x2000) != 0) && (pbVar7 = param_5, pbVar5 != (byte *)0x0)) {
+    report_error();
+  }
+  if ((*(code **)(pbVar8 + 8) != (code *)0x0) &&
+     (iVar4 = (**(code **)(pbVar8 + 8))
+                        (_Source + (*(uint *)(param_2 + 0xc) >> 1 & 1) * 2,pbVar7,param_7),
+     iVar4 == 0)) {
+    if ((param_6 == 0) || (*_Source != 0x54495845)) {
+      if ((*(uint *)(pbVar8 + 0xc) & 4) == 0) {
+        pbVar7 = &DAT_00500680;
+        pbVar5 = pbVar8;
+        do {
+          bVar1 = *pbVar5;
+          bVar9 = bVar1 < *pbVar7;
+          if (bVar1 != *pbVar7) {
+LAB_004b40a6:
+            iVar4 = (1 - (uint)bVar9) - (uint)(bVar9 != 0);
+            goto LAB_004b40ab;
+          }
+          if (bVar1 == 0) break;
+          bVar1 = pbVar5[1];
+          bVar9 = bVar1 < pbVar7[1];
+          if (bVar1 != pbVar7[1]) goto LAB_004b40a6;
+          pbVar5 = pbVar5 + 2;
+          pbVar7 = pbVar7 + 2;
+        } while (bVar1 != 0);
+        iVar4 = 0;
+LAB_004b40ab:
+        if (iVar4 != 0) {
+          if ((*(uint *)(pbVar8 + 0xc) & 8) != 0) {
+            report_error();
+          }
+          uVar2 = *(uint *)(pbVar8 + 0xc);
+          if ((uVar2 & 0x10) != 0) {
+            return param_1;
+          }
+          if ((uVar2 & 0x20) != 0) {
+            return (int *)0x0;
+          }
+          _Source = param_1;
+          if ((uVar2 & 0x200) == 0) goto LAB_004b3dfa;
+        }
+      }
+      else {
+        report_error();
+      }
+    }
+    bVar3 = false;
+    local_24 = 0;
+    _Source = param_1;
+  }
+  if ((!bVar3) && (param_6 != 0)) {
+    param_3 = param_3 + -1;
+    if (param_3 == 0) goto LAB_004b4152;
+    pbVar8 = pbVar8 + 0x10;
+  }
+  goto LAB_004b3dfa;
+}
+
+
+
+===== 004b41e0 parse_bwd2_resource_with_descriptor_table =====
+
+/* [cgpt i76.exe vehicle asset format renames v16; confidence=high] Opens a named resource,
+   validates the generic BWD2 descriptor, then parses a caller-supplied tagged chunk descriptor
+   table.
+   
+   [cgpt_i76exe_runtime_level_loader_v1] proposed=parse_bwd2_resource_with_descriptor_table ::
+   Generic named-resource BWD2 loader that validates BWD2 then parses a caller-supplied descriptor
+   table.
+   
+   I76 rename v43: parse_bwd2_resource_with_descriptor_table
+   Opens named resource into memory, gets size, dispatches descriptor table, releases resource ref.
+    */
+
+bool __cdecl
+parse_bwd2_resource_with_descriptor_table(byte *param_1,byte *param_2,int param_3,byte *param_4)
+
+{
+  int iVar1;
+  
+  if (param_1 == (byte *)0x0) {
+    return false;
+  }
+  iVar1 = _strnicmp((char *)param_1,s_null_004c3280,4);
+  if (iVar1 == 0) {
+    return true;
+  }
+  g_current_bwd2_parse_cursor = open_resource_file_into_memory((char *)param_1);
+  if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+    iVar1 = get_loaded_resource_file_size((char *)param_1);
+    g_current_bwd2_parse_end = (int *)(iVar1 + (int)g_current_bwd2_parse_cursor);
+    g_current_bwd2_parse_cursor =
+         (uint *)parse_tagged_chunk_descriptor_table
+                           ((int *)g_current_bwd2_parse_cursor,&g_bwd2_descriptor_table,2,
+                            (byte *)0x0,param_1,1,g_current_bwd2_parse_end);
+    if (g_current_bwd2_parse_cursor != (uint *)0x0) {
+      g_current_bwd2_parse_cursor =
+           (uint *)parse_tagged_chunk_descriptor_table
+                             ((int *)g_current_bwd2_parse_cursor,param_2,param_3,param_4,param_1,1,
+                              g_current_bwd2_parse_end);
+    }
+    release_named_cached_resource_reference((char *)param_1);
+  }
+  return g_current_bwd2_parse_cursor != (uint *)0x0;
+}
+
+
+
+===== 004b4610 validate_mission_revision_chunks =====
+
+/* [cgpt i76.exe mission/runtime rename v14; confidence=high] Validates mission revision/mandatory
+   chunk tags; reports unknown revision chunks or missing mandatory chunks.
+   
+   I76 rename v43: validate_mission_revision_chunks
+   Revision chunk validator used for WREV/RREV/OREV/etc. */
+
+undefined4 __cdecl validate_mission_revision_chunks(int *param_1,char *param_2)
+
+{
+  undefined4 uVar1;
+  int iVar2;
+  char *pcVar3;
+  undefined **ppuVar4;
+  int iVar5;
+  undefined4 local_304;
+  char local_300 [4];
+  undefined1 local_2fc;
+  char local_200 [256];
+  char local_100 [256];
+  
+  iVar5 = 0;
+  pcVar3 = &g_mission_revision_required_chunk_table;
+  do {
+    uVar1 = *(undefined4 *)pcVar3;
+    local_304._3_1_ = (undefined1)((uint)uVar1 >> 0x18);
+    local_304 = uVar1;
+    if (CONCAT22(CONCAT11(*pcVar3,(char)((uint)uVar1 >> 8)),
+                 CONCAT11((char)((uint)uVar1 >> 0x10),local_304._3_1_)) == *param_1) {
+      if (iVar5 != 0) {
+        if (param_1[2] == *(int *)(iVar5 * 8 + 0x50043c)) {
+          return 1;
+        }
+        strncpy(local_300,(char *)param_1,4);
+        local_2fc = 0;
+        report_error();
+        return 0;
+      }
+      _splitpath(param_2,(char *)&local_304,local_300,local_100,local_200);
+      ppuVar4 = &g_mission_revision_extension_table;
+      iVar5 = 0;
+      do {
+        iVar2 = _stricmp(*ppuVar4,local_200);
+        if (iVar2 == 0) {
+          if (param_1[2] == *(int *)(iVar5 * 8 + 0x5003bc)) {
+            return 1;
+          }
+          report_error();
+          return 0;
+        }
+        ppuVar4 = ppuVar4 + 2;
+        iVar5 = iVar5 + 1;
+      } while (ppuVar4 < &g_mission_revision_required_chunk_table);
+      report_error();
+      return 1;
+    }
+    pcVar3 = pcVar3 + 8;
+    iVar5 = iVar5 + 1;
+  } while (pcVar3 < s_Error___mandatory__s_chunk_not_f_00500470);
+  strncpy(local_300,(char *)param_1,4);
+  report_error();
+  return 1;
+}
+
+
+
+===== 00409740 load_fsm_chunk_from_bwd2_descriptor =====
+
+/* cgpt rename v3: Creates the FSM runtime heap, parses serialized FSM table data, and initializes
+   FSM command/runtime tables.
+   
+   I76 rename v43: initialize_fsm_runtime_heap_and_tables
+   ADEF/FSM top-level heap/table bootstrap.
+   [I76 FSM v58] FSM container callback: descriptor+0x4 length, descriptor+0x8 payload, forwards to
+   00410720 then 004125C0.
+   [FSM v59 verified] FSM chunk reader: payload = descriptor+8, length = descriptor+4 minus 8;
+   actual source: loose miss8/miss16/*.MSN BWD2 chunk.
+   [I76 v64B] v58: FSM chunk callback forwards payload to 00410720 and 004125C0 */
+
+undefined4 __cdecl load_fsm_chunk_from_bwd2_descriptor(int param_1)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  undefined4 local_1c;
+  undefined4 local_18;
+  undefined4 local_14;
+  undefined4 local_10;
+  undefined4 local_c;
+  undefined4 local_8;
+  undefined4 local_4;
+  
+  local_1c = 0;
+  iVar1 = *(int *)(param_1 + 4) + -8;
+  local_18 = 0;
+  local_14 = 0;
+  local_10 = 0;
+  local_c = 0;
+  local_8 = 0;
+  local_4 = 0;
+  puVar2 = (undefined4 *)(param_1 + 8);
+  if (iVar1 == 0) {
+    puVar2 = &local_1c;
+  }
+  g_fsm_runtime_heap_handle = HeapCreate(0,0,0);
+  load_serialized_fsm_runtime_tables
+            (iVar1,(int)puVar2,(int *)&g_fsm_host_command_records,&g_fsm_host_command_record_count,
+             (int *)&g_fsm_media_records,&g_fsm_media_record_count,&g_fsm_named_position_records,
+             &g_fsm_named_position_record_count,(int *)&g_fsm_mission_actor_records,
+             &g_fsm_mission_actor_record_count,&g_fsm_pending_vm_node_head,
+             &g_fsm_pending_vm_node_count,&g_fsm_vm_initial_word_array,&g_fsm_vm_initial_word_count,
+             &g_fsm_vm_token_array,&g_fsm_vm_token_count,g_fsm_runtime_heap_handle);
+  finalize_loaded_fsm_runtime_tables
+            (g_fsm_host_command_records,g_fsm_host_command_record_count,g_fsm_media_records,
+             g_fsm_media_record_count,g_fsm_named_position_records,g_fsm_named_position_record_count
+             ,g_fsm_mission_actor_records,g_fsm_mission_actor_record_count,
+             g_fsm_pending_vm_node_head,g_fsm_pending_vm_node_count,g_fsm_vm_initial_word_array,
+             g_fsm_vm_initial_word_count,g_fsm_vm_token_array);
+  return 1;
+}
+
+

@@ -1,5 +1,8 @@
 # Interstate '76 — VOM/FSM research checkpoint (2026-10-19)
 
+> **Historical research reference (2026-10-19):** Later findings and corrections are at [mission execution](../mission_execution/README.md). This document is preserved verbatim below as a historical snapshot.
+
+
 ## Source and Git state
 
 This is a **documentation/checkpoint update** based on the uploaded repository (`remote1.tar`) and its already-included retail `i76.exe` Ghidra snapshot. No network publication, Ghidra mutation, runtime execution, or Git commit is implied by the documentation update.

@@ -1,0 +1,15 @@
+claim_id	claim	confidence	address_or_scope	evidence_file	qualification
+D-001	Root BWD2 descriptor initially has flags 0x44	B/high	00500334	evidence/v100_descriptor_initial_values.tsv	Image value, not live runtime
+D-002	All twelve mission descriptor seen bits start clear	B/high	00500328;00500348;00500D20	evidence/v100_descriptor_initial_values.tsv	Only this static descriptor set
+D-003	Parser marks matched descriptor seen in-place	B/high	004B3F2C-004B3F31	evidence/v99_loader_full_instructions.tsv	Only sequential branch
+D-004	Parser does not clear seen within its audited function	B/high	004B3DB0-004B41DF	evidence/v99_loader_native_decompiled.txt	No whole-process negative proof
+D-005	Required check is 0x40 set and 0x80 absent	B/high	004B4160-004B416B	evidence/v99_loader_full_instructions.tsv	Only this validation clause
+D-006	Root table shared by generic named-resource loader	B/high	004B4234;004B423F	evidence/v100_descriptor_references.tsv	Direct pointer reference
+D-007	Root table shared by selected mission loader	B/high	004B44C2;004B44C8	evidence/v100_descriptor_references.tsv	Direct pointer reference
+D-008	Root table shared by alternate named-resource loader	B/high	004B4AE4;004B4AEF	evidence/v100_descriptor_references.tsv	Direct pointer reference
+D-009	Outer world descriptor table is statically shared	B/high	004B44EB;00500348	evidence/v100_descriptor_references.tsv	Seven entries at 16-byte stride
+D-010	Nested ADEF descriptor table is statically shared	B/high	004B89C4;00500D20	evidence/v100_descriptor_references.tsv	Three entries at 16-byte stride
+D-011	Only BWD2 among twelve has required flag 0x40	B/high	00500328;00500D20	evidence/v100_descriptor_initial_values.tsv	Only twelve audited records
+D-012	Inherited reset helper registers callback instead of clearing descriptor flags	B/high	004B84E0	evidence/v100_targeted_decompilation.txt	Ghidra symbol remains unchanged
+D-013	Cold-versus-warm required-clause differs if later BWD2 is absent	I/medium-high	004B3F2F;004B4163	evidence/REQUIRED_SEEN_MODEL_RESULTS.json	Branch-model only, full parser not executed
+D-014	Gameplay after malformed second load remains unverified	U	selected mission loading	DESCRIPTOR_STATE_TEST_PLAN.md	No retail malformed mission execution

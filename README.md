@@ -1,5 +1,10 @@
 # Interstate '76 Reverse-Engineering Reference Index
 
+## Mission VM, loader ABI, and original-code emulation (2026-10-21)
+
+The current [retail mission execution contract](ref/mission_execution/README.md) includes the 96-command host ABI, BWD2/FSM loader validation, original-code x86 parser/loader emulation and the latest [v97 annotated listings](snapshot/i76.exe/i76.exe_ghidra_state_snapshot_20261021_v97/README.md). The October 19 program snapshot remains a historical baseline. These results describe **retail `i76.exe`** and are distinct from the separate `i76edit.exe` investigation.
+
+
 This directory is the durable human-readable reference set for the current
 Interstate '76 reconstruction work.  It is intentionally organized by runtime
 system rather than by individual exporter revision.
@@ -16,27 +21,8 @@ system rather than by individual exporter revision.
 | ref/zfs/                     | ZFSF archive structure, LZO decode, PIX/PAK resource index   |
 | ref/object_resource_resolution/ | ODEF/LDEF class policy and SDF/SGEO static resolution     |
 | ref/mission_reconstruction/  | End-to-end current exporter pipeline and validation state    |
-| ref/vehicle_object_model/    | Retail world-object/vehicle runtime identity and damage state |
-| ref/fsm/                     | FSM format, VM, persistent scheduler and event-state contract  |
-| ref/game/                    | Game system reference and research checkpoint                 |
 +------------------------------+--------------------------------------------------------------+
 ```
-
-## Current VOM/FSM research checkpoint — October 19, 2026
-
-The retail `i76.exe` Ghidra state at
-[`snapshot/i76.exe/i76.exe_ghidra_state_snapshot_20261019_205431/`](snapshot/i76.exe/i76.exe_ghidra_state_snapshot_20261019_205431/README.md)
-contains **2097 defined functions**, including the newly defined
-`00409980–00409BC0` world-object unregistration callback (`FUN_00409980`, not
-semantically renamed yet). The previously repaired v71 function-body ownership
-and v72 status-helper names are retained in that snapshot.
-
-Read the [research checkpoint](ref/game/i76_research_checkpoint_20261019.md),
-[FSM runtime reference](ref/fsm/i76_fsm_runtime_reference.md), and
-[vehicle object runtime reference](ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md)
-for the current loader/VM/scheduler model, damage-event contracts, object
-reference invalidation and remaining uncertainties. **The interpreter and
-mission-wide runtime have not yet been validated as retail-equivalent.**
 
 ## Current visual/exporter baselines
 

@@ -1,0 +1,16 @@
+scenario	fixture	initial_state	steps	bwd_flags_before	bwd_flags_after	rev_flags_before	rev_flags_after	native_rev_callbacks_entered	external_crt_calls_stubbed	reporter_calls	returned	eax_or_failure
+C01_stock_cold	stock	cold	261	00000044	000000C4	00002020	000020A0	1	2	0	true	20000014
+C02_missing_cold	missing_BWD2	cold	211	00000044	00000044	00002020	000020A0	1	3	1	true	NULL
+C03_missing_warm	missing_BWD2	warm_seeded	213	000000C4	000000C4	00002020	000020A0	1	2	0	true	2000000C
+C04_stock_warm	stock	warm_seeded	261	000000C4	000000C4	00002020	000020A0	1	2	0	true	20000014
+C05_rev_rejected	stock	cold	250	00000044	000000C4	00002020	000020A0	1	2	1	true	NULL
+C06a_session1_stock	stock	cold	261	00000044	000000C4	00002020	000020A0	1	2	0	true	20000014
+C06b_session1_missing	missing_BWD2	warm_retained	213	000000C4	000000C4	000020A0	000020A0	1	2	0	true	2000000C
+C07a_session2_missing	missing_BWD2	cold	211	00000044	00000044	00002020	000020A0	1	3	1	true	NULL
+C07b_session2_stock	stock	cold	261	00000044	000000C4	000020A0	000020A0	1	2	0	true	20000014
+C08a_session3_stock	stock	cold	261	00000044	000000C4	00002020	000020A0	1	2	0	true	20000014
+C08b_session3_rev_reject	stock	warm_retained	250	000000C4	000000C4	000020A0	000020A0	1	2	1	true	NULL
+C09a_session4_bad_rev	stock	cold	250	00000044	000000C4	00002020	000020A0	1	2	1	true	NULL
+C09b_session4_missing	missing_BWD2	warm_retained	213	000000C4	000000C4	000020A0	000020A0	1	2	0	true	2000000C
+C10a_session5_missing_bad_rev	missing_BWD2	cold	202	00000044	00000044	00002020	000020A0	1	2	1	true	NULL
+C10b_session5_missing_valid_rev	missing_BWD2	cold	211	00000044	00000044	000020A0	000020A0	1	3	1	true	NULL

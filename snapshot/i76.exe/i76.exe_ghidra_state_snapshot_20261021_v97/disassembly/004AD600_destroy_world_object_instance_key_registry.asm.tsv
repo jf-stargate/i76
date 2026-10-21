@@ -1,0 +1,19 @@
+address	bytes	mnemonic	operands	instruction
+004ad600	56	PUSH	ESI	PUSH ESI
+004ad601	8B742408	MOV	ESI, dword ptr [ESP + 0x8]	MOV ESI,dword ptr [ESP + 0x8]
+004ad605	8B4604	MOV	EAX, dword ptr [ESI + 0x4]	MOV EAX,dword ptr [ESI + 0x4]
+004ad608	85C0	TEST	EAX, EAX	TEST EAX,EAX
+004ad60a	7421	JZ	0x004ad62d	JZ 0x004ad62d
+004ad60c	50	PUSH	EAX	PUSH EAX
+004ad60d	8B06	MOV	EAX, dword ptr [ESI]	MOV EAX,dword ptr [ESI]
+004ad60f	6A00	PUSH	0x0	PUSH 0x0
+004ad611	50	PUSH	EAX	PUSH EAX
+004ad612	FF1504C14B00	CALL	dword ptr [0x004bc104]	CALL dword ptr [0x004bc104]
+004ad618	C7460400000000	MOV	dword ptr [ESI + 0x4], 0x0	MOV dword ptr [ESI + 0x4],0x0
+004ad61f	C7460800000000	MOV	dword ptr [ESI + 0x8], 0x0	MOV dword ptr [ESI + 0x8],0x0
+004ad626	C7460C00000000	MOV	dword ptr [ESI + 0xc], 0x0	MOV dword ptr [ESI + 0xc],0x0
+004ad62d	8B0E	MOV	ECX, dword ptr [ESI]	MOV ECX,dword ptr [ESI]
+004ad62f	51	PUSH	ECX	PUSH ECX
+004ad630	FF150CC14B00	CALL	dword ptr [0x004bc10c]	CALL dword ptr [0x004bc10c]
+004ad636	5E	POP	ESI	POP ESI
+004ad637	C3	RET		RET

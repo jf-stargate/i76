@@ -1,0 +1,52 @@
+{
+  "results": [
+    {
+      "case": "fresh_no_match",
+      "flags_in": "0x0044",
+      "bwd2_matched_in_current_run": false,
+      "flags_after_match": "0x0044",
+      "required_check_passes": false,
+      "retail_engine_executed": false,
+      "full_parser_emulated": false
+    },
+    {
+      "case": "fresh_match",
+      "flags_in": "0x0044",
+      "bwd2_matched_in_current_run": true,
+      "flags_after_match": "0x00C4",
+      "required_check_passes": true,
+      "retail_engine_executed": false,
+      "full_parser_emulated": false
+    },
+    {
+      "case": "warm_no_match",
+      "flags_in": "0x00C4",
+      "bwd2_matched_in_current_run": false,
+      "flags_after_match": "0x00C4",
+      "required_check_passes": true,
+      "retail_engine_executed": false,
+      "full_parser_emulated": false
+    },
+    {
+      "case": "warm_repeat_match",
+      "flags_in": "0x00C4",
+      "bwd2_matched_in_current_run": true,
+      "flags_after_match": "0x00C4",
+      "required_check_passes": true,
+      "retail_engine_executed": false,
+      "full_parser_emulated": false
+    },
+    {
+      "case": "cross_resource_root_shared",
+      "same_static_address": "00500328",
+      "loaders": [
+        "004B41E0",
+        "004B42B0",
+        "004B4A80"
+      ],
+      "retail_engine_executed": false,
+      "full_parser_emulated": false
+    }
+  ],
+  "scope": "isolated branch logic only; no full retail parser or malformed missions executed"
+}

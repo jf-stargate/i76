@@ -1,0 +1,38 @@
+[
+  {
+    "case": "unchanged_stock_file",
+    "expectation": "accepted_by_inspector",
+    "observed": "accepted_by_inspector",
+    "retail_engine_executed": false
+  },
+  {
+    "case": "unknown_root_tag",
+    "expectation": "rejected_by_inspector",
+    "observed": "rejected_by_inspector: not the exact known-stock outer tag sequence",
+    "retail_engine_executed": false
+  },
+  {
+    "case": "truncated_terminal_header",
+    "expectation": "rejected_by_inspector",
+    "observed": "rejected_by_inspector: truncated eight-byte chunk header",
+    "retail_engine_executed": false
+  },
+  {
+    "case": "short_bwd2_marker",
+    "expectation": "rejected_by_inspector",
+    "observed": "rejected_by_inspector: chunk length less than header",
+    "retail_engine_executed": false
+  },
+  {
+    "case": "outer_chunk_overflow",
+    "expectation": "rejected_by_inspector",
+    "observed": "rejected_by_inspector: chunk length exceeds parent",
+    "retail_engine_executed": false
+  },
+  {
+    "case": "root_wrong_revision",
+    "expectation": "rejected_by_inspector",
+    "observed": "rejected_by_inspector: different outer revision",
+    "retail_engine_executed": false
+  }
+]

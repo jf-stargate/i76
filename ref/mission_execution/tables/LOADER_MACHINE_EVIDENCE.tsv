@@ -1,0 +1,22 @@
+claim_id	claim	evidence_class	address_or_scope	machine_or_corpus_observation	evidence_file	confidence
+F01	Selected loader unconditional return	B	004B4534	MOV EAX,0x1	v99_loader_full_instructions.tsv	High
+F02	Selected loader reports cursor failure, but no terminal branch	B	004B4510-004B4532	TEST/SETNZ + report_error + convergence	v99_loader_full_instructions.tsv	High
+F03	Top-level game caller ignores selected loader return	B	004034F4-00403501	CALL+ADD ESP+next CALL, no EAX test	v99_reset_and_caller_disasm.tsv	High
+F04	Retail report_error is nonterminating stub	B	0042D5D0	RET	v99_loader_full_instructions.tsv	High
+F05	Generic parser distinguishes null result	B	004B4132,004B4148,004B41AF	XOR EAX,EAX / RET	v99_loader_full_instructions.tsv	High
+F06	Callback ADEF wrapper preserves nested bool	B	004B45FF-004B4607	CALL 004B89B0 / ADD / RET	v99_loader_full_instructions.tsv	High
+F07	ADEF nested dispatch count and table	B	004B89C2-004B89CA	PUSH 3, PUSH 00500D20, CALL	v99_loader_full_instructions.tsv	High
+F08	Mandatory descriptor mask tested at finalization	B	004B4160-004B419F	TEST flags 0x40 then 0x80	v99_loader_full_instructions.tsv	High
+F09	Matched descriptor sets seen bit	B	004B3F2F	OR AL,0x80	v99_loader_full_instructions.tsv	High
+F10	Fatal callback mask can return null	B	004B412E-004B413B	TEST flags 0x20 and zero EAX	v99_loader_full_instructions.tsv	High
+F11	Revision checking has success/error split	B	004B4610	Compare revision with table; return 0 or 1	v99_loader_native_decompiled.txt	High
+F12	Selected ADEF revision is 1	B+C	00500440	AREV expected 1	v99_revision_required_table_raw.tsv;CORPUS_LOADER_INVENTORY.tsv	High
+F13	FSM chunk callback always returns 1	B	00409740	HeapCreate -> load -> finalize -> return 1	v99_loader_native_decompiled.txt	High
+F14	FSM importer lacks local bounded word reader	B	00410720	Count-driven reads; nominal byte length unused locally	v99_loader_native_decompiled.txt	High within routine
+F15	Zero-payload FSM path exists	B+C	00409740	Local 7-word zero buffer if payload len=0; 30 stock empty chunks	v99_loader_native_decompiled.txt;CORPUS_STATIC_VALIDATION.json	High
+F16	Missing actor lookup stores null and continues	B	00412400	Writes actor +0x58, diagnostic only	v99_loader_native_decompiled.txt	High
+F17	Player-vehicle absence is diagnostic only in exit handler	B	004B4790	Reporter then constant success	v99_loader_native_decompiled.txt	High
+F18	Per-section revision values are coherent in corpus	C	80 MSN files	WREV9 TREV4 RREV1 OREV3 LREV1 AREV1	CORPUS_LOADER_INVENTORY.tsv	High for corpus
+F19	Stock scripts structurally parse cleanly	C	80 MSN files	No Python inspector parsing errors	CORPUS_STATIC_VALIDATION.json	High for corpus
+F20	CRC helper not on selected mission loader direct chain	B	004B35A0	Incoming ref inventory in other contexts	v99_loader_incoming.tsv	High for audited chain
+F21	Mission reset helper does not reset descriptor seen bit	B	004B84E0	Registers world object tree callback only	v99_reset_and_caller.txt	High for routine; cross-load unresolved

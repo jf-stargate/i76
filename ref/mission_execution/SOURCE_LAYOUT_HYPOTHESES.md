@@ -1,0 +1,23 @@
+# Provisional source translation-unit map — hypotheses only
+
+No COFF original `.obj` filenames or developer filenames have been recovered. The following are **not** recovered original `.c` / `.h` files. They are plausible neighborhoods suggested by contiguous function addresses plus behavior, globals, callback structures, and cross-module calls. Compiler/linker ordering may reorder, combine or split translation units; address adjacency is one signal, not proof.
+
+| Provisional unit | Address neighborhood | Functions / role | Locality and data evidence | Confidence in *neighborhood*, not TU boundary |
+|---|---|---|---|---|
+| FSM loader / runtime registration | `00409740–0040A030` | FSM import callback, actor/team registration hooks, runtime init/shutdown | Shared FSM globals around `0051F5xx`, two object callbacks, adjacent functions | Strong neighborhood; S moderate TU grouping |
+| FSM mission queries / adapters | `0040A8A0–0040C020` | Dynamic actor discovery, who*, collision and arrival predicates, CB VM adapters | Adjacent query helpers, shared 0x60 actor records and AI fields | Strong semantic neighborhood; possibly several original units |
+| Compiled FSM serializer and interpreter | `00410490–00414B90` | Table import, actor/media fixup, command resolver, AI selector boundary, host dispatcher, VM, scheduler | Many adjacent functions and related serialized arrays/host jump table | Strong subsystem; **not** asserted single TU |
+| AI behavior actions/predicates | `00416B80–0041D6D0` | State enter/update, tactics, event and timer predicates | 34-row behavior table points into this region; two missing callbacks repaired in v80 | Strong semantic neighborhood; S moderate |
+| AI drive/nav and control queue | `0041EF40–00420D30` | Follow steering, queue producer/consumer, route driving/A* | Repeated accesses to AI `9D68/A6C8/A6CC/A6D0/A988` | Strong subsystem; individual TU boundaries unknown |
+| CB voice-message runtime | `00423600–00423A90` | Allocate/advance/clear `0x24` messages, completion callback | Shared CB globals and audio completion callback; separate from FSM nodes | Strong neighborhood; S moderate/high |
+| Low-level world-object node/refcounts | `0045EBD0–0045F307` | Node allocate, ref increment/release, liveness conditional decrement, tree links | Contiguous code, common `+08/+0C/+60/+64/+68` accesses | Very strong neighborhood; S moderate TU grouping |
+| Active world registry/callbacks | `00457100–00457630` | Setup/teardown, active entry registry, callback lists, key-lookup wrappers | Entry stride 0x78; callback invocation and key-registry bridge | Strong neighborhood; S moderate |
+| Instance-key registry core | `004AD410–004AD638` | Heap init, append, reverse lookup, destroy | Four adjacent lifecycle functions; shared `0054A178` context | Very strong neighborhood; S moderate/high TU grouping |
+| BWD2 resource parser and mission containers | `004B3DB0–004B4790` | Tagged descriptor parser, mission ADEF wrapper and root callback glue | Descriptor tables `00500328` and `00500D20`; shared parser cursor/end | Strong semantic neighborhood; S moderate |
+| ODEF/scene world import | `004B7AC0–004B8F70` | World/scene object creation and tagged mission resource handlers | Related registered BWD2 descriptor functions and resource context | Moderate; mixed handlers could be multiple TUs |
+| Network/mode selectors | `00401000–00401339`, `00452D20–00452DBF` | Opponent/trip flag management and separate suppression mode | Distinct globals 00501818, 00541030 and shell callers | Multiple neighboring source units likely |
+| Game shell/main loop | `004022E0–00404723` | Shell state, game startup/active loop/teardown | Central orchestration; many outbound cross-subsystem calls | Strong functional zone; S weak at individual TU level |
+
+**Method for future revisions:** For each proposed boundary, collect (i) function-adjacency run; (ii) unusually high internal direct-call density; (iii) references to putatively private globals; (iv) callback/data locality in `.rdata/.data`; (v) alignment and padding discontinuities; (vi) strings, static initialization/teardown grouping; (vii) counterexamples. Do not create or rename source files in the Ghidra program on this basis. Headers are even less directly recoverable; shared types/interfaces are architectural declarations, not proof of an original header filename.
+
+The individual addenda `V*_SOURCE_LAYOUT_ADDITIONS.md` in prior checkpoints contain more granular observations, often with relevant addresses. Their hypotheses are intentionally not reproduced as unqualified original-file claims here.

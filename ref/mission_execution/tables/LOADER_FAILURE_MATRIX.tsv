@@ -1,0 +1,15 @@
+input_or_condition	routine	local_effect	propagated_result	downstream	evidence_and_confidence	uncertainty
+Missing file	004B42B0	openResource NULL -> zero/null cursor, diagnostic	Selected wrapper still returns 1	Gameplay caller does not test return	B / high	Loader/following game outcome not tested
+Outer parser cursor failure	004B3DB0 -> 004B42B0	NULL on selected parser branch	Wrapper diagnostics; second parse skipped; returns 1	Caller proceeds	B / high	Whether later subsystem handles incomplete load
+Wrong outer known REV	004B4610 + REV 0x2020	revision callback returns 0	0x20 can force generic parser NULL	Wrapper still returns 1	B / high branch	No altered file executed
+Unknown file extension with REV	004B4610	reports and returns 1 on unmatched extension	Success callback at revision layer	Later parser stages depend on tags	B / high branch	Actual supported extension set not exhaustively tested
+Wrong AREV	004B4610 + AREV 0x2004	revision callback returns 0	0x04 reporting path not necessarily fatal	Nested parser final outcome untested	B / high branch	Needs safe trace
+Missing user vehicle	004B4790	error reporter then returns 1	No failure conveyed via callback	Top-level further initialization may still fail later	B / high	Reachability and runtime effect unknown
+Unresolved actor paired key	00412400	stores zero at actor+0x58 and reports	Finalizer continues	Host command behavior later depends on actor argument	B / high	Null-actor runtime path unknown
+Bad media path	004122D0	tracks WAV/SMK availability in record	No global finalizer bool	May influence later commands	B / medium-high	Asset paths, runtime effect open
+Empty FSM chunk size 8	00409740	local zero array substituted for absent payload	Calls reader and finalizer, returns 1	30 empty stock scripts verified	B+C / high	Not equivalent to missing FSM chunk
+Truncated FSM table	00410720	no local read-versus-payload-length guard	No universal parser rejection established	Not executed	B / high limited	Crash/access/accept outcomes untested
+Oversized/wrapping chunk length	004B3DB0	end compare follows size arithmetic and chunk reads	No comprehensive checked integer-add proof	Not executed	B / scoped	Requires safe isolation before test
+Unknown/misordered tag	004B3DB0	sequential descriptor state and mismatch flags	Not universally rejected by one condition	Not executed	B / medium	Exhaustive state-machine proof open
+Repeat mission load	004B3DB0 + 004B84E0	seen flag written in descriptors, reset helper does not clear	Potential persistence	Not executed	B+U	Other writers and repeated-load trace open
+CRC check for mission	004B35A0	not called by audited selected mission chain	Do not infer CRC enforcement	N/A	B / scoped	Other indirect validation paths not ruled out

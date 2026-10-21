@@ -1,0 +1,2032 @@
+
+===== 00412ce0 dispatch_fsm_host_command_record =====
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* cgpt whole-binary semantic rename v1: large switch over FSM instruction prototype/state; string
+   evidence unknown fsm prototype
+   [v57 FSM] 96-entry dispatch via table 004144E4; record+0x50 ID; 0x16 routes to error
+   [FSM v60, i76.exe verified] Host dispatcher receives a SOURCE COMMAND RECORD INDEX, multiplies by
+   0x54, reads opcode at record+0x50, dispatches through 96-entry table.
+   [I76 v64B] v57/v60: 0x54-byte command records; 96-way host-command dispatch */
+
+void __cdecl
+dispatch_fsm_host_command_record
+          (int param_1,int param_2,int param_3,undefined4 param_4,int param_5,undefined4 param_6,
+          int param_7,undefined4 param_8,int param_9,int *param_10)
+
+{
+  int *piVar1;
+  int *piVar2;
+  uint *puVar3;
+  undefined4 *puVar4;
+  bool bVar5;
+  LPVOID pvVar6;
+  undefined3 extraout_var;
+  int iVar7;
+  undefined3 extraout_var_00;
+  undefined4 uVar8;
+  uint uVar9;
+  LPVOID pvVar10;
+  int iVar11;
+  int iVar12;
+  int *piVar13;
+  float10 fVar14;
+  int *piVar15;
+  int *piVar16;
+  int *piVar17;
+  
+  switch(*(undefined4 *)(param_3 + param_2 * 0x54 + 0x50)) {
+  case 0:
+    break;
+  case 1:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_behave_not_implemented();
+    break;
+  case 2:
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    update_vehicle_ai_target_and_attack_state(pvVar6,pvVar10,0);
+    break;
+  case 3:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    update_vehicle_ai_target_and_attack_state(pvVar10,(LPVOID)0x0,0x1f);
+    break;
+  case 4:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = *(int *)(*(int *)((int)pvVar10 + 0x70) + 0x108);
+    *(int *)(iVar11 + 0x8c) = param_7 + **(int **)(param_1 + 0x1004) * 0x58;
+    *(float *)(iVar11 + 0x80) = (float)**(int **)(param_1 + 0x1008);
+    update_vehicle_ai_target_and_attack_state(pvVar10,(LPVOID)0x0,0x16);
+    break;
+  case 5:
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    update_vehicle_ai_target_and_attack_state(pvVar6,pvVar10,0x20);
+    break;
+  case 6:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_do_not_implemented();
+    break;
+  case 7:
+  case 0x2f:
+    **(undefined4 **)(param_1 + 0x1000) = **(undefined4 **)(param_1 + 0x1004);
+    break;
+  case 8:
+    **(int **)(param_1 + 0x1000) = **(int **)(param_1 + 0x1000) + 1;
+    break;
+  case 9:
+    **(int **)(param_1 + 0x1000) = **(int **)(param_1 + 0x1000) + -1;
+    break;
+  case 10:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    piVar16 = *(int **)(param_1 + 0x1000);
+    iVar11 = rand();
+    *piVar16 = iVar11 % *piVar17;
+    break;
+  case 0xb:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_query_who_rammed((int)pvVar10,piVar17,param_10,param_9);
+    break;
+  case 0xc:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_query_who_shot((int)pvVar10,piVar17,param_10,param_9);
+    break;
+  case 0xd:
+    puVar4 = *(undefined4 **)(param_1 + 0x1000);
+    get_mission_elapsed_clock_seconds();
+    uVar8 = ftol();
+    *puVar4 = uVar8;
+    break;
+  case 0xe:
+    mark_mission_objective_succeeded(**(int **)(param_1 + 0x1000));
+    break;
+  case 0xf:
+    piVar17 = *(int **)(param_1 + 0x1000);
+    fVar14 = get_mission_elapsed_clock_seconds();
+    g_fsm_game_flow_timeout_next_state = 1;
+    _g_fsm_game_flow_timeout_seconds = (float)(fVar14 + (float10)*piVar17);
+    mission_objective_state_context_helper_0045eb30(-1);
+    break;
+  case 0x10:
+    mark_mission_objective_failed(**(int **)(param_1 + 0x1000));
+    break;
+  case 0x11:
+    piVar17 = *(int **)(param_1 + 0x1000);
+    fVar14 = get_mission_elapsed_clock_seconds();
+    g_fsm_game_flow_timeout_next_state = 0;
+    _g_fsm_game_flow_timeout_seconds = (float)(fVar14 + (float10)*piVar17);
+    mission_objective_state_context_helper_0045eb30(-1);
+    break;
+  case 0x12:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    piVar16 = *(int **)(param_1 + 0x1000);
+    fVar14 = get_mission_elapsed_clock_seconds();
+    g_fsm_game_flow_timeout_next_state = 0;
+    _g_fsm_game_flow_timeout_seconds = (float)(fVar14 + (float10)*piVar16);
+    mission_objective_state_context_helper_0045eb30(*piVar17);
+    break;
+  case 0x13:
+    if (*(int *)(param_5 + 0x50 + **(int **)(param_1 + 0x1000) * 0x54) != 0) {
+      queue_cb_voice_message((char *)(param_5 + **(int **)(param_1 + 0x1000) * 0x54),0,3);
+    }
+    break;
+  case 0x14:
+    fsm_cb_voice_with_script_type
+              ((char *)(param_5 + **(int **)(param_1 + 0x1000) * 0x54),*(int **)(param_1 + 0x1004));
+    break;
+  case 0x15:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_cb_voice_from_actor_and_script_type
+              ((char *)(param_5 + **(int **)(param_1 + 0x1000) * 0x54),(int)pvVar10,piVar17);
+    break;
+  default:
+    report_error();
+                    /* WARNING: Subroutine does not return */
+    abort();
+  case 0x17:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_format_default_label_name((int)pvVar10,piVar17,param_9,param_10);
+    break;
+  case 0x18:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_find_nearest_enemy((int)pvVar10,piVar17,param_9,param_10);
+    break;
+  case 0x19:
+    *(undefined4 *)(param_1 + 0x10a0) = 1;
+    break;
+  case 0x1a:
+    *(undefined4 *)(param_1 + 0x10a0) = 0;
+    break;
+  case 0x1b:
+    *(uint *)(param_1 + 0x10a0) =
+         (uint)(**(int **)(param_1 + 0x1000) == **(int **)(param_1 + 0x1004));
+    break;
+  case 0x1c:
+    *(uint *)(param_1 + 0x10a0) =
+         (uint)(**(int **)(param_1 + 0x1004) < **(int **)(param_1 + 0x1000));
+    break;
+  case 0x1d:
+    *(uint *)(param_1 + 0x10a0) =
+         (uint)(**(int **)(param_1 + 0x1000) < **(int **)(param_1 + 0x1004));
+    break;
+  case 0x1e:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_test_not_implemented();
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x1f:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    uVar8 = fsm_query_objects_within_radius((int)pvVar6,(int)pvVar10,piVar17);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x20:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_current_actor_matches_state_slot_a6d4((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x21:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    uVar8 = *(undefined4 *)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_object_integrity_less_than((int)pvVar10,uVar8,piVar17);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x22:
+    puVar3 = *(uint **)(param_1 + 0x1008);
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    bVar5 = fsm_query_ammo_lesser((int)pvVar10,piVar17,puVar3);
+    *(uint *)(param_1 + 0x10a0) = CONCAT31(extraout_var_00,bVar5);
+    break;
+  case 0x23:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_current_actor_matches_state_slot_a6d8((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x24:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_world_object_flag_0x200_set((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x25:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_is_lit_not_implemented();
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x26:
+    iVar11 = **(int **)(param_1 + 0x1000);
+    iVar12 = **(int **)(param_1 + 0x1004);
+    get_mission_elapsed_clock_seconds();
+    iVar7 = ftol();
+    if ((float)(iVar11 + iVar12) < (float)iVar7 - _DAT_004bc798) {
+      *(undefined4 *)(param_1 + 0x10a0) = 1;
+      break;
+    }
+    goto LAB_00413992;
+  case 0x27:
+    iVar11 = **(int **)(param_1 + 0x1000);
+    iVar12 = **(int **)(param_1 + 0x1004);
+    get_mission_elapsed_clock_seconds();
+    iVar7 = ftol();
+    if ((float)iVar7 - _DAT_004bc798 < (float)(iVar11 + iVar12)) {
+      *(undefined4 *)(param_1 + 0x10a0) = 1;
+      break;
+    }
+LAB_00413992:
+    *(undefined4 *)(param_1 + 0x10a0) = 0;
+    break;
+  case 0x28:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_consume_ai_path_arrival_flag((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x29:
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    *(uint *)(param_1 + 0x10a0) = (uint)(pvVar6 == pvVar10);
+    break;
+  case 0x2a:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_object_near_script_xy_position
+                      (param_7 + **(int **)(param_1 + 0x1000) * 0x58,(int)pvVar10,piVar17);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x2b:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_object_inside_script_xy_box
+                      (param_7 + **(int **)(param_1 + 0x1000) * 0x58,(int)pvVar10,piVar17);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x2c:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_enemy_vehicle_within_radius((int)pvVar10,piVar17);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x2d:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_current_actor_matches_any_damage_state_slot((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x2e:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_query_who_attacked((int)pvVar10,piVar17,param_10,param_9);
+    break;
+  case 0x30:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = *(int *)(*(int *)((int)pvVar10 + 0x70) + 0x108);
+    iVar12 = **(int **)(param_1 + 0x1008) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar12 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar12 + 0x58 + param_9) = pvVar10;
+    *(LPVOID *)(iVar11 + 0xa990) = pvVar10;
+    *(undefined4 *)(iVar11 + 0xa98c) = **(undefined4 **)(param_1 + 0x100c);
+    *(float *)(iVar11 + 0xa980) = (float)**(int **)(param_1 + 0x1010);
+    *(float *)(iVar11 + 0xa984) = (float)**(int **)(param_1 + 0x1014);
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    update_vehicle_ai_target_and_attack_state(pvVar6,pvVar10,0x1e);
+    break;
+  case 0x31:
+    piVar13 = *(int **)(param_1 + 0x1008);
+    piVar16 = *(int **)(param_1 + 0x100c);
+    iVar11 = **(int **)(param_1 + 0x1004);
+    iVar12 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar12 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar12 + 0x58 + param_9) = pvVar10;
+    piVar15 = (int *)0x0;
+    piVar17 = (int *)0x0;
+    goto LAB_0041389b;
+  case 0x32:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_destroy_target_object((int)pvVar10);
+    break;
+  case 0x33:
+    if (*(int *)(param_5 + 0x50 + **(int **)(param_1 + 0x1000) * 0x54) != 0) {
+      ui_bitmap_region_context_helper_0049aec0(param_5 + **(int **)(param_1 + 0x1000) * 0x54);
+    }
+    break;
+  case 0x34:
+    iVar11 = weapon_hud_display_context_helper_004621a0();
+    if (iVar11 != 0) {
+      input_device_binding_input_action_state_helper_0044dff0(0);
+      input_device_binding_input_action_state_helper_0044e000(0xd);
+      iVar11 = 0xd;
+      uVar8 = get_active_player_or_camera_world_object_entry();
+      dispatch_runtime_camera_mode_activation_by_id(uVar8,iVar11);
+    }
+    fsm_camera_stack_underflow_error();
+    break;
+  case 0x35:
+    fsm_camera_stack_overflow_error();
+    break;
+  case 0x36:
+    iVar11 = **(int **)(param_1 + 0x1010) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    piVar17 = *(int **)(param_1 + 0x100c);
+    piVar16 = *(int **)(param_1 + 0x1008);
+    piVar13 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    mission_flow_map_context_helper_0049d5f0((int)pvVar6,piVar13,piVar16,piVar17,(int)pvVar10);
+    break;
+  case 0x37:
+    piVar17 = *(int **)(param_1 + 0x1010);
+    piVar16 = *(int **)(param_1 + 0x100c);
+    piVar13 = *(int **)(param_1 + 0x1008);
+    piVar15 = *(int **)(param_1 + 0x1004);
+    piVar1 = *(int **)(param_1 + 0x1018);
+    piVar2 = *(int **)(param_1 + 0x1014);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    mission_flow_map_context_helper_0049d4a0
+              ((int)pvVar10,piVar15,piVar13,piVar16,piVar17,piVar2,piVar1);
+    break;
+  case 0x38:
+    iVar11 = **(int **)(param_1 + 0x1008) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    mission_flow_map_context_helper_0049d740
+              (param_7 + **(int **)(param_1 + 0x1000) * 0x58,*(int **)(param_1 + 0x1004),(int *)0x0,
+               (int)pvVar10);
+    break;
+  case 0x39:
+    piVar17 = *(int **)(param_1 + 0x1010);
+    piVar16 = *(int **)(param_1 + 0x100c);
+    piVar13 = *(int **)(param_1 + 0x1008);
+    piVar15 = (int *)0x0;
+    goto LAB_0041328f;
+  case 0x3a:
+    iVar11 = **(int **)(param_1 + 0x100c) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    mission_flow_map_context_helper_0049d740
+              (param_7 + **(int **)(param_1 + 0x1000) * 0x58,*(int **)(param_1 + 0x1004),
+               *(int **)(param_1 + 0x1008),(int)pvVar10);
+    break;
+  case 0x3b:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    piVar16 = *(int **)(param_1 + 0x100c);
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    mission_flow_map_context_helper_0049dda0((int)pvVar6,(int)pvVar10,piVar17,piVar16);
+    break;
+  case 0x3c:
+    piVar17 = *(int **)(param_1 + 0x1014);
+    piVar16 = *(int **)(param_1 + 0x1010);
+    piVar13 = *(int **)(param_1 + 0x100c);
+    piVar15 = *(int **)(param_1 + 0x1008);
+LAB_0041328f:
+    mission_flow_map_context_helper_0049dac0
+              ((float)(param_7 + **(int **)(param_1 + 0x1000) * 0x58),*(int **)(param_1 + 0x1004),
+               piVar15,piVar13,piVar16,piVar17);
+    break;
+  case 0x3d:
+    uVar8 = mission_flow_map_context_helper_0049d730();
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x3e:
+    uVar8 = input_action_state_clearer_helper_0044de40();
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x3f:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_start_world_object_action_slot_7((int)pvVar10);
+    break;
+  case 0x40:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = *(int *)(*(int *)((int)pvVar10 + 0x70) + 0x108);
+    *(int *)(iVar11 + 0x8c) = param_7 + **(int **)(param_1 + 0x1004) * 0x58;
+    *(float *)(iVar11 + 0x80) = (float)**(int **)(param_1 + 0x1008);
+    iVar11 = **(int **)(param_1 + 0x100c) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    update_vehicle_ai_target_and_attack_state(pvVar10,pvVar6,0x18);
+    break;
+  case 0x41:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_toggle_ai_behavior_state_flag_9d14((int)pvVar10);
+    break;
+  case 0x42:
+    uVar8 = fsm_query_no_visible_transform_targets_active();
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x43:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_all_other_team_vehicles_flag_0x20_set((uint)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x44:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_set_helicopter_height((int)pvVar10,piVar17);
+    break;
+  case 0x45:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    piVar16 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_set_tactics_weights_from_script_indices((int)pvVar10,piVar16,piVar17);
+    break;
+  case 0x46:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_consume_ai_at_follow_proximity_flag((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x47:
+    piVar17 = *(int **)(param_1 + 0x1008);
+    piVar16 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    enqueue_ai_vehicle_steer_brake_sample_from_history((int)pvVar10,piVar16,piVar17);
+    break;
+  case 0x48:
+    piVar17 = *(int **)(param_1 + 0x100c);
+    piVar16 = *(int **)(param_1 + 0x1010);
+    piVar13 = *(int **)(param_1 + 0x1008);
+    piVar15 = *(int **)(param_1 + 0x1004);
+    piVar1 = *(int **)(param_1 + 0x1018);
+    piVar2 = *(int **)(param_1 + 0x1014);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    enqueue_vehicle_steer_brake_input_sample
+              ((int)pvVar10,piVar15,piVar13,piVar17,piVar16,piVar2,piVar1);
+    break;
+  case 0x49:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    apply_next_fsm_vehicle_control_sample((int)pvVar10);
+    break;
+  case 0x4a:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_vehicle_control_queue_drained((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x4b:
+    fsm_reveal_mission_objective(*(int **)(param_1 + 0x1000));
+    break;
+  case 0x4c:
+    bVar5 = fsm_is_cb_voice_queue_empty();
+    *(uint *)(param_1 + 0x10a0) = CONCAT31(extraout_var,bVar5);
+    break;
+  case 0x4d:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_set_tactics_tag_from_index((int)pvVar10,piVar17);
+    break;
+  case 0x4e:
+    fsm_set_active_player_vehicle_control_context(*(int **)(param_1 + 0x1000));
+    break;
+  case 0x4f:
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_cb_voice_from_actor_type3
+              ((char *)(param_5 + **(int **)(param_1 + 0x1000) * 0x54),(int)pvVar10);
+    break;
+  case 0x50:
+    clear_cb_voice_message_queue(0);
+    break;
+  case 0x51:
+    fsm_append_salvage_resource_reference((char *)(param_5 + **(int **)(param_1 + 0x1000) * 0x54));
+    break;
+  case 0x52:
+    piVar17 = *(int **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_play_or_stop_vehicle_engine_event_sound((int)pvVar10,piVar17);
+    break;
+  case 0x53:
+    puVar4 = *(undefined4 **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_set_ai_behavior_state_field_9d14((int)pvVar10,puVar4);
+    break;
+  case 0x54:
+    puVar4 = *(undefined4 **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_set_ai_behavior_state_field_a948((int)pvVar10,puVar4);
+    break;
+  case 0x55:
+    iVar11 = **(int **)(param_1 + 0x1004) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    uVar8 = test_weapon_projectile_path_clear_to_target((int)pvVar6,(int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x56:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar9 = fsm_query_vehicle_runtime_flag_0x454_bit2((int)pvVar10);
+    *(uint *)(param_1 + 0x10a0) = uVar9;
+    break;
+  case 0x57:
+    piVar17 = *(int **)(param_1 + 0x1010);
+    piVar16 = *(int **)(param_1 + 0x100c);
+    piVar13 = *(int **)(param_1 + 0x1008);
+    iVar11 = **(int **)(param_1 + 0x1004);
+    piVar15 = *(int **)(param_1 + 0x1014);
+    iVar12 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar12 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar12 + 0x58 + param_9) = pvVar10;
+LAB_0041389b:
+    fsm_teleport_object((int)pvVar10,param_7 + iVar11 * 0x58,piVar13,piVar16,piVar17,piVar15);
+    break;
+  case 0x58:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    uVar8 = fsm_query_is_grooves_fault((int)pvVar10);
+    *(undefined4 *)(param_1 + 0x10a0) = uVar8;
+    break;
+  case 0x59:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    update_vehicle_ai_target_and_attack_state(pvVar10,(LPVOID)0x0,0x21);
+    break;
+  case 0x5a:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    vehicle_specials_indicator_update_helper_00467400((int)pvVar10);
+    break;
+  case 0x5b:
+    puVar3 = *(uint **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    fsm_mark_vehicle_effect_object_if_flag6_mismatch((int)pvVar10,puVar3);
+    break;
+  case 0x5c:
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    iVar11 = *(int *)(*(int *)((int)pvVar10 + 0x70) + 0x108);
+    *(int *)(iVar11 + 0x8c) = param_7 + **(int **)(param_1 + 0x1004) * 0x58;
+    *(float *)(iVar11 + 0x80) = (float)**(int **)(param_1 + 0x1008);
+    iVar11 = **(int **)(param_1 + 0x100c) * 0x60;
+    pvVar6 = release_world_object_tree_reference(*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10)
+    ;
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar6;
+    update_vehicle_ai_target_and_attack_state(pvVar10,pvVar6,0x1a);
+    break;
+  case 0x5d:
+    puVar4 = *(undefined4 **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    vehicle_specials_display_context_helper_00462c80((int)pvVar10,puVar4);
+    break;
+  case 0x5e:
+    puVar4 = *(undefined4 **)(param_1 + 0x1004);
+    iVar11 = **(int **)(param_1 + 0x1000) * 0x60;
+    pvVar10 = release_world_object_tree_reference
+                        (*(LPVOID *)(iVar11 + 0x58 + param_9),&DAT_004c2a10);
+    *(LPVOID *)(iVar11 + 0x58 + param_9) = pvVar10;
+    vehicle_specials_display_context_helper_00462ca0((int)pvVar10,puVar4);
+    break;
+  case 0x5f:
+    fsm_signal_stop_cb_voice();
+  }
+  *(int *)(param_1 + 0x10b4) = param_1 + 0x1000;
+  *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a8) + 8;
+  return;
+}
+
+
+
+===== 00414670 execute_fsm_vm_token_stream =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: Unknown fsm assembler instuction
+   [v57 FSM] Separate 14-case operand assembler; 8-byte input token, 004149B8 jump table
+   [I76 FSM v58] A real 14-operation stack/control-flow token VM, not only operand decoding. Input
+   tokens are {u32 kind,u32 payload}.
+   [I76 v64B] v58: executes 14 VM token operations with branching, yielding, and frames */
+
+undefined4 __cdecl
+execute_fsm_vm_token_stream
+          (int param_1,undefined4 param_2,int param_3,undefined4 param_4,int param_5,
+          undefined4 param_6,int param_7,undefined4 param_8,int param_9,int *param_10)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  int *piVar3;
+  undefined4 *puVar4;
+  int local_54;
+  undefined4 local_4f;
+  
+  puVar4 = &local_4f;
+  for (iVar2 = 0x13; iVar2 != 0; iVar2 = iVar2 + -1) {
+    *puVar4 = 0;
+    puVar4 = puVar4 + 1;
+  }
+  *(undefined2 *)puVar4 = 0;
+  *(undefined1 *)((int)puVar4 + 2) = 0;
+  local_54 = 0;
+  do {
+    if (800 < local_54) {
+      g_fsm_vm_instruction_budget_exceeded = 1;
+    }
+    puVar4 = *(undefined4 **)(param_1 + 0x10a8);
+    switch(*puVar4) {
+    case 1:
+      **(undefined4 **)(param_1 + 0x10b0) = puVar4[1];
+      *(int *)(param_1 + 0x10b0) = *(int *)(param_1 + 0x10b0) + 4;
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a8) + 8;
+      break;
+    case 2:
+      **(int **)(param_1 + 0x10b0) = *(int *)(param_1 + 0x10ac) + puVar4[1] * 4;
+      *(int *)(param_1 + 0x10b0) = *(int *)(param_1 + 0x10b0) + 4;
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a8) + 8;
+      break;
+    case 3:
+      **(undefined4 **)(param_1 + 0x10b0) =
+           *(undefined4 *)(*(int *)(param_1 + 0x10ac) + puVar4[1] * 4);
+      *(int *)(param_1 + 0x10b0) = *(int *)(param_1 + 0x10b0) + 4;
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a8) + 8;
+      break;
+    case 4:
+      **(int **)(param_1 + 0x10b4) = *(int *)(param_1 + 0x10ac) + puVar4[1] * 4;
+      *(int *)(param_1 + 0x10b4) = *(int *)(param_1 + 0x10b4) + 4;
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a8) + 8;
+      break;
+    case 5:
+      **(undefined4 **)(param_1 + 0x10b4) =
+           *(undefined4 *)(*(int *)(param_1 + 0x10ac) + puVar4[1] * 4);
+      *(int *)(param_1 + 0x10b4) = *(int *)(param_1 + 0x10b4) + 4;
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a8) + 8;
+      break;
+    case 6:
+      *(int *)(param_1 + 0x10b0) = *(int *)(param_1 + 0x10b0) + puVar4[1] * 4;
+      *(undefined4 **)(param_1 + 0x10a8) = puVar4 + 2;
+      break;
+    case 7:
+      *(int *)(param_1 + 0x10b0) = *(int *)(param_1 + 0x10b0) + puVar4[1] * -4;
+      *(undefined4 **)(param_1 + 0x10a8) = puVar4 + 2;
+      break;
+    case 8:
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a4) + puVar4[1] * 8;
+      break;
+    case 9:
+      if (*(int *)(param_1 + 0x10a0) != 0) goto LAB_00414866;
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a4) + puVar4[1] * 8;
+      break;
+    case 10:
+      *(int *)(param_1 + 0x10a8) =
+           *(int *)(param_1 + 0x10a4) + *(int *)(*(int *)(param_1 + 0x10a8) + 4) * 8;
+      return 0;
+    case 0xb:
+      iVar2 = puVar4[1];
+      **(undefined4 **)(param_1 + 0x10b0) = *(undefined4 *)(param_1 + 0x10ac);
+      piVar3 = (int *)(*(int *)(param_1 + 0x10b0) + 4);
+      *(int **)(param_1 + 0x10b0) = piVar3;
+      *(int **)(param_1 + 0x10ac) = piVar3;
+      *piVar3 = *(int *)(param_1 + 0x10a8) + 8;
+      *(int *)(param_1 + 0x10b0) = *(int *)(param_1 + 0x10b0) + 4;
+      *(int *)(param_1 + 0x10a8) = *(int *)(param_1 + 0x10a4) + iVar2 * 8;
+      break;
+    case 0xc:
+      puVar1 = *(undefined4 **)(param_1 + 0x10ac);
+      iVar2 = puVar4[1];
+      *(undefined4 *)(param_1 + 0x10a8) = *puVar1;
+      iVar2 = (int)puVar1 - (iVar2 * 4 + 4);
+      *(int *)(param_1 + 0x10b0) = iVar2;
+      *(undefined4 *)(param_1 + 0x10ac) = puVar1[-1];
+      if (iVar2 == param_1) {
+        return 1;
+      }
+      break;
+    case 0xd:
+      dispatch_fsm_host_command_record
+                (param_1,puVar4[1],param_3,param_4,param_5,param_6,param_7,param_8,param_9,param_10)
+      ;
+      break;
+    case 0xe:
+      *(uint *)(param_1 + 0x10a0) = (uint)(*(int *)(param_1 + 0x10a0) == 0);
+LAB_00414866:
+      *(undefined4 **)(param_1 + 0x10a8) = puVar4 + 2;
+      break;
+    default:
+      report_error();
+    }
+    local_54 = local_54 + 1;
+    if (999 < local_54) {
+                    /* WARNING: Subroutine does not return */
+      exit(0);
+    }
+  } while( true );
+}
+
+
+
+===== 0040b7d0 fsm_query_object_integrity_less_than =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: computes object integrity percentage
+   and compares it against the supplied threshold. */
+
+undefined4 __cdecl fsm_query_object_integrity_less_than(int param_1,undefined4 param_2,int *param_3)
+
+{
+  float10 fVar1;
+  
+  fVar1 = compute_world_object_damage_integrity_percent(param_1);
+  if (fVar1 < (float10)*param_3) {
+    return 1;
+  }
+  return 0;
+}
+
+
+
+===== 0040be60 fsm_query_ammo_lesser =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: ammoLesser nonVehicle / hard point */
+
+bool __cdecl fsm_query_ammo_lesser(int param_1,int *param_2,uint *param_3)
+
+{
+  int iVar1;
+  int iVar2;
+  int *piVar3;
+  undefined4 local_58 [17];
+  uint local_14;
+  int local_8;
+  
+  iVar1 = is_vehicle_or_actor_runtime_world_object(param_1);
+  if (iVar1 == 0) {
+    report_error();
+    return false;
+  }
+  iVar1 = get_vehicle_runtime_context(param_1);
+  iVar1 = get_vehicle_damage_event_state_block(iVar1);
+  iVar2 = 0;
+  if (0 < *(int *)(iVar1 + 0xa718)) {
+    piVar3 = (int *)(iVar1 + 0xa71c);
+    do {
+      extract_weapon_runtime_state_to_vsf_record(*piVar3,local_58);
+      if (local_8 == *param_2) {
+        return local_14 < *param_3;
+      }
+      iVar2 = iVar2 + 1;
+      piVar3 = piVar3 + 1;
+    } while (iVar2 < *(int *)(iVar1 + 0xa718));
+  }
+  report_error();
+  return false;
+}
+
+
+
+===== 0040b360 fsm_query_objects_within_radius =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: compares cached aim positions for two
+   world objects and returns true if squared distance is below radius^2. */
+
+undefined4 __cdecl fsm_query_objects_within_radius(int param_1,int param_2,int *param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float *pfVar4;
+  undefined4 local_18 [3];
+  undefined4 local_c [3];
+  
+  pfVar4 = (float *)get_cached_world_object_aim_position(local_18,param_1);
+  fVar1 = *pfVar4;
+  fVar2 = pfVar4[1];
+  fVar3 = pfVar4[2];
+  pfVar4 = (float *)get_cached_world_object_aim_position(local_c,param_2);
+  if ((fVar3 - pfVar4[2]) * (fVar3 - pfVar4[2]) +
+      (fVar2 - pfVar4[1]) * (fVar2 - pfVar4[1]) + (fVar1 - *pfVar4) * (fVar1 - *pfVar4) <
+      (float)(*param_3 * *param_3)) {
+    return 1;
+  }
+  return 0;
+}
+
+
+
+===== 0040b8e0 fsm_query_object_near_script_xy_position =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: compares object X/Z position against
+   script-provided X/Z coordinates using radius^2.
+   [FSM v61, PE verified] Squared horizontal distance test using object->position float X/Z, nav
+   doubles at +0x40 and +0x50, signed integer radius squared; strictly inside. */
+
+undefined4 __cdecl fsm_query_object_near_script_xy_position(int param_1,int param_2,int *param_3)
+
+{
+  float fVar1;
+  float fVar2;
+  
+  fVar2 = **(float **)(param_1 + 0x54) - (float)*(double *)(param_2 + 0x40);
+  fVar1 = (*(float **)(param_1 + 0x54))[2] - (float)*(double *)(param_2 + 0x50);
+  if (fVar1 * fVar1 + fVar2 * fVar2 < (float)(*param_3 * *param_3)) {
+    return 1;
+  }
+  return 0;
+}
+
+
+
+===== 0040b940 fsm_query_object_inside_script_xy_box =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM predicate: compares object X/Z position against
+   script-provided X/Z coordinates using axis-aligned absolute thresholds. */
+
+undefined4 __cdecl fsm_query_object_inside_script_xy_box(int param_1,int param_2,int *param_3)
+
+{
+  if ((ABS(**(float **)(param_1 + 0x54) - (float)*(double *)(param_2 + 0x40)) < (float)*param_3) &&
+     (ABS((*(float **)(param_1 + 0x54))[2] - (float)*(double *)(param_2 + 0x50)) < (float)*param_3))
+  {
+    return 1;
+  }
+  return 0;
+}
+
+
+
+===== 0040ab30 fsm_query_enemy_vehicle_within_radius =====
+
+/* cgpt rename v10 fsm/ai runtime core cluster: FSM predicate: scans vehicles on other teams and
+   returns true if an active enemy is within the supplied radius. */
+
+undefined4 __cdecl fsm_query_enemy_vehicle_within_radius(int param_1,int *param_2)
+
+{
+  int iVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  uint uVar4;
+  int *piVar5;
+  float10 fVar6;
+  float10 fVar7;
+  undefined4 *local_18;
+  
+  uVar4 = 1;
+  local_18 = &DAT_00507ea0;
+  piVar5 = &DAT_0051f5d4;
+  do {
+    if (uVar4 != (*(uint *)(param_1 + 0x10) >> 0x10 & 7)) {
+      iVar2 = 0;
+      puVar3 = local_18;
+      if (0 < *piVar5) {
+        do {
+          iVar1 = *(int *)*puVar3;
+          if (((*(byte *)(iVar1 + 0x11) & 2) == 0) &&
+             (fVar6 = (float10)*(double *)(iVar1 + 0x40) - (float10)*(double *)(param_1 + 0x40),
+             fVar7 = (float10)*(double *)(iVar1 + 0x50) - (float10)*(double *)(param_1 + 0x50),
+             fVar7 * fVar7 + fVar6 * (float10)(float)fVar6 < (float10)(*param_2 * *param_2))) {
+            return 1;
+          }
+          iVar2 = iVar2 + 1;
+          puVar3 = puVar3 + 1;
+        } while (iVar2 < *piVar5);
+      }
+    }
+    piVar5 = piVar5 + 1;
+    uVar4 = uVar4 + 1;
+    local_18 = local_18 + 0x40;
+    if (0x51f5ef < (int)piVar5) {
+      return 0;
+    }
+  } while( true );
+}
+
+
+
+===== 0040bd90 fsm_set_tactics_weights_from_script_indices =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM action: maps two script indices into four AI/FSM
+   tactic weight fields +0xa81c..+0xa828.
+   [FSM v61, PE verified] Writes four runtime profile lookup words into +A820,+A81C,+A824,+A828 of
+   resolved AI state; profile values not stored in PE image.
+   [I76 FSM v62; executable-verified] FSM setSkill uses TWO one-based selectors: arg1 indexes
+   A820/A81C and arg2 indexes A824/A828. Both 1..5; table address is base-4. */
+
+void __cdecl fsm_set_tactics_weights_from_script_indices(int param_1,int *param_2,int *param_3)
+
+{
+  int iVar1;
+  
+  iVar1 = get_vehicle_runtime_context(param_1);
+  iVar1 = get_vehicle_damage_event_state_block(iVar1);
+  *(undefined4 *)(iVar1 + 0xa820) = *(undefined4 *)(&DAT_005fcb7c + *param_2 * 4);
+  *(undefined4 *)(iVar1 + 0xa81c) = *(undefined4 *)(&DAT_005fcb9c + *param_2 * 4);
+  *(undefined4 *)(iVar1 + 0xa824) = *(undefined4 *)(&DAT_005fcbdc + *param_3 * 4);
+  *(undefined4 *)(iVar1 + 0xa828) = *(undefined4 *)(&DAT_005fcbbc + *param_3 * 4);
+  return;
+}
+
+
+
+===== 0040bdf0 fsm_consume_ai_at_follow_proximity_flag =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: isAtFollow non-vehicle
+   I76 v91: AI+A988 is written by 0041EF40 proximity update; here nonzero is consumed by clearing to
+   0 */
+
+undefined4 __cdecl fsm_consume_ai_at_follow_proximity_flag(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = is_vehicle_or_actor_runtime_world_object(param_1);
+  if (iVar1 == 0) {
+    report_error();
+    return 0;
+  }
+  iVar1 = get_vehicle_runtime_context(param_1);
+  iVar1 = get_vehicle_damage_event_state_block(iVar1);
+  if (*(int *)(iVar1 + 0xa988) != 0) {
+    *(undefined4 *)(iVar1 + 0xa988) = 0;
+    return 1;
+  }
+  return 0;
+}
+
+
+
+===== 0040bf50 fsm_is_cb_voice_queue_empty =====
+
+bool fsm_is_cb_voice_queue_empty(void)
+
+{
+  return g_cb_voice_message_queue_head == 0;
+}
+
+
+
+===== 0040bf60 fsm_set_tactics_tag_from_index =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM action: stores tactic index - 1 and parses the
+   corresponding tactics tag into AI/FSM state +0xa82c. */
+
+void __cdecl fsm_set_tactics_tag_from_index(int param_1,int *param_2)
+
+{
+  int iVar1;
+  int iVar2;
+  
+  iVar1 = *(int *)(*(int *)(param_1 + 0x70) + 0x108);
+  iVar2 = *param_2;
+  *(int *)(iVar1 + 0xa818) = iVar2 + -1;
+  parse_fsm_tactics_tag(iVar2 + -1,iVar1 + 0xa82c);
+  return;
+}
+
+
+
+===== 0040bf90 fsm_set_active_player_vehicle_control_context =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM action: when the global context id changes,
+   updates the active player/camera vehicle control context. */
+
+void __cdecl fsm_set_active_player_vehicle_control_context(int *param_1)
+
+{
+  int *piVar1;
+  
+  if (DAT_004c2ab0 != *param_1) {
+    piVar1 = (int *)get_active_player_or_camera_world_object_entry();
+    if (piVar1 != (int *)0x0) {
+      radar_render_context_helper_00460ea0(*piVar1);
+      DAT_004c2ab0 = *param_1;
+    }
+  }
+  return;
+}
+
+
+
+===== 0040c040 fsm_append_salvage_resource_reference =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around
+   append_salvage_resource_reference_for_mission with default id -1 and enabled flag. */
+
+void __cdecl fsm_append_salvage_resource_reference(char *param_1)
+
+{
+  append_salvage_resource_reference_for_mission(param_1,0xffffffff,1);
+  return;
+}
+
+
+
+===== 0040c060 fsm_play_or_stop_vehicle_engine_event_sound =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM action wrapper around
+   play_or_stop_vehicle_engine_event_sound. */
+
+void __cdecl fsm_play_or_stop_vehicle_engine_event_sound(int param_1,int *param_2)
+
+{
+  play_or_stop_vehicle_engine_event_sound(param_1,*param_2);
+  return;
+}
+
+
+
+===== 0040c0e0 fsm_mark_vehicle_effect_object_if_flag6_mismatch =====
+
+/* cgpt rename v7 fsm predicate/bridge cluster: FSM action: compares script value against vehicle
+   runtime field +0x454 bit 6 and marks current damage/effect object when mismatched. */
+
+void __cdecl fsm_mark_vehicle_effect_object_if_flag6_mismatch(int param_1,uint *param_2)
+
+{
+  int iVar1;
+  
+  iVar1 = get_vehicle_runtime_context(param_1);
+  if ((*(uint *)(iVar1 + 0x454) >> 6 & 1) != *param_2) {
+    set_vehicle_current_damage_or_effect_object(param_1,1);
+  }
+  return;
+}
+
+
+
+===== 0049d420 fsm_camera_stack_underflow_error =====
+
+/* cgpt whole-binary semantic rename v1: string evidence Camera Stack Underfow */
+
+void fsm_camera_stack_underflow_error(void)
+
+{
+  int iVar1;
+  
+  iVar1 = pop_runtime_camera_state_stack();
+  if (iVar1 == 0) {
+    report_error();
+  }
+  DAT_005a7ee0 = fsm_camera_stack_underflow_error;
+  DAT_005a7ed8 = 0;
+  DAT_005a7edc = 0;
+  g_runtime_display_mode_state = 5;
+  DAT_004c2724 = 0;
+  g_runtime_display_mode_change_callback = &LAB_0048e190;
+  return;
+}
+
+
+
+===== 0049d470 fsm_camera_stack_overflow_error =====
+
+/* cgpt whole-binary semantic rename v1: string evidence Camera Stack 0verfow */
+
+void fsm_camera_stack_overflow_error(void)
+
+{
+  int iVar1;
+  
+  iVar1 = push_runtime_camera_state_stack();
+  if (iVar1 == 0) {
+    report_error();
+  }
+  DAT_005a7ee0 = fsm_camera_stack_overflow_error;
+  DAT_005a7ed8 = 0;
+  DAT_005a7edc = 0;
+  return;
+}
+
+
+
+===== 0049d740 mission_flow_map_context_helper_0049d740 =====
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d740.
+   Remove duplicated mission-flow/map wording. */
+
+void __cdecl
+mission_flow_map_context_helper_0049d740(int param_1,int *param_2,int *param_3,int param_4)
+
+{
+  float fVar1;
+  float fVar2;
+  float *pfVar3;
+  int iVar4;
+  float *pfVar5;
+  float10 fVar6;
+  float10 extraout_ST0;
+  float10 extraout_ST0_00;
+  float local_a4 [16];
+  float local_64 [10];
+  undefined4 local_3c;
+  undefined4 local_38;
+  double local_34;
+  undefined4 local_2c;
+  undefined4 local_28;
+  float local_24;
+  undefined8 local_20;
+  float local_18;
+  float local_14;
+  float local_10;
+  double local_c;
+  
+  if ((DAT_005a7ee0 != mission_flow_map_context_helper_0049d740) || (DAT_005a7edc != param_1)) {
+    mission_flow_map_context_helper_0049da00(0.0,0,param_1);
+    _DAT_005a7ef8 = _DAT_005a7f08;
+    _DAT_005a7f00 = _DAT_005a7f10;
+  }
+  local_c = 0.0;
+  if (param_3 != (int *)0x0) {
+    local_c = (double)((float)*param_3 * _DAT_004be9c0);
+  }
+  local_20 = (double)((float)*param_2 * _DAT_004be9c0);
+  fVar6 = get_runtime_frame_delta_seconds();
+  local_c = (double)(fVar6 * (float10)local_c * (float10)_DAT_005a7ef0);
+  if (_DAT_004be9d8 < _DAT_005a7ee8) {
+    if (*(int *)(param_1 + 0x50) <= DAT_005a7ee4 + 2) {
+      DAT_005a7edc = 0;
+      DAT_005a7ee0 = (code *)0x0;
+      DAT_005a7ed8 = 1;
+      return;
+    }
+    param_3 = (int *)((float)_DAT_005a7ee8 - ROUND((float)_DAT_005a7ee8 / 1.0) * 1.0);
+    if ((float)param_3 < _DAT_004be9e4) {
+      param_3 = (int *)((float)param_3 - _DAT_004be9e8);
+    }
+    mission_flow_map_context_helper_0049da00((float)param_3,DAT_005a7ee4 + 1,param_1);
+  }
+  local_18 = (float)_DAT_005a7ef8;
+  local_10 = (float)_DAT_005a7f00;
+  DAT_005a7ee0 = mission_flow_map_context_helper_0049d740;
+  DAT_005a7edc = param_1;
+  DAT_005a7ed8 = 0;
+  apply_world_object_transform_to_bounds_or_geometry(_DAT_005a7ef8,_DAT_005a7f00);
+  local_14 = (float)((float10)local_20 + extraout_ST0);
+  local_24 = (float)*(double *)(param_4 + 0x40) - local_18;
+  local_20 = (double)CONCAT44((float)*(double *)(param_4 + 0x50) - local_10,
+                              (float)*(double *)(param_4 + 0x48) - local_14);
+  pfVar3 = (float *)zone_satellite_map_context_helper_00494880(&local_18,&local_24,local_a4);
+  pfVar5 = local_64;
+  for (iVar4 = 0x10; iVar4 != 0; iVar4 = iVar4 + -1) {
+    *pfVar5 = *pfVar3;
+    pfVar3 = pfVar3 + 1;
+    pfVar5 = pfVar5 + 1;
+  }
+  apply_world_object_transform_to_bounds_or_geometry
+            ((double)CONCAT44(local_38,local_3c),(double)CONCAT44(local_28,local_2c));
+  if ((float10)local_34 < extraout_ST0_00 - (float10)_DAT_004be9c8) {
+    local_34 = (double)(extraout_ST0_00 - (float10)_DAT_004be9c8);
+  }
+  software_raster_queue_context_helper_00472990(0x4c2730,local_64);
+  fVar2 = (float)_DAT_005a7f08;
+  fVar1 = fVar2 - (float)_DAT_005a7ef8;
+  if ((float)_DAT_004be9f0 <= ABS(fVar1)) {
+    fVar2 = (float)_DAT_005a7ef8 - fVar1 * _DAT_004be9f8;
+  }
+  _DAT_005a7ef8 = (double)fVar2;
+  fVar2 = (float)_DAT_005a7f10;
+  fVar1 = fVar2 - (float)_DAT_005a7f00;
+  if ((float)_DAT_004be9f0 <= ABS(fVar1)) {
+    fVar2 = (float)_DAT_005a7f00 - fVar1 * _DAT_004be9f8;
+  }
+  _DAT_005a7f00 = (double)fVar2;
+  _DAT_005a7ee8 = local_c + _DAT_005a7ee8;
+  _DAT_005a7f08 = local_c * _DAT_005a7f18 + _DAT_005a7f08;
+  _DAT_005a7f10 = local_c * _DAT_005a7f20 + _DAT_005a7f10;
+  return;
+}
+
+
+
+===== 0049d4a0 mission_flow_map_context_helper_0049d4a0 =====
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d4a0.
+   Remove duplicated mission-flow/map wording. */
+
+void __cdecl
+mission_flow_map_context_helper_0049d4a0
+          (int param_1,int *param_2,int *param_3,int *param_4,int *param_5,int *param_6,int *param_7
+          )
+
+{
+  float *pfVar1;
+  int iVar2;
+  float *pfVar3;
+  float10 extraout_ST0;
+  float local_80 [10];
+  undefined4 local_58;
+  undefined4 local_54;
+  double local_50;
+  undefined4 local_48;
+  undefined4 local_44;
+  float local_40 [16];
+  
+  pfVar1 = (float *)zone_satellite_map_context_helper_00493e60
+                              (local_40,(float)(*param_5 % 36000) * _DAT_004be9c4,
+                               (float)(*param_7 % 36000) * _DAT_004be9c4,
+                               (float)(*param_6 % 36000) * _DAT_004be9c4,
+                               (float)*param_2 * _DAT_004be9c0,(float)*param_3 * _DAT_004be9c0,
+                               (float)*param_4 * _DAT_004be9c0);
+  pfVar3 = local_80;
+  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {
+    *pfVar3 = *pfVar1;
+    pfVar1 = pfVar1 + 1;
+    pfVar3 = pfVar3 + 1;
+  }
+  pfVar1 = compose_affine_transform_m3f_t3d(local_40,local_80,(float *)(param_1 + 0x18));
+  pfVar3 = local_80;
+  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {
+    *pfVar3 = *pfVar1;
+    pfVar1 = pfVar1 + 1;
+    pfVar3 = pfVar3 + 1;
+  }
+  apply_world_object_transform_to_bounds_or_geometry
+            ((double)CONCAT44(local_54,local_58),(double)CONCAT44(local_44,local_48));
+  if ((float10)local_50 < extraout_ST0 - (float10)_DAT_004be9c8) {
+    local_50 = (double)(extraout_ST0 - (float10)_DAT_004be9c8);
+  }
+  software_raster_queue_context_helper_00472990(0x4c2730,local_80);
+  DAT_005a7ed8 = 0;
+  DAT_005a7edc = 0;
+  DAT_005a7ee0 = mission_flow_map_context_helper_0049d4a0;
+  return;
+}
+
+
+
+===== 0049d5f0 mission_flow_map_context_helper_0049d5f0 =====
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049d5f0.
+   Remove duplicated mission-flow/map wording. */
+
+void __cdecl
+mission_flow_map_context_helper_0049d5f0
+          (int param_1,int *param_2,int *param_3,int *param_4,int param_5)
+
+{
+  float *pfVar1;
+  int iVar2;
+  float *pfVar3;
+  float10 extraout_ST0;
+  float local_98;
+  float local_94;
+  float local_90;
+  float local_8c;
+  float local_88;
+  float local_84;
+  float local_80 [10];
+  undefined4 local_58;
+  undefined4 local_54;
+  double local_50;
+  undefined4 local_48;
+  undefined4 local_44;
+  float local_40 [16];
+  
+  local_98 = (float)*param_2 * _DAT_004be9c0;
+  local_94 = (float)*param_3 * _DAT_004be9c0;
+  local_90 = (float)*param_4 * _DAT_004be9c0;
+  transform_vec3_array_by_matrix(&local_98,&local_98,1,(float *)(param_1 + 0x18));
+  local_8c = (float)*(double *)(param_5 + 0x40) - local_98;
+  local_88 = (float)*(double *)(param_5 + 0x48) - local_94;
+  local_84 = (float)*(double *)(param_5 + 0x50) - local_90;
+  pfVar1 = (float *)zone_satellite_map_context_helper_00494880(&local_98,&local_8c,local_40);
+  pfVar3 = local_80;
+  for (iVar2 = 0x10; iVar2 != 0; iVar2 = iVar2 + -1) {
+    *pfVar3 = *pfVar1;
+    pfVar1 = pfVar1 + 1;
+    pfVar3 = pfVar3 + 1;
+  }
+  apply_world_object_transform_to_bounds_or_geometry
+            ((double)CONCAT44(local_54,local_58),(double)CONCAT44(local_44,local_48));
+  if ((float10)local_50 < extraout_ST0 - (float10)_DAT_004be9c8) {
+    local_50 = (double)(float)(extraout_ST0 - (float10)_DAT_004be9c8);
+  }
+  software_raster_queue_context_helper_00472990(0x4c2730,local_80);
+  DAT_005a7ed8 = 0;
+  DAT_005a7edc = 0;
+  DAT_005a7ee0 = mission_flow_map_context_helper_0049d5f0;
+  return;
+}
+
+
+
+===== 0049dac0 mission_flow_map_context_helper_0049dac0 =====
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049dac0.
+   Remove duplicated mission-flow/map wording. */
+
+void __cdecl
+mission_flow_map_context_helper_0049dac0
+          (float param_1,int *param_2,int *param_3,int *param_4,int *param_5,int *param_6)
+
+{
+  float fVar1;
+  float fVar2;
+  float fVar3;
+  float *pfVar4;
+  int iVar5;
+  float *pfVar6;
+  float10 fVar7;
+  float10 extraout_ST0;
+  float local_94 [16];
+  float local_54 [16];
+  float local_14;
+  float local_10;
+  double local_c;
+  
+  fVar3 = param_1;
+  if ((DAT_005a7ee0 != mission_flow_map_context_helper_0049dac0) || (DAT_005a7edc != param_1)) {
+    mission_flow_map_context_helper_0049da00(0.0,0,(int)param_1);
+    _DAT_005a7ef8 = _DAT_005a7f08;
+    _DAT_005a7f00 = _DAT_005a7f10;
+  }
+  local_10 = (float)*param_2 * _DAT_004be9c0;
+  fVar1 = (float)(*param_5 % 36000) * _DAT_004be9c4;
+  local_14 = (float)(*param_4 % 36000) * _DAT_004be9c4;
+  param_1 = 0.0;
+  fVar2 = (float)(*param_6 % 36000) * _DAT_004be9c4;
+  if (param_3 != (int *)0x0) {
+    param_1 = (float)*param_3 * _DAT_004be9c0;
+  }
+  fVar7 = get_runtime_frame_delta_seconds();
+  local_c = (double)(fVar7 * (float10)param_1 * (float10)_DAT_005a7ef0);
+  if (_DAT_004be9d8 < _DAT_005a7ee8) {
+    if (*(int *)((int)fVar3 + 0x50) <= DAT_005a7ee4 + 2) {
+      DAT_005a7edc = 0.0;
+      DAT_005a7ee0 = (code *)0x0;
+      DAT_005a7ed8 = 1;
+      return;
+    }
+    param_2 = (int *)((float)_DAT_005a7ee8 - ROUND((float)_DAT_005a7ee8 / 1.0) * 1.0);
+    if ((float)param_2 < _DAT_004be9e4) {
+      param_2 = (int *)((float)param_2 - _DAT_004be9e8);
+    }
+    mission_flow_map_context_helper_0049da00((float)param_2,DAT_005a7ee4 + 1,(int)fVar3);
+  }
+  DAT_005a7ee0 = mission_flow_map_context_helper_0049dac0;
+  DAT_005a7edc = fVar3;
+  DAT_005a7ed8 = 0;
+  apply_world_object_transform_to_bounds_or_geometry(_DAT_005a7ef8,_DAT_005a7f00);
+  param_1 = (float)(extraout_ST0 + (float10)local_10);
+  if ((float10)param_1 < extraout_ST0 - (float10)_DAT_004be9c8) {
+    param_1 = (float)(extraout_ST0 - (float10)_DAT_004be9c8);
+  }
+  pfVar4 = (float *)zone_satellite_map_context_helper_00493e60
+                              (local_94,local_14,fVar2,fVar1,(float)_DAT_005a7ef8,param_1,
+                               (float)_DAT_005a7f00);
+  pfVar6 = local_54;
+  for (iVar5 = 0x10; iVar5 != 0; iVar5 = iVar5 + -1) {
+    *pfVar6 = *pfVar4;
+    pfVar4 = pfVar4 + 1;
+    pfVar6 = pfVar6 + 1;
+  }
+  software_raster_queue_context_helper_00472990(0x4c2730,local_54);
+  fVar1 = (float)_DAT_005a7f08;
+  fVar3 = fVar1 - (float)_DAT_005a7ef8;
+  if ((float)_DAT_004be9f0 <= ABS(fVar3)) {
+    fVar1 = (float)_DAT_005a7ef8 - fVar3 * _DAT_004be9f8;
+  }
+  _DAT_005a7ef8 = (double)fVar1;
+  fVar1 = (float)_DAT_005a7f10;
+  fVar3 = fVar1 - (float)_DAT_005a7f00;
+  if ((float)_DAT_004be9f0 <= ABS(fVar3)) {
+    fVar1 = (float)_DAT_005a7f00 - fVar3 * _DAT_004be9f8;
+  }
+  _DAT_005a7f00 = (double)fVar1;
+  _DAT_005a7ee8 = local_c + _DAT_005a7ee8;
+  _DAT_005a7f08 = local_c * _DAT_005a7f18 + _DAT_005a7f08;
+  _DAT_005a7f10 = local_c * _DAT_005a7f20 + _DAT_005a7f10;
+  return;
+}
+
+
+
+===== 0049dda0 mission_flow_map_context_helper_0049dda0 =====
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* cgpt label refinement v20: was mission_flow_map_camera_mission_flow_or_map_helper_0049dda0.
+   Remove duplicated mission-flow/map wording. */
+
+void __cdecl
+mission_flow_map_context_helper_0049dda0(int param_1,int param_2,int *param_3,int *param_4)
+
+{
+  float fVar1;
+  double dVar2;
+  float *pfVar3;
+  int iVar4;
+  float *pfVar5;
+  float10 fVar6;
+  float10 extraout_ST0;
+  float local_e8;
+  float local_e4;
+  float local_e0;
+  float local_dc;
+  float local_d8;
+  float local_d4;
+  float local_d0;
+  float local_cc;
+  float local_c8;
+  float local_c4;
+  float local_c0 [10];
+  double local_98;
+  double local_90;
+  double local_88;
+  float local_80 [10];
+  undefined8 local_58;
+  double local_50;
+  undefined8 local_48;
+  float local_40 [16];
+  
+  local_cc = (float)*(double *)(param_1 + 0x40);
+  local_d4 = (float)*(double *)(param_1 + 0x48);
+  local_c4 = (float)*(double *)(param_1 + 0x50);
+  local_d8 = (float)*param_3 * _DAT_004be9c0;
+  local_d0 = (float)*param_4 * _DAT_004be9c0;
+  local_e4 = (float)*(double *)(param_2 + 0x40) - local_cc;
+  local_e0 = (float)*(double *)(param_2 + 0x48) -
+             ((float)*(double *)(param_1 + 0x48) - _DAT_004be9fc);
+  local_dc = (float)*(double *)(param_2 + 0x50) - local_c4;
+  local_c8 = local_d0 + local_d4;
+  dVar2 = (double)(local_dc * local_dc + local_e0 * local_e0 + local_e4 * local_e4);
+  fVar6 = zone_satellite_map_context_helper_00495000
+                    (SUB84(dVar2,0),(uint)((ulonglong)dVar2 >> 0x20));
+  fVar1 = (float)fVar6;
+  local_e4 = local_e4 * fVar1;
+  local_e0 = local_e0 * fVar1;
+  local_dc = local_dc * fVar1;
+  local_cc = local_cc - local_e4 * local_d8;
+  local_c8 = local_c8 - local_e0 * local_d8;
+  local_c4 = local_c4 - local_dc * local_d8;
+  pfVar3 = (float *)zone_satellite_map_context_helper_00494880(&local_cc,&local_e4,local_40);
+  pfVar5 = local_c0;
+  for (iVar4 = 0x10; iVar4 != 0; iVar4 = iVar4 + -1) {
+    *pfVar5 = *pfVar3;
+    pfVar3 = pfVar3 + 1;
+    pfVar5 = pfVar5 + 1;
+  }
+  if (_DAT_004bea00 < fVar1) {
+    local_e8 = (fVar1 - _DAT_004bea00) * _DAT_004bea04;
+    if (_DAT_004bea08 <= local_e8) {
+      local_e8 = 0.5235988;
+    }
+    dVar2 = (double)(local_dc * local_dc + local_e4 * local_e4);
+    fVar6 = zone_satellite_map_context_helper_00495000
+                      (SUB84(dVar2,0),(uint)((ulonglong)dVar2 >> 0x20));
+    local_d4 = (float)fVar6;
+    pfVar3 = (float *)zone_satellite_map_context_helper_00494460
+                                (local_40,-local_e8,local_dc * local_d4,0.0,-(local_e4 * local_d4));
+    dVar2 = *(double *)(param_1 + 0x48);
+    local_58 = *(undefined8 *)(param_1 + 0x40);
+    local_48 = *(undefined8 *)(param_1 + 0x50);
+    pfVar5 = local_80;
+    for (iVar4 = 0x10; iVar4 != 0; iVar4 = iVar4 + -1) {
+      *pfVar5 = *pfVar3;
+      pfVar3 = pfVar3 + 1;
+      pfVar5 = pfVar5 + 1;
+    }
+    local_98 = (double)-(local_e4 * local_d8);
+    local_90 = (double)-(local_e0 * local_d8);
+    local_88 = (double)-(local_dc * local_d8);
+    local_50 = (double)(local_d0 + (float)dVar2);
+    pfVar3 = compose_affine_transform_m3f_t3d(local_40,local_c0,local_80);
+    pfVar5 = local_c0;
+    for (iVar4 = 0x10; iVar4 != 0; iVar4 = iVar4 + -1) {
+      *pfVar5 = *pfVar3;
+      pfVar3 = pfVar3 + 1;
+      pfVar5 = pfVar5 + 1;
+    }
+  }
+  apply_world_object_transform_to_bounds_or_geometry(local_98,local_88);
+  if ((float10)local_90 < extraout_ST0 - (float10)_DAT_004be9c8) {
+    local_90 = (double)(extraout_ST0 - (float10)_DAT_004be9c8);
+  }
+  software_raster_queue_context_helper_00472990(0x4c2730,local_c0);
+  DAT_005a7ed8 = 0;
+  DAT_005a7edc = 0;
+  DAT_005a7ee0 = mission_flow_map_context_helper_0049dda0;
+  return;
+}
+
+
+
+===== 0041fce0 fsm_query_vehicle_control_queue_drained =====
+
+/* cgpt readability rename v13 set A: Returns AI/vehicle damage-event state field +0xa6d0.
+   I76 v91: AI+A6D0 initialized 1; enqueue at 0041F9C0 clears to 0; last dequeue at 0041F8E0 sets to
+   1 */
+
+undefined4 __cdecl fsm_query_vehicle_control_queue_drained(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = get_vehicle_runtime_context(param_1);
+  iVar1 = get_vehicle_damage_event_state_block(iVar1);
+  return *(undefined4 *)(iVar1 + 0xa6d0);
+}
+
+
+
+===== 0040b2f0 fsm_test_not_implemented =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: FSM:test is not implimented */
+
+undefined4 fsm_test_not_implemented(void)
+
+{
+  if (DAT_004c2aa8 != 0) {
+    report_error();
+    DAT_004c2aa8 = 0;
+  }
+  return 0;
+}
+
+
+
+===== 0040b8b0 fsm_query_is_lit_not_implemented =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: isLit is not implimented */
+
+undefined4 fsm_query_is_lit_not_implemented(void)
+
+{
+  if (DAT_004c2aac != 0) {
+    report_error();
+    DAT_004c2aac = 0;
+  }
+  return 0;
+}
+
+
+
+===== 0040aed0 fsm_behave_not_implemented =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: FSM: behave is not implimented */
+
+void fsm_behave_not_implemented(void)
+
+{
+  if (DAT_004c2aa0 != 0) {
+    report_error();
+    DAT_004c2aa0 = 0;
+  }
+  return;
+}
+
+
+
+===== 0040afc0 fsm_do_not_implemented =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: FSM: do is not implimented */
+
+void fsm_do_not_implemented(void)
+
+{
+  if (DAT_004c2aa4 != 0) {
+    report_error();
+    DAT_004c2aa4 = 0;
+  }
+  return;
+}
+
+
+
+===== 0049aec0 ui_bitmap_region_context_helper_0049aec0 =====
+
+/* cgpt label refinement v20: was ui_scroll_input_region_ui_bitmap_region_helper_0049aec0. Remove
+   duplicated UI/region wording. */
+
+void __cdecl ui_bitmap_region_context_helper_0049aec0(undefined4 param_1)
+
+{
+  g_pending_smacker_cutscene_path = param_1;
+  return;
+}
+
+
+
+===== 0040ba60 fsm_find_nearest_enemy =====
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* i76 first-pass rename
+   old_name: FUN_0040ba60
+   suggested_name: fsm_find_nearest_enemy
+   basis: FSM diagnostic string indicates nearestEnemy failure path. */
+
+void __cdecl fsm_find_nearest_enemy(int param_1,int *param_2,int param_3,int *param_4)
+
+{
+  char cVar1;
+  int iVar2;
+  int *piVar3;
+  int iVar4;
+  int iVar5;
+  uint uVar6;
+  uint uVar7;
+  char *pcVar8;
+  char *pcVar9;
+  float10 fVar10;
+  float10 fVar11;
+  int local_3c;
+  float local_38;
+  int local_34;
+  char local_30 [44];
+  
+  local_38 = 3.4028235e+38;
+  local_3c = 0;
+  piVar3 = (int *)get_current_effect_target_scan_object();
+  while (piVar3 != (int *)0x0) {
+    iVar2 = *piVar3;
+    iVar4 = is_transform_composed_world_object_class(iVar2);
+    iVar5 = local_34;
+    if (((iVar4 != 0) && (iVar5 = iVar2, (*(uint *)(iVar2 + 0x10) & 0x200) == 0)) &&
+       (fVar10 = (float10)*(double *)(iVar2 + 0x40) - (float10)*(double *)(param_1 + 0x40),
+       fVar11 = (float10)*(double *)(iVar2 + 0x50) - (float10)*(double *)(param_1 + 0x50),
+       fVar10 = fVar11 * fVar11 + fVar10 * (float10)(float)fVar10, iVar5 = local_34,
+       fVar10 < (float10)local_38)) {
+      local_38 = (float)fVar10;
+      local_3c = iVar2;
+    }
+    piVar3 = (int *)effect_target_scan_query_context_helper_00436790();
+    local_34 = iVar5;
+  }
+  if (local_38 == _DAT_004bc618) {
+    local_3c = local_34;
+  }
+  if (local_3c == 0) {
+    report_error();
+  }
+  iVar5 = 0;
+  iVar2 = *param_4;
+  if (0 < iVar2) {
+    piVar3 = (int *)(param_3 + 0x58);
+    do {
+      if (*piVar3 == local_3c) {
+        *param_2 = iVar5;
+        return;
+      }
+      iVar5 = iVar5 + 1;
+      piVar3 = piVar3 + 0x18;
+    } while (iVar5 < iVar2);
+  }
+  sprintf(local_30,s_NoLabel_d_004c2a94,iVar2);
+  uVar6 = 0xffffffff;
+  pcVar8 = local_30;
+  do {
+    pcVar9 = pcVar8;
+    if (uVar6 == 0) break;
+    uVar6 = uVar6 - 1;
+    pcVar9 = pcVar8 + 1;
+    cVar1 = *pcVar8;
+    pcVar8 = pcVar9;
+  } while (cVar1 != '\0');
+  uVar6 = ~uVar6;
+  pcVar8 = pcVar9 + -uVar6;
+  pcVar9 = (char *)(*param_4 * 0x60 + param_3);
+  for (uVar7 = uVar6 >> 2; uVar7 != 0; uVar7 = uVar7 - 1) {
+    *(undefined4 *)pcVar9 = *(undefined4 *)pcVar8;
+    pcVar8 = pcVar8 + 4;
+    pcVar9 = pcVar9 + 4;
+  }
+  for (uVar6 = uVar6 & 3; uVar6 != 0; uVar6 = uVar6 - 1) {
+    *pcVar9 = *pcVar8;
+    pcVar8 = pcVar8 + 1;
+    pcVar9 = pcVar9 + 1;
+  }
+  *(int *)(*param_4 * 0x60 + 0x58 + param_3) = local_3c;
+  increment_refcount_recursive_for_object_tree(local_3c,&DAT_004c2a10);
+  *param_2 = *param_4;
+  *param_4 = *param_4 + 1;
+  return;
+}
+
+
+
+===== 0040a8a0 fsm_format_default_label_name =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: NoLabel%d */
+
+void __cdecl fsm_format_default_label_name(int param_1,int *param_2,int param_3,int *param_4)
+
+{
+  char cVar1;
+  int iVar2;
+  int iVar3;
+  uint uVar4;
+  uint uVar5;
+  int *piVar6;
+  char *pcVar7;
+  int iVar8;
+  undefined4 *puVar9;
+  char *pcVar10;
+  float10 fVar11;
+  float10 fVar12;
+  uint local_4c;
+  undefined4 *local_48;
+  int local_44;
+  float local_3c;
+  int local_38;
+  char local_30 [44];
+  
+  uVar4 = *(uint *)(param_1 + 0x10);
+  iVar8 = 0;
+  local_3c = 3.4028235e+38;
+  local_44 = 0;
+  local_4c = 0;
+  local_48 = &g_fsm_team_world_object_entry_buckets;
+  piVar6 = &g_fsm_team_world_object_entry_counts;
+  do {
+    iVar2 = is_damage_side_effects_suppressed();
+    if ((((iVar2 != 0) || (iVar2 = is_network_or_trip_runtime_mode(), iVar2 != 0)) ||
+        (piVar6 != &g_fsm_team_world_object_entry_counts)) &&
+       ((local_4c != (uVar4 >> 0x10 & 7) && (local_38 = *piVar6, puVar9 = local_48, 0 < local_38))))
+    {
+      do {
+        iVar8 = *(int *)*puVar9;
+        iVar2 = is_vehicle_or_actor_runtime_world_object(iVar8);
+        if ((iVar2 != 0) &&
+           ((iVar2 = get_vehicle_runtime_context(iVar8), (*(byte *)(iVar2 + 0x454) & 0x20) == 0 &&
+            (fVar11 = (float10)*(double *)(iVar8 + 0x40) - (float10)*(double *)(param_1 + 0x40),
+            fVar12 = (float10)*(double *)(iVar8 + 0x50) - (float10)*(double *)(param_1 + 0x50),
+            fVar11 = fVar12 * fVar12 + fVar11 * (float10)(float)fVar11, fVar11 < (float10)local_3c))
+           )) {
+          local_3c = (float)fVar11;
+          local_44 = iVar8;
+        }
+        local_38 = local_38 + -1;
+        iVar8 = local_44;
+        puVar9 = puVar9 + 1;
+      } while (local_38 != 0);
+    }
+    piVar6 = piVar6 + 1;
+    local_4c = local_4c + 1;
+    local_48 = local_48 + 0x40;
+  } while ((int)piVar6 < 0x51f5f0);
+  if (iVar8 == 0) {
+    *(undefined4 *)(*param_4 * 0x60 + 0x58 + param_3) = 0;
+    *param_2 = *param_4;
+    return;
+  }
+  iVar3 = 0;
+  iVar2 = *param_4;
+  if (0 < iVar2) {
+    piVar6 = (int *)(param_3 + 0x58);
+    do {
+      if (*piVar6 == iVar8) {
+        *param_2 = iVar3;
+        return;
+      }
+      iVar3 = iVar3 + 1;
+      piVar6 = piVar6 + 0x18;
+    } while (iVar3 < iVar2);
+  }
+  sprintf(local_30,s_NoLabel_d_004c2a94,iVar2);
+  uVar4 = 0xffffffff;
+  pcVar7 = local_30;
+  do {
+    pcVar10 = pcVar7;
+    if (uVar4 == 0) break;
+    uVar4 = uVar4 - 1;
+    pcVar10 = pcVar7 + 1;
+    cVar1 = *pcVar7;
+    pcVar7 = pcVar10;
+  } while (cVar1 != '\0');
+  uVar4 = ~uVar4;
+  pcVar7 = pcVar10 + -uVar4;
+  pcVar10 = (char *)(*param_4 * 0x60 + param_3);
+  for (uVar5 = uVar4 >> 2; uVar5 != 0; uVar5 = uVar5 - 1) {
+    *(undefined4 *)pcVar10 = *(undefined4 *)pcVar7;
+    pcVar7 = pcVar7 + 4;
+    pcVar10 = pcVar10 + 4;
+  }
+  for (uVar4 = uVar4 & 3; uVar4 != 0; uVar4 = uVar4 - 1) {
+    *pcVar10 = *pcVar7;
+    pcVar7 = pcVar7 + 1;
+    pcVar10 = pcVar10 + 1;
+  }
+  *(int *)(*param_4 * 0x60 + 0x58 + param_3) = local_44;
+  increment_refcount_recursive_for_object_tree
+            (*(int *)(*param_4 * 0x60 + 0x58 + param_3),&DAT_004c2a10);
+  *param_2 = *param_4;
+  *param_4 = *param_4 + 1;
+  return;
+}
+
+
+
+===== 0040b9e0 fsm_destroy_target_object =====
+
+/* cgpt whole-binary semantic rename v1: string evidence: FSM destroy called for dead car/structure
+    */
+
+void __cdecl fsm_destroy_target_object(int param_1)
+
+{
+  int iVar1;
+  
+  iVar1 = is_vehicle_or_actor_runtime_world_object(param_1);
+  if (iVar1 == 0) {
+    iVar1 = is_transform_composed_world_object_class(param_1);
+    if (iVar1 != 0) {
+      if ((*(uint *)(param_1 + 0x10) & 0x200) != 0) {
+        report_error();
+        return;
+      }
+      create_building_world_object_default(param_1);
+    }
+    return;
+  }
+  iVar1 = get_vehicle_runtime_context(param_1);
+  if ((*(byte *)(iVar1 + 0x454) & 0x20) != 0) {
+    report_error();
+    return;
+  }
+  trigger_vehicle_forced_damage_or_actor_cleanup(param_1);
+  *(undefined4 *)(iVar1 + 0xe4) = 0xbf800000;
+  return;
+}
+
+

@@ -1,5 +1,8 @@
 # Interstate '76 — Vehicle Object Model (VOM) and FSM identity bridge
 
+> **Archived v76 research:** The current v97 mission-runtime specification and emulation results are in [ref/mission_execution](../mission_execution/README.md). This page is preserved to show the earlier evidence and may contain names or assumptions since corrected.
+
+
 **Checkpoint:** retail `i76.exe`, MD5 `a640ea0097dbb62e0c77b7f2847c7161`; Ghidra export `20261019_205431` (2026-10-19 20:54:59 PDT); focused evidence from v64–v76. Addresses below are original executable VAs, image base `0x00400000`. The focus is on **FSM-visible object and vehicle state**, not a claim that every physics, drivetrain, mesh or AI-private field is fully decoded. See [FSM runtime reference](../fsm/i76_fsm_runtime_reference.md).
 
 ## Object identity and storage layers

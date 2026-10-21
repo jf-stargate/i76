@@ -1,5 +1,8 @@
 # Interstate '76 Mission Reconstruction Pipeline
 
+**Mission execution update (2026-10-21):** For the current retail VM/host ABI, loader failure semantics and emulator results, see [mission execution contract](../mission_execution/README.md). Visual/geometry export is a separate pipeline.
+
+
 This page describes the practical reconstruction pipeline as of the current baseline. It is a
 workflow document, not a complete file-format specification.
 
@@ -41,7 +44,7 @@ workflow document, not a complete file-format specification.
 | RDEF/RSEG      | Road/corridor/route-like geometry                                                | medium-high                                        |
 | ODEF/OBJ       | Object/entity placement records                                                  | high for transform/class policy                    |
 | LDEF/OBJ       | Static scene object placement via SDF                                            | high for resource policy                           |
-| ADEF/FSM       | Mission scripting / behavior tables                                              | serialized format/VM/scheduler traced; integrated retail simulation unvalidated |
+| ADEF/FSM       | Mission scripting / behavior tables                                              | high-level understood; execution not reconstructed |
 
 ## Terrain baseline
 
@@ -75,18 +78,3 @@ valuable because the retail binary copies the same basis/position fields into ru
 The default reconstruction path should remain binary-backed. Optional Open76-compatible outputs can be
 useful for comparison, but they should be named as compatibility or comparison layers when they differ
 from retail control flow.
-
-## FSM execution reference (October 2026 checkpoint)
-
-The `ADEF/FSM` mission section is no longer limited to a high-level format sketch.
-The retail runtime loader, command namespace, 14-kind VM, persistent `0x10BC`
-linked execution nodes and multi-node traversal are statically reconstructed.
-This **does not** make the visual/exporter pipeline a live FSM or physics
-simulator. See [FSM runtime reference](../fsm/i76_fsm_runtime_reference.md),
-[vehicle object/runtime reference](../vehicle_object_model/i76_vehicle_object_runtime_reference.md)
-and the [research checkpoint](i76_research_checkpoint_20261019.md).
-
-FSM mission actor slots resolve objects from the world-object registry; they
-are not permanent file-level identifiers. The newly defined callback at
-`00409980` clears bindings on world-object removal. Collision-event ingress
-and the full physics-to-FSM frame ordering remain unresolved.
