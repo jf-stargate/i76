@@ -1,0 +1,16 @@
+address	bytes	mnemonic	operands	instruction
+0046ddd0	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+0046ddd4	8b 41 70	MOV	EAX, dword ptr [ECX + 0x70]	MOV EAX,dword ptr [ECX + 0x70]
+0046ddd7	8b 50 44	MOV	EDX, dword ptr [EAX + 0x44]	MOV EDX,dword ptr [EAX + 0x44]
+0046ddda	85 d2	TEST	EDX, EDX	TEST EDX,EDX
+0046dddc	75 23	JNZ	0x0046de01	JNZ 0x0046de01
+0046ddde	d9 40 1c	FLD	float ptr [EAX + 0x1c]	FLD float ptr [EAX + 0x1c]
+0046dde1	d8 0d c8 e4 4b 00	FMUL	float ptr [0x004be4c8]	FMUL float ptr [0x004be4c8]
+0046dde7	6a 00	PUSH	0x0	PUSH 0x0
+0046dde9	51	PUSH	ECX	PUSH ECX
+0046ddea	68 c4 89 4f 00	PUSH	0x4f89c4	PUSH 0x4f89c4
+0046ddef	c7 40 44 01 00 00 00	MOV	dword ptr [EAX + 0x44], 0x1	MOV dword ptr [EAX + 0x44],0x1
+0046ddf6	d9 58 1c	FSTP	float ptr [EAX + 0x1c]	FSTP float ptr [EAX + 0x1c]
+0046ddf9	e8 f2 53 fb ff	CALL	0x004231f0	CALL 0x004231f0
+0046ddfe	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+0046de01	c3	RET		RET

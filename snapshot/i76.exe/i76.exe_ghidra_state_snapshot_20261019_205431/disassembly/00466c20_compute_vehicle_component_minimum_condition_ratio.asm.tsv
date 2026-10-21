@@ -1,0 +1,33 @@
+address	bytes	mnemonic	operands	instruction
+00466c20	8b 4c 24 04	MOV	ECX, dword ptr [ESP + 0x4]	MOV ECX,dword ptr [ESP + 0x4]
+00466c24	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+00466c28	8b 94 81 58 01 00 00	MOV	EDX, dword ptr [ECX + EAX*0x4 + 0x158]	MOV EDX,dword ptr [ECX + EAX*0x4 + 0x158]
+00466c2f	85 d2	TEST	EDX, EDX	TEST EDX,EDX
+00466c31	89 54 24 04	MOV	dword ptr [ESP + 0x4], EDX	MOV dword ptr [ESP + 0x4],EDX
+00466c35	74 12	JZ	0x00466c49	JZ 0x00466c49
+00466c37	83 f8 04	CMP	EAX, 0x4	CMP EAX,0x4
+00466c3a	74 0d	JZ	0x00466c49	JZ 0x00466c49
+00466c3c	db 84 81 78 01 00 00	FILD	dword ptr [ECX + EAX*0x4 + 0x178]	FILD dword ptr [ECX + EAX*0x4 + 0x178]
+00466c43	da 74 24 04	FIDIV	dword ptr [ESP + 0x4]	FIDIV dword ptr [ESP + 0x4]
+00466c47	eb 0d	JMP	0x00466c56	JMP 0x00466c56
+00466c49	db 84 81 78 01 00 00	FILD	dword ptr [ECX + EAX*0x4 + 0x178]	FILD dword ptr [ECX + EAX*0x4 + 0x178]
+00466c50	d8 0d d4 e1 4b 00	FMUL	float ptr [0x004be1d4]	FMUL float ptr [0x004be1d4]
+00466c56	8b 94 81 68 01 00 00	MOV	EDX, dword ptr [ECX + EAX*0x4 + 0x168]	MOV EDX,dword ptr [ECX + EAX*0x4 + 0x168]
+00466c5d	d9 5c 24 04	FSTP	float ptr [ESP + 0x4]	FSTP float ptr [ESP + 0x4]
+00466c61	85 d2	TEST	EDX, EDX	TEST EDX,EDX
+00466c63	89 54 24 08	MOV	dword ptr [ESP + 0x8], EDX	MOV dword ptr [ESP + 0x8],EDX
+00466c67	74 12	JZ	0x00466c7b	JZ 0x00466c7b
+00466c69	83 f8 04	CMP	EAX, 0x4	CMP EAX,0x4
+00466c6c	74 0d	JZ	0x00466c7b	JZ 0x00466c7b
+00466c6e	db 84 81 8c 01 00 00	FILD	dword ptr [ECX + EAX*0x4 + 0x18c]	FILD dword ptr [ECX + EAX*0x4 + 0x18c]
+00466c75	da 74 24 08	FIDIV	dword ptr [ESP + 0x8]	FIDIV dword ptr [ESP + 0x8]
+00466c79	eb 0d	JMP	0x00466c88	JMP 0x00466c88
+00466c7b	db 84 81 8c 01 00 00	FILD	dword ptr [ECX + EAX*0x4 + 0x18c]	FILD dword ptr [ECX + EAX*0x4 + 0x18c]
+00466c82	d8 0d d4 e1 4b 00	FMUL	float ptr [0x004be1d4]	FMUL float ptr [0x004be1d4]
+00466c88	d8 54 24 04	FCOM	float ptr [ESP + 0x4]	FCOM float ptr [ESP + 0x4]
+00466c8c	df e0	FNSTSW	AX	FNSTSW AX
+00466c8e	f6 c4 01	TEST	AH, 0x1	TEST AH,0x1
+00466c91	75 06	JNZ	0x00466c99	JNZ 0x00466c99
+00466c93	dd d8	FSTP	ST0	FSTP ST0
+00466c95	d9 44 24 04	FLD	float ptr [ESP + 0x4]	FLD float ptr [ESP + 0x4]
+00466c99	c3	RET		RET

@@ -1,0 +1,15 @@
+address	bytes	mnemonic	operands	instruction
+0046c870	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0046c874	d9 44 24 08	FLD	float ptr [ESP + 0x8]	FLD float ptr [ESP + 0x8]
+0046c878	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+0046c87b	8b 44 24 08	MOV	EAX, dword ptr [ESP + 0x8]	MOV EAX,dword ptr [ESP + 0x8]
+0046c87f	d8 1d 30 e3 4b 00	FCOMP	float ptr [0x004be330]	FCOMP float ptr [0x004be330]
+0046c885	8b 91 08 05 00 00	MOV	EDX, dword ptr [ECX + 0x508]	MOV EDX,dword ptr [ECX + 0x508]
+0046c88b	89 42 14	MOV	dword ptr [EDX + 0x14], EAX	MOV dword ptr [EDX + 0x14],EAX
+0046c88e	df e0	FNSTSW	AX	FNSTSW AX
+0046c890	f6 c4 41	TEST	AH, 0x41	TEST AH,0x41
+0046c893	75 0e	JNZ	0x0046c8a3	JNZ 0x0046c8a3
+0046c895	8b 81 54 04 00 00	MOV	EAX, dword ptr [ECX + 0x454]	MOV EAX,dword ptr [ECX + 0x454]
+0046c89b	24 7f	AND	AL, 0x7f	AND AL,0x7f
+0046c89d	89 81 54 04 00 00	MOV	dword ptr [ECX + 0x454], EAX	MOV dword ptr [ECX + 0x454],EAX
+0046c8a3	c3	RET		RET

@@ -1,0 +1,29 @@
+address	bytes	mnemonic	operands	instruction
+004577a0	83 ec 20	SUB	ESP, 0x20	SUB ESP,0x20
+004577a3	8b 44 24 28	MOV	EAX, dword ptr [ESP + 0x28]	MOV EAX,dword ptr [ESP + 0x28]
+004577a7	56	PUSH	ESI	PUSH ESI
+004577a8	8b 10	MOV	EDX, dword ptr [EAX]	MOV EDX,dword ptr [EAX]
+004577aa	8b 48 10	MOV	ECX, dword ptr [EAX + 0x10]	MOV ECX,dword ptr [EAX + 0x10]
+004577ad	83 c2 18	ADD	EDX, 0x18	ADD EDX,0x18
+004577b0	83 c0 04	ADD	EAX, 0x4	ADD EAX,0x4
+004577b3	52	PUSH	EDX	PUSH EDX
+004577b4	6a 01	PUSH	0x1	PUSH 0x1
+004577b6	50	PUSH	EAX	PUSH EAX
+004577b7	8d 44 24 18	LEA	EAX, [ESP + 0x18]	LEA EAX,[ESP + 0x18]
+004577bb	50	PUSH	EAX	PUSH EAX
+004577bc	89 4c 24 30	MOV	dword ptr [ESP + 0x30], ECX	MOV dword ptr [ESP + 0x30],ECX
+004577c0	e8 db d5 03 00	CALL	0x00494da0	CALL 0x00494da0
+004577c5	8b 44 24 38	MOV	EAX, dword ptr [ESP + 0x38]	MOV EAX,dword ptr [ESP + 0x38]
+004577c9	8b 4c 24 1c	MOV	ECX, dword ptr [ESP + 0x1c]	MOV ECX,dword ptr [ESP + 0x1c]
+004577cd	8b 54 24 24	MOV	EDX, dword ptr [ESP + 0x24]	MOV EDX,dword ptr [ESP + 0x24]
+004577d1	8b f0	MOV	ESI, EAX	MOV ESI,EAX
+004577d3	89 4c 24 14	MOV	dword ptr [ESP + 0x14], ECX	MOV dword ptr [ESP + 0x14],ECX
+004577d7	83 c4 10	ADD	ESP, 0x10	ADD ESP,0x10
+004577da	89 0e	MOV	dword ptr [ESI], ECX	MOV dword ptr [ESI],ECX
+004577dc	8b 4c 24 20	MOV	ECX, dword ptr [ESP + 0x20]	MOV ECX,dword ptr [ESP + 0x20]
+004577e0	89 54 24 08	MOV	dword ptr [ESP + 0x8], EDX	MOV dword ptr [ESP + 0x8],EDX
+004577e4	89 56 04	MOV	dword ptr [ESI + 0x4], EDX	MOV dword ptr [ESI + 0x4],EDX
+004577e7	89 4e 08	MOV	dword ptr [ESI + 0x8], ECX	MOV dword ptr [ESI + 0x8],ECX
+004577ea	5e	POP	ESI	POP ESI
+004577eb	83 c4 20	ADD	ESP, 0x20	ADD ESP,0x20
+004577ee	c3	RET		RET

@@ -1,0 +1,22 @@
+address	bytes	mnemonic	operands	instruction
+0046a890	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0046a894	56	PUSH	ESI	PUSH ESI
+0046a895	8b 70 70	MOV	ESI, dword ptr [EAX + 0x70]	MOV ESI,dword ptr [EAX + 0x70]
+0046a898	e8 83 84 fe ff	CALL	0x00452d20	CALL 0x00452d20
+0046a89d	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0046a89f	75 17	JNZ	0x0046a8b8	JNZ 0x0046a8b8
+0046a8a1	e8 6a 6a f9 ff	CALL	0x00401310	CALL 0x00401310
+0046a8a6	85 c0	TEST	EAX, EAX	TEST EAX,EAX
+0046a8a8	75 0e	JNZ	0x0046a8b8	JNZ 0x0046a8b8
+0046a8aa	8b 4c 24 0c	MOV	ECX, dword ptr [ESP + 0xc]	MOV ECX,dword ptr [ESP + 0xc]
+0046a8ae	8b d1	MOV	EDX, ECX	MOV EDX,ECX
+0046a8b0	89 4e 10	MOV	dword ptr [ESI + 0x10], ECX	MOV dword ptr [ESI + 0x10],ECX
+0046a8b3	89 56 0c	MOV	dword ptr [ESI + 0xc], EDX	MOV dword ptr [ESI + 0xc],EDX
+0046a8b6	5e	POP	ESI	POP ESI
+0046a8b7	c3	RET		RET
+0046a8b8	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+0046a8bc	d8 4e 0c	FMUL	float ptr [ESI + 0xc]	FMUL float ptr [ESI + 0xc]
+0046a8bf	d9 56 0c	FST	float ptr [ESI + 0xc]	FST float ptr [ESI + 0xc]
+0046a8c2	d9 5e 10	FSTP	float ptr [ESI + 0x10]	FSTP float ptr [ESI + 0x10]
+0046a8c5	5e	POP	ESI	POP ESI
+0046a8c6	c3	RET		RET

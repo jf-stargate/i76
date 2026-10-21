@@ -124,3 +124,14 @@ should trace both game and editor binaries.
 | intersections        | junction-specific material placement and orientation       |
 +----------------------+------------------------------------------------------------+
 ```
+
+## Mission scripting versus visual reconstruction (October 2026)
+
+The current exporter reconstructs mission **visual assets**; it should not be
+interpreted as executing the retail FSM or vehicle AI. The separate
+[ADEF/FSM runtime reference](../fsm/i76_fsm_runtime_reference.md) documents the
+retail parser, host-command map, 14-operation token VM and persistent linked
+execution-node scheduler. [VOM identity and destruction semantics](../vehicle_object_model/i76_vehicle_object_runtime_reference.md)
+cover the vehicle/world-object state consumed by those scripts. The
+[research checkpoint](../game/i76_research_checkpoint_20261019.md) identifies
+remaining collision, timing, reference-lifetime and AI-service uncertainties.

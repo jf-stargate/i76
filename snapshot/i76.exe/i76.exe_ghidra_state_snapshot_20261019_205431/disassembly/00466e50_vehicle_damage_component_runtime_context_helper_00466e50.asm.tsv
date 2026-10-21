@@ -1,0 +1,10 @@
+address	bytes	mnemonic	operands	instruction
+00466e50	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+00466e54	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+00466e58	d9 44 24 0c	FLD	float ptr [ESP + 0xc]	FLD float ptr [ESP + 0xc]
+00466e5c	8b 90 54 04 00 00	MOV	EDX, dword ptr [EAX + 0x454]	MOV EDX,dword ptr [EAX + 0x454]
+00466e62	81 c9 00 00 00 80	OR	ECX, 0x80000000	OR ECX,0x80000000
+00466e68	d9 98 50 04 00 00	FSTP	float ptr [EAX + 0x450]	FSTP float ptr [EAX + 0x450]
+00466e6e	0b d1	OR	EDX, ECX	OR EDX,ECX
+00466e70	89 90 54 04 00 00	MOV	dword ptr [EAX + 0x454], EDX	MOV dword ptr [EAX + 0x454],EDX
+00466e76	c3	RET		RET

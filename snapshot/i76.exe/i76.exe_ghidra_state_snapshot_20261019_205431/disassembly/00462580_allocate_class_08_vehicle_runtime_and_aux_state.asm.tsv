@@ -1,0 +1,16 @@
+address	bytes	mnemonic	operands	instruction
+00462580	56	PUSH	ESI	PUSH ESI
+00462581	e8 0a 08 00 00	CALL	0x00462d90	CALL 0x00462d90
+00462586	6a 54	PUSH	0x54	PUSH 0x54
+00462588	8b f0	MOV	ESI, EAX	MOV ESI,EAX
+0046258a	e8 21 ce ff ff	CALL	0x0045f3b0	CALL 0x0045f3b0
+0046258f	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+00462592	89 86 08 05 00 00	MOV	dword ptr [ESI + 0x508], EAX	MOV dword ptr [ESI + 0x508],EAX
+00462598	c7 40 04 58 02 00 00	MOV	dword ptr [EAX + 0x4], 0x258	MOV dword ptr [EAX + 0x4],0x258
+0046259f	c7 00 58 02 00 00	MOV	dword ptr [EAX], 0x258	MOV dword ptr [EAX],0x258
+004625a5	c7 40 08 0e 74 da 3a	MOV	dword ptr [EAX + 0x8], 0x3ada740e	MOV dword ptr [EAX + 0x8],0x3ada740e
+004625ac	c7 40 4c 01 00 00 00	MOV	dword ptr [EAX + 0x4c], 0x1	MOV dword ptr [EAX + 0x4c],0x1
+004625b3	c7 40 50 05 00 00 00	MOV	dword ptr [EAX + 0x50], 0x5	MOV dword ptr [EAX + 0x50],0x5
+004625ba	8b c6	MOV	EAX, ESI	MOV EAX,ESI
+004625bc	5e	POP	ESI	POP ESI
+004625bd	c3	RET		RET

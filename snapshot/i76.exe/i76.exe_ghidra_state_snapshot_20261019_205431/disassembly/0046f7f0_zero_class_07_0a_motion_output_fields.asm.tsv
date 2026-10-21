@@ -1,0 +1,16 @@
+address	bytes	mnemonic	operands	instruction
+0046f7f0	83 ec 0c	SUB	ESP, 0xc	SUB ESP,0xc
+0046f7f3	8b 44 24 14	MOV	EAX, dword ptr [ESP + 0x14]	MOV EAX,dword ptr [ESP + 0x14]
+0046f7f7	c7 44 24 00 00 00 00 00	MOV	dword ptr [ESP], 0x0	MOV dword ptr [ESP],0x0
+0046f7ff	8b 4c 24 00	MOV	ECX, dword ptr [ESP]	MOV ECX,dword ptr [ESP]
+0046f803	c7 44 24 04 00 00 00 00	MOV	dword ptr [ESP + 0x4], 0x0	MOV dword ptr [ESP + 0x4],0x0
+0046f80b	8b 54 24 04	MOV	EDX, dword ptr [ESP + 0x4]	MOV EDX,dword ptr [ESP + 0x4]
+0046f80f	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+0046f811	c7 44 24 08 00 00 00 00	MOV	dword ptr [ESP + 0x8], 0x0	MOV dword ptr [ESP + 0x8],0x0
+0046f819	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0046f81d	89 50 04	MOV	dword ptr [EAX + 0x4], EDX	MOV dword ptr [EAX + 0x4],EDX
+0046f820	8b 54 24 18	MOV	EDX, dword ptr [ESP + 0x18]	MOV EDX,dword ptr [ESP + 0x18]
+0046f824	89 48 08	MOV	dword ptr [EAX + 0x8], ECX	MOV dword ptr [EAX + 0x8],ECX
+0046f827	c7 02 00 00 00 00	MOV	dword ptr [EDX], 0x0	MOV dword ptr [EDX],0x0
+0046f82d	83 c4 0c	ADD	ESP, 0xc	ADD ESP,0xc
+0046f830	c3	RET		RET

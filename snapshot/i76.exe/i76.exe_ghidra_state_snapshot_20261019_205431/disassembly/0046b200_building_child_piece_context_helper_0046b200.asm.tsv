@@ -1,0 +1,7 @@
+address	bytes	mnemonic	operands	instruction
+0046b200	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0046b204	8b 4c 24 08	MOV	ECX, dword ptr [ESP + 0x8]	MOV ECX,dword ptr [ESP + 0x8]
+0046b208	8b 40 70	MOV	EAX, dword ptr [EAX + 0x70]	MOV EAX,dword ptr [EAX + 0x70]
+0046b20b	89 48 04	MOV	dword ptr [EAX + 0x4], ECX	MOV dword ptr [EAX + 0x4],ECX
+0046b20e	89 08	MOV	dword ptr [EAX], ECX	MOV dword ptr [EAX],ECX
+0046b210	c3	RET		RET

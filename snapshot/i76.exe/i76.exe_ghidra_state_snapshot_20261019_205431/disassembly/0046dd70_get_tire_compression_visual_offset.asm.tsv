@@ -1,0 +1,5 @@
+address	bytes	mnemonic	operands	instruction
+0046dd70	8b 44 24 04	MOV	EAX, dword ptr [ESP + 0x4]	MOV EAX,dword ptr [ESP + 0x4]
+0046dd74	8b 48 70	MOV	ECX, dword ptr [EAX + 0x70]	MOV ECX,dword ptr [EAX + 0x70]
+0046dd77	d9 41 24	FLD	float ptr [ECX + 0x24]	FLD float ptr [ECX + 0x24]
+0046dd7a	c3	RET		RET

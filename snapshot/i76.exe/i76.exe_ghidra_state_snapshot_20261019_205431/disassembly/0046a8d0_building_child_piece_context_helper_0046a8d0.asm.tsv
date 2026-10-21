@@ -1,0 +1,21 @@
+address	bytes	mnemonic	operands	instruction
+0046a8d0	57	PUSH	EDI	PUSH EDI
+0046a8d1	6a 20	PUSH	0x20	PUSH 0x20
+0046a8d3	e8 d8 4a ff ff	CALL	0x0045f3b0	CALL 0x0045f3b0
+0046a8d8	8b d0	MOV	EDX, EAX	MOV EDX,EAX
+0046a8da	b9 08 00 00 00	MOV	ECX, 0x8	MOV ECX,0x8
+0046a8df	33 c0	XOR	EAX, EAX	XOR EAX,EAX
+0046a8e1	8b fa	MOV	EDI, EDX	MOV EDI,EDX
+0046a8e3	f3 ab	STOSD.REP	ES:EDI	STOSD.REP ES:EDI
+0046a8e5	83 c4 04	ADD	ESP, 0x4	ADD ESP,0x4
+0046a8e8	b8 00 00 80 3f	MOV	EAX, 0x3f800000	MOV EAX,0x3f800000
+0046a8ed	89 42 0c	MOV	dword ptr [EDX + 0xc], EAX	MOV dword ptr [EDX + 0xc],EAX
+0046a8f0	89 42 10	MOV	dword ptr [EDX + 0x10], EAX	MOV dword ptr [EDX + 0x10],EAX
+0046a8f3	89 42 14	MOV	dword ptr [EDX + 0x14], EAX	MOV dword ptr [EDX + 0x14],EAX
+0046a8f6	89 42 18	MOV	dword ptr [EDX + 0x18], EAX	MOV dword ptr [EDX + 0x18],EAX
+0046a8f9	89 42 1c	MOV	dword ptr [EDX + 0x1c], EAX	MOV dword ptr [EDX + 0x1c],EAX
+0046a8fc	c7 02 c8 00 00 00	MOV	dword ptr [EDX], 0xc8	MOV dword ptr [EDX],0xc8
+0046a902	c7 42 04 c8 00 00 00	MOV	dword ptr [EDX + 0x4], 0xc8	MOV dword ptr [EDX + 0x4],0xc8
+0046a909	8b c2	MOV	EAX, EDX	MOV EAX,EDX
+0046a90b	5f	POP	EDI	POP EDI
+0046a90c	c3	RET		RET
