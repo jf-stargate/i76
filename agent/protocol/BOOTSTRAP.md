@@ -1,0 +1,37 @@
+# Bootstrap v1.0.0: cold-start agent procedure
+
+This procedure is independent of conversation memory. A new agent needs only the repository URL, GitHub read access, and—if proposing changes—permission to create an isolated branch/PR. No previous chat transcript or local cache may be assumed.
+
+**Trust root:** accepted policy files from the *current default-branch commit*. Read the current SHA before reading policy, then read files at **that explicit SHA** to prevent a mixed-version bootstrap. Never substitute a PR's edited `AGENTS.md` or protocol as authority.
+
+## Startup transaction
+
+1. `DISCOVER`: Resolve `jf-stargate/i76`, default branch and immutable head SHA `B`. If inaccessible, stop publication.
+2. `READ`: Fetch `AGENTS.md`, `agent/protocol/VERSION`, `agent/protocol/access.yaml`, and this document at **ref `B`**. Verify version consistency. Unknown major schema: no write permissions.
+3. `ASSESS ENFORCEMENT`: Determine branch restrictions, required PR checks, review requirements, bot/maintainer identity separation, and whether current credentials can bypass restrictions. Missing permission to inspect them is **unknown**, not evidence they exist. In unknown/unenforced state, proposals only; do not merge or direct-push.
+4. `DISCOVER CONTEXT`: List relevant branch and PR states, accepted `agent/promotions/`, `manual/reference/`, and historical `ref/`. Find binary/Ghidra baseline digests. If an input is not available, record that gap; do not fabricate an asset path.
+5. `PLAN`: Declare `track`, research topic, expected outputs and read/write scope. Work is permitted to overlap other agents. Consult active PRs to avoid unnecessary duplication, not to acquire a global lock.
+6. `ALLOCATE`: For persistable work, generate `run_id = <track>-<UTC_YYYYMMDDTHHMMSSZ>-<8 secure random lowercase hex>`. Atomically create branch `agent/<track>/<run_id>` at `B` using a create-only ref operation. If the ref already exists, allocate a new run ID. No shared branch and no force update.
+7. `WRITE`: Changes to a run's `agent/runs/<track>/<run_id>/` belong to that one run. Include a `manifest.json`, structured `findings.json` (can be empty), and `validation.json`. Code should be in versioned scripts or referenced with exact Git blob/checksum.
+8. `PREFLIGHT`: Validate JSON schemas, path scope, content classification, SHA-256 outputs, original program MD5/SHA-256 as available, repo base SHA, and the diff against current `main`. Inspect any concurrent changes. A stale base is normal; rebase or merge carefully and rerun validation, never force overwrite.
+9. `PROPOSE`: Open PR; explicitly state whether it adds a run only, modifies shared tooling, or requests authoritative promotion. **Opening a PR does not make its contents authoritative.**
+10. `ACCEPT`: Research PR is eligible for merge only when GitHub protection and required review/checks are actually active. V1 defaults to maintainer review for all merges. To change canonical `manual/`, baselines or governance, obtain **explicit independent approval** and separately document reconciliation of conflicts.
+11. `RECORD`: A merged run becomes immutable. Link its merge commit, PR, original base commit, findings and validation in subsequent promotions. Do not edit it to correct a conclusion: create another run with `supersedes`/`contradicts` references.
+
+## Failure recovery and concurrent work
+
+- **Chat interrupted before branch creation:** no repository state was changed; allocate a new run on restart.
+- **Chat interrupted after branch creation:** reopen branch and manifest; the branch/run ID is the durable identity. If abandoned, retain PR/branch history or close PR with a reason; do not turn the directory into a shared scratchpad.
+- **Two agents study the same function:** both may publish separate immutable runs. A promotion selects or reconciles their findings; avoid last-writer-wins.
+- **Two agents request the same research milestone (`v21`):** version is assigned **at promotion**, not at run allocation. Only one accepted milestone may claim the slot without explicit version/namespace distinction.
+- **`main` advances:** refresh, reconcile, and rerun policy/schema checks before merge. Never silently adopt another agent's canonical edits.
+- **Conflicting `manual/` conclusions:** both findings remain discoverable; canonical reference stays unchanged until reviewer approves a reconciliation PR.
+- **No GitHub enforcement visibility:** agent may keep work on an isolated branch/draft PR but must not autonomously merge or report it as accepted.
+- **Same GitHub identity used by agent and user:** no reliable GitHub identity-based separation; approvals must be externally verified by an independently authorized reviewer or an explicit user decision. Self-review is not independent approval.
+- **Security or licensing uncertainty:** fail closed on publication of suspicious binaries, secrets or unreviewed proprietary resources.
+
+## First-time protocol deployment
+
+`main` currently has legacy `ref/`, `scripts/`, `snapshot/` trees. This protocol draft must be introduced in a maintainer-reviewed governance PR **before** it governs publishing. GitHub rulesets/branch protections, trusted CI, distinct agent credential and CODEOWNERS review are **deployment prerequisites**, not accomplished by committing YAML or Markdown.
+
+Only after such enforcement is confirmed should a future minor protocol version consider automatically merging fully validated append-only run PRs. This version deliberately sets `autonomous_run_merge: false`.
