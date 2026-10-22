@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.0",
+  "run_id": "shared-20261022T201324Z-331e598f",
+  "track": "shared",
+  "topic": "Backward-compatible research schema v1.1.0 runtime smoke test",
+  "base_commit": "457a01f124211d62e29b1e22972e1288cf1cb33e",
+  "started_at": "2026-10-22T20:13:24Z",
+  "summary": "Infrastructure-only validation of the v1.1 run format, checksum verification and safe publication. No reverse-engineering claims, proprietary data, or Ghidra baseline.",
+  "inputs": [],
+  "baselines": [],
+  "artifacts": [
+    {
+      "path": "artifacts/schema-smoke.json",
+      "kind": "test-result",
+      "sha256": "3f42f1d5c133e933eda850b2725e32cd634344a75978413fe0033a407153ef4d",
+      "bytes": 107
+    }
+  ],
+  "validation": {
+    "status": "not-run",
+    "test_count": 0,
+    "passed_count": 0,
+    "notes": "Research tests not run. GitHub PR integrity check is external and must be independently observed."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [],
+    "methods": [
+      "Review exact Git blobs and commit identity",
+      "Validate with base-owned PR integrity workflow selecting research schema v1.1.0"
+    ],
+    "limitations": "Tests the repository metadata and artifact integrity contract only; no retail binaries, analysis scripts, or Ghidra assets are available or required."
+  }
+}
