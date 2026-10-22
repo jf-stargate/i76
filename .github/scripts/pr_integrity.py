@@ -40,8 +40,13 @@ def verify_run(repo,head,root,files,trusted):
     m=json.loads(blob(repo,head,root+"/manifest.json"))
     f=json.loads(blob(repo,head,root+"/findings.json"))
     v=json.loads(blob(repo,head,root+"/validation.json"))
+    version=m.get("schema_version")
+    if version not in ("1.0.0","1.1.0") or f.get("schema_version") != version:
+        raise Rejected("Unsupported or mismatched record schema version")
+    schema_root=trusted/"agent/protocol/schemas"
+    if version=="1.1.0":schema_root=schema_root/"v1.1.0"
     for kind,obj in (("run",m),("finding",f)):
-        schema=json.loads((trusted/"agent/protocol/schemas"/(kind+".schema.json")).read_text())
+        schema=json.loads((schema_root/(kind+".schema.json")).read_text())
         Draft202012Validator(schema,format_checker=FormatChecker()).validate(obj)
     rid=root.rsplit("/",1)[1];track=root.split("/")[2]
     if not RUN.fullmatch(rid) or m["run_id"]!=rid or f["run_id"]!=rid or m["track"]!=track or v!=m["validation"]:raise Rejected("Run identity/validation mismatch")

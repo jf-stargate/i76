@@ -15,6 +15,8 @@ def policy():
         Draft202012Validator.check_schema(json.loads((P/"schemas"/(name+".schema.json")).read_text()))
     for sch,ex in (("run","manifest"),("finding","findings")):
         Draft202012Validator(json.loads((P/"schemas"/(sch+".schema.json")).read_text())).validate(json.loads((P/"examples"/(ex+".json")).read_text()))
+    for name in ("run","finding"):
+        Draft202012Validator.check_schema(json.loads((P/"schemas/v1.1.0"/(name+".schema.json")).read_text()))
     return p
 def safe_path(name):
     if not name or name.startswith("/") or "\\" in name or "//" in name or any(s in ("",".","..") for s in name.split("/")): raise ValueError("unsafe path")
@@ -31,8 +33,12 @@ def validate_run(directory):
     directory=pathlib.Path(directory).resolve()
     manifest=json.loads((directory/"manifest.json").read_text())
     findings=json.loads((directory/"findings.json").read_text())
+    version=manifest.get("schema_version")
+    assert version in ("1.0.0","1.1.0") and findings.get("schema_version")==version
+    schema_dir=P/"schemas"
+    if version=="1.1.0": schema_dir=schema_dir/"v1.1.0"
     for s,v in (("run",manifest),("finding",findings)):
-        Draft202012Validator(json.loads((P/"schemas"/(s+".schema.json")).read_text())).validate(v)
+        Draft202012Validator(json.loads((schema_dir/(s+".schema.json")).read_text())).validate(v)
     run=manifest["run_id"];assert R.fullmatch(run)
     assert directory.name==run and directory.parent.name==manifest["track"] and findings["run_id"]==run
     for artifact in manifest["artifacts"]:
