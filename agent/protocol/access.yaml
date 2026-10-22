@@ -1,0 +1,107 @@
+schema_version: "1.0.0"
+repository: "jf-stargate/i76"
+default_branch: "main"
+default: "deny"
+source_of_authority: "default-branch-pinned-sha"
+policy_semantics:
+  propose: "Permission to create a branch/PR containing proposed changes, not permission to merge."
+  promote: "Permission to change accepted state after validations and independent approval."
+  review: "A maintainer distinct from the publishing agent or its credentials."
+publication:
+  direct_main_push: false
+  force_push: false
+  all_changes_require_pr: true
+  require_current_base_revalidation: true
+  require_trusted_ci: true
+  require_separate_reviewer_for_authoritative_changes: true
+  unknown_or_unenforced_protection: "proposal-only"
+  autonomous_run_merge: false
+  baseline_change_requires_explicit_maintainer: true
+  governance_change_requires_explicit_maintainer: true
+principal_rules:
+  agent:
+    may_read: true
+    may_propose_on_isolated_branch: true
+    may_directly_publish_main: false
+    may_self_approve: false
+  maintainer:
+    may_approve_reviewed_pr: true
+    may_authorize_governance_and_baseline_promotion: true
+    must_verify_enforcement: true
+path_rules:
+  - prefix: "agent/runs/"
+    class: "append-only-runs"
+    allowed_proposal: "create-only-under-owned-run-id"
+    acceptance: "schema-and-hash-validation-plus-reviewed-pr"
+    immutable_after_merge: true
+  - prefix: "agent/tools/"
+    class: "shared-tools"
+    allowed_proposal: "isolated-branch"
+    acceptance: "reviewed-pr-with-tests"
+  - prefix: "agent/baselines/"
+    class: "baseline-identities"
+    allowed_proposal: "candidate-only"
+    acceptance: "explicit-maintainer-promotion"
+  - prefix: "agent/promotions/"
+    class: "accepted-findings"
+    allowed_proposal: "candidate-only"
+    acceptance: "explicit-maintainer-promotion"
+  - prefix: "agent/protocol/"
+    class: "governance"
+    allowed_proposal: "draft-only"
+    acceptance: "explicit-maintainer-approval-and-protocol-version-bump"
+  - prefix: "manual/"
+    class: "curated-human-readable"
+    allowed_proposal: "isolated-branch"
+    acceptance: "explicit-maintainer-review"
+  - prefix: ".github/"
+    class: "governance"
+    allowed_proposal: "draft-only"
+    acceptance: "explicit-maintainer-approval-and-enforcement-check"
+  - prefix: "ref/"
+    class: "legacy-reference"
+    allowed_proposal: "migration-only"
+    acceptance: "explicit-maintainer-review"
+  - prefix: "scripts/"
+    class: "legacy-tools"
+    allowed_proposal: "migration-only"
+    acceptance: "explicit-maintainer-review"
+  - prefix: "snapshot/"
+    class: "legacy-baselines"
+    allowed_proposal: "migration-only"
+    acceptance: "explicit-maintainer-review"
+  - prefix: "AGENTS.md"
+    class: "governance"
+    allowed_proposal: "draft-only"
+    acceptance: "explicit-maintainer-approval-and-protocol-version-bump"
+  - prefix: "README.md"
+    class: "entrypoint"
+    allowed_proposal: "isolated-branch"
+    acceptance: "explicit-maintainer-review"
+  - prefix: ".gitignore"
+    class: "governance"
+    allowed_proposal: "draft-only"
+    acceptance: "explicit-maintainer-approval"
+run_identity:
+  tracks: ["i76exe", "i76edit", "shared"]
+  run_id_pattern: "^(i76exe|i76edit|shared)-[0-9]{8}T[0-9]{6}Z-[a-f0-9]{8}$"
+  branch_template: "agent/{track}/{run_id}"
+  run_path_template: "agent/runs/{track}/{run_id}/"
+  identity_allocation: "utc-timestamp-plus-8-random-hex-and-exclusive-branch-creation"
+  collision_rule: "retry-with-new-run-id"
+  scopes_may_overlap: true
+  overwrite_other_run: false
+  run_immutable_after_merge: true
+promotion:
+  immutable_run_evidence: true
+  contradictory_runs_preserved: true
+  no_last_writer_wins_for_findings: true
+  canonical_changes_require_reconciliation: true
+  protocol_cannot_authorize_its_own_change: true
+content_security:
+  repository_is_public: true
+  forbidden_commit_classes:
+    - "original game/editor executable and packed proprietary resources"
+    - "Ghidra GZF or mutable project databases"
+    - "secrets, credentials, user-private data"
+    - "bulk dumps or oversized generated archives without explicit review"
