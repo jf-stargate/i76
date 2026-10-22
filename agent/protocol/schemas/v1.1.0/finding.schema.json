@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "I76 evidence-linked findings v1.1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "findings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.1.0"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^(i76exe|i76edit|shared)-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding_id",
+          "claim",
+          "status",
+          "confidence",
+          "scope",
+          "evidence",
+          "limitations"
+        ],
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "minLength": 3
+          },
+          "claim": {
+            "type": "string",
+            "minLength": 8
+          },
+          "status": {
+            "enum": [
+              "proven",
+              "derived",
+              "inferred",
+              "unresolved",
+              "contradicted"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              "unknown"
+            ]
+          },
+          "scope": {
+            "enum": [
+              "editor",
+              "game",
+              "shared"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "kind",
+                "ref"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "git-blob",
+                    "run-artifact",
+                    "retail-address",
+                    "script",
+                    "test",
+                    "external"
+                  ]
+                },
+                "ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "limitations": {
+            "type": "string"
+          },
+          "related_findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "relation",
+                "finding_id"
+              ],
+              "properties": {
+                "relation": {
+                  "enum": [
+                    "supports",
+                    "contradicts",
+                    "supersedes"
+                  ]
+                },
+                "finding_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "proven",
+                    "derived"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "evidence": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

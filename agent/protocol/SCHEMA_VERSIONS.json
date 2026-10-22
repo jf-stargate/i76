@@ -1,0 +1,21 @@
+{
+  "publication_protocol_version": "1.0.0",
+  "default_research_schema_version": "1.1.0",
+  "supported_research_schema_versions": [
+    "1.0.0",
+    "1.1.0"
+  ],
+  "schemas": {
+    "1.0.0": {
+      "run": "schemas/run.schema.json",
+      "finding": "schemas/finding.schema.json",
+      "status": "legacy-accepted"
+    },
+    "1.1.0": {
+      "run": "schemas/v1.1.0/run.schema.json",
+      "finding": "schemas/v1.1.0/finding.schema.json",
+      "status": "research-grade"
+    }
+  },
+  "rule": "Do not rewrite merged v1.0 records; select validator by manifest schema_version and require findings schema_version match."
+}
