@@ -1,0 +1,48 @@
+name: I76 trusted PR integrity
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+permissions:
+  contents: read
+  pull-requests: read
+concurrency:
+  group: i76-pr-integrity-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  integrity:
+    name: integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      # Run validator from protected BASE commit, never the untrusted PR.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+      - name: Install pinned validator dependencies
+        run: python -m pip install --disable-pip-version-check PyYAML==6.0.2 jsonschema==4.23.0
+      - name: Validate trusted protocol and unit tests
+        run: |
+          python -m unittest discover -s .github/tests -v
+          python agent/protocol/tools/validate_protocol.py
+      - name: Fetch candidate Git objects and verify exact PR head
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "+refs/pull/${PR_NUMBER}/head:refs/remotes/origin/i76-pr-candidate"
+          [[ "$(git rev-parse refs/remotes/origin/i76-pr-candidate)" == "$EXPECTED_HEAD" ]]
+      - name: Inspect candidate without executing submitted files
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: >-
+          python .github/scripts/pr_integrity.py --repo . --trusted-root .
+          --base-sha "$BASE_SHA" --head-sha "$HEAD_SHA" --branch "$HEAD_BRANCH"
