@@ -1,0 +1,1659 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "legacy-git-blob-inventory",
+  "source_repository": "jf-stargate/i76",
+  "source_commit": "8885274be05f6570f8f12272fd86bd5cad16d5a7",
+  "source_tree": "3c2e05a9d5f41b51772cb407744783bcab3f74a5",
+  "purpose": "Provenance and migration discovery; no synthetic historical run identities",
+  "reference_count": 108,
+  "script_count": 217,
+  "snapshot": {
+    "blob_count": 15500,
+    "trees": [
+      {
+        "path": "snapshot",
+        "git_tree_sha": "552add55ef30a3b24216decf4588479d0a1b9aae"
+      },
+      {
+        "path": "snapshot/i76.exe",
+        "git_tree_sha": "f08ca79a605e64fae918a029cf3dbee1212b0b16"
+      },
+      {
+        "path": "snapshot/i76edit.exe",
+        "git_tree_sha": "4334826f456d63c96e9ae0afc346f56fa3dc23dd"
+      },
+      {
+        "path": "snapshot/i76shell.dll",
+        "git_tree_sha": "4f44809c930a430ed98222b0a96a62a90ecb98ef"
+      }
+    ],
+    "policy": "Not copied during legacy index migration; inspect for payload/licensing before moving."
+  },
+  "files": [
+    {
+      "path": "ref/editor/CHANGELOG_20261021.md",
+      "git_blob_sha": "f2fc9fd855bc140e02e75fff0d5c8491c821dd46",
+      "bytes": 1016
+    },
+    {
+      "path": "ref/editor/intersection_geometry_and_driving_surface.md",
+      "git_blob_sha": "94c98112f285ab2008a3fad652c2e7344f69ae11",
+      "bytes": 5077
+    },
+    {
+      "path": "ref/editor/object_fsm_serialization.md",
+      "git_blob_sha": "0081eb2df28cc9afdb577ce3fda4895f1597960f",
+      "bytes": 2640
+    },
+    {
+      "path": "ref/editor/README.md",
+      "git_blob_sha": "6b509536e93e504a36b0e6131fd5674bd1e9008c",
+      "bytes": 2824
+    },
+    {
+      "path": "ref/editor/research_history/README.md",
+      "git_blob_sha": "0ff80ef7c2ea22aab8854196e6793968f9440de2",
+      "bytes": 1430
+    },
+    {
+      "path": "ref/editor/road_terrain_serialization.md",
+      "git_blob_sha": "0d9472c0d936aeebdccb952fbce66b64a0b82a96",
+      "bytes": 4469
+    },
+    {
+      "path": "ref/editor/runtime_object_lifetime_notes.md",
+      "git_blob_sha": "d4839577ae15d064f2a3b12e0551bc57f595850b",
+      "bytes": 1951
+    },
+    {
+      "path": "ref/fsm/i76_fsm_runtime_reference.md",
+      "git_blob_sha": "bce06c849ff73966ac20f10823f0e5dadd4621c2",
+      "bytes": 11585
+    },
+    {
+      "path": "ref/fsm/research_history/README.md",
+      "git_blob_sha": "8d9c35f50880330b5ade361cf9b550370ad591a8",
+      "bytes": 956
+    },
+    {
+      "path": "ref/fsm/research_history/v72_vom_fsm_findings.md",
+      "git_blob_sha": "d8de7c50d7a825186bffaa99b6a1214b3d4fe43a",
+      "bytes": 6814
+    },
+    {
+      "path": "ref/fsm/research_history/v73_event_contract_findings.md",
+      "git_blob_sha": "c69d7f5c3150780b0b3cc1f4ae6c1e9ee46fedc5",
+      "bytes": 9080
+    },
+    {
+      "path": "ref/fsm/research_history/v74_fsm_scheduler_findings.md",
+      "git_blob_sha": "0ca9cdaf6c9e3de443fd3923f309c1cd0baea467",
+      "bytes": 4737
+    },
+    {
+      "path": "ref/fsm/research_history/v75_fsm_node_lifecycle_findings.md",
+      "git_blob_sha": "7c5160b5df9292adebeff3de2bebf412f5438491",
+      "bytes": 14024
+    },
+    {
+      "path": "ref/fsm/research_history/v76_engine_uncertainty_at_export.md",
+      "git_blob_sha": "7dae01e5aa336fd33c47fa9b8c0d268149e5de38",
+      "bytes": 9462
+    },
+    {
+      "path": "ref/game/i76_mission_reconstruction_pipeline.md",
+      "git_blob_sha": "9d565f4ffaa26b5e11e463a2d2b2788c9dc79210",
+      "bytes": 6574
+    },
+    {
+      "path": "ref/game/i76_object_resource_resolution_reference.md",
+      "git_blob_sha": "d76ebefc6d711429df5248d1e2220d821544a260",
+      "bytes": 7372
+    },
+    {
+      "path": "ref/game/i76_research_checkpoint_20261019.md",
+      "git_blob_sha": "1e1ff1ac621966f0c85a8de2a386640567787776",
+      "bytes": 7353
+    },
+    {
+      "path": "ref/game/i76_research_checkpoint_20261021.md",
+      "git_blob_sha": "3da089fc50cce33b6561259a0a5c6f46ba42dce4",
+      "bytes": 2250
+    },
+    {
+      "path": "ref/game/i76_resource_acquisition_reference.md",
+      "git_blob_sha": "2f8ede6d4f73a9a2cbd497aa430d367817e7f343",
+      "bytes": 5107
+    },
+    {
+      "path": "ref/game/i76shell.dll_reference.md",
+      "git_blob_sha": "7720ed69a61e5e19075f1a4276bb7c9a9bc86a33",
+      "bytes": 23499
+    },
+    {
+      "path": "ref/level_format/i76_rseg_road_corridor_reference.md",
+      "git_blob_sha": "7dd459af1e5d083d0f5ca44a9c199cbea4989279",
+      "bytes": 7256
+    },
+    {
+      "path": "ref/level_format/i76_runtime_level_and_terrain_format_notes.md",
+      "git_blob_sha": "917f2d2f4dc65e2d67b92413067a34dfecbe8261",
+      "bytes": 48047
+    },
+    {
+      "path": "ref/level_format/i76_runtime_terrain_lod_reference.md",
+      "git_blob_sha": "2158622be027c562531b9690bf3fa6ee6282c285",
+      "bytes": 8031
+    },
+    {
+      "path": "ref/material_format/i76_material_extraction_reference.md",
+      "git_blob_sha": "8c21019aab47f034669aab4c1b2d639f6d37cabb",
+      "bytes": 14146
+    },
+    {
+      "path": "ref/mission_execution/CHANGELOG_20261021.md",
+      "git_blob_sha": "e6d72ccc0ff4a6477cc77f8e62cbb75efab8010d",
+      "bytes": 1786
+    },
+    {
+      "path": "ref/mission_execution/DEFERRED_VALIDATION_SPEC.md",
+      "git_blob_sha": "e155efcd507ebbc949adf876e8494b620ff1e65b",
+      "bytes": 5378
+    },
+    {
+      "path": "ref/mission_execution/DESCRIPTOR_STATE_AND_REPEATED_LOAD_CONTRACT.md",
+      "git_blob_sha": "876ba89edb0f470fa806e5217665aeab0e8936e4",
+      "bytes": 9030
+    },
+    {
+      "path": "ref/mission_execution/DESCRIPTOR_STATE_TEST_PLAN.md",
+      "git_blob_sha": "775d7238818006e9ac345f0cb0735627738d3013",
+      "bytes": 3294
+    },
+    {
+      "path": "ref/mission_execution/EMULATION_CONTRACT_ADDENDUM_V06.md",
+      "git_blob_sha": "ce279961e2826922b9c31d772472d8d24e9c0922",
+      "bytes": 2403
+    },
+    {
+      "path": "ref/mission_execution/evidence/CORPUS_LOADER_INVENTORY.tsv",
+      "git_blob_sha": "0dec2ee8a2c626805d9752db0eb3d9f0fbeee2d2",
+      "bytes": 24792
+    },
+    {
+      "path": "ref/mission_execution/evidence/CORPUS_STATIC_VALIDATION.json",
+      "git_blob_sha": "a6d5f6f3968ba7b5f3e904e16f8f53a9251c6b7f",
+      "bytes": 500
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_5_0/results/emulation_outcomes.tsv",
+      "git_blob_sha": "4b2363dc6a652095f290d055f5031b6e4b7ebc11",
+      "bytes": 1641
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_5_0/results/instruction_events.tsv",
+      "git_blob_sha": "636558f6db1fc15dc7114c3496f041249a816595",
+      "bytes": 8554
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_5_0/results/provenance.json",
+      "git_blob_sha": "377cff706c616012ac3d4bea77ed4ee290231758",
+      "bytes": 768
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_5_0/results/validation.json",
+      "git_blob_sha": "8a5101963783bd7bdce6a74bf3722f046ab7f996",
+      "bytes": 5802
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_6_0/results_nonempty/instruction_events.tsv",
+      "git_blob_sha": "5aa39a7f2beb1e20254f61e71a839f15f93f1506",
+      "bytes": 71165
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_6_0/results_nonempty/wrapper_outcomes.tsv",
+      "git_blob_sha": "0e3e0f338d4d0878162970cab20af73f28ca3c5f",
+      "bytes": 738
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_6_0/results/instruction_events.tsv",
+      "git_blob_sha": "f02d684060f9f2965170bcefee270222905bc924",
+      "bytes": 28697
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_6_0/results/wrapper_outcomes.tsv",
+      "git_blob_sha": "ea6a64c0554cdf981e16fed9196969079588c70d",
+      "bytes": 3896
+    },
+    {
+      "path": "ref/mission_execution/evidence/emulator_v0_6_0/validation.json",
+      "git_blob_sha": "ddbe7c3f9a554bff8d7e5a3930250f697d50f4df",
+      "bytes": 245
+    },
+    {
+      "path": "ref/mission_execution/evidence/INSPECTOR_ONLY_MUTATION_PROBES.json",
+      "git_blob_sha": "1e74503080f34df2482554478cb734e8eadd5500",
+      "bytes": 1163
+    },
+    {
+      "path": "ref/mission_execution/evidence/REQUIRED_SEEN_MODEL_RESULTS.json",
+      "git_blob_sha": "9ee848c6a73a750e5382de13a922d1822922b5b4",
+      "bytes": 1439
+    },
+    {
+      "path": "ref/mission_execution/evidence/v100_descriptor_initial_values.tsv",
+      "git_blob_sha": "645a278d15bebde506ceed15264d749a2862aceb",
+      "bytes": 715
+    },
+    {
+      "path": "ref/mission_execution/evidence/v100_descriptor_references.tsv",
+      "git_blob_sha": "30e8b70143f3b04f4d869162fba6cf48d5a2f86b",
+      "bytes": 356
+    },
+    {
+      "path": "ref/mission_execution/evidence/v100_parser_call_sites.txt",
+      "git_blob_sha": "723a3f446699a78716ee69899207753154f63a3e",
+      "bytes": 29554
+    },
+    {
+      "path": "ref/mission_execution/evidence/v100_seen_mutation_instruction_audit.tsv",
+      "git_blob_sha": "de93ca94c8baf24199e20c14db98e8bb2f80f524",
+      "bytes": 467
+    },
+    {
+      "path": "ref/mission_execution/evidence/v100_targeted_decompilation.txt",
+      "git_blob_sha": "6ca7a2ddeafabff77b3369d903e067db180dccb4",
+      "bytes": 24724
+    },
+    {
+      "path": "ref/mission_execution/evidence/v89_host_disassembly.tsv",
+      "git_blob_sha": "66f6ebe19638302051d50a80b530cde24735a5e1",
+      "bytes": 97398
+    },
+    {
+      "path": "ref/mission_execution/evidence/v89_host_jump_table_raw.tsv",
+      "git_blob_sha": "ff64c0816d51fd81e2bfb441d22996e245b43195",
+      "bytes": 11264
+    },
+    {
+      "path": "ref/mission_execution/evidence/v89_host_native_decompilation.txt",
+      "git_blob_sha": "5b50cc1b26e9c42e3e5f254eaafd74ccb844a274",
+      "bytes": 166906
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_bwd2_registry_corrected.tsv",
+      "git_blob_sha": "2c14e10a9e228a71f87e206537a4ee3c594daee6",
+      "bytes": 7974
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_native_decompiled.txt",
+      "git_blob_sha": "8379440057c9d742db1dd0e4bebd4ef9da0055d1",
+      "bytes": 82794
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_outer_instructions.tsv",
+      "git_blob_sha": "168f5652188ee0adcd2384b22de2cccd0a69eaa5",
+      "bytes": 33263
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_outer_native_decompiled.txt",
+      "git_blob_sha": "0180c43cd243b47c0cec35006aa633435e5ce93a",
+      "bytes": 23127
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_reader_instructions.tsv",
+      "git_blob_sha": "381b68f8f51edd3d1dfa0e2de4b33d27d8aad11c",
+      "bytes": 54631
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_reader_native_decompiled.txt",
+      "git_blob_sha": "ab178ad91b9986c185c4daec1d27c7337767675f",
+      "bytes": 80356
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_section_instructions.tsv",
+      "git_blob_sha": "516988ad22c21f8c48392aa3d15e32687b05009e",
+      "bytes": 18947
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_section_native_decompiled.txt",
+      "git_blob_sha": "495f5cb0db0ce6f4a7fd0b75d0c3d2f319a9d9d5",
+      "bytes": 12728
+    },
+    {
+      "path": "ref/mission_execution/evidence/v95/v95_section_registry.tsv",
+      "git_blob_sha": "2c14e10a9e228a71f87e206537a4ee3c594daee6",
+      "bytes": 7974
+    },
+    {
+      "path": "ref/mission_execution/evidence/v98_jump_targets.tsv",
+      "git_blob_sha": "8721dcc622a5855136a462e0c1326cef0cdb456d",
+      "bytes": 7539
+    },
+    {
+      "path": "ref/mission_execution/evidence/v98_native_selected.txt",
+      "git_blob_sha": "eb86a30d7ba4c599fe16558833730d87d2dfb207",
+      "bytes": 71259
+    },
+    {
+      "path": "ref/mission_execution/evidence/v98_secondary_callees_native.txt",
+      "git_blob_sha": "a0131ac497d58aeb9f3c85fc3023725dd1a0054b",
+      "bytes": 9354
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_loader_call_references.tsv",
+      "git_blob_sha": "4cbed517a487f5f56651bc9004b478638ce1b2ac",
+      "bytes": 5162
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_loader_full_instructions.tsv",
+      "git_blob_sha": "3b4f9532911e35f58cd9677c5e35fb61759ba4fc",
+      "bytes": 57442
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_loader_incoming.tsv",
+      "git_blob_sha": "9e78cf0679f5df44af52f8d95834352ba501fb26",
+      "bytes": 24247
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_loader_native_decompiled.txt",
+      "git_blob_sha": "1ed289d731131fcaecd5a9890790da82515fe7e6",
+      "bytes": 40035
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_reset_and_caller_disasm.tsv",
+      "git_blob_sha": "3719fdbbc2e54ad646709f460590eb1c28bbcc94",
+      "bytes": 6145
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_reset_and_caller.txt",
+      "git_blob_sha": "f6b0cf60ed3418f12c27cc77069c64123ecd2139",
+      "bytes": 5190
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_revision_required_table_raw.tsv",
+      "git_blob_sha": "5cb194d9ce64a969f47be57afa899136c5478b65",
+      "bytes": 829
+    },
+    {
+      "path": "ref/mission_execution/evidence/v99_selected_bwd2_descriptors.tsv",
+      "git_blob_sha": "39f273d771b75b97e440f1ee6a675eae5e20efe0",
+      "bytes": 595
+    },
+    {
+      "path": "ref/mission_execution/HOST_COMMAND_ABI_CONTRACT.md",
+      "git_blob_sha": "0d03db91bbbb6d992b76fa2b5d4f93a9065bf589",
+      "bytes": 22914
+    },
+    {
+      "path": "ref/mission_execution/LOADER_VALIDATION_AND_FAILURE_CONTRACT.md",
+      "git_blob_sha": "615b011887b20379497dacf43c30b9abe0b2ed13",
+      "bytes": 16157
+    },
+    {
+      "path": "ref/mission_execution/MISSION_EXECUTION_CONTRACT.md",
+      "git_blob_sha": "a0fde76d24c9639473b1aa6e8bc746eac2b30677",
+      "bytes": 31998
+    },
+    {
+      "path": "ref/mission_execution/ORIGINAL_CODE_MISSION_LOADER_EMULATION_V06.md",
+      "git_blob_sha": "57583042812a68606df20ab19c4e3c2f695887d7",
+      "bytes": 9838
+    },
+    {
+      "path": "ref/mission_execution/ORIGINAL_CODE_PARSER_EMULATION_V05.md",
+      "git_blob_sha": "4e5a4f596095f03b0553f42537dffc9cbe5fc382",
+      "bytes": 6686
+    },
+    {
+      "path": "ref/mission_execution/README.md",
+      "git_blob_sha": "f6dde553a29682be99798d5d6bf7ec22c33aa665",
+      "bytes": 3269
+    },
+    {
+      "path": "ref/mission_execution/RECONCILIATION_AND_OPEN_ISSUES.md",
+      "git_blob_sha": "5ea665eb4564c4cf9893e5696e07ac3b7a0d59ea",
+      "bytes": 3914
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v89/V89_HOST_COMMAND_ABI_CB_QUEUE_AND_CALLBACKS.md",
+      "git_blob_sha": "b230e1d9642214e4f29f5ef275068b00e2fe2dec",
+      "bytes": 12288
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v90/V90_CB_SOURCE_OWNERSHIP_AND_HOST_ABI.md",
+      "git_blob_sha": "b31c6558a121294341793419dfa7ffa3e215e876",
+      "bytes": 12685
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v90/V90_SOURCE_LAYOUT_ADDITIONS.md",
+      "git_blob_sha": "79dc51d2b21ef24c6ee4afbc84776152c93bc380",
+      "bytes": 1797
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v91/V91_MOVEMENT_NAVIGATION_OBJECTIVES.md",
+      "git_blob_sha": "cb1dd6d9cbd9f23ef27b98aa521c26b8931f7105",
+      "bytes": 10876
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v91/V91_SOURCE_LAYOUT_ADDITIONS.md",
+      "git_blob_sha": "ea17dc59a72d5e97cf0841d34c579ca4567db7e1",
+      "bytes": 1996
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v92/V92_CONTROL_QUEUE_AND_GAME_FLOW_INTEGRATION.md",
+      "git_blob_sha": "3cb2ef41c27e6b0c0446e0bb7909f43b83c30290",
+      "bytes": 9109
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v92/V92_SOURCE_LAYOUT_ADDITIONS.md",
+      "git_blob_sha": "0d0e74011ff80d1124e41ea7c3a11814da4bebce",
+      "bytes": 1806
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v93/V93_FSM_EXECUTION_ORDER_REENTRANCY.md",
+      "git_blob_sha": "d256dbb0c717e59dcd2d99a1404a77b91c1e44f2",
+      "bytes": 10211
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v93/V93_FUTURE_BEHAVIORAL_TEST_SPEC.md",
+      "git_blob_sha": "7784a98c3a5ebdf647414118fdb8993f6d1ff44d",
+      "bytes": 2636
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v94/V94_SOURCE_LAYOUT_ADDITIONS.md",
+      "git_blob_sha": "0a4a07add08053e4488463649ecdc0f00a3fe5b1",
+      "bytes": 1503
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v94/V94_VM_CALL_FRAMES_OPERAND_STACK_AND_BYTECODE_VALIDITY.md",
+      "git_blob_sha": "9b99bea61e98d2d5c951d9169606dab68c950728",
+      "bytes": 14868
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v95/V95_BWD2_FSM_COMPILER_CONSUMER_CONTRACT.md",
+      "git_blob_sha": "254ef91f64ab062f383eda8c02a021121e9f5d5c",
+      "bytes": 10199
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v96/V96_FSM_ACTOR_MEDIA_POSITION_BINDING_AND_LOAD_ORDER.md",
+      "git_blob_sha": "f3d64db49bdcf6955f278f7fb53af2247e454564",
+      "bytes": 12427
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v96/V96_SOURCE_LAYOUT_ADDITIONS.md",
+      "git_blob_sha": "11fc0ae251bc531c62ab1abb9c903efd10fed803",
+      "bytes": 1720
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v97/V97_INSTANCE_REGISTRY_LIFECYCLE_AND_FAILURE_CONTRACT.md",
+      "git_blob_sha": "79d796c5a58283ed12b0d6be9661a686a0c6cb6a",
+      "bytes": 9522
+    },
+    {
+      "path": "ref/mission_execution/research_checkpoints/v97/V97_SOURCE_LAYOUT_ADDITIONS.md",
+      "git_blob_sha": "35c300c23cbb9d4d36447d4910e2f5f75dc813f7",
+      "bytes": 1426
+    },
+    {
+      "path": "ref/mission_execution/SOURCE_LAYOUT_HYPOTHESES.md",
+      "git_blob_sha": "51ccc839705f613e806377b67d033a008c3443a0",
+      "bytes": 4635
+    },
+    {
+      "path": "ref/mission_execution/tables/ABI_DISPATCH_CONTRACT_96.tsv",
+      "git_blob_sha": "cb5e9400cb1a492451eea79cc6d978c929204168",
+      "bytes": 38268
+    },
+    {
+      "path": "ref/mission_execution/tables/COMPILED_COMMAND_TABLE_95.tsv",
+      "git_blob_sha": "7ae42e9bf9d24481f44e4d8dd855e58b74b8016f",
+      "bytes": 4741
+    },
+    {
+      "path": "ref/mission_execution/tables/DESCRIPTOR_EVIDENCE_REGISTER.tsv",
+      "git_blob_sha": "d2fd18bc9973d64f0c2068a03a2dbb72f20d63dc",
+      "bytes": 2239
+    },
+    {
+      "path": "ref/mission_execution/tables/LOADER_FAILURE_MATRIX.tsv",
+      "git_blob_sha": "90d8b3b3b355f3c7ac47ea286ff02a3b8cea6379",
+      "bytes": 2747
+    },
+    {
+      "path": "ref/mission_execution/tables/LOADER_MACHINE_EVIDENCE.tsv",
+      "git_blob_sha": "c8adc1649996f8e65f344de3fc9fe53e4dd667c3",
+      "bytes": 3043
+    },
+    {
+      "path": "ref/mission_execution/tables/RETAIL_MISSION_ACTOR_FIXUPS.tsv",
+      "git_blob_sha": "1864ee13267e752e71d28383a642be54eaa3bdcd",
+      "bytes": 2863
+    },
+    {
+      "path": "ref/mission_execution/tables/RETAIL_MISSION_FSM_INVENTORY.tsv",
+      "git_blob_sha": "3371ae1bc63a4a9e4e3456c9c277cd0bf954d6d8",
+      "bytes": 2872
+    },
+    {
+      "path": "ref/mission_reconstruction/i76_mission_reconstruction_pipeline.md",
+      "git_blob_sha": "a35282be05a9fee5a2b03763b7562b9cf488d85d",
+      "bytes": 7048
+    },
+    {
+      "path": "ref/model_format/i76_vehicle_model_format_and_extraction_reference.md",
+      "git_blob_sha": "5fc9e9cfcf9dbc85b2b23e1e2c05a885b2eadf6f",
+      "bytes": 11405
+    },
+    {
+      "path": "ref/mw2/database_mw2_reference.md",
+      "git_blob_sha": "70ae78d3c894de38e169d9c55fd14b3345566ee7",
+      "bytes": 22815
+    },
+    {
+      "path": "ref/object_resource_resolution/i76_object_resource_resolution_reference.md",
+      "git_blob_sha": "55ed9f615d73e1819ae20beb96c3e4510753597a",
+      "bytes": 3991
+    },
+    {
+      "path": "ref/README.md",
+      "git_blob_sha": "4a4eb1dacf1a17b31b7be1e60ec251f305d261c4",
+      "bytes": 1263
+    },
+    {
+      "path": "ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md",
+      "git_blob_sha": "82cfac15cd6b6c1c80a2885253449e294ca1ce5d",
+      "bytes": 10128
+    },
+    {
+      "path": "ref/zfs/i76_zfs_structure_and_extraction_reference.md",
+      "git_blob_sha": "b05f4b4de10693a6d8721efa829e7a53b274802b",
+      "bytes": 9095
+    },
+    {
+      "path": "scripts/auto_templates/cgpt_i76_export_project_state_snapshot_v3.java",
+      "git_blob_sha": "99365e10728d2871ce01f30c2c37d3330bbdf718",
+      "bytes": 47120
+    },
+    {
+      "path": "scripts/auto_templates/i76_v69_project_state_snapshot.java",
+      "git_blob_sha": "6adc3196b69c2c4dbaaab4762eab6e286d4be09d",
+      "bytes": 61957
+    },
+    {
+      "path": "scripts/game/i76_level_blender_export_open76_v7.py",
+      "git_blob_sha": "0d7222b7926697c063dded10f6047e0391c44902",
+      "bytes": 19896
+    },
+    {
+      "path": "scripts/game/i76_zfs_extract.py",
+      "git_blob_sha": "14aa21f8d56f953e8bd9937b8a0e0088db527ab7",
+      "bytes": 17888
+    },
+    {
+      "path": "scripts/game/README_i76_zfs_extract.md",
+      "git_blob_sha": "a5945df88ea5eec15972503ea43347eb190fa9fc",
+      "bytes": 5638
+    },
+    {
+      "path": "scripts/ghidra_emulation/audit_loader_corpus.py",
+      "git_blob_sha": "397f56a4c9ed3ec5485edb2cac0ac1fb9312cc7c",
+      "bytes": 7524
+    },
+    {
+      "path": "scripts/ghidra_emulation/descriptor_required_seen_model.py",
+      "git_blob_sha": "43acc8915379b70e96523a416d92945ebd74c029",
+      "bytes": 2408
+    },
+    {
+      "path": "scripts/ghidra_emulation/I76_BWD2_OriginalParserEmulator.java",
+      "git_blob_sha": "ba16da17a77f9b851641f50173798cabbd83bdb2",
+      "bytes": 10665
+    },
+    {
+      "path": "scripts/ghidra_emulation/I76_MissionWrapper_OriginalCodeEmulator.java",
+      "git_blob_sha": "eb2b742398181f4155bc4da6353fd6522b41f1f1",
+      "bytes": 17437
+    },
+    {
+      "path": "scripts/ghidra_emulation/validate_wrapper.py",
+      "git_blob_sha": "2f589134c48d137d365224f7c678b7e20004fa2a",
+      "bytes": 5342
+    },
+    {
+      "path": "scripts/ghidra_emulation/verify_v0_4.py",
+      "git_blob_sha": "272d5539d0667b6ed09f557f1d2978b687f776b8",
+      "bytes": 4028
+    },
+    {
+      "path": "scripts/ghidra_history/cgpt_i76_export_project_state_snapshot_v3.java",
+      "git_blob_sha": "99365e10728d2871ce01f30c2c37d3330bbdf718",
+      "bytes": 47120
+    },
+    {
+      "path": "scripts/ghidra_history/cgpt_i76exe_apply_level_object_resource_renames_v43.java",
+      "git_blob_sha": "fc9ef786e5cd6d14d82be283869411e50b2d5186",
+      "bytes": 27164
+    },
+    {
+      "path": "scripts/ghidra_history/cgpt_i76exe_apply_level_static_material_terrain_renames_v49.java",
+      "git_blob_sha": "2fa1a41f0187e11d42438362e54eebc23c668625",
+      "bytes": 26878
+    },
+    {
+      "path": "scripts/ghidra_history/cgpt_i76exe_apply_road_render_names_v50.java",
+      "git_blob_sha": "14d42be4bc9d3ef4f90436977d7faac2938f6f1b",
+      "bytes": 7993
+    },
+    {
+      "path": "scripts/ghidra_history/cgpt_i76exe_export_odef_class_case_truth_v42_fixed.java",
+      "git_blob_sha": "97488b6080a0494c3d18f9b6b0b556c19fae3137",
+      "bytes": 12252
+    },
+    {
+      "path": "scripts/ghidra_history/cgpt_i76exe_export_odef_class_case_truth_v42_fixed2.java",
+      "git_blob_sha": "40888195c5173d75d999eaa33a19514aa303269f",
+      "bytes": 12135
+    },
+    {
+      "path": "scripts/ghidra_history/cgpt_i76exe_export_odef_class_case_truth_v42.java",
+      "git_blob_sha": "06c810720ccdc9ca3d2184837ea98c61326cec55",
+      "bytes": 12151
+    },
+    {
+      "path": "scripts/ghidra_history/I76_Binary_Name_Audit_V64B.java",
+      "git_blob_sha": "7549c6c75fb51007f08643b5fe9cab2fe2faa0cf",
+      "bytes": 15375
+    },
+    {
+      "path": "scripts/ghidra_history/I76_Class_Damage_V67.java",
+      "git_blob_sha": "3e568f55d0652e1c4254da322c5efb39f4f00ffa",
+      "bytes": 16336
+    },
+    {
+      "path": "scripts/ghidra_history/i76_editor_full_geo_vertical_road_sockets_v19_research_checkpoint.zip",
+      "git_blob_sha": "1b23e44aff1b59bd7e1fd1778d2c98e2bffa7783",
+      "bytes": 112635
+    },
+    {
+      "path": "scripts/ghidra_history/i76_editor_intersection_ground_contact_and_grading_v20_research_checkpoint.zip",
+      "git_blob_sha": "c48bd41d3c93419a4fc35a12fdddbfb7de441c1d",
+      "bytes": 147296
+    },
+    {
+      "path": "scripts/ghidra_history/i76_editor_intersection_mesh_road_socket_v18_research_checkpoint.zip",
+      "git_blob_sha": "5c8d429d57fce3aa0749405df9403f0cc1088b27",
+      "bytes": 241642
+    },
+    {
+      "path": "scripts/ghidra_history/i76_editor_road_endpoint_intersection_edges_v17_research_checkpoint.zip",
+      "git_blob_sha": "5e6aed054b7b74af9085640e327b100166e31270",
+      "bytes": 185691
+    },
+    {
+      "path": "scripts/ghidra_history/I76_FSM_V72_VOM_Bridge.java",
+      "git_blob_sha": "89343435db544b10abce34e86d12a2b1c93edae8",
+      "bytes": 17223
+    },
+    {
+      "path": "scripts/ghidra_history/i76_mission_architecture_v79_research_checkpoint.zip",
+      "git_blob_sha": "501cf20b07d58fa944d891122cded6cfc2bd671d",
+      "bytes": 24076
+    },
+    {
+      "path": "scripts/ghidra_history/i76_mission_architecture_v80_research_checkpoint.zip",
+      "git_blob_sha": "0739695b72b959c1de99c5e9d6e0fcbf4d1ae637",
+      "bytes": 37539
+    },
+    {
+      "path": "scripts/ghidra_history/i76_mission_architecture_v81_research_checkpoint.zip",
+      "git_blob_sha": "c69787153bb50ec8a7f616f2e86fe6058e538a6e",
+      "bytes": 6278579
+    },
+    {
+      "path": "scripts/ghidra_history/i76_mission_architecture_v83_ownership_checkpoint.zip",
+      "git_blob_sha": "e2c6cddbe5ae2b011457b3639256f1682bb725f1",
+      "bytes": 41882
+    },
+    {
+      "path": "scripts/ghidra_history/i76_mission_architecture_v84_ownership_checkpoint.zip",
+      "git_blob_sha": "5a4fb0ca39943818aaf9f9091c48133d8abf995b",
+      "bytes": 15817
+    },
+    {
+      "path": "scripts/ghidra_history/i76_mission_architecture_v85_ownership_checkpoint.zip",
+      "git_blob_sha": "cae22b8a2ec88515d8c06bede43fbf85e985fa6c",
+      "bytes": 129033
+    },
+    {
+      "path": "scripts/ghidra_history/i76_mission_architecture_v94_vm_abi_checkpoint.zip",
+      "git_blob_sha": "feae61200081077c66f97de37906e737b38c340a",
+      "bytes": 81018
+    },
+    {
+      "path": "scripts/ghidra_history/i76_original_code_mission_loader_emulator_v0.6.0.zip",
+      "git_blob_sha": "716112248c840bdf6544cbb50df1ed06bfe9f42d",
+      "bytes": 55955
+    },
+    {
+      "path": "scripts/ghidra_history/i76_original_code_parser_emulator_v0.5.0.zip",
+      "git_blob_sha": "62de92c5008d579efc6c5c679e25ae1f9c0b96fe",
+      "bytes": 18501
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v100_descriptor_lifecycle.java",
+      "git_blob_sha": "776d93dfb26c1373914b97493a6e231f59c5e445",
+      "bytes": 5281
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v101_export_focused_bodies.java",
+      "git_blob_sha": "4495babd45946917d2b0e4f32ffc54a41db81878",
+      "bytes": 4668
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v101_export_repo_state.java",
+      "git_blob_sha": "1fc1cb286d645b32e346b88270dbb0d48c3b47ff",
+      "bytes": 63540
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v69_project_state_snapshot.java",
+      "git_blob_sha": "6adc3196b69c2c4dbaaab4762eab6e286d4be09d",
+      "bytes": 61957
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v70_recovered_callback_analysis.java",
+      "git_blob_sha": "a04529fc19cf4f8c5098d584308a398e7f1a8f5d",
+      "bytes": 16878
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v71_boundary_consolidation.java",
+      "git_blob_sha": "d0d9dbe1e8b789f75197533534e09d0ea88571e8",
+      "bytes": 13660
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v73_fsm_event_lifecycle.java",
+      "git_blob_sha": "279cd84db1809320c1f9cd62db20c05c27c70936",
+      "bytes": 16925
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v74_fsm_scheduler_event_timing.java",
+      "git_blob_sha": "aa135752ad916de8512c6781dcf52bf8f1c3a1e4",
+      "bytes": 14005
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v75_fsm_node_lifecycle.java",
+      "git_blob_sha": "698813becfee88e912ec7ec8d51f2ceda2f66e73",
+      "bytes": 17960
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v76_fsm_loader_callback_closure.java",
+      "git_blob_sha": "41e8477a91fcf2bc8d4143958d92e887a176bf81",
+      "bytes": 16273
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v76_vom_fsm_repo_checkpoint.tar.gz",
+      "git_blob_sha": "1f8a08884c64d85d3cdaa3bdd137b985e5a9100b",
+      "bytes": 49784332
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v98_host_abi_readonly.java",
+      "git_blob_sha": "5c726361e4c84194b462d3de3a7d9fe89458f2a2",
+      "bytes": 2587
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v98_host_deep_helpers_readonly.java",
+      "git_blob_sha": "8f6e772ca5ac693dc795b0a45e8e7d4c0a7d228a",
+      "bytes": 1369
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v99_loader_deep_policy.java",
+      "git_blob_sha": "8384b33b67ce2d3a7252f764743b0b5535961212",
+      "bytes": 2212
+    },
+    {
+      "path": "scripts/ghidra_history/i76_v99_loader_failure_contract.java",
+      "git_blob_sha": "2b8e93541eb6cb9093c8de4f284de54306253d3b",
+      "bytes": 3718
+    },
+    {
+      "path": "scripts/ghidra_history/I76_Vehicle_Damage_Trace_V65.java",
+      "git_blob_sha": "e272607558eec19bad382ee37bc812b897da0599",
+      "bytes": 13997
+    },
+    {
+      "path": "scripts/ghidra_history/I76_Vehicle_DeepPass_V66.java",
+      "git_blob_sha": "bb7587ad079ba8ad33730df9524513ef3011c965",
+      "bytes": 17762
+    },
+    {
+      "path": "scripts/local_history/__pycache__/i76_vehicle_geo_obj_export_v20.cpython-313.pyc",
+      "git_blob_sha": "6171257a24e6af74dfe12663e78fd82c5832f8ea",
+      "bytes": 84068
+    },
+    {
+      "path": "scripts/local_history/__pycache__/i76_vehicle_texture_slot_resolver_v5.cpython-313.pyc",
+      "git_blob_sha": "357b0da0695781f751ea62bbb7f5a84bff60a6d3",
+      "bytes": 58377
+    },
+    {
+      "path": "scripts/local_history/analyze_database_mw2_glyphs_pass.py",
+      "git_blob_sha": "f77d7e17ab44baa851bd5be97d5e91aeebe8001f",
+      "bytes": 16398
+    },
+    {
+      "path": "scripts/local_history/batch_decode.py",
+      "git_blob_sha": "003248048a4311b4812dcee3be150da291dbb821",
+      "bytes": 875
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_apply_shell_surface_palettes_to_110.py",
+      "git_blob_sha": "14cd7b0fa8b7211346045bb54c91c10774aef436",
+      "bytes": 17449
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_build_database_mw2_resource_map_v2.py",
+      "git_blob_sha": "ed5e7d69775bb443a6f7c558225db9d7d72b05b5",
+      "bytes": 23393
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_build_database_mw2_resource_map.py",
+      "git_blob_sha": "3f1a4257be514b3c36b38c2734126a7292f0670e",
+      "bytes": 20295
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_decode_database_mw2_110_images_palette.py",
+      "git_blob_sha": "b050d1cc63d78761ee5653a4448b0f90e9467b38",
+      "bytes": 25266
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_decode_database_mw2_110_images.py",
+      "git_blob_sha": "a64b5ba24feb663ee346ede9c277722b2edd66a4",
+      "bytes": 15697
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_decode_database_mw2_shell_rle_surfaces_v2.py",
+      "git_blob_sha": "1187943e2e2da8d8129e1c87c124fb6d1c62e60d",
+      "bytes": 13146
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_decode_database_mw2_shell_rle_surfaces_v3.py",
+      "git_blob_sha": "ea3150c438928901843a01e66c691d94dcfa69a3",
+      "bytes": 13689
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_decode_database_mw2_shell_rle_surfaces.py",
+      "git_blob_sha": "fee2f31cd236567e496f2771140921190814b029",
+      "bytes": 10154
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_extract_loose_image_palettes.py",
+      "git_blob_sha": "7be98a5a2467dbb4eadaa67b043112ff1930a000",
+      "bytes": 7159
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_generate_win_system_palette_candidates.py",
+      "git_blob_sha": "03478659a96fa8b7c3c73e597ab796dd430ac116",
+      "bytes": 6988
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_reconstruct_database_mw2_shell_screens.py",
+      "git_blob_sha": "fac3a179adc9bb929539225bab5861f1d2a0122c",
+      "bytes": 20430
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_scan_all_shell_surface_palettes_apply_to_110_v2.py",
+      "git_blob_sha": "8744403a55d8a0dce9eba742f21327f1987dac28",
+      "bytes": 29127
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_scan_all_shell_surface_palettes_apply_to_110.py",
+      "git_blob_sha": "c984a46556922fd83055a0a6be8381c9df53c89b",
+      "bytes": 28439
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_scan_database_mw2_palettes_bounded.py",
+      "git_blob_sha": "080505cebc80a2b8de2d2838bcefdc51d2402b1d",
+      "bytes": 15678
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76_scan_database_mw2_palettes.py",
+      "git_blob_sha": "14e28450b2756fbaf28bb326da2ee8539d1f4c6a",
+      "bytes": 14079
+    },
+    {
+      "path": "scripts/local_history/cgpt_i76shell_analyze_semantic_gap_evidence.py",
+      "git_blob_sha": "34bce6b6c0aea7474fc2d33338e82adedbbfc56a",
+      "bytes": 16205
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v1.py",
+      "git_blob_sha": "c279505af93a8778e4d932c6e5b81b202139ddd3",
+      "bytes": 31001
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v10.py",
+      "git_blob_sha": "f33572b1b5a3e0fa51bf8cb817f13fd53f3cfc0b",
+      "bytes": 48488
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v11.py",
+      "git_blob_sha": "617e3ccb00dc3e21219c53fbcf2c9a9ddbacc8f4",
+      "bytes": 50617
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v12.py",
+      "git_blob_sha": "952fd4cb9a4c48a6989b19ddaad008ca1017ec9c",
+      "bytes": 51977
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v13.py",
+      "git_blob_sha": "e67272463f4879d04de56100e6057862bde85b42",
+      "bytes": 53652
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v2.py",
+      "git_blob_sha": "3e39fb18430cdffd12512a1383979a52bc9a8550",
+      "bytes": 36133
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v3.py",
+      "git_blob_sha": "8f3b84bed82b439e65e51468d17bce67fb4213c2",
+      "bytes": 38403
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v4.py",
+      "git_blob_sha": "9a6fc9db0c867aca9a890030c1b0934fbf26703a",
+      "bytes": 39018
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v5.py",
+      "git_blob_sha": "77f08a5aa0a3be83068e1f17edd0ad15b1b1e241",
+      "bytes": 39067
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v6.py",
+      "git_blob_sha": "3f6c022e80f63ffe97847906b76ac1ff66e64d9a",
+      "bytes": 39466
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v7.py",
+      "git_blob_sha": "4fff7417f59a7a909e802538d4a83d33c614f7cf",
+      "bytes": 42360
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v8.py",
+      "git_blob_sha": "cb53a7918a5815452d7130c171fa7e93e88ea0e7",
+      "bytes": 42746
+    },
+    {
+      "path": "scripts/local_history/i76_binary_geo_modeller_v9.py",
+      "git_blob_sha": "e327acdb0de4c1415dab3b919f427d4c1db037a7",
+      "bytes": 48210
+    },
+    {
+      "path": "scripts/local_history/i76_black_plane_probe_v1.py",
+      "git_blob_sha": "f3b49c51248dab7ea7f93c06822f89f60ad8d658",
+      "bytes": 10764
+    },
+    {
+      "path": "scripts/local_history/i76_blender_import_level_v1.py",
+      "git_blob_sha": "eb0dcb8bbe126889a1cd4e065e6912c9b4b525ff",
+      "bytes": 7681
+    },
+    {
+      "path": "scripts/local_history/i76_blender_import_vehicle_grid_v1.py",
+      "git_blob_sha": "9de68c773db2bb01e1f94e92a44b56a9b40cd36b",
+      "bytes": 13475
+    },
+    {
+      "path": "scripts/local_history/i76_blender_import_vehicle_grid_v2.py",
+      "git_blob_sha": "9f326fe034439d28b9fcbbef03c3f1de22cbfcd9",
+      "bytes": 14489
+    },
+    {
+      "path": "scripts/local_history/i76_compare_level_reconstruction_v8_runs_v1.py",
+      "git_blob_sha": "6aa56988269c245f0a4317074960638068c5f897",
+      "bytes": 26196
+    },
+    {
+      "path": "scripts/local_history/i76_extract_game_palette_v1.py",
+      "git_blob_sha": "f70a1f420970142b1944e67b7b26a295c9682972",
+      "bytes": 5733
+    },
+    {
+      "path": "scripts/local_history/i76_find_runtime_missions.py",
+      "git_blob_sha": "3f4bcc26b42e21309b625c5ecff6982429cfb2cf",
+      "bytes": 9038
+    },
+    {
+      "path": "scripts/local_history/i76_geometry_reconstruction_corpus_probe_v4.py",
+      "git_blob_sha": "ab8eceeb2d4b4c1eb743a41f1163d0858b0213fc",
+      "bytes": 14114
+    },
+    {
+      "path": "scripts/local_history/i76_geometry_reconstruction_corpus_probe_v5.py",
+      "git_blob_sha": "d5fb02932963869e78e7eb32236277c0ab444669",
+      "bytes": 18666
+    },
+    {
+      "path": "scripts/local_history/i76_geometry_reconstruction_corpus_probe_v6.py",
+      "git_blob_sha": "e99a1b80bf86d42b1b0dc6812692345d93e54ea6",
+      "bytes": 20586
+    },
+    {
+      "path": "scripts/local_history/i76_geometry_reconstruction_corpus_probe_v7.py",
+      "git_blob_sha": "199ff0aa4eaebf06dd5e1340f532c28d75b1d989",
+      "bytes": 11097
+    },
+    {
+      "path": "scripts/local_history/i76_level_blender_export_open76_v4.py",
+      "git_blob_sha": "4610be121c2b3b1417a147b2b1a543f7003f247a",
+      "bytes": 15129
+    },
+    {
+      "path": "scripts/local_history/i76_level_blender_export_open76_v5.py",
+      "git_blob_sha": "5c775e7e1489d7e64f2c34196ca57891a5850f17",
+      "bytes": 15381
+    },
+    {
+      "path": "scripts/local_history/i76_level_blender_export_open76_v6.py",
+      "git_blob_sha": "78bc9b78eadb51ad843a495c38f4a80d08afd6b7",
+      "bytes": 18729
+    },
+    {
+      "path": "scripts/local_history/i76_level_blender_export_open76_v7.py",
+      "git_blob_sha": "0d7222b7926697c063dded10f6047e0391c44902",
+      "bytes": 19896
+    },
+    {
+      "path": "scripts/local_history/i76_level_blender_export_v1.py",
+      "git_blob_sha": "cd9761280134498b165055ebd6a90444a5c16f39",
+      "bytes": 14428
+    },
+    {
+      "path": "scripts/local_history/i76_level_blender_export_v2.py",
+      "git_blob_sha": "09fbac20f1239ad20e62c692717f505a95799ff3",
+      "bytes": 17034
+    },
+    {
+      "path": "scripts/local_history/i76_level_bwd2_parser_v1.py",
+      "git_blob_sha": "14441c607bbc844ef490ba96a4acc1aeb32d052b",
+      "bytes": 6896
+    },
+    {
+      "path": "scripts/local_history/i76_level_config_corpus_probe_v1.py",
+      "git_blob_sha": "ff084b592259ff5caf46e7e8a05ec7219cdf15b4",
+      "bytes": 16142
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v1.py",
+      "git_blob_sha": "f6154d8f6576234cf646b05909f0df6cc05cb806",
+      "bytes": 38139
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v10.py",
+      "git_blob_sha": "5c30b4f9de84cb2542999fc6131c8f25eb5a55ab",
+      "bytes": 66658
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v11.py",
+      "git_blob_sha": "db90f99f54035de2bfb22d4c6841acd289935d16",
+      "bytes": 66733
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v12.py",
+      "git_blob_sha": "e5b02f2f885d0e0a537d9ccde9b6395de6890735",
+      "bytes": 66749
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v13.py",
+      "git_blob_sha": "e89543a335fca6b3bb2d391dcc7774c59caa9135",
+      "bytes": 70695
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v14.py",
+      "git_blob_sha": "f48bed030b42bed3ea0f7f52363dde36e834e537",
+      "bytes": 88560
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v15.py",
+      "git_blob_sha": "a236015d5439c3f45609537ee7d135609e8f97bd",
+      "bytes": 100121
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v16.py",
+      "git_blob_sha": "6b6e6c2c166b09117b7fdd15e45130502013771d",
+      "bytes": 106037
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v17.py",
+      "git_blob_sha": "3eecad53f3eebef1c9e875f342ce4bd12a5653e6",
+      "bytes": 111122
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v18.py",
+      "git_blob_sha": "e96d35f12347e76f1df296bc1f37804c23189c0e",
+      "bytes": 127503
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v19.py",
+      "git_blob_sha": "592207e34c1e81e7f1f0a7589525565b29f72c14",
+      "bytes": 129574
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v2.py",
+      "git_blob_sha": "fe64c9b6de109b2500e994a7afcaf56a22044a7a",
+      "bytes": 39502
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v20.py",
+      "git_blob_sha": "49d915724e1b76d58785ba2a5d32fa2ea3d2bb0d",
+      "bytes": 139756
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v21.py",
+      "git_blob_sha": "897ea1ee0aa5503a73d4ad033784494cc7a3964e",
+      "bytes": 141330
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v22.py",
+      "git_blob_sha": "40118a920876d22e749e8fb4f95302bb9255f152",
+      "bytes": 147955
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v23.py",
+      "git_blob_sha": "8c623e5e4cf32e2d490bc3dd3d3e3ff4cffe790f",
+      "bytes": 156971
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v24.py",
+      "git_blob_sha": "8c201fa4b9c4ecc83d3d682086fce0157fec8cae",
+      "bytes": 163299
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v25.py",
+      "git_blob_sha": "70fc8a6c4e3eb75d2d8603545037c49c6bcc7d58",
+      "bytes": 175283
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v26.py",
+      "git_blob_sha": "381965f7171dc0fe5902f0dc10faa2c4e9f47e74",
+      "bytes": 182792
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v27.py",
+      "git_blob_sha": "7c5452151ffd69386b37b8a52d249cf7972c45aa",
+      "bytes": 188376
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v28.py",
+      "git_blob_sha": "ab3621c0a9f74be51f5d454b5e0c7e092d808ab5",
+      "bytes": 196763
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v29.py",
+      "git_blob_sha": "fac15e72d35ebbf6e3894d9ca7a0bbb40046fe77",
+      "bytes": 198053
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v3.py",
+      "git_blob_sha": "dc92cfef00cac79e71ace47a49a6928778850e0a",
+      "bytes": 40290
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v31.py",
+      "git_blob_sha": "701b50c7059e0cd87e390ce97e77090a48b5a8ac",
+      "bytes": 211595
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v32.py",
+      "git_blob_sha": "7f2d5495670a551c2b7ab9faaa32a7d9149969e7",
+      "bytes": 219203
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v33.py",
+      "git_blob_sha": "885a9c02fe3d1da283a05f2c4f6b4516abfeb535",
+      "bytes": 221988
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v35.py",
+      "git_blob_sha": "a3b883e8269ef6e2b654322470f76f26a713c747",
+      "bytes": 224111
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v36.py",
+      "git_blob_sha": "b13ad4ac4049fa67baef2c599c3d171d5bcc0497",
+      "bytes": 228699
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v37.py",
+      "git_blob_sha": "9b5feb676fb142ad751b8a3f94560da8c1ab704a",
+      "bytes": 240067
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v38.py",
+      "git_blob_sha": "332caf7b0f03a8d756861d96bf54c2092d89edef",
+      "bytes": 250340
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v39.py",
+      "git_blob_sha": "b03c09df6e6e236c10d0a008f351d6c9acf2e30f",
+      "bytes": 254727
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v4.py",
+      "git_blob_sha": "5cacaa2c1592b9fa5ec1ed4c9e0fcb98745d4e48",
+      "bytes": 42117
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v40.py",
+      "git_blob_sha": "7f3c1a993cf78da99b802309a33856043aa76b7a",
+      "bytes": 264693
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v41.py",
+      "git_blob_sha": "cb3f5508c58b7480054d25c9efa9d200b74564c8",
+      "bytes": 265218
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v42.py",
+      "git_blob_sha": "75cd012109923bd41f0f7bd87a93dfddef51c5df",
+      "bytes": 267664
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v43.py",
+      "git_blob_sha": "eb6e3c135b8a8f8ed57380c038f2da43aab08820",
+      "bytes": 275200
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v44.py",
+      "git_blob_sha": "a878f65ffdfb24e78ffa30e8d81fa7ffa43fc5a8",
+      "bytes": 275836
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v45.py",
+      "git_blob_sha": "75aaccca064fd3a290613552d381bcba42542875",
+      "bytes": 294098
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v46.py",
+      "git_blob_sha": "47f91117dc8c0afd8a6355e4b1bb3f8a718dd636",
+      "bytes": 302600
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v47.py",
+      "git_blob_sha": "6d3237310650954b5599a4c7c6b837f1d8cd0a7e",
+      "bytes": 305498
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v5.py",
+      "git_blob_sha": "d84b5c3506fc35c1261a5017dc79aad9fc401a6d",
+      "bytes": 30011
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v6.py",
+      "git_blob_sha": "b3a5c4ba7a2e7cdbf39148ac5deaefc824398798",
+      "bytes": 33349
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v8.py",
+      "git_blob_sha": "7135ab15e9f4ca2de07c7491e39781751ad7178a",
+      "bytes": 54799
+    },
+    {
+      "path": "scripts/local_history/i76_level_reconstruction_export_v9.py",
+      "git_blob_sha": "9df2625f09204603352709c4bdb62224d55de2b6",
+      "bytes": 60636
+    },
+    {
+      "path": "scripts/local_history/i76_level_record_semantic_probe_v3.py",
+      "git_blob_sha": "6658337f16098d4107abaa1e310a71f1793bbbb8",
+      "bytes": 12389
+    },
+    {
+      "path": "scripts/local_history/i76_level_record_shape_probe_v2.py",
+      "git_blob_sha": "09fb766572fb1593018052823caeeffc80ffabb6",
+      "bytes": 14152
+    },
+    {
+      "path": "scripts/local_history/i76_lzo1y_decompress_v1.py",
+      "git_blob_sha": "01e72015b81a8e8ca1cf44094c79bc400e0dd0a2",
+      "bytes": 10469
+    },
+    {
+      "path": "scripts/local_history/i76_obj_open76_parity_rewrite_v1.py",
+      "git_blob_sha": "6bf7557bde7b00ca8b15ab7d65744c255fde28aa",
+      "bytes": 4223
+    },
+    {
+      "path": "scripts/local_history/i76_object_class_resource_policy_probe_v14 (1).py",
+      "git_blob_sha": "1a7847a19348c52737cb4cb04811df7a6afbdeb1",
+      "bytes": 9117
+    },
+    {
+      "path": "scripts/local_history/i76_object_class_resource_policy_probe_v14.py",
+      "git_blob_sha": "1a7847a19348c52737cb4cb04811df7a6afbdeb1",
+      "bytes": 9117
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v1 (1).py",
+      "git_blob_sha": "485027a1124520c0d9618bd3cbd79e02884f1d04",
+      "bytes": 10223
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v1.py",
+      "git_blob_sha": "485027a1124520c0d9618bd3cbd79e02884f1d04",
+      "bytes": 10223
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v2 (1).py",
+      "git_blob_sha": "48fd0d8dd4964956a135347bdb8a109b3625105f",
+      "bytes": 12763
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v2.py",
+      "git_blob_sha": "48fd0d8dd4964956a135347bdb8a109b3625105f",
+      "bytes": 12763
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v3 (1).py",
+      "git_blob_sha": "7b4deb8d583d6816e9737e546b2669435394cc4e",
+      "bytes": 9535
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v3.py",
+      "git_blob_sha": "7b4deb8d583d6816e9737e546b2669435394cc4e",
+      "bytes": 9535
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v4_binary_truth (1).py",
+      "git_blob_sha": "c9196e43affe909edeb499adc53ca8c138d89716",
+      "bytes": 14410
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v4_binary_truth.py",
+      "git_blob_sha": "c9196e43affe909edeb499adc53ca8c138d89716",
+      "bytes": 14410
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v5_binary_truth (1).py",
+      "git_blob_sha": "1cc5cd6f8cf8d46592f149fd3d0ca17a5303f8c8",
+      "bytes": 13068
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v5_binary_truth.py",
+      "git_blob_sha": "1cc5cd6f8cf8d46592f149fd3d0ca17a5303f8c8",
+      "bytes": 13068
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v6_embedded_scan (1).py",
+      "git_blob_sha": "0be8ebd3711044fbc7f09ed053704d79550ce693",
+      "bytes": 12597
+    },
+    {
+      "path": "scripts/local_history/i76_object_geometry_resolution_probe_v6_embedded_scan.py",
+      "git_blob_sha": "0be8ebd3711044fbc7f09ed053704d79550ce693",
+      "bytes": 12597
+    },
+    {
+      "path": "scripts/local_history/i76_object_resource_reconciliation_probe_v7 (1).py",
+      "git_blob_sha": "4a1a5ed94d5ac457d13caeb44d81e45d45099bc9",
+      "bytes": 8125
+    },
+    {
+      "path": "scripts/local_history/i76_object_resource_reconciliation_probe_v7.py",
+      "git_blob_sha": "4a1a5ed94d5ac457d13caeb44d81e45d45099bc9",
+      "bytes": 8125
+    },
+    {
+      "path": "scripts/local_history/i76_palette_census_v1.py",
+      "git_blob_sha": "43a46c32ebca76e53848a74d6cfa48ef8839a3c4",
+      "bytes": 12192
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v10_pix_index (1).py",
+      "git_blob_sha": "b2ca3ccbf5050893a34000dd0c7d7a395f89400d",
+      "bytes": 21180
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v10_pix_index.py",
+      "git_blob_sha": "b2ca3ccbf5050893a34000dd0c7d7a395f89400d",
+      "bytes": 21180
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v12_root_vcf_audit (1).py",
+      "git_blob_sha": "c7310c3710a48e8d5b125fcc9e11d1fcd2e52ed6",
+      "bytes": 13330
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v12_root_vcf_audit.py",
+      "git_blob_sha": "c7310c3710a48e8d5b125fcc9e11d1fcd2e52ed6",
+      "bytes": 13330
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v13_vcf_inventory (1).py",
+      "git_blob_sha": "2e1eb0b54ee4c92df702793ed39bbe47c895a8ef",
+      "bytes": 9265
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v13_vcf_inventory.py",
+      "git_blob_sha": "2e1eb0b54ee4c92df702793ed39bbe47c895a8ef",
+      "bytes": 9265
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v8 (1).py",
+      "git_blob_sha": "b284878e528412ba3b0dcf1ac2fcc66fae32c72d",
+      "bytes": 13589
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v8.py",
+      "git_blob_sha": "b284878e528412ba3b0dcf1ac2fcc66fae32c72d",
+      "bytes": 13589
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v9 (1).py",
+      "git_blob_sha": "f2655b4130ba729a4fd236ce344298312b8827c0",
+      "bytes": 15940
+    },
+    {
+      "path": "scripts/local_history/i76_resource_acquisition_index_probe_v9.py",
+      "git_blob_sha": "f2655b4130ba729a4fd236ce344298312b8827c0",
+      "bytes": 15940
+    },
+    {
+      "path": "scripts/local_history/i76_runtime_adaptive_terrain_export_v1.py",
+      "git_blob_sha": "8c6be151ff2816874f89e3e470baaf9b9db703f1",
+      "bytes": 28758
+    },
+    {
+      "path": "scripts/local_history/i76_runtime_adaptive_terrain_export_v2.py",
+      "git_blob_sha": "8c1d608927c9ff950ac2a7d13ecad0384be2f725",
+      "bytes": 31734
+    },
+    {
+      "path": "scripts/local_history/i76_runtime_adaptive_terrain_export_v3.py",
+      "git_blob_sha": "de5cce585ee23e6e29117fc82a83ced689f7d135",
+      "bytes": 33562
+    },
+    {
+      "path": "scripts/local_history/i76_runtime_adaptive_terrain_export_v4.py",
+      "git_blob_sha": "8be5ebaf4aa393f0e6204ab7ae22085e2bca043e",
+      "bytes": 34870
+    },
+    {
+      "path": "scripts/local_history/i76_runtime_dense_terrain_export_v5.py",
+      "git_blob_sha": "d440957f080b94d27492d33e037083b2c2d0932d",
+      "bytes": 24955
+    },
+    {
+      "path": "scripts/local_history/i76_sdf_geo_resolution_probe_v4 (1).py",
+      "git_blob_sha": "6d606ee48a443c4f0a40de0662a4b777557663ac",
+      "bytes": 15145
+    },
+    {
+      "path": "scripts/local_history/i76_sdf_geo_resolution_probe_v4.py",
+      "git_blob_sha": "6d606ee48a443c4f0a40de0662a4b777557663ac",
+      "bytes": 15145
+    },
+    {
+      "path": "scripts/local_history/i76_sdf_geo_resolution_probe_v5_open76 (1).py",
+      "git_blob_sha": "97d18f95fc408a4a4ccc72eede27ba26116c183d",
+      "bytes": 17476
+    },
+    {
+      "path": "scripts/local_history/i76_sdf_geo_resolution_probe_v5_open76.py",
+      "git_blob_sha": "97d18f95fc408a4a4ccc72eede27ba26116c183d",
+      "bytes": 17476
+    },
+    {
+      "path": "scripts/local_history/i76_select_palette_candidate_v1.py",
+      "git_blob_sha": "1a03ad6cfedce3ea44ad56ce55355c6567386268",
+      "bytes": 5243
+    },
+    {
+      "path": "scripts/local_history/i76_sobj_shadow_geometry_probe_v1.py",
+      "git_blob_sha": "05cab3b9848c78d21d45f86a1c8e2a7698662c5c",
+      "bytes": 6498
+    },
+    {
+      "path": "scripts/local_history/i76_untextured_material_probe_v1.py",
+      "git_blob_sha": "5b492fb907797d4986f17d636b7df35d9f211ef6",
+      "bytes": 7814
+    },
+    {
+      "path": "scripts/local_history/i76_uv_mapping_probe_v1.py",
+      "git_blob_sha": "ed785c59d0d521d19cdd912d99921816648a010c",
+      "bytes": 13019
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_export_all_damage_states_v1.py",
+      "git_blob_sha": "fb827b862c8a2a70dce699d0e4316e4fdc52fc25",
+      "bytes": 18543
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_export_all_damage_states_v2.py",
+      "git_blob_sha": "77da3e913aa31d266440052659e842ef61f7095f",
+      "bytes": 20378
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v10.py",
+      "git_blob_sha": "0917ca724cf32872edb330aca8e9289d315e1bf0",
+      "bytes": 47784
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v12.py",
+      "git_blob_sha": "594d647b393b4af20f2f042563f607f8a8564300",
+      "bytes": 53317
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v13.py",
+      "git_blob_sha": "459df35f38e5ac340dd0eb688ba8a7d14d300986",
+      "bytes": 56844
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v14.py",
+      "git_blob_sha": "43965ac556eb217c28232bbc3a366ff5c18fa639",
+      "bytes": 58218
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v15.py",
+      "git_blob_sha": "df176dbe5d5106cca7d1051b6a719cd02a3098c8",
+      "bytes": 58242
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v16.py",
+      "git_blob_sha": "4f7df7d50234bf33881f6a2c9b3c74b4d8408e70",
+      "bytes": 60773
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v17.py",
+      "git_blob_sha": "ebaa66267cd56724886fd4603294bc1c93b166a0",
+      "bytes": 62877
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v18.py",
+      "git_blob_sha": "9ffafe32a3bd59448647db0728f4a2e834486377",
+      "bytes": 67175
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v19.py",
+      "git_blob_sha": "c114481a8cc29217529b0e57d3f5df3a7b805641",
+      "bytes": 70326
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v20.py",
+      "git_blob_sha": "f72b651e48a42be306c315f1cd39ea192776d1db",
+      "bytes": 72267
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v3.py",
+      "git_blob_sha": "c28cb76e9c5484da72c5e0722290913ed3093f88",
+      "bytes": 32750
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v4.py",
+      "git_blob_sha": "544646cfbd3a045644e1015605864df7d9b29838",
+      "bytes": 34043
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v5.py",
+      "git_blob_sha": "03b3c06947fbc603498f5524325a7e1cfa8d60e2",
+      "bytes": 34554
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v7.py",
+      "git_blob_sha": "89ab228a99e4993a401b90b5a598104785e6beba",
+      "bytes": 39571
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v8.py",
+      "git_blob_sha": "6933c1d073a4b00513b1ee8e6aee9ce1bb4102e2",
+      "bytes": 43564
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_geo_obj_export_v9.py",
+      "git_blob_sha": "1dd2be640d1a90c2afd2dd41e72f9c99258ce2e7",
+      "bytes": 45444
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_palette_candidate_probe_v1.py",
+      "git_blob_sha": "527a95708c27305c11f89f1f121daf853bc6c286",
+      "bytes": 18087
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_palette_candidate_probe_v2.py",
+      "git_blob_sha": "533832611c8bb251063a2d8e4ef1574931253cf6",
+      "bytes": 19858
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_palette_candidate_probe_v4.py",
+      "git_blob_sha": "43c1a9ad05eb74dc09867b5d64e87c6b0b817ecd",
+      "bytes": 20945
+    },
+    {
+      "path": "scripts/local_history/i76_vehicle_texture_slot_resolver_v5.py",
+      "git_blob_sha": "da4e45bd08ed4fc65dc96631b8ac5da6f2ad944d",
+      "bytes": 41034
+    },
+    {
+      "path": "scripts/local_history/i76_vqm_decode_variant_probe_v1.py",
+      "git_blob_sha": "e10852d67cc7fbaf86f8072e9eaad11d093b877e",
+      "bytes": 9149
+    },
+    {
+      "path": "scripts/local_history/i76_zfs_extract.py",
+      "git_blob_sha": "14aa21f8d56f953e8bd9937b8a0e0088db527ab7",
+      "bytes": 17888
+    },
+    {
+      "path": "scripts/local_history/i76_zfs_inmemory_asset_graph_reports_v1.py",
+      "git_blob_sha": "be046f89a459f36cc221e5fe0355564e19a41237",
+      "bytes": 23725
+    },
+    {
+      "path": "scripts/local_history/i76_zfs_level_extract_and_preview_v1.py",
+      "git_blob_sha": "dbbdb0241790aa7acb93d5960ef74c076b3ca3df",
+      "bytes": 10432
+    }
+  ]
+}
