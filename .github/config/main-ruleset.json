@@ -22,15 +22,17 @@
       "type": "pull_request",
       "parameters": {
         "dismiss_stale_reviews_on_push": true,
-        "require_code_owner_review": true,
-        "require_last_push_approval": true,
-        "required_approving_review_count": 1,
+        "require_code_owner_review": false,
+        "require_last_push_approval": false,
+        "required_approving_review_count": 0,
         "required_review_thread_resolution": true,
         "allowed_merge_methods": [
           "merge",
           "squash",
           "rebase"
-        ]
+        ],
+        "required_reviewers": [],
+        "require_extra_approval_for_unattributed_changes": true
       }
     },
     {
@@ -41,7 +43,8 @@
             "context": "integrity"
           }
         ],
-        "strict_required_status_checks_policy": true
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false
       }
     }
   ]

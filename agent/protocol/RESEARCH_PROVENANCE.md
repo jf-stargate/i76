@@ -1,6 +1,6 @@
 # Research evidence format v1.1.0
 
-This is an **additive record-schema revision**. The normative repository publication protocol stays at **1.0.0**. Existing `manifest.json` and `findings.json` files declaring `schema_version: 1.0.0` remain valid and immutable, and continue to be checked with the original schemas. The new v1.1.0 schemas reside in `agent/protocol/schemas/v1.1.0/`.
+This is an **additive record-schema revision**. The independently versioned publication protocol is **1.0.1** (existing records may retain their original protocol_version). Existing `manifest.json` and `findings.json` files declaring `schema_version: 1.0.0` remain valid and immutable, and continue to be checked with the original schemas. The new v1.1.0 schemas reside in `agent/protocol/schemas/v1.1.0/`.
 
 ## Research grade
 

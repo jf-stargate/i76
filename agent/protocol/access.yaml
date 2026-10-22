@@ -1,21 +1,23 @@
-schema_version: "1.0.0"
+schema_version: "1.0.1"
 repository: "jf-stargate/i76"
 default_branch: "main"
 default: "deny"
 source_of_authority: "default-branch-pinned-sha"
 policy_semantics:
   propose: "Permission to create a branch/PR containing proposed changes, not permission to merge."
-  promote: "Permission to change accepted state after validations and independent approval."
-  review: "A maintainer distinct from the publishing agent or its credentials."
+  promote: "Permission to change accepted state after validation and an explicit manual maintainer decision."
+  review: "Human maintainer inspects and merges the PR manually; no separate identity or GitHub approving review is required."
 publication:
   direct_main_push: false
   force_push: false
   all_changes_require_pr: true
   require_current_base_revalidation: true
   require_trusted_ci: true
-  require_separate_reviewer_for_authoritative_changes: true
+  require_separate_reviewer_for_authoritative_changes: false
   unknown_or_unenforced_protection: "proposal-only"
   autonomous_run_merge: false
+  required_formal_approvals: 0
+  manual_maintainer_decision_required: true
   baseline_change_requires_explicit_maintainer: true
   governance_change_requires_explicit_maintainer: true
 principal_rules:
