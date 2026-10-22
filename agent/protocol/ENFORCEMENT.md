@@ -1,15 +1,17 @@
-# Enforcement deployment and verification
+# Manual publication enforcement — protocol v1.0.1
 
-**Repository bootstrap does not create effective GitHub permissions.** As of the drafting session, the GitHub connector could not verify branch protection; enforcement status is UNKNOWN.
+The versioned access policy is trusted only when read from a pinned accepted `main` SHA. The GitHub ruleset must be independently checked through Settings or the API. On 2026-10-22, ruleset [25664125](https://github.com/jf-stargate/i76/rules/25664125) was verified active for `main` with a required PR and strict `integrity` check, **zero formal approving reviews**, no mandatory CODEOWNERS or last-push approval, and no bypass actors.
 
-Before any agent may claim enforced publication policy:
-1. Configure main-branch rules requiring PRs, forbidding force pushes/deletion and limiting bypasses.
-2. Use an agent publishing identity distinct from the maintainer identity; an administrator token used by an agent does not count as independent review.
-3. Require CODEOWNERS approval for `manual/`, `agent/protocol/`, `agent/baselines/`, `agent/promotions/`, `.github/`, and `AGENTS.md`.
-4. Require trusted validation from the protected base SHA, not validator code supplied only by an untrusted PR.
-5. Disallow edits/deletion of accepted research runs and direct main updates.
-6. Dismiss stale approvals and rerun checks when the PR changes or the base advances.
-7. Test negative permissions explicitly with agent credentials: direct push must fail, and governance changes must not merge without an independent maintainer.
-8. Record verified ruleset identifiers, date, accepted maintainer decision and test evidence in a separate reviewed deployment record.
+## Operating contract
 
-Until all checks are confirmed: proposal-only, no autonomous merges.
+- Agents submit candidate branches and PRs; they never autonomously merge or directly update `main`.
+- GitHub CI must pass for the exact candidate head on its current base; the human maintainer explicitly inspects and merges.
+- Governance, canonical references, promotions and baselines need deliberate maintainer acceptance. A green CI check verifies format, not research truth.
+- Existing merged runs are immutable; reject cross-run modification, force pushes, proprietary binaries and secrets.
+- For fewer than roughly ten supervised conversations, no separate identity, lock service or automated publication broker is needed.
+
+## Evidence
+
+See [enforcement observations](../../manual/roadmap/ENFORCEMENT_STATUS.md). Passing and failing live CI test PRs have been recorded. Empirical direct-push rejection and real canonical technical promotion remain untested.
+
+The committed `.github/config/main-ruleset.json` is a reference copy, not a GitHub configuration action. **Do not import it a second time** while the live ruleset exists.

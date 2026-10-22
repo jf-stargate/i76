@@ -1,20 +1,21 @@
-# I76 publication enforcement — verified state
+# I76 publication enforcement — dated verification
 
-**As of 2026-10-22:** the repository has an active main-branch ruleset and a successful live run-integrity check. This is **partial verification**, not proof of credential-independent approval or of all negative permissions.
+**Verified 2026-10-22:** GitHub ruleset [25664125](https://github.com/jf-stargate/i76/rules/25664125) is active for `refs/heads/main`. It requires PRs, strict successful `integrity` CI, and resolved review conversations. It requires **zero formal approving reviews**, no mandatory code-owner/last-push approval, and disallows deletion and non-fast-forward updates. GitHub reports no bypass actors.
 
-| Control | Evidence | Status |
+| Test or control | Evidence | Result |
 |---|---|---|
-| Repository branch protection | [GitHub ruleset 25664125](https://github.com/jf-stargate/i76/rules/25664125), applies to `refs/heads/main` | Active, confirmed via GitHub API |
-| Pull request and code-owner review | Ruleset 25664125: one approval, code-owner review, stale-review dismissal and last-push approval | Configured; approval/merge not exercised |
-| `integrity` required check | Ruleset 25664125 | Configured |
-| Trusted candidate validation | [PR #5](https://github.com/jf-stargate/i76/pull/5) head `e87571a8927c21f428082eaf664968e017bddada`; [successful job](https://github.com/jf-stargate/i76/actions/runs/39835070763/job/120021112122) | Verified: 13 unit tests and a valid three-file run |
-| Main branch unchanged by onboarding test | Commit `0aac01908270728f01258a98b56107073ab038d9` at time of check | Verified |
-| Direct main push denied | Restricted credential negative test | Not tested |
-| Invalid candidate rejected by live CI | Separate intentionally invalid PR | Test requested; record exact result after observing |
-| Two concurrent runs from same base | Separate branch PRs | Test requested; record results after observing |
-| Independent publisher/reviewer identity | Current connected account is `jf-stargate` | Not established; manual supervision accepted for this experiment |
-| Promotion of authoritative research | Separate review and reconciliation | Not tested |
+| Ruleset configured | [Ruleset 25664125](https://github.com/jf-stargate/i76/rules/25664125) | Active and protecting `main` |
+| CI required on main | Exact `integrity` context, strict check | Configured |
+| Independent approving review | `required_approving_review_count: 0` | Not required, by design |
+| Valid cold-start run | [PR #5](https://github.com/jf-stargate/i76/pull/5), [passing job](https://github.com/jf-stargate/i76/actions/runs/39835070763/job/120021112122) | Passed |
+| Concurrent second run | [PR #7](https://github.com/jf-stargate/i76/pull/7), based on same starting main as #5 | Passed independently |
+| Bad branch ownership | [PR #6](https://github.com/jf-stargate/i76/pull/6) | Live CI rejected |
+| Missing manifest track | [PR #10](https://github.com/jf-stargate/i76/pull/10) | Live CI rejected |
+| Manual merge under zero-approval ruleset | [PR #8](https://github.com/jf-stargate/i76/pull/8), [PR #9](https://github.com/jf-stargate/i76/pull/9) | Merged by maintainer |
+| Research record schema v1.1.0 | [PR #11](https://github.com/jf-stargate/i76/pull/11), [passing job](https://github.com/jf-stargate/i76/actions/runs/39847085088/job/120063095001) | Passed for checksum-backed shared run |
+| Denied direct push | Restricted-credential attempt | Not tested |
+| Promotion of real reversing findings | Separate technical reconciliation | Not tested |
 
-This file is a dated evidence record, not an automatically synchronized indicator. Subsequent agents **must inspect live rulesets and CI state** at startup and must not infer current enforcement solely from this document.
+**Operational contract:** no more than roughly ten manually supervised conversations, isolated run branches, immutable merged evidence, required CI, explicit human merges, no central locks and no autonomous publication. A single GitHub account may publish and accept changes; independent credential separation is not part of this experiment.
 
-**Operational scope:** approximately ten or fewer manually supervised conversations, uniquely named per-run branches, no central lock server and no autonomous merges. Existing `ref/`, `scripts/`, and `snapshot/` trees remain in place. Passing `integrity` establishes structural integrity, not truth or publication approval.
+This is a dated evidence ledger, **not live GitHub state**. Every new conversation must read current accepted policy at pinned main SHA, inspect actual rulesets and checks, and distinguish a passing format validator from evidence quality.

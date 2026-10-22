@@ -1,20 +1,16 @@
-# Applying main-branch protection
+# Verify or recover I76 main-branch protection
 
-**Do not apply this ruleset before the trusted CI PR has been reviewed and merged and a first green integrity check is observable.** Otherwise the required check may be unavailable and merges may be blocked.
+The active ruleset is already installed as [25664125](https://github.com/jf-stargate/i76/rules/25664125). The versioned `.github/config/main-ruleset.json` is a desired-state reference only. **Do not import it again**, which could create duplicate and conflicting rules.
 
-The proposed ruleset is `/.github/config/main-ruleset.json`. Its enforcement field is `active`; applying the file directly activates protection immediately. GitHub's authenticated admin permissions are required.
+For this small manually supervised experiment verify GitHub **Settings → Rules → Rulesets** reports:
 
-After CI is merged, verify that its GitHub Actions job publishes a check named `integrity` on the test-run PR. If GitHub uses a different actual check context, update the ruleset template before submitting it.
+- Branch ruleset active for `refs/heads/main`
+- Pull requests required, **0 required approving reviews**
+- Mandatory CODEOWNERS and last-push approval **off**
+- Required review conversations resolved
+- `integrity` required with strict up-to-date checks
+- Deletion and non-fast-forward updates blocked; no bypass actors
 
-From a trusted maintainer machine with the GitHub CLI already authenticated as a repository admin:
+If this ruleset must be recreated, first verify a trusted GitHub Actions `integrity` check runs successfully; then create a replacement from the current reference JSON using administrative permissions. Update the dated enforcement record with the new ID and live test results. Merely committing a JSON file does not configure GitHub.
 
-```bash
-gh api -X POST repos/jf-stargate/i76/rulesets --input .github/config/main-ruleset.json
-gh api repos/jf-stargate/i76/rulesets
-```
-
-Verify it requires pull requests, code-owner approval, one independent approval, review dismissal for new pushes, strict integrity check, and prevents deletion/non-fast-forward. Never grant broad agent bypasses. GitHub CODEOWNERS and required review are not useful for separation if agents share the maintainer's identity: create distinct agent-publisher credentials or keep all publication manual.
-
-Then exercise restricted-identity negative tests: direct push to main must fail, an unreviewed PR must not merge, a malformed candidate must fail `integrity`, and a governance change must require independent maintainer approval. Record actual rule ID and evidence links in `manual/roadmap/ENFORCEMENT_STATUS.md` through a reviewed PR.
-
-**This file is a configuration proposal, not evidence that a ruleset is installed.**
+No additional account is required for manual maintainer review and merge. This intentionally does **not** provide independent credential separation for unattended agents.

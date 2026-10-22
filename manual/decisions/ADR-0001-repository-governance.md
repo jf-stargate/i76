@@ -1,6 +1,6 @@
 # ADR-0001 — Repository knowledge split and concurrent-agent publication
 
-**Status:** Proposed, **not yet accepted or effective**  
+**Status:** Accepted via PR #1; original independent-review conditions superseded by ADR-0003  
 **Protocol version:** 1.0.0  
 **Repository baseline:** `78168dfcefb146b1c7b95e5e7571100c8458d536`
 
@@ -25,4 +25,4 @@ Benefits: source provenance survives chat resets; contributions are isolated and
 
 ## Adoption criteria
 
-Explicit maintainer approval of this ADR and access matrix, bootstrap commit, protected `main` rules, required trusted CI checks, reviewer identity separation, CODEOWNERS review, and a negative permission test of the agent's credentials. Record verified enforcement status in an approved deployment decision. Until then, **proposal-only**.
+Explicit maintainer approval of this ADR and access matrix, bootstrap commit, protected `main` rules, required trusted CI checks, reviewer identity separation, CODEOWNERS review, and a negative permission test of the agent's credentials. These were the original proposed conditions, **superseded for the small manual experiment by ADR-0003**. Consult the accepted policy and live ruleset for current requirements.

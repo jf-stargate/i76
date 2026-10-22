@@ -10,7 +10,10 @@ def policy():
     p=yaml.safe_load((P/"access.yaml").read_text())
     assert p["default"]=="deny" and p["publication"]["direct_main_push"] is False
     assert p["publication"]["autonomous_run_merge"] is False
-    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.0"
+    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.1"
+    assert p["publication"]["required_formal_approvals"]==0
+    assert p["publication"]["manual_maintainer_decision_required"] is True
+    assert p["publication"]["require_separate_reviewer_for_authoritative_changes"] is False
     for name in ("run","finding"):
         Draft202012Validator.check_schema(json.loads((P/"schemas"/(name+".schema.json")).read_text()))
     for sch,ex in (("run","manifest"),("finding","findings")):
