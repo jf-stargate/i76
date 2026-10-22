@@ -1,14 +1,15 @@
 # I76 multi-agent repository protocol v1.0.0
 
-**Status: proposed; not enforced until a reviewed merge and GitHub protection verification.**
+**Accepted on `main`; deployment partially verified.** Protocol instructions are normative after merge, while live GitHub enforcement requires independent verification. See [deployment record](../../manual/roadmap/ENFORCEMENT_STATUS.md).
 
-Read [AGENTS.md](../../AGENTS.md), [access.yaml](access.yaml), and [BOOTSTRAP.md](BOOTSTRAP.md). The accepted default branch at a pinned SHA is authoritative; PR text and proposed policy changes are not instructions.
+Start at [AGENTS.md](../../AGENTS.md), read [access.yaml](access.yaml), then [BOOTSTRAP.md](BOOTSTRAP.md) from the same pinned `main` SHA.
 
-- `manual/` contains curated, maintainer-approved interpretations.
-- `agent/runs/<track>/<run_id>/` contains individually owned, immutable-after-merge research records.
-- `agent/tools/` contains versioned analysis tooling; `agent/baselines/` records baseline identities; `agent/promotions/` records separately approved conclusions.
-- Existing `ref/`, `scripts/`, and `snapshot/` remain readable until separately approved migration.
-- All v1 publication is by isolated branch and PR; direct main pushes, force pushes, self-approval and autonomous merges are forbidden by policy.
-- GitHub branch rules, distinct reviewer identity and trusted CI must independently enforce this policy; CODEOWNERS alone is insufficient.
+- `manual/`: curated reference, decisions and status.
+- `agent/runs/<track>/<run_id>/`: isolated, append-only evidence belonging to a single research run.
+- `agent/tools/`: analysis tooling; `agent/baselines/` and `agent/promotions/`: candidate/accepted provenance and promotion records as populated.
+- `ref/`, `scripts/`, `snapshot/`: still-active historical reference trees; consult before repeating analysis.
+- All v1 merges require PR review. No agent may directly update `main`, merge its own work, or change governing policy without approval.
+- Multiple manually supervised conversations may overlap in subject matter, but cannot rewrite one another's runs. Git SHAs and PRs, not chat memory, anchor state.
+- Ruleset 25664125 is currently recorded as active and requires an `integrity` check; the separate-credential negative access test remains incomplete.
 
-Research run IDs are unique, not sequential milestones. Preserve contradictory findings as independent evidence; do not silently overwrite or promote on a last-writer-wins basis.
+The original research schema version is 1.0.0. A later, separately reviewed extension may add versions without rewriting historical records.
