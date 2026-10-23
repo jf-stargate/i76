@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T013651Z-21de63e4",
+  "track": "i76edit",
+  "topic": "Original editor intersection-object terrain grading and material stamping",
+  "base_commit": "af747a9fed757f8030c34d0f05441702352f5f8c",
+  "started_at": "2026-10-23T01:36:51Z",
+  "summary": "Native and Ghidra confirmation of rectangular height grading, class 0x50-0x53 surface 6/7 writes, two-pass scheduling, and separate final read-only object refresh.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Verified original private game TAR; no game binaries committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "I76EDIT.EXE.gzf annotated editor snapshot",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private editor setup bundle v1.0.0",
+      "notes": "Read-only Ghidra headless verification; original MD5 matches."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/editor_object_terrain_grading.md",
+      "kind": "report",
+      "sha256": "b7a8ce78dc54be26a65e09e625e3c58368de1a109e5f6c6d1e08071122706f55",
+      "bytes": 5021,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE sha256:69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/native_anchor_index.tsv",
+      "kind": "table",
+      "sha256": "6b591bb7cf272b36ad4bb52acc5e8d75b407f652f9ba5c8511d357327476e6f9",
+      "bytes": 1193,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE sha256:69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/original_pe_validation.json",
+      "kind": "test-result",
+      "sha256": "040468da38a176725b102a2b9bc961698879bdee598e051e0cf75c68a7437a6d",
+      "bytes": 343,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE sha256:69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_editor_grading.py",
+      "kind": "script",
+      "sha256": "c836ab58c3681f0af5443f833d66d7e2f0c6488ae6388be1da3d352c7da41555",
+      "bytes": 1684,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE sha256:69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 20,
+    "passed_count": 20,
+    "notes": "19 original-PE native checks plus one four-entry class dispatch table check passed; Ghidra program identity verified separately read-only."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_editor_grading.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:0040A6E0",
+        "address": "0040A6E0"
+      },
+      {
+        "kind": "external",
+        "ref": "private Ghidra 12.1.4 I76EDIT.EXE.gzf sha256:792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f"
+      }
+    ],
+    "methods": [
+      "original input MD5/SHA-256",
+      "Ghidra 12.1.4 read-only decompilation/xref export",
+      "independent original PE i386 disassembly and jump table mapping",
+      "native instruction anchor validation, 20/20"
+    ],
+    "limitations": "No editable .I76 original workspace roundtrip, original editor runtime execution, or vehicle intersection collision execution; no attribution of individual retail terrain cells to exact editor version."
+  }
+}
