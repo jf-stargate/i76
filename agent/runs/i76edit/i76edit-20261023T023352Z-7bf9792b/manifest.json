@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T023352Z-7bf9792b",
+  "track": "i76edit",
+  "topic": "Original editor overlapping object grading and zone-ordered smoothing",
+  "base_commit": "af747a9fed757f8030c34d0f05441702352f5f8c",
+  "started_at": "2026-10-23T02:33:52Z",
+  "summary": "Static original PE and read-only Ghidra validation of height inheritance across overlapping object grading rectangles, independent 6/7 material overwrite, post-grade height refresh guard, and cross-zone smoothing order, with legacy v20 corpus checks.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Privately supplied base-game original executable; not published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "annotated I76EDIT.EXE.gzf original editor program",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private i76 editor initialization archive v1.0.0",
+      "notes": "Read-only headless analysis; original program MD5 matched."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/overlap_and_zone_smoothing.md",
+      "kind": "report",
+      "sha256": "8864cccb11a230bfcb4d5762927dd479db6fa0d91f97b40f3e559f3dd0eda2e6",
+      "bytes": 5000,
+      "source_refs": [
+        "Private original BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_native.py",
+      "kind": "script",
+      "sha256": "8e22e724c66b36f0fb0604304d3e0532899e4f0d9e9c0f9f75f04df23f0844b2",
+      "bytes": 2288,
+      "source_refs": [
+        "Private original BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/analytic_overlap.py",
+      "kind": "script",
+      "sha256": "183cb15e53bb63c5064a4a6354b17a061a81e9af7e26a1cc3299ca60f33674a5",
+      "bytes": 1947,
+      "source_refs": [
+        "Private original BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/v20_crosscheck.tsv",
+      "kind": "table",
+      "sha256": "279a63107ac63714d0d804f6a5c368a5d22b7edf9386d3028e6f429995caa187",
+      "bytes": 623,
+      "source_refs": [
+        "Private original BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 50,
+    "passed_count": 50,
+    "notes": "43 fixed opcode/jump-table checks passed against original editor PE, 7 analytical scenario checks passed locally; no original editor execution."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_native.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/analytic_overlap.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:0040A6E0",
+        "address": "0040A6E0"
+      }
+    ],
+    "methods": [
+      "read-only annotated Ghidra 12.1.4 decompilation/xrefs",
+      "independent original i386 native disassembly",
+      "43 fixed original PE native instruction/jump-table guards",
+      "7 deterministic toy analytical cases, not original-code execution",
+      "independent recomputation of original v20 private TSV counts"
+    ],
+    "limitations": "No original editable .I76 workspace in original game archive, no byte-identical editor-to-TER roundtrip, no measured zone-border artifact or runtime collision test; source-code translation units unresolved. Historical references and PR #14/#15 unchanged."
+  }
+}
