@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T062209Z-7504f18b",
+  "findings": [
+    {
+      "finding_id": "editor.v28.native_terrain_zone_stride",
+      "claim": "Original 00412120 terrain plane resolver computes a zone-stride of 0x8004 bytes for each 128x128 uint16 plane, rather than a packed 0x8000 or the incorrectly assumed 0x10008/0x20010 strides.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041212F"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00412132"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00412134"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00412147"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041214C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_terrain_service_zone_seam.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v28_aggregate.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_plane_stride.py"
+        }
+      ],
+      "limitations": "Describes per-plane original address arithmetic; separate zone allocation/lifetime is unresolved."
+    },
+    {
+      "finding_id": "editor.v28.original_zone_triplet_and_negative_guard",
+      "claim": "Original 00412300 uses 00439EF0 byte zone map and 128-cell local masks; original 0041F2B0 returned 0xffffffff for a negative X, whereas synthetic positive X=128/129 in correctly initialized adjacent zone returned unset 0x8000.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041232A"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041233D"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041234F"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F2B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_terrain_service_zone_seam.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v28_aggregate.json"
+        }
+      ],
+      "limitations": "Tests on synthetic map IDs 0/1 with allocator forced to success; negative Y separately supported by static branch."
+    },
+    {
+      "finding_id": "editor.v28.original_terrain_accessor_seam_parity",
+      "claim": "With original 00421DF0, 00409210, 00421BE0 and original native terrain getter/setters executing, synthetic 128-cell zone boundary runs for modes 2/3/4/5 matched the corresponding single-zone results after +107 X translation; mode 3 propagated height 600 to 25 new cells, nine across X=128.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421DF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421BE0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F2B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F3A0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F4A0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_terrain_service_zone_seam.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v28_aggregate.json"
+        }
+      ],
+      "limitations": "Original zone-backing allocator 00411BA0 was substituted and terrain contents were synthetic; Ghidra x87 emulation cannot be assumed bit-exact."
+    },
+    {
+      "finding_id": "editor.v28.false_attenuation_caused_by_harness_stride",
+      "claim": "An exploratory two-zone transcript that produced attenuated heights arose from a harness initialization error: zone-1 sentinel bytes were placed at wrong offsets. Correcting the stride to original 0x8004 restores the sentinel and removes the artificial attenuation.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041212F"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00412147"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_terrain_service_zone_seam.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v28_aggregate.json"
+        },
+        {
+          "kind": "external",
+          "ref": "private v28 checkpoint evidence/invalid_stride_negative_control.txt and corrected native_getter_edge.txt"
+        }
+      ],
+      "limitations": "This is a methodological falsification of a synthetic emulator setup, not retail terrain behavior."
+    },
+    {
+      "finding_id": "editor.v28.fractional_directionality_emulator_limitation",
+      "claim": "With original raster and native terrain accessors, reversing a fractional diagonal cross-section yielded different occupied-cell addresses under Ghidra P-code emulation, but the result is insufficient to infer a retail directionality defect.",
+      "status": "unresolved",
+      "confidence": "medium",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421DF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004235A4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_terrain_service_zone_seam.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v28_aggregate.json"
+        }
+      ],
+      "limitations": "Uninitialized FPU stack diagnostics and previously measured hardware/Ghidra x87 disagreement preclude a bit-exact retail conclusion; original editable .I76 road graph unavailable."
+    }
+  ]
+}
