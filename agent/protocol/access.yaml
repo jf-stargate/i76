@@ -1,4 +1,4 @@
-schema_version: "1.0.1"
+schema_version: "1.0.2"
 repository: "jf-stargate/i76"
 default_branch: "main"
 default: "deny"
@@ -11,7 +11,10 @@ publication:
   direct_main_push: false
   force_push: false
   all_changes_require_pr: true
-  require_current_base_revalidation: true
+  require_current_base_revalidation: false  # For unchanged isolated run-only PRs after unrelated main changes.
+  require_fresh_base_for_canonical_changes: true  # Human procedural gate; not path-enforced by GitHub.
+  require_current_head_integrity_at_acceptance: true
+  require_mergeability_check_at_acceptance: true
   require_trusted_ci: true
   require_separate_reviewer_for_authoritative_changes: false
   unknown_or_unenforced_protection: "proposal-only"
