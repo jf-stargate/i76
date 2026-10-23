@@ -1,0 +1,14 @@
+{
+  "retail_exe_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "retail_exe_md5": "a640ea0097dbb62e0c77b7f2847c7161",
+  "retail_zfs_sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+  "ghidra_v97_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+  "native_first_private_trace_sha256": "5a1ad785bb1337f37c18a109f7edecfa68a1ffa596135e21809d20a763fd9f9b",
+  "native_second_private_trace_sha256": "5a1ad785bb1337f37c18a109f7edecfa68a1ffa596135e21809d20a763fd9f9b",
+  "native_probe_source_sha256": "965a73215eb58b9fe02158571e04102cf28914cc7c7312b4d85e0ce1e8d45395",
+  "verified_vehicle_fixture_count": 64,
+  "private_trace_not_published": true,
+  "ghidra_version": "12.1.4",
+  "baseline": "i76_mission_v97_verified_names",
+  "replay_note": "Run Ghidra analyzeHeadless with -process i76_mission_v97_verified_names -noanalysis -readOnly -scriptPath scripts -postScript I76_VisibilityQueueNativeProbe.java <retail_fixture_dir> <private_trace_tsv>; repeat and compare SHA256."
+}
