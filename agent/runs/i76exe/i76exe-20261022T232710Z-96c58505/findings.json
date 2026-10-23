@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261022T232710Z-96c58505",
+  "findings": [
+    {
+      "finding_id": "i76exe-v24-native-vcf-construction-two-vehicles",
+      "claim": "Retail 004AD6F0 executes through top-level VCF construction for GTSi and bus with original VDF/WDF/CDF callback chains, producing 46/44 world objects, 31/29 verified body parts and four verified class-30 weapon nodes per vehicle.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD6F0",
+          "address": "004AD6F0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_vehicle_resources.tsv"
+        }
+      ],
+      "limitations": "Original x86 instructions in Ghidra emulator; OS/CRT/file services, palette and renderer substituted. Reports construction, not real Windows gameplay."
+    },
+    {
+      "finding_id": "i76exe-v24-native-tmt-owner-bindings",
+      "claim": "All 46 requested VTF-to-TMT registrations (24 GTSi, 22 bus) execute original 00449680, invoking native 0044AB90 TMT frame decoder and 0044AC80 owner binding, with verified object owner pointers, per-object logical keys, TMT records and first retail frame names.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00449680/0044AB90/0044AC80",
+          "address": "00449680"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_vehicle_resources.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_resource_digests.json"
+        }
+      ],
+      "limitations": "MAP/M16/VQM pixel decoding, timed texture animation and teardown reference release remain untested. Original TMT bytes supplied by emulated resource service."
+    },
+    {
+      "finding_id": "i76exe-v24-native-geo-constructors",
+      "claim": "In the same top-level vehicle sessions the original 004469A0 geometry cache and 00446C90 constructor produce eight non-null runtime GEO payloads from seven byte-verified retail resource identities, including each vehicle's auxiliary and exterior/cockpit body resources and the shared headlight-mask GEO.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004469A0/00446C90",
+          "address": "004469A0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_vehicle_resources.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_resource_digests.json"
+        }
+      ],
+      "limitations": "Indexed PIX/PAK resource-provider implementation is substituted here; full resource pipeline was independently emulated in historical v1.4\u2013v1.7. Palette helper remains stubbed."
+    },
+    {
+      "finding_id": "i76exe-v24-native-body-mesh-cache-reuse",
+      "claim": "After native VCF construction the original 004466C0 selector changes one body node from group 0 to group 4 and back; original geometry cache constructs each resource once and reuses exactly the first exterior pointer on return for both GTSi and bus while the node class/parent/orientation/position remain unchanged.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004466C0",
+          "address": "004466C0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_vehicle_resources.tsv"
+        }
+      ],
+      "limitations": "Geometry-change texture refresh 0044A0B0 is substituted. Selection observed for root body part only and one group transition per vehicle; not all original animation/render states."
+    },
+    {
+      "finding_id": "i76exe-v24-tmt-to-render-surface-ownership-open",
+      "claim": "Native TMT records and geometry handles are not yet traced through MAP/M16/VQM pixel materialization, real texture refresh or the primary polygon rendering pass; material registration should not be equated with verified rendered surface assignment.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/OPEN_ISSUES.md"
+        }
+      ],
+      "limitations": "Next experiment must bridge 0044A0B0 to actual render-preparation routines with retail texture data."
+    }
+  ]
+}
