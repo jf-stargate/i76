@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T043010Z-a8d70545",
+  "findings": [
+    {
+      "finding_id": "editor.v26.original_export_world_scale",
+      "claim": "Original editor exporter 004030C0 multiplies editable road horizontal coordinates by five when writing runtime/world-space road mesh samples.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004030C9"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004030D2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_grid_evidence.md"
+        }
+      ],
+      "limitations": "Does not alone establish exact raster cell occupancy."
+    },
+    {
+      "finding_id": "editor.v26.corrected_lateral_world_widths",
+      "claim": "Road grade lateral widths 5 and 2 in original 00421DF0 are editor-grid-cell spans; scaling by 5 gives nominal 25-world-unit preparatory and 10-world-unit late material widths, correcting the earlier v25 world-unit labels.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004030C9"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421E62"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004221D2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_grid_evidence.md"
+        }
+      ],
+      "limitations": "Prequantization widths, not exact occupied-cell footprints; related v25 evidence remains unmerged and historical.",
+      "related_findings": [
+        {
+          "relation": "supersedes",
+          "finding_id": "editor.road.two_lateral_grading_widths"
+        }
+      ]
+    },
+    {
+      "finding_id": "editor.v26.x87_original_signed_remainder",
+      "claim": "Original 004235A4 selects truncation toward zero for FISTP and selected 00421DF0 conversion checks signed remainder of trunc(x*10) modulo ten greater than four to optionally add one.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004235B3"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004235BD"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004221F5"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004221F7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_grid_evidence.md"
+        }
+      ],
+      "limitations": "Exact original full road export FPU evaluation and tie behavior were not reproduced end-to-end."
+    },
+    {
+      "finding_id": "editor.v26.x87_emulator_disagreement",
+      "claim": "For 220 bounded FP32 cases, original FPU opcode paths stepped in the read-only Ghidra 12.1.4 emulator disagreed with instruction-equivalent hardware x87 on 37 adjusted float outputs, despite zero emulator execution errors.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v26_aggregate.json"
+        },
+        {
+          "kind": "external",
+          "ref": "private local v26 original FPU Ghidra and hardware differential checkpoint"
+        }
+      ],
+      "limitations": "Hardware x87 on x86-64 does not execute original 32-bit PE; the observed emulator issue is setup-specific, not a universal claim."
+    },
+    {
+      "finding_id": "editor.v26.retail_rseg_cross_section_diagnostic",
+      "claim": "Read-only RSEG-based proxy classified 89595 original road sections and examined 286683 reconstructed late-pass class-2 cell probes; 280598 exact and 3403 known aliases matched road-kind material, while 2682 differed.",
+      "status": "derived",
+      "confidence": "medium",
+      "scope": "shared",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v26_aggregate.json"
+        }
+      ],
+      "limitations": "Shipped RSEG edges are runtime export output, not editable ROAD input; scan was bounded diagnostic and cell probes nonindependent."
+    },
+    {
+      "finding_id": "editor.v26.original_classifier_retail_derived_validation",
+      "claim": "Original I76EDIT.EXE 00409210 instructions emulated against 240 selected retail RSEG-derived integer samples returned all independent expected class labels with zero errors.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409210"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v26_aggregate.json"
+        }
+      ],
+      "limitations": "Classifier-only original execution; raster and x87 path not original-code emulated end-to-end."
+    }
+  ]
+}
