@@ -1,0 +1,214 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T025734Z-5492075e",
+  "findings": [
+    {
+      "finding_id": "editor.road.six_phase_pipeline",
+      "claim": "Controller 00421070 runs grading modes 0-5 across road chains and samples, including section counting, height seed collection, direct height fill, neighbor repair, narrow road material write, and final neighbor repaint.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421188"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422524"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421BE0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/editor_road_mode_precedence.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "No editable original workspace roundtrip; exact floating-point raster geometry remains open."
+    },
+    {
+      "finding_id": "editor.road.direct_mode_guard",
+      "claim": "Modes 2 and 4 of 00421DF0 only act when plane-1 height is 0x8000: mode 2 fills height and clears surface, while mode 4 writes road-kind surface without adding height.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004225CC"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004225F7"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422617"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/editor_road_mode_precedence.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "This describes the direct raster branch, not all writers in the terrain pipeline."
+    },
+    {
+      "finding_id": "editor.road.geom_class_narrowing",
+      "claim": "Modes 1-3 accept any nonzero classification from 00409210; modes 4-5 require classification exactly 2. Geometry helper has native return values 0,1,2,3.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422402"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422416"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040931C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/editor_road_mode_precedence.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Exact geometric boundary semantics are not fully quantified."
+    },
+    {
+      "finding_id": "editor.road.helper_valid_material_gate",
+      "claim": "For valid center work height, helper 00421BE0 modifies only materials 0-5: mode 3 clears surface to zero and mode 5 writes road-kind material; material 6/7 is untouched.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D49"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D5E"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D76"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/editor_road_mode_precedence.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Helper invocation depends on geometry and mode counters."
+    },
+    {
+      "finding_id": "editor.road.helper_unset_exception",
+      "claim": "For center work height 0x8000 with valid neighbors, mode 3 writes averaged height and clears material; mode 5 clears material without writing height, including if old material is 6 or 7.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421C0D"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D07"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D0C"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D30"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/editor_road_mode_precedence.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Static source semantics; no original editor runtime experiment."
+    },
+    {
+      "finding_id": "editor.road.conditional_intersection_protection",
+      "claim": "Valid-height, material 6/7 intersection stamp is preserved by the examined road modes and material-gated smoothing, whereas height-sentinel material 6/7 is not protected. This combines editor object writer and road codepaths.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AA73"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004225CC"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D49"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004229F7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/editor_road_mode_precedence.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Not a claim about other independent terrain writers or historical generation of specific retail missions."
+    }
+  ]
+}
