@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261023T032812Z-044e59e2",
+  "track": "i76exe",
+  "topic": "Original retail mission instance-key registry original-instruction emulation and ODEF record count cross-check",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T03:28:12Z",
+  "summary": "Ghidra v97 read-only native emulation of original registry initialization/append/lookup/destroy and FSM actor-binding, with synthetic OS/CRT/ownership boundaries; verified 38 in-harness assertions plus 44 independent checks and historical 80-mission ODEF census; no full game execution.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private retail PE bundled in user game TAR; held out of GitHub."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "annotated retail i76.exe Ghidra v97 verified-names GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-provided private i76_game_environment_setup_v1.0.0.zip; not public",
+      "notes": "Freshly imported into an isolated Ghidra project, read-only and -noanalysis"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/REGISTRY_NATIVE_RESEARCH.md",
+      "kind": "report",
+      "sha256": "b4378348bf0fe2f3410c0017fcd2f971860c481cd8529a5f8448e2d0d20cacc2",
+      "bytes": 6155
+    },
+    {
+      "path": "evidence/odef_counts.tsv",
+      "kind": "table",
+      "sha256": "5b7823c2d1ab979e74d4b235767a0ab469941e7554a0eec886c6f5e509e044b6",
+      "bytes": 8192
+    },
+    {
+      "path": "evidence/odef_summary.json",
+      "kind": "table",
+      "sha256": "4134ba7b0a40bf50966ca4eab4f418e8c8c26b1b7ab07710d3dad5d9a4ff16dc",
+      "bytes": 1684
+    },
+    {
+      "path": "evidence/original_instruction_trace.tsv",
+      "kind": "test-result",
+      "sha256": "f175b40cd1a8029b2602af94ab92e94921e692a128d6ad02a1abb3897a735672",
+      "bytes": 7915
+    },
+    {
+      "path": "scripts/I76_RegistryNativeProbe.java",
+      "kind": "script",
+      "sha256": "281af35274e962183d4e84f89966006b480bdc9842be4e9e713e4a35393d17e9",
+      "bytes": 10663
+    },
+    {
+      "path": "scripts/audit_odef_capacity.py",
+      "kind": "script",
+      "sha256": "2f7a6c5c2d2906decfb37d0c0ab826db510d2c45d3739687f09201a27f8513a8",
+      "bytes": 7687
+    },
+    {
+      "path": "scripts/verify_registry_trace.py",
+      "kind": "script",
+      "sha256": "347e7ebaca765984371a2df8179d57ec7484d2249663bf6341afc16d4a8bac91",
+      "bytes": 4628
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 82,
+    "passed_count": 82,
+    "notes": "38 original-code scenario assertions inside Ghidra; 44 independent archived trace/corpus validations. The failed-realloc path stops before original invalid write. No full game or actual refcount mutation."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RegistryNativeProbe.java",
+        "sha256": "281af35274e962183d4e84f89966006b480bdc9842be4e9e713e4a35393d17e9"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_registry_trace.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/audit_odef_capacity.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004AD450",
+        "address": "004AD450"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00412400",
+        "address": "00412400"
+      }
+    ],
+    "methods": [
+      "independent original retail PE MD5 and SHA256; private GZF SHA256",
+      "read-only Ghidra 12.1.4 headless original x86 p-code at 004AD410/450/5B0/600 and 00457610/30/00412400",
+      "logging and substituting only explicit Windows heap, CRT, side-effect query, and world-ref acquisition boundaries",
+      "Ghidra 38 in-script assertions and 44 independent archived evidence assertions",
+      "separate bounded ODEF census on all 80 original miss8/miss16 mission files"
+    ],
+    "limitations": "Reproduction requires private retail executable, 12.1.4 Ghidra installation and private v97 GZF. Original world producers, owner reference increments, Windows allocator, game process and reset flow not executed. ODEF inventory records only serialized entries."
+  }
+}

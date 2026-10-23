@@ -1,0 +1,57 @@
+{
+  "classification": "serialized ODEF chunk audit; NOT live registry occupancy",
+  "program_md5": "a640ea0097dbb62e0c77b7f2847c7161",
+  "missions": 80,
+  "total_serialized_obj_records": 5564,
+  "max_obj_records": 169,
+  "min_obj_records": 13,
+  "max_missions": [
+    "miss16/T15.MSN",
+    "miss8/T15.MSN"
+  ],
+  "unique_obj_chunk_sizes": [
+    108
+  ],
+  "miss8_miss16_count_matches": true,
+  "odef_fixed_length_identity_verified": 80,
+  "variant": {
+    "miss8": {
+      "missions": 40,
+      "serialized_obj_records": 2782,
+      "max_obj_records": 169
+    },
+    "miss16": {
+      "missions": 40,
+      "serialized_obj_records": 2782,
+      "max_obj_records": 169
+    }
+  },
+  "under_2048_all_individual_missions": true,
+  "native_instruction_anchors": {
+    "reserve_bytes_0x8000": true,
+    "capacity_2048": true,
+    "count_zero": true,
+    "full_branch": true,
+    "capacity_fastpath": true,
+    "heap_realloc_call": true,
+    "realloc_nonnull_return": true,
+    "null_path_table_pointer_clear": true,
+    "append_count_increment": true,
+    "reverse_lookup_start": true,
+    "actor_paired_key_0": true,
+    "actor_paired_key_1": true,
+    "actor_lookup_wrapper_call": true,
+    "actor_binding_write": true,
+    "actor_refonly_nonnul": true,
+    "actor_ref_acquire": true,
+    "finalizer_actor_step": true,
+    "world_key_register_wrapper": true,
+    "actor_world_key_lookup_wrapper": true
+  },
+  "limits": [
+    "Does not count non-ODEF/preloaded/dynamic object registration",
+    "Does not prove every serialized OBJ reaches insertion",
+    "Does not establish one OBJ generates one registry append",
+    "Does not model warm mission reuse or 2048 cumulative appends"
+  ]
+}
