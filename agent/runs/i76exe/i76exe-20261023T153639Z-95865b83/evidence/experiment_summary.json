@@ -1,0 +1,53 @@
+{
+  "retail_pe_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "zfs_sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+  "ghidra_gzf_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+  "arena_original_trace_sha256": "9205c560330b79ae4f280ca9078958bf33aec1d0e9a9066e7a975a4a55bc93ec",
+  "arena_repeat_trace_sha256": "9205c560330b79ae4f280ca9078958bf33aec1d0e9a9066e7a975a4a55bc93ec",
+  "camera_original_trace_sha256": "6524b5d0df8b25a8395d03c1f4c201d1f9a6c26f1cca2192b871fac8339e1289",
+  "camera_repeat_trace_sha256": "6524b5d0df8b25a8395d03c1f4c201d1f9a6c26f1cca2192b871fac8339e1289",
+  "vehicle_original_trace_sha256": "48af61ee3d02d7b3adf61a821c4660537989d2acd94c8adb852deb7c7f68490a",
+  "vehicle_repeat_trace_sha256": "48af61ee3d02d7b3adf61a821c4660537989d2acd94c8adb852deb7c7f68490a",
+  "v5_baseline_sha256": "7b4a567be1ca1f64f73ccb8cc7e6b69aaf8f30101343271557174a054692a4bf",
+  "camera_constructor_steps": 2708,
+  "arena_initializer_steps": 73776,
+  "arena_alloc_requests": [
+    370000,
+    128000,
+    49152,
+    49152,
+    2880
+  ],
+  "arena_buckets_per_table": 4096,
+  "camera_viewport": "640x480 controlled",
+  "camera_original_entry": "00405970",
+  "camera_record_global": "004C2730",
+  "camera_fov_radians": 1.5707963,
+  "camera_far_plane": 150.0,
+  "camera_near_plane": 1.0,
+  "private_replay_inputs": "retail VCF/GEO/TMT and Ghidra baseline; not published",
+  "records": [
+    {
+      "vehicle": "gtsi_top_level_vcf",
+      "record": "2E180044",
+      "owner": "27000C00",
+      "geometry": "3600B660",
+      "face_list": "3600B738",
+      "depth_float_hex": "3A8350D9",
+      "culled_at": "004907C5",
+      "material_calls": 0,
+      "polygon_submit_calls": 0
+    },
+    {
+      "vehicle": "bus_top_level_vcf",
+      "record": "2E180044",
+      "owner": "27000C00",
+      "geometry": "3600BB40",
+      "face_list": "3600BC18",
+      "depth_float_hex": "3A8350D9",
+      "culled_at": "004907C5",
+      "material_calls": 0,
+      "polygon_submit_calls": 0
+    }
+  ]
+}
