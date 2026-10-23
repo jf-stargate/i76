@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T045502Z-05173d2e",
+  "findings": [
+    {
+      "finding_id": "editor.v27.native_raster_original_instructions",
+      "claim": "The original 00421df0 rasterizer executed through Ghidra x86 P-code with the original 00409210 classifier and synthetic terrain-service thunks; in an aligned case mode 2 yielded 7 height/material writes and mode 4 yielded 3 material-only writes.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421DF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409210"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004225C0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422617"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_raster_native_trace.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v27_aggregate.json"
+        }
+      ],
+      "limitations": "Counts are for a fixed synthetic grid and section scalar; original TERRAIN/zone services were substituted, and Ghidra x87 P-code does not guarantee hardware-equivalent boundary rounding."
+    },
+    {
+      "finding_id": "editor.v27.native_direct_valid_height_guard",
+      "claim": "With an existing valid height at exactly one qualifying cell, original mode-2 raster instructions reduced height/material writes from 7 to 6; original mode 4 reduced material writes from 3 to 2, confirming local sentinel precedence under original control flow.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004225CC"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004225F7"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422617"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_raster_native_trace.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v27_aggregate.json"
+        }
+      ],
+      "limitations": "Synthetic terrain callback returned height 777 at one coordinate and 0x8000 elsewhere; no authentic editable .I76 input."
+    },
+    {
+      "finding_id": "editor.v27.native_neighbor_transitive_height_seed",
+      "claim": "Executing original 00421be0 neighbor repair within 00421df0 mode 3 with persistent synthetic terrain services propagated one valid 600 height into 25 new cells during the same sweep, because later native helper calls observe earlier writes.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421BE0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D0C"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422556"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_raster_native_trace.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v27_aggregate.json"
+        }
+      ],
+      "limitations": "Effect is experimentally established only for the documented synthetic terrain map and emulator environment; native terrain services and cross-zone addressing were substituted."
+    },
+    {
+      "finding_id": "editor.v27.native_neighbor_material_difference",
+      "claim": "In original 00421be0 execution mode 5, valid height 600 with material 6 preserved the seeded cell, while the same seed with material 0 was repainted road material 2; zero terrain heights were written in either mode-5 experiment.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D49"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D76"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_raster_native_trace.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v27_aggregate.json"
+        }
+      ],
+      "limitations": "Synthetic terrain service map; other original terrain writers and full render/export passes not present."
+    },
+    {
+      "finding_id": "editor.v27.uninitialized_stack_read_question",
+      "claim": "Original modes 4/5 read a local stack float at 00422127 and 004221A3 where the native local path did not identify an initializing assignment; EmulatorHelper warned for the unset slot, but deliberately perturbing its initial value did not change examined simple road write sets.",
+      "status": "unresolved",
+      "confidence": "medium",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422127"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004221A3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/road_raster_native_trace.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v27_aggregate.json"
+        }
+      ],
+      "limitations": "No demonstration of an observable original retail defect or full caller stack/lifetime reconstruction; x87 emulation discrepancies remain. Do not label this a proven bug."
+    }
+  ]
+}
