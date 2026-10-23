@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T020247Z-70ae8183",
+  "track": "i76edit",
+  "topic": "Original editor object dimension provenance and surface-gated smoothing",
+  "base_commit": "af747a9fed757f8030c34d0f05441702352f5f8c",
+  "started_at": "2026-10-23T02:02:47Z",
+  "summary": "Original PE/Ghidra evidence for object editing ABI, zone-list ordering, four-pass material-gated terrain smoothing and scratch-buffer lifecycle.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Privately supplied original game archive, no executable bytes published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "I76EDIT.EXE.gzf annotated original editor snapshot",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private user-supplied editor setup v1.0.0",
+      "notes": "Read-only I76_EDITOR Ghidra project verified against original MD5."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/editor_smoothing_and_object_order.md",
+      "kind": "report",
+      "sha256": "7888fa8de236f665b94f6d9b6104fcba32eb154d63930ea2a299311dd94e612c",
+      "bytes": 5648,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_v22_native.py",
+      "kind": "script",
+      "sha256": "f1bca48546d458534d5c75104ef340b80d3932d095e8e202a878bf73a5630d57",
+      "bytes": 2279,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/object_road_dependency_addresses.tsv",
+      "kind": "table",
+      "sha256": "a717901475d9181efa0a4ed15d8a8520abe35f1b7cbfe8f4b8c6752547052a10",
+      "bytes": 1085,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/native_validation.json",
+      "kind": "test-result",
+      "sha256": "104148bc27be51377a2da82e50cb22de81967c3d3834ccbd11c6376c893cc8b8",
+      "bytes": 452,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 32,
+    "passed_count": 32,
+    "notes": "32 original-PE opcode anchors validated locally, original SHA256/MD5 and private Ghidra baseline digest checked; static audit only."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_v22_native.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00422870",
+        "address": "00422870"
+      },
+      {
+        "kind": "external",
+        "ref": "private annotated I76EDIT.EXE.gzf SHA256 792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f"
+      }
+    ],
+    "methods": [
+      "read-only Ghidra 12.1.4 decompilation and xref analysis",
+      "independent original I76EDIT.EXE i386 disassembly",
+      "original-PE VA-mapped opcode audit (32/32)",
+      "reconciliation with prior editor v13 and v16-v21 findings"
+    ],
+    "limitations": "No editable .I76 authoring workspace or byte-identical export roundtrip, no live editor execution, no retail collision experiment; related v21 grading findings remain in open draft PR #14."
+  }
+}
