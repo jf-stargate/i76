@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T020247Z-70ae8183",
+  "findings": [
+    {
+      "finding_id": "editor.object.dimension_property_fields",
+      "claim": "The current original editor uses editable eight-character dimension fields at object payload offsets +0x64 and +0x6D, sourced from UI controls 0x3F4 and 0x3F5 and parsed by the object grading routine.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409CB0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004166B1"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "The original visible labels and UI author conventions are not proven."
+    },
+    {
+      "finding_id": "editor.object.list_order_overlaps",
+      "claim": "Zone object list nodes are inserted at the head and visited head-first for grading; overlapping per-cell material writes can depend on the resulting traversal order.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C430"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A6E0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Stored workspace ordering and height reuse must be considered; not a naive last-writer rule for heights."
+    },
+    {
+      "finding_id": "editor.smoothing.center_surface_gate",
+      "claim": "Original editor smoothing kernel 00422870 selects only non-sentinel height cells with material indices 2, 3 or 4; indices 6 and 7 are excluded as center cells.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004229ED"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Only the 00422870 smoothing kernel is characterized; other terrain modification passes are separate."
+    },
+    {
+      "finding_id": "editor.smoothing.working_buffer_lifecycle",
+      "claim": "Each smoothing call calculates 128x128 uint16 results in a separate 0x8000-byte buffer and copies 0x2000 dwords back to work plane 1, with four calls in the terrain pipeline.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422B46"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040E52C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "No direct original-editor dynamic exercise was performed."
+    },
+    {
+      "finding_id": "editor.smoothing.excluded_neighbor_sampling",
+      "claim": "Mode-100 sampling draws work-plane-1 heights independent of the center material eligibility check, allowing excluded-material intersection heights to affect adjacent eligible road-cell averages.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F2B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422870"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Actual magnitude and spread depend on neighboring terrain data."
+    },
+    {
+      "finding_id": "editor.intersection.height_fixture_causality",
+      "claim": "Material-gated smoothing may help explain some existing retail intersection terrain-height discontinuities, but the cause of specific shipped mission fixtures is not established.",
+      "status": "inferred",
+      "confidence": "medium",
+      "scope": "shared",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422870"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_road_dependency_addresses.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "No editable source mission workspace or direct export roundtrip; source builder revision for shipped content is uncertain."
+    }
+  ]
+}
