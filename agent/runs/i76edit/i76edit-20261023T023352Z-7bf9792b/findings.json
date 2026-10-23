@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T023352Z-7bf9792b",
+  "findings": [
+    {
+      "finding_id": "editor.grade.first_valid_seed_propagation",
+      "claim": "The original editor chooses the first non-sentinel height in X-major scan order for the entire grading rectangle and otherwise falls back to the plane-0 anchor, allowing transitive height propagation across overlapping objects.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A95F"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AA5C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        }
+      ],
+      "limitations": "Exact original x87 corner rounding and individual retail mission causality are not reproduced."
+    },
+    {
+      "finding_id": "editor.grade.independent_surface_overwrite",
+      "claim": "Material 6 or 7 assignment by object classes 0x50-0x53 is independent of the height-origin priority, so overlap may retain one object's height and another's material.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A9C4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AA73"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        }
+      ],
+      "limitations": "No original editable workspace insertion order is available for shipped missions."
+    },
+    {
+      "finding_id": "editor.grade.zone_head_order",
+      "claim": "Grading traverses numeric zone buckets in order and each object list head-first, while new/moved/loaded objects are head-inserted, making later processing and material precedence distinct from global creation order.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A6F3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C430"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        }
+      ],
+      "limitations": "Any other list mutation or saved workspace order changes the sequence."
+    },
+    {
+      "finding_id": "editor.grade.asymmetric_bounds_anchor_source",
+      "claim": "Native grading first loads object +0x0C height from plane 0 at the anchor, then stamps an asymmetric integer AABB range derived from rotated corners, with zero-minimum adjustment.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A775"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A8C4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        }
+      ],
+      "limitations": "No live editor workspace test of cell boundaries; coordinates are grid-cell indices."
+    },
+    {
+      "finding_id": "editor.grade.post_update_guard",
+      "claim": "The native post-grade condition compares zero-extended AX against 0xffffffff and cannot be true; on this path object +0x0C is updated even when sampled uint16 height equals 0x8000.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AAA4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AAB0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        }
+      ],
+      "limitations": "UI consequences not measured."
+    },
+    {
+      "finding_id": "editor.smoothing.zone_sequential",
+      "claim": "The editor commits a fully buffered zone's smoothing result to plane 1 before processing the next zone in the same pass, permitting later-zone border samples to see already updated neighbor-zone heights.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422BDF"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040E52C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/overlap_and_zone_smoothing.md"
+        }
+      ],
+      "limitations": "Analytical illustration is not original-code execution; numeric magnitude of cross-zone differences unmeasured."
+    },
+    {
+      "finding_id": "editor.corpus.material_alias_not_sufficient",
+      "claim": "Historical v20 intersection data have material 6/7 in 381 of 386 placement footprints but 15 of 19 largest worst-point discrepancies occur on material 0 or 1; presence of 6/7 cannot by itself explain anomalies.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "shared",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v20_crosscheck.tsv"
+        },
+        {
+          "kind": "external",
+          "ref": "private v20 archived footprint diagnostic TSVs"
+        }
+      ],
+      "limitations": "Static original retail samples, not causal reconstruction of editor authoring history."
+    }
+  ]
+}
