@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T025734Z-5492075e",
+  "track": "i76edit",
+  "topic": "Original editor road grading modes and material/height precedence",
+  "base_commit": "e26d643994db8ddd7e9cbde1e2f74fcf16647fce",
+  "started_at": "2026-10-23T02:57:34Z",
+  "summary": "Original PE and Ghidra evidence on six road modes, class-2 geometry gate, plane-1 height sentinel and conditional intersection material 6/7 protection.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Original private input; executable bytes excluded."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "Annotated original I76EDIT.EXE.gzf snapshot",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private editor setup v1.0.0",
+      "notes": "Original MD5 verified read-only in Ghidra."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/editor_road_mode_precedence.md",
+      "kind": "report",
+      "sha256": "c60bc7d0187f451071463a9b27b3fe03cdddeea37e4932a78c72a35f5b4e2141",
+      "bytes": 4544,
+      "source_refs": [
+        "original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_native.py",
+      "kind": "script",
+      "sha256": "1d9fc43822690cc608703bcfa9fb647a4dab29abb386a7b70eed47ecdeb85872",
+      "bytes": 2335,
+      "source_refs": [
+        "original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/analytic_cases.py",
+      "kind": "script",
+      "sha256": "af49c3495bb5a2bd86f32519c9672565b7c85593e3c2624d0b85561c28656c77",
+      "bytes": 1108,
+      "source_refs": [
+        "original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/native_validation.json",
+      "kind": "test-result",
+      "sha256": "9d4583c2c40d2d681c4d601efa9537f34b47d230ad0b41c8caff8c426f998a14",
+      "bytes": 191,
+      "source_refs": [
+        "original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/analytic_validation.json",
+      "kind": "test-result",
+      "sha256": "2a3200c72b68518d0d2b3dbd0c411c93e7b2886fce9ec34aebf34d9f75cfd732",
+      "bytes": 196,
+      "source_refs": [
+        "original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 60,
+    "passed_count": 60,
+    "notes": "47 original PE native opcode anchors plus 13 synthetic analytical cases passed locally; read-only annotated Ghidra 12.1.4 cross-check, no original code execution."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_native.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/analytic_cases.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00421DF0",
+        "address": "00421DF0"
+      }
+    ],
+    "methods": [
+      "Original editor MD5/SHA256",
+      "independent original PE disassembly vs read-only Ghidra decompilation",
+      "47 exact native opcode anchors",
+      "13 synthetic analytical cases (not original code execution)"
+    ],
+    "limitations": "No original editable .I76 workspace or byte-identical export, no dynamic original-code execution, no exact FPU boundary reproduction, no source TU recovery."
+  }
+}
