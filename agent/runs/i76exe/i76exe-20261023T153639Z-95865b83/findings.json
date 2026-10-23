@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261023T153639Z-95865b83",
+  "findings": [
+    {
+      "finding_id": "i76exe-camera-constructor-and-global-copy",
+      "claim": "Original 00405970 enters 00472220 to create the projection/camera record and copies 118 dwords to persistent 004C2730; native camera setup completes under synthetic 640\u00d7480 viewport with explicit FSINCOS and CRT 80-bit-to-int service substitutions.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00405970",
+          "address": "00405970"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00472220",
+          "address": "00472220"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00405A2D",
+          "address": "00405A2D"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_CameraNativeProbe.java"
+        }
+      ],
+      "limitations": "Camera pose is controlled, math services intercepted, not a complete retail frame or bit-identical x87 validation."
+    },
+    {
+      "finding_id": "i76exe-spatial-arena-init-native",
+      "claim": "Original 0048F9B0 performs five allocator requests (370000, 128000, 49152, 49152, 2880 bytes), sets global work pointers and zeros two 4096\u00d712-byte spatial tables; original instructions complete after 73,776 emulation steps.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F9B0",
+          "address": "0048F9B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_RenderArenaNativeProbe.java"
+        }
+      ],
+      "limitations": "Allocator services substituted; no real DirectDraw surface or full render context initialized."
+    },
+    {
+      "finding_id": "i76exe-type10-highlight-producer-distinct",
+      "claim": "Original 0048F2B0 follows hlight-related node lookup from the world renderer, emits work discriminator 0x0A and bins it independently of ordinary type-6 world object traversal.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F2B0",
+          "address": "0048F2B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F433",
+          "address": "0048F433"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F4A3",
+          "address": "0048F4A3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_TYPE10_ARCHITECTURE.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_opcode_anchors.tsv"
+        }
+      ],
+      "limitations": "hlight association established from static literal/call flow and native queue; complete headlight semantics/visibility not proven."
+    },
+    {
+      "finding_id": "i76exe-type10-separate-geo-consumer",
+      "claim": "Original dispatch pointer index 10 at 004FACA8 points to executable 00490640 (not defined as a Ghidra v97 function), whose native geometry-face path executes for both GTSi and bus, reaches first face-depth check at 004906C0 and culls at 004907C5 without material or polygon submission in controlled synthetic view.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004FACA8",
+          "address": "004FACA8"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00490640",
+          "address": "00490640"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004906C0",
+          "address": "004906C0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004907C5",
+          "address": "004907C5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/type10_dispatch.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_Type10DispatchProbe.java"
+        }
+      ],
+      "limitations": "Original renderer and VCF data with synthetic camera. First tested face culled; normal retail camera, actual texture acquisition and polygon submission remain untested."
+    },
+    {
+      "finding_id": "i76exe-original-camera-full-frame-gap",
+      "claim": "Native default projection initialization alone does not establish dynamic player-follow camera pose, accurate spatial/visibility bounds, native x87 parity, or a fully rasterized frame.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00405970",
+          "address": "00405970"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00401C90",
+          "address": "00401C90"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_TYPE10_ARCHITECTURE.md"
+        }
+      ],
+      "limitations": "Requires original camera-mode update path and vehicle world simulation, original clip/draw and real material decoded images."
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261023T153639Z-95865b83",
+  "track": "i76exe",
+  "topic": "Original retail renderer camera projection, work arenas, and type-10 highlight GEO dispatch",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T15:36:39Z",
+  "summary": "Original retail instructions (Ghidra x86 emulation) initialize global camera projection 004C2730 with two math services substituted, initialize the renderer spatial bucket arenas 0048F9B0 with allocator services substituted, and consume original native-vehicle type-10 highlight records at 00490640. Two vehicle first-face tests reach the cull path and no polygon submission under synthetic camera; separate from type-6 geometry renderer. Two byte-identical repetitions per probe; 52 independently checked assertions.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Original retail PE supplied privately; not published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Original resource archive, private retail fixture service."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "Ghidra annotated retail i76.exe v97 private GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "private user-supplied I76 phase2 handoff",
+      "notes": "Read-only headless imported GZF program; no annotation updates or published project database."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/CAMERA_TYPE10_ARCHITECTURE.md",
+      "kind": "report",
+      "sha256": "a58389757f712efc881ade9fa72a4409c76d14f21131075b8e9efeed5680bff2",
+      "bytes": 6257
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "93d48b5598f2a7b04488c4064af51bf83714d94f9cd81f7fd466a8eaf66e3dd4",
+      "bytes": 1069
+    },
+    {
+      "path": "evidence/experiment_summary.json",
+      "kind": "test-result",
+      "sha256": "75513db84e30b7c8d8886912b049ee3ae69ce8906d489d99354f81335736a24a",
+      "bytes": 2065
+    },
+    {
+      "path": "evidence/native_opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "5bbacad99d57c4a35a79dc19437b0282ff881e431c59b6782cdcf4a1d9983505",
+      "bytes": 765
+    },
+    {
+      "path": "evidence/type10_dispatch.tsv",
+      "kind": "table",
+      "sha256": "84167defb1c07b9cece51cf6698bec80e33f68b67ffd980e93c86b75f9159776",
+      "bytes": 255
+    },
+    {
+      "path": "scripts/I76_CameraBuilderAudit.java",
+      "kind": "script",
+      "sha256": "c1d8193ded3a86c72816b83c3d75b93d20caaad0e182d2aa651f5e2134f4b77a",
+      "bytes": 767
+    },
+    {
+      "path": "scripts/I76_CameraNativeProbe.java",
+      "kind": "script",
+      "sha256": "8b125a09871ea1a3acd2b0b1256ac355d172bccb33cee121987d1f35842587af",
+      "bytes": 3358
+    },
+    {
+      "path": "scripts/I76_FrameCameraDataflow.java",
+      "kind": "script",
+      "sha256": "168537279dd42aff5cc97121bb4c685ec0af5ad6b8d115a341aff5e3e4c89088",
+      "bytes": 1050
+    },
+    {
+      "path": "scripts/I76_RenderArenaNativeProbe.java",
+      "kind": "script",
+      "sha256": "a3723323641d650a522c8bf1eb4bdc423585f2a6bd5209d13b55702801dac21d",
+      "bytes": 2831
+    },
+    {
+      "path": "scripts/I76_RenderDispatchTableAudit.java",
+      "kind": "script",
+      "sha256": "06fbee03701819a3ac28cb535d6b924193be2916b3677041d2a5a00129b81054",
+      "bytes": 1968
+    },
+    {
+      "path": "scripts/I76_Type10DispatchProbe.java",
+      "kind": "script",
+      "sha256": "86fad06a9db05e2a6a22f0f918581112f697887308bb895a134bc7c46e9cdd1a",
+      "bytes": 47595
+    },
+    {
+      "path": "scripts/verify_camera_type10.py",
+      "kind": "script",
+      "sha256": "c699868b23759c4d3c425f262f1581549305484ae6fc1155f7ae83ab70d7ef9f",
+      "bytes": 3882
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 52,
+    "passed_count": 52,
+    "notes": "52 independent Python assertions (private retail/Ghidra/asset identity, two matching Ghidra replays for each camera/arena/type10 native probe, 20 original PE sparse opcode anchors, two first-face type10 cull cases). Native emulation includes service substitutions; no original game frame or pixel output."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraBuilderAudit.java",
+        "sha256": "c1d8193ded3a86c72816b83c3d75b93d20caaad0e182d2aa651f5e2134f4b77a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraNativeProbe.java",
+        "sha256": "8b125a09871ea1a3acd2b0b1256ac355d172bccb33cee121987d1f35842587af"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_FrameCameraDataflow.java",
+        "sha256": "168537279dd42aff5cc97121bb4c685ec0af5ad6b8d115a341aff5e3e4c89088"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderArenaNativeProbe.java",
+        "sha256": "a3723323641d650a522c8bf1eb4bdc423585f2a6bd5209d13b55702801dac21d"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderDispatchTableAudit.java",
+        "sha256": "06fbee03701819a3ac28cb535d6b924193be2916b3677041d2a5a00129b81054"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_Type10DispatchProbe.java",
+        "sha256": "86fad06a9db05e2a6a22f0f918581112f697887308bb895a134bc7c46e9cdd1a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_camera_type10.py",
+        "sha256": "c699868b23759c4d3c425f262f1581549305484ae6fc1155f7ae83ab70d7ef9f"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00405970",
+        "address": "00405970"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0048F9B0",
+        "address": "0048F9B0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0048F2B0",
+        "address": "0048F2B0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00490640",
+        "address": "00490640"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004FACA8",
+        "address": "004FACA8"
+      }
+    ],
+    "methods": [
+      "Pinned main and agent protocol 1.0.1, verified exact executable/ZFS/GZF digests.",
+      "Original-PE sparse opcode-anchor validation and Ghidra v97 read-only call/data-flow audit.",
+      "Original-instruction camera initialization 00405970\u219200472220, intercepted FSINCOS and CRT 80-bit-to-int; two identical replays.",
+      "Original-instruction renderer-arena initializer 0048F9B0, intercepted allocator services, complete 4096-entry zero table checks; two identical replays.",
+      "Original-instruction type-10 dispatch 00490640 on genuine GTSi/bus native VCF objects and producer-authored queue records; two identical replays.",
+      "Independent standalone original PE/trace assertions, 52/52."
+    ],
+    "limitations": "Private retail PE, original resource slices, annotated GZF and private full native traces required for full replay and are deliberately absent from public files. Camera viewport/frustum/pose and root active-world setup controlled; OS/CRT/heap/palette/media, original pixel/raster backend substituted; hardware x87 equivalence not established. Test culling does not imply production visibility."
+  }
+}
