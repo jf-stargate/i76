@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T065437Z-0e28a278",
+  "findings": [
+    {
+      "finding_id": "editor.v29.zone_lookup_and_slot_assignment",
+      "claim": "Original 00411B30 looks up signed zone ID from 80x80 map 00439EF0, optionally invokes original 004125A0 to reserve the first empty header of 80 0x8004-strided plane-0 zone slots and stores its ID in the map. Native original instructions were executed for empty, existing, two allocations and out-of-range zones.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411B30"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004125A0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V29_ZONE_FIRST_TOUCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v29_aggregate.json"
+        }
+      ],
+      "limitations": "The UI refresh thunk was substituted; test map/header state synthetic."
+    },
+    {
+      "finding_id": "editor.v29.startup_initialized_before_first_touch",
+      "claim": "Original 00411810 reset mode 0 initializes zone-map entries to 0xFF and terrain-workplane missing-height values to 0x8000 with slot headers zero, independently of 00411B30 first-touch ID allocation. Original default plane-2 surface is initialized from 00433A70 (initial value 1).",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411810"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004118BB"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411904"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411931"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V29_ZONE_FIRST_TOUCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v29_aggregate.json"
+        }
+      ],
+      "limitations": "Original initialization was assembly/decompilation cross-checked, not executed end-to-end with Windows UI. Native emulation tests manually initialize correct defaults."
+    },
+    {
+      "finding_id": "editor.v29.first_touch_sample_selector_creation",
+      "claim": "Executing original terrain services, missing-zone height read selector 100 and material read return -1 without allocation, while selector 1 height read allocates zone ID 0 and returns unset 0x8000; subsequent original height and material writers/readers exchange 600/6.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F2B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F150"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F3A0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F4A0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411BA0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V29_ZONE_FIRST_TOUCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v29_aggregate.json"
+        }
+      ],
+      "limitations": "Only the UI/display refresh routine intercepted and synthetic startup state supplied; no original editor UI executed."
+    },
+    {
+      "finding_id": "editor.v29.native_neighbor_pass_allocates_absent_zone",
+      "claim": "Original rasterizer/classifier/neighbor repair plus original terrain accessors and original zone allocator created an initially unmapped adjacent zone (ID 1) in modes 3 and 5, whereas modes 2 and 4 left it absent for an identical synthetic seam fixture. Mode 3 finished with 26 valid-height cells; mode 5 with only the original seed.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421DF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421BE0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411B30"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004125A0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V29_ZONE_FIRST_TOUCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v29_aggregate.json"
+        }
+      ],
+      "limitations": "Specific synthetic road section and terrain memory, original UI refresh substituted; Ghidra x87 behavior may not be bit-exact for fractional geometry."
+    },
+    {
+      "finding_id": "editor.v29.exhausted_zone_capacity_refresh",
+      "claim": "With all 80 base-plane headers occupied, original zone allocation returns -1 and leaves the map byte 0xFF, but the 00411B30 path still sends -1 as argument to display refresh 0040124E.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004125BC"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411B70"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V29_ZONE_FIRST_TOUCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v29_aggregate.json"
+        }
+      ],
+      "limitations": "Refresh was deliberately intercepted, so a crash, UI defect or reachable original game/editor failure is NOT established."
+    },
+    {
+      "finding_id": "editor.v29.zone_removal_compaction_hypothesis",
+      "claim": "Static native 00411BE0 and interactive caller 00413B20 suggest zone deletion and slot compaction, with remapping of zone bytes, object lists and multiple per-zone terrain planes; these lifecycle effects have not been confirmed in original-code execution.",
+      "status": "inferred",
+      "confidence": "medium",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411BE0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041415B"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V29_ZONE_FIRST_TOUCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v29_aggregate.json"
+        }
+      ],
+      "limitations": "No native deletion/compaction experiment, caller/UI state or full object metadata integrity check; provisional research-only interpretation."
+    }
+  ]
+}
