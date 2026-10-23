@@ -1,0 +1,28 @@
+{
+  "analytic_not_original_code_execution": true,
+  "scenarios_passed": 7,
+  "conditions": [
+    "A then B: common height 100 / material 7",
+    "B then A: common height 300 / material 6",
+    "A/B/C connected footprint height propagates to C without overlap A/C",
+    "preexisting valid height selected ahead of anchor fallback",
+    "zero anchor becomes one",
+    "sentinel anchor stays sentinel although material 6 is stamped",
+    "objects of classes 2/3 write no material; cross-zone scheduling example differentiates copyback order"
+  ],
+  "cross_zone_example": {
+    "global_simultaneous": {
+      "0": 0,
+      "1": 30,
+      "2": 30,
+      "3": 45
+    },
+    "zone_sequential": {
+      "0": 0,
+      "1": 30,
+      "2": 40,
+      "3": 45
+    }
+  },
+  "limitations": "Pure analytical model of branch rules; fabricated input rectangles after integer-rotation bounding; illustrative mean is not original smoothing FPU output."
+}

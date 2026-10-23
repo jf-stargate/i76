@@ -1,0 +1,206 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T023107Z-5ce8ac14",
+  "findings": [
+    {
+      "finding_id": "editor.object.first_valid_height_scan",
+      "claim": "Grading loop 0040A6E0 selects the first non-0x8000 plane-1 height in an X-major then Y-minor search of its padded rectangular bounds, or falls back to the plane-0 object anchor height with 0 promoted to 1.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A95F"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Integer rotation boundary rounding and exact authored workspace fixtures are not dynamically verified."
+    },
+    {
+      "finding_id": "editor.object.material_and_height_separate",
+      "claim": "The object grader always writes the selected height to the bounded region, while class 0x50/0x51 selects surface 6 and class 0x52/0x53 selects surface 7 independently; classes 2/3 do not issue the material write.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AA5C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Overlapping material writes can also be affected by other editing operations outside this grader."
+    },
+    {
+      "finding_id": "editor.object.cross_zone_order",
+      "claim": "The grader processes 80 zone list heads in ascending numeric order, following each head-linked list in forward order; zone ID order and within-zone head insertion age are distinct determinants of processing order.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AAB8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Full zone-map creation and relocation sequence for a particular editable workspace was not replayed."
+    },
+    {
+      "finding_id": "editor.object.overlap_transitive_height",
+      "claim": "A non-sentinel height stamped by an earlier object can seed a later overlapping object's entire footprint and propagate through a chain of overlapping regions without endpoint objects touching; the final result depends on scan priority and other preexisting heights.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A96C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/v23_overlap_semantic_model.py"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/analytic_validation.json"
+        }
+      ],
+      "limitations": "Seven analytical scenarios only; not live original-code execution and not tied to shipped authoring workspaces."
+    },
+    {
+      "finding_id": "editor.object.post_stamp_height_guard",
+      "claim": "After grading, the editor clears EAX, zero-extends a 16-bit work-plane height into EAX, then compares it to 0xffffffff before assigning object+0x0C; the equality branch is unreachable for that zero-extended sample.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AAA4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "No original editor runtime experiment measures the effect when the sampled value equals the 0x8000 sentinel."
+    },
+    {
+      "finding_id": "editor.road_neighbor_surface_guard",
+      "claim": "Road-neighbor interpolator 00421BE0 only enters its existing-height material update branch when the material index is below 6; surface 6/7 protection is conditional on a non-sentinel work-plane height.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421D40"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "This does not prove universal immunity from other terrain grading stages."
+    },
+    {
+      "finding_id": "editor.smoothing.zone_sequential",
+      "claim": "The four smoothing sweeps iterate active zones sequentially; 00422870 copies each zone's scratch output back before processing the next zone and reads neighbors from global height plane 1, so boundaries can observe already-updated earlier zones in the same sweep.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422BDF"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040E52C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/original_editor_overlap_and_smoothing.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_validation.json"
+        }
+      ],
+      "limitations": "Global non-simultaneity is an instruction-derived scheduling implication. The toy average does not reproduce exact x87 rounding or bit-identical output."
+    },
+    {
+      "finding_id": "editor.retail_anomaly_attribution_gap",
+      "claim": "Existing v20 records show 381 of 386 polygon footprints contain surface 6 or 7, but most of the 19 largest documented worst-point height gaps occur at material 0 or 1; editor overlap mechanism alone does not explain these retail anomalies.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "shared",
+      "evidence": [
+        {
+          "kind": "external",
+          "ref": "ref/editor/intersection_geometry_and_driving_surface.md at af747a9fed757f8030c34d0f05441702352f5f8c"
+        },
+        {
+          "kind": "external",
+          "ref": "historical v20_intersection_footprint_per_placement.tsv and v20_largest_footprint_discrepancies.tsv"
+        }
+      ],
+      "limitations": "The editor workspace source is missing; no direct authored-object footprint to retail-terrain match or causal claim."
+    }
+  ]
+}
