@@ -1,4 +1,4 @@
-# Bootstrap v1.0.1: cold-start agent procedure
+# Bootstrap v1.0.2: cold-start agent procedure
 
 This procedure is independent of conversation memory. A new agent needs only the repository URL, GitHub read access, and—if proposing changes—permission to create an isolated branch/PR. No previous chat transcript or local cache may be assumed.
 
@@ -13,9 +13,9 @@ This procedure is independent of conversation memory. A new agent needs only the
 5. `PLAN`: Declare `track`, research topic, expected outputs and read/write scope. Work is permitted to overlap other agents. Consult active PRs to avoid unnecessary duplication, not to acquire a global lock.
 6. `ALLOCATE`: For persistable work, generate `run_id = <track>-<UTC_YYYYMMDDTHHMMSSZ>-<8 secure random lowercase hex>`. Atomically create branch `agent/<track>/<run_id>` at `B` using a create-only ref operation. If the ref already exists, allocate a new run ID. No shared branch and no force update.
 7. `WRITE`: Changes to a run's `agent/runs/<track>/<run_id>/` belong to that one run. Include a `manifest.json`, structured `findings.json` (can be empty), and `validation.json`. Code should be in versioned scripts or referenced with exact Git blob/checksum.
-8. `PREFLIGHT`: Validate JSON schemas, path scope, content classification, SHA-256 outputs, original program MD5/SHA-256 as available, repo base SHA, and the diff against current `main`. Inspect any concurrent changes. A stale base is normal; rebase or merge carefully and rerun validation, never force overwrite.
+8. `PREFLIGHT`: Validate schemas, path scope, prohibited content, artifact SHA-256, original binary/Ghidra identities and the *original* repo base SHA. Inspect concurrent accepted changes and conflicts. An unchanged, green-checked **isolated run-only** PR need not rebase after an unrelated run merges. For canonical documentation, promotions, baselines, shared tools or governance, update against current `main` and obtain fresh trusted validation. Never force overwrite.
 9. `PROPOSE`: Open PR; explicitly state whether it adds a run only, modifies shared tooling, or requests authoritative promotion. **Opening a PR does not make its contents authoritative.**
-10. `ACCEPT`: Research PR is eligible for merge only when GitHub protection and required review/checks are actually active. V1 requires the human maintainer to inspect and merge PRs manually. Formal GitHub approving reviews are not required. For changes to canonical `manual/`, baselines or governance, obtain **explicit maintainer acceptance** and document reconciliation of conflicts.
+10. `ACCEPT`: With active protection, a run-only PR may be merged by the human maintainer if its **unchanged head** has passed required `integrity`, it remains mergeable, and its findings/scope are reviewed; the original base need not equal the newest `main`. Canonical, promotion, baseline, shared-tool and governance PRs additionally require explicit maintainer acceptance, up-to-date base reconciliation and a fresh trusted check. This extra requirement is **procedural**, not enforced by the global loose GitHub check rule.
 11. `RECORD`: A merged run becomes immutable. Link its merge commit, PR, original base commit, findings and validation in subsequent promotions. Do not edit it to correct a conclusion: create another run with `supersedes`/`contradicts` references.
 
 ## Failure recovery and concurrent work
@@ -24,7 +24,7 @@ This procedure is independent of conversation memory. A new agent needs only the
 - **Chat interrupted after branch creation:** reopen branch and manifest; the branch/run ID is the durable identity. If abandoned, retain PR/branch history or close PR with a reason; do not turn the directory into a shared scratchpad.
 - **Two agents study the same function:** both may publish separate immutable runs. A promotion selects or reconciles their findings; avoid last-writer-wins.
 - **Two agents request the same research milestone (`v21`):** version is assigned **at promotion**, not at run allocation. Only one accepted milestone may claim the slot without explicit version/namespace distinction.
-- **`main` advances:** refresh, reconcile, and rerun policy/schema checks before merge. Never silently adopt another agent's canonical edits.
+- **`main` advances:** do not rebase isolated run-only PRs solely because unrelated work merged, provided the head is unchanged, checks passed and no conflict exists. Revalidate canonical, governance and shared changes against updated `main`. Never silently adopt another agent's canonical edits.
 - **Conflicting `manual/` conclusions:** both findings remain discoverable; canonical reference stays unchanged until reviewer approves a reconciliation PR.
 - **No GitHub enforcement visibility:** agent may keep work on an isolated branch/draft PR but must not autonomously merge or report it as accepted.
 - **Same GitHub identity used by agent and user:** accepted for this small manually supervised experiment; there is no identity-based independent review, and the agent must not self-merge. The human makes the merge decision. Passing CI alone is never approval.
@@ -32,4 +32,4 @@ This procedure is independent of conversation memory. A new agent needs only the
 
 ## First-time protocol deployment
 
-The repository retains historical `ref/`, `scripts/`, and `snapshot/` trees. The publication protocol is accepted; the live ruleset 25664125 and trusted CI must still be checked at each new agent bootstrap. Formal independent GitHub approvals and separate credentials are intentionally not required for this experiment. Protocol 1.0.1 retains `autonomous_run_merge: false`.
+The repository retains historical `ref/`, `scripts/`, and `snapshot/` trees. The publication protocol is accepted; the live ruleset 25664125 and trusted CI must still be checked at each new agent bootstrap. Formal independent GitHub approvals and separate credentials are intentionally not required for this experiment. Protocol 1.0.2 retains `autonomous_run_merge: false`.

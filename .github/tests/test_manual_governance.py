@@ -6,9 +6,9 @@ class Governance(unittest.TestCase):
  def test_versions(self):
   p=yaml.safe_load((ROOT/"agent/protocol/access.yaml").read_text())
   v=json.loads((ROOT/"agent/protocol/SCHEMA_VERSIONS.json").read_text())
-  self.assertEqual((ROOT/"agent/protocol/VERSION").read_text().strip(),"1.0.1")
-  self.assertEqual(p["schema_version"],"1.0.1")
-  self.assertEqual(v["publication_protocol_version"],"1.0.1")
+  self.assertEqual((ROOT/"agent/protocol/VERSION").read_text().strip(),"1.0.2")
+  self.assertEqual(p["schema_version"],"1.0.2")
+  self.assertEqual(v["publication_protocol_version"],"1.0.2")
   self.assertEqual(v["supported_research_schema_versions"],["1.0.0","1.1.0"])
  def test_manual_policy(self):
   p=yaml.safe_load((ROOT/"agent/protocol/access.yaml").read_text())["publication"]
@@ -19,6 +19,10 @@ class Governance(unittest.TestCase):
   self.assertTrue(p["require_trusted_ci"])
   self.assertFalse(p["autonomous_run_merge"])
   self.assertFalse(p["direct_main_push"])
+  self.assertFalse(p["require_current_base_revalidation"])
+  self.assertTrue(p["require_fresh_base_for_canonical_changes"])
+  self.assertTrue(p["require_current_head_integrity_at_acceptance"])
+  self.assertTrue(p["require_mergeability_check_at_acceptance"])
  def test_ruleset_template(self):
   r=json.loads((ROOT/".github/config/main-ruleset.json").read_text())
   self.assertEqual(r["enforcement"],"active")
@@ -33,6 +37,6 @@ class Governance(unittest.TestCase):
   self.assertFalse(p["require_last_push_approval"])
   self.assertTrue(p["required_review_thread_resolution"])
   s=rules["required_status_checks"]["parameters"]
-  self.assertTrue(s["strict_required_status_checks_policy"])
+  self.assertFalse(s["strict_required_status_checks_policy"])
   self.assertEqual([c["context"] for c in s["required_status_checks"]],["integrity"])
 if __name__=="__main__":unittest.main()
