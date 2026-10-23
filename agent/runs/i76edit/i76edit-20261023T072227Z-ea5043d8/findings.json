@@ -1,0 +1,244 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T072227Z-ea5043d8",
+  "findings": [
+    {
+      "finding_id": "editor.zone.release_last_slot_compaction",
+      "claim": "Original 00411BE0 release chooses highest occupied slot and, if releasing an earlier ID, remaps the old highest zone into the freed ID, copies slot contents, and resets the former highest slot. Verified with native original x86 execution deleting IDs 0,1,2 and missing ID 9 from three allocated slots.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411C90"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411CDA"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411D60"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004411ED1"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00412005"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/zone_compaction_and_reuse.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v30_validation.json"
+        }
+      ],
+      "limitations": "All scenarios use synthetic consecutively occupied IDs 0,1,2 and intercepted UI side effects."
+    },
+    {
+      "finding_id": "editor.zone.six_plane_full_byte_copy_and_reset",
+      "claim": "Original zone compaction copies 0x8004 bytes for each of six terrain planes. Full-block native-emulator checks verify copied contents and distinct freed-slot reset patterns, including base-plane header 0 and working-height plane repeated 0x80008000.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411D60"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411D8D"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411DBA"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411DDD"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411E07"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411E54"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411ED1"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411F55"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411F92"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/zone_compaction_and_reuse.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v30_validation.json"
+        }
+      ],
+      "limitations": "Data are synthetic terrain planes, not loaded original mission samples."
+    },
+    {
+      "finding_id": "editor.zone.auxiliary_metadata_full_record",
+      "claim": "Original compaction moves 200 bytes per zone from physical base 0163CE70+slot*200 even though its inner loop addresses fields at base+2. Corrected synthetic tests verify all 200 moved bytes and FF cleanup of all 200 freed bytes.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411D02"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411E6C"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411FA5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/zone_compaction_and_reuse.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v30_validation.json"
+        }
+      ],
+      "limitations": "Exact semantic meaning of the per-entry bytes is not fully recovered."
+    },
+    {
+      "finding_id": "editor.zone.moved_object_list_id_rebinding",
+      "claim": "Original 00409E00 moves surviving last-slot object list to the vacated slot, clears its former list head and updates object payload zone IDs. Verified in original-instruction emulation with one-node and two-node moved lists from ID 2 to ID 1.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409E0F"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409E2F"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411E8E"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/zone_compaction_and_reuse.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v30_validation.json"
+        }
+      ],
+      "limitations": "Deleted-zone object destructor 004010BE is intercepted when deleted object list nonempty; resource teardown unverified."
+    },
+    {
+      "finding_id": "editor.zone.release_and_first_touch_reuse",
+      "claim": "After original release ID 1 and compaction of former ID 2, original 00411B30/004125A0 first-touch allocation assigns the freed slot ID 2 to new zone coordinate (3,0); original material/height getters read 1 and 0x8000 respectively.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411B30"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004125A0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F150"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041F2B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/zone_compaction_and_reuse.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v30_validation.json"
+        }
+      ],
+      "limitations": "Synthetic initialized plane contents and intercepted debug display; tested one normal reuse cycle, not saturation."
+    },
+    {
+      "finding_id": "editor.zone.deleted_object_heap_lifecycle_unresolved",
+      "claim": "Original 00409DC0 iterates the deleted zone's object list and calls 004010BE for each node, but downstream object destruction and heap release were not executed in the case with a deleted-zone object.",
+      "status": "unresolved",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409DC6"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411CE1"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/zone_compaction_and_reuse.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/v30_validation.json"
+        }
+      ],
+      "limitations": "Do not infer complete object resource teardown from successful list head clearing; true allocator/ownership path remains a research target."
+    }
+  ]
+}
