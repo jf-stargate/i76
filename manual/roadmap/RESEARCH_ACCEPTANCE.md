@@ -7,3 +7,5 @@
 **Promotion:** A reviewed and merged run is historical evidence; it does not automatically change `manual/reference/` or the annotated Ghidra baseline. Promotion requires a separate manual decision.
 
 **Migration:** Existing `ref/`, `scripts/`, and `snapshot/` stay authoritative in their current locations pending individual evidence-provenance review. Recover missing full editor history reports from genuine archives before attempting to import them. Do not synthesize historical records.
+
+**Canonical documentation updates:** For a repeatable finding-to-reference review, follow [DOCUMENTATION_WORKFLOW.md](DOCUMENTATION_WORKFLOW.md) and use the [promotion template](../../agent/promotions/TEMPLATE.md). Publish subsystem-level promotions as separate PRs, not as edits inside a research run.
