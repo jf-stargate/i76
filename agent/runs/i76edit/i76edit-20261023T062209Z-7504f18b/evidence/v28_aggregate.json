@@ -1,0 +1,61 @@
+{
+  "original_pe_sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+  "annotated_ghidra_gzf_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+  "original_native_anchors_passed": 9,
+  "original_native_anchors_total": 9,
+  "private_transcript_checks_passed": 26,
+  "private_transcript_checks_total": 26,
+  "original_functions_executed": [
+    "00421DF0",
+    "00409210",
+    "00421BE0",
+    "0041F150",
+    "0041F2B0",
+    "0041F3A0",
+    "0041F4A0",
+    "00412300",
+    "00412120"
+  ],
+  "substituted_boundary": "00411BA0 zone backing allocator only",
+  "terrain_plane_zone_stride_bytes": 32772,
+  "original_getter_cases": [
+    {
+      "x": 127,
+      "y": 20,
+      "result": 600
+    },
+    {
+      "x": 128,
+      "y": 20,
+      "result": 32768
+    },
+    {
+      "x": 129,
+      "y": 20,
+      "result": 32768
+    },
+    {
+      "x": -1,
+      "y": 20,
+      "result": 4294967295
+    }
+  ],
+  "single_zone_to_cross_zone_x_shift": 107,
+  "mode_cell_parity": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "mode3_valid_height_count": 26,
+  "mode3_new_height_count": 25,
+  "mode3_adjacent_zone_x128_new_height_cells": 9,
+  "mode2_valid_height_count": 7,
+  "mode4_added_road_surface_cells": 2,
+  "mode5_valid_height_count": 1,
+  "fractional_original_service_scenarios": 6,
+  "all_fractional_emulations_returned": true,
+  "fractional_direction_reversal": "Different output cell sets in Ghidra P-code; hardware correctness unresolved",
+  "failed_negative_control": "Wrong stride initialized zone-1 data at 0x10008 and 0x20010 instead of 0x8004, causing invalid zero-neighbor averages",
+  "limitations": "Original zone backing allocator substituted, synthetic terrain map, Ghidra x87 warnings, no full Windows editor or editable .I76 workspace."
+}
