@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T031245Z-fec7cae2",
+  "track": "i76edit",
+  "topic": "Original editor road cross-section classifier and x87 raster cell conversion",
+  "base_commit": "e26d643994db8ddd7e9cbde1e2f74fcf16647fce",
+  "started_at": "2026-10-23T03:12:45Z",
+  "summary": "Native 00409210 integer cross-section ribbon, inclusive endpoint classes, 896 original x86 P-code execution comparisons, distinct grading vs material lateral extents, and signed remainder rounding asymmetry.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original supplied game data, never committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "annotated I76EDIT.EXE.gzf original editor baseline",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private editor environment setup v1.0.0",
+      "notes": "Read-only Ghidra project MD5 agrees with original PE."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/CLASSIFIER_RESEARCH.md",
+      "kind": "report",
+      "bytes": 5225,
+      "sha256": "dfb440451d299e12fed3cab21b31a330cae35a12573bbe055f2d072e54f5b8d5",
+      "source_refs": [
+        "original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/V25ClassifierDifferential.java",
+      "kind": "script",
+      "bytes": 2807,
+      "sha256": "60150f08d2ed7573f3f14eb4f85d406dc94491e47136217171349ccb0c63ffe4",
+      "source_refs": [
+        "original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_original_anchors.py",
+      "kind": "script",
+      "bytes": 1774,
+      "sha256": "048bc8b8f3d342fdbb1a9a6523435a647ad2e0ad0e955326af37e9b541af4cd4",
+      "source_refs": [
+        "original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/emulation_validation.json",
+      "kind": "test-result",
+      "bytes": 792,
+      "sha256": "152d562608b5fc868498d2dc1229abb7ff50f36b327ffa83045fecd0600fb5c0",
+      "source_refs": [
+        "original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 920,
+    "passed_count": 920,
+    "notes": "896 original x86 P-code emulator/model comparisons (zero mismatches or errors) plus 24 fixed original PE opcode guards; separate additional 38-case boundary probe. No authentic editor workspace export."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/V25ClassifierDifferential.java"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_original_anchors.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00409210",
+        "address": "00409210"
+      }
+    ],
+    "methods": [
+      "Original private PE MD5/SHA256 verified",
+      "Read-only original Ghidra 12.1.4 x86 P-code emulation: 896 cases",
+      "Signed-int32 independent model comparison, including extreme wrap inputs",
+      "24 fixed original-native opcode anchors",
+      "Original float-to-integer helper and raster caller cross-checked against assembly"
+    ],
+    "limitations": "Original-code emulation covers only 00409210, not entire editor road export. Private GZF and executable remain unavailable from public repository. Exact float32/x87 raster boundary behavior, original editable I76 workspace and original source filenames unresolved."
+  }
+}

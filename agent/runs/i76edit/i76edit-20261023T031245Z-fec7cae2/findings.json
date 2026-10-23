@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T031245Z-fec7cae2",
+  "findings": [
+    {
+      "finding_id": "editor.road.cross_section_integer_ribbon",
+      "claim": "Original 00409210 tests abs(signed32_cross) < max(abs(signed32_dx),abs(signed32_dy)) with strict inequality and int32 wrap; class zero includes degenerate segments and exact tolerance-boundary points.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409237"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409264"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040926A"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CLASSIFIER_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/emulation_validation.json"
+        }
+      ],
+      "limitations": "Signed-int32 overflow/INT_MIN behavior is specific to i386; do not generalize to unbounded integer arithmetic."
+    },
+    {
+      "finding_id": "editor.road.classifier_return_semantics",
+      "claim": "For nondegenerate ordinary coordinates, class 1 denotes before first lateral cross-section endpoint, 2 denotes between inclusive endpoints, and 3 beyond second; class 0 is outside the ribbon. All branches tested in original-instruction emulation.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409278"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409294"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004092CA"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004092E6"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040931C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CLASSIFIER_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/emulation_validation.json"
+        }
+      ],
+      "limitations": "Exact native axis-comparison precedence must be preserved for unusual overflow or degenerate coordinates."
+    },
+    {
+      "finding_id": "editor.road.classifier_original_execution",
+      "claim": "Read-only original I76EDIT.EXE x86 P-code emulation performed 896 deterministic samples, with no execution failures and no discrepancies against independent signed-int32 model; 24 native opcode checks passed.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/V25ClassifierDifferential.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/emulation_validation.json"
+        }
+      ],
+      "limitations": "Instruction-level original-code emulation only; no full Windows editor or exported terrain was exercised."
+    },
+    {
+      "finding_id": "editor.road.two_lateral_grading_widths",
+      "claim": "Original 00421DF0 uses half-normal times 5 for modes 1-3 and half-normal times plus/minus 2 for modes 4-5, corresponding to approximate 5-unit and 2-unit nominal lateral raster section widths for observed unit input.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00421E62"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004221D2"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004220E5"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0042211D"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CLASSIFIER_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/emulation_validation.json"
+        }
+      ],
+      "limitations": "Final pixel extents also depend on original float truncation, raster iteration, and mode/classifier gating; not the visible RSEG width."
+    },
+    {
+      "finding_id": "editor.road.negative_coordinate_rounding_bias",
+      "claim": "Helper 004235A4 truncates x87 to signed integer; selected 00421DF0 coordinate conversions adjust only when signed trunc(x*10) modulo 10 is greater than 4, making the additional rounding branch asymmetric for negative values.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004235B3"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004235BD"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004221F5"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004221F7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CLASSIFIER_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/emulation_validation.json"
+        }
+      ],
+      "limitations": "Native branch semantics established, but complete bit-level float32/x87 tie boundary and negative world-coordinate authoring validity are unresolved."
+    }
+  ]
+}
