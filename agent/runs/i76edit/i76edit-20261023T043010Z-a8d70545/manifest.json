@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T043010Z-a8d70545",
+  "track": "i76edit",
+  "topic": "Original editor road grid/world scaling and x87 raster conversion reliability",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T04:30:10Z",
+  "summary": "Binary evidence corrects v25 world-unit interpretation of road grade widths; independent original classifier and host x87 checks identify a Ghidra FPU emulation limitation, with read-only retail mission diagnostics.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original PE from user-provided retail tar, never committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "Original annotated I76EDIT.EXE.gzf editor snapshot",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private standalone editor initialization bundle v1.0.0",
+      "notes": "Read-only Ghidra project MD5 cross-check."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/road_grid_evidence.md",
+      "kind": "report",
+      "sha256": "23d36f7539a6f6c8c0680c7c27a058b36deffec011605490af10cf0777c09295",
+      "bytes": 1811
+    },
+    {
+      "path": "scripts/verify_native_scale.py",
+      "kind": "script",
+      "sha256": "4422334e0fe5fda6a0d90f1b0aabafd5710a45e3f106b5a274edfb23e50f1e04",
+      "bytes": 1421
+    },
+    {
+      "path": "evidence/v26_aggregate.json",
+      "kind": "test-result",
+      "sha256": "9b6333e7c8875b2dc6e7946297086ec125966b5f4e7e9907d0b6e1ab959896c9",
+      "bytes": 1145
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 22,
+    "passed_count": 22,
+    "notes": "22/22 local checks combining original editor MD5/SHA256/GZF identity, native instruction/constant checks and aggregate evidence. Original integer classifier 240/240, original Ghidra FPU 220 executed but 37 outputs differ from x87 host hardware. No full original editor export."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_native_scale.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:004030C0",
+        "address": "004030C0"
+      },
+      {
+        "kind": "external",
+        "ref": "private local i76_editor_v26_road_grid_x87_20261022.zip, with hardware x87 and Ghidra differential scripts plus read-only RSEG parser"
+      }
+    ],
+    "methods": [
+      "Original private editor/GZF identities verified",
+      "Native i386 instruction and constant cross-check",
+      "Read-only Ghidra original classifier P-code emulation on 240 retail-derived samples",
+      "Read-only Ghidra x87 original opcode stepping on 220 controlled FP32 cases, compared against host x87 hardware instruction equivalents",
+      "40-mission RSEG-to-TER bounded diagnostic, aggregate counts only committed"
+    ],
+    "limitations": "No original editable .I76 workspace, original editor UI/export runtime test or bit-exact complete raster path. The full multi-script local checkpoint is private and not reproduced in public Git. Historical v25 correction is proposal-only until maintainer reconciles it."
+  }
+}
