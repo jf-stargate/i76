@@ -1,0 +1,79 @@
+{
+  "status": "validated_local_only",
+  "original_executable_md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+  "original_executable_sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+  "annotated_editor_gzf_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+  "method": "Original x86 instructions of 00421df0 and 00409210, plus 00421be0 for native-neighbor tests, executed in Ghidra EmulatorHelper; only terrain services substituted",
+  "validation": {
+    "passed": 16,
+    "total": 16,
+    "raster_scenarios": 10,
+    "native_neighbor_scenarios": 3
+  },
+  "raster": {
+    "mode2_unset": {
+      "classifier": 49,
+      "height_reads": 7,
+      "height_writes": 7,
+      "material_writes": 7,
+      "stamped_height": 250
+    },
+    "mode2_one_valid": {
+      "classifier": 49,
+      "height_reads": 7,
+      "height_writes": 6,
+      "material_writes": 6
+    },
+    "mode4_unset": {
+      "classifier": 49,
+      "height_reads": 3,
+      "height_writes": 0,
+      "material_writes": 3
+    },
+    "mode4_one_valid": {
+      "classifier": 49,
+      "height_reads": 3,
+      "height_writes": 0,
+      "material_writes": 2
+    },
+    "mode3_original_neighbor_thunk_calls": 56,
+    "mode5_original_neighbor_thunk_calls": 24,
+    "degenerate_returns_zero": true
+  },
+  "native_neighbor": [
+    {
+      "mode": 3,
+      "seed_height": 600,
+      "seed_material": 6,
+      "original_neighbor_calls": 56,
+      "height_reads": 264,
+      "surface_reads": 56,
+      "height_writes": 25,
+      "surface_writes": 53,
+      "final_valid_cells": 26
+    },
+    {
+      "mode": 5,
+      "seed_height": 600,
+      "seed_material": 6,
+      "original_neighbor_calls": 24,
+      "height_reads": 200,
+      "surface_reads": 24,
+      "height_writes": 0,
+      "surface_writes": 16,
+      "final_valid_cells": 1
+    },
+    {
+      "mode": 5,
+      "seed_height": 600,
+      "seed_material": 0,
+      "original_neighbor_calls": 24,
+      "height_reads": 200,
+      "surface_reads": 24,
+      "height_writes": 0,
+      "surface_writes": 18,
+      "final_valid_cells": 1
+    }
+  ],
+  "limitations": "Original terrain access and mutation services replaced by synthetic maps; no Windows editor, original authored ROAD workspace or complete export. Ghidra x87 emulation has previously documented discrepancies against hardware."
+}
