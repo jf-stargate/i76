@@ -1,0 +1,37 @@
+{
+  "original_editor_sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+  "original_editor_md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+  "annotated_ghidra_gzf_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+  "local_native_original_opcode_guards": {
+    "passed": 62,
+    "total": 62
+  },
+  "original_x86_execution_scenarios": 7,
+  "memory_and_reference_assertions": {
+    "passed": 87,
+    "total": 87
+  },
+  "original_native_deleted_nodes_per_variant": 2,
+  "original_native_deleted_payloads_per_variant": 2,
+  "original_CRT_fallback_variant": {
+    "node_HeapFree_calls": 2,
+    "payload_HeapFree_calls": 2,
+    "CRT_small_block_release_calls": 0,
+    "free_order": [
+      "0x70003400",
+      "0x70003500",
+      "0x70003800",
+      "0x70003900"
+    ]
+  },
+  "original_CRT_small_block_branch_variant": {
+    "node_HeapFree_calls": 2,
+    "payload_HeapFree_calls": 0,
+    "CRT_small_block_release_calls": 2
+  },
+  "surviving_object_zone_id_rebinding_from": 2,
+  "surviving_object_zone_id_rebinding_to": 1,
+  "original_compaction_release_and_reuse_checks_passed": true,
+  "private_checkpoint_zip_sha256": "8fee32fdadb05a47a9f086f711d5379abdd65c7e337b3e49f38db18705c7edf6",
+  "limitations": "Native Ghidra function-level original x86 instruction execution with isolated Windows HeapFree/CRT SBH services; physical heap operations, allocator internals and Windows editor startup not executed; synthetic terrain and lists."
+}

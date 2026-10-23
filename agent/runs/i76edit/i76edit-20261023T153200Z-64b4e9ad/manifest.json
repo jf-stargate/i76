@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T153200Z-64b4e9ad",
+  "track": "i76edit",
+  "topic": "Original editor workspace object destructor, two heap domains and deleted-zone traversal",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T15:32:00Z",
+  "summary": "Original I76EDIT.EXE object creation/disposal call-chain plus native x86 destructor/CRT _free execution under isolated heap services; two deleted objects, two moved objects, both CRT branches; preserved prior native zone compaction validation.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Original private game archive, original editor PE verified, not committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "original annotated I76EDIT.EXE.gzf",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private editor environment setup v1.0.0, I76_EDITOR project",
+      "notes": "Original program imported without reanalysis; read-only Ghidra verification matched PE MD5."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/object_teardown_native_research.md",
+      "kind": "report",
+      "sha256": "0f225dd6b7603c245cc4a187e415a930a423b42a10383549438a8fb219d4744b",
+      "bytes": 4997,
+      "source_refs": [
+        "Private original BUILDER/I76EDIT.EXE SHA-256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_public_anchors.py",
+      "kind": "script",
+      "sha256": "397cf99f8988b6cb398a405e3667bb2e9525f77870957eff6ef98a047071dee7",
+      "bytes": 1862,
+      "source_refs": [
+        "Private original BUILDER/I76EDIT.EXE SHA-256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/object_teardown_aggregate.json",
+      "kind": "test-result",
+      "sha256": "e148e11f2b465cdecc0c4472b1f04e9a3977a90a0a71a7f9ff08017aef84ffc3",
+      "bytes": 1478,
+      "source_refs": [
+        "Private original BUILDER/I76EDIT.EXE SHA-256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 149,
+    "passed_count": 149,
+    "notes": "62/62 exact native private-original-PE opcode guards plus seven original Ghidra x86 function-level scenarios with 87/87 zone compaction memory/reference assertions. Separate two-object destructor sequence and fallback/CRT small-block branch event checks passed. The counted 149 are structural assertions not independent original Windows heap calls."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_public_anchors.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00409A60",
+        "address": "00409A60"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00422FA0",
+        "address": "00422FA0"
+      },
+      {
+        "kind": "external",
+        "ref": "private conversation checkpoint i76_editor_v31_object_teardown_20261023.zip SHA256 8fee32fdadb05a47a9f086f711d5379abdd65c7e337b3e49f38db18705c7edf6, containing exact runnable V31NativeObjectDestructor.java, original-emulation trace, 62-anchor native verifier, 87-assertion trace validator and full technical report"
+      }
+    ],
+    "methods": [
+      "Private original I76EDIT executable MD5/SHA256 and Ghidra 12.1.4 annotated baseline SHA256 verified",
+      "Read-only Ghidra decompilation and independent i386 native disassembly for constructor/destructor/CRT _free, 62 original byte anchors validated",
+      "Original Ghidra EmulatorHelper executes native 00411BE0,00409DC0,004010BE->00409A60,0041C480,00422FA0,00409E00 and slot reuse/readback with correct cdecl/stdlib call stack",
+      "Isolated Windows HeapFree IAT and CRT _sbh_find_block/_sbh_free_block to exercise both native CRT _free branches, two deleted and two moved objects",
+      "Seven complete original instruction-level traces, 87 byte/reference compaction assertions and explicit heap routing/sequence checks"
+    ],
+    "limitations": "Native editor object allocation functions identified statically but not executed. Actual Windows HeapFree and CRT small-block allocation/free bookkeeping were substituted, not validated. Native UI/status/InvalidateRgn callbacks intercepted, synthetic allocated records and zone IDs only. Ghidra emulator is not original Windows editor process. Public run contains native verifier and aggregate; full tested Java probe and synthetic traces remain in private checkpoint. No genuine editable .I76 workspace yet."
+  }
+}
