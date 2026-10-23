@@ -1,11 +1,12 @@
 # I76 curated reference index
 
-**Status: navigational migration stage; existing documents remain the source records.**
+**Status: incremental, evidence-reviewed migration.** Most existing documentation remains under `ref/`; the vehicle-construction reference below is the first narrowly scoped proposed promotion. A promotion becomes accepted only when its documentation PR is merged by the maintainer.
 
 The original project's human-readable references continue under `ref/` until reviewed content is intentionally promoted into this directory. This index gives new conversations a stable entry point without duplicating historical technical claims or silently changing evidence.
 
 - [Original game mission architecture](../../ref/mission_execution/README.md): mission execution, FSM integration, current research checkpoints.
-- [Retail object model](../../ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md): construction, ownership, lifecycle.
+- [Vehicle VCF construction, GEO cache, and TMT binding](engine/vehicle_construction.md): scoped original-instruction emulation evidence for two stock vehicles; [promotion crosswalk](../../agent/promotions/vehicle_vcf_geo_tmt_20261023.md).
+- [Retail object model](../../ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md): historical FSM-visible identity, damage, registration, ownership and lifecycle.
 - [Original level editor](../../ref/editor/README.md): terrain, road and intersection research.
 - [Original road and terrain authoring](../../ref/editor/road_terrain_serialization.md).
 - [Intersection mesh and physical surface continuity](../../ref/editor/intersection_geometry_and_driving_surface.md).
