@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T023107Z-5ce8ac14",
+  "track": "i76edit",
+  "topic": "Original editor overlapping object grade: first-valid height, material precedence and zone-sequential smoothing",
+  "base_commit": "af747a9fed757f8030c34d0f05441702352f5f8c",
+  "started_at": "2026-10-23T02:31:07Z",
+  "summary": "Original-PE/Ghidra static closure and synthetic analytical fixtures for overlapping object workplane writes, region scan ordering, material protection and zone-level smoothing synchronization.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original source evidence; not committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "I76EDIT.EXE.gzf annotated editor snapshot",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private editor environment setup v1.0.0",
+      "notes": "Read-only headless Ghidra decompilation against MD5-identical editor program."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/original_editor_overlap_and_smoothing.md",
+      "kind": "report",
+      "sha256": "eea9b5f7185c349ffb0c30cdf0579ae98220834b92afe3ef6544a2172a694e6b",
+      "bytes": 7892,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE MD5 4c7ed9e8a54fcadbf1895f34aa9918fe"
+      ]
+    },
+    {
+      "path": "scripts/verify_original_editor_functions.py",
+      "kind": "script",
+      "sha256": "9890f934c33667b4bc835697329d3ca65c8e656f11d90f1f367c73e21e4c2cce",
+      "bytes": 3177,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE MD5 4c7ed9e8a54fcadbf1895f34aa9918fe"
+      ]
+    },
+    {
+      "path": "scripts/v23_overlap_semantic_model.py",
+      "kind": "script",
+      "sha256": "1a5eecae288e093b61b2d4107d1071af45aed91c3d4b6954437f4517d36cf192",
+      "bytes": 3613,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE MD5 4c7ed9e8a54fcadbf1895f34aa9918fe"
+      ]
+    },
+    {
+      "path": "evidence/native_validation.json",
+      "kind": "test-result",
+      "sha256": "474965022f4295aaf4d358fd6804ee85b5fe8d77bb062f04b79be1e7c1d7e57f",
+      "bytes": 1019,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE MD5 4c7ed9e8a54fcadbf1895f34aa9918fe"
+      ]
+    },
+    {
+      "path": "evidence/analytic_validation.json",
+      "kind": "test-result",
+      "sha256": "2baba726c7f8d2d050dd09c99a72f9b4128b881dbeaa69a86586d7f461fb08a6",
+      "bytes": 935,
+      "source_refs": [
+        "BUILDER/I76EDIT.EXE MD5 4c7ed9e8a54fcadbf1895f34aa9918fe"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 50,
+    "passed_count": 50,
+    "notes": "43 original PE native opcode/jump-table checks and 7 controlled analytical model scenarios; analytic models are not original-code execution. No editor workspace or collision runtime validation."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_original_editor_functions.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/v23_overlap_semantic_model.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:0040A6E0",
+        "address": "0040A6E0"
+      },
+      {
+        "kind": "external",
+        "ref": "private Ghidra GZF SHA256:792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f"
+      }
+    ],
+    "methods": [
+      "read-only annotated Ghidra 12.1.4 decompilation of relevant original editor routines",
+      "independent i386 original executable disassembly and hash-confirmed selected native instruction anchors (43/43)",
+      "seven deterministic analytical order/overlap/boundary examples (not original runtime execution)",
+      "comparative audit against historical v20 retail polygon material/height fixtures"
+    ],
+    "limitations": "No original editable .I76 workspace or dynamic editor gameplay instrumentation, no exact x87 rotation/smoothing reproduction; v21/v22 related work is in separate unmerged draft PRs #14/15. Original binary and private Ghidra bytes are withheld."
+  }
+}
