@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T013651Z-21de63e4",
+  "findings": [
+    {
+      "finding_id": "editor.object.rectangular_height_stamping",
+      "claim": "Editor 0040A6E0 grades a rotated-rectangle derived axis-aligned cell bounding region to a selected uniform work-plane-1 height, instead of only refreshing object zone IDs.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AA5C"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_anchor_index.tsv"
+        }
+      ],
+      "limitations": "Exact native x87 edge rounding and individual mission export provenance remain unverified."
+    },
+    {
+      "finding_id": "editor.object.class_to_material",
+      "claim": "Editor object classes 0x50 and 0x51 select terrain surface 6; classes 0x52 and 0x53 select surface 7; nonzero values write terrain surface plane 2 through 0041F4A0.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040A9BC"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_anchor_index.tsv"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AA73"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_anchor_index.tsv"
+        }
+      ],
+      "limitations": "Do not infer that every shipped TER cell was written by this particular builder revision."
+    },
+    {
+      "finding_id": "editor.object.grading_scheduler",
+      "claim": "Editor terrain scheduler 0040E3C0 grades objects at 0040E4C1, grades roads at 0040E4D9, and grades objects again at 0040E4FE, followed by smoothing and terrain merging.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040E4C1"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_anchor_index.tsv"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040E4FE"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_anchor_index.tsv"
+        }
+      ],
+      "limitations": "Specific overlapping-cell precedence requires exact original scene/workspace inputs."
+    },
+    {
+      "finding_id": "editor.object.final_refresh_separation",
+      "claim": "Final object pass 0040AC20 reads plane-0 height and writes each object's +0x0C field rather than performing the earlier rectangular height/material grade.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AC4F"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_anchor_index.tsv"
+        }
+      ],
+      "limitations": "This characterization is confined to 0040AC20."
+    },
+    {
+      "finding_id": "editor.intersection_alias_authoring_hypothesis",
+      "claim": "The proven 6/7 material writer is a plausible source of previously observed terrain-material aliases near retail intersections; individual shipped-cell provenance is unresolved.",
+      "status": "inferred",
+      "confidence": "medium",
+      "scope": "shared",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040AA73"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_anchor_index.tsv"
+        }
+      ],
+      "limitations": "No editable retail workspace round-trip or evidence the same builder revision generated all shipped missions."
+    }
+  ]
+}
