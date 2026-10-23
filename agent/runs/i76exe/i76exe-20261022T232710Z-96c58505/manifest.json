@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261022T232710Z-96c58505",
+  "track": "i76exe",
+  "topic": "Retail i76.exe native VCF GEO construction, TMT object binding and body-cache variant switching",
+  "base_commit": "75da1bb4928e4bf0dce282c08e77bdb4de4048d6",
+  "started_at": "2026-10-22T23:27:10Z",
+  "summary": "Continues the unmerged prior v2.3.0 original-code VCF experiment under its reserved run identity. Original native 00449680/TMT decoder/owner slot registration runs for 46 TMT references, 004469A0/00446C90 constructs 8 GEO payloads and 004466C0 switches two stock body meshes and reuses the first cached handle. Two separate original-instruction top-level VCF executions retained. Does not replace legacy data or promote findings.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Retail executable from private user archive; measured before execution."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Original retail resources held privately. Exact extracted asset hashes are listed, without bytes, in evidence/retail_resource_digests.json."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "annotated retail i76.exe Ghidra v97 verified-names private GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user private I76 phase-2 handoff; never public-repository bytes",
+      "notes": "Imported GZF into read-only Ghidra project; research script did not mutate annotations."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/ARCHITECTURE_DELTA.md",
+      "kind": "report",
+      "sha256": "94dc87e9d8aee05430350df05b16d2f568211af020534fa5b4a559f33fe731c2",
+      "bytes": 2456
+    },
+    {
+      "path": "artifacts/OPEN_ISSUES.md",
+      "kind": "report",
+      "sha256": "f42c74b1c67e1853340275026c27fd23912460c8ed52333f1765a2dbba15aa5a",
+      "bytes": 1542
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "935d65a63a8687ae1d1f6c27232895157e32936fdcb476083826724799c70fc1",
+      "bytes": 1138
+    },
+    {
+      "path": "evidence/native_vehicle_resources.tsv",
+      "kind": "test-result",
+      "sha256": "9ea1c890ec8523464eccc572a018fb8a00a27447de053b4eeb49673a466826ce",
+      "bytes": 342710
+    },
+    {
+      "path": "evidence/retail_resource_digests.json",
+      "kind": "table",
+      "sha256": "82d045d62a56870368717ee4c9ba50ced35e3719458a0c69b6f3f076ab70d319",
+      "bytes": 14088
+    },
+    {
+      "path": "scripts/I76_IntegratedVcfResourceProbe.java",
+      "kind": "script",
+      "sha256": "e648cd1de131ad2524e6cd79579251868c119d7e0907f0dce0b3decb4d22eb06",
+      "bytes": 27115
+    },
+    {
+      "path": "scripts/validate_v24.py",
+      "kind": "script",
+      "sha256": "2a3282a30e3294d0dd2cef49faab61d9e6db7b921fec712e27a065a2f9cd182f",
+      "bytes": 5401
+    },
+    {
+      "path": "scripts/extract_private_fixtures.py",
+      "kind": "script",
+      "sha256": "e89fad731c321d2c5307dd7999bc707fa28c447395587c3db481e3d0efb37bf9",
+      "bytes": 4496
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 341,
+    "passed_count": 341,
+    "notes": "Independent archived trace/provenance verifier passed 329 explicit assertions. Ghidra original-instruction probe additionally asserted 46 owner-slot/TMT frame matches, 60 body class/basis/position comparisons, 8 mounted-weapon transforms and 6 real mesh selectors. Reproducible trace hash checked after independently re-extracting 64 private fixtures."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_IntegratedVcfResourceProbe.java",
+        "sha256": "e648cd1de131ad2524e6cd79579251868c119d7e0907f0dce0b3decb4d22eb06"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/extract_private_fixtures.py",
+        "sha256": "e89fad731c321d2c5307dd7999bc707fa28c447395587c3db481e3d0efb37bf9"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/validate_v24.py",
+        "sha256": "2a3282a30e3294d0dd2cef49faab61d9e6db7b921fec712e27a065a2f9cd182f"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004AD6F0",
+        "address": "004AD6F0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00449680",
+        "address": "00449680"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004469A0",
+        "address": "004469A0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004466C0",
+        "address": "004466C0"
+      }
+    ],
+    "methods": [
+      "independent SHA-256 verification of private retail executable, ZFS source and annotated GZF",
+      "indexed retail PIX/PAK extraction and exact SHA matching without publishing proprietary bytes",
+      "read-only Ghidra EmulatorHelper original-instruction VCF parser and class-1/30 constructors",
+      "native TMT header decode and hashed per-owner binding inspection",
+      "native GEO buffer constructor plus actual group selector cache reuse",
+      "two independent fixture extractions and Ghidra replays produced byte-identical original-code traces",
+      "independent archived trace validator (329 assertions)"
+    ],
+    "limitations": "External retail executable, Ghidra database and licensed resource archive are required for exact replay and never committed. Resource provider, heap, CRT, palette, geometry refresh, lighting, ancillary callbacks and device rendering remain substituted; no full retail Windows process was run."
+  }
+}
