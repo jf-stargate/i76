@@ -1,0 +1,14 @@
+va	function_entry	original_x86_bytes	mnemonic	operand0	operand1
+0044a0b0	0044a0b0	8b4c2404	MOV	ECX	dword ptr [ESP + 0x4]
+0044a0d5	0044a0b0	8b1495d83d5300	MOV	EDX	dword ptr [EDX*0x4 + 0x533dd8]
+0044a11a	0044a0b0	896e34	MOV	dword ptr [ESI + 0x34]	EBP
+0044a128	0044a0b0	e8437a0200	CALL	0x00471b70	
+0044a290	0044a570	8b442404	MOV	EAX	dword ptr [ESP + 0x4]
+0044a2e9	0044a570	8b3495a03f5300	MOV	ESI	dword ptr [EDX*0x4 + 0x533fa0]
+0044a60d	0044a570	e89eceffff	CALL	0x004474b0	
+0045cbe0	0045cbe0	81ec98000000	SUB	ESP	0x98
+0045cefe	0045cbe0	89540b54	MOV	dword ptr [EBX + ECX*0x1 + 0x54]	EDX
+0045cf0b	0045cbe0	89440a58	MOV	dword ptr [EDX + ECX*0x1 + 0x58]	EAX
+0045cf8f	0045cbe0	89440a5c	MOV	dword ptr [EDX + ECX*0x1 + 0x5c]	EAX
+004720a8	00471fd0	ff149d38954f00	CALL	dword ptr [EBX*0x4 + 0x4f9538]	
+004721ac	00471fd0	ff1495388d4f00	CALL	dword ptr [EDX*0x4 + 0x4f8d38]	

@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261023T044729Z-42a0573a",
+  "track": "i76exe",
+  "topic": "Integrated native VCF/GEO/TMT material and raster submission boundary with retail GTSi and bus resources",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T04:47:29Z",
+  "summary": "From two native top-level retail vehicle constructions and actual GEO/TMT owner slots, original section builder 0045CBE0 creates records for 184 retail sections; original 0044A290 resolves five candidate textured records, and original 00471FD0 selects native clip/draw entrypoints with raster services intercepted.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Privately measured retail PE; only immutable checksums published"
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Full retail archive private; exact 64 fixture identities extracted and confirmed with inherited v2.4 metadata"
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "private annotated retail v97 GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "private user-supplied phase-2 baseline",
+      "notes": "Read-only Ghidra EmulatorHelper; no symbol/database mutations"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/INTEGRATED_VEHICLE_RENDER_BRIDGE.md",
+      "kind": "report",
+      "sha256": "ceecd13c0a5bb92ab7edad72108ac334cea63f2012fe4f5072af54baf4429866",
+      "bytes": 7919
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "a080ef805d06b6b33cabaaa3855bf3a9db6c31c1cb174675969e4c1c9beda098",
+      "bytes": 1130
+    },
+    {
+      "path": "evidence/experiment_summary.json",
+      "kind": "test-result",
+      "sha256": "fe7d1210cb4284561f94f24b5fb733aa32eebd0d4cfa036cf5a1b5cdc79aec55",
+      "bytes": 681
+    },
+    {
+      "path": "evidence/geo_render_summary.tsv",
+      "kind": "table",
+      "sha256": "da48d91933bd76e046b230d45134824356e145a4552c45221f2d4b8887121e7d",
+      "bytes": 285
+    },
+    {
+      "path": "evidence/material_owner_bridge.tsv",
+      "kind": "table",
+      "sha256": "1a7eff4d77cc90f07b20703b4e6a955abc4570621b1c287aa4ca843c3fefc76e",
+      "bytes": 541
+    },
+    {
+      "path": "evidence/native_x86_anchors.tsv",
+      "kind": "table",
+      "sha256": "401a5f0d0bdceebf622ad5b561f5749b90d32499cd8a6d856987be828869cf6f",
+      "bytes": 858
+    },
+    {
+      "path": "evidence/raster_dispatch_boundaries.tsv",
+      "kind": "table",
+      "sha256": "25f5ff14316464276a7a08b1b9b85b1ba5f8b0479af494ea4156ca8107b5e8aa",
+      "bytes": 415
+    },
+    {
+      "path": "scripts/I76_IntegratedVcfRenderProbe.java",
+      "kind": "script",
+      "sha256": "21a8ea4e31d3513c9938bd0be953771c31387efdf72b6c60c9f299109c5c2054",
+      "bytes": 33810
+    },
+    {
+      "path": "scripts/verify_integrated_render.py",
+      "kind": "script",
+      "sha256": "dda5d88c5ee62a1c820ac0926a75d8f4486b3986133398aa4f1ddeeeb665d4e4",
+      "bytes": 5001
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 56,
+    "passed_count": 56,
+    "notes": "Private replay: two byte-identical native Ghidra traces, independently matched PE opcode anchors, 4 genuine GEO variants, 5 original material and raster wrappers, 5 paired intercepted raster callback chains. No original raster callback execution."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_IntegratedVcfRenderProbe.java",
+        "sha256": "21a8ea4e31d3513c9938bd0be953771c31387efdf72b6c60c9f299109c5c2054"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_integrated_render.py",
+        "sha256": "dda5d88c5ee62a1c820ac0926a75d8f4486b3986133398aa4f1ddeeeb665d4e4"
+      },
+      {
+        "kind": "external",
+        "ref": "merged v2.4 fixture extractor agent/runs/i76exe/i76exe-20261022T232710Z-96c58505/scripts/extract_private_fixtures.py"
+      }
+    ],
+    "methods": [
+      "independent original retail executable and original ZFS SHA verification",
+      "private v2.4 fixture extractor and deterministic Ghidra replay",
+      "original native VCF/geometry/TMT registration, native render record builder and original texture/resolution/submission wrapper",
+      "intercepted native original raster callback targets, not clip/draw execution",
+      "independent exact PE opcode and record/dispatch invariants; two identical native replay traces"
+    ],
+    "limitations": "Requires privately provided retail PE, ZFS and annotated Ghidra v97 baseline. The original 0045D100 full scene walk, real camera, VQM pixel acquisition, actual clip/draw callbacks, palette/light and OS heap are not end-to-end validated; original Ghidra x87/SEH warnings retained."
+  }
+}
