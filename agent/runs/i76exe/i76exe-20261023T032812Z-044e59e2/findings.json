@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261023T032812Z-044e59e2",
+  "findings": [
+    {
+      "finding_id": "i76exe-native-registry-append-latest-resolution",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "claim": "In an isolated Ghidra execution of original 00457610\u2192004AD450 and 00457630\u2192004AD5B0 instructions with synthetic keys/world-pointer identities, duplicate registrations append even after the original no-op reporter is entered; later lookup returns the newest matching pointer; both cold and nonmatching lookups return null.",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00457610",
+          "address": "00457610"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD450",
+          "address": "004AD450"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00457630",
+          "address": "00457630"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD5B0",
+          "address": "004AD5B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0042D5D0",
+          "address": "0042D5D0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_instruction_trace.tsv"
+        }
+      ],
+      "limitations": "No real game heap or objects; 00452D20 suppression predicate, CRT and OS calls substituted. No full retail process; synthetic persistent state only within test session."
+    },
+    {
+      "finding_id": "i76exe-native-actor-bind-miss-duplicate-acquisition",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "claim": "Original 00412400 retains null at actor+0x58 for a missing identity, calls original no-op report_error and does not enter 0045ED00; two matching-key actor records independently reach 0045ED00 and bind the latest pointer; inconsistent duplicate labels reach original report_error twice without preventing binding.",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00412400",
+          "address": "00412400"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00457630",
+          "address": "00457630"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0042D5D0",
+          "address": "0042D5D0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045ED00",
+          "address": "0045ED00"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_instruction_trace.tsv"
+        }
+      ],
+      "limitations": "0045ED00 reference acquisition was intercepted and counted, not executed; synthetic actor rows and world pointers; no proof of real reference-count increments."
+    },
+    {
+      "finding_id": "i76exe-native-taurus-identity-cache",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "claim": "On original 00412400 actor-label taurus path, original 0040AEB0 stores the lookup-resolved world-object pointer into global 0051F5C4 during emulation.",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00412400",
+          "address": "00412400"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0040AEB0",
+          "address": "0040AEB0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0051F5C4",
+          "address": "0051F5C4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_instruction_trace.tsv"
+        }
+      ],
+      "limitations": "Synthetic actor object and _stricmp substitute; no use of the cached pointer in original post-mission audio/effect paths executed."
+    },
+    {
+      "finding_id": "i76exe-native-registry-capacity-realloc-inversion",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "claim": "Synthetic full-capacity native 004AD450 original-instruction execution with nonnull HeapReAlloc returned zero without appending. With null HeapReAlloc the original branch clears the registry backing pointer, increments capacity to 2304 and reaches the next store with computed destination 00008000, where the test deliberately stops before writing.",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD450",
+          "address": "004AD450"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD487",
+          "address": "004AD487"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD489",
+          "address": "004AD489"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD495",
+          "address": "004AD495"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD57E",
+          "address": "004AD57E"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_instruction_trace.tsv"
+        }
+      ],
+      "limitations": "HeapReAlloc and _msize are controlled stubs; count=2048 was synthetically imposed. No Windows allocator behavior, invalid memory write, crash, or stock mission reachability proven."
+    },
+    {
+      "finding_id": "i76exe-stock-odef-obj-record-census",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "claim": "Independent bounded parser census of both retail mission variants found 80 ODEF sections and 5564 serialized 108-byte OBJ chunks; 13\u2013169 chunks per stock mission; miss8/miss16 paired counts agree and every ODEF satisfies length=28+108*count.",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/odef_counts.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/odef_summary.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/audit_odef_capacity.py"
+        }
+      ],
+      "limitations": "Serialized ODEF record counts are not live instance registry counts; object preloads/dynamic registration, per-OBJ multiplicity and reused state untested."
+    },
+    {
+      "finding_id": "i76exe-original-world-producer-ref-lifecycle-not-yet-executed",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "claim": "Original ODEF world-object construction and registration, actual recursive ownership mutation at 0045ED00, and same-session mission teardown/reload remain untested in this research run.",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004B7AC0",
+          "address": "004B7AC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004572B0",
+          "address": "004572B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045ED00",
+          "address": "0045ED00"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004571A0",
+          "address": "004571A0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REGISTRY_NATIVE_RESEARCH.md"
+        }
+      ],
+      "limitations": "Would require extending original-instruction emulation over world constructors/callbacks and model OS media/object services or controlled retail execution."
+    }
+  ]
+}
