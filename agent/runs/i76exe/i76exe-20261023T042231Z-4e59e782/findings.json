@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261023T042231Z-4e59e782",
+  "findings": [
+    {
+      "finding_id": "i76exe-render-v01-intermediate-record-layout",
+      "claim": "In retail v97, 0045CBE0 writes a transient per-section render record with source world-object pointer at +08, material name at +0C, draw flags at +20, depth-plane information at +30..3C, depth child links +40/+44, and variable 24-byte corner entries beginning +48. The primary and secondary world-object passes both call this producer for selected geometry children.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045CBE0",
+          "address": "0045CBE0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D100",
+          "address": "0045D100"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D530",
+          "address": "0045D530"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_x86_anchors.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RENDER_PIPELINE_DELTA.md"
+        }
+      ],
+      "limitations": "Original static instruction/decompilation cross-check; no complete retail draw frame or ownership/liveness proof for scratch records."
+    },
+    {
+      "finding_id": "i76exe-render-v01-invalidation-retains-binding",
+      "claim": "Native 0044A0B0 traverses the per-owner slot list; for a clean low-flag slot, it calls the VQM release helper, clears slot+0x34, and marks flag bit 1 in slot+0x3C while retaining the slot+0x30 TMT descriptor pointer. In all tested cases it also invokes the M16 release boundary per slot.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0044A0B0",
+          "address": "0044A0B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/render_boundary_native.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_RenderBoundaryNativeProbe.java"
+        }
+      ],
+      "limitations": "Five original-code synthetic-memory scenarios; VQM and M16 release implementations intercepted. Does not prove complete physical release or lifetime."
+    },
+    {
+      "finding_id": "i76exe-render-v01-lazy-lookup-reload-cache",
+      "claim": "In one emulated state, original 0044A290 returns a previously cached owner-slot VQM pointer, original 0044A0B0 invalidates it, and a subsequent original 0044A290 call reloads via its 004474B0 service boundary and caches the new pointer. A third lookup reuses it. The TMT descriptor pointer remains stable.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0044A290",
+          "address": "0044A290"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0044A0B0",
+          "address": "0044A0B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/render_lazy_native.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_RenderLazyTextureNativeProbe.java"
+        }
+      ],
+      "limitations": "Real VQM loader 004474B0, CRT compare and release helpers substituted; synthetic owner slots, not v2.4 native vehicle session. No decoded pixel output."
+    },
+    {
+      "finding_id": "i76exe-render-v01-depth-tree-binary-control",
+      "claim": "Original 0045CB80 follows a plane comparison and writes either depth-tree child link +0x40 or +0x44; synthetic candidate positions of opposite sign took opposite branches at 24 executed original instructions apiece.",
+      "status": "derived",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045CB80",
+          "address": "0045CB80"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/render_depth_native.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_RenderDepthTreeNativeProbe.java"
+        }
+      ],
+      "limitations": "Ghidra emitted uninitialized x87 ST-register warnings. Branch and link outcomes observed; exact floating-point behavior in retail gameplay is not independently validated."
+    },
+    {
+      "finding_id": "i76exe-render-v01-material-resolution-to-raster-dispatch",
+      "claim": "Retail world-object rendering resolves owner/slot textures at 0044A290 and calls 00471FD0 for polygon submission; that routine uses special point/line paths and indirect raster clip and submission tables at 004F9538 and 004F8D38 for larger primitives. Original 004474B0 contains a VQM/CBK decode route with MAP fallback; 00471980 is a separate M16 lookup route.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D100",
+          "address": "0045D100"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D530",
+          "address": "0045D530"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00471FD0",
+          "address": "00471FD0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004474B0",
+          "address": "004474B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00471980",
+          "address": "00471980"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RENDER_PIPELINE_DELTA.md"
+        }
+      ],
+      "limitations": "These downstream resource and raster paths were inspected statically; no actual VQM/CBK bytes were decoded or polygon callbacks executed in this checkpoint."
+    },
+    {
+      "finding_id": "i76exe-render-v01-end-to-end-original-polygon-open",
+      "claim": "The v2.4 original-code GTSi/bus GEO and TMT construction has not yet been executed together with an original 0045CBE0 per-section record and an actual 00471FD0 raster callback in one persistent original-code vehicle state.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RENDER_PIPELINE_DELTA.md"
+        }
+      ],
+      "limitations": "Requires real vehicle graph, renderer context, scene/light data, resource pixel provider and callback setup; no full original retail Windows rendering claimed."
+    }
+  ]
+}
