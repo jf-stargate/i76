@@ -1,0 +1,7 @@
+# Provisional source-group evidence — renderer v01
+
+* `0044A0B0` (per-owner texture invalidation), `0044A290` (lazy owner-slot lookup), `00449680` (owner-slot TMT registration) and `0044AC80` (slot allocation) share the object/name texture-slot caches around `00533DD8`, `00533FA0`, and texture-set cache `00531E20`. **Strong texture/material subsystem, moderate translation-unit hypothesis**; no original filename reconstructed.
+* `0045CB80` (tree insertion), `0045CBE0` (section record producer), `0045D100`, `0045D530`, and `0045DA70` (special-case record preparer despite misleading Ghidra name) occupy an adjacent `0045CBxx–0045DAxx` neighborhood. Shared globals and scratch layouts support a **strong coherent geometry render-order subsystem**, but no single original source file claim.
+* `00471FD0` and its raster clip/draw tables `004F9538`/`004F8D38` form a distinct low-level primitive-submission boundary, with 1- and 2-corner helper dispatch. **Module interface evidenced; TU grouping remains provisional**.
+* The render-component dispatcher `0048F4C0` is distinct from raw world-object traversal and the material cache; its `+0x38` branch selects two pass types through its `+0x1C` context. The field's wider class/lifecycle semantics are unresolved.
+* Caution: inherited `0045DA70` name `mission_objective_file_context_helper_0045da70` is semantically inconsistent with the actual geometry section transform/render scratch writer; do not apply a symbol rename without a verified separate Ghidra baseline export and reviewed promotion.

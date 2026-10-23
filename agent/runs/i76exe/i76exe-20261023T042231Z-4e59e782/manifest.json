@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261023T042231Z-4e59e782",
+  "track": "i76exe",
+  "topic": "Original retail GEO render record layout, texture invalidation/rebinding and raster submission boundary",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T04:22:31Z",
+  "summary": "Read-only retail v97 native renderer call-graph and record layout audit, original-instruction cache invalidation and lazy texture rebind tests, and depth-tree branch cases; 56 validated archive/PE checks. No proprietary source bytes and no canonical source promotion.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Unmodified original PE from private provided game archive. Verified before analysis."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "original game annotated v97 verified names private GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user private game environment handoff; no GZF payload committed",
+      "notes": "Imported into Ghidra headless read-only project; Ghidra decompilation and instruction exports used as research references."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/RENDER_PIPELINE_DELTA.md",
+      "kind": "report",
+      "sha256": "447e974f8be4350a36fb9a89836eafc4dc7c777d9ab563a35de01c52af21d72b",
+      "bytes": 6206
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "c29f5dbfe352e3a658b23003a55c1e5aa56724451c0156b0461774b293d8b4c4",
+      "bytes": 1553
+    },
+    {
+      "path": "evidence/render_boundary_native.tsv",
+      "kind": "test-result",
+      "sha256": "c4a26bed5112fa15e78df53355a32e79f9b36313bd78262d0c8779ed592a17f8",
+      "bytes": 446
+    },
+    {
+      "path": "evidence/render_depth_native.tsv",
+      "kind": "test-result",
+      "sha256": "6f47c6cbb9c962bfea55006c93e41aa60d6fa6467c69d0365f586a37a8a5c6d7",
+      "bytes": 135
+    },
+    {
+      "path": "evidence/render_lazy_native.tsv",
+      "kind": "test-result",
+      "sha256": "33d16f148cfd0eedbbb16327fe1dcf703b08b391463b6f18b1f3b465a1d1d8bb",
+      "bytes": 365
+    },
+    {
+      "path": "evidence/retail_x86_anchors.tsv",
+      "kind": "table",
+      "sha256": "e6711224b68dc1af0ac5d28d38e5e4efb219e5377b203ece0b550fba686ddfe7",
+      "bytes": 2470
+    },
+    {
+      "path": "scripts/I76_RenderBoundaryNativeProbe.java",
+      "kind": "script",
+      "sha256": "4602f8949665c01689b172db4e256dfb15c5476bde16d530c45f7ce90b2191f7",
+      "bytes": 5033
+    },
+    {
+      "path": "scripts/I76_RenderDepthTreeNativeProbe.java",
+      "kind": "script",
+      "sha256": "0e07cd33f30c00eaaea193f9eadf1e9f51b5f08fe12bca04031cbc5c30f0e79a",
+      "bytes": 2316
+    },
+    {
+      "path": "scripts/I76_RenderLazyTextureNativeProbe.java",
+      "kind": "script",
+      "sha256": "2eb2b9c46fb93fdcc8a07020d4c8aef516dede240062a4e5adf6b1ca4b51e06e",
+      "bytes": 4354
+    },
+    {
+      "path": "scripts/verify_render_checkpoint.py",
+      "kind": "script",
+      "sha256": "37da0debb3a284ded0982812904d5faef1d37e9e550132ab0ba9e6b211073372",
+      "bytes": 3423
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 56,
+    "passed_count": 56,
+    "notes": "45 exact original x86 opcode anchors verified independently against the user-provided retail PE, plus 11 native emulator scenario/phase trace rows (five cache invalidation, two depth-tree, four contiguous lazy lookup/refresh/reload/reuse phases). Ghidra read-only probe assertions passed. Selected CRT/VQM/M16 services are stubbed; depth tree emitted x87 initialization warnings; no full-game raster output."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderBoundaryNativeProbe.java",
+        "sha256": "4602f8949665c01689b172db4e256dfb15c5476bde16d530c45f7ce90b2191f7"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderDepthTreeNativeProbe.java",
+        "sha256": "0e07cd33f30c00eaaea193f9eadf1e9f51b5f08fe12bca04031cbc5c30f0e79a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderLazyTextureNativeProbe.java",
+        "sha256": "2eb2b9c46fb93fdcc8a07020d4c8aef516dede240062a4e5adf6b1ca4b51e06e"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_render_checkpoint.py",
+        "sha256": "37da0debb3a284ded0982812904d5faef1d37e9e550132ab0ba9e6b211073372"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0044A0B0",
+        "address": "0044A0B0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0044A290",
+        "address": "0044A290"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0045CBE0",
+        "address": "0045CBE0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0045CB80",
+        "address": "0045CB80"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00471FD0",
+        "address": "00471FD0"
+      }
+    ],
+    "methods": [
+      "original executable independent PE RVA-to-file-offset opcode verification (45 anchors)",
+      "read-only Ghidra 12.1.4 headless v97 native decompilation/xrefs and instruction export",
+      "synthetic memory original-code EmulatorHelper cache invalidation and owner/material binding lookup tests",
+      "original-code depth-tree comparator tests with explicit x87 warnings",
+      "11 archived trace rows checked by versioned independent verifier; outputs contain no original resource payloads"
+    ],
+    "limitations": "Private original PE and v97 Ghidra GZF required to fully replay. Synthetic slots, CRT/VQM/M16 service stubs and test-only render geometry; no complete GTSi/bus rendering, real texture pixels, Windows raster callbacks, GPU output or original gameplay demonstrated."
+  }
+}
