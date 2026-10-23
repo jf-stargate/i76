@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "private_editor_md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+  "private_editor_sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+  "private_annotated_gzf_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+  "native_instruction_guards": 24,
+  "native_instruction_guards_passed": 24,
+  "original_emulation_transcript_assertions": 20,
+  "original_emulation_assertions_passed": 20,
+  "total_checks": 44,
+  "total_passed": 44,
+  "original_native_zone_lookup_creation": [
+    {
+      "zone": "0,0",
+      "create": false,
+      "result": -1,
+      "display_stub_calls": 0
+    },
+    {
+      "zone": "0,0",
+      "create": true,
+      "result": 0,
+      "display_stub_calls": 1
+    },
+    {
+      "zone": "0,0",
+      "create": false,
+      "result": 0,
+      "display_stub_calls": 0
+    },
+    {
+      "zone": "1,0",
+      "create": true,
+      "result": 1,
+      "display_stub_calls": 1
+    },
+    {
+      "zone": "80,0",
+      "create": true,
+      "result": -1,
+      "display_stub_calls": 0
+    }
+  ],
+  "pool_exhaustion": {
+    "all_80_occupied": true,
+    "return": -1,
+    "map_remains": 255,
+    "display_refresh_argument": -1
+  },
+  "native_terrain_services": {
+    "selector100_missing_returns": -1,
+    "selector1_first_touch_returns": 32768,
+    "first_id": 0,
+    "after_height_write": 600,
+    "after_surface_write": 6
+  },
+  "native_road_first_touch_modes": [
+    {
+      "mode": 2,
+      "neighbor_zone_created": false,
+      "valid_height_cells": 7
+    },
+    {
+      "mode": 3,
+      "neighbor_zone_created": true,
+      "assigned_neighbor_id": 1,
+      "valid_height_cells": 26
+    },
+    {
+      "mode": 4,
+      "neighbor_zone_created": false,
+      "valid_height_cells": 1
+    },
+    {
+      "mode": 5,
+      "neighbor_zone_created": true,
+      "assigned_neighbor_id": 1,
+      "valid_height_cells": 1
+    }
+  ],
+  "service_substitutions": "Only UI/display refresh thunk 0040124E; synthetic startup-style memory initialized by the test harness. Original allocator and standard terrain sample services execute.",
+  "limitations": "Original PE instruction execution in Ghidra P-code, not full Windows editor; synthetic terrain input. Original startup and zone release/compaction are static only, and x87 raster fidelity remains uncertain."
+}
