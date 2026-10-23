@@ -1,0 +1,18 @@
+subsystem	address	evidence
+object allocation	00409840	0x78-byte workspace payload, dimension buffers
+current object read	00409F3D	0x78 object record for revision >1
+legacy object read	00409F54	0x70 record for revision 1
+legacy object read	0040A03D	0x68 record for revision 0
+object dimension setters	00409CB0;0040F8C0	8-char+NUL dimension strings
+object UI	004166B1;004166CB	controls 0x3F5 and 0x3F4
+list node allocator	0041C430	0x0C node next,previous,payload
+object traversal	0040A6E0	zone buckets head-first, height/material stamps
+zone relocation	00409A90	reinsertion at destination head
+terrain smoothing	00422870	plane1 height and plane2 material
+center-cell eligibility	004229ED;004229F7;00422A01	valid height, materials 2,3,4
+neighbor sample	0041F2B0	mode 100 reads plane 1 height
+scratch output	00422B46	16-bit per sample
+snapshot copyback	00422BDA;00422BDF	0x2000 dwords = 0x8000 bytes
+four smoothing calls	0040E52C;0040E56A;0040E5A8;0040E5E6	four passes
+height plane merge	0040E605;004125F0	merge plane1 to plane0
+TER zone writer	0041AAA0	packed height+material zone output
