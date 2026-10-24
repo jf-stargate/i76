@@ -1,0 +1,52 @@
+{
+  "retail_exe_md5": "a640ea0097dbb62e0c77b7f2847c7161",
+  "retail_exe_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "private_v97_gzf_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+  "zfs_sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+  "vdf_sha256": {
+    "valeprec.vdf": "a5fa608fe7daf772b169b12b2fb657d291b77a3d33465b4ec952fc45056b057f",
+    "vxbus.vdf": "e6cb698e827a056c0dd10be17d47eac76f49fc31ffdfca465fa597765fa7ba32"
+  },
+  "private_trace_sha256": "35357b1bc037da63dff756f0147edfa50d3907b8e7ec6d4ee0b2deae1ee2b5b9",
+  "repeat_replays": 2,
+  "scenarios": [
+    {
+      "resource": "valeprec.vdf",
+      "status_flag": 0,
+      "vloc_type": "0x28",
+      "runtime398": "0x00000000",
+      "original_camera_guard": "exited at 00406DF4",
+      "child_allocator": "not entered",
+      "child_class_runtime_binding": "not entered"
+    },
+    {
+      "resource": "valeprec.vdf",
+      "status_flag": 16,
+      "vloc_type": "0x28",
+      "runtime398": "0x21005000",
+      "original_camera_guard": "continued to 00406B13",
+      "child_allocator": "substituted",
+      "child_class_runtime_binding": "substituted"
+    },
+    {
+      "resource": "vxbus.vdf",
+      "status_flag": 0,
+      "vloc_type": "0x28",
+      "runtime398": "0x00000000",
+      "original_camera_guard": "exited at 00406DF4",
+      "child_allocator": "not entered",
+      "child_class_runtime_binding": "not entered"
+    },
+    {
+      "resource": "vxbus.vdf",
+      "status_flag": 16,
+      "vloc_type": "0x28",
+      "runtime398": "0x21005000",
+      "original_camera_guard": "continued to 00406B13",
+      "child_allocator": "substituted",
+      "child_class_runtime_binding": "substituted"
+    }
+  ],
+  "native_vs_substituted": "Original VLOC parser 004AE000, bit predicate 00458BF0, child wrapper 004B47C0, assignment to runtime+0x398, and camera callback through null check. Intercept low-level node allocator 0045EBD0 and class/runtime binder 00461970; no original complete default-camera pose or x87 parity.",
+  "private_trace_handling": "Do not commit full trace or original VDF/PE/GZF bytes."
+}
