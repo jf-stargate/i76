@@ -1,0 +1,123 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261023T065502Z-dea36f3e",
+  "track": "i76exe",
+  "topic": "Original retail vehicle visibility/frustum producer to world spatial work-record queue and secondary render dispatch",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T06:55:03Z",
+  "summary": "Four original-code accept/reject scenarios across VCF-native GTSi/bus body objects. Original frustum x87 classifier, work-record allocator, spatial binner and queued secondary pass; no polygons under body-node no-child context. Two identical replay traces. 87/87 checks passed.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private retail original code only, never published"
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Source of verified private GEO/TMT vehicle fixtures"
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "retail i76.exe annotated Ghidra v97 GZF privately imported",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "User private phase-2 handoff bundle",
+      "notes": "Source GZF unchanged; read-only original x86 emulation"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/NATIVE_VISIBILITY_AND_QUEUE_CONTRACT.md",
+      "kind": "report",
+      "sha256": "b6d9308d49a24060a674f5543dfce2f4e05bdbc89cd7383c9014647e5f6d6f5f",
+      "bytes": 4933
+    },
+    {
+      "path": "evidence/experiment_provenance.json",
+      "kind": "test-result",
+      "sha256": "97f028ffe34761ea5c9f54e23d48b6503397e5bbc17af1cf9502e31c9ebec22d",
+      "bytes": 1055
+    },
+    {
+      "path": "evidence/native_opcode_anchors.tsv",
+      "kind": "test-result",
+      "sha256": "e9b96fa77bb72572b9acbcb9058d8077f8024657a911b29ec4bdf628f2cd74f9",
+      "bytes": 389
+    },
+    {
+      "path": "evidence/producer_scenarios.tsv",
+      "kind": "test-result",
+      "sha256": "9733ec43aa1609542a7ec8912ecb9989a308a32245e8fa61ab91101751991988",
+      "bytes": 298
+    },
+    {
+      "path": "scripts/I76_RenderProducerAudit.java",
+      "kind": "script",
+      "sha256": "049922021619f4e955934fd5e32404b2f72cb7fd2e1556d6c26846674b60c359",
+      "bytes": 2169
+    },
+    {
+      "path": "scripts/I76_VisibilityQueueNativeProbe.java",
+      "kind": "script",
+      "sha256": "965a73215eb58b9fe02158571e04102cf28914cc7c7312b4d85e0ce1e8d45395",
+      "bytes": 43481
+    },
+    {
+      "path": "scripts/verify_visibility_queue.py",
+      "kind": "script",
+      "sha256": "7c4dd07b1a683337f516b959c738fbed03bdc94c8c516b33b341044bda624818",
+      "bytes": 4647
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 87,
+    "passed_count": 87,
+    "notes": "Ghidra 12.1.4 original-code producer and native camera frustum classifier, original 00490590/0048FE10 binning, original 0048FAC0 to 0045D530 secondary dispatch; original object registration, real camera and rasterization not tested."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderProducerAudit.java",
+        "sha256": "049922021619f4e955934fd5e32404b2f72cb7fd2e1556d6c26846674b60c359"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_VisibilityQueueNativeProbe.java",
+        "sha256": "965a73215eb58b9fe02158571e04102cf28914cc7c7312b4d85e0ce1e8d45395"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_visibility_queue.py",
+        "sha256": "7c4dd07b1a683337f516b959c738fbed03bdc94c8c516b33b341044bda624818"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00457FF0",
+        "address": "00457FF0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0048FAC0",
+        "address": "0048FAC0"
+      }
+    ],
+    "methods": [
+      "Original-code VCF/vehicle construction with verified original GEO/TMT fixtures",
+      "Ghidra 12.1.4 read-only original x86 00457FF0 and native x87 camera/frustum 00494BE0/00472D30/00472C10",
+      "Native original 00490590/0048FE10 queue producer into original 0048FAC0/0048F4C0/0045D530 consumer",
+      "Two exact repeated original x86 traces, 18 retail PE instruction anchors and independent bounded verifier"
+    ],
+    "limitations": "No original 004572B0 active world registration, actual retail camera/frustum, pixel decoder or raster draw. Controlled entry and synthetic near/far depth context; Windows heap/CRT/texture/palette and other services substituted. Ghidra x87 emulation is not hardware floating-point parity."
+  }
+}
