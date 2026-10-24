@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261023T072053Z-c5725c60",
+  "findings": [
+    {
+      "finding_id": "i76exe-native-active-world-entry-root",
+      "claim": "Original 004572B0 registers actual native VCF-constructed class-1 GTSi and bus roots at the first 0x78-byte active-world entry 00542830, with original 0045ED00 recursive reference acquisition; observed root reference count rises 3\u21924 and active count becomes 1.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004572B0",
+          "address": "004572B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045ED00",
+          "address": "0045ED00"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00459160",
+          "address": "00459160"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00458FC0",
+          "address": "00458FC0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/registration_refcount_lifecycle.tsv"
+        }
+      ],
+      "limitations": "VM root/transform and runtime state are controlled; zero registered sphere floats not trusted as retail world bounds; callbacks not initialized through complete retail startup."
+    },
+    {
+      "finding_id": "i76exe-native-dual-record-render-production",
+      "claim": "Original 00457FF0 on both registered roots calls the original frustum code, record allocator 00490590 and spatial bin insertion 0048FE10 to emit separate type-6 root and type-10 child records under accepted synthetic frustum. The type-10 insertion is from distinct callsite 0048F4A3, not duplicate type-6 submission. Rejected frustum emits neither record.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00457FF0",
+          "address": "00457FF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00472C10",
+          "address": "00472C10"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00490590",
+          "address": "00490590"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048FE10",
+          "address": "0048FE10"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F433",
+          "address": "0048F433"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F4A3",
+          "address": "0048F4A3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/registered_vehicle_scenarios.tsv"
+        }
+      ],
+      "limitations": "Artificial camera and near/far bucket range; original type-10 semantic purpose remains unresolved; Ghidra x87 not hardware parity."
+    },
+    {
+      "finding_id": "i76exe-native-registered-root-to-secondary-geo",
+      "claim": "The unmodified producer-authored type-6 root work record is consumed by original 0048FAC0, dispatched via 0048F4C0 into 0045D530, and enters real child GEO builder 0045CBE0; zero polygons reach 00471FD0 under the controlled view.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048FAC0",
+          "address": "0048FAC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F4C0",
+          "address": "0048F4C0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D530",
+          "address": "0045D530"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045CBE0",
+          "address": "0045CBE0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/registered_vehicle_scenarios.tsv"
+        }
+      ],
+      "limitations": "No actual raster, pixel decode or naturally initialized game camera. No claim that a real vehicle renders zero polygons."
+    },
+    {
+      "finding_id": "i76exe-native-register-unregister-reuse",
+      "claim": "Original 00457420 unregisters the live GTSi or bus root entry created by 004572B0: its owner slot becomes null, global active count decrements 1\u21920, and root reference count drops 4\u21923. A subsequent unmodified 004572B0 reuses 00542830 and restores count/refcount to 1/4.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00457420",
+          "address": "00457420"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004572B0",
+          "address": "004572B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/registration_refcount_lifecycle.tsv"
+        }
+      ],
+      "limitations": "Reference lifecycle tested only for synthetic per-vehicle state, with no full mission/AI callbacks, retail game heap or physical world teardown."
+    },
+    {
+      "finding_id": "i76exe-v5-camera-raster-and-type10-open",
+      "claim": "Authentic game-loop camera/view initialization, real-world transformed radius numerical validity, the type-10 record-specific consumer, renderer clip/draw and pixel acquisition remain unexecuted and not characterized at full retail-frame fidelity.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REGISTERED_VEHICLE_RENDER_BRIDGE.md"
+        }
+      ],
+      "limitations": "Do not extrapolate the controlled renderer scratch setup to actual retail gameplay graphics."
+    }
+  ]
+}
