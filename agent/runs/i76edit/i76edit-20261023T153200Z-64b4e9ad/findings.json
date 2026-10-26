@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261023T153200Z-64b4e9ad",
+  "findings": [
+    {
+      "finding_id": "editor.v31.separate_node_payload_allocation",
+      "claim": "Original editor workspace-object creation 00409840 allocates a 0x78-byte payload through CRT _malloc, while linked-list insertion 0041C430 separately allocates a 0x0c-byte node through HeapAlloc, establishing distinct ownership and release pathways.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409881"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004098EA"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C437"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/object_teardown_native_research.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_teardown_aggregate.json"
+        }
+      ],
+      "limitations": "Creation allocations are established by original binary instructions/decompilation, but creation itself was not originally emulated this iteration."
+    },
+    {
+      "finding_id": "editor.v31.original_object_destructor_sequence",
+      "claim": "Original deleted-zone traversal 00409DC0 caches node+0 next pointer prior to destruction; original 00409A60 unlinks and frees the node via 0041C480 then CRT-frees node+8 object payload independently. Two-node native original-code deletion confirmed sequential node/payload release event ordering.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409DD4"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409DD6"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409A73"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409A7C"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C4A9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/object_teardown_native_research.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_teardown_aggregate.json"
+        }
+      ],
+      "limitations": "Windows HeapFree and CRT heap lookup/free internals were isolated; real heap memory ownership and Windows UI not executed."
+    },
+    {
+      "finding_id": "editor.v31.CRT_payload_heap_branching",
+      "claim": "Original CRT _free at 00422FA0 calls 00425260 small-block lookup; nonzero result branches to 004252C0 small-block release, while zero result falls back to IAT HeapFree using CRT heap handle 016424F0. Both original x86 branch paths executed for two deleted payloads with controlled lookup outcomes.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FB7"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FC1"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FCE"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FE4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/object_teardown_native_research.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_teardown_aggregate.json"
+        }
+      ],
+      "limitations": "Lookup success/failure, CRT _sbh_free_block service and Windows HeapFree were substituted; actual retail allocation class for each payload unmeasured."
+    },
+    {
+      "finding_id": "editor.v31.multi_object_compaction_integrity",
+      "claim": "Original zone release/compaction with two deleted-zone and two moved-zone synthetic objects completed through native destructor/list code under both CRT heap branch alternatives. 87/87 plane, metadata, map and moved-object reference assertions passed; surviving zone payload IDs rebind 2 to 1 and original allocator reuses slot 2.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411BE0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409DC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409E00"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00411B30"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/object_teardown_native_research.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_teardown_aggregate.json"
+        }
+      ],
+      "limitations": "Well-formed synthetic lists only; local Ghidra emulator uses isolated external heap/status/display/Windows callbacks, and full heap safety not proven."
+    },
+    {
+      "finding_id": "editor.v31.heap_resource_lifetime_boundary",
+      "claim": "Original 00409A60 contains only node unlink, node HeapFree and CRT _free(payload); no recursive nested model/texture resource release appears in this function. This editor record lifetime must be distinguished from retail-game scene or vehicle object resource lifetimes.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409A60"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C480"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FA0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/object_teardown_native_research.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/object_teardown_aggregate.json"
+        }
+      ],
+      "limitations": "This is the bounded 00409A60 original-code path; other owners or resources reachable elsewhere are not excluded."
+    }
+  ]
+}
