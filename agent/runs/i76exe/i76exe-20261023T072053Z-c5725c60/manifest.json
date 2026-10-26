@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261023T072053Z-c5725c60",
+  "track": "i76exe",
+  "topic": "Original native class-1 vehicle active-world registration, frustum queue producer, spatial render consumer and unregister/re-register lifecycle",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T07:26:54Z",
+  "summary": "Two complete original-code vehicle construction and genuine registry lifecycle replays. For both GTSi/bus, native 004572B0 creates a live root entry; native 00457FF0 emits distinct type6 and type10 work under controlled frustum; native 0048FAC0 dispatches type6 into secondary GEO path; original unregister/re-register clears and reuses entry and reference. Two exact repeat traces, 76/76 independent checks.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private original x86 retail PE, no proprietary bytes committed"
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Input game tar original archive, SHA independently verified this run; private GEO/TMT fixture source"
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "retail i76.exe Ghidra 12.1.4 annotated mission v97",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "User private Ghidra input; read-only imported project",
+      "notes": "SHA256 independently verified; database never published"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/REGISTERED_VEHICLE_RENDER_BRIDGE.md",
+      "kind": "report",
+      "sha256": "bdee0129dfac8393c85c6bf3bbf29ccb38083b64249d9b96db66e8caea106cf9",
+      "bytes": 5812
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "de957307d031adfb2b6bb5e64be3861f25317ee08e3a0fa5b24b849fc91ff0f9",
+      "bytes": 951
+    },
+    {
+      "path": "evidence/native_opcode_anchors.tsv",
+      "kind": "test-result",
+      "sha256": "7fc52193cbf08c3be4cc725bb528d5fc0bc097d710c4ff21b3d970b299aab233",
+      "bytes": 499
+    },
+    {
+      "path": "evidence/registered_vehicle_scenarios.tsv",
+      "kind": "test-result",
+      "sha256": "c33fdaefd73704df6eb3600d540f29a18fb8043102aaa1d3ef0b9894deb98402",
+      "bytes": 410
+    },
+    {
+      "path": "evidence/registration_refcount_lifecycle.tsv",
+      "kind": "test-result",
+      "sha256": "2cb27977a9455123fe084f7cbd9b7f273b9af2bc1abc02a0d644dce0e06baf1d",
+      "bytes": 274
+    },
+    {
+      "path": "evidence/replay_provenance.json",
+      "kind": "test-result",
+      "sha256": "51d907f81f972ba9c1c9de763c8dddbf27e4d490a5b536ce1525a90cabf3e042",
+      "bytes": 585
+    },
+    {
+      "path": "scripts/I76_RegisteredVehicleLifecycleProbe.java",
+      "kind": "script",
+      "sha256": "26528881bbc9b4f5ba4428a21c069d911e4f1c90bfc134067f09d181cccd1b02",
+      "bytes": 46578
+    },
+    {
+      "path": "scripts/I76_RegistrationLifecycleAudit.java",
+      "kind": "script",
+      "sha256": "6fdffcd357ba820bbc09d0f9bc760c95a3bcb730e93a25e34142e9389ce00e5e",
+      "bytes": 2149
+    },
+    {
+      "path": "scripts/verify_native_registration.py",
+      "kind": "script",
+      "sha256": "769f04cfb936c4602ab19e7de4e9768076b492047f52889181c7bdb80407bf14",
+      "bytes": 7204
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 76,
+    "passed_count": 76,
+    "notes": "Two byte-identical Ghidra original-code vehicle VCF\u2192004572B0\u219200457FF0\u21920048FAC0\u219200457420\u2192004572B0 experiments; 26 retail instruction anchors, 4 visible/culled cases and 2 registration/refcount lifecycles verified. Synthetic camera and intercepts; no pixels or fully initialized game session."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RegisteredVehicleLifecycleProbe.java",
+        "sha256": "26528881bbc9b4f5ba4428a21c069d911e4f1c90bfc134067f09d181cccd1b02"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RegistrationLifecycleAudit.java",
+        "sha256": "6fdffcd357ba820bbc09d0f9bc760c95a3bcb730e93a25e34142e9389ce00e5e"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_native_registration.py",
+        "sha256": "769f04cfb936c4602ab19e7de4e9768076b492047f52889181c7bdb80407bf14"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004572B0",
+        "address": "004572B0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00457420",
+        "address": "00457420"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00457FF0",
+        "address": "00457FF0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0048FAC0",
+        "address": "0048FAC0"
+      }
+    ],
+    "methods": [
+      "Ghidra 12.1.4 headless read-only emulation of exact original instructions with privately supplied retail vehicle resource fixtures",
+      "One GTSi and one bus original VCF+GEO+TMT construction each, then register/visible+culled original queue/consumer/unregister/re-register",
+      "Two complete private replay TSV files compared byte-for-byte using SHA256",
+      "Independent bounded parser asserts 76 input identity, original opcode, native registration/queue/refcount and derived table invariants"
+    ],
+    "limitations": "Original Windows graphics/heap/CRT, media/texture acquisition, palette/light services and final raster callbacks substituted. Identity view/frustum and near/far normalized. Active world callbacks not initialized via full original startup. Registered center/radius is zero in emulator, not retail world bounds. No actual displayed frame."
+  }
+}
