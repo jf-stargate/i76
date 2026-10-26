@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T065437Z-0e28a278",
+  "track": "i76edit",
+  "topic": "Original editor terrain zone first-touch ID allocation, reader side effects and road-triggered zone creation",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T06:54:37Z",
+  "summary": "Original 00411B30/004125A0 first-touch slot allocation and original terrain service emulation; modes 3/5 can create adjacent zone during road neighbor processing even without new valid height; startup defaults and exhausted-pool refresh hazards distinguished.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original retail editor PE supplied in game tar; executable bytes excluded from public run."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "private original annotated I76EDIT.EXE.gzf baseline",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private editor environment setup v1.0.0; local I76_EDITOR read-only project",
+      "notes": "Ghidra program MD5 matches original executable; no reanalysis."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/V29_ZONE_FIRST_TOUCH.md",
+      "kind": "report",
+      "sha256": "6b8693ed3402f5b94dcc5bebcd53c09f4f96b49ddde70c6fb9edc6b9934f36d3",
+      "bytes": 6598,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA-256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_v29_native.py",
+      "kind": "script",
+      "sha256": "d2e15971865e974efa454e2283b12a35d127f8eb1a8eccfd877bdb3d19699a38",
+      "bytes": 1885,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA-256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/v29_aggregate.json",
+      "kind": "test-result",
+      "sha256": "786c072f68a3f6a6556b5c6f767d4cd285516274a0438c50681673d5eb7ab71c",
+      "bytes": 2333,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA-256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 44,
+    "passed_count": 44,
+    "notes": "24 original-PE native opcode anchors plus 20 independent recorded original Ghidra x86 emulation transcript assertions all passed locally. Direct native zone allocator and terrain sample services executed; original UI refresh intercepted, startup state manually initialized. Static-only release/compaction not counted as original-code test."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_v29_native.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00411B30",
+        "address": "00411B30"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:004125A0",
+        "address": "004125A0"
+      },
+      {
+        "kind": "external",
+        "ref": "private conversation archive i76_editor_v29_first_touch_20261023.zip with five complete Ghidra x86 scripts, saved original-code transcripts and 44/44 verifier"
+      }
+    ],
+    "methods": [
+      "Private original PE MD5 and SHA256 verified and annotated Ghidra 12.1.4 restored read-only",
+      "Original assembler cross-check: 00411810 reset, 00411B30 map, 004125A0 first-free slot and 00411BE0 proposed compaction",
+      "24 selected original opcode guards checked",
+      "Original Ghidra x86 P-code execution of 00411B30/004125A0, selected 0041F... sample services, original 00421DF0 road and 00421BE0 native neighbors; UI display-refresh stub only",
+      "20 deterministic original-emulation transcript assertions including exhaustion and first-touch across 128-cell seam"
+    ],
+    "limitations": "Synthetic zone maps and initialized work planes; actual Windows editor UI startup and debug-height display not executed. The full emulation harness and raw synthetic transcripts remain in private conversation checkpoint. x87 rounding behavior under Ghidra not hardware bit-exact on prior v26 tests. Zone-removal compaction is static only; no original editable .I76 authoring workspace yet."
+  }
+}
