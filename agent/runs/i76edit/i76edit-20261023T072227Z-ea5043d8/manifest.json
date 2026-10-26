@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T072227Z-ea5043d8",
+  "track": "i76edit",
+  "topic": "Original I76EDIT.EXE terrain zone release, compaction, object ID rebinding and first-touch reuse",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T07:22:27Z",
+  "summary": "Original x86 emulator validates deletion of first/middle/last zone, six 0x8004-byte terrain-plane copies/reset, complete 200-byte zone metadata, moved-object list ID rebinding and native allocator reuse.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original editor file, not committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "original annotated I76EDIT.EXE.gzf",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private editor setup v1.0.0 Ghidra project",
+      "notes": "Read-only Ghidra, original PE MD5 verified."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/zone_compaction_and_reuse.md",
+      "kind": "report",
+      "sha256": "3bd7d847a186e3b818aa96580ed23075666d07a7b2e1242113b48b215b3d3e04",
+      "bytes": 4580,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_original_compaction.py",
+      "kind": "script",
+      "sha256": "26d952579f007dee14022b26f9aaf9055995a9383fe2c504976fe1b53ee967a5",
+      "bytes": 2058,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/v30_validation.json",
+      "kind": "test-result",
+      "sha256": "2a0e33564f9dcbdabec9dd2ab012dc6a0aef427284e202a52f85a7a615c70c37",
+      "bytes": 1427,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE sha256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 108,
+    "passed_count": 108,
+    "notes": "37/37 native original PE instruction anchors; six isolated original Ghidra x86 release scenarios with 71/71 full-block, 200-byte metadata, zone-map and object-ID assertions. Separate native allocator reuse and original getter tests completed (material 1, working height 0x8000). Original UI/status/region callbacks intercepted; deleted-zone object destructor intercepted in one scenario; synthetic terrain state."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_original_compaction.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00411BE0",
+        "address": "00411BE0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00409E00",
+        "address": "00409E00"
+      },
+      {
+        "kind": "external",
+        "ref": "private conversation checkpoint i76_editor_v30_zone_compaction_20261023.zip, SHA256 63814e2cf0a30c65f5c935e3b484ddadbad6c36c57d6859b50529115fcebbc15, includes exactly tested V30NativeZoneCompact.java and full synthetic traces"
+      }
+    ],
+    "methods": [
+      "Original I76EDIT.EXE SHA256/MD5 and private GZF SHA256 verified",
+      "Independent original PE disassembly and read-only Ghidra decompilation of 00411BE0/00409DC0/00409E00",
+      "37 native PE original instruction signatures passed",
+      "Six Ghidra 12.1.4 original x86 function emulation scenarios with synthetic zone map, 6 plane blocks, metadata and object lists; 71 full-byte/reference assertions",
+      "Native allocator first-touch reuse and original readback after release/compaction"
+    ],
+    "limitations": "Original editor full Windows UI never ran, deleted-object destructor downstream of 004010BE intercepted, status/refresh/InvalidateRgn intercepted, authentic .I76 authoring input absent. Only contiguous IDs 0/1/2 tested. Full tested original-code Java harness and raw synthetic trace retained in local private checkpoint, making public run partially reproducible. No original source file names inferred as facts."
+  }
+}
