@@ -1,4 +1,4 @@
-schema_version: "1.0.2"
+schema_version: "1.0.3"
 repository: "jf-stargate/i76"
 default_branch: "main"
 default: "deny"
@@ -110,3 +110,14 @@ content_security:
     - "Ghidra GZF or mutable project databases"
     - "secrets, credentials, user-private data"
     - "bulk dumps or oversized generated archives without explicit review"
+
+documentation:
+  legacy_checkpoint: "ref/"
+  living_reference: "manual/reference/"
+  promotion_records: "agent/promotions/"
+  research_handoff: "artifacts/DOCUMENTATION_IMPACT.md"
+  handoff_scope: "new-substantive-runs;procedural-not-yet-ci-enforced"
+  steward: "maintainer-designated-repository-documentation-conversation"
+  steward_input: "merged-runs-and-accepted-promotion-records-only"
+  acceptance: "separate-fresh-base-pr-plus-manual-maintainer-decision"
+  mutate_merged_runs: false

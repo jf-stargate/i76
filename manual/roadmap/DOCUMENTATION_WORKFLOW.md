@@ -10,11 +10,19 @@ This is an operational guide, **not** a new publication protocol or an automatic
 | Promotion decision | `agent/promotions/` | Explicit, independently inspectable mapping from accepted evidence to conclusions selected for current documentation, including conflicts and evidence limits. |
 | Current technical reference | `manual/reference/` | Subsystem-oriented living specification of the best-supported current understanding, citing promotion decisions and original evidence. |
 
-Historical `ref/`, `scripts/`, and `snapshot/` remain accessible sources. Do **not** relocate, rewrite, or imply they are completely migrated. Keep navigation to them until individual content is reconciled.
+Historical `ref/` is the **frozen legacy research checkpoint**, not the target for routine documentation generation. `scripts/` and `snapshot/` remain historical tools and evidence. Preserve their navigation and provenance; do **not** relocate, rewrite, or imply they are completely migrated. Exceptional corrections/migrations to these trees need separate, explicit maintainer review under `access.yaml`.
+
+## Responsibility split and documentation handoff
+
+- **Research conversation (each new substantive run):** generate immutable evidence and a concise `artifacts/DOCUMENTATION_IMPACT.md` note, following [the template](../../agent/protocol/templates/DOCUMENTATION_IMPACT.md). List it in the run manifest with SHA-256 and byte count, as for other artifacts. Name candidate claims, original addresses, findings/evidence IDs, likely `manual/reference/` targets, contradictions, unresolved questions and whether **no canonical change** is warranted. Do not edit `manual/reference/`, `agent/promotions/` or `ref/` in the same research-run PR. The handoff is a procedural expectation for new substantive runs, **not a newly enforced `integrity` check**.
+- **Repository/documentation steward (maintainer-designated management conversation):** on an explicit maintainer request or milestone review, inspect newly merged runs (including historical runs without handoffs), prior promotions, the current reference and the legacy checkpoint; reconcile competing claims; generate appropriate promotion records and curated reference edits in a **separate documentation PR**. Preserve evidence tiers and explain non-promotable findings. The steward prepares changes, never self-approves or merges.
+- **Human maintainer:** review individual research and documentation PRs, decide which claims to promote, confirm current-base CI/mergeability and merge deliberately. An accepted research run is not itself a promoted technical specification.
+
+No continuous background watcher, automatic acceptance, new locks, or direct-main writes are implied. A handoff is a prioritization aid rather than proof. Documentation preparation may be requested after multiple related research PRs are accepted, on contradictions affecting an existing reference, or before implementation milestones that the maintainer authorizes.
 
 ## Procedure
 
-1. **Discover:** Pin the accepted `main` SHA; inspect documentation indexes, relevant merged runs and open research/documentation PRs. Identify the exact subsystems and source baselines. Unmerged branches are candidate evidence only.
+1. **Discover:** Pin the accepted `main` SHA; inspect documentation indexes, relevant merged runs, documentation-impact notes when present, and open research/documentation PRs. Identify the exact subsystems and source baselines. Do not treat unmerged proposals as accepted findings. Unmerged branches are candidate evidence only.
 2. **Select a coherent milestone:** Reconcile by subsystem or architectural boundary (for example vehicle VCF construction), not automatically after every research PR. Structural or navigation corrections may be published sooner without promoting technical claims.
 3. **Build a finding crosswalk:** For each candidate claim, name the immutable run ID, merge commit, finding ID, original function/address, evidence artifact path and SHA-256, executable and Ghidra provenance, method, confidence and reproduction limitations. Cite applicable historical `ref/` claims explicitly.
 4. **Reconcile rather than overwrite:** Identify confirmation, narrowing, correction, supersession or contradiction. Record all relevant contrary evidence; prefer narrower wording when direct binary evidence and emulator observations support different scopes. Do not silently elevate "native-emulated" to "full retail Windows execution."
@@ -32,11 +40,15 @@ Historical `ref/`, `scripts/`, and `snapshot/` remain accessible sources. Do **n
 - No original binaries, proprietary resource payloads, Ghidra databases, secrets, or unreviewed bulk dumps in the public repository.
 - `integrity` validates content/path/structure, **not** the scientific truth of promoted conclusions.
 
+## Deriving documentation coverage
+
+For a requested coverage review, enumerate merged run IDs and their merge commits, inspect `agent/promotions/` records for explicit run/finding references, and compare those promotions with current `manual/reference/` links. Report **promoted**, **reviewed/deferred**, **unassessed**, or **needs reconciliation** at the finding/subsystem level. A missing handoff or promotion is not evidence of an incorrect finding; an accepted run is not a canonical promotion. Generate the coverage report from the repository state when requested rather than maintaining a concurrently edited global status file. Do not infer claim coverage solely from matching filenames.
+
 ## Suggested cadence
 
-- **Each substantive investigation:** publish immutable research through its own run/PR.
+- **Each new substantive investigation:** publish immutable research and a documentation-impact handoff in its own run/PR (procedural expectation; no separate CI gate).
 - **As needed:** fix broken navigation or demonstrably stale status with a narrow documentation PR.
-- **At subsystem milestones:** create a promotion + canonical reference PR after sufficient evidence accumulates; do not force weekly promotion.
+- **On maintainer-requested reconciliation or subsystem milestones:** the documentation steward generates a promotion + canonical reference PR after sufficient evidence accumulates; do not force weekly promotion.
 - **On contradiction:** preserve both source runs and either defer promotion or document a qualified conclusion and explicit open question.
 
 See [research acceptance](RESEARCH_ACCEPTANCE.md) and [promotion-record guidance](../../agent/promotions/README.md). No shared lock server, new agent credentials or automatic merger is required for this manually supervised project.

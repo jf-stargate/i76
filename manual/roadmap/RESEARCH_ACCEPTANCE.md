@@ -9,3 +9,5 @@
 **Migration:** Existing `ref/`, `scripts/`, and `snapshot/` stay authoritative in their current locations pending individual evidence-provenance review. Recover missing full editor history reports from genuine archives before attempting to import them. Do not synthesize historical records.
 
 **Canonical documentation updates:** For a repeatable finding-to-reference review, follow [DOCUMENTATION_WORKFLOW.md](DOCUMENTATION_WORKFLOW.md) and use the [promotion template](../../agent/promotions/TEMPLATE.md). Publish subsystem-level promotions as separate PRs, not as edits inside a research run.
+
+**New documentation handoff:** Publication protocol v1.0.3 asks each new substantive research run for `artifacts/DOCUMENTATION_IMPACT.md`, checksum-listed in its manifest. This is a procedural expectation, not a new CI-enforced schema rule. The maintainer-designated repository documentation steward later consolidates **merged** evidence in separate `agent/promotions/` and `manual/reference/` PRs; accepted old runs remain untouched. [Workflow](DOCUMENTATION_WORKFLOW.md); [handoff template](../../agent/protocol/templates/DOCUMENTATION_IMPACT.md).
