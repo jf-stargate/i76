@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76exe-20261023T062154Z-62e3a718",
+  "track": "i76exe",
+  "topic": "Original retail frame-level world-object GEO traversal and original spatial bucket consumption using native GTSi/bus resources",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T06:21:54Z",
+  "summary": "Read-only Ghidra original x86 vehicle VCF, GEO/TMT, render dispatcher, primary/secondary traversal and synthetic-kind-6 original spatial bucket flush. Eight native entrypoint phases and two exact replay traces, 134 original polygon submit wrapper entries, clipping/drawing and camera services substituted. 72/72 independent checks.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Exact private retail PE MD5 required; original binary never distributed."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Source retail ZFS; 64 source fixtures independently extracted and locally verified."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "retail i76.exe annotated Ghidra v97 GZF, independently imported",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "User private phase-2 handoff bundle; not in public repo",
+      "notes": "Read-only original-code emulation and static xref/decompilation export. Source GZF unchanged."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/RENDER_TRAVERSAL_AND_BUCKET_CONTRACT.md",
+      "kind": "report",
+      "sha256": "d9f3f7f069d74ae182d1395c9566a9921b186356e5283634bddd8d699a9386a3",
+      "bytes": 6672
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "91d695c8f811bdcbb83e72cd1875394efa82e5a9043c7b7d3c8ba1f8eb660066",
+      "bytes": 1354
+    },
+    {
+      "path": "evidence/experiment_provenance.json",
+      "kind": "test-result",
+      "sha256": "eeee5420310a53b0df24d603da4269feab7aca8ac41d67147abe87844b7bab2a",
+      "bytes": 1301
+    },
+    {
+      "path": "evidence/native_scene_materials.tsv",
+      "kind": "test-result",
+      "sha256": "08a8e87485f9632a04edf2657e1eb9dc59352d33a2c8316abb6451722cdb71f8",
+      "bytes": 277
+    },
+    {
+      "path": "evidence/native_traversal_summary.tsv",
+      "kind": "test-result",
+      "sha256": "3c3a7c1af35019d9b24a8bb74ecbb20ca674112c8024d09ec9c068bf374c0fe2",
+      "bytes": 707
+    },
+    {
+      "path": "evidence/retail_x86_anchors.tsv",
+      "kind": "test-result",
+      "sha256": "8bd240530013430ccd58a6ff73c286a296e901db8235612037b7406e24bfbe10",
+      "bytes": 803
+    },
+    {
+      "path": "scripts/I76_RenderCallerAudit.java",
+      "kind": "script",
+      "sha256": "8a11f68f1aa53fa47130a1a2a39663765033e4cd9ed547ceb72458f2b772547e",
+      "bytes": 2113
+    },
+    {
+      "path": "scripts/I76_RenderSceneTraversalProbe.java",
+      "kind": "script",
+      "sha256": "153aa5be1cc550378d3f3379e2537ea83c446b492193560d5f39e86cbac671f0",
+      "bytes": 38066
+    },
+    {
+      "path": "scripts/verify_scene_traversal.py",
+      "kind": "script",
+      "sha256": "cf42ed57af57b12cf477870e27ac8f38afe1d178c4ee8ac217516655efd27880",
+      "bytes": 5100
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 72,
+    "passed_count": 72,
+    "notes": "Original x86 Ghidra emulation with separate repeat trace, native bucket consumption, source provenance, 21 original PE instruction anchors, and derived traversal assertions; no authentic camera/clip/draw."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderCallerAudit.java",
+        "sha256": "8a11f68f1aa53fa47130a1a2a39663765033e4cd9ed547ceb72458f2b772547e"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RenderSceneTraversalProbe.java",
+        "sha256": "153aa5be1cc550378d3f3379e2537ea83c446b492193560d5f39e86cbac671f0"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_scene_traversal.py",
+        "sha256": "cf42ed57af57b12cf477870e27ac8f38afe1d178c4ee8ac217516655efd27880"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00457FF0",
+        "address": "00457FF0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0048FAC0",
+        "address": "0048FAC0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0048F4C0",
+        "address": "0048F4C0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0045D100",
+        "address": "0045D100"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0045D530",
+        "address": "0045D530"
+      }
+    ],
+    "methods": [
+      "Ghidra 12.1.4 headless, v97 read-only import, standalone native replay script",
+      "exact private retail PE/ZFS/GZF identity verification and deterministic repeat replay",
+      "native original x86 004AD6F0 vehicle construction and real GEO/TMT owner/frame bindings",
+      "native 0048F4C0 primary and secondary world-object geometry passes with synthetic view",
+      "original 0048FAC0 spatial bucket draining of one synthetic kind-6 work record per vehicle",
+      "original 0044A290 and 00471FD0 execution to explicitly intercepted renderer clip/draw callbacks",
+      "static original instruction/xref and caller audit, 21 PE byte anchors"
+    ],
+    "limitations": "Requires separately supplied proprietary retail PE, I76.ZFS and private Ghidra GZF. No authentic live camera or visibility 00457FF0 execution, no real Windows heap/CRT/pixel decoder or raster callbacks. Synthetic work record and bucket index. Cannot claim full retail gameplay frame, color/pixel output, or realistic culling. Ghidra x87 emulation warnings."
+  }
+}

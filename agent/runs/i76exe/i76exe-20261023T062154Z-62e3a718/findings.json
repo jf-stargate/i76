@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261023T062154Z-62e3a718",
+  "findings": [
+    {
+      "finding_id": "i76exe-scene-full-primary-secondary-native",
+      "claim": "Original 0048F4C0 dispatched GTSi/bus live body and root hierarchies through original primary 0045D100 and secondary 0045D530 paths. Four primary passes emitted 132 native 00471FD0 polygon wrapper calls; two secondary passes built section scratch records but yielded no polygon wrappers under the synthetic view.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F4C0",
+          "address": "0048F4C0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D100",
+          "address": "0045D100"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D530",
+          "address": "0045D530"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_traversal_summary.tsv"
+        }
+      ],
+      "limitations": "Original instructions with artificial view matrix and renderer services. Counts are test-context-dependent, not production visibility counts."
+    },
+    {
+      "finding_id": "i76exe-native-spatial-work-bucket-flush",
+      "claim": "Original 0048FAC0 consumed one synthetic record laid out as an observed kind-6 spatial work record containing an original GTSi/bus body pointer, invoked original 0048F4C0/0045D100/00471FD0, and reset the bucket head and entry count for each vehicle.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048FAC0",
+          "address": "0048FAC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048F4C0",
+          "address": "0048F4C0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_traversal_summary.tsv"
+        }
+      ],
+      "limitations": "Record and bucket depth manufactured by test harness; original 00457FF0 visibility and producer not yet executed."
+    },
+    {
+      "finding_id": "i76exe-both-frame-pipelines-queue-world-geometry",
+      "claim": "Original software 00401CC0 and hardware 00401FA0 frame paths both call 00457FF0 world-object visibility/geometry preparation before 0048FAC0 spatial-bucket work consumption. 00457FF0 can allocate kind-6 records carrying object, variant, flag and priority fields.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00401CC0",
+          "address": "00401CC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00401FA0",
+          "address": "00401FA0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00457FF0",
+          "address": "00457FF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048FAC0",
+          "address": "0048FAC0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RENDER_TRAVERSAL_AND_BUCKET_CONTRACT.md"
+        }
+      ],
+      "limitations": "Original-code producer not executed in the live native test; static decompilation and assembly only."
+    },
+    {
+      "finding_id": "i76exe-render-scratch-allocation-lifecycle",
+      "claim": "Game-loop initialization stores an allocation result to 005DD320 at 00402FAC and a separate second allocation result to 005DD324 at 00402FE3, which native geometry traversals read as transformed-position and render-record scratch bases.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00402FAC",
+          "address": "00402FAC"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00402FE3",
+          "address": "00402FE3"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D100",
+          "address": "0045D100"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_x86_anchors.tsv"
+        }
+      ],
+      "limitations": "Original 00498940 VirtualAlloc-backed allocator was inspected but not run in the emulator; buffer size/commit policies need dynamic Windows validation."
+    },
+    {
+      "finding_id": "i76exe-camera-raster-producer-remains-open",
+      "claim": "A true live camera/context and original 00457FF0 work-record production, followed by unmodified pixel decode and clip/draw, remain unverified and should not be inferred from successful native queue-consumption tests.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RENDER_TRAVERSAL_AND_BUCKET_CONTRACT.md"
+        }
+      ],
+      "limitations": "Original frame consumer verified under controlled synthetic inputs, not an end-to-end original Windows raster frame."
+    }
+  ]
+}
