@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261023T065502Z-dea36f3e",
+  "findings": [
+    {
+      "finding_id": "i76exe-v4-original-frustum-accept-reject",
+      "claim": "Retail 00457FF0 used native 00494BE0/00472D30 transforms and native 00472C10 frustum classification on genuine native VCF-constructed GTSi and bus class-66 body nodes through controlled active-world entries. Under artificial view planes returned -1 on acceptance and +1 on rejection, leading to one kind-6 record or zero respectively.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00457FF0",
+          "address": "00457FF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00472C10",
+          "address": "00472C10"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/producer_scenarios.tsv"
+        }
+      ],
+      "limitations": "Artificial frustum and active-world entry; Ghidra x87 software emulation, not hardware x87 parity."
+    },
+    {
+      "finding_id": "i76exe-v4-original-work-record-binning",
+      "claim": "Original 00490590 and 0048FE10 allocate and bin a type-6 0x44-byte work record preserving world-object and active-entry pointers at +0x1C and +0x40. Under near-plane normalization the accepted test records enter bucket 1 and advance 68-byte record cursor.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00490590",
+          "address": "00490590"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048FE10",
+          "address": "0048FE10"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/producer_scenarios.tsv"
+        }
+      ],
+      "limitations": "Synthetic registered entry and configured camera/near-far plane; byte count measured for subtype 6 only."
+    },
+    {
+      "finding_id": "i76exe-v4-producer-consumer-secondary-mode",
+      "claim": "The unmodified native 00457FF0-produced kind-6 record is consumed by original 0048FAC0, dispatched through original 0048F4C0 into original 0045D530 secondary traversal, and bucket is emptied. Under the class-66 body-node test no section builder or polygon submission is reached.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0048FAC0",
+          "address": "0048FAC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045D530",
+          "address": "0045D530"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/producer_scenarios.tsv"
+        }
+      ],
+      "limitations": "Body node +0x64 lacks appropriate child tree; full vehicle root and live active entry have not been executed."
+    },
+    {
+      "finding_id": "i76exe-v4-authentic-camera-world-registration-remains-open",
+      "claim": "Native 004572B0 active-world entry creation and retail camera/frustum/depth range setup are still not validated as one original-game rendering frame; root world entries and final rasterizer remain separate open work.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/NATIVE_VISIBILITY_AND_QUEUE_CONTRACT.md"
+        }
+      ],
+      "limitations": "The v4 harness constructs a controlled registry entry and camera matrix, and substitutes peripheral OS/media services."
+    }
+  ]
+}
