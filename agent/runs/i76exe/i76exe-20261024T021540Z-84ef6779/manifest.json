@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.2",
+  "run_id": "i76exe-20261024T021540Z-84ef6779",
+  "track": "i76exe",
+  "topic": "Original retail class-1 vehicle follow-camera and default-mode dependency from native active-world registration",
+  "base_commit": "15b2a30c24fcfc038de4d11be192566826e2ec0d",
+  "started_at": "2026-10-24T02:15:40Z",
+  "summary": "Original VCF/GEO/TMT vehicle roots, original 004572B0 active entry, original 00405970 projection builder, original 00406AB0 default callback and original 00405B90 follow callback traced in one Ghidra original-code state per GTSi/bus. Found the missing runtime+0x398 guard in the default callback and demonstrated completion of direct follow-camera view update with explicitly substituted x87 quaternion/math boundaries.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Verified against private retail archive, not committed."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Verified private user retail resource archive; fixture extractor from merged v2.4 run."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "Original i76.exe annotated Ghidra v97 verified-names private GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "private project handoff ZIP",
+      "notes": "Read-only Ghidra v97 from independently verified provided archive."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/CAMERA_FOLLOW_DELTA.md",
+      "kind": "report",
+      "sha256": "8d08c4925dfd5443b2ee7a376019b193dc834efeb3118428e1afe0a9f0d05cc1",
+      "bytes": 4609
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "d5897a15ecf8c64c4894d926441319a36c92288fcb978c2dd65b152d7323fb17",
+      "bytes": 956
+    },
+    {
+      "path": "evidence/experiment_summary.json",
+      "kind": "table",
+      "sha256": "18692b5571224354cfa2f28c5c418d63a72b404834b81354c255829ad64d0efd",
+      "bytes": 1752
+    },
+    {
+      "path": "evidence/original_opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "3f97ca57a08c7dbebaa7389e942eada3084505bfd5633f92df490f4c1b2f4e21",
+      "bytes": 770
+    },
+    {
+      "path": "scripts/I76_CameraCallgraphAudit.java",
+      "kind": "script",
+      "sha256": "eebf7e1c205b5dc16a3432cb6bb7bc8a7790d1130d7514826a59f2062a84d1a9",
+      "bytes": 1436
+    },
+    {
+      "path": "scripts/I76_RegisteredVehicleFollowCameraProbe.java",
+      "kind": "script",
+      "sha256": "8cd92758b537a77b2d3efc0563cbaeb0196309f953fec6dbcb97ff324f5c8519",
+      "bytes": 49256
+    },
+    {
+      "path": "scripts/verify_camera_follow.py",
+      "kind": "script",
+      "sha256": "557fb18bc0827d023ade14b79a8633e1a62b1b6aa59d70a2f3fe6ae717a3a8b8",
+      "bytes": 5049
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 74,
+    "passed_count": 74,
+    "notes": "Independent verifier of two complete Ghidra EmulatorHelper VCF+registration+camera replays: executable/GZF/ZFS identity, 21 original PE opcode anchors, 2 scenario original construction/registration/default-camera guards/follow-camera view path with all helper substitutions separately counted; both private traces byte-identical. No true camera position, x87 parity, real pixel rasterization, or original game mode update proven."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RegisteredVehicleFollowCameraProbe.java",
+        "sha256": "8cd92758b537a77b2d3efc0563cbaeb0196309f953fec6dbcb97ff324f5c8519"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_camera_follow.py",
+        "sha256": "557fb18bc0827d023ade14b79a8633e1a62b1b6aa59d70a2f3fe6ae717a3a8b8"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00405B90",
+        "address": "00405B90"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00406AB0",
+        "address": "00406AB0"
+      }
+    ],
+    "methods": [
+      "Verify private source digests and 64 extracted original resource identities",
+      "Read-only Ghidra 12.1.4 annotated v97 EmulatorHelper original native VCF constructor for two vehicles",
+      "Original native 004572B0 active-world entry registration and 00405970 camera initialization",
+      "Original default callback 00406AB0 and object-follow callback 00405B90 in each native world state",
+      "Log substituted FPATAN quaternion interpolation and CRT/x87 helpers separately from original instructions",
+      "Repeat two complete private Ghidra replays and verify byte equality and 21 retail PE sparse byte anchors with independent validator"
+    ],
+    "limitations": "Requires privately held annotated GZF, original retail executable and resource archive. No full retail process, real player camera mode initialization, valid camera numerics or pixels. 004944D0 quaternion interpolation substituted for unsupported emulator FPATAN; math and CRT services also substituted; Ghidra memory/FPU warnings."
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261024T021540Z-84ef6779",
+  "findings": [
+    {
+      "finding_id": "i76exe-20261024-default-camera-callback-requires-runtime398",
+      "claim": "Original 00406920 mode 0x0E installs 00406AB0. Original 00406AB0, though undefined as a function in v97 Ghidra, obtains the genuine registered class-1 vehicle runtime with 00467440 and tests runtime+0x398 at 00406B02. That pointer is null in both original-VFC-constructed GTSi and bus and the callback returns early; original constructor 00463068 explicitly initializes this field to zero.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00406AB0",
+          "address": "00406AB0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00463068",
+          "address": "00463068"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        }
+      ],
+      "limitations": "Original x86 executed in Ghidra on real constructed/registered vehicles; missing later runtime initialization is not claimed absent in full retail gameplay; class-dependent callbacks and game loop only partially initialized."
+    },
+    {
+      "finding_id": "i76exe-20261024-follow-camera-update-from-native-world-entry",
+      "claim": "Original 00405B90 callback executed with a genuine original-VCF class-1 vehicle root registered via 004572B0, reached native transform helpers 00494E20/00494170/00494DA0 and updated persistent camera 004C2730 using original 00472990. Both GTSi and bus original-instruction runs completed with 2054 steps of this callback; a separate controlled-entry test returned after 18 instructions when the entry was unbound.",
+      "status": "proven",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00405B90",
+          "address": "00405B90"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_RegisteredVehicleFollowCameraProbe.java"
+        }
+      ],
+      "limitations": "0049D400 sin/cos, 004BA090 FTOL and 004944D0 quaternion interpolation were substituted; Ghidra FPATAN unsupported. Resulting camera translation bits are demonstrably unreliable as physical coordinates; this is a control-flow/data-flow contract, not a usable scene camera."
+    },
+    {
+      "finding_id": "i76exe-20261024-callback-boundary-annotation-gap",
+      "claim": "Original PE 00406AB0 has a standalone entry prologue and is the indirect callback target selected by original 00406920. The v97 annotated Ghidra program does not define a function at 00406AB0. This is an annotation boundary gap, not evidence of missing retail code.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_CameraCallgraphAudit.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_opcode_anchors.tsv"
+        }
+      ],
+      "limitations": "Do not rename or define functions in the private baseline without a separately guarded annotation pass and verified function extent."
+    },
+    {
+      "finding_id": "i76exe-20261024-original-camera-pose-pending-runtime-initialization",
+      "claim": "The original runtime source and ownership of a non-null vehicle runtime+0x398 camera dependency, authentic mode activation timing, stable x87 camera transforms and camera-to-frustum/raster numerical parity remain unresolved.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_FOLLOW_DELTA.md"
+        }
+      ],
+      "limitations": "Existing native registered vehicle scene setup lacks full retail player runtime and camera target initialization."
+    }
+  ]
+}
