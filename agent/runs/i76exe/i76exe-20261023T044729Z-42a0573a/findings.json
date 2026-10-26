@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261023T044729Z-42a0573a",
+  "findings": [
+    {
+      "finding_id": "native-gtsi-bus-geos-to-original-render-records",
+      "claim": "In each fresh persistent Ghidra-emulated vehicle session the original retail VCF constructors yield original GEO handles for exterior and cockpit variants, and original 0045CBE0 processes real source sections into 184 transient record slots across four GEO fixtures.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AD6F0/004466C0/0045CBE0",
+          "address": "0045CBE0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/geo_render_summary.tsv"
+        }
+      ],
+      "limitations": "Ghidra emulator and synthetic renderer/camera memory. Many culled/empty records. Two vehicles in separate fresh emulator instances. Entire 0045D100 scene traversal not executed."
+    },
+    {
+      "finding_id": "retail-tmt-frame-name-through-real-render-record",
+      "claim": "Native exterior vehicle render record material V1 MD UN.MAP resolves through the original owner+name slot and native-decoded TMT descriptor to retail first frames al11mdu1.map and xb11mdu1.map; original 0044A290 calls 004474B0 using these names.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00449680/0044A290/004474B0",
+          "address": "0044A290"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/material_owner_bridge.tsv"
+        }
+      ],
+      "limitations": "VQM payload decoder intercepted, so this establishes selection/control flow not decoded pixels or visual correctness."
+    },
+    {
+      "finding_id": "native-raster-dispatch-on-genuine-geo-corners",
+      "claim": "Original 00471FD0 executes on five original record corner buffers (four GTSi, one bus) and dispatches mode 0x15 through original tables to clip 0047C2F0 and draw 00487EA0.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00471FD0/004720A8/004721AC",
+          "address": "00471FD0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/raster_dispatch_boundaries.tsv"
+        }
+      ],
+      "limitations": "Clip callback is intercepted by direct vertex copying; draw callback intercepted. Synthetic texture handles and camera; no original clip math/raster output executed."
+    },
+    {
+      "finding_id": "native-geometry-refresh-over-real-tmt-bindings",
+      "claim": "Enabling original 0044A0B0 during geometry variation in the actual constructed vehicles allows both GTSi and bus to complete 0/4/0/4 selection and the original downstream record/texture/submission-boundary work, with VQM/M16 release functions intercepted.",
+      "status": "proven",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0044A0B0",
+          "address": "0044A0B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        }
+      ],
+      "limitations": "The reference release services do not perform actual OS/native reference-count teardown; invalidation occurs inside substituted host environment."
+    },
+    {
+      "finding_id": "cockpit-fallback-name-and-camera-visibility-conditional",
+      "claim": "In the synthetic identity-camera test the GTSi cockpit encounters material V1 BO DY.MAP with no preexisting registered TMT slot on first lookup, and later has a cached owner/name slot; bus cockpit has zero active textured submit records despite 93 original GEO sections.",
+      "status": "derived",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/material_owner_bridge.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/geo_render_summary.tsv"
+        }
+      ],
+      "limitations": "V1 BO DY.MAP VQM decoding intercepted and asset may not exist. Camera/lighting are synthetic; no absence of bus cockpit textures in actual game is implied."
+    },
+    {
+      "finding_id": "full-native-pixel-renderer-remains-open",
+      "claim": "Actual VQM/MAP/CBK decoding, authentic M16 render-context selection, unmodified clipping/drawing callbacks, complete 0045D100/0045D530 traversal, and pixel output remain unvalidated.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/INTEGRATED_VEHICLE_RENDER_BRIDGE.md"
+        }
+      ],
+      "limitations": "No Windows process, graphics card, or unmodified original draw callback was executed."
+    }
+  ]
+}
