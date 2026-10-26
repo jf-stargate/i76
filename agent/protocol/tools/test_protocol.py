@@ -3,7 +3,7 @@ from validate_protocol import policy,evaluate,safe_path
 RUN="i76edit-20261021T221900Z-a7d2e2f4"
 BR="agent/i76edit/"+RUN
 class AccessTests(unittest.TestCase):
- def test_policy(self):self.assertEqual(policy()["schema_version"],"1.0.0")
+ def test_policy(self):self.assertEqual(policy()["schema_version"],"1.0.3")
  def test_own_run(self):self.assertTrue(evaluate(f"agent/runs/i76edit/{RUN}/manifest.json",RUN,BR))
  def test_other_run(self):self.assertFalse(evaluate("agent/runs/i76edit/i76edit-20261021T221901Z-bbbbbbbb/manifest.json",RUN,BR))
  def test_merged_run(self):self.assertFalse(evaluate(f"agent/runs/i76edit/{RUN}/manifest.json",RUN,BR,existing=True))

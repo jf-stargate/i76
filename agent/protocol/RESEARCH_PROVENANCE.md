@@ -1,6 +1,6 @@
 # Research evidence format v1.1.0
 
-This is an **additive record-schema revision**. The independently versioned publication protocol is **1.0.2** (existing records may retain their original protocol_version, including 1.0.1). Existing `manifest.json` and `findings.json` files declaring `schema_version: 1.0.0` remain valid and immutable, and continue to be checked with the original schemas. The new v1.1.0 schemas reside in `agent/protocol/schemas/v1.1.0/`.
+This is an **additive record-schema revision**. The independently versioned publication protocol is **1.0.3** (existing records may retain their original protocol_version, including 1.0.1). Existing `manifest.json` and `findings.json` files declaring `schema_version: 1.0.0` remain valid and immutable, and continue to be checked with the original schemas. The new v1.1.0 schemas reside in `agent/protocol/schemas/v1.1.0/`.
 
 ## Research grade
 
@@ -21,3 +21,9 @@ Research run IDs are not milestones. Original historical reports imported from `
 Schema verification detects structural consistency and valid content hashes; it cannot certify that user-supplied executable hashes actually match binaries that are not in Git, or that a stated baseline is available. Such verification is a separate, explicitly recorded reproducibility activity.
 
 All repository changes remain PR-only, human-reviewed, with no autonomous merge. Earlier `1.0.0` schemas never change retroactively.
+
+## Documentation-impact handoff (new substantive research)
+
+For new substantive research runs, produce an `artifacts/DOCUMENTATION_IMPACT.md` handoff using [the template](templates/DOCUMENTATION_IMPACT.md). Include this file in the run's `manifest.json` `artifacts[]` with its SHA-256 and byte count, as with any other artifact. Summarize findings relevant to current `manual/reference/`, historical `ref/` claims, target subsystems, source addresses, contradictory evidence and blockers to promotion. If nothing should change, explicitly record "no canonical change". This handoff is **procedural, not yet a separate CI-enforced schema requirement**, and older immutable runs must not be retroactively modified.
+
+Research PRs carry evidence, not canonical edits. The designated documentation steward reconciles **merged** evidence at milestones via separate promotion and reference PRs; only a human maintainer accepts them. See [documentation workflow](../../manual/roadmap/DOCUMENTATION_WORKFLOW.md).

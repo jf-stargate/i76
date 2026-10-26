@@ -10,7 +10,7 @@ def policy():
     p=yaml.safe_load((P/"access.yaml").read_text())
     assert p["default"]=="deny" and p["publication"]["direct_main_push"] is False
     assert p["publication"]["autonomous_run_merge"] is False
-    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.2"
+    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.3"
     assert p["publication"]["required_formal_approvals"]==0
     assert p["publication"]["manual_maintainer_decision_required"] is True
     assert p["publication"]["require_separate_reviewer_for_authoritative_changes"] is False
@@ -18,6 +18,11 @@ def policy():
     assert p["publication"]["require_fresh_base_for_canonical_changes"] is True
     assert p["publication"]["require_current_head_integrity_at_acceptance"] is True
     assert p["publication"]["require_mergeability_check_at_acceptance"] is True
+    assert p["documentation"]["legacy_checkpoint"]=="ref/"
+    assert p["documentation"]["living_reference"]=="manual/reference/"
+    assert p["documentation"]["mutate_merged_runs"] is False
+    assert (P/"templates"/"DOCUMENTATION_IMPACT.md").is_file()
+    assert (ROOT/"manual/roadmap/DOCUMENTATION_WORKFLOW.md").is_file()
     for name in ("run","finding"):
         Draft202012Validator.check_schema(json.loads((P/"schemas"/(name+".schema.json")).read_text()))
     for sch,ex in (("run","manifest"),("finding","findings")):
