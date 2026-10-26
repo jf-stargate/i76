@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261026T235108Z-12215047",
+  "findings": [
+    {
+      "finding_id": "i76exe-20261026T235108Z-12215047-local-identifier-flag-policy",
+      "claim": "Original function 00451180 writes status 0x10 for a matching low16 vehicle ID and global session-local ID 00541028, or 0x20 for nonmatching IDs, then ORs in the team bits before calling original VCF entry 004AD6F0. Four native original-x86 test scenarios verify both cases and the resulting original 00458BF0 predicate behavior.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00451286",
+          "address": "00451286"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/status_flag10_original_x86.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcode_anchors.tsv"
+        }
+      ],
+      "limitations": "Controlled object allocation and team bits, lookup/format functions intercepted; original 004AD6F0 VCF parser is a tested call boundary, not executed in these seven scenarios."
+    },
+    {
+      "finding_id": "i76exe-20261026T235108Z-12215047-ordinary-selector-flag-policy",
+      "claim": "Original function 004513C0 writes 0x00020000 when its fifth argument is zero, and 0x00010010 when nonzero, before invoking VCF load at 0045148B. Three original-x86 scenarios cover zero and two nonzero values; native 00458BF0 VLOC eligibility follows the bit.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00451452",
+          "address": "00451452"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/status_flag10_original_x86.tsv"
+        }
+      ],
+      "limitations": "No proof of complete original player/camera-mode semantics for the selection argument. The resource formatter was intercepted; complete VCF loader not executed here."
+    },
+    {
+      "finding_id": "i76exe-20261026T235108Z-12215047-local-id-session-global-owner",
+      "claim": "Session local player identifier at global 00541028 is initialized by original 00452D79, read by 00454E30 and compared by the vehicle constructor at 0045128D; direct callgraph places player vehicle construction in original game-loop, mission, and network-spawn call chains.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcode_anchors.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/call_edges.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_Flag10CallgraphAudit.java"
+        }
+      ],
+      "limitations": "Ghidra function names are project-assigned; session timing and all alternative initializers not exhaustively proven."
+    },
+    {
+      "finding_id": "i76exe-20261026T235108Z-12215047-continuous-eligible-vcf-vloc-camera-unresolved",
+      "claim": "Continuous original retail creation from eligible 00451180/004513C0 root through native 004AD6F0 VCF, 004AE000 VLOC class-0x28 child creation, 00461970 runtime registration and 00406AB0 full default camera output remains unexecuted.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/FLAG10_CREATION_TO_VLOC.md"
+        }
+      ],
+      "limitations": "Prior merged run i76exe-20261024T232546Z-11d4e2ec uses separately isolated VLOC allocation/binder stubs and reaches only the camera guard; these are not one full retail process scenario."
+    }
+  ]
+}

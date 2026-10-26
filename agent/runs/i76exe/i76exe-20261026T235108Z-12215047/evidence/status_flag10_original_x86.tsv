@@ -1,0 +1,8 @@
+scenario	function	spawn_id_or_flag	local_id	team	status_actual	status_expected	vloc_eligibility	vloc_expected	intercepted_services	instructions	result
+player_matched	00451180	3	3	5	00050010	00050010	1	1	2	34	PASS
+player_unmatched	00451180	2	3	5	00050020	00050020	0	0	2	34	PASS
+id_zero_matched	00451180	0	0	0	00000010	00000010	1	1	2	34	PASS
+id_wrap_low16	00451180	65539	3	1	00010010	00010010	1	1	2	34	PASS
+startup_secondary	004513C0	0	-	-	00020000	00020000	0	0	1	23	PASS
+startup_primary	004513C0	1	-	-	00010010	00010010	1	1	1	23	PASS
+startup_nonzero	004513C0	9	-	-	00010010	00010010	1	1	1	23	PASS
