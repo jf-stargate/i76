@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T062209Z-7504f18b",
+  "track": "i76edit",
+  "topic": "Original editor native terrain sample services and zone-boundary rasterization",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T06:22:09Z",
+  "summary": "After restoring original terrain accessors in isolated Ghidra emulation, native 0x8004 zone-plane stride and boundary parity are verified; a wrong-stride false height attenuation is explicitly rejected; fractional diagonal x87 uncertainty retained.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Original private editor from user-supplied game tar. No binary bytes committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "original annotated I76EDIT.EXE.gzf editor Ghidra snapshot",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "user-supplied private editor environment setup v1.0.0",
+      "notes": "Read-only `I76_EDITOR` Ghidra project with original executable MD5, no autoanalysis."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/original_terrain_service_zone_seam.md",
+      "kind": "report",
+      "sha256": "d8c2363edc18799492a90bb09bf5688317e426dd87fdcc18eb4dd56ca8ef072c",
+      "bytes": 5483,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_plane_stride.py",
+      "kind": "script",
+      "sha256": "fe121d8cf883e10c7513a8e19558cf2ffbd7f5821256400fb0d7e31290ce6805",
+      "bytes": 1381,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/v28_aggregate.json",
+      "kind": "test-result",
+      "sha256": "db46c3a2af1c360921eb456e69c5c06ebba707632f4732073f557b559a79f0ac",
+      "bytes": 1786,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 35,
+    "passed_count": 35,
+    "notes": "9/9 original PE instruction/zone-map addressing opcode checks plus 26/26 original-emulation transcript, negative-control and SHA identity checks passed locally. Core sample read/write, classifier, rasterizer and neighbor helper were original code; original 00411BA0 allocator was a substituted successful backing service. 35 checks are not 35 independent original-code tests."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_plane_stride.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00412120",
+        "address": "00412120"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00421DF0",
+        "address": "00421DF0"
+      },
+      {
+        "kind": "external",
+        "ref": "private conversation checkpoint i76_editor_v28_native_services_20261022.zip contains actual original-code Ghidra emulation scripts, transcripts, 26-check validator and rejected wrong-stride negative control"
+      }
+    ],
+    "methods": [
+      "Restore private Ghidra 12.1.4 annotated original program; original MD5/SHA256 verified",
+      "Independently disassemble PE 00412120/00412300 and compare read-only Ghidra function decompilation",
+      "9 original native opcode/address guards passed",
+      "Ghidra original-instruction execution of rasterizer/classifier/neighbors and native height/material service paths, zone allocator 00411BA0 stubbed only",
+      "One-zone vs two-zone transformed-cell exact equality across modes 2/3/4/5; six positive diagonal/fractional scenarios; explicit negative control",
+      "26 transcript/digest checks passed; original FPU precision limitation retained"
+    ],
+    "limitations": "Entire original i76edit.exe not run with authentic editable .I76 inputs. Original allocator 00411BA0 substituted, synthetic zone map IDs 0/1 and terrain buffers. Ghidra 12.1.4 x87 behavior differs from hardware in prior v26 tests; no bit-exact raster boundary claims. Full Ghidra test source and raw synthetic traces currently stored only in private downloadable checkpoint; public run reports aggregate and native-byte verifier."
+  }
+}
