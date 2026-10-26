@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261024T232546Z-11d4e2ec",
+  "findings": [
+    {
+      "finding_id": "i76exe-r38-vloc28-runtime398-writer",
+      "claim": "Original 004AE000 dispatches a VLOC type-0x28 record via jump table 004AE2B4 and, conditioned on world status +0x10 bit 0x10, stores a created class-0x28 child pointer into vehicle runtime+0x398 at 004AE2A2; original 00458BF0 predicate and 004B47C0 wrapper execute, but underlying child allocation and class-runtime binding were isolated stubs.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AE000",
+          "address": "004AE000"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AE2A2",
+          "address": "004AE2A2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_VlocCameraAttachmentProbe.java"
+        }
+      ],
+      "limitations": "Native within a controlled synthetic class-1 root and runtime, without actual VCF loader entry; 0045EBD0 allocator and 00461970 binder intercepted; full object hierarchy/teardown not validated."
+    },
+    {
+      "finding_id": "i76exe-r38-retail-vdf-vloc28-corpus",
+      "claim": "Retail GTSi valeprec.vdf and bus vxbus.vdf each contain a 60-byte VLOC chunk of type 0x28 at file offset 0x10A; their five VLOC type sequences are 28,2A,23,24,26 (hex), providing actual records required for the conditional camera attachment.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/vdf_vloc_census.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        }
+      ],
+      "limitations": "Counts derived from exactly two byte-verified retail VDF files, not complete stock corpus; resource bytes remain private."
+    },
+    {
+      "finding_id": "i76exe-r38-camera-guard-dependency",
+      "claim": "For both GTSi and bus VLOC records, executing original 00406AB0 with runtime+0x398 null follows its early return at 00406DF4, whereas after native 004AE000 stores the attachment it reaches post-guard instruction 00406B13.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00406B02",
+          "address": "00406B02"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_VlocCameraAttachmentProbe.java"
+        }
+      ],
+      "limitations": "The original camera callback was deliberately stopped at its guard; no complete original view/projection output, runtime camera mode selection or x87 correctness was tested."
+    },
+    {
+      "finding_id": "i76exe-r38-status-bit-producer-open",
+      "claim": "The writer of object status bit 0x10, runtime timing of conditional VLOC parse, child ownership and full default camera update in actual registered retail vehicle execution remain unresolved.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/VLOC_CAMERA_ATTACHMENT_CONTRACT.md"
+        }
+      ],
+      "limitations": "Cannot conclude bit 0x10 always denotes the player or that a stock normal VCF construction without it should set runtime+0x398."
+    }
+  ]
+}

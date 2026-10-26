@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.2",
+  "run_id": "i76exe-20261024T232546Z-11d4e2ec",
+  "track": "i76exe",
+  "topic": "Original i76.exe VLOC type-0x28 writer for camera vehicle runtime+0x398 and status-bit eligibility",
+  "base_commit": "15b2a30c24fcfc038de4d11be192566826e2ec0d",
+  "started_at": "2026-10-24T23:25:46Z",
+  "summary": "Original retail VLOC parser 004AE000 and status predicate 00458BF0 produce class-0x28 attachment to runtime+0x398 from both verified GTSi/bus VDF source records when world flag 0x10 is set. Original default camera 00406AB0 advances past its null guard only in flagged cases; low-level node allocator and class binder remain explicitly substituted. 104 private verification checks and repeated byte-identical Ghidra traces.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Extracted from user-provided private i76_base retail archive; independently checked original PE bytes."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Private authorized stock resource archive; VDFs extracted and hashed with validated ZFS reader, bytes excluded from public PR."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "Retail i76.exe annotated Ghidra v97 verified names private GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "User-provided private game-environment handoff GZF",
+      "notes": "Imported in read-only headless project; no annotations modified."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "38c6ce3047c91511572444c661e63d85d258f0c6e06d9b2526884f950611d7a0",
+      "bytes": 773
+    },
+    {
+      "path": "artifacts/VLOC_CAMERA_ATTACHMENT_CONTRACT.md",
+      "kind": "report",
+      "sha256": "996fa86974e01c22cf0f8bca9f65407ff634d2339be33b5624ba559b75c81452",
+      "bytes": 5403
+    },
+    {
+      "path": "evidence/experiment_summary.json",
+      "kind": "test-result",
+      "sha256": "e57d135874459712b233c6bfd0d43f42e37d0a03a6bb2fb1e3a7f296dd13b85c",
+      "bytes": 2168
+    },
+    {
+      "path": "evidence/native_opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "d2bb014ec402ad15ad26906348ce00dad0d37b9ba33981cbd1220ac848d82eff",
+      "bytes": 772
+    },
+    {
+      "path": "evidence/vdf_vloc_census.tsv",
+      "kind": "table",
+      "sha256": "b7f50487089e4bf5b916535d32b124a8a6232f8e88cb1f66d21ee6fc13f46727",
+      "bytes": 277
+    },
+    {
+      "path": "scripts/I76_VlocCameraAttachmentProbe.java",
+      "kind": "script",
+      "sha256": "ac903a6494163b123e526935162d1e59a4b520916cc2af48dbb9748b7f4bacfe",
+      "bytes": 5442
+    },
+    {
+      "path": "scripts/verify_vloc_camera.py",
+      "kind": "script",
+      "sha256": "f15147a9aebd99a37809a60c140a24b06b6378a2269ecc04f086f1374aa522a9",
+      "bytes": 4948
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 104,
+    "passed_count": 104,
+    "notes": "104 independently rechecked executable/GZF/ZFS/VDF identity assertions, 19 sparse retail PE instruction anchors, eight VLOC switch table targets, 10 private VDF record identities/metadata pairs, four emulated original-code status/field/camera guard cases, nine-dword transform checks, and two byte-identical Ghidra replay traces. Low-level allocator and class-runtime binding stubbed; original camera stopped after guard."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_VlocCameraAttachmentProbe.java",
+        "sha256": "ac903a6494163b123e526935162d1e59a4b520916cc2af48dbb9748b7f4bacfe"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_vloc_camera.py",
+        "sha256": "f15147a9aebd99a37809a60c140a24b06b6378a2269ecc04f086f1374aa522a9"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004AE000",
+        "address": "004AE000"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00406AB0",
+        "address": "00406AB0"
+      }
+    ],
+    "methods": [
+      "independently inspect current pinned main protocol and previous v37 camera research",
+      "verify uploaded Ghidra 12.1.4 / v97 GZF / retail PE / I76.ZFS inputs",
+      "extract retail valeprec.vdf and vxbus.vdf using the merged original-resource fixture extractor",
+      "identify original VLOC 0x28 writer and predicate with Ghidra v97 decompilation, x86 objdump, and PE jump-table decoding",
+      "execute exact retail VLOC 0x28 records through original 004AE000, 00458BF0, 004B47C0 and original 00406AB0 guard under Ghidra EmulatorHelper",
+      "substitute only low-level 0045EBD0 node allocation and 00461970 class registration, preserving all field writes and camera-guard instructions",
+      "repeat native Ghidra scenarios twice; compare private output SHA256 and verify 104 checks against original inputs"
+    ],
+    "limitations": "Requires privately held retail executable, private GZF and ZFS/VDF bytes. The world object is controlled and not constructed via a full flagged VCF load. 0045EBD0 allocator/00461970 class-registration are substituted; full real class registry unresolved. Original camera halted immediately after null guard, no valid camera pose, framebuffer or original x87 parity. Full private original code trace and proprietary payloads are not in public Git."
+  }
+}
