@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.1",
+  "run_id": "i76edit-20261023T045502Z-05173d2e",
+  "track": "i76edit",
+  "topic": "Original-code road rasterizer and eight-neighbor terrain propagation with isolated services",
+  "base_commit": "f29379db9c7eccef91f6f93bc5984ce9dc6b9e4a",
+  "started_at": "2026-10-23T04:55:02Z",
+  "summary": "Native Ghidra 12.1.4 x86 execution of original 00421df0/00409210/00421be0 against synthetic terrain read/write callbacks establishes direct mode-2/4 write counts and transitive same-pass mode-3 height propagation, while preserving hardware x87 caveats.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original user-supplied game TAR, bytes not committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "annotated original I76EDIT.EXE.gzf snapshot",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "private i76 editor environment setup v1.0.0",
+      "notes": "Read-only original Ghidra project, no reanalysis; executable MD5 matches native PE."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/road_raster_native_trace.md",
+      "kind": "report",
+      "sha256": "74ed600423743906d1353110aef8a555b22d0b4940160b712f6aa08162d85afb",
+      "bytes": 5386,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+        "Original annotated private I76EDIT.EXE.gzf SHA256 792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f"
+      ]
+    },
+    {
+      "path": "evidence/v27_aggregate.json",
+      "kind": "test-result",
+      "sha256": "0079cc59eb22f1983cb8018fe929e6ad2eaef0461175024f5371847118869427",
+      "bytes": 2351,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+        "Original annotated private I76EDIT.EXE.gzf SHA256 792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f"
+      ]
+    },
+    {
+      "path": "scripts/V27NativeNeighborMatrix.java",
+      "kind": "script",
+      "sha256": "aec4cd6c2fd8297c1c95192bfbff53252984b8ccecdae3f795f4780b2b1d0894",
+      "bytes": 4359,
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+        "Original annotated private I76EDIT.EXE.gzf SHA256 792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 16,
+    "passed_count": 16,
+    "notes": "Private v27 transcript validator passed 16/16 assertions on 10 raster scenarios (one repeated layout variation), three original-neighbor synthetic-terrain cases. Ghidra 12.1.4 executed original 00421df0, 00409210, 00421be0 x86 instructions, with only terrain reader/writer services substituted. This is not a full original Windows editor run, and Ghidra x87 precision requires separate hardware validation."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/V27NativeNeighborMatrix.java"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00421DF0",
+        "address": "00421DF0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00421BE0",
+        "address": "00421BE0"
+      },
+      {
+        "kind": "external",
+        "ref": "private local v27 checkpoint i76_editor_v27_original_raster_20261022.zip contains additional raster-only and stack-sensitivity scripts, original-code transcripts and full 16-check validation source"
+      }
+    ],
+    "methods": [
+      "Original private executable and annotated GZF SHA256 verified",
+      "Read-only Ghidra 12.1.4 EmulatorHelper executing 00421df0 raster and 00409210 classifier original instructions",
+      "Original eight-neighbor 00421be0 executed with persistent synthetic read/write terrain map",
+      "Per-call stack/return preserved at original service thunks, 10 control scenarios plus three neighbor scenarios",
+      "16/16 assertions on original-code scenario transcripts; additional local FPU caveats preserved"
+    ],
+    "limitations": "Full private original editor, authentic original TER work planes and editable .I76 workspace were NOT executed. Four terrain getter/setter services are synthetic; one exploratory raster-only script also stubs native neighbor thunk. Ghidra x87 rounding differs from hardware on prior v26 probes, so occupied-cell coordinates are conditional on this emulator. Historical original code and raw proprietary assets excluded."
+  }
+}
