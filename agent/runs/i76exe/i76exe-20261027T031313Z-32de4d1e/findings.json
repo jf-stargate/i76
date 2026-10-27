@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261027T031313Z-32de4d1e",
+  "findings": [
+    {
+      "finding_id": "i76exe-b-native-root-stable-basis-through-vcf-registration",
+      "claim": "Original 0045EBD0 initializes the class-1 root 16-word transform from 004FAED8, including direction root+0x30..0x38 = (0,0,1). With a controlled class-1 context the selected GTSi and bus full original 004AD6F0 VCF loaders retain these dwords, and native 004572B0 registration also preserves them, creates entry 00542830 and raises root refcount 3 to 4.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045EBD0",
+          "address": "0045EBD0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004572B0",
+          "address": "004572B0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scenario_results.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_MilestoneBPoseDiagnosticsProbe.java"
+        }
+      ],
+      "limitations": "Only Win32 HeapAlloc and other OS/resource services substituted, vehicle-class context bound under harness; original creator CALL not executed uninterrupted and no actual simulation tick."
+    },
+    {
+      "finding_id": "i76exe-b-native-registered-camera-finite",
+      "claim": "Original 00406AB0 default camera for selected native-root GTSi and bus executes past the original class-0x28 VLOC attachment guard through 00437F90 and 00472990; original 00437F90 output has zero nonfinite words out of 16 and six double fields at 004C2730+0x160..+0x18F are all finite following native 00405970 projection initialization.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00406AB0",
+          "address": "00406AB0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00472990",
+          "address": "00472990"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scenario_results.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_MilestoneBPoseDiagnosticsProbe.java"
+        }
+      ],
+      "limitations": "Original Win32 and resource/palette services substituted; trigonometric and float-to-int mathematical boundaries explicitly substituted; fixed viewport/clock; no hardware x87 or real camera pose parity."
+    },
+    {
+      "finding_id": "i76exe-b-zero-root-controlled-camera-nan",
+      "claim": "Selected bus built and natively registered through the same VCF, VLOC, active-entry and camera path but with a manually zeroed root has exactly nine nonfinite original 00437F90 float32 output words and six NaN camera double fields; substituting original 0045EBD0 root initialization alone yields zero in both categories.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scenario_results.tsv"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00493D1B",
+          "address": "00493D1B"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_milestone_b.py"
+        }
+      ],
+      "limitations": "Causal inference in a controlled Ghidra-original-instruction harness, not evidence of NaN in the actual retail Windows game. Other root-pose patterns untested."
+    },
+    {
+      "finding_id": "i76exe-b-full-numeric-parity-and-pose-open",
+      "claim": "Hardware x87 numerical parity, physically accurate camera pose, game-frame scheduling, class-1 simulation pose updates, multiple consecutive frames and complete raster output remain unverified despite finite selected-camera fields in this experiment.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/MILESTONE_B_NATIVE_CAMERA_NUMERICS.md"
+        }
+      ],
+      "limitations": "Finite is necessary but insufficient for numerical accuracy or physically valid transform; Ghidra emitted floating-point/uninitialized-read warnings."
+    }
+  ]
+}
