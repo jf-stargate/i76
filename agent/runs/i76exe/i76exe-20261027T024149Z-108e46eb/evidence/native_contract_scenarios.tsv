@@ -1,0 +1,9 @@
+scenario	steps	nonfinite_words	direction_hex	native_ctor	return_complete	helper_chain
+original_node_identity	612	0	00000000,00000000,3F800000	1	1	projection;cross;basis;inverse_sqrt
+original_node_direction_erased	600	9	00000000,00000000,00000000	1	1	projection;cross;basis;inverse_sqrt
+manual_zero_root	600	9	00000000,00000000,00000000	0	1	projection;cross;basis;inverse_sqrt
+nonvehicle	45	0	[0.0, 0.0, 0.0]	0	1	constant_copy
+vehicle_zero_direction	600	9	[0.0, 0.0, 0.0]	0	1	projection;cross;basis;inverse_sqrt
+vehicle_direction_z	612	0	[0.0, 0.0, 1.0]	0	1	projection;cross;basis;inverse_sqrt
+vehicle_direction_x	612	0	[1.0, 0.0, 0.0]	0	1	projection;cross;basis;inverse_sqrt
+vehicle_direction_z_zero_runtime	600	0	[0.0, 0.0, 1.0]	0	1	projection;cross;basis;inverse_sqrt

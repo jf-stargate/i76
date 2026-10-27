@@ -1,0 +1,13 @@
+owner	start	width	use	original_x86_evidence
+world_object	+0x6c	u32	class-1 dispatch	00437FD8
+world_object	+0x70	ptr	class runtime getter	00467440
+world_object	+0x18..0x20	3xf32	basis vector for perpendicular dot	004380B2..004380C9
+world_object	+0x30..0x38	3xf32	projection direction; must have nonzero squared length	0043802E..00438045
+vehicle_runtime	+0xd4..0xdc	3xf32	vector decomposed by 00493CA0	00438089..004380B0
+vehicle_runtime	+0x114	f32	reference point term	00438003
+vehicle_runtime	+0x118	f32	second reference point term	00438026
+runtime_delta_global	004fe420	f32	frame delta accessor	0049C7A0
+smoothing_global	0052b93c	f32	stateful first derived offset	004381AF
+smoothing_global	0052b940	f32	stateful second derived offset	0043821A
+smoothing_global	0052b944	f32	stateful third derived offset	00438269
+output	out[0..15]	16xf32	basis output copy	004382C8
