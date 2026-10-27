@@ -1,0 +1,20 @@
+{
+  "method": "original retail x86 instructions in read-only annotated Ghidra 12.1.4 EmulatorHelper, with explicit Windows/CRT/resource/heap service substitutes",
+  "execution_boundary": "original spawn selection 00451452 to just before CALL at 0045148B, then harness-invoked native 004AD6F0 on same object and native 00406AB0 separately to guard",
+  "program": "i76_v97 imported from i76_mission_v97_verified_names (private GZF)",
+  "retail_executable_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "retail_resource_archive_sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+  "private_replay_digest": {
+    "gtsi_unselected": "2797651fdd67f16748c757cda7ed13fc156675aaa3b4a2ddb8afaeba8f88d957",
+    "gtsi_selected": "e66b2e647aa09ccb39fae1779de1677252172894e651ad601c95eb1f380e6839",
+    "bus_unselected": "4c9943a6a24e51c54328c98bfd90857b188197c7d7526fc3c53601b0f81e01cb",
+    "bus_selected": "541ae35d27ff8124d2e17f602f5940c668a8109e3170683825dc39d58ee94def"
+  },
+  "independent_identical_bus_selected_sha256": "541ae35d27ff8124d2e17f602f5940c668a8109e3170683825dc39d58ee94def",
+  "unselected_trace_qualification": "Complete cases extracted from a Ghidra multi-case exploratory run later interrupted in a different case; not complete all-cases process trace",
+  "private_fixture_extraction": "previously accepted v2.4.0 run agent/runs/i76exe/i76exe-20261022T232710Z-96c58505/scripts/extract_private_fixtures.py",
+  "private_data_exclusion": "No original executable, game resources, Ghidra archive, proprietary large dumps, or raw private traces in public artifacts",
+  "scenario_count": 4,
+  "retail_opcode_anchor_count": 28,
+  "independent_assertions": 148
+}

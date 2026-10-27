@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261027T004812Z-bc6825e4",
+  "findings": [
+    {
+      "finding_id": "i76exe-20261027T004812Z-bc6825e4-native_spawn_bit_10_status_to_vcf",
+      "claim": "Selected/unselected original 004513C0 status-setting instructions produce world status 0x00010010 or 0x00020000 respectively at the 0045148B original VCF call boundary; with the same emulated world state subsequently passed to original 004AD6F0 the low-order selection bit is preserved.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045146E",
+          "address": "0045146E"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scenario_results.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeSpawnVlocCameraFastProbe.java"
+        }
+      ],
+      "limitations": "The emulator harness, rather than the original CALL instruction in 004513C0, invokes 004AD6F0; basename/formatting service is intercepted. No claim of an uninterrupted native caller-to-callee instruction chain."
+    },
+    {
+      "finding_id": "i76exe-20261027T004812Z-bc6825e4-native_vcf_vloc_class28_attachment",
+      "claim": "Selected GTSi and bus stock retail VCF/VDF resource loads run original VLOC 0x28 predicate, original child wrapper, original class binder 00461970 and runtime+0x398 writer; class-40 child pointer 27000800 exists after loader, with 9 source transform dwords checked exactly.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:004AE000",
+          "address": "004AE000"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scenario_results.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeSpawnVlocCameraFastProbe.java"
+        }
+      ],
+      "limitations": "Actual Windows heap/CRT and resource services are emulated; virtual pointer value is synthetic; no claim about real runtime address or full native OS process."
+    },
+    {
+      "finding_id": "i76exe-20261027T004812Z-bc6825e4-native_vcf_unselected_control",
+      "claim": "Unselected GTSi and bus status 0x00020000 cases complete original native VCF/VLOC load with NULL runtime+0x398, retaining 46/44 nodes instead of selected 47/45 and the same 912/856 GEO and 24/22 TMT binding counts.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scenario_results.tsv"
+        }
+      ],
+      "limitations": "Unselected traces were fully completed scenarios of a multi-case Ghidra process later interrupted during another case; do not call entire interrupted process a successful full run."
+    },
+    {
+      "finding_id": "i76exe-20261027T004812Z-bc6825e4-native_default_camera_guard_with_vloc",
+      "claim": "With the native class-40 attachment the separately invoked original 00406AB0 default camera callback takes the post-null-guard branch at 00406B13 for GTSi and bus; without it original instructions follow null exit 00406DF4.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00406AB0",
+          "address": "00406AB0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scenario_results.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeSpawnVlocCameraFastProbe.java"
+        }
+      ],
+      "limitations": "Camera mode dispatch, further camera math/x87, clipping and pixel rendering not executed; harness explicitly supplies minimal active-entry pointer and invokes callback."
+    },
+    {
+      "finding_id": "i76exe-20261027T004812Z-bc6825e4-default_camera_post_guard_and_teardown_open",
+      "claim": "The original camera mathematics past 00406B13, complete native call continuity across the spawn CALL, class-40 attachment teardown and precise object+0x68 link semantics remain unresolved.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/NATIVE_SELECTED_VCF_VLOC_CAMERA.md"
+        }
+      ],
+      "limitations": "Additional original-code execution and object lifetime traces required before source reconstruction or rendering claims."
+    }
+  ]
+}
