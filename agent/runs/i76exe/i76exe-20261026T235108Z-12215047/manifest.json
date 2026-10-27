@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.2",
+  "run_id": "i76exe-20261026T235108Z-12215047",
+  "track": "i76exe",
+  "topic": "Original retail vehicle creation status bit 0x10 before VCF load: local multiplayer and primary singleplayer paths",
+  "base_commit": "6b4176dfb289997fae432bb50885adda8d4f6dca",
+  "started_at": "2026-10-26T23:51:08Z",
+  "summary": "Original x86 instructions of 00451180 and 004513C0 set object status bit 0x10 according to distinct local-player ID and selected-vehicle argument rules, before invoking 004AD6F0. 7 controlled original-code scenarios reach real VCF entry and execute original 00458BF0 VLOC eligibility predicate. Two identical Ghidra replays and independent PE opcode/call graph verifier. Full VCF+VLOC+camera continuous execution remains open.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private byte-verified retail PE restored from conversation upload; original x86 execution in read-only Ghidra 12.1.4 v97 program."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "private annotated retail i76.exe Ghidra v97 verified-names GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "Private user-provided phase2 game environment handoff; no GZF committed"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "63a2b7fb96da65f3f19a18a01183fd989d46245ddaa79c57f9f12b2f3f3a96f5",
+      "bytes": 5093
+    },
+    {
+      "path": "artifacts/FLAG10_CREATION_TO_VLOC.md",
+      "kind": "report",
+      "sha256": "762071b14b1c26820d39be2fdf0caf16b1c32c14706e9a5dc0d82fee011055c7",
+      "bytes": 5028
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "1c984ab77b062405ef76c9c414fa9429298857c768ceca22403404eece0adf41",
+      "bytes": 789
+    },
+    {
+      "path": "evidence/call_edges.tsv",
+      "kind": "table",
+      "sha256": "7a20b642972a6315e19c894a0bfbf2dedca0bf3b718acadf6a90d545818f006d",
+      "bytes": 526
+    },
+    {
+      "path": "evidence/experiment_summary.json",
+      "kind": "test-result",
+      "sha256": "99ce143016bd12eebac005a26888ee2fb6656a6e159ae5c4a3b71b13e116aa3c",
+      "bytes": 438
+    },
+    {
+      "path": "evidence/retail_opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "d155ff1245b9c50d3dec4b1419ce6bf2613b9006928ce1de019db5fa41a2c43c",
+      "bytes": 1109
+    },
+    {
+      "path": "evidence/status_flag10_original_x86.tsv",
+      "kind": "table",
+      "sha256": "0bbae7ee9bbeeb775e0be0c50f4b52a4016d2d22390d8c88c2897f5cb37b471b",
+      "bytes": 596
+    },
+    {
+      "path": "scripts/I76_Flag10CallgraphAudit.java",
+      "kind": "script",
+      "sha256": "faa22c0f8283ae1be565d24f9540af27d513137e03be6507a77e4343a53d3c4d",
+      "bytes": 1787
+    },
+    {
+      "path": "scripts/I76_Flag10NativeProbe.java",
+      "kind": "script",
+      "sha256": "3c68e025c7e7b0c265bb5a34e561e79c3a49d223a680fb2e4f836e2b7e9a7a37",
+      "bytes": 4471
+    },
+    {
+      "path": "scripts/verify_flag10.py",
+      "kind": "script",
+      "sha256": "0e7d23020ab4c471c5be53592924297fe1b444ad15330bb86eb5a3a2e9f4d721",
+      "bytes": 5257
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 95,
+    "passed_count": 95,
+    "notes": "95 independent identity, PE opcode/call-target, original-instruction trace and scenario assertions; two Ghidra replays byte-identical; original VCF/VLOC continuous construction not executed."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_Flag10CallgraphAudit.java",
+        "sha256": "faa22c0f8283ae1be565d24f9540af27d513137e03be6507a77e4343a53d3c4d"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_Flag10NativeProbe.java",
+        "sha256": "3c68e025c7e7b0c265bb5a34e561e79c3a49d223a680fb2e4f836e2b7e9a7a37"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_flag10.py",
+        "sha256": "0e7d23020ab4c471c5be53592924297fe1b444ad15330bb86eb5a3a2e9f4d721"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00451180",
+        "address": "00451180"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004513C0",
+        "address": "004513C0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00458BF0",
+        "address": "00458BF0"
+      }
+    ],
+    "methods": [
+      "read-only Ghidra 12.1.4 v97 callgraph and focused decompilation",
+      "original retail x86 EmulatorHelper execution through the 004AD6F0 VCF callsite with controlled globals and intercepted resource lookup/format services",
+      "original x86 00458BF0 status bit predicate in same emulated object state",
+      "two independently executed and byte-identical original-code trace files",
+      "independent retail PE/COFF RVA mapping and sparse exact opcode/displacement checks"
+    ],
+    "limitations": "Retail PE/GZF are proprietary, private and required for full replay. Synthetic world object, local identifier, team word and selected-vehicle argument; 00454700 and 004AD640 intercepted to reach VCF callsites. Top-level 004AD6F0 VCF, VLOC attachment construction 004AE000, 00461970 native class binder, 00406AB0 camera math, x87 parity and real rendered pixels were NOT executed in this checkpoint. Function names are analytical Ghidra labels, not original source names."
+  }
+}

@@ -1,0 +1,31 @@
+va	bytes_hex	assembly
+00451286	668bd5	mov    dx,bp
+00451289	8d442470	lea    eax,[esp+0x70]
+00451294	50	push   eax
+00451299	1bd2	sbb    edx,edx
+0045129B	83e210	and    edx,0x10
+0045129E	83c210	add    edx,0x10
+004512A1	895310	mov    DWORD PTR [ebx+0x10],edx
+004512A4	e857340000	call   0x454700
+004512AD	83c408	add    esp,0x8
+004512B3	83e007	and    eax,0x7
+004512BF	8b5310	mov    edx,DWORD PTR [ebx+0x10]
+004512C2	c1e010	shl    eax,0x10
+004512C7	895310	mov    DWORD PTR [ebx+0x10],edx
+004512E5	e806c40500	call   0x4ad6f0
+00451452	8bcd	mov    ecx,ebp
+00451456	f7d9	neg    ecx
+0045145A	6820204c00	push   0x4c2020
+00451462	c1e110	shl    ecx,0x10
+00451465	f7da	neg    edx
+00451467	1bd2	sbb    edx,edx
+00451469	83e210	and    edx,0x10
+0045146C	0bca	or     ecx,edx
+0045146E	894b10	mov    DWORD PTR [ebx+0x10],ecx
+0045148B	e860c20500	call   0x4ad6f0
+00452D79	66891528105400	mov    WORD PTR ds:0x541028,dx
+00454E30	66a128105400	mov    ax,ds:0x541028
+00458BF8	f6401010	test   BYTE PTR [eax+0x10],0x10
+004AE057	e894abfaff	call   0x458bf0
+004AE067	8dbd98030000	lea    edi,[ebp+0x398]
+004AE2A2	8937	mov    DWORD PTR [edi],esi
