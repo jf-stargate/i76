@@ -1,0 +1,29 @@
+{
+  "original_editor_md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+  "original_editor_sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+  "annotated_ghidra_12_1_4_gzf_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+  "method": "Original I76EDIT.EXE i386 instructions executed read-only in Ghidra 12.1.4 P-code EmulatorHelper with isolated heap/SBH/new-handler callbacks",
+  "original_functions": [
+    "004232E0",
+    "00423300",
+    "00423350",
+    "00426230",
+    "00409840",
+    "00411BA0",
+    "00411B30",
+    "0041C430",
+    "00409DC0",
+    "00409A60",
+    "0041C480",
+    "00422FA0"
+  ],
+  "original_opcode_anchors_passed": 32,
+  "original_opcode_anchors_total": 32,
+  "controlled_malloc_scenarios": 8,
+  "normal_ctor_full_lifecycle": true,
+  "failed_node_allocation_ctor": true,
+  "checked_local_assertions": 46,
+  "passed_local_assertions": 46,
+  "private_local_checkpoint_sha256": "1578289fe63e8f0396a6094c300b42cbef30b4450960541b0f7cb2460edac17e",
+  "caveats": "Heap allocator internals and original Win32 process not executed; emulator return values and CRT threshold synthetic. Failure-path ownership gap is instruction-level, not a measured leak."
+}
