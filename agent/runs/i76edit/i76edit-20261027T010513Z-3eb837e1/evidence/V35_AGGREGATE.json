@@ -1,0 +1,65 @@
+{
+  "original_PE_md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+  "original_PE_sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+  "annotated_Ghidra_GZF_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+  "original_PE_default_small_block_threshold_bytes": 480,
+  "original_entry_heap_init_call": "00424181",
+  "setter": "00424F90",
+  "setter_static_references": 0,
+  "normal_native_heap_init": {
+    "function": "00424F00",
+    "return_value": 1,
+    "reserve_bytes": 4194304,
+    "first_commit_bytes": 65536,
+    "unmodified_threshold": true
+  },
+  "single_block": {
+    "requested_payload_bytes": 120,
+    "rounded_allocation_bytes": 128,
+    "synthetic_native_SBH_address": "0x50000100",
+    "units_before": 240,
+    "units_allocated": 232,
+    "units_freed": 240
+  },
+  "explicit_one_page_decommit": {
+    "function": "00425180",
+    "count_argument": 1,
+    "page_index": 15,
+    "status_after": 255,
+    "global_after": 0
+  },
+  "commit_failure_cleanup": {
+    "initial_virtual_commit_forced_failure": true,
+    "original_heap_init_return": 0,
+    "OS_reservation_release_calls": 1,
+    "OS_heap_destroy_calls": 1
+  },
+  "natural_batch": {
+    "simultaneously_allocated_distinct_blocks": 931,
+    "full_pages": 31,
+    "partially_used_page": 31,
+    "second_commit_address": "0x50010000",
+    "total_commit_calls": 2,
+    "original_free_calls": 931,
+    "empty_page_threshold": 32,
+    "native_decommit_triggered": 16,
+    "decommit_page_indices": "31..16 descending",
+    "remaining_committed_empty_pages": 16,
+    "remaining_empty_page_counter": 16
+  },
+  "direct_second_batch": {
+    "direct_original_decommit_count": 16,
+    "total_decommits": 32,
+    "region_releases": 1,
+    "remaining_region_ptr": 0,
+    "remaining_empty_page_counter": 0,
+    "original_heap_destroy_calls": 1
+  },
+  "local_validation": {
+    "passed": 48,
+    "total": 48,
+    "native_opcode_anchors": 26
+  },
+  "private_checkpoint_sha256": "193c98b07a68b922cb8a2a400036a8309e92f346a45216f7ba4124b79182f5d0",
+  "limitations": "Only original CRT instructions are emulated. HeapCreate/Destroy/VirtualAlloc/VirtualFree are simulated, no original Windows UI, complete C runtime process initialization or authentic editable .I76 tested. Second decommit batch was explicitly invoked."
+}
