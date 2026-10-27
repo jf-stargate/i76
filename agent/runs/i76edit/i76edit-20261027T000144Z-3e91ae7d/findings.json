@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261027T000144Z-3e91ae7d",
+  "findings": [
+    {
+      "finding_id": "editor.v33.crt_size_class_and_fallback",
+      "claim": "Original editor CRT _malloc path 004232E0->00423300->00423350 rounds a 0x78-byte object request to 0x80 and conditionally tries small-block allocation 00425310 before Windows HeapAlloc; original x86 execution confirmed both successes and fallback under controlled threshold/heap results.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004232E0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423300"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423350"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425310"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CRT_MALLOC_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/CRT_MALLOC_AGGREGATE.json"
+        }
+      ],
+      "limitations": "CRT threshold, SBH allocation return and Win32 HeapAlloc were synthetic; normal Windows editor startup configuration and actual heap metadata have not been recovered."
+    },
+    {
+      "finding_id": "editor.v33.new_handler_allocation_retry",
+      "claim": "Original 00423300 retries failed CRT allocation when enabled and original 00426230 new-handler dispatcher observes a nonzero callback return. A controlled failure followed by callback true made two native HeapAlloc requests, whereas callback false made one.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423334"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423339"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00426230"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0042623F"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CRT_MALLOC_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/CRT_MALLOC_AGGREGATE.json"
+        }
+      ],
+      "limitations": "Application new-handler callback was substituted; test does not establish real runtime new-handler installation or retry limits."
+    },
+    {
+      "finding_id": "editor.v33.crt_zero_and_oversize",
+      "claim": "Original 00423300 normalizes a zero-byte malloc request to one byte before 16-byte rounding and rejects request 0xFFFFFFE1 without calling allocation or new-handler services.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423306"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423314"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423355"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00423358"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CRT_MALLOC_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/CRT_MALLOC_AGGREGATE.json"
+        }
+      ],
+      "limitations": "Isolated original CRT function tests on synthetic heap, not editor UI authoring."
+    },
+    {
+      "finding_id": "editor.v33.constructor_native_crt_lifecycle",
+      "claim": "Within one Ghidra original-instruction emulator state, original 00409840 constructed an editor object using native _malloc, inserted its native 12-byte list node, then original 00409DC0/00409A60/00422FA0 deleted it and directed node then payload frees; zone list head returned to zero.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409840"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409881"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C430"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409DC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409A60"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FA0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CRT_MALLOC_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/CRT_MALLOC_AGGREGATE.json"
+        }
+      ],
+      "limitations": "Win32 HeapAlloc/HeapFree, CRT small-block free lookup and UI refresh were substituted; no real Windows heap bookkeeping or full process executed."
+    },
+    {
+      "finding_id": "editor.v33.node_heap_allocation_failure",
+      "claim": "When native _malloc supplied a valid initialized 0x78-byte payload but list node HeapAlloc returned null, original 0041C430 returned null and 00409840 stored a null head without calling _free or HeapFree during that constructor path, suggesting an ownership cleanup gap.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004098EA"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004098F2"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C442"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C444"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CRT_MALLOC_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/CRT_MALLOC_AGGREGATE.json"
+        }
+      ],
+      "limitations": "No real heap leak was measured; the synthetic allocation failure is not evidence this occurs in typical editor use, nor that no other owner can reclaim memory."
+    },
+    {
+      "finding_id": "editor.v33.malloc_null_unguarded",
+      "claim": "The original constructor at 0040989A writes directly to the returned _malloc pointer, with no preceding null check on the observed native path. Earlier synthetic failure emulation does not establish precise Windows exception or crash behavior.",
+      "status": "unresolved",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409881"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409891"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0040989A"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CRT_MALLOC_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/CRT_MALLOC_AGGREGATE.json"
+        }
+      ],
+      "limitations": "Only the missing guard is native-binary supported; actual Windows fault handling, reachability and user-visible behavior remain untested."
+    }
+  ]
+}
