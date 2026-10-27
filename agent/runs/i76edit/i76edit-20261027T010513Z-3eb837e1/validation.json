@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "test_count": 48,
+  "passed_count": 48,
+  "notes": "Read-only original Ghidra 12.1.4 emulation in two independent scripts: native __heap_init with unmodified PE threshold 480, native malloc/free/one-page decommit/native heap term and forced commit failure cleanup; separate 931-allocation 32-page full sweep with second 64KiB native commit, natural 16-page decommit and explicit final 16-page native region release. Private validator 48/48: PE MD5/SHA256, annotated GZF SHA256, 26 fixed opcode guards, Ghidra xrefs/initialized PE threshold, and trace invariants. Host OS memory calls isolated; not 48 independent runtime trials."
+}
