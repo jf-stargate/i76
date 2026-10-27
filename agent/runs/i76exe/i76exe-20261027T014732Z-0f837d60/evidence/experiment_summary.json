@@ -1,0 +1,24 @@
+{
+  "run_check_count": 157,
+  "retail_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "ghidra_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+  "zfs_sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+  "repeat_bus_trace_sha256": "e8587a9ede32236bdd7dd9ae5c350147510db612e3a1cd874236a4d5f8b2f2db",
+  "scenarios": {
+    "bus_selected": "n=4457;guardReached=true;eligible=true;cameraViewFlag=00010000;cameraChangedBytes=140;camera160=00000000;camera164=7FF80000;camera168=00000000;camera16c=7FF80000;camera170=00000000",
+    "bus_repeat": "n=4457;guardReached=true;eligible=true;cameraViewFlag=00010000;cameraChangedBytes=140;camera160=00000000;camera164=7FF80000;camera168=00000000;camera16c=7FF80000;camera170=00000000",
+    "gtsi_selected": "n=4473;guardReached=true;eligible=true;cameraViewFlag=00010000;cameraChangedBytes=140;camera160=00000000;camera164=7FF80000;camera168=00000000;camera16c=7FF80000;camera170=00000000",
+    "bus_unselected": "n=40;guardReached=true;eligible=false;cameraViewFlag=00000000;cameraChangedBytes=0;camera160=00000000;camera164=00000000;camera168=00000000;camera16c=00000000;camera170=00000000",
+    "bus_init": "n=4433;guardReached=true;eligible=true;cameraViewFlag=00010000;cameraChangedBytes=80;camera160=00000000;camera164=7FF80000;camera168=00000000;camera16c=7FF80000;camera170=00000000",
+    "bus_boundary": "n=4433;guardReached=true;eligible=true;cameraViewFlag=00010000;cameraChangedBytes=80;camera160=00000000;camera164=7FF80000;camera168=00000000;camera16c=7FF80000;camera170=00000000"
+  },
+  "matrix_boundary": {
+    "00406D27": "calleeReturn;p=3001CF80;nonFiniteF32Words=0;words0_7=3F7FFEDB,3B8941B5,BB88AE86,BB88AE86,3F7FFEDA,3B89D496,3B8941B5,BB894204",
+    "00406D45": "calleeReturn;p=3001CF80;nonFiniteF32Words=9;words0_7=7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000",
+    "00406D6F": "calleeReturn;p=3001CF80;nonFiniteF32Words=12;words0_7=7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000",
+    "00406D8C": "calleeReturn;p=3001CF80;nonFiniteF32Words=1;words0_7=00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000",
+    "00406DB6": "calleeReturn;p=3001CF80;nonFiniteF32Words=13;words0_7=7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000,7FC00000"
+  },
+  "original_opcode_anchors": 31,
+  "caution": "Original x86 executed under Ghidra with intercepted math functions and uninitialized world transform; finite camera pose NOT established"
+}
