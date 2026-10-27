@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76edit-20261027T000144Z-3e91ae7d",
+  "track": "i76edit",
+  "topic": "Original I76EDIT.EXE CRT malloc size classes, small-block fallback, new-handler retry and editor object allocation lifecycle",
+  "base_commit": "61c9b3b425010615755a18302cb27068850377c6",
+  "started_at": "2026-10-27T00:01:44Z",
+  "summary": "Original i386 execution of CRT malloc wrapper/allocator/new-handler branch, eight controlled allocation scenarios and one original constructor-to-destructor lifecycle with synthetic Windows heap; identifies failure-path ownership gaps without claiming real Windows faults.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original game TAR; executable bytes not committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "Private annotated original I76EDIT.EXE.gzf baseline",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "User-provided editor setup v1.0.0 private I76_EDITOR read-only Ghidra project",
+      "notes": "Executable MD5 matched and original program opened -readOnly -noanalysis."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/CRT_MALLOC_RESEARCH.md",
+      "kind": "report",
+      "sha256": "d4916459ea39d6ed0ed774140cb83e0214828124673c6a6900d09001cc5da649",
+      "bytes": 5317,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "c570d2299f36274d0aa3d77953200bd0b83e62dc6f6808bfd4a1b572ff618ba5",
+      "bytes": 2654,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/CRT_MALLOC_AGGREGATE.json",
+      "kind": "test-result",
+      "sha256": "27548522fbcc0c1db52a0ba1e44d39e11fa4e4dbcc2fcd6cb9949f0d4f1a2678",
+      "bytes": 1215,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_native_anchors.py",
+      "kind": "script",
+      "sha256": "09606c9c7cb852e16d526066a49db311570bb0bc7a56f2ad3449a3369c4e5d57",
+      "bytes": 1906,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 46,
+    "passed_count": 46,
+    "notes": "Private local v33 checkpoint: 32/32 original I76EDIT.EXE opcode anchor matches, actual PE MD5 and SHA256 plus annotated Ghidra GZF SHA256, 8/8 original CRT allocation scenarios, two original constructor cases, full original-code constructor-to-destructor event sequence, no-free-observed native constructor node-failure path, and completed Ghidra 12.1.4 read-only script marker. Physical CRT/Windows heap services were substituted; 46 assertions are not independent Windows trials."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_native_anchors.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:004232E0",
+        "address": "004232E0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00409840",
+        "address": "00409840"
+      },
+      {
+        "kind": "external",
+        "ref": "Private local i76_editor_v33_crt_lifecycle_20261026.zip SHA256 1578289fe63e8f0396a6094c300b42cbef30b4450960541b0f7cb2460edac17e, including exact V33CrtMallocProbe.java, original synthetic trace and 46-check local validator"
+      }
+    ],
+    "methods": [
+      "Re-verified original private PE MD5/SHA256 and annotated GZF SHA256",
+      "Read-only Ghidra 12.1.4 original x86 P-code emulation with original CRT _malloc and new-handler wrapper instructions intact",
+      "Eight controlled CRT return/threshold/new-handler cases, including zero and rejected-oversize requests",
+      "Executed original 00409840 constructor then original 00409DC0/00409A60/00422FA0 destructor in SAME emulator state",
+      "Injected node-allocation failure with original CRT malloc intact; original _free and HeapFree entry guards confirm no cleanup on that constructor path",
+      "32 original opcode anchors checked, 46/46 validation assertions"
+    ],
+    "limitations": "No full original Win32 editor process, actual CRT small-block heap internals, Windows heap state, OS exception semantics or genuine editable .I76 workspace. Heap allocation services, new-handler callback, CRT free-path SBH lookup and display are substituted. Exact tested Java/Ghidra trace retained in locally downloadable private checkpoint rather than this public run; reproducibility accordingly partial. No replacement editor/game code created."
+  }
+}
