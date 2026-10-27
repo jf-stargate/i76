@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76edit-20261027T003326Z-25e3484f",
+  "track": "i76edit",
+  "topic": "Original editor CRT SBH region initialization, native page allocation/free and workspace-object lifetime",
+  "base_commit": "34a15f060ff585a085619defeffca2fe20969609",
+  "started_at": "2026-10-27T00:33:26Z",
+  "summary": "Original Ghidra i386 emulation reaches real CRT 00424FB0 region bootstrap, 00425310/00425590 allocator, 00425260/004252C0 free path, 30/31-block occupancy/reuse and 00409840-to-00409A60 editor object lifecycle; Windows OS services only are substituted.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Private original retail editor, original bytes excluded from repository."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "annotated private original I76EDIT.EXE.gzf",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "Private editor environment v1.0.0, read-only Ghidra I76_EDITOR",
+      "notes": "Original MD5 verified; no new autoanalysis."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/ORIGINAL_CRT_SBH_RESEARCH.md",
+      "kind": "report",
+      "sha256": "37239c7194522e7c6de6e7b45a8c6ad3435eb2f28ae52cc878ba952faa396361",
+      "bytes": 5778,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "35274285ceb1715787845f795150961d2d59823d8efb540c965dbe68114dc74d",
+      "bytes": 2237,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/SBH_VALIDATION.json",
+      "kind": "test-result",
+      "sha256": "0fb039e298c63ee70dd8189b1fa1f4986a278dd83557bc13551fa65925fc5b27",
+      "bytes": 2082,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_original_sbh_anchors.py",
+      "kind": "script",
+      "sha256": "a57c3f8f086c97e9cdc28b4489dba9dfde64fd1f542f098cf5c9b529aaf6aa7e",
+      "bytes": 1660,
+      "source_refs": [
+        "private original BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 45,
+    "passed_count": 45,
+    "notes": "Local original-PE opcode/input identity and annotated Ghidra SHA256 checks, three independent original-instruction emulation traces: descriptor-injected negative-control fixture, original region VirtualAlloc request/metadata bootstrap with block fills, exact reuse and 31-block page transition, plus full original workspace-object native-SBH constructor/destructor. Native OS heap/VirtualAlloc and display callbacks deliberately substituted. Local v34 validate_v34.py reports 45/45 (including 27 original fixed opcode anchors). Public verifier repeats native opcode subset."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_original_sbh_anchors.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00425310",
+        "address": "00425310"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00424FB0",
+        "address": "00424FB0"
+      },
+      {
+        "kind": "external",
+        "ref": "private conversation v34 checkpoint i76_editor_v34_native_sbh_20261027.zip SHA256 1b5b2d3f8e06c04b9cfa1380fe706eb91fee9c510eb4bae57d8632c1c78e5a94; includes exact tested Java scripts V34NativeReserve.java/V34CtorNativeSbh.java/V34SbhRoundTrip.java, three original native traces and local validate_v34.py"
+      }
+    ],
+    "methods": [
+      "Verified original retail editor MD5/SHA256 and private annotated GZF SHA256",
+      "Independent PE native instruction disassembly and read-only original Ghidra 12.1.4 x86 EmulatorHelper",
+      "Original 00424FB0 native region bootstrap with VirtualAlloc reserve/commit calls synthesized; original descriptor and 16 page headers initialized by native code",
+      "Original malloc/free and page occupancy/reuse/transition (30 and 31 simultaneous blocks) tested against synthetic VM region",
+      "Original editor 00409840/00409DC0 lifetime with original CRT SBH allocation/free, only node Win32 heap/display/VM services substituted",
+      "45/45 local reproducibility assertions including 27 original native opcode signatures"
+    ],
+    "limitations": "The public PR contains report/evidence/native verifier but private exact executable Ghidra scripts and traces remain in downloadable conversation checkpoint, therefore public reproducibility is partial. No actual Windows VM/heap manager, CRT process startup threshold, CRT decommit cleanup, failure path or authentic editor editable .I76 workspace. Synthetic pointer values are not original addresses."
+  }
+}
