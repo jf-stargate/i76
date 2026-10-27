@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76edit-20261027T010513Z-3eb837e1",
+  "track": "i76edit",
+  "topic": "Original editor CRT default SBH threshold, native startup failure cleanup, naturally triggered page decommit and region release",
+  "base_commit": "34a15f060ff585a085619defeffca2fe20969609",
+  "started_at": "2026-10-27T01:05:13Z",
+  "summary": "Original PE small-block threshold 480 bytes confirmed; original CRT __heap_init, SBH malloc/free, initial commit failure cleanup and heap shutdown executed. A 931-block 32-page native sweep naturally triggered 16 page decommits; explicit native cleanup of final 16 pages released region.",
+  "inputs": [
+    {
+      "name": "BUILDER/I76EDIT.EXE",
+      "kind": "editor-executable",
+      "md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+      "sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+      "notes": "Original private retail editor executable, not committed."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "I76EDIT.EXE",
+      "baseline_id": "Original private annotated I76EDIT.EXE.gzf",
+      "baseline_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+      "storage_ref": "Private editor environment v1.0.0 restored Ghidra read-only project",
+      "notes": "Original executable MD5 verified and GZF SHA256 checked, no Ghidra autoanalysis."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/V35_STARTUP_DECOMMIT.md",
+      "kind": "report",
+      "bytes": 5565,
+      "sha256": "2795a541b0167db6628ff659c62822229aa111431628017386899abfaf9cd992",
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "bytes": 2334,
+      "sha256": "ea5b241664a244aae7b6e98250aab7e5200aff6294790feb7e8e25ff8ceb55d7",
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "evidence/V35_AGGREGATE.json",
+      "kind": "test-result",
+      "bytes": 2312,
+      "sha256": "42945870159f57e0d168ef28a37121394d2bfe6cdd0c38b43bd4f9db9ed88e1b",
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    },
+    {
+      "path": "scripts/verify_sbh_shutdown.py",
+      "kind": "script",
+      "bytes": 1678,
+      "sha256": "1e169de8d4b41d68f1be1cd15eb139b5b4d24fc50cea6f23f2cb991e38364d18",
+      "source_refs": [
+        "Original private BUILDER/I76EDIT.EXE SHA256 69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df"
+      ]
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 48,
+    "passed_count": 48,
+    "notes": "Read-only original Ghidra 12.1.4 emulation in two independent scripts: native __heap_init with unmodified PE threshold 480, native malloc/free/one-page decommit/native heap term and forced commit failure cleanup; separate 931-allocation 32-page full sweep with second 64KiB native commit, natural 16-page decommit and explicit final 16-page native region release. Private validator 48/48: PE MD5/SHA256, annotated GZF SHA256, 26 fixed opcode guards, Ghidra xrefs/initialized PE threshold, and trace invariants. Host OS memory calls isolated; not 48 independent runtime trials."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_sbh_shutdown.py"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00424F00",
+        "address": "00424F00"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "BUILDER/I76EDIT.EXE:00425180",
+        "address": "00425180"
+      },
+      {
+        "kind": "external",
+        "ref": "Private downloadable conversation checkpoint i76_editor_v35_crt_startup_20261027.zip, SHA256 193c98b07a68b922cb8a2a400036a8309e92f346a45216f7ba4124b79182f5d0; exact tested V35NativeStartupLifecycle.java and V35ThresholdSweep.java, private emulation transcripts, xref analyzer, full 48-check validator"
+      }
+    ],
+    "methods": [
+      "Verified private PE MD5/SHA256, private annotated GZF SHA256, and original 0x438674 initialized data value 480",
+      "Static Ghidra xref inventory original 00424181->00424F00 and no static calls to 00424F90 setter",
+      "Original Ghidra 12.1.4 P-code emulation with native CRT heap initialization/malloc/free/page decommit/heap termination, isolated Win32 OS services",
+      "Native 931 distinct 128-byte allocations across two 64KiB commit batches, naturally threshold-triggered 16-page decommit and explicit final-region decommit/release",
+      "48 assertions from original opcode bytes, input hashes, Ghidra original-program xrefs and original-code trace semantics"
+    ],
+    "limitations": "Only original i386 CRT code and its branches were executed in read-only Ghidra, while Windows HeapCreate/Destroy and VirtualAlloc/VirtualFree are synthetic. Exact emulation Java scripts and raw trace are in private conversation checkpoint rather than public repo, making reproducibility partial. Original .I76 editor workspace absent, true Win32 memory management/CRT process startup not validated. No original authoring/engine reimplementation created."
+  }
+}
