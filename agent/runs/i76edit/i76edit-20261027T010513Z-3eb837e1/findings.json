@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261027T010513Z-3eb837e1",
+  "findings": [
+    {
+      "finding_id": "editor.v35.original_CRT_default_threshold",
+      "claim": "Original PE initialized CRT SBH maximum allocation size at 00438674 is 0x1e0 (480 bytes), so a 120-byte workspace object is eligible for native small-block allocation without a synthetic threshold setting. Original editor entry 00424181 calls __heap_init 00424F00; no static executable callers of threshold setter 00424F90 were found.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00438674"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424181"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424F90"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V35_STARTUP_DECOMMIT.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/V35_AGGREGATE.json"
+        }
+      ],
+      "limitations": "No static xref does not exclude external or indirect threshold modification; original full Win32 process CRT startup not executed."
+    },
+    {
+      "finding_id": "editor.v35.native_CRT_startup_and_failure_cleanup",
+      "claim": "Original 00424F00 creates CRT heap and calls native 00424FB0 for 4MiB reservation and 64KiB initial commit; with actual initialized 480-byte threshold unchanged, original malloc(120)/free use native SBH. On simulated initial 64KiB commit failure, original native routines request release of earlier reservation, destroy created CRT heap and return failure.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424F00"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424FB0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004232E0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FA0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424F40"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V35_STARTUP_DECOMMIT.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/V35_AGGREGATE.json"
+        }
+      ],
+      "limitations": "Win32 HeapCreate/Destroy and VirtualAlloc/VirtualFree calls isolated with synthetic return values; real OS heap/VM bookkeeping not exercised."
+    },
+    {
+      "finding_id": "editor.v35.natural_SBH_page_decommit",
+      "claim": "Original i386 CRT allocator made 931 distinct concurrent 128-byte allocations across 32 pages with one additional 64KiB native commit request. Original free of all 931 made the empty-page counter reach 32, which triggered original 004252FD call to 00425180(16). It decommitted exactly 16 pages, indices 31 down through 16, leaving empty-page count 16 and those page descriptors at 0xff.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425310"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004252C0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004252F2"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004252FD"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425180"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V35_STARTUP_DECOMMIT.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/V35_AGGREGATE.json"
+        }
+      ],
+      "limitations": "VirtualAlloc/VirtualFree responses simulated; address of returned additional commit is synthetic; original Win32 process not executed. Prior wrong-address test fixture was rejected."
+    },
+    {
+      "finding_id": "editor.v35.native_empty_region_release",
+      "claim": "After natural decommit of pages 31..16, an explicit test invocation of original 00425180(16) decommitted the remaining empty pages and triggered original 00425120 release of the now-completely decommitted 4MiB region. Native 00424F40 then destroyed CRT heap without duplicate region release.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425180"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425233"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425120"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424F40"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/V35_STARTUP_DECOMMIT.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/V35_AGGREGATE.json"
+        }
+      ],
+      "limitations": "This final 16-page decommit was explicitly invoked in a controlled test; it was NOT naturally triggered by original _free. OS VirtualFree/HeapDestroy calls were simulated."
+    }
+  ]
+}
