@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76exe-20261027T033452Z-2f8c31f5",
+  "track": "i76exe",
+  "topic": "Two original class-1 vehicle active physics update and camera callbacks with moving stock GTSi and bus roots",
+  "base_commit": "5da264c093a9d694a7d5e36f4be62c3a26b5b0fb",
+  "started_at": "2026-10-27T03:34:52Z",
+  "summary": "Original 00463800 class callback invokes original 0043A3C0 and 0043BDF0 with controlled drive and 1/60 delta for two consecutive update/camera frames in persistent native-constructed and registered GTSi/bus. Root pose advances per original instructions, original 00406AB0 camera returns finite six-double states, independent bus traces identical. Root direction remains non-unit, so game/hardware parity and actual scheduler remain unresolved.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "User-private original retail PE, only hashes and sparse opcodes public."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "User-private retail resource archive, original GTSi/bus assets used by separately held fixtures."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "3c84b2113df64b16f2102b6d9949324aefe178b00da0f4a7e9f9b15c7fc4634e",
+      "bytes": 1835
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "13475532c5d998ac20c3bd6425bb8ee58ec714179d4e81daca65b3ca783d2d95",
+      "bytes": 828
+    },
+    {
+      "path": "artifacts/VEHICLE_TWO_FRAME_ORIGINAL_SIMULATION.md",
+      "kind": "report",
+      "sha256": "abfb11c23ad575d25cdd9914b55959b7493afd52b4dd457c9d390fcdd965fa84",
+      "bytes": 4863
+    },
+    {
+      "path": "evidence/direct_call_edges.tsv",
+      "kind": "table",
+      "sha256": "44690424d43b3e1b7d8025f423ac103bb546fa0a2e55d82df067ce9914e16042",
+      "bytes": 193
+    },
+    {
+      "path": "evidence/replay_provenance.json",
+      "kind": "table",
+      "sha256": "7b4e414692ba8eecb90e030eef531b6c145669c2c0dfef90ce51fbdcfcfafe21",
+      "bytes": 1560
+    },
+    {
+      "path": "evidence/retail_opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "1860470387940378ff073d8c50d1f69b37ac5785805cce9d2f1ad9b3b1669082",
+      "bytes": 2334
+    },
+    {
+      "path": "evidence/two_frame_scenarios.tsv",
+      "kind": "table",
+      "sha256": "1d7b2731a5764972617ab77f73fd206b7e6e2991f8ec38fe848f1b9620c05bf5",
+      "bytes": 981
+    },
+    {
+      "path": "scripts/I76_MilestoneBActiveTwoFrameProbe.java",
+      "kind": "script",
+      "sha256": "4f8ce55cda79fb4072548f7988525ad354b77d519b56db5c9bf49931dfad2307",
+      "bytes": 35591
+    },
+    {
+      "path": "scripts/I76_MovingVehicleTwoFrameProbe.java",
+      "kind": "script",
+      "sha256": "1293c967815f0684c0d9cc63537bd050fa6f76438265a8eb1d0ca1b487f25a81",
+      "bytes": 37870
+    },
+    {
+      "path": "scripts/I76_PhysicsTimerAudit.java",
+      "kind": "script",
+      "sha256": "7267e12ca714aa30f4cc22d8544291ba6df7c23f2307848433d8abe8d45c8ab5",
+      "bytes": 1623
+    },
+    {
+      "path": "scripts/I76_VehicleSimulationCallgraph.java",
+      "kind": "script",
+      "sha256": "19f7680b30382177e5fb5277ae87b9bc2bf9e11da16770587e7d9ab016245ae0",
+      "bytes": 1555
+    },
+    {
+      "path": "scripts/verify_two_frame.py",
+      "kind": "script",
+      "sha256": "e7216f0e2229217e1129c8105f6e8db27cc17032d748ce460e6aaaa69474b889",
+      "bytes": 5413
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 169,
+    "passed_count": 169,
+    "notes": "Independent source-versus-derived validator: exact original retail/GZF/ZFS identities, 38 retail PE opcode anchors, 6 original direct CALL displacements (3 checks each), four private source trace identities, original active frame class/camera events and native registration, bus and GTSi two-frame pose and camera field invariants, byte-identical independent bus replay, explicit numerical nonorthonormality caveat. Game scheduler/hardware parity untested."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_MilestoneBActiveTwoFrameProbe.java",
+        "sha256": "4f8ce55cda79fb4072548f7988525ad354b77d519b56db5c9bf49931dfad2307"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_MovingVehicleTwoFrameProbe.java",
+        "sha256": "1293c967815f0684c0d9cc63537bd050fa6f76438265a8eb1d0ca1b487f25a81"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_PhysicsTimerAudit.java",
+        "sha256": "7267e12ca714aa30f4cc22d8544291ba6df7c23f2307848433d8abe8d45c8ab5"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_VehicleSimulationCallgraph.java",
+        "sha256": "19f7680b30382177e5fb5277ae87b9bc2bf9e11da16770587e7d9ab016245ae0"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_two_frame.py",
+        "sha256": "e7216f0e2229217e1129c8105f6e8db27cc17032d748ce460e6aaaa69474b889"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00463800",
+        "address": "00463800"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0043A3C0",
+        "address": "0043A3C0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0043BDF0",
+        "address": "0043BDF0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00406AB0",
+        "address": "00406AB0"
+      }
+    ],
+    "methods": [
+      "Pin accepted 1.0.3 repository policy and live GitHub ruleset.",
+      "Read-only Ghidra 12.1.4 v97 decompile and CALL target audit for class-1 active and inactive pose update paths.",
+      "Reuse separately checksum-verified private original GTSi/bus VCF/VLOC/TMT resources and native root/active-world registration.",
+      "Original i386 EmulatorHelper class-1 update 00463800, original drivetrain 0043A3C0/orientation 0043BDF0 and original default camera 00406AB0, twice without emulator reset, controlled inputs.",
+      "Two independent byte-identical selected-bus emulations and original GTSi replay; independent 169-assertion verifier on original PE opcode bytes, direct CALL targets and source private traces."
+    ],
+    "limitations": "No genuine retail game scheduler, positive wheel-contact fixedstep accumulator or full terrain/collision. Controlled vehicle drive, dt, camera activity distance and pause inputs. Windows/CRT/resource, sine/cosine and x87-ftol services intercepted at stated boundaries. Moving root axis is not unit length in these tests; hardware x87 numeric parity, orthonormal pose, authentic camera/pixels unproven. Requires licensed resources and private Ghidra baseline not committed."
+  }
+}
