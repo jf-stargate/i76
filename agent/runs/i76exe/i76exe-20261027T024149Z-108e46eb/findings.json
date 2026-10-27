@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261027T024149Z-108e46eb",
+  "findings": [
+    {
+      "finding_id": "i76exe-a-437f90-vehicle-camera-orientation-contract",
+      "claim": "Original 00437F90 is a class-1-only stateful vehicle camera orientation/basis helper taking out[16] and world-object pointer, not a general bounds query: non-class-1 copies constant 004FAED8; class-1 reads two 3xfloat object basis vectors, vehicle runtime+0xD4/+0x114/+0x118, frame dt, calls 00493CA0, 00494C80, 00494710 and updates globals 0052B93C/40/44; direct retail callers are 00406D40 and 00407236. Ancestor traversal occurs in caller outside this function.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00437F90",
+          "address": "00437F90"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/WORLD_TRANSFORM_437F90_CONTRACT.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/caller_helper_edges.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/field_access_contract.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/WorldTransformAudit.java"
+        }
+      ],
+      "limitations": "Direct PE analysis and controlled original-x86 emulation, not actual Windows frame. Existing v97 Ghidra semantic label misleading; no baseline rename. Physical meaning of runtime scalar/vector fields not proved."
+    },
+    {
+      "finding_id": "i76exe-a-original-root-constructor-forward-axis",
+      "claim": "Original 0045EBD0 allocates a 0xB0-byte node and copies 16 dwords from 004FAED8 into object+0x18, initializing root direction at object+0x30..0x38 to (0,0,1). Original isolated execution with only Windows HeapAlloc substituted completed in 86 steps; 00437F90 executed on that native-initialized root and controlled finite class-1 runtime state without non-finite output words.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045EBD0",
+          "address": "0045EBD0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0045ECAD",
+          "address": "0045ECAD"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeNodeRootContractProbe.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_contract_scenarios.tsv"
+        }
+      ],
+      "limitations": "Root node tested with controlled synthetic runtime fields and frame delta, not same-state VCF/full camera; finite output alone does not prove proper orthonormal pose or physical parity."
+    },
+    {
+      "finding_id": "i76exe-a-zero-root-direction-projection-nan",
+      "claim": "Original 00493CA0 divides the dot product by squared magnitude of owner+0x30..0x38 without a zero-length direction guard. Setting that direction vector to (0,0,0), either on a manual root or by erasing the three fields on an original native-constructed root, causes 9 nonfinite float32 words from original 00437F90; unmodified native-root direction (0,0,1) gives none for the tested runtime state. Independent runs matched byte-for-byte.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00493D1B",
+          "address": "00493D1B"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_WorldTransformIsolatedProbe.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeNodeRootContractProbe.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/native_contract_scenarios.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcode_anchors.tsv"
+        }
+      ],
+      "limitations": "A controlled Ghidra original-instruction experiment, not evidence that genuine retail gameplay produces NaNs. 00495000 approximation and actual x87 hardware parity not established. Full previous VCF/camera replay not repeated here."
+    },
+    {
+      "finding_id": "i76exe-a-full-camera-root-correction-unverified",
+      "claim": "The prior native full-camera harness used a manually zeroed top-level root. Whether running the full selected GTSi/bus camera chain after true native root construction eliminates all NaNs remains untested, as do actual pose writers, parent-chain integration, camera scheduling and hardware x87 normalization parity.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/WORLD_TRANSFORM_437F90_CONTRACT.md"
+        }
+      ],
+      "limitations": "This run recovers Milestone A input/call contract and isolated nonfinite precondition, not Milestones B/C full finite retail camera/render pass."
+    }
+  ]
+}

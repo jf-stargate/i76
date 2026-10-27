@@ -1,0 +1,17 @@
+import ghidra.app.script.GhidraScript;import ghidra.app.emulator.EmulatorHelper;import ghidra.program.model.address.Address;import java.io.*;import java.util.*;
+public class I76_NativeNodeRootContractProbe extends GhidraScript{
+ static final long OBJ=0x23000000L, RT=0x23001000L, OUT=0x23002000L,STACK=0x30020000L,SENT=0x70000000L;
+ EmulatorHelper e;PrintWriter o;String sc;long count;Address a(long x){return toAddr(x&0xffffffffL);}long r(String x){return e.readRegister(x).longValue()&0xffffffffL;} long u(long x){byte[] b=e.readMemory(a(x),4);if(b==null||b.length!=4)throw new RuntimeException("read "+Long.toHexString(x));return (b[0]&255L)|((b[1]&255L)<<8)|((b[2]&255L)<<16)|((b[3]&255L)<<24);}void w(long x,long v){e.writeMemoryValue(a(x),4,v&0xffffffffL);}void wf(long x,float v){w(x,Float.floatToRawIntBits(v));}void mem(long p,int n){e.writeMemory(a(p),new byte[n]);}String hx(long x){return String.format("%08X",x&0xffffffffL);}void ev(String type,String detail){o.println(sc+"\t"+type+"\t"+detail);}int bad(long p,int n){int count=0;for(int i=0;i<n;i++)if(!Float.isFinite(Float.intBitsToFloat((int)u(p+i*4L))))count++;return count;}String m(long p,int n){StringJoiner j=new StringJoiner(",");for(int i=0;i<n;i++)j.add(hx(u(p+i*4L)));return j.toString();}
+ void reset(){e=new EmulatorHelper(currentProgram);mem(OBJ,0x1000);mem(RT,0x1000);mem(OUT,0x1000);mem(STACK-0x3000,0x4000);for(String s:new String[]{"EAX","EBX","ECX","EDX","ESI","EDI","EBP"})e.writeRegister(s,0);e.writeRegister("DF",0);wf(0x004fe420,0.016f);wf(0x0052b93c,0);wf(0x0052b940,0);wf(0x0052b944,0);}
+ String call(long addr,long...args)throws Exception{long sp=STACK-0x2000;w(sp,SENT);for(int i=0;i<args.length;i++)w(sp+4+4L*i,args[i]);e.writeRegister("ESP",sp);e.writeRegister("EIP",addr);for(int i=0;i<30000;i++){long pc=r("EIP");count++;if(pc==SENT)return "return EAX="+hx(r("EAX"))+";steps="+count;
+   if(pc==0x000c0ffeL || pc==0x004bc108L){long sz=u(r("ESP")+12);if(sz!=0xb0)throw new Exception("unexpected original node allocation size="+sz);long ret=u(r("ESP"));e.writeRegister("ESP",r("ESP")+16);e.writeRegister("EIP",ret);e.writeRegister("EAX",OBJ);ev("STUB_WINDOWS_HEAPALLOC","size="+sz+";result="+hx(OBJ));continue;}
+   if(!e.step(monitor))return "failed pc="+hx(pc)+" reason="+e.getLastError();}
+   throw new Exception("limit at "+hx(r("EIP")));
+ }
+ void one(String name,boolean nativeCtor,boolean clearDirection)throws Exception{sc=name;reset();try{count=0;if(nativeCtor){String a=call(0x0045EBD0L,0);ev("ORIGINAL_NODE_CTOR",a+";class="+u(OBJ+0x6c)+";dir="+m(OBJ+0x30,3)+";matrix="+m(OBJ+0x18,16));}
+  else{ev("ZEROED_MANUAL_ROOT","dir="+m(OBJ+0x30,3));}
+  w(OBJ+0x6c,1);w(OBJ+0x70,RT);if(clearDirection){for(int i=0;i<3;i++)w(OBJ+0x30+i*4L,0);}wf(RT+0xd4,3);wf(RT+0xd8,4);wf(RT+0xdc,2);wf(RT+0x114,1);wf(RT+0x118,2);
+  for(int i=0;i<16;i++)w(OUT+4L*i,0xccccccccL);count=0;String a=call(0x00437F90L,OUT,OBJ);ev("NATIVE_437F90_RESULT",a+";class=1;direction="+m(OBJ+0x30,3)+";bad="+bad(OUT,16)+";matrix="+m(OUT,16));
+ }finally{e.dispose();e=null;}}
+ public void run()throws Exception{if(!"a640ea0097dbb62e0c77b7f2847c7161".equalsIgnoreCase(currentProgram.getExecutableMD5()))throw new Exception("PE mismatch");try(PrintWriter p=new PrintWriter(new FileWriter(getScriptArgs()[0]))){o=p;o.println("scenario\tevent\tdetail");one("original_node_identity",true,false);one("original_node_direction_erased",true,true);one("manual_zero_root",false,false);}}
+}
