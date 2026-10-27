@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76exe-20261027T024149Z-108e46eb",
+  "track": "i76exe",
+  "topic": "Milestone A: original 00437F90 camera orientation helper contract and world-node constructor basis initialization",
+  "base_commit": "5da264c093a9d694a7d5e36f4be62c3a26b5b0fb",
+  "started_at": "2026-10-27T02:41:49Z",
+  "summary": "Static retail disassembly and original-instruction Ghidra isolated tests recover 00437F90 as a class-1 stateful camera-basis helper with two camera callers and no own ancestor traversal. Original 0045EBD0 initializes root direction to nonzero identity basis; erasing it yields 9 NaN float words via unguarded projection. Eight controlled scenarios and 134 assertions validate the scoped claim; full camera numeric parity remains open.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private retail executable derived from byte-verified user archive; no executable/resource bytes published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "annotated private retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user private GZF from game-environment handoff",
+      "notes": "Imported read-only with -noanalysis; no original GZF or mutable project data published."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "e3c41d8925b0aea70cbf50745653f0b9163a2c7123b678ce183103ccbed8bf1f",
+      "bytes": 4241
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "e401325cb9b7a98c18645bb59f8eef1d5f3c939b153fa0709031ab5caceebb91",
+      "bytes": 931
+    },
+    {
+      "path": "artifacts/WORLD_TRANSFORM_437F90_CONTRACT.md",
+      "kind": "report",
+      "sha256": "8f1ed4b0843c7260f01111d36682554ce27d77006d071f27416f557f41d1591c",
+      "bytes": 7767
+    },
+    {
+      "path": "evidence/caller_helper_edges.tsv",
+      "kind": "table",
+      "sha256": "cb8d48bfd62dd45828abd31e821e9a16e9e80e0d70aebaf54cbb017ff393867b",
+      "bytes": 788
+    },
+    {
+      "path": "evidence/field_access_contract.tsv",
+      "kind": "table",
+      "sha256": "4e2a55e81e0430424268e6685f64c28e108ddf592fac13cc309a339d0f0c5de2",
+      "bytes": 864
+    },
+    {
+      "path": "evidence/native_contract_scenarios.tsv",
+      "kind": "table",
+      "sha256": "068bdbdfdc36b47858312be728d8ff3e479e90ed7dcf89297be253aee9a0fe5d",
+      "bytes": 770
+    },
+    {
+      "path": "evidence/retail_opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "e52b3367cb8a89ce8f4cc1ba9c878a2866ead9a9389a5fc22e069763c07459e3",
+      "bytes": 1585
+    },
+    {
+      "path": "scripts/I76_NativeNodeRootContractProbe.java",
+      "kind": "script",
+      "sha256": "e2373b8de01cb65dde0e73f79556ec4b56859a676f27b6d69a622fafa75059fc",
+      "bytes": 3440
+    },
+    {
+      "path": "scripts/I76_TransformConstantsAudit.java",
+      "kind": "script",
+      "sha256": "789a9b2364047a1fb13fdedb8ba7ee27fbd588783d27b22bd637bae47238f13b",
+      "bytes": 1964
+    },
+    {
+      "path": "scripts/I76_WorldTransformIsolatedProbe.java",
+      "kind": "script",
+      "sha256": "9325964d9a77410c506d772dfaa6e9409570471130830a178013afdc86711b05",
+      "bytes": 4108
+    },
+    {
+      "path": "scripts/TransformHelpersAudit.java",
+      "kind": "script",
+      "sha256": "59eec3766e8948f5b488296dfb5cdff8e149806fc9db36fe7be18878b98d7364",
+      "bytes": 1262
+    },
+    {
+      "path": "scripts/WorldTransformAudit.java",
+      "kind": "script",
+      "sha256": "9bf8045870b5595687be9cd6348e85ab0780cb8230128089f448d55598c5d617",
+      "bytes": 2019
+    },
+    {
+      "path": "scripts/verify_transform_contract.py",
+      "kind": "script",
+      "sha256": "5c1c9de58bd840193ec73e06316c5f6b95c2d4d07fc055b31be708d8ddb211de",
+      "bytes": 5989
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 134,
+    "passed_count": 134,
+    "notes": "Independent original executable/GZF identity, 38 retail x86 opcode anchors, 11 direct CALL displacement and target checks, original node initialization and helper path/results across 8 scenarios, expected nonfinite counts, byte-identical native node and isolated helper replays. Does not claim full-camera numeric parity."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_NativeNodeRootContractProbe.java",
+        "sha256": "e2373b8de01cb65dde0e73f79556ec4b56859a676f27b6d69a622fafa75059fc"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_TransformConstantsAudit.java",
+        "sha256": "789a9b2364047a1fb13fdedb8ba7ee27fbd588783d27b22bd637bae47238f13b"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_WorldTransformIsolatedProbe.java",
+        "sha256": "9325964d9a77410c506d772dfaa6e9409570471130830a178013afdc86711b05"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TransformHelpersAudit.java",
+        "sha256": "59eec3766e8948f5b488296dfb5cdff8e149806fc9db36fe7be18878b98d7364"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/WorldTransformAudit.java",
+        "sha256": "9bf8045870b5595687be9cd6348e85ab0780cb8230128089f448d55598c5d617"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_transform_contract.py",
+        "sha256": "5c1c9de58bd840193ec73e06316c5f6b95c2d4d07fc055b31be708d8ddb211de"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00437F90",
+        "address": "00437F90"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0045EBD0",
+        "address": "0045EBD0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00493CA0",
+        "address": "00493CA0"
+      }
+    ],
+    "methods": [
+      "Pinned main AGENTS/protocol v1.0.3 and verified active trusted GitHub required integrity ruleset before research.",
+      "Unzipped privately supplied Ghidra 12.1.4 distribution, imported byte-verified private v97 GZF read-only; extracted retail original PE from byte-verified private tar.",
+      "Read-only Ghidra decompiler/disassembly audited original function 00437F90, math helpers and exactly two direct callers; original PE anchors independently checked.",
+      "Original x86 EmulatorHelper executed function 00437F90 with 8 controlled scenarios and original 0045EBD0 node constructor (only Windows heap allocation intercepted).",
+      "Two independent Ghidra runs of each experiment produced byte-identical results.",
+      "Standalone Python verifier validates private PE/GZF and 134 logical assertions."
+    ],
+    "limitations": "Controlled class-1 runtime vectors/angles and frame delta; original Win32 HeapAlloc result is intercepted, and prior full VCF/camera never reexecuted with root fix. Original reciprocal-sqrt approximator 00495000 uses Ghidra program-memory lookup representation; no hardware x87 parity, authentic world pose, full player-camera timing, collision, raster or pixels. Private original binaries/GZF and local result traces needed for exact replay, not published."
+  }
+}

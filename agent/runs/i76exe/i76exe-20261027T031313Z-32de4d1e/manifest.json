@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76exe-20261027T031313Z-32de4d1e",
+  "track": "i76exe",
+  "topic": "Milestone B: original node constructor and world registration remove NaN propagation from full stock vehicle camera callback",
+  "base_commit": "5da264c093a9d694a7d5e36f4be62c3a26b5b0fb",
+  "started_at": "2026-10-27T03:13:13Z",
+  "summary": "Selected GTSi and bus VCF native-built camera attachments execute original default-camera callback and original world registration. Replacing zero root with original 0045EBD0 initialized root changes original 00437F90 from 9 to zero nonfinite float32 words and six camera doubles from NaN to all finite. 196 source-verified assertions and byte-identical independent replay. Full hardware numerical/physical camera parity remains open.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private extracted original i76.exe, no binary bytes published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Private original resource archive supplying GTSi/bus VCF/VDF/GEO/TMT fixture files, checksum verified and not published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private v97 GZF game-environment handoff",
+      "notes": "Ghidra headless read-only, no annotation or database mutation."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "d2f17f310c6b7e7e73d1d3dfd8f15f7fc787bb9850df4afaa1f8e823ffd2f601",
+      "bytes": 3060
+    },
+    {
+      "path": "artifacts/MILESTONE_B_NATIVE_CAMERA_NUMERICS.md",
+      "kind": "report",
+      "sha256": "726974494b33d8f28d8de77711c9a19e9caca5af1cb7bd41e58587f84db19849",
+      "bytes": 7608
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "add6f82a849133fe8e1ee4ce77b21ab11416a1edcbd23a12025cc63d2b20cd5b",
+      "bytes": 804
+    },
+    {
+      "path": "evidence/replay_provenance.json",
+      "kind": "table",
+      "sha256": "7e0d86318a4bea442e469dc6aa3b986ce8aca009fa94dccbb8846df166b045b8",
+      "bytes": 2219
+    },
+    {
+      "path": "evidence/retail_opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "c4be57f583e9017e4a9f8d23a4960f358c102b2b22b04e1d0407040567e94155",
+      "bytes": 2003
+    },
+    {
+      "path": "evidence/scenario_results.tsv",
+      "kind": "table",
+      "sha256": "8035afaba6fdf3518e1718f35c93b4a92ecd4438f9721052402fe8ea1d76cbf9",
+      "bytes": 1479
+    },
+    {
+      "path": "scripts/I76_MilestoneBPoseDiagnosticsProbe.java",
+      "kind": "script",
+      "sha256": "35d34077970df87c7642a8f08941eace302750cca9eea3585cc3b05deef6345d",
+      "bytes": 34601
+    },
+    {
+      "path": "scripts/verify_milestone_b.py",
+      "kind": "script",
+      "sha256": "d042beab28eb7ca80201f90e0b0cdcdfce3133d81b8521774161d944fef4ad75",
+      "bytes": 9009
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 196,
+    "passed_count": 196,
+    "notes": "Original PE/Ghidra/ZFS digests, 31 exact opcode anchors, five original-instruction scenario trace identities including two byte-identical bus native registered camera replays, four VCF-to-active-registry pathways, 16-float 00437F90 and 6-double camera comparisons, provenance/source-to-summary checks. Finite camera does not establish x87 hardware or gameplay parity."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_MilestoneBPoseDiagnosticsProbe.java",
+        "sha256": "35d34077970df87c7642a8f08941eace302750cca9eea3585cc3b05deef6345d"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_milestone_b.py",
+        "sha256": "d042beab28eb7ca80201f90e0b0cdcdfce3133d81b8521774161d944fef4ad75"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:0045EBD0",
+        "address": "0045EBD0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004572B0",
+        "address": "004572B0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00437F90",
+        "address": "00437F90"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00406AB0",
+        "address": "00406AB0"
+      }
+    ],
+    "methods": [
+      "Read accepted main protocol v1.0.3 and live ruleset before creating isolated run.",
+      "Verify original retail i76.exe PE, original ZFS and private annotated Ghidra GZF SHA256.",
+      "Independently extract byte-verified private VCF/VDF/GEO/TMT resource subset from original ZFS.",
+      "Run Ghidra 12.1.4 read-only original i386 native node constructor, original world registration, VCF builder and default camera for four scenarios.",
+      "Validate 31 exact executable instruction anchors and independent byte-identical Ghidra replay for selected native-root bus.",
+      "Independently parse source private execution traces and compare each derived public result row against the source, checking 196 assertions."
+    ],
+    "limitations": "Requires separately held private original executable, ZFS, GZF and fixtures; original Windows heap, retail resources services and palette helpers intercepted. Original creator CALL not continuously executed into VCF; original camera callback explicitly invoked with synthetic frame timers and viewport. Sine/cosine and x87 float-to-int boundary substituted; Ghidra emitted x87 uninitialized-register warnings. Finite matrices/doubles not hardware numerical parity, authentic in-game camera pose, frame schedule or rasterization."
+  }
+}

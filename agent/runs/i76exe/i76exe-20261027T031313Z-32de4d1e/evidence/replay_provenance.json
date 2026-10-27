@@ -1,0 +1,39 @@
+{
+  "research_run": "i76exe-20261027T031313Z-32de4d1e",
+  "original_base": "5da264c093a9d694a7d5e36f4be62c3a26b5b0fb",
+  "binary_md5": "a640ea0097dbb62e0c77b7f2847c7161",
+  "binary_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "ghidra_v97_gzf_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+  "zfs_sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+  "ghidra_version": "12.1.4",
+  "private_replay_traces_sha256": {
+    "bus_native_registered": "a45f7e7a989f9fd104431f965cb0a86a149cde2cc0a42e093964e5cc10f0b424",
+    "gtsi_native_registered": "f60898e28bc746093b621b65fba0757474692c8dceda30b68e3a9909e09714c9",
+    "bus_zero_registered": "d507d8d7fef1b8ea15bccc2b3dcc3873a888c220e0d18c940935bdf7f2c366a9",
+    "bus_unselected_native_registered": "005d20a604e867c2612582665df2ea0a961f6a0726c641b7c55d6c4cf58c8348",
+    "bus_native_repeat": "a45f7e7a989f9fd104431f965cb0a86a149cde2cc0a42e093964e5cc10f0b424"
+  },
+  "repeat_identical": true,
+  "original_node_ctor": "0045EBD0",
+  "original_vcf_loader": "004AD6F0",
+  "original_registry": "004572B0",
+  "original_default_camera_callback": "00406AB0",
+  "original_matrix_result_return_pc": "00406D45",
+  "original_camera_composer": "00472990",
+  "private_resources": "externally held original retail fixtures verified by independent extraction; no licensed bytes in public run",
+  "substituted_services": [
+    "Win32 HeapAlloc/other OS services",
+    "retail resource-provider I/O",
+    "palette/ancillary services",
+    "0049D400 cosine/sine boundary",
+    "004BA090 x87-to-integer conversion boundary"
+  ],
+  "known_limits": [
+    "spawn policy executes original instructions to the loader CALL, followed by explicit same-state entry to original loader",
+    "camera callback explicitly invoked rather than scheduled by retail frame loop",
+    "camera frame timer and viewport synthetic",
+    "Ghidra x87 warnings; no Windows/hardware numeric parity or raster/pixels",
+    "unselected scenario exits by intended null-attachment guard",
+    "original active-world registry is executed before camera, but game-wide callbacks and real simulation/pose update not fully initialized"
+  ]
+}

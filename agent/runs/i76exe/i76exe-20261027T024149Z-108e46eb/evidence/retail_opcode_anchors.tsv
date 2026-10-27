@@ -1,0 +1,39 @@
+va	hex	role
+00437F90	81ECB8000000	entry
+00437FC8	E8D34706008B	frame delta call
+00437FD8	837E6C01741E	class gate
+00437FDE	8B8424C40000	nonvehicle output
+00437FF1	F3A55F5E81C4	nonvehicle 16x REP copy
+00437FFE	E83DF40200D9	runtime context getter
+00438003	D98014010000	runtime+114 load
+00438026	D98018010000	runtime+118 load
+0043802E	D94630D94634	root+30 load
+00438031	D94634D9CAD9	root+34 load
+00438045	D94638D9CAD9	root+38 load
+004380D0	E8CBBB0500D9	vector projection call
+00438124	D80D40D04B00	scale projection
+0043812C	D80D40D04B00	scale residual
+004381AF	D91D3CB95200	smoothing global 1
+0043821A	D91D40B95200	smoothing global 2
+00438269	D91544B95200	smoothing global 3
+00438287	E8F4C905008B	cross-normalize call
+004382B3	E858C405008B	basis construction call
+004382C8	F3A55B5F5E81	output 16x REP copy
+0045EBD0	A134AD540083	root allocator
+0045EBE0	FF1508C14B00	import HeapAlloc call
+0045EC9C	BED8AE4F0089	constant matrix source
+0045ECAA	8D7818F3A58B	dest world+18
+0045ECAD	F3A58B4C241C	original initial matrix REP copy
+00493CA0	83EC0C5657D9	projection entry
+00493D1B	DEFAD9C1D84C	unconditional x87 divide
+00494C80	83EC188B4424	normalized cross entry
+00494D38	E8C3020000D9	first inverse length
+00494710	83EC58D902D9	basis generator
+004947C1	E83A080000D9	second inverse length
+00495000	8B4C2408BAFC	reciprocal sqrt routine
+0049C7A0	D90520E44F00	global frame delta accessor
+00467440	8B4424048B40	world to runtime getter
+00406D40	E84B120300B9	default camera call
+00407236	E8550D0300B9	second camera caller
+00451219	E8B2D900008B	spawn ctor caller A
+004513E8	E8E3D700008B	spawn ctor caller B

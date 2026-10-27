@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261027T014732Z-0f837d60",
+  "findings": [
+    {
+      "finding_id": "i76exe-camera-v07-default-postguard-exec",
+      "claim": "Original default-camera callback 00406AB0 executed beyond attachment guard and through original 00472990 matrix-view composition to normal epilogue in selected GTSi/bus Ghidra original-code sessions, while unselected bus returned at guard.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeCameraPastGuardProbe.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        }
+      ],
+      "limitations": "Original constructed VLOC attachment, but camera active entry and timers controlled. 0049D400 trig and 004BA090 ftol, OS/CRT/heap/resource/palette services substituted. No valid x87-accurate camera pose."
+    },
+    {
+      "finding_id": "i76exe-camera-v07-world-transform-first-nonfinite",
+      "claim": "The first nonfinite 32-bit matrix words observed in the controlled selected-bus camera path appear in the output of original 00437F90 at return 00406D45; preceding 00493E60 result was finite, and later original matrix multiplies propagate nonfinite values.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeCameraMatrixBoundaryProbe.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        }
+      ],
+      "limitations": "The world/root basis and parent chain are not authentic gameplay state; no unique source of NaNs established. Float word counts include the first 16 words of mixed-format matrices."
+    },
+    {
+      "finding_id": "i76exe-camera-v07-projection-init-not-sufficient",
+      "claim": "Calling original camera projection initializer 00405970 with controlled 640x480 viewport before 00406AB0 reduces changed camera bytes from 140 to 80 but does not clear NaN view fields.",
+      "status": "proven",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_NativeCameraWithInitProbe.java"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/experiment_summary.json"
+        }
+      ],
+      "limitations": "Uninitialized object transforms and emulated x87/math boundaries remain; initial projection is not equivalent to retail camera scheduler initialization."
+    },
+    {
+      "finding_id": "i76exe-camera-v07-finite-world-root-open",
+      "claim": "A validated world-root pose with native registration and original camera-mode callback scheduling is required to establish a numerical camera view and viewport-to-raster correctness.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_POST_GUARD_BOUNDARY.md"
+        }
+      ],
+      "limitations": "Identity-root diagnostic full replay did not complete; no exact retail world-space pose, render output or raster pixel claims."
+    }
+  ]
+}
