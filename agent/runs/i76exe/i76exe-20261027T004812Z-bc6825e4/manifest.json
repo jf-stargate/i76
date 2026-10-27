@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76exe-20261027T004812Z-bc6825e4",
+  "track": "i76exe",
+  "topic": "Native selected vehicle spawn status through original VCF/VLOC class-40 camera attachment and camera guard",
+  "base_commit": "34a15f060ff585a085619defeffca2fe20969609",
+  "started_at": "2026-10-27T00:48:12Z",
+  "summary": "Original spawn selection instructions and retail selected/unselected GTSi/bus VCF/VLOC constructors execute in the same Ghidra emulator state, with original class binder and default camera null-guard executed. Four scenarios verified. Original camera math and complete caller CALL remain open.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Exact private authorized retail executable, original PE bytes checked independently."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Authorized private resource archive; original VCF/VDF/GEO/TMT fixture bytes extracted with accepted v2.4 script; source archive not published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names (read-only import name i76_v97)",
+      "baseline_id": "private annotated retail v97 verified-names Ghidra GZF",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "private project/user handoff, never published",
+      "notes": "Ghidra EmulatorHelper execution of original x86 instructions in read-only project, without mutating underlying symbols"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/NATIVE_SELECTED_VCF_VLOC_CAMERA.md",
+      "kind": "report",
+      "sha256": "0bdffdf3cfe75cef2450b6aea666d8ba3895fd7d558e37ba62c2b01ec727af91",
+      "bytes": 6405
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "d6f2f039efb6bcba3f4e0cb2fa519d5611fcb5de3c34250447253f90cd281bbe",
+      "bytes": 953
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "b4a44d302d9192509a748280fdd1f35a09e7e57d3e6bebc951c2b3755f655282",
+      "bytes": 3155
+    },
+    {
+      "path": "evidence/experiment_provenance.json",
+      "kind": "test-result",
+      "sha256": "0c884f40e090a98a95e69695486bed5623e0053239f1f344481cc35f798d7839",
+      "bytes": 1721
+    },
+    {
+      "path": "evidence/retail_opcode_anchors.tsv",
+      "kind": "assembly",
+      "sha256": "d9babe6401ab88b97c671982e72527a35aa7140847d17a8c36ecea38ff07df13",
+      "bytes": 1393
+    },
+    {
+      "path": "evidence/scenario_results.tsv",
+      "kind": "test-result",
+      "sha256": "eadacc2f37d39ac04ca9aaee55c4c4b16ae82f5b894278090e169f483ef9a0e7",
+      "bytes": 600
+    },
+    {
+      "path": "scripts/I76_NativeSpawnVlocCameraFastProbe.java",
+      "kind": "script",
+      "sha256": "186f33be3f25057618cbaea9116d71000fed2fc0195d18e7f66bbb3527902a8b",
+      "bytes": 26853
+    },
+    {
+      "path": "scripts/verify_native_spawn_vloc.py",
+      "kind": "script",
+      "sha256": "034399b1ab9099b70cdb905447fea749a3b11d55c9bd0ce71a639625bc0f61d0",
+      "bytes": 7143
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 148,
+    "passed_count": 148,
+    "notes": "Independent Python verifier against private PE, GZF, ZFS, byte-verified VDFs, 28 original PE opcode anchors, four complete Ghidra scenario traces, 2 byte-identical bus selected original-instruction replays and public derived summary. Full original caller-to-callee CALL not executed; Ghidra/heap/CRT/resource substitutions stated."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_NativeSpawnVlocCameraFastProbe.java",
+        "sha256": "186f33be3f25057618cbaea9116d71000fed2fc0195d18e7f66bbb3527902a8b"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_native_spawn_vloc.py",
+        "sha256": "034399b1ab9099b70cdb905447fea749a3b11d55c9bd0ce71a639625bc0f61d0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004513C0",
+        "address": "004513C0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004AD6F0",
+        "address": "004AD6F0"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:004AE000",
+        "address": "004AE000"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00461970",
+        "address": "00461970"
+      },
+      {
+        "kind": "retail-address",
+        "ref": "i76.exe:00406AB0",
+        "address": "00406AB0"
+      }
+    ],
+    "methods": [
+      "Independent hashes of retail exe/annotated GZF/retail ZFS source",
+      "Accepted v2.4 retail resource fixture extraction and exact per-resource content verification",
+      "Ghidra read-only original-instruction spawn status setter followed by original VCF loader in same emulator state",
+      "Native VLOC record predicate and child allocation/class binding during original VCF call",
+      "Original default-camera callback execution through attachment null guard",
+      "Private scenario traces validated against recorded retail PE anchors and derived summary",
+      "Two byte-identical separate bus selected Ghidra executions"
+    ],
+    "limitations": "Exact original caller CALL at 0045148B is not stepped into; harness calls original 004AD6F0 separately in same state. Original low-level heap, resource I/O, CRT, palette and ancillary services are emulated. Camera mode scheduling and post-guard math, live Windows x87, real raster and teardown untested. Private resource/GZF/full trace files required for exact reproduction."
+  }
+}
