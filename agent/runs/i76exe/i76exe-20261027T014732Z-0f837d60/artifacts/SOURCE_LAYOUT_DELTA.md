@@ -1,0 +1,3 @@
+# Provisional source-layout delta: default camera and world transform
+
+Original x86 VAs `00405970` (camera initialization), `00406AB0` (default callback), `00472400` and `00472990` (camera view update) share a camera subsystem interface. Original `00437F90` constructs world-object transform state, `00458CB0` is an attachment-relative transform, and `00493E60`/`00494E20` are matrix/quaternion and matrix-multiply helpers. These functional groupings are based on actual call edges and execution trace, **not recovered original `.c`/`.h` names**. Ghidra v97 defines some calls but does not define `00406AB0` as a function. No baseline annotation has been changed.
