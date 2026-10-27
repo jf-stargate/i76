@@ -6,9 +6,11 @@ class Governance(unittest.TestCase):
  def test_versions(self):
   p=yaml.safe_load((ROOT/"agent/protocol/access.yaml").read_text())
   v=json.loads((ROOT/"agent/protocol/SCHEMA_VERSIONS.json").read_text())
-  self.assertEqual((ROOT/"agent/protocol/VERSION").read_text().strip(),"1.0.2")
-  self.assertEqual(p["schema_version"],"1.0.2")
-  self.assertEqual(v["publication_protocol_version"],"1.0.2")
+  version=(ROOT/"agent/protocol/VERSION").read_text().strip()
+  self.assertRegex(version,r"^1\.[0-9]+\.[0-9]+$")
+  self.assertEqual(p["schema_version"],version)
+  self.assertEqual(v["publication_protocol_version"],version)
+  self.assertIn(f"**Protocol:** `agent/protocol/VERSION` → `{version}`",(ROOT/"AGENTS.md").read_text())
   self.assertEqual(v["supported_research_schema_versions"],["1.0.0","1.1.0"])
  def test_manual_policy(self):
   p=yaml.safe_load((ROOT/"agent/protocol/access.yaml").read_text())["publication"]
