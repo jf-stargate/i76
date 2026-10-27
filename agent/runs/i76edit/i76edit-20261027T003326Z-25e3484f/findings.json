@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76edit-20261027T003326Z-25e3484f",
+  "findings": [
+    {
+      "finding_id": "editor.v34.sbh_native_reservation_and_metadata",
+      "claim": "The original I76EDIT.EXE 00424FB0 SBH region initializer issues 4MiB VirtualAlloc reserve and 64KiB initial commit requests and initializes its own 1024-page descriptor and first 16 page headers. This original-code path completed with only Windows VirtualAlloc return values synthesized.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424FB0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425077"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004250A6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ORIGINAL_CRT_SBH_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SBH_VALIDATION.json"
+        }
+      ],
+      "limitations": "Windows VM operations and real CRT bootstrap state substituted; the 4MiB/64KiB requests and allocator metadata initialization are original instructions but physical OS memory lifetime is not verified."
+    },
+    {
+      "finding_id": "editor.v34.sbh_native_block_allocation_reuse",
+      "claim": "Original CRT 00425310 and 00425590 allocate 128-byte editor payload blocks in 8 sixteen-byte units; original 00425260 and 004252C0 identify and free blocks. 30 unique blocks fill a 4KiB page, and a freed block is reused at its exact address when the page is otherwise full.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425310"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425590"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425260"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004252C0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ORIGINAL_CRT_SBH_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SBH_VALIDATION.json"
+        }
+      ],
+      "limitations": "Controlled one-page allocator fixture and Ghidra original code execution; no original Windows heap manager and no malformed metadata tests."
+    },
+    {
+      "finding_id": "editor.v34.sbh_native_cross_page_transition",
+      "claim": "With original CRT region initialization, 31 simultaneous 128-byte payload allocations occupy 30 blocks on page 0 and one at 0x50001100 on page 1. Original free of all 31 restores both per-page free counters to 240 units.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00424FB0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425310"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004252C0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ORIGINAL_CRT_SBH_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SBH_VALIDATION.json"
+        }
+      ],
+      "limitations": "Synthetic reservation returns 0x50000000; second page already committed by initial 64KiB commit, so later page-commit/decommit branches are not tested."
+    },
+    {
+      "finding_id": "editor.v34.editor_object_full_native_sbh_lifetime",
+      "claim": "An original 00409840 editor-object constructor allocated its 120-byte payload via the original SBH region bootstrap and native CRT allocator, created the separate 12-byte linked-list node, then original 00409DC0/00409A60/00422FA0 freed node and payload. Original SBH marker cleared and free capacity restored 232 to 240, with list head zero.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409840"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "0041C430"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409DC0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00409A60"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00422FA0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425260"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "004252C0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ORIGINAL_CRT_SBH_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SBH_VALIDATION.json"
+        }
+      ],
+      "limitations": "Original Win32 VirtualAlloc/HeapAlloc/HeapFree and UI display callbacks substituted; results establish normal control flow for synthetic editor object, not actual Windows OS memory integrity."
+    },
+    {
+      "finding_id": "editor.v34.actual_CRT_small_block_startup_threshold",
+      "claim": "Native SBH allocator can service the original 120-byte editor object payload, but whether the actual original editor startup enables this path depends on CRT threshold and heap initialization globals not yet reconstructed under original Windows process startup.",
+      "status": "unresolved",
+      "confidence": "medium",
+      "scope": "editor",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00438674"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00438668"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "BUILDER/I76EDIT.EXE",
+          "address": "00425310"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ORIGINAL_CRT_SBH_RESEARCH.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SBH_VALIDATION.json"
+        }
+      ],
+      "limitations": "Original CRT globals were set by synthetic harness to enable the SBH. Do not infer production path or allocation-frequency statistics."
+    }
+  ]
+}
