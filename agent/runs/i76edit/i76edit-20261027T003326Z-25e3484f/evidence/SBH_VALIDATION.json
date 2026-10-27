@@ -1,0 +1,67 @@
+{
+  "source": "Original private BUILDER/I76EDIT.EXE and annotated read-only Ghidra 12.1.4",
+  "original_PE_md5": "4c7ed9e8a54fcadbf1895f34aa9918fe",
+  "original_PE_sha256": "69b7ce537cbc702bcdc81792f6d96ea25092cffe7a994044c70a49c6f08689df",
+  "private_gzf_sha256": "792aab66e134aee91ca90844ee66cdc280477793631f6d0a319f2c3438f1a44f",
+  "native_code_paths": [
+    "00424FB0",
+    "004232E0",
+    "00423300",
+    "00423350",
+    "00425310",
+    "00425590",
+    "00425260",
+    "004252C0",
+    "00422FA0",
+    "00409840",
+    "00409DC0",
+    "00409A60",
+    "0041C480"
+  ],
+  "region_reservation_bytes": 4194304,
+  "first_commit_bytes": 65536,
+  "page_bytes": 4096,
+  "page_header_bytes": 256,
+  "units_per_page": 240,
+  "unit_bytes": 16,
+  "block_payload_bytes": 128,
+  "page_live_block_capacity": 30,
+  "first_two_addresses": [
+    "50000100",
+    "50000180"
+  ],
+  "after_first_two_free_units": 224,
+  "freed_block_reused_after_page_saturation": true,
+  "freed_address": "50000280",
+  "page_transition": {
+    "concurrent_live_blocks": 31,
+    "page0_blocks": 30,
+    "page1_blocks": 1,
+    "first_page1_pointer": "50001100",
+    "post_free_capacity": [
+      240,
+      240
+    ]
+  },
+  "integrated_constructor": {
+    "payload": "50000100",
+    "node": "70004100",
+    "native_SBH_free_counter_before": 232,
+    "native_SBH_free_counter_after": 240,
+    "native_payload_block_marker_after": 0,
+    "final_object_list_head": 0,
+    "windows_node_heapfree_count": 1
+  },
+  "isolated_services": [
+    "Win32 VirtualAlloc reserve/commit",
+    "Win32 HeapAlloc/HeapFree of the independent 12-byte list node",
+    "display refresh"
+  ],
+  "local_validation": {
+    "passed": 45,
+    "total": 45,
+    "including_private_PE_native_instruction_guards": 27
+  },
+  "private_checkpoint_sha256": "1b5b2d3f8e06c04b9cfa1380fe706eb91fee9c510eb4bae57d8632c1c78e5a94",
+  "limitations": "Original CRT malloc/region/allocator/metadata/free executed; Windows heap and virtual memory systems substituted; actual CRT SBH startup threshold and runtime not verified; no original editable I76 workspace."
+}
