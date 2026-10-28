@@ -1,0 +1,3 @@
+# Source-layout hypotheses
+
+Original addresses 0049C7F0–0049CCA0 form a clock/frame-subdivision utility family; their consumers include vehicle and multiplayer paths. 00493C50/00495000 form startup-table/approximate inverse-square-root math infrastructure used broadly, including vehicle basis construction. Existing zone/map semantic names do not establish original source ownership. 00461C80/00461D50 are paired class callback traversal passes driven by WinMain. These are functional groupings only: no recovered original translation-unit, header, class, or source filename is asserted. Preserve annotated v97 symbols unchanged.

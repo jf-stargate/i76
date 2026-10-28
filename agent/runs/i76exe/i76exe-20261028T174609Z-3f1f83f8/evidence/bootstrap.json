@@ -1,0 +1,102 @@
+{
+  "base_commit": "458ba43243b48bea87205145ebe8831f5ee2b555",
+  "protocol_version": "1.0.3",
+  "ruleset": {
+    "id": 25664125,
+    "enforcement": "active",
+    "required_check": "integrity",
+    "formal_approvals": 0,
+    "bypass": "never",
+    "manual_acceptance_required": true
+  },
+  "overlaps_at_bootstrap": {
+    "pr49": "merged at 458ba43243b48bea87205145ebe8831f5ee2b555",
+    "pr50": {
+      "head": "41ab143afe0d9d1536cc1d4ec62c31fdb6138ec4",
+      "state": "open",
+      "draft": false
+    }
+  },
+  "cross_track_review": [
+    "ref/level_format/i76_runtime_level_and_terrain_format_notes.md",
+    "ref/editor/README.md",
+    "ref/editor/road_terrain_serialization.md",
+    "ref/editor/intersection_geometry_and_driving_surface.md"
+  ],
+  "accepted_editor_sources": [
+    {
+      "run": "i76edit-20261023T013651Z-21de63e4",
+      "topic": "Original editor intersection-object terrain grading and material stamping",
+      "summary": "Native and Ghidra confirmation of rectangular height grading, class 0x50-0x53 surface 6/7 writes, two-pass scheduling, and separate final read-only object refresh.",
+      "artifacts": [
+        "artifacts/editor_object_terrain_grading.md",
+        "evidence/native_anchor_index.tsv",
+        "evidence/original_pe_validation.json",
+        "scripts/verify_editor_grading.py"
+      ]
+    },
+    {
+      "run": "i76edit-20261023T043010Z-a8d70545",
+      "topic": "Original editor road grid/world scaling and x87 raster conversion reliability",
+      "summary": "Binary evidence corrects v25 world-unit interpretation of road grade widths; independent original classifier and host x87 checks identify a Ghidra FPU emulation limitation, with read-only retail mission diagnostics.",
+      "artifacts": [
+        "artifacts/road_grid_evidence.md",
+        "scripts/verify_native_scale.py",
+        "evidence/v26_aggregate.json"
+      ]
+    },
+    {
+      "run": "i76edit-20261023T062209Z-7504f18b",
+      "topic": "Original editor native terrain sample services and zone-boundary rasterization",
+      "summary": "After restoring original terrain accessors in isolated Ghidra emulation, native 0x8004 zone-plane stride and boundary parity are verified; a wrong-stride false height attenuation is explicitly rejected; fractional diagonal x87 uncertainty retained.",
+      "artifacts": [
+        "artifacts/original_terrain_service_zone_seam.md",
+        "scripts/verify_plane_stride.py",
+        "evidence/v28_aggregate.json"
+      ]
+    }
+  ],
+  "write_scope": "agent/runs/i76exe/i76exe-20261028T174609Z-3f1f83f8/ only",
+  "source_references": [
+    {
+      "path": "agent/protocol/schemas/v1.1.0/finding.schema.json",
+      "git_blob": "6049de6f76bc4f1c09a6664db03924a33bfd247e"
+    },
+    {
+      "path": "agent/protocol/schemas/v1.1.0/run.schema.json",
+      "git_blob": "b99ea61db6599e53e6ffe679ff71e1778e7525e4"
+    },
+    {
+      "path": "ref/editor/README.md",
+      "git_blob": "6b509536e93e504a36b0e6131fd5674bd1e9008c"
+    },
+    {
+      "path": "ref/editor/intersection_geometry_and_driving_surface.md",
+      "git_blob": "94c98112f285ab2008a3fad652c2e7344f69ae11"
+    },
+    {
+      "path": "ref/editor/road_terrain_serialization.md",
+      "git_blob": "0d9472c0d936aeebdccb952fbce66b64a0b82a96"
+    },
+    {
+      "path": "ref/level_format/i76_runtime_level_and_terrain_format_notes.md",
+      "git_blob": "917f2d2f4dc65e2d67b92413067a34dfecbe8261"
+    }
+  ],
+  "publication_reconciliation": {
+    "accepted_main_at_publication": "64667f3f168de1d377af8b1adf194dc51c256ffc",
+    "accepted_tree": "8a76fac0ad99d8f2aa6d108228d275a9ff668b68",
+    "original_research_base": "458ba43243b48bea87205145ebe8831f5ee2b555",
+    "reason": "Human merged PR50 during this investigation; preserve accepted main and add only owned run files.",
+    "policy_rechecked_unchanged": [
+      "AGENTS.md",
+      "agent/protocol/VERSION",
+      "agent/protocol/access.yaml",
+      "agent/protocol/BOOTSTRAP.md"
+    ],
+    "commit_parents": [
+      "458ba43243b48bea87205145ebe8831f5ee2b555",
+      "64667f3f168de1d377af8b1adf194dc51c256ffc"
+    ]
+  }
+}

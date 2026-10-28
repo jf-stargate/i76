@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261028T174609Z-3f1f83f8",
+  "findings": [
+    {
+      "finding_id": "F1-original-terrain-init",
+      "claim": "Original retail terrain and WRLD initialization install authenticated M06 scale, properties and every runtime page pointer without a synthetic terrain grid.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "cd2347eed2c565451ca10b293ab545f19a7e51d78592ed546fbeae25c111ab0b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "aa27ef1affe38119e9f2d061b1c16bfbd51e0c35952578f6f4b01275368883e2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "85b743a9ff5d1f64a956312b9587a15ac85686fb224c91bc662975cca793a0eb"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_AuthenticTerrainPhysicsProbe.java",
+          "sha256": "ca1ad48b130ccf4a4227639104325362c7b90dab949cd03f333502260c8b55b7"
+        }
+      ],
+      "limitations": "Original Ghidra instruction execution with explicit OS/CRT/file-resource and peripheral WRLD services. One mission; not full WinMain or resource-device initialization."
+    },
+    {
+      "finding_id": "F2-sampler-semantics",
+      "claim": "00493550 is a bilinear X/Z-to-height sampler; localized hardware FISTP correction is required for the measured Ghidra fractional-coordinate and page-seam results to match retail instructions.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "85b743a9ff5d1f64a956312b9587a15ac85686fb224c91bc662975cca793a0eb"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "cd2347eed2c565451ca10b293ab545f19a7e51d78592ed546fbeae25c111ab0b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/x87_fistp_service.c",
+          "sha256": "54ef13262a85de1b4d589ccccc7c31dbdf759e486a9e5a72c8d27399dc02c7e7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_authentic_terrain.py",
+          "sha256": "f64683a3687c9efa768cf1c0acdb6921056ee89e0026918ac665dd02d268feb0"
+        }
+      ],
+      "limitations": "Hardware instruction oracle covers FISTP/FCOS only; remaining sampler runs under Ghidra. No full original sampler-on-hardware or general x87 parity claim. Normal and material paths have distinct semantics."
+    },
+    {
+      "finding_id": "F3-original-suspension-filter",
+      "claim": "Restoring original 0049E0F0 filter initialization, delegating only FCOS, allows original 0049E1B0/0046DC10 to produce finite nonzero contact-mode compression within native tire limits.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "aa27ef1affe38119e9f2d061b1c16bfbd51e0c35952578f6f4b01275368883e2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "cd2347eed2c565451ca10b293ab545f19a7e51d78592ed546fbeae25c111ab0b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "85b743a9ff5d1f64a956312b9587a15ac85686fb224c91bc662975cca793a0eb"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_AuthenticTerrainPhysicsProbe.java",
+          "sha256": "ca1ad48b130ccf4a4227639104325362c7b90dab949cd03f333502260c8b55b7"
+        }
+      ],
+      "limitations": "Tested stock bus/GTSi in controlled replay, not calibrated physical dynamics or Windows input/scheduling. Prior whole-function cosine stub is retained only as a diagnostic observation."
+    },
+    {
+      "finding_id": "F4-completed-terrain-physics",
+      "claim": "After original engsnd.dat registry startup and native component selection, both vehicles complete 32 original physics callbacks with validated terrain and contact-mode tire updates; four slower frames execute twelve solver substeps.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "a45d79ed5e68e583e006d60bd7425370e3873f1459701d6b9ec96251f7ffb46a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "cd2347eed2c565451ca10b293ab545f19a7e51d78592ed546fbeae25c111ab0b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "aa27ef1affe38119e9f2d061b1c16bfbd51e0c35952578f6f4b01275368883e2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_authentic_terrain.py",
+          "sha256": "f64683a3687c9efa768cf1c0acdb6921056ee89e0026918ac665dd02d268feb0"
+        }
+      ],
+      "limitations": "Explicit emulation/service and instruction boundaries, controlled spawn pose, drive/camera/pause and GetTickCount. No positive 00440740 special four-point probe return; no complete mission scheduler, full cockpit/weapon initialization or object/intersection collisions."
+    },
+    {
+      "finding_id": "F5-scene-surface-bridge-open",
+      "claim": "The ownership/consumer bridge between scene list 00644200 and polygon-surface candidates 0052B94C remains unverified; validated heightfield contact does not establish road/intersection GEO collision behavior.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CROSS_TRACK_REVIEW.md",
+          "sha256": "d9c7c4c344de559f3ee6f992299236b1c8e0a50e1c6e9c060e7dd8054a3c7138"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/AUTHENTIC_TERRAIN_PHYSICS.md",
+          "sha256": "96207f874be1cacc7ec2343bcc0baee1c03b22d1a7454462b32eb461b11631f8"
+        }
+      ],
+      "limitations": "Current replay does not populate or test a real intersection polygon-surface collision fixture."
+    }
+  ]
+}

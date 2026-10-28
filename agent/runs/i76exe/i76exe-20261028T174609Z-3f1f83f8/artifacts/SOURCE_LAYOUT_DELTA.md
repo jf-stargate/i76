@@ -1,0 +1,3 @@
+# Functional grouping hypotheses
+
+00493910–00493BD0 is runtime terrain resource acquisition/descriptor handling; 00493080 is page-grid construction; 004927B0/004931C0/00493550 are material, normal and height consumers. Existing transform/map names are research labels and sometimes misleading. 0049E0F0/0049E1B0 are paired filter initialization/update utilities used by tire state. 00469B00/00469F10/0046A060 operate on an engine variant/sound registry, not ordinary world-placement records in the observed path. 00471400 is a read-only file-mapping wrapper, despite a graphics-error label. These are verified functional roles or grouping hypotheses, not recovered original translation-unit/header/class names. No shared symbols or data types were changed.
