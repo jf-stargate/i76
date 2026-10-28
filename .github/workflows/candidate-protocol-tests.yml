@@ -1,0 +1,33 @@
+name: I76 candidate protocol tests (advisory)
+# Run proposed Python code only with read-only permissions. This is NOT the required
+# trusted-base integrity check and cannot authorize its own governance changes.
+on:
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - 'agent/protocol/**'
+      - '.github/scripts/pr_integrity.py'
+      - '.github/tests/**'
+      - '.github/workflows/candidate-protocol-tests.yml'
+permissions:
+  contents: read
+jobs:
+  candidate-tests:
+    name: candidate-protocol-tests (advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+      - name: Install pinned dependencies
+        run: python -m pip install --disable-pip-version-check PyYAML==6.0.2 jsonschema==4.23.0
+      - name: Run candidate governance and validator regression tests
+        run: |
+          python -m unittest discover -s .github/tests -v
+          PYTHONPATH=agent/protocol/tools python -m unittest discover -s agent/protocol/tools -p 'test_*.py' -v
+          python agent/protocol/tools/validate_protocol.py
