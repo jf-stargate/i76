@@ -44,6 +44,14 @@ The raw control leaves Ghidra FISTP uncorrected while retaining the original fil
 python3 "$RUN/scripts/verify_authentic_terrain.py" --run "$RUN" --private "$WORK" --exe "$EXE" --gzf "$GZF" --zfs "$ZFS" --msn "$MSN" --ter "$TER" --x87-service "$WORK/x87_fistp_service"
 ```
 
+To regenerate the two safe derived evidence files independently from the private traces:
+
+```bash
+python3 "$RUN/scripts/derive_terrain_results.py" --private "$WORK" --msn "$MSN" --ter "$TER" --out "$WORK/derived"
+```
+
+The measured regeneration is byte-identical to `evidence/results.json` and `evidence/selected_events.tsv`. Copy neither raw resource bytes nor full traces into the public repository.
+
 The verifier checks identities, sparse original instructions, the entire initialized grid, material properties, engine-registry/CDF selection, source-to-public records, every logged TER read, every logged height, typed frame numerics, original callback/solver completion, compression bounds and independent hardware requests. Published private trace hashes are reproduction anchors for this environment, not cross-version promises.
 
 ## Static audit
