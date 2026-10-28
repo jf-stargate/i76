@@ -1,0 +1,205 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76exe-20261028T174609Z-3f1f83f8",
+  "track": "i76exe",
+  "topic": "Authentic retail M06 terrain initialization, corrected height sampling and original vehicle suspension/contact updates",
+  "base_commit": "458ba43243b48bea87205145ebe8831f5ee2b555",
+  "started_at": "2026-10-28T17:46:09Z",
+  "summary": "Cross-track terrain review followed by original WRLD/TDEF/mapping/page-grid execution over authenticated M06. Original 00493550 semantics verified; localized hardware FISTP/FCOS boundaries resolve Ghidra rounding and restore original suspension filter initialization. Original engsnd variant startup resolves component selection. Bus/GTSi each complete 32 callbacks with finite near-unit poses and nonzero bounded tire compression; slow frames demonstrate three original substeps. Object collision/WinMain and special four-point positive contact remain open.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "User-private original retail PE, only hashes and sparse opcodes public."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "User-private retail resource archive, original GTSi/bus assets used by separately held fixtures."
+    },
+    {
+      "name": "miss8/M06.MSN",
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    },
+    {
+      "name": "miss8/M06.TER",
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    },
+    {
+      "name": "engsnd.dat",
+      "kind": "other",
+      "md5": "a8acf7ed28fe1fc32b74302d37c0e8f8",
+      "sha256": "b574743a27cdad3379361072b0df016e3144ac9ed21c275ed8fa418d837ca668",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/AUTHENTIC_TERRAIN_PHYSICS.md",
+      "kind": "report",
+      "sha256": "96207f874be1cacc7ec2343bcc0baee1c03b22d1a7454462b32eb461b11631f8",
+      "bytes": 10254
+    },
+    {
+      "path": "artifacts/CROSS_TRACK_REVIEW.md",
+      "kind": "report",
+      "sha256": "d9c7c4c344de559f3ee6f992299236b1c8e0a50e1c6e9c060e7dd8054a3c7138",
+      "bytes": 4102
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "f0b7ee225d228565b09dad254df7bacd9070bc7418f27f0599ed243b66d888d5",
+      "bytes": 2798
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "437cb6aa720263466d2bd226a18e6b2f8cc0a75c64e5b1719a827b17dd0890c1",
+      "bytes": 5170
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "d593068d1efc44bce344ae2de850a29cc318d0553f20245f6350160ad03f5717",
+      "bytes": 759
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "863134fbc630b5dc3379270cc4069cf21d639a73620b8c32275e2b062557dd53",
+      "bytes": 4082
+    },
+    {
+      "path": "evidence/instruction_anchors.tsv",
+      "kind": "table",
+      "sha256": "85b743a9ff5d1f64a956312b9587a15ac85686fb224c91bc662975cca793a0eb",
+      "bytes": 4188
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "a45d79ed5e68e583e006d60bd7425370e3873f1459701d6b9ec96251f7ffb46a",
+      "bytes": 12685
+    },
+    {
+      "path": "evidence/results.json",
+      "kind": "table",
+      "sha256": "cd2347eed2c565451ca10b293ab545f19a7e51d78592ed546fbeae25c111ab0b",
+      "bytes": 2892
+    },
+    {
+      "path": "evidence/selected_events.tsv",
+      "kind": "table",
+      "sha256": "aa27ef1affe38119e9f2d061b1c16bfbd51e0c35952578f6f4b01275368883e2",
+      "bytes": 83407
+    },
+    {
+      "path": "scripts/I76_AuthenticTerrainPhysicsProbe.java",
+      "kind": "script",
+      "sha256": "ca1ad48b130ccf4a4227639104325362c7b90dab949cd03f333502260c8b55b7",
+      "bytes": 52864
+    },
+    {
+      "path": "scripts/I76_TerrainAudit.java",
+      "kind": "script",
+      "sha256": "9721635617983a074663c392c0bdb0df13915def1f4307d5ca5bc30194751751",
+      "bytes": 1868
+    },
+    {
+      "path": "scripts/derive_terrain_results.py",
+      "kind": "script",
+      "sha256": "2102a825421f42d72da0f89d463a33c0f43916431516860ee6eb8ffc99ff0e1a",
+      "bytes": 3259
+    },
+    {
+      "path": "scripts/prepare_private_inputs.py",
+      "kind": "script",
+      "sha256": "8517d81b60ab19d558d1fce5473850d1a75c6c8f399b848ec5bba7d685fd2c75",
+      "bytes": 1836
+    },
+    {
+      "path": "scripts/verify_authentic_terrain.py",
+      "kind": "script",
+      "sha256": "f64683a3687c9efa768cf1c0acdb6921056ee89e0026918ac665dd02d268feb0",
+      "bytes": 11102
+    },
+    {
+      "path": "scripts/x87_fistp_service.c",
+      "kind": "script",
+      "sha256": "54ef13262a85de1b4d589ccccc7c31dbdf759e486a9e5a72c8d27399dc02c7e7",
+      "bytes": 1069
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 35452,
+    "passed_count": 35452,
+    "notes": "Original retail input/PE identity, original grid/material initialization, every logged TER read, independent bilinear/material model (maximum corrected error 3.55e-15), original callback/solver completion, typed pose/camera checks, contact compression limits and independent hardware FISTP/FCOS replay."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_AuthenticTerrainPhysicsProbe.java",
+        "sha256": "ca1ad48b130ccf4a4227639104325362c7b90dab949cd03f333502260c8b55b7"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_TerrainAudit.java",
+        "sha256": "9721635617983a074663c392c0bdb0df13915def1f4307d5ca5bc30194751751"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/derive_terrain_results.py",
+        "sha256": "2102a825421f42d72da0f89d463a33c0f43916431516860ee6eb8ffc99ff0e1a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/prepare_private_inputs.py",
+        "sha256": "8517d81b60ab19d558d1fce5473850d1a75c6c8f399b848ec5bba7d685fd2c75"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_authentic_terrain.py",
+        "sha256": "f64683a3687c9efa768cf1c0acdb6921056ee89e0026918ac665dd02d268feb0"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/x87_fistp_service.c",
+        "sha256": "54ef13262a85de1b4d589ccccc7c31dbdf759e486a9e5a72c8d27399dc02c7e7"
+      }
+    ],
+    "methods": [
+      "Pin current main/policy/ruleset; review historical engine terrain references and accepted editor scale/plane/x87 research before new reversing.",
+      "Hash original PE, v97 GZF, ZFS, M06 mission/TER and engine metadata; reuse accepted extractor.",
+      "Read-only Ghidra decompilation and original instruction audit; original WRLD/TDEF and file-mapping wrapper with supplied services.",
+      "Independent full page-grid/material comparison, terrain read/height validation, engine registry/CDF field checks.",
+      "Original filter initialization and physics/contact/tire/camera execution in persistent bus/GTSi states; byte-identical bus repeat and slower original substep scenario.",
+      "Localized host x87 FISTP/FCOS instruction service; independently replay all requests and retain uncorrected Ghidra negative control."
+    ],
+    "limitations": "Requires licensed private resources/GZF and x86_64 x87 service. Explicit original-instruction emulation, standard/peripheral services, two FISTP sites and one FCOS site delegated. Drive/camera/pause/clock and authentic-data starting pose controlled; no WinMain/FSM, complete cockpit/weapon initialization, positive special 00440740 record, object/intersection collision or full hardware numeric parity. Inherited optional-geometry null read/unused stack warnings retained. Raw private traces/Ghidra/PE/assets not published."
+  }
+}
