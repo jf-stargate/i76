@@ -1,0 +1,56 @@
+{
+  "base_commit": "ea2d96e2155a53f40cbb1a5e12e2edd563a5a34a",
+  "protocol_version": "1.0.3",
+  "ruleset": {
+    "id": 25664125,
+    "enforcement": "active",
+    "required_check": "integrity",
+    "formal_approvals": 0,
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "acceptance": "human maintainer only"
+  },
+  "open_overlaps": [
+    {
+      "pr": 49,
+      "draft": true,
+      "head": "5c4378827e1062131e30af0184a9732d809447d6",
+      "status": "candidate only",
+      "integrity": "success",
+      "check_url": "https://github.com/jf-stargate/i76/actions/runs/40445542373/job/121995824678"
+    }
+  ],
+  "accepted_recent_runs": [
+    {
+      "run_id": "i76exe-20261026T235108Z-12215047",
+      "topic": "Original retail vehicle creation status bit 0x10 before VCF load: local multiplayer and primary singleplayer paths",
+      "summary": "Original x86 instructions of 00451180 and 004513C0 set object status bit 0x10 according to distinct local-player ID and selected-vehicle argument rules, before invoking 004AD6F0. 7 controlled original-code scenarios reach real VCF entry and execute original 00458BF0 VLOC eligibility predicate. Two identical Ghidra replays and independent PE opcode/call graph verifier. Full VCF+VLOC+camera continuous execution remains open."
+    },
+    {
+      "run_id": "i76exe-20261027T004812Z-bc6825e4",
+      "topic": "Native selected vehicle spawn status through original VCF/VLOC class-40 camera attachment and camera guard",
+      "summary": "Original spawn selection instructions and retail selected/unselected GTSi/bus VCF/VLOC constructors execute in the same Ghidra emulator state, with original class binder and default camera null-guard executed. Four scenarios verified. Original camera math and complete caller CALL remain open."
+    },
+    {
+      "run_id": "i76exe-20261027T014732Z-0f837d60",
+      "topic": "Native selected vehicle VLOC to full default camera callback, projection initialization, and first invalid world-matrix boundary",
+      "summary": "Native original 00406AB0 callback completes for stock selected GTSi and bus using original VLOC attachment and camera transform chain, with intercepted math boundaries; first invalid matrix values isolated to 00437F90 world transform. Numerical camera remains invalid."
+    },
+    {
+      "run_id": "i76exe-20261027T024149Z-108e46eb",
+      "topic": "Milestone A: original 00437F90 camera orientation helper contract and world-node constructor basis initialization",
+      "summary": "Static retail disassembly and original-instruction Ghidra isolated tests recover 00437F90 as a class-1 stateful camera-basis helper with two camera callers and no own ancestor traversal. Original 0045EBD0 initializes root direction to nonzero identity basis; erasing it yields 9 NaN float words via unguarded projection. Eight controlled scenarios and 134 assertions validate the scoped claim; full camera numeric parity remains open."
+    },
+    {
+      "run_id": "i76exe-20261027T031313Z-32de4d1e",
+      "topic": "Milestone B: original node constructor and world registration remove NaN propagation from full stock vehicle camera callback",
+      "summary": "Selected GTSi and bus VCF native-built camera attachments execute original default-camera callback and original world registration. Replacing zero root with original 0045EBD0 initialized root changes original 00437F90 from 9 to zero nonfinite float32 words and six camera doubles from NaN to all finite. 196 source-verified assertions and byte-identical independent replay. Full hardware numerical/physical camera parity remains open."
+    }
+  ],
+  "promotions": [
+    "agent/promotions/vehicle_vcf_geo_tmt_20261023.md"
+  ],
+  "baseline_registry": "metadata README only; identities recovered from promoted source evidence and independently hashed private files",
+  "local_checkout": "c69a6c02f23c27ecfc2912693bf8c30121080721; stale, left unchanged",
+  "publication_branch": "agent/i76exe/i76exe-20261028T172133Z-66a1688b"
+}

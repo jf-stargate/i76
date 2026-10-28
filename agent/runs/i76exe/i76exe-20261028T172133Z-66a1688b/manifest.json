@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.1.0",
+  "protocol_version": "1.0.3",
+  "run_id": "i76exe-20261028T172133Z-66a1688b",
+  "track": "i76exe",
+  "topic": "Original clock subdivision, startup inverse-square-root seed table, near-unit vehicle basis and positive contact-path prerequisite boundary",
+  "base_commit": "ea2d96e2155a53f40cbb1a5e12e2edd563a5a34a",
+  "started_at": "2026-10-28T17:21:33Z",
+  "summary": "Independently reproduces candidate non-unit orientation and isolates missing original 00493C50 math initialization. Original clock startup fixes zero-duration subdivision; 16 timer cases and two-vehicle pose comparisons verified. Static scheduler ordering and positive-time wheel/contact entry recovered, with final guard before unloaded mission-terrain reads. No valid complete contact frame claimed.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "User-private original retail PE, only hashes and sparse opcodes public."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "User-private retail resource archive, original GTSi/bus assets used by separately held fixtures."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "b2a8a4d3af666744303d34308a1b0209283dd876b1b26cdc6a36f401e0b4ef7d",
+      "bytes": 2695
+    },
+    {
+      "path": "artifacts/FRAME_INITIALIZATION.md",
+      "kind": "report",
+      "sha256": "08d1e3ef1841c575367f8fde36038a34a56195d0497ea9d324fe0aaafb33aacc",
+      "bytes": 9511
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "e33244ec2b91986a7b1b69b0e146e51d79fc61509d7ebe3fbe840cc51561d75b",
+      "bytes": 4098
+    },
+    {
+      "path": "artifacts/SOURCE_LAYOUT_DELTA.md",
+      "kind": "report",
+      "sha256": "456683543260e0f1278a4fdcb69148b5deb757f56b960cb80cf61c5e039c0c74",
+      "bytes": 633
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "7eee608979d100c9281e208cc8506f9457cee8c418f9c4b2e6931e454c982997",
+      "bytes": 3996
+    },
+    {
+      "path": "evidence/instruction_anchors.tsv",
+      "kind": "table",
+      "sha256": "3129bc50e9b4ba5ae716d457d41c881ff5e0513fc00b6acc056317d246f8d31f",
+      "bytes": 2049
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "3e814949925e47abd92a8e8b4934ddeecde2da5ad1c3674161535834a195be71",
+      "bytes": 10439
+    },
+    {
+      "path": "evidence/replay_events.tsv",
+      "kind": "table",
+      "sha256": "33f874a896719c91e97a100cf9ef5a7403eabe244f49a6377e7d82572509bdce",
+      "bytes": 15039
+    },
+    {
+      "path": "evidence/subdivision.tsv",
+      "kind": "table",
+      "sha256": "565a2dada0a773374a1fa6df4ecdd93665b906e61d40d91158c22d309919fcfe",
+      "bytes": 1257
+    },
+    {
+      "path": "scripts/I76_FramePhysicsProbe.java",
+      "kind": "script",
+      "sha256": "d2bb00feaae533b2de4bd5e363c012addf26069348372ce876172baa2a957250",
+      "bytes": 39838
+    },
+    {
+      "path": "scripts/I76_FrameScheduleAudit.java",
+      "kind": "script",
+      "sha256": "06625f77d43a3e6134361854e2487a5969f8a0045b26d307e3712f9d50a000f6",
+      "bytes": 1918
+    },
+    {
+      "path": "scripts/I76_TimerSubdivisionProbe.java",
+      "kind": "script",
+      "sha256": "b8bf321b35a76259e6bf193731646d1b9f3815db610323682146fa3dee03e93c",
+      "bytes": 2842
+    },
+    {
+      "path": "scripts/verify_frame_initialization.py",
+      "kind": "script",
+      "sha256": "b87547c757be08702e6f587fb06f3c1c76e7b1431d62a74d8e461c64d0bbd875",
+      "bytes": 5676
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 211,
+    "passed_count": 211,
+    "notes": "Original PE anchors, private identities, timer subdivision sweep, source-to-public trace comparisons, repeated math replay, basis Gram matrices, controlled ftol comparison, positive wheel-path entry and expected unloaded-terrain stop."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_FramePhysicsProbe.java",
+        "sha256": "d2bb00feaae533b2de4bd5e363c012addf26069348372ce876172baa2a957250"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_FrameScheduleAudit.java",
+        "sha256": "06625f77d43a3e6134361854e2487a5969f8a0045b26d307e3712f9d50a000f6"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_TimerSubdivisionProbe.java",
+        "sha256": "b8bf321b35a76259e6bf193731646d1b9f3815db610323682146fa3dee03e93c"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_frame_initialization.py",
+        "sha256": "b87547c757be08702e6f587fb06f3c1c76e7b1431d62a74d8e461c64d0bbd875"
+      }
+    ],
+    "methods": [
+      "Pin GitHub main and 1.0.3 policy; inspect active ruleset, sole open draft and accepted recent evidence/promotion.",
+      "Hash retail PE, annotated v97 GZF and ZFS; extract fixtures using pinned accepted resource extractor.",
+      "Read-only Ghidra 12.1.4 decompilation and original instruction cross-check; independent PE anchors and call/descriptor checks.",
+      "Controlled original-instruction timer sweep and bus/GTSi two-frame comparison; byte-identical independent bus repeat.",
+      "Original clock initialization/update and class callback reach positive-dt wheel/contact path; stop before unloaded original terrain sampling.",
+      "Independent 211-assertion verifier plus local record-schema/artifact validation."
+    ],
+    "limitations": "Requires licensed private original assets and annotated GZF. Full raw traces/decompilation private. Original WinMain not replayed. Heap/CRT/resource/palette/render/ancillary, trig and ftol boundaries substituted; camera/drive/pause controlled. Initial optional-geometry and unused-x87 warnings persist. No terrain-loaded, completed valid wheel-contact simulation frame, hardware numerical parity, pixels or canonical promotion. See REPRODUCE.md."
+  }
+}
