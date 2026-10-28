@@ -1,4 +1,4 @@
-schema_version: "1.0.3"
+schema_version: "1.0.4"
 repository: "jf-stargate/i76"
 default_branch: "main"
 default: "deny"
@@ -88,14 +88,17 @@ path_rules:
     allowed_proposal: "draft-only"
     acceptance: "explicit-maintainer-approval"
 run_identity:
-  tracks: ["i76exe", "i76edit", "shared"]
-  run_id_pattern: "^(i76exe|i76edit|shared)-[0-9]{8}T[0-9]{6}Z-[a-f0-9]{8}$"
+  tracks: ["i76exe", "i76edit", "i76shell", "shared"]
+  run_id_pattern: "^(i76exe|i76edit|i76shell|shared)-[0-9]{8}T[0-9]{6}Z-[a-f0-9]{8}$"
   branch_template: "agent/{track}/{run_id}"
   run_path_template: "agent/runs/{track}/{run_id}/"
   identity_allocation: "utc-timestamp-plus-8-random-hex-and-exclusive-branch-creation"
   collision_rule: "retry-with-new-run-id"
   scopes_may_overlap: true
   overwrite_other_run: false
+  research_schema_default: "1.2.0"
+  subsystem_assignments: "advisory-not-part-of-publication-identity"
+  shell_provenance: "schema-1.2.0-requires-shell-dll-input-with-hashes-and-ghidra-baseline"
   run_immutable_after_merge: true
 promotion:
   immutable_run_evidence: true
@@ -106,7 +109,7 @@ promotion:
 content_security:
   repository_is_public: true
   forbidden_commit_classes:
-    - "original game/editor executable and packed proprietary resources"
+    - "original game/editor/shell executable and packed proprietary resources"
     - "Ghidra GZF or mutable project databases"
     - "secrets, credentials, user-private data"
     - "bulk dumps or oversized generated archives without explicit review"

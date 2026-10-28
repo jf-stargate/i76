@@ -1,9 +1,10 @@
 {
-  "publication_protocol_version": "1.0.3",
-  "default_research_schema_version": "1.1.0",
+  "publication_protocol_version": "1.0.4",
+  "default_research_schema_version": "1.2.0",
   "supported_research_schema_versions": [
     "1.0.0",
-    "1.1.0"
+    "1.1.0",
+    "1.2.0"
   ],
   "schemas": {
     "1.0.0": {
@@ -15,7 +16,12 @@
       "run": "schemas/v1.1.0/run.schema.json",
       "finding": "schemas/v1.1.0/finding.schema.json",
       "status": "research-grade"
+    },
+    "1.2.0": {
+      "run": "schemas/v1.2.0/run.schema.json",
+      "finding": "schemas/v1.2.0/finding.schema.json",
+      "status": "shell-enabled-research-grade"
     }
   },
-  "rule": "Do not rewrite merged v1.0 records; select validator by manifest schema_version and require findings schema_version match."
+  "rule": "Select immutable schema by manifest schema_version, require matching findings version, preserve accepted v1.0.0/v1.1.0 records; new runs default to v1.2.0 without requiring migration of active v1.1.0 investigations."
 }
