@@ -2,26 +2,26 @@
 
 **Status: architecture inventory proposal; not a promotion or a new reverse-engineering finding.** This page maps already-published files and results onto candidate subsystem owners. It does not amend the publication protocol, validate the full original game, or authorize reconstruction. Historical references and accepted run directories remain immutable.
 
-- **Pinned inventory commit:** \`026fd0daacb21b4da122163186a8ec2f4b49d894\` ([view](https://github.com/jf-stargate/i76/tree/026fd0daacb21b4da122163186a8ec2f4b49d894)).
-- **Tree SHA:** \`161f50added692968de7f1df42fa27fef0d5733d\`; inventory taken from the complete, non-truncated Git tree at the pinned commit.
+- **Pinned inventory commit:** `026fd0daacb21b4da122163186a8ec2f4b49d894` ([view](https://github.com/jf-stargate/i76/tree/026fd0daacb21b4da122163186a8ec2f4b49d894)).
+- **Tree SHA:** `161f50added692968de7f1df42fa27fef0d5733d`; inventory taken from the complete, non-truncated Git tree at the pinned commit.
 - **Inventory method:** enumerate tracked paths and read selected current/legacy reference documents and run assessments. Counts are Git *files*, not unique algorithms, independently confirmed findings, or runnable tests. No original binary, Ghidra project or proprietary asset was executed for this inventory.
-- **Boundary:** \`i76.exe\` is the primary active runtime research target. \`i76edit.exe\` and \`i76shell.dll\` are separate Ghidra/binary targets with defined data and invocation interfaces; \`shared\` is cross-program/protocol work.
+- **Boundary:** `i76.exe` is the primary active runtime research target. `i76edit.exe` and `i76shell.dll` are separate Ghidra/binary targets with defined data and invocation interfaces; `shared` is cross-program/protocol work.
 
 ## Repository census (as committed)
 
 | Area | Tracked files | Notes |
 | --- | ---: | --- |
-| \`snapshot/\` | 15,500 | 13,166 \`i76.exe\`; 1,746 \`i76edit.exe\`; 588 \`i76shell.dll\` |
-| \`ref/\` | 108 | Historical references, tables and measured evidence; not automatically promoted |
-| \`scripts/\` | 217 | 166 \`local_history/\`, 40 \`ghidra_history/\`, 6 \`ghidra_emulation/\`, 3 \`game/\`, 2 \`auto_templates/\` |
-| \`agent/runs/\` | 326 | 33 run directories: 18 \`i76exe\`, 14 \`i76edit\`, 1 \`shared\` |
-| \`manual/\` | 15 | Curated reference, roadmap and decisions |
-| \`agent/\` all | 351 | Includes run files and governance, baseline and promotion records |
+| `snapshot/` | 15,500 | 13,166 `i76.exe`; 1,746 `i76edit.exe`; 588 `i76shell.dll` |
+| `ref/` | 108 | Historical references, tables and measured evidence; not automatically promoted |
+| `scripts/` | 217 | 166 `local_history/`, 40 `ghidra_history/`, 6 `ghidra_emulation/`, 3 `game/`, 2 `auto_templates/` |
+| `agent/runs/` | 326 | 33 run directories: 18 `i76exe`, 14 `i76edit`, 1 `shared` |
+| `manual/` | 15 | Curated reference, roadmap and decisions |
+| `agent/` all | 351 | Includes run files and governance, baseline and promotion records |
 | Git blobs overall | 16,200 | Includes all top-level tracked files; not a count of nonduplicate logical artifacts |
 
-**Publication classification:** the \`agent/runs/\` records are accepted repository evidence where merged, **not automatically promoted behavioral truths**. \`manual/reference/engine/vehicle_construction.md\` is an existing specifically promoted reference; most other knowledge remains in \`ref/\` and append-only research runs.
+**Publication classification:** the `agent/runs/` records are accepted repository evidence where merged, **not automatically promoted behavioral truths**. `manual/reference/engine/vehicle_construction.md` is an existing specifically promoted reference; most other knowledge remains in `ref/` and append-only research runs.
 
-## Candidate subsystem map for original \`i76.exe\`
+## Candidate subsystem map for original `i76.exe`
 
 **Functional IDs are ownership labels, not recovered original source modules.** Multiple subsystems legitimately cite the same original function or research run. No new correctness grade is inferred from file counts.
 
@@ -43,7 +43,7 @@
 
 Ownership rules: VEH computes dynamic contact response while TER supplies terrain/surface queries; OBJ owns object identity/lifetime, while GEO owns graph/geometry/material loading; FSM owns bytecode/host-call semantics, AI owns autonomous decision-making; ENG owns frame phase order; RND consumes scene/camera state and owns presentation. Cross-cutting experimental harnesses remain permissible in any reversing workstream.
 
-## Accepted \`i76exe\` run crosswalk
+## Accepted `i76exe` run crosswalk
 
 Each link is an existing immutable run manifest; mappings are an inventory annotation, **not a claim that all listed subsystems were completely validated**.
 
@@ -70,7 +70,7 @@ Each link is an existing immutable run manifest; mappings are an inventory annot
 
 ## Independent program tracks
 
-### \`i76edit.exe\` — editor / builder (\`i76edit\`)
+### `i76edit.exe` — editor / builder (`i76edit`)
 
 Original editable road graph, cubic segments, terrain grading and classification, zone state, object/FSM export and original CRT startup behavior. This is a distinct program and **not** a subgroup of main-engine TER. Engine TER/OBJ/MLD references may use editor evidence as cross-checks of shared formats only. Start at [editor reference](../../ref/editor/README.md), [road authoring](../../ref/editor/road_terrain_serialization.md), [object identity/export](../../ref/editor/object_fsm_serialization.md).
 
@@ -91,15 +91,15 @@ Original editable road graph, cubic segments, terrain grading and classification
 | [25e3484f](../../agent/runs/i76edit/i76edit-20261027T003326Z-25e3484f/manifest.json) | Original CRT small-block heap |
 | [3eb837e1](../../agent/runs/i76edit/i76edit-20261027T010513Z-3eb837e1/manifest.json) | Editor startup/decommit lifecycle |
 
-### \`i76shell.dll\` — frontend DLL (\`i76shell\`, proposed publication track)
+### `i76shell.dll` — frontend DLL (`i76shell`, proposed publication track)
 
-**Independent Ghidra target already exists:** \`snapshot/i76shell.dll/\` (588 Git blobs). Historical work: [shell DLL research](../../ref/game/i76shell.dll_reference.md), [MW2 database](../../ref/mw2/database_mw2_reference.md), and shell-focused tools under \`scripts/local_history/\`. Covers ShellMain, menu/selection/UI assets, mission/vehicle configuration, DirectPlay setup and shell-to-engine callback/config-block ABI.
+**Independent Ghidra target already exists:** `snapshot/i76shell.dll/` (588 Git blobs). Historical work: [shell DLL research](../../ref/game/i76shell.dll_reference.md), [MW2 database](../../ref/mw2/database_mw2_reference.md), and shell-focused tools under `scripts/local_history/`. Covers ShellMain, menu/selection/UI assets, mission/vehicle configuration, DirectPlay setup and shell-to-engine callback/config-block ABI.
 
-**Current gap is administrative, not architectural:** there is no published \`agent/runs/i76shell/\` run, and protocol v1.0.3 does not permit that track. Do not relabel prior shell snapshots or scripts as synthetic research runs. A separate versioned governance proposal should add \`i76shell\` with the same original-binary and Ghidra provenance requirement as \`i76exe\`/\`i76edit\`.
+**Current gap is administrative, not architectural:** there is no published `agent/runs/i76shell/` run, and protocol v1.0.3 does not permit that track. Do not relabel prior shell snapshots or scripts as synthetic research runs. A separate versioned governance proposal should add `i76shell` with the same original-binary and Ghidra provenance requirement as `i76exe`/`i76edit`.
 
 The engine side owns the recipient of the launch/session ABI. The shell owns the frontend producer. NET owns engine-side multiplayer behavior after session handoff.
 
-### \`shared\` — cross-program research/protocol
+### `shared` — cross-program research/protocol
 
 The one [shared run](../../agent/runs/shared/shared-20261022T043403Z-da3692e8/manifest.json) is a protocol structure-only publication smoke test with no substantive original-binary finding. Shared tools, differential validation and cross-program format interface contracts should remain distinct from binary-specific research.
 
@@ -107,24 +107,24 @@ The one [shared run](../../agent/runs/shared/shared-20261022T043403Z-da3692e8/ma
 
 | Location/example | Experimental role | Proposed handling |
 | --- | --- | --- |
-| \`agent/runs/i76exe/*/scripts/\` | Original Ghidra execution, source/anchor audits, controlled replay and experiment validators | Preserve inside immutable runs; identify reusable primitives later |
-| \`agent/runs/i76edit/*/scripts/\` | Editor original-instruction validators and localized analytical models | Preserve as editor-track evidence |
-| [\`scripts/ghidra_emulation/\`](../../scripts/ghidra_emulation/) | Legacy original parser/mission-wrapper probes and verification | Historical reversing tools, not automatically a maintained engine |
-| [\`scripts/game/\`](../../scripts/game/) | ZFS extraction and independent terrain/Blender export | Candidate resource/terrain reconstruction utilities, with explicit fidelity limits |
-| \`scripts/local_history/\`, \`scripts/ghidra_history/\` | Earlier iterative decode, export, Ghidra reporting and experiments | Index by subject; do not mass-rewrite or treat all revisions as active |
-| \`ref/mission_execution/evidence/\` | Prior parser/VM/loader corpus tests and observation traces | Historical test evidence for MLD/FSM |
-| \`manual/reference/\` and \`agent/promotions/\` | Curated accepted claims and crosswalk | Interface specification source after deliberate promotion |
-| \`agent/protocol/\`, \`.github/\` | Identity/provenance schemas, validation and governance | Shared publication infrastructure, not reverse-engineered runtime behavior |
+| `agent/runs/i76exe/*/scripts/` | Original Ghidra execution, source/anchor audits, controlled replay and experiment validators | Preserve inside immutable runs; identify reusable primitives later |
+| `agent/runs/i76edit/*/scripts/` | Editor original-instruction validators and localized analytical models | Preserve as editor-track evidence |
+| [`scripts/ghidra_emulation/`](../../scripts/ghidra_emulation/) | Legacy original parser/mission-wrapper probes and verification | Historical reversing tools, not automatically a maintained engine |
+| [`scripts/game/`](../../scripts/game/) | ZFS extraction and independent terrain/Blender export | Candidate resource/terrain reconstruction utilities, with explicit fidelity limits |
+| `scripts/local_history/`, `scripts/ghidra_history/` | Earlier iterative decode, export, Ghidra reporting and experiments | Index by subject; do not mass-rewrite or treat all revisions as active |
+| `ref/mission_execution/evidence/` | Prior parser/VM/loader corpus tests and observation traces | Historical test evidence for MLD/FSM |
+| `manual/reference/` and `agent/promotions/` | Curated accepted claims and crosswalk | Interface specification source after deliberate promotion |
+| `agent/protocol/`, `.github/` | Identity/provenance schemas, validation and governance | Shared publication infrastructure, not reverse-engineered runtime behavior |
 
 **Harness classification rule:** a reversing run may author original-code emulators, stubs, analytic models, extracted fixtures, comparison scripts and even provisional implementations. Their purpose and evidentiary limitations must be stated; this work is never prohibited for looking like reconstruction. A maintained replacement implementation requires a separate review and conformance claim, not merely code relocation.
 
 ## Inventory gaps / caveats
 
 1. This is a **repository-path and selected-document inventory**, not a completed callgraph-level map of every one of the 15,500 snapshot blobs or all 217 historical scripts; further subsystem-oriented mining is appropriate.
-2. The legacy file inventory [\`manual/history/legacy_inventory.json\`](../history/legacy_inventory.json) already pins 108 reference and 217 script blobs and should be reused, not regenerated with invented historical identities.
+2. The legacy file inventory [`manual/history/legacy_inventory.json`](../history/legacy_inventory.json) already pins 108 reference and 217 script blobs and should be reused, not regenerated with invented historical identities.
 3. Some recent original-code reports are emulated with explicit platform or numerical substitutes. They do not imply live Windows execution, perfect x87 matching, a complete game loop, or finished raster pixels.
 4. Research coverage, reconstruction implementation coverage and differential validation coverage are **separate**; these rows do not assign numerical completion percentages.
-5. New source/contract organization, \`i76shell\` publication identity and possible \`reconstruction/\` or \`validation/\` directories require separate reviewed proposals. No accepted files are moved by this inventory.
+5. New source/contract organization, `i76shell` publication identity and possible `reconstruction/` or `validation/` directories require separate reviewed proposals. No accepted files are moved by this inventory.
 
 ## Planning handoff
 
