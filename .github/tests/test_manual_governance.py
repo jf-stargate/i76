@@ -11,7 +11,7 @@ class Governance(unittest.TestCase):
   self.assertEqual(p["schema_version"],version)
   self.assertEqual(v["publication_protocol_version"],version)
   self.assertIn(f"**Protocol:** `agent/protocol/VERSION` → `{version}`",(ROOT/"AGENTS.md").read_text())
-  self.assertEqual(v["supported_research_schema_versions"],["1.0.0","1.1.0"])
+  self.assertEqual(v["supported_research_schema_versions"],["1.0.0","1.1.0","1.2.0"])
  def test_manual_policy(self):
   p=yaml.safe_load((ROOT/"agent/protocol/access.yaml").read_text())["publication"]
   self.assertEqual(p["required_formal_approvals"],0)

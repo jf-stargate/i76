@@ -35,6 +35,36 @@ class Tests(unittest.TestCase):
         head=self.add(name+"/validation.json",json.dumps(m["validation"]))
         if artifact:head=self.add(name+"/evidence/data.txt",b"payload")
         return head,name
+
+    def shellfiles(self,mutation=None):
+        rid="i76shell-20261028T200000Z-11223344"
+        name=f"agent/runs/i76shell/{rid}"
+        m=json.loads((ROOT/"agent/protocol/examples/v1.2.0/manifest.json").read_text())
+        f=json.loads((ROOT/"agent/protocol/examples/v1.2.0/findings.json").read_text())
+        m["base_commit"]=self.base
+        if mutation:mutation(m,f)
+        self.add(name+"/manifest.json",json.dumps(m))
+        self.add(name+"/findings.json",json.dumps(f))
+        h=self.add(name+"/validation.json",json.dumps(m["validation"]))
+        return h,rid
+    def test_v12_shell_run(self):
+        h,rid=self.shellfiles()
+        self.assertEqual(self.check(h,f"agent/i76shell/{rid}")["runs"][0]["run_id"],rid)
+    def test_v12_shell_missing_binary_provenance(self):
+        h,rid=self.shellfiles(lambda m,f:m.update(inputs=[]))
+        with self.assertRaises(Exception):self.check(h,f"agent/i76shell/{rid}")
+    def test_v12_shell_missing_baseline(self):
+        h,rid=self.shellfiles(lambda m,f:m.update(baselines=[]))
+        with self.assertRaises(Exception):self.check(h,f"agent/i76shell/{rid}")
+    def test_v12_shell_cross_track_branch(self):
+        h,rid=self.shellfiles()
+        with self.assertRaises(guard.Rejected):self.check(h,f"agent/i76exe/{rid}")
+    def test_v12_shell_wrong_manifest_track(self):
+        h,rid=self.shellfiles(lambda m,f:m.update(track="i76exe"))
+        with self.assertRaises(guard.Rejected):self.check(h,f"agent/i76shell/{rid}")
+    def test_v12_shell_wrong_run_prefix(self):
+        h,rid=self.shellfiles(lambda m,f:m.update(run_id="i76exe-20261028T200000Z-11223344"))
+        with self.assertRaises(guard.Rejected):self.check(h,f"agent/i76shell/{rid}")
     def test_manual_proposal(self):
         h=self.add("manual/reference/abc.md","hi");self.assertEqual(self.check(h)["publication"],"review-required")
     def test_unlisted_path(self):

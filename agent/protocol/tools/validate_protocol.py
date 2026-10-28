@@ -5,12 +5,12 @@ import yaml
 from jsonschema import Draft202012Validator
 ROOT=pathlib.Path(__file__).resolve().parents[3]
 P=ROOT/"agent/protocol"
-R=re.compile(r"^(i76exe|i76edit|shared)-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$")
+R=re.compile(r"^(i76exe|i76edit|i76shell|shared)-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$")
 def policy():
     p=yaml.safe_load((P/"access.yaml").read_text())
     assert p["default"]=="deny" and p["publication"]["direct_main_push"] is False
     assert p["publication"]["autonomous_run_merge"] is False
-    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.3"
+    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.4"
     assert p["publication"]["required_formal_approvals"]==0
     assert p["publication"]["manual_maintainer_decision_required"] is True
     assert p["publication"]["require_separate_reviewer_for_authoritative_changes"] is False
@@ -23,12 +23,19 @@ def policy():
     assert p["documentation"]["mutate_merged_runs"] is False
     assert (P/"templates"/"DOCUMENTATION_IMPACT.md").is_file()
     assert (ROOT/"manual/roadmap/DOCUMENTATION_WORKFLOW.md").is_file()
-    for name in ("run","finding"):
-        Draft202012Validator.check_schema(json.loads((P/"schemas"/(name+".schema.json")).read_text()))
-    for sch,ex in (("run","manifest"),("finding","findings")):
-        Draft202012Validator(json.loads((P/"schemas"/(sch+".schema.json")).read_text())).validate(json.loads((P/"examples"/(ex+".json")).read_text()))
-    for name in ("run","finding"):
-        Draft202012Validator.check_schema(json.loads((P/"schemas/v1.1.0"/(name+".schema.json")).read_text()))
+    versions=json.loads((P/"SCHEMA_VERSIONS.json").read_text())
+    assert versions["publication_protocol_version"]==p["schema_version"]
+    assert versions["default_research_schema_version"]=="1.2.0"
+    assert versions["supported_research_schema_versions"]==["1.0.0","1.1.0","1.2.0"]
+    assert p["run_identity"]["tracks"]==["i76exe","i76edit","i76shell","shared"]
+    for version in versions["supported_research_schema_versions"]:
+        for kind,example in (("run","manifest"),("finding","findings")):
+            schema=json.loads((P/versions["schemas"][version][kind]).read_text())
+            Draft202012Validator.check_schema(schema)
+            example_dir=P/"examples"
+            if version!="1.0.0": example_dir=example_dir/("v"+version)
+            if (example_dir/(example+".json")).exists():
+                Draft202012Validator(schema).validate(json.loads((example_dir/(example+".json")).read_text()))
     return p
 def safe_path(name):
     if not name or name.startswith("/") or "\\" in name or "//" in name or any(s in ("",".","..") for s in name.split("/")): raise ValueError("unsafe path")
@@ -46,18 +53,18 @@ def validate_run(directory):
     manifest=json.loads((directory/"manifest.json").read_text())
     findings=json.loads((directory/"findings.json").read_text())
     version=manifest.get("schema_version")
-    assert version in ("1.0.0","1.1.0") and findings.get("schema_version")==version
-    schema_dir=P/"schemas"
-    if version=="1.1.0": schema_dir=schema_dir/"v1.1.0"
+    registry=json.loads((P/"SCHEMA_VERSIONS.json").read_text())
+    assert version in registry["supported_research_schema_versions"] and findings.get("schema_version")==version
     for s,v in (("run",manifest),("finding",findings)):
-        Draft202012Validator(json.loads((schema_dir/(s+".schema.json")).read_text())).validate(v)
+        Draft202012Validator(json.loads((P/registry["schemas"][version][s]).read_text())).validate(v)
     run=manifest["run_id"];assert R.fullmatch(run)
-    assert directory.name==run and directory.parent.name==manifest["track"] and findings["run_id"]==run
+    assert directory.name==run and directory.parent.name==manifest["track"] and run.startswith(manifest["track"]+"-") and findings["run_id"]==run
     for artifact in manifest["artifacts"]:
         rel=safe_path(artifact["path"]);target=directory/rel
         assert target.is_file() and not target.is_symlink() and target.resolve().is_relative_to(directory)
         assert target.suffix.lower() not in {".exe",".dll",".pak",".zfs",".gzf",".msn",".ter",".zip",".tar"}
         assert target.stat().st_size<=5*1024*1024
+        assert target.stat().st_size==artifact["bytes"] if "bytes" in artifact else True
         assert hashlib.sha256(target.read_bytes()).hexdigest()==artifact["sha256"]
     assert manifest["validation"]["passed_count"]<=manifest["validation"]["test_count"]
     return True

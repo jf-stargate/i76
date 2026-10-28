@@ -4,7 +4,7 @@ import argparse, hashlib, json, re, subprocess, sys
 from pathlib import Path, PurePosixPath
 import yaml
 from jsonschema import Draft202012Validator, FormatChecker, ValidationError
-RUN=re.compile(r"^(i76exe|i76edit|shared)-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$")
+RUN=re.compile(r"^(i76exe|i76edit|i76shell|shared)-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{8}$")
 SHA=re.compile(r"^[0-9a-f]{40}$")
 FORBIDDEN={".exe",".dll",".pak",".zfs",".gzf",".msn",".ter",".zip",".tar",".7z",".rar",".iso",".ghidra",".gpr"}
 SECRET=re.compile(rb"(?:ghp_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{40,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----)")
@@ -41,15 +41,15 @@ def verify_run(repo,head,root,files,trusted):
     f=json.loads(blob(repo,head,root+"/findings.json"))
     v=json.loads(blob(repo,head,root+"/validation.json"))
     version=m.get("schema_version")
-    if version not in ("1.0.0","1.1.0") or f.get("schema_version") != version:
+    registry=json.loads((trusted/"agent/protocol/SCHEMA_VERSIONS.json").read_text())
+    if version not in registry["supported_research_schema_versions"] or f.get("schema_version") != version:
         raise Rejected("Unsupported or mismatched record schema version")
-    schema_root=trusted/"agent/protocol/schemas"
-    if version=="1.1.0":schema_root=schema_root/"v1.1.0"
     for kind,obj in (("run",m),("finding",f)):
-        schema=json.loads((schema_root/(kind+".schema.json")).read_text())
+        schema_path=trusted/"agent/protocol"/registry["schemas"][version][kind]
+        schema=json.loads(schema_path.read_text())
         Draft202012Validator(schema,format_checker=FormatChecker()).validate(obj)
     rid=root.rsplit("/",1)[1];track=root.split("/")[2]
-    if not RUN.fullmatch(rid) or m["run_id"]!=rid or f["run_id"]!=rid or m["track"]!=track or v!=m["validation"]:raise Rejected("Run identity/validation mismatch")
+    if not RUN.fullmatch(rid) or not rid.startswith(track+"-") or m["run_id"]!=rid or f["run_id"]!=rid or m["track"]!=track or v!=m["validation"]:raise Rejected("Run identity/validation mismatch")
     if not SHA.fullmatch(m["base_commit"]):raise Rejected("Invalid run base SHA")
     git(repo,"merge-base","--is-ancestor",m["base_commit"],head)
     if v["passed_count"]>v["test_count"] or (v["status"]=="passed" and v["passed_count"]!=v["test_count"]):raise Rejected("Invalid test counts")
