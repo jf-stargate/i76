@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261028T172133Z-66a1688b",
+  "findings": [
+    {
+      "finding_id": "F1-clock-subdivision",
+      "claim": "Original 0049C7F0 reciprocal-table initialization makes 0049CC20/0049CCA0 emit positive current-frame subdivisions; these helpers do not carry elapsed-time remainder across frames.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/subdivision.tsv",
+          "sha256": "565a2dada0a773374a1fa6df4ecdd93665b906e61d40d91158c22d309919fcfe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "3129bc50e9b4ba5ae716d457d41c881ff5e0513fc00b6acc056317d246f8d31f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_TimerSubdivisionProbe.java",
+          "sha256": "b8bf321b35a76259e6bf193731646d1b9f3815db610323682146fa3dee03e93c"
+        }
+      ],
+      "limitations": "Binary-static and original-instruction Ghidra execution for 16 controlled nonnegative finite dt/init combinations; GetTickCount and ftol are substituted. Actual WinMain scheduler not replayed."
+    },
+    {
+      "finding_id": "F2-math-startup-basis",
+      "claim": "Executing original 00493C50 seed-table initialization alone changes the reproduced bus and GTSi two-frame basis to near orthonormal; ftol stack-pop correction alone leaves the legacy non-unit bus basis unchanged.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/replay_events.tsv",
+          "sha256": "33f874a896719c91e97a100cf9ef5a7403eabe244f49a6377e7d82572509bdce"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "3e814949925e47abd92a8e8b4934ddeecde2da5ad1c3674161535834a195be71"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_FramePhysicsProbe.java",
+          "sha256": "d2bb00feaae533b2de4bd5e363c012addf26069348372ce876172baa2a957250"
+        }
+      ],
+      "limitations": "Controlled original-instruction emulation with substituted services, drive state and camera relevance. Near-unit Gram error approximately 8.6e-6, not exact orthonormality/hardware x87 parity or correct dynamics. PR49 source remains an unmerged candidate."
+    },
+    {
+      "finding_id": "F3-scheduler-contact-boundary",
+      "claim": "Original WinMain orders clock update before class pre/post and FSM callbacks; initialized timing permits positive-dt original 00438FD0 and 00440740 entry, but the guarded replay stops at 00493550 because mission terrain is unloaded.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "3129bc50e9b4ba5ae716d457d41c881ff5e0513fc00b6acc056317d246f8d31f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/replay_events.tsv",
+          "sha256": "33f874a896719c91e97a100cf9ef5a7403eabe244f49a6377e7d82572509bdce"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/FRAME_INITIALIZATION.md",
+          "sha256": "08d1e3ef1841c575367f8fde36038a34a56195d0497ea9d324fe0aaafb33aacc"
+        }
+      ],
+      "limitations": "Ordering is static, not WinMain execution. Positive entry is not completed valid contact physics. Earlier unguarded downstream outputs read null terrain and are excluded. Mission terrain/height blocks, contact records and suspension completion remain unverified."
+    }
+  ]
+}
