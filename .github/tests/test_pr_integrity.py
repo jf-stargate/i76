@@ -1,4 +1,5 @@
 import importlib.util,json,hashlib,subprocess,tempfile,unittest
+from jsonschema import ValidationError
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 spec=importlib.util.spec_from_file_location("i76_guard",ROOT/".github/scripts/pr_integrity.py")
@@ -52,10 +53,10 @@ class Tests(unittest.TestCase):
         self.assertEqual(self.check(h,f"agent/i76shell/{rid}")["runs"][0]["run_id"],rid)
     def test_v12_shell_missing_binary_provenance(self):
         h,rid=self.shellfiles(lambda m,f:m.update(inputs=[]))
-        with self.assertRaises(Exception):self.check(h,f"agent/i76shell/{rid}")
+        with self.assertRaises(ValidationError):self.check(h,f"agent/i76shell/{rid}")
     def test_v12_shell_missing_baseline(self):
         h,rid=self.shellfiles(lambda m,f:m.update(baselines=[]))
-        with self.assertRaises(Exception):self.check(h,f"agent/i76shell/{rid}")
+        with self.assertRaises(ValidationError):self.check(h,f"agent/i76shell/{rid}")
     def test_v12_shell_cross_track_branch(self):
         h,rid=self.shellfiles()
         with self.assertRaises(guard.Rejected):self.check(h,f"agent/i76exe/{rid}")

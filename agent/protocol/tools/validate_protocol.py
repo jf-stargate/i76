@@ -64,7 +64,7 @@ def validate_run(directory):
         assert target.is_file() and not target.is_symlink() and target.resolve().is_relative_to(directory)
         assert target.suffix.lower() not in {".exe",".dll",".pak",".zfs",".gzf",".msn",".ter",".zip",".tar"}
         assert target.stat().st_size<=5*1024*1024
-        assert target.stat().st_size==artifact["bytes"] if "bytes" in artifact else True
+        if "bytes" in artifact:assert target.stat().st_size==artifact["bytes"]
         assert hashlib.sha256(target.read_bytes()).hexdigest()==artifact["sha256"]
     assert manifest["validation"]["passed_count"]<=manifest["validation"]["test_count"]
     return True
