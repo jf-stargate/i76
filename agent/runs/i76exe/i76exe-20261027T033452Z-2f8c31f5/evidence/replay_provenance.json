@@ -1,0 +1,33 @@
+{
+  "run_id": "i76exe-20261027T033452Z-2f8c31f5",
+  "base_commit": "5da264c093a9d694a7d5e36f4be62c3a26b5b0fb",
+  "retail_exe_md5": "a640ea0097dbb62e0c77b7f2847c7161",
+  "retail_exe_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "annotated_ghidra_v97_gzf_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+  "retail_zfs_sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+  "private_trace_sha256": {
+    "bus_drive_a": "7e752c7022c9a3a5f4c33ebf03c23cfd197c9d35a0c9c062fa1f06f4e15ebb9e",
+    "bus_drive_b": "7e752c7022c9a3a5f4c33ebf03c23cfd197c9d35a0c9c062fa1f06f4e15ebb9e",
+    "gtsi_drive_a": "1f15bf216fddaaf3e822bdbce2c72871ca968b816eb4c23e9be50417c25bf515",
+    "bus_idle": "a7e84df1810d0b3d1377b08dc3695824ccf526d0d2fdbe672c3a86cd80171423"
+  },
+  "independent_bus_replay_identical": true,
+  "numeric_boundaries": [
+    "0049D400 sine/cosine substituted with Java Math",
+    "004BA090 original x87 ftol substituted with decoded 80-bit value"
+  ],
+  "controlled_initial_state": [
+    "native class-1 root constructor, stock VCF/VLOC class-0x28 binder, native active-world registration",
+    "runtime+0xE4 drive=0.5",
+    "runtime+0x104=1, +0xAC=0.2",
+    "global 004FE420=1/60",
+    "controlled active-relevance camera distance=1000 and input pause cleared"
+  ],
+  "not_established": [
+    "game scheduler frame ordering",
+    "fixed-step terrain/contact solver advancement",
+    "hardware x87 parity",
+    "orthonormal moving pose",
+    "retail Windows raster/pixels"
+  ]
+}

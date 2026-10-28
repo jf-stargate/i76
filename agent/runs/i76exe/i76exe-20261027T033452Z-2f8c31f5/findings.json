@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.1.0",
+  "run_id": "i76exe-20261027T033452Z-2f8c31f5",
+  "findings": [
+    {
+      "finding_id": "i76exe-v08-native-class1-active-update-callchain",
+      "claim": "Original retail class-1 update callback 00463800 runs original lifecycle 00465370 and control 0043A3C0, which directly invokes original integrator 0043BDF0 (retail E8 at 0043A481) with the root object+0x18 matrix as an output. The active-vehicle path is distinct from an inactive fixedstep wheel-contact path.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00463800",
+          "address": "00463800"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/direct_call_edges.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_MovingVehicleTwoFrameProbe.java"
+        }
+      ],
+      "limitations": "Observed in Ghidra original-instruction emulation with artificial camera-distance relevance gate, synthetic frame delta, emulated Win32/resource/math services; not continuous retail scheduler."
+    },
+    {
+      "finding_id": "i76exe-v08-two-successive-moving-pose-camera-frames",
+      "claim": "For both original-constructed, original-registered selected stock GTSi and bus under a controlled drive input and dt=1/60, two explicit class-1 update/camera callback pairs execute in the same emulator state. Original integrator changes root world Z from 0 to 0.0033333336468786 then 0.005625023506581783 and default camera returns with zero nonfinite original 00437F90 matrix words and zero nonfinite values in the six tested camera doubles on both frames.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:0043BDF0",
+          "address": "0043BDF0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe:00406AB0",
+          "address": "00406AB0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/two_frame_scenarios.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/replay_provenance.json"
+        }
+      ],
+      "limitations": "Values are controlled Ghidra-emulated numerical results, not validated retail world units or physically accurate in-game camera poses. The original 0049D400 and 004BA090 math boundaries are substituted."
+    },
+    {
+      "finding_id": "i76exe-v08-independent-replay-and-idle-control",
+      "claim": "Two separately executed selected-bus retail-x86 emulations of the controlled two-frame path produce byte-identical trace hashes; a separate idle input control completes two class callback/camera pairs without observed root translation.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/replay_provenance.json"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/two_frame_scenarios.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_two_frame.py"
+        }
+      ],
+      "limitations": "Both replay tests share deterministic emulation, identical synthetic inputs and mathematical substitutes; reproducibility does not establish hardware numerical parity."
+    },
+    {
+      "finding_id": "i76exe-v08-orthonormality-and-authentic-fixedstep-open",
+      "claim": "The tested vehicle direction norm-squared measures about 0.472666 and 0.754794 after frames one and two. Original complete game-frame scheduling, positive fixed-step wheel-contact physics via 00438FD0, hardware x87 parity and normalized real-world pose remain unresolved.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/two_frame_scenarios.tsv"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/VEHICLE_TWO_FRAME_ORIGINAL_SIMULATION.md"
+        }
+      ],
+      "limitations": "Do not interpret finite camera or moving pose as orthonormal rotation, true physics simulation or functioning original rasterization."
+    }
+  ]
+}
