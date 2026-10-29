@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261029T170926Z-3a9402a5",
+  "track": "i76exe",
+  "topic": "M-ENG-01 original descriptor-driven class-1 pre/post scheduling",
+  "base_commit": "9312486b92f15305d814c2bf0551f3cf1e233f48",
+  "started_at": "2026-10-29T17:09:26Z",
+  "summary": "Original pre/post dispatchers traverse native 15-node class lists and invoke/return class1 callbacks for bus/GTSi in three controlled unselected frames. Empty/direct/repeat controls verified; raw selected post failure preserved. Bounded original-instruction slice, not full WinMain.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "miss8/M06.MSN",
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "miss8/M06.TER",
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "notes": "Measured private licensed input; no payload published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "3154b8ab2e477e77085b6883670928c10aa725ef1ab1b992913520748b2d3008",
+      "bytes": 6112
+    },
+    {
+      "path": "artifacts/M_ENG_01.md",
+      "kind": "report",
+      "sha256": "b085ed2ded2f97fa6ccaa957515b4e216e968465b60f0b073b79ee292a172073",
+      "bytes": 10923
+    },
+    {
+      "path": "artifacts/PUBLICATION_BLOCKER.md",
+      "kind": "report",
+      "sha256": "676e134474117e5c285042942765cadb8204dddd7d05832a149b588ad393f16c",
+      "bytes": 1846
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "42fb919df7d98746f407378bffed9d362d7fa781664f03b70205d4939e9ce97d",
+      "bytes": 3820
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "2cc325d76f739cc10a58400750e0a03496f64f3591f508f6fb1ae3e79a44034a",
+      "bytes": 2997
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "4759acba385c5972289bf9459b20a807e62d291020c6efa4d0f9506284c86314",
+      "bytes": 8593
+    },
+    {
+      "path": "evidence/dispatch_events.tsv",
+      "kind": "table",
+      "sha256": "aef6490e6a4832da0f8e5ec5964fd82a22af52dc7aa6de8386b8a73ffde9c16e",
+      "bytes": 143217
+    },
+    {
+      "path": "evidence/instruction_anchors.tsv",
+      "kind": "table",
+      "sha256": "1fe3af3ece04f7e29c509d00fdf36c3a430641d212c3a5ccdab6a3bf6ba3dce6",
+      "bytes": 1099
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "a5c04ecc5362b40dd6aa9e7939f88627f8abdb10ca141075476b2f43e6ff7de3",
+      "bytes": 12577
+    },
+    {
+      "path": "evidence/publication_blocker.json",
+      "kind": "table",
+      "sha256": "f9371f31a71502c5497ee3b431cc9f128e6d8a7323c3c56af8a5f68046e1370d",
+      "bytes": 1152
+    },
+    {
+      "path": "evidence/results.json",
+      "kind": "table",
+      "sha256": "12c0bbd4d03efab9e084fb65c1fa6e1ffb969a601c08862993d165ca0bccb8af",
+      "bytes": 16516
+    },
+    {
+      "path": "scripts/I76_DescriptorScheduleProbe.java",
+      "kind": "script",
+      "sha256": "1ddd87d5d2cdc0f8c4e521acc187f1f11e933924bda15a70abe3692ed769d8ac",
+      "bytes": 55838
+    },
+    {
+      "path": "scripts/prepare_private_inputs.py",
+      "kind": "script",
+      "sha256": "6703f97a2fffd8aa6d8df588811126c34f12b959500203d97cf1d4133a43f4a2",
+      "bytes": 1935
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "8a1578d8f1928c37ee8022066ffff106ed8f3f0115ae07300b9bf5447b5f7f4b",
+      "bytes": 2558
+    },
+    {
+      "path": "scripts/verify_schedule.py",
+      "kind": "script",
+      "sha256": "d31f23b48f38805175b058a0fcc8c339316fd474c6ab018571b6c5fced0fd2c3",
+      "bytes": 12731
+    },
+    {
+      "path": "scripts/x87_fistp_service.c",
+      "kind": "script",
+      "sha256": "54ef13262a85de1b4d589ccccc7c31dbdf759e486a9e5a72c8d27399dc02c7e7",
+      "bytes": 1069
+    }
+  ],
+  "validation": {
+    "status": "partial",
+    "test_count": 3845,
+    "passed_count": 3844,
+    "notes": "Scientific verifier: 3807/3807 passed. Untouched trusted-base unit suite: 37/38 passed; pre-existing archive test rejects accepted schema-1.2.0 M-TER-01. Candidate path/hash/schema integrity passes. Draft PR pending separate trusted governance/tooling correction; see evidence/publication_blocker.json."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_DescriptorScheduleProbe.java",
+        "sha256": "1ddd87d5d2cdc0f8c4e521acc187f1f11e933924bda15a70abe3692ed769d8ac"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/prepare_private_inputs.py",
+        "sha256": "6703f97a2fffd8aa6d8df588811126c34f12b959500203d97cf1d4133a43f4a2"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "8a1578d8f1928c37ee8022066ffff106ed8f3f0115ae07300b9bf5447b5f7f4b"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_schedule.py",
+        "sha256": "d31f23b48f38805175b058a0fcc8c339316fd474c6ab018571b6c5fced0fd2c3"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/x87_fistp_service.c",
+        "sha256": "54ef13262a85de1b4d589ccccc7c31dbdf759e486a9e5a72c8d27399dc02c7e7"
+      }
+    ],
+    "methods": [
+      "Pin protected GitHub main and protocol 1.0.4; read ENG/VEH/TER, roadmap and accepted reproduction harnesses.",
+      "Measure private inputs; fresh extraction/import into isolated Ghidra project.",
+      "Original list insertion and descriptor-mediated pre/post; controlled unselected bus/GTSi and direct/empty/separate-repeat tests.",
+      "Fresh-project five-process reproduction via owned driver; independent 3807-check PE/list/event/state/read verifier.",
+      "Preserve selected raw diagnostic FSINCOS/fcos failure and incomplete peripheral state; create documentation-impact handoff."
+    ],
+    "limitations": "Licensed private PE/GZF/ZFS/M06 required. Declared OS/CRT/resource/heap/render/numerical services and class31/34 post substitutes. Primary original post predicate false. Complete pending initializer, selected cockpit/input/audio and full WinMain are not executed. Sampled fields only; no hardware-wide x87 parity or promoted contract. See report/service ledger/reproduction."
+  }
+}

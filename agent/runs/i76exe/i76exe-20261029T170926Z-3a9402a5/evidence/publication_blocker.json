@@ -1,0 +1,24 @@
+{
+  "base_commit": "9312486b92f15305d814c2bf0551f3cf1e233f48",
+  "base_checkout_clean": true,
+  "command": "python3 -B -m unittest discover -s .github/tests -v",
+  "suite_tests": 38,
+  "suite_passed": 37,
+  "suite_failed": 1,
+  "failed_test": "test_schema_versions.VersionTests.test_accepted_archive_remains_schema_valid",
+  "original_file": ".github/tests/test_schema_versions.py",
+  "line": 71,
+  "assertion": "self.assertIn(version,(\"1.0.0\",\"1.1.0\"))",
+  "failure": "AssertionError: '1.2.0' not found in ('1.0.0', '1.1.0')",
+  "accepted_base_run": "i76exe-20261029T023733Z-bd8eb024",
+  "accepted_base_run_schema": "1.2.0",
+  "private_log_sha256": "fb3289734e77108654f4e66eb5a6f0e478ebcd4b35e392e044d84ede2a30bc3b",
+  "base_protocol_validator": "passed",
+  "candidate_path_hash_schema_integrity": "passed against trusted base tooling",
+  "scientific_checks": {
+    "status": "passed",
+    "test_count": 3807,
+    "passed_count": 3807
+  },
+  "disposition": "draft research PR; trusted integrity workflow blocked at pre-existing base suite; separate maintainer-accepted governance/tooling fix needed; no accepted-run rewrite or schema downgrade"
+}

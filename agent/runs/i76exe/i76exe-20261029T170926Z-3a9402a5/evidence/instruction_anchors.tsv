@@ -1,0 +1,26 @@
+va	bytes	role
+00461C81	8b3504b25400	pre collection head
+00461D51	8b3504b25400	post collection head
+00461C91	8b4608	pre node value
+00461C94	8b1e	pre saved next
+00461C9C	e84fd4ffff	pre original handle lookup
+00461D6C	e87fd3ffff	post original handle lookup
+00461D19	83c034	descriptor stride
+00461D2C	8b0495ec764f00	pre slot load
+00461DFC	8b0495f0764f00	post slot load
+00461D38	ffd0	pre indirect call
+00461E08	ffd0	post indirect call
+004619DE	e83da90300	registration first list insertion
+004619E6	a304b25400	registration head store
+0049C32B	ff1508c14b00	original node HeapAlloc service boundary
+0049C341	8908	original node next store
+0049C348	897008	original node value store
+00463956	e89552ffff	class1 post status predicate
+00458BF8	f6401010	status bit 0x10
+00463960	7412	post false predicate skips side effects
+00463963	e83866ffff	selected post input/cockpit boundary
+0046396C	e82f22feff	selected post audio boundary
+0049D409	d9fb	diagnostic FSINCOS (fcos P-code blocker)
+004F7784	20314600	descriptor word 00463120
+004F7788	00384600	descriptor word 00463800
+004F778C	50394600	descriptor word 00463950
