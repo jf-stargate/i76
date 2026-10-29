@@ -13,6 +13,8 @@ The original project's human-readable references continue under `ref/` until rev
 - [Historical level format](../../ref/level_format/i76_runtime_level_and_terrain_format_notes.md).
 - [Resource archive research](../../ref/zfs/): existing ZFS reference directory.
 
+**Subsystem discovery (advisory navigation, not promoted findings):** [ENG / VEH / TER indexes](../roadmap/subsystems/README.md) collect original-function anchors, immutable research runs, reproducibility links and unresolved boundaries for cold-start investigations. Their inclusion here does not promote the linked research conclusions.
+
 **Documentation generation:** a maintainer-designated repository/documentation steward synthesizes accepted research and publishes curated updates with linked `agent/promotions/` records in separate reviewed PRs. Research runs are immutable evidence, not automatic technical promotions. [Workflow](../roadmap/DOCUMENTATION_WORKFLOW.md).
 
 **Preservation policy:** do not delete or mutate historical source references as part of this indexing change. Canonical promotion from legacy references requires a separate reviewed decision and source/evidence reconciliation.
