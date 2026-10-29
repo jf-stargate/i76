@@ -36,3 +36,7 @@ Read the pinned `main` [AGENTS.md](../../../AGENTS.md) and [bootstrap](../../../
 Keep indexes short relative to the underlying evidence; never move, rewrite, rehash, rename or retroactively relabel accepted runs. Research code is allowed to contain emulators and provisional independent implementations without becoming a maintained reconstruction. Canonical claims still require immutable evidence → reviewed promotion → curated reference, as described by the [documentation workflow](../DOCUMENTATION_WORKFLOW.md).
 
 **Pilot provenance:** prepared against accepted `main` `524a25d67228b9960566432b397f9c2ef51ea613` (publication protocol `1.0.3`). This provenance is not a substitute for checking a newer `main` before the next investigation or accepting the PR.
+
+## Evidence-backed milestone planning
+
+The [ENG/VEH/TER milestone roadmap](../ENGINE_SUBSYSTEM_MILESTONES.md) separates original-code discovery, bounded behavior, original-instruction execution, reproducibility, promoted contracts and independent reconstruction. It includes a dependency map, stable research milestone IDs, ranked first Codex assignments and explicit partial/inconclusive criteria. The [Step 4 read-only bootstrap acceptance note](../BOOTSTRAP_DISCOVERY_ACCEPTANCE_20261028.md) records the management-reported discovery pass and its limits. These planning records are **not** new technical promotions or a precondition for cross-subsystem investigation.
