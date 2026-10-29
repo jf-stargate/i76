@@ -1,0 +1,190 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261029T023733Z-bd8eb024",
+  "track": "i76exe",
+  "topic": "M-TER-01: original M06 controlled vertical pose and suspension/contact extension",
+  "base_commit": "81bc3b0c16dd93191e59a2d85de5d7b9ea77629e",
+  "started_at": "2026-10-29T02:37:33Z",
+  "summary": "Reproduced unchanged accepted M06 baseline, then bus initial-Y control/-0.25/repeat/+1 cases; 32 callbacks each, independent source/triangle/state checks, exact repeats and separate zero special-probe results. Bounded original-instruction emulation with explicit services; no promotion or reconstruction.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "User-private original retail PE, only hashes and sparse opcodes public."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "User-private retail resource archive, original GTSi/bus assets used by separately held fixtures."
+    },
+    {
+      "name": "miss8/M06.MSN",
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    },
+    {
+      "name": "miss8/M06.TER",
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    },
+    {
+      "name": "engsnd.dat",
+      "kind": "other",
+      "md5": "a8acf7ed28fe1fc32b74302d37c0e8f8",
+      "sha256": "b574743a27cdad3379361072b0df016e3144ac9ed21c275ed8fa418d837ca668",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "199cd1bd83670b9d6dda0145796835419113ca17870b945d9e3ddf5c5fd7b937",
+      "bytes": 2739
+    },
+    {
+      "path": "artifacts/M_TER_01.md",
+      "kind": "report",
+      "sha256": "02721c0306c147ad3411da45f4faaf7cc56935f8817d165c578efc2e0b8cac64",
+      "bytes": 8632
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "bfdb53c96ab548158e838984b6db91a5267e480b456eda7180cc64d886074464",
+      "bytes": 4383
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "a90f7b79dd1dbf790f2830834d102679853bcd9c3e017f3ebed592afd7015018",
+      "bytes": 2598
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "c6d54584bfd4711b83b12b84f1dec5ca8b1d6f7942f3e00b9366df37a594ead3",
+      "bytes": 1863
+    },
+    {
+      "path": "evidence/frames.tsv",
+      "kind": "table",
+      "sha256": "1323847da4e3b15d5839705d18e13e13e8fa18c1fcba169e53335f3f8f118284",
+      "bytes": 20428
+    },
+    {
+      "path": "evidence/harness_delta.patch",
+      "kind": "table",
+      "sha256": "dbf93e2cbb1518dd9180c3b735faee78933161a5770569c3f51f111a75029f3b",
+      "bytes": 9177
+    },
+    {
+      "path": "evidence/normal_checks.tsv",
+      "kind": "table",
+      "sha256": "320fc4b27144a3dd4250f8503a666cf9e70b24e4ec093f130df04b477a92af59",
+      "bytes": 1467
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "8d58b113f5bec4e3425df069862161bd43d5701c549496bcbaf6fe044d00d144",
+      "bytes": 16621
+    },
+    {
+      "path": "evidence/results.json",
+      "kind": "table",
+      "sha256": "61926f8be726f43b1035b43480cd0885855b213793521547428ce5a3ea7ad19b",
+      "bytes": 2828
+    },
+    {
+      "path": "evidence/selected_events.tsv",
+      "kind": "table",
+      "sha256": "7b79a183c9c948f465c2ae065e4976357f8a827d6073f7ac4dba2ae28d02e119",
+      "bytes": 13221
+    },
+    {
+      "path": "evidence/source_read_examples.json",
+      "kind": "table",
+      "sha256": "534c63129913d8b801ae00f0ea60de009312d83e1c06dd8b8ebc4de977bbc4cc",
+      "bytes": 8179
+    },
+    {
+      "path": "evidence/validation_components.json",
+      "kind": "table",
+      "sha256": "30fa2837320e891ea1a68671fbdc2404d95d50406445b6b4dbc6e8c8b68942b0",
+      "bytes": 1221
+    },
+    {
+      "path": "scripts/I76_TerrainPoseProbe.java",
+      "kind": "script",
+      "sha256": "aa650fb90c2d80cb6573609deaf1cc75367810891abe1ddaf2ac3d1f14a9a381",
+      "bytes": 53961
+    },
+    {
+      "path": "scripts/replay.py",
+      "kind": "script",
+      "sha256": "af705db6ac0eadd9c36229da4742646e6984a14eb5f0ae90801335c2a672e34f",
+      "bytes": 3491
+    },
+    {
+      "path": "scripts/verify_pose.py",
+      "kind": "script",
+      "sha256": "db79f04e351d7955480176bddaa505c5977cb2db0c55944318b790b01977dbc4",
+      "bytes": 12767
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 76205,
+    "passed_count": 76205,
+    "notes": "35452 unchanged accepted baseline checks plus 40753 new pose/source/normal/state/hardware and published-evidence checks; two fresh-project nine-trace sets are byte-identical. Original-instruction emulation with services; no full Windows, positive special contact or polygon-collision claim."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_TerrainPoseProbe.java",
+        "sha256": "aa650fb90c2d80cb6573609deaf1cc75367810891abe1ddaf2ac3d1f14a9a381"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/replay.py",
+        "sha256": "af705db6ac0eadd9c36229da4742646e6984a14eb5f0ae90801335c2a672e34f"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_pose.py",
+        "sha256": "db79f04e351d7955480176bddaa505c5977cb2db0c55944318b790b01977dbc4"
+      }
+    ],
+    "methods": [
+      "Pin accepted main/policy/milestone and create a unique isolated i76exe run branch.",
+      "Hash PE/GZF/ZFS/MSN/TER and fresh stock fixtures; fetch and verify accepted parent artifacts from GitHub.",
+      "Reproduce five accepted baseline traces and unchanged verifier; copy authenticated GZF into two fresh private projects.",
+      "Execute original callback/terrain/filter/tire instructions under one-axis pose changes with localized original FISTP/FCOS hardware service.",
+      "Validate all logged original reads/heights/materials, source-triangle normals, typed poses, tire limits, state chronology and independent hardware requests.",
+      "Compare unchanged control to original baseline and separate lowered invocation byte-for-byte; reproduce all nine traces in a second fresh project."
+    ],
+    "limitations": "Requires licensed private PE/ZFS/MSN/TER/v97 GZF, Ghidra 12.1.4 and x86_64 x87. Direct controlled callbacks, inherited standard/peripheral/trig/ftol substitutes and inherited setup warnings. No complete WinMain/class dispatch/input, positive special contact, polygon collision, new seam/material coverage or maintained reconstruction. Private raw traces and proprietary payloads excluded."
+  }
+}
