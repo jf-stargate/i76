@@ -5,6 +5,10 @@
 All automated research agents and new conversations should begin with [AGENTS.md](AGENTS.md), then read the versioned [agent access policy](agent/protocol/access.yaml) and [cold-start bootstrap](agent/protocol/BOOTSTRAP.md) at the current `main` commit before proposing any repository changes. The repository is divided into [manual documentation](manual/README.md) and [machine-facing research/protocol](agent/protocol/README.md). The existing `ref/`, `scripts/` and `snapshot/` directories remain accessible pending migration.
 
 
+### Local Codex CLI workspace
+
+On the local machine where it is available, use `/media/neon-remote/prj/i76` as the workspace root for Codex CLI intermediate work: temporary worktrees, experimental scripts, traces, logs, and generated test artifacts. Do not create separate `/home/z/i76-*` project workspaces (for example, `/home/z/i76-mter01`) for new investigations. Isolate concurrent investigations in distinct child directories under the specified root. Inspect existing contents before writing: do not overwrite a working checkout, active session, or private input assets. This is a machine-specific workspace preference, not a repository publication path or a change to the protected-`main`/immutable-run protocol.
+
 ## Mission VM, loader ABI, and original-code emulation (2026-10-21)
 
 The current [retail mission execution contract](ref/mission_execution/README.md) includes the 96-command host ABI, BWD2/FSM loader validation, original-code x86 parser/loader emulation and the latest [v97 annotated listings](snapshot/i76.exe/i76.exe_ghidra_state_snapshot_20261021_v97/README.md). The October 19 program snapshot remains a historical baseline. These results describe **retail `i76.exe`** and are distinct from the separate `i76edit.exe` investigation.
