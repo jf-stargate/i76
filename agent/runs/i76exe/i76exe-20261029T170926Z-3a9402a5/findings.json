@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261029T170926Z-3a9402a5",
+  "findings": [
+    {
+      "finding_id": "F1-original-list-and-dispatch",
+      "claim": "Original 00461970/0049C320 class registration and list insertion produce the collection traversed by original 00461C80/00461D50; in the tested bus/GTSi unselected states, class-1 slots 004F7788/004F778C invoke and return from 00463800/00463950 through original indirect calls.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/dispatch_events.tsv",
+          "sha256": "aef6490e6a4832da0f8e5ec5964fd82a22af52dc7aa6de8386b8a73ffde9c16e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "1fe3af3ece04f7e29c509d00fdf36c3a430641d212c3a5ccdab6a3bf6ba3dce6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "12c0bbd4d03efab9e084fb65c1fa6e1ffb969a601c08862993d165ca0bccb8af"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_DescriptorScheduleProbe.java",
+          "sha256": "1ddd87d5d2cdc0f8c4e521acc187f1f11e933924bda15a70abe3692ed769d8ac"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_schedule.py",
+          "sha256": "d31f23b48f38805175b058a0fcc8c339316fd474c6ab018571b6c5fced0fd2c3"
+        }
+      ],
+      "limitations": "Bounded Ghidra original-instruction execution. Controlled setup skips complete pending initialization and full 00463120; class31/34 post services supplied; primary post predicate false. Not complete WinMain."
+    },
+    {
+      "finding_id": "F2-phase-state-controls",
+      "claim": "Three dispatcher-driven frames per vehicle show original pre pose/velocity mutations and original false-gate post return with unchanged sampled state; bus sampled states equal the direct-callback control, and a separate bus process reproduces the entire trace byte-for-byte.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "12c0bbd4d03efab9e084fb65c1fa6e1ffb969a601c08862993d165ca0bccb8af"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/dispatch_events.tsv",
+          "sha256": "aef6490e6a4832da0f8e5ec5964fd82a22af52dc7aa6de8386b8a73ffde9c16e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_schedule.py",
+          "sha256": "d31f23b48f38805175b058a0fcc8c339316fd474c6ab018571b6c5fced0fd2c3"
+        }
+      ],
+      "limitations": "Only sampled basis, position, velocity, timer, status and runtime flags compared. Three controlled M06 frames; not all runtime bytes, selected post effects, input/AI delivery or general contact fidelity."
+    },
+    {
+      "finding_id": "F3-selected-post-blocker",
+      "claim": "The selected raw diagnostic reaches both class-1 callbacks but does not complete post: original FSINCOS at 0049D409 encounters unsupported fcos P-code after raw peripheral post callbacks read incomplete state.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/dispatch_events.tsv",
+          "sha256": "aef6490e6a4832da0f8e5ec5964fd82a22af52dc7aa6de8386b8a73ffde9c16e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "a5c04ecc5362b40dd6aa9e7939f88627f8abdb10ca141075476b2f43e6ff7de3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "1fe3af3ece04f7e29c509d00fdf36c3a430641d212c3a5ccdab6a3bf6ba3dce6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/reproduce.py",
+          "sha256": "8a1578d8f1928c37ee8022066ffff106ed8f3f0115ae07300b9bf5447b5f7f4b"
+        }
+      ],
+      "limitations": "Diagnostic failure is preserved, not positive selected-post execution. Full class31/34 ownership/initialization and selected input/cockpit/audio remain unresolved; no full WinMain claim."
+    }
+  ]
+}
