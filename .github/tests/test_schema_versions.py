@@ -61,6 +61,9 @@ class VersionTests(unittest.TestCase):
   Draft202012Validator(load("1.1.0","run")).validate(sample("shared"))
 
  def test_accepted_archive_remains_schema_valid(self):
+  registry=json.loads((P/"SCHEMA_VERSIONS.json").read_text())
+  supported=registry["supported_research_schema_versions"]
+  self.assertEqual(set(supported),set(registry["schemas"]))
   runs=sorted((P.parent/"runs").glob("*/*/manifest.json"))
   self.assertGreater(len(runs),0)
   for path in runs:
@@ -68,7 +71,7 @@ class VersionTests(unittest.TestCase):
     manifest=json.loads(path.read_text())
     findings=json.loads((path.parent/"findings.json").read_text())
     version=manifest["schema_version"]
-    self.assertIn(version,("1.0.0","1.1.0"))
+    self.assertIn(version,supported)
     self.assertEqual(findings["schema_version"],version)
     Draft202012Validator(load(version,"run")).validate(manifest)
     Draft202012Validator(load(version,"finding")).validate(findings)
