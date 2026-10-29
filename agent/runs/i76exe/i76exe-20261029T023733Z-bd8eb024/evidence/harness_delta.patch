@@ -1,0 +1,67 @@
+--- accepted/I76_AuthenticTerrainPhysicsProbe.java
++++ owned/I76_TerrainPoseProbe.java
+@@ -6,11 +6,12 @@
+ import java.util.*;
+ // Derived from PR #49 candidate, SHA256 1293c967815f0684c0d9cc63537bd050fa6f76438265a8eb1d0ca1b487f25a81.
+ //@category i76
+-public class I76_AuthenticTerrainPhysicsProbe extends GhidraScript {
++public class I76_TerrainPoseProbe extends GhidraScript {
+  static final long LOADER=0x4ad6f0L,PARSE=0x4b41e0L,VCFC=0x4ad950L,SPEC=0x4ade50L,WEPN=0x4aeb90L,WDFFN=0x4ae5e0L,EXIT=0x4b4290L;
+  static final long OBJ=0x26000000L,CTX=0x26002000L,RUNTIME=0x26004000L,NAME=0x26007000L,FILE=0x25000000L;
+  static final long WDFCTX=0x26009000L,FIRST=0x26010000L,SECOND=0x26011000L,FRT=0x26012000L,SRT=0x26013000L,NODES=0x26020000L;
+  static final long STACK=0x30020000L,SENT=0x70000000L; static final int LIMIT=5000000;
++ double poseDeltaY; int frameIndex=-1,substepIndex=-1; long normalReturn,normalOut,materialReturn; double normalX,normalZ,materialX,materialZ;
+  String mode="math-clock-pop-terrain"; long tick=1000;
+  static final long TER=0x40000000L,MSN=0x41000000L;byte[] missionBytes,terrainBytes;int tdefOff,wrldOff,spawnOff;int terrainReads,groundCalls,solverCalls;long terrainReturn,solverReturn;
+  Process host;DataOutputStream hostIn;DataInputStream hostOut;long probeReturn,contactPtr,solverFlagsPtr;int positiveProbe,frames=2;long tireReturn,tireRuntime,heightReturn;double heightX,heightZ;
+@@ -46,6 +47,8 @@
+   if(spawnOff==0)throw new Exception("spawn");
+   e.writeMemory(a(OBJ+0x18),Arrays.copyOfRange(missionBytes,spawnOff+16,spawnOff+52));for(int k=0;k<3;k++)wd(OBJ+0x40+8*k,Float.intBitsToFloat((int)u32(MSN+spawnOff+8+44+4*k)));
+   if(mode.contains("lowered")){wd(OBJ+0x48,rd64(OBJ+0x48)-1.0);log("DIAGNOSTIC_POSE_OFFSET",0,"sourceSpawnYMinus=1.0;terrain=unaltered_retail");}
++  wd(OBJ+0x48,rd64(OBJ+0x48)+poseDeltaY);
++  log("CONTROLLED_POSE",0,"deltaY="+poseDeltaY+";terrain=authenticated_unmodified_M06;x="+rd64(OBJ+0x40)+";y="+rd64(OBJ+0x48)+";z="+rd64(OBJ+0x50));
+   log("CONTACT_GEOMETRY",0x00440740L,"runtime="+hx(u32(OBJ+0x70))+";probeFourPoints="+vec(u32(OBJ+0x70)+4,12));
+   log("RETAIL_SPAWN_POSE",0,"offset="+hx(spawnOff)+";basis="+vec(OBJ+0x18,9)+";x="+rd64(OBJ+0x40)+";y="+rd64(OBJ+0x48)+";z="+rd64(OBJ+0x50));
+  }
+@@ -58,7 +61,7 @@
+  void w32(long p,long v){e.writeMemoryValue(a(p),4,v&0xffffffffL);}
+  void mem(long p,int n){e.writeMemory(a(p),new byte[n]);}
+  String cstr(long p,int max){StringBuilder b=new StringBuilder();for(int i=0;i<max;i++){byte[] x=e.readMemory(a(p+i),1);if(x==null||x.length<1){b.append("?");break;}if(x[0]==0)break;b.append((char)(x[0]&255));}return b.toString();}
+- void log(String kind,long pc,String detail){trace.println(scenario+"\t"+kind+"\t"+hx(pc)+"\t"+detail);}
++ void log(String kind,long pc,String detail){trace.println(scenario+"\t"+kind+"\t"+hx(pc)+"\t"+detail+";frame="+frameIndex+";substep="+substepIndex);}
+  String vec(long at,int words){StringJoiner out=new StringJoiner(",");for(int j=0;j<words;j++)out.add(hx(u32(at+4L*j)));return out.toString();}
+  int invalidFloats(long at,int words){int n=0;for(int j=0;j<words;j++)if(!Float.isFinite(Float.intBitsToFloat((int)u32(at+4L*j))))n++;return n;}
+  void ret(long value){long sp=reg("ESP");long next=u32(sp);e.writeRegister("ESP",sp+4);e.writeRegister("EIP",next);e.writeRegister("EAX",value);}
+@@ -106,10 +109,14 @@
+    if(pc==0x0046dc10L){tireReturn=u32(rsp);tireRuntime=u32(u32(rsp+4)+0x70);log("TIRE_CONTACT_UPDATE",pc,"tire="+hx(u32(rsp+4))+";arg1="+hx(u32(rsp+8))+";height="+Float.intBitsToFloat((int)u32(rsp+12))+";dt="+Float.intBitsToFloat((int)u32(rsp+16))+";last="+Float.intBitsToFloat((int)u32(rsp+20)));}
+    if(tireReturn!=0 && pc==tireReturn){log("TIRE_CONTACT_RETURN",pc,"runtime="+hx(tireRuntime)+";compression="+Float.intBitsToFloat((int)u32(tireRuntime+0x24))+";height="+Float.intBitsToFloat((int)u32(tireRuntime+0x2c))+";mode="+u32(tireRuntime+0x40)+";rangeMin="+Float.intBitsToFloat((int)u32(tireRuntime+0x3c))+";rangeMax="+Float.intBitsToFloat((int)u32(tireRuntime+0x38)));tireReturn=0;}
+    if(pc==0x00437230L)log("SUSPENSION_VISUAL_UPDATE",pc,"root="+hx(u32(rsp+4))+";mode="+hx(u32(rsp+12)));
++   if(pc==0x004931c0L){normalReturn=u32(rsp);normalOut=u32(rsp+4);normalX=rd64(rsp+8);normalZ=rd64(rsp+16);}
++   if(normalReturn!=0 && pc==normalReturn){log("TERRAIN_NORMAL_RETURN",pc,"x="+normalX+";z="+normalZ+";normal="+vec(normalOut,3));normalReturn=0;}
++   if(pc==0x004927b0L){materialReturn=u32(rsp);materialX=rd64(rsp+4);materialZ=rd64(rsp+12);}
++   if(materialReturn!=0 && pc==materialReturn){log("TERRAIN_MATERIAL_RETURN",pc,"x="+materialX+";z="+materialZ+";material="+reg("EAX"));materialReturn=0;}
+    if(pc==0x004931c0L)log("TERRAIN_NORMAL_ENTER",pc,"out="+hx(u32(rsp+4))+";x="+rd64(rsp+8)+";z="+rd64(rsp+16));
+    if(pc==0x00493550L){groundCalls++;heightReturn=u32(rsp);heightX=rd64(rsp+4);heightZ=rd64(rsp+12);log("HEIGHT_ENTER",pc,"x="+heightX+";z="+heightZ);}
+    if(heightReturn!=0 && pc==heightReturn){log("HEIGHT_RETURN",pc,"x="+heightX+";z="+heightZ+";height="+x87());heightReturn=0;}
+-   if(pc==0x0043a5d0L){solverCalls++;solverReturn=u32(rsp);solverFlagsPtr=u32(rsp+8);log("SOLVER_ENTER",pc,"dt="+Float.intBitsToFloat((int)u32(rsp+32)));}
++   if(pc==0x0043a5d0L){substepIndex++;solverCalls++;solverReturn=u32(rsp);solverFlagsPtr=u32(rsp+8);log("SOLVER_ENTER",pc,"dt="+Float.intBitsToFloat((int)u32(rsp+32)));}
+    if(solverReturn!=0 && pc==solverReturn){log("SOLVER_RETURN",pc,"outputFlags="+hx(u32(solverFlagsPtr))+";runtimeFlags="+hx(u32(u32(OBJ+0x70)+0x454)));solverReturn=0;}
+    if(pc==0x004932e1L||pc==0x00493335L||pc==0x00493387L||pc==0x004933eeL||pc==0x00493444L||pc==0x0049349bL||pc==0x0049287bL){long ptr=pc==0x004932e1L?reg("ECX")+reg("ESI")*2:pc==0x00493335L?reg("EAX")+reg("ESI")*2:pc==0x00493387L?reg("EDX")+reg("ECX")*2:pc==0x004933eeL?reg("EDX")+reg("ESI")*2:pc==0x00493444L?reg("ECX")+reg("ESI")*2:pc==0x0049349bL?reg("EAX")+reg("EDX")*2:reg("EAX")+reg("ECX")*2;if(ptr<TER||ptr+2>TER+terrainBytes.length)throw new Exception("NONAUTHENTIC_TERRAIN_READ "+hx(ptr));log("TERRAIN_NATIVE_READ",pc,"address="+hx(ptr)+";offset="+hx(ptr-TER)+";word="+hx(u32(ptr)&65535));}
+    if(pc==0x00493652L||pc==0x004936a5L||pc==0x004936f8L||pc==0x0049373dL){long ptr=pc==0x00493652L?reg("EDX")+reg("EDI")*2:pc==0x004936a5L?reg("ECX")+reg("EAX")*2:pc==0x004936f8L?reg("ECX")+reg("EDX")*2:reg("EAX")+reg("ECX")*2;terrainReads++;if(ptr<TER||ptr+2>TER+terrainBytes.length)throw new Exception("NONAUTHENTIC_TERRAIN_READ "+hx(ptr));log("TERRAIN_NATIVE_READ",pc,"address="+hx(ptr)+";offset="+hx(ptr-TER)+";word="+hx(u32(ptr)&65535));}
+@@ -421,6 +428,7 @@
+     log("CONTROLLED_DRIVE_INPUT",0x0043bdf0L,"throttleE4="+hx(u32(liveRT+0xe4L))+";mode104="+hx(u32(liveRT+0x104L))+";speedAC="+hx(u32(liveRT+0xacL)));
+     double lastPosition=rd64(OBJ+0x50L);
+     for(int frame=0;frame<frames;frame++){
++      frameIndex=frame;substepIndex=-1;
+       log("POSE_BEFORE_FRAME",0x00463800L,"frame="+frame+";rootBasis="+vec(OBJ+0x18L,16)+";runtimeVelocity="+vec(liveRT+0xbcL,3)+";candidateMatrix="+vec(liveRT+0xc8L,16)+";runtimeFlags="+hx(u32(liveRT+0x454L)));
+       // Force a controlled active-vehicle relevance distance while leaving original 00406840 instructions intact.
+       w32(0x004c2890L,0x00000000L);w32(0x004c2894L,0x408F4000L); // camera x=1000.0 double
+@@ -449,7 +457,7 @@
+  }
+  @Override public void run()throws Exception{
+   if(!"a640ea0097dbb62e0c77b7f2847c7161".equalsIgnoreCase(currentProgram.getExecutableMD5()))throw new Exception("retail MD5 mismatch");
+-  String[] args=getScriptArgs();mode=args.length>6?args[6]:"math-clock-pop-terrain-host-filter-registry";frames=args.length>10?Integer.parseInt(args[10]):2;if(mode.contains("host")||mode.contains("filter")){host=new ProcessBuilder(args[9]).start();hostIn=new DataOutputStream(host.getOutputStream());hostOut=new DataInputStream(host.getInputStream());}missionBytes=Files.readAllBytes(Paths.get(args[7]));terrainBytes=Files.readAllBytes(Paths.get(args[8]));
++  String[] args=getScriptArgs();poseDeltaY=args.length>11?Double.parseDouble(args[11]):0.0;if(!Double.isFinite(poseDeltaY)||Math.abs(poseDeltaY)>2.0)throw new Exception("bounded pose offset required");mode=args.length>6?args[6]:"math-clock-pop-terrain-host-filter-registry";frames=args.length>10?Integer.parseInt(args[10]):2;if(mode.contains("host")||mode.contains("filter")){host=new ProcessBuilder(args[9]).start();hostIn=new DataOutputStream(host.getOutputStream());hostOut=new DataInputStream(host.getInputStream());}missionBytes=Files.readAllBytes(Paths.get(args[7]));terrainBytes=Files.readAllBytes(Paths.get(args[8]));
+   java.security.MessageDigest md=java.security.MessageDigest.getInstance("SHA-256");String mh=java.util.HexFormat.of().formatHex(md.digest(missionBytes)),th=java.util.HexFormat.of().formatHex(md.digest(terrainBytes));if(!mh.equals("923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f")||!th.equals("fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea"))throw new Exception("M06 retail fixture identity mismatch");
+   try(PrintWriter writer=new PrintWriter(args[1])){
+    trace=writer;trace.println("scenario\tkind\tpc\tdetail");

@@ -1,0 +1,55 @@
+{
+  "repository": "jf-stargate/i76",
+  "base_commit": "81bc3b0c16dd93191e59a2d85de5d7b9ea77629e",
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "primary_subsystem": "TER",
+  "milestone": "M-TER-01",
+  "run_id": "i76exe-20261029T023733Z-bd8eb024",
+  "branch": "agent/i76exe/i76exe-20261029T023733Z-bd8eb024",
+  "policy_files": [
+    {
+      "path": "AGENTS.md",
+      "git_blob": "7620e9c9a58ec417c54801280a0dff773140a799"
+    },
+    {
+      "path": "agent/protocol/VERSION",
+      "git_blob": "ee90284c27f187a315f1267b063fa81b5b84f613"
+    },
+    {
+      "path": "agent/protocol/access.yaml",
+      "git_blob": "55874544b46323efaf0fe27dbcca4f0b1007dc1e"
+    },
+    {
+      "path": "agent/protocol/BOOTSTRAP.md",
+      "git_blob": "741e9290aad1ad4efff5b9b6a9c0b68dcfc02beb"
+    },
+    {
+      "path": "manual/roadmap/DOCUMENTATION_WORKFLOW.md",
+      "git_blob": "ed43053e7fe58d681f5c7fc944e1c88e90bbee48"
+    },
+    {
+      "path": "manual/roadmap/ENGINE_SUBSYSTEM_MILESTONES.md",
+      "git_blob": "8e1113fcf81a6439360f70a5fd3a290ae92c7439"
+    }
+  ],
+  "enforcement": {
+    "ruleset": 25664125,
+    "enforcement": "active",
+    "required_checks": [
+      "integrity"
+    ],
+    "formal_approvals": 0,
+    "strict_up_to_date": false,
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "autonomous_merge": false
+  },
+  "discovery": {
+    "open_prs_at_bootstrap": [],
+    "historical_promoted_contract": "manual/reference/engine/vehicle_construction.md",
+    "accepted_unpromoted_source_run": "i76exe-20261028T174609Z-3f1f83f8",
+    "source_merge_commit": "026fd0daacb21b4da122163186a8ec2f4b49d894"
+  },
+  "notes": "Initial prior head 0219bbc2 lacked milestone file. Ref discovery revealed accepted roadmap merge 81bc3b0c; bootstrap refreshed completely at that commit before branch allocation. No repository changes outside this run."
+}

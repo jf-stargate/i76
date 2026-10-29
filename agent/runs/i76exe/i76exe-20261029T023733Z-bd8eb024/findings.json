@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261029T023733Z-bd8eb024",
+  "findings": [
+    {
+      "finding_id": "mter01-baseline-reproduced",
+      "claim": "The accepted five-scenario M06 baseline reproduces with its unchanged 35452-check verifier; the new zero-offset instrumentation control preserves all baseline bus events after removing additive logging.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/validation_components.json",
+          "sha256": "30fa2837320e891ea1a68671fbdc2404d95d50406445b6b4dbc6e8c8b68942b0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "8d58b113f5bec4e3425df069862161bd43d5701c549496bcbaf6fe044d00d144"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_pose.py",
+          "sha256": "db79f04e351d7955480176bddaa505c5977cb2db0c55944318b790b01977dbc4"
+        }
+      ],
+      "limitations": "Exact private inputs and recorded Ghidra/x87 environment required; not full retail Windows execution."
+    },
+    {
+      "finding_id": "mter01-pose-contact",
+      "claim": "A -0.25-unit M06 bus initial-Y case and byte-identical independent repeat complete 32 original callbacks/solvers with four nonzero mode-0 tire returns at frame 26; the special four-point probe stays zero.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "61926f8be726f43b1035b43480cd0885855b213793521547428ce5a3ea7ad19b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/frames.tsv",
+          "sha256": "1323847da4e3b15d5839705d18e13e13e8fa18c1fcba169e53335f3f8f118284"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "7b79a183c9c948f465c2ae065e4976357f8a827d6073f7ac4dba2ae28d02e119"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_TerrainPoseProbe.java",
+          "sha256": "aa650fb90c2d80cb6573609deaf1cc75367810891abe1ddaf2ac3d1f14a9a381"
+        }
+      ],
+      "limitations": "One controlled bus pose neighborhood, direct callback invocation and declared substitutes; no positive special or polygon contact claim."
+    },
+    {
+      "finding_id": "mter01-source-oracle",
+      "claim": "All logged original TER reads and height/material outputs in the four pose traces match authenticated sources and independent checks; original normals agree with source-triangle geometry within declared approximate-math tolerances.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "61926f8be726f43b1035b43480cd0885855b213793521547428ce5a3ea7ad19b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/normal_checks.tsv",
+          "sha256": "320fc4b27144a3dd4250f8503a666cf9e70b24e4ec093f130df04b477a92af59"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/source_read_examples.json",
+          "sha256": "534c63129913d8b801ae00f0ea60de009312d83e1c06dd8b8ebc4de977bbc4cc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_pose.py",
+          "sha256": "db79f04e351d7955480176bddaa505c5977cb2db0c55944318b790b01977dbc4"
+        }
+      ],
+      "limitations": "Maximum height error 3.55e-15 and normal component difference 8.93e-6 within these traces; not all-mission, cross-page-normal or bit-exact hardware parity."
+    },
+    {
+      "finding_id": "mter01-contact-chronology-open",
+      "claim": "The lowered case queries an original surface normal at frame 0 but first returns mode-0 tires at frame 26, later than control frame 14; the causal branch/state explanation remains unresolved.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/frames.tsv",
+          "sha256": "1323847da4e3b15d5839705d18e13e13e8fa18c1fcba169e53335f3f8f118284"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "7b79a183c9c948f465c2ae065e4976357f8a827d6073f7ac4dba2ae28d02e119"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/M_TER_01.md",
+          "sha256": "02721c0306c147ad3411da45f4faaf7cc56935f8817d165c578efc2e0b8cac64"
+        }
+      ],
+      "limitations": "Do not infer a monotonic relationship between initial Y, surface queries and tire mode. No new causal model established."
+    }
+  ]
+}

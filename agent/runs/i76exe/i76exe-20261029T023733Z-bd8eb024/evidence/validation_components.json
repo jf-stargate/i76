@@ -1,0 +1,21 @@
+{
+  "baseline": {
+    "status": "passed",
+    "test_count": 35452,
+    "passed_count": 35452,
+    "notes": "Original retail input/PE identity, original grid/material initialization, every logged TER read, independent bilinear/material model (maximum corrected error 3.55e-15), original callback/solver completion, typed pose/camera checks, contact compression limits and independent hardware FISTP/FCOS replay."
+  },
+  "new_pose_validation": {
+    "status": "passed",
+    "test_count": 40753,
+    "passed_count": 40753,
+    "notes": "Includes unchanged accepted baseline verifier (35452 checks), all new logged source reads/heights/materials, independent source-triangle normals, typed poses, tire bounds, callback chronology, byte-identical repeat, unchanged control and localized hardware replay. Count excludes nested baseline checks."
+  },
+  "combined_test_count": 76205,
+  "fresh_project_reproduction": {
+    "status": "passed",
+    "traces_compared": 9,
+    "all_byte_identical": true
+  },
+  "early_orchestration_issue": "One baseline verification ran before raw output completed and rejected its hash. Repeated after completion; unchanged verifier passed. No failing partial trace treated as positive evidence."
+}
