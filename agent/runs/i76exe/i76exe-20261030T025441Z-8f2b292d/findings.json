@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261030T025441Z-8f2b292d",
+  "findings": [
+    {
+      "finding_id": "F1-original-visual-leaves",
+      "claim": "Original 00490A00 visible-terrain selection/subdivision produces M06 adaptive leaf primitives with original vertex, edge and leaf writers; primary 267 vertices/172 leaves, contrast 97/41, rejected view 0/0.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/VISIBLE_TERRAIN.md",
+          "sha256": "fa6d151fff37a44f27fc7850a4fbd29e2cc363b4627e87324ab28e34f574bfa5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "de50b3a60892d2bd6c7eaa808c4e7ad193a569fb89308dc6108d742f6c169a32"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "796eb48e48975abdca7393d51cf7df13d742f6e227068a6df2aeca2dcb538f09"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_VisibleTerrainProbe.java",
+          "sha256": "f4b7d0d960bc7364af788b93b82ccd67bf22f196c653e15a7c32c0d78d4409c7"
+        }
+      ],
+      "limitations": "Controlled view, direct producer entry and declared numerical/peripheral services; stop before 004937C0 transform. Adaptive leaves are not flattened render polygons, pixels or live Windows evidence."
+    },
+    {
+      "finding_id": "F2-source-provenance",
+      "claim": "Every generated source-grid vertex height and every logged visual height/material read matches authenticated M06 TER bytes; selected original leaf source page/row/column/material classes independently identified.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "de50b3a60892d2bd6c7eaa808c4e7ad193a569fb89308dc6108d742f6c169a32"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_visible_terrain.py",
+          "sha256": "8beed1946d0c3225e7e150e942a3b00de606fea798c2d37b2552c23170f03210"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "8ff32a28cd07be007010ed0749be8f5c65c9d8389a9ed8c50582b89bf9be39a4"
+        }
+      ],
+      "limitations": "Exact pre-transform low12 lattice heights; source-world scale derived from original static transform. TER class is source metadata/LOD predicate input, not rendered texture identity; bit12 unresolved."
+    },
+    {
+      "finding_id": "F3-render-material-boundary",
+      "claim": "Retail polygon path 004922F0 writes record material/type B4, while alternate 004923F0/004924B0 obtains separate descriptor/global state; the tested TER class provenance does not establish rendered texture selection.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "8ff32a28cd07be007010ed0749be8f5c65c9d8389a9ed8c50582b89bf9be39a4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/VISIBLE_TERRAIN.md",
+          "sha256": "fa6d151fff37a44f27fc7850a4fbd29e2cc363b4627e87324ab28e34f574bfa5"
+        }
+      ],
+      "limitations": "Binary-static only downstream of adaptive leaf generation; neither polygon emitter, descriptor resource acquisition nor clip/draw is executed. No dynamic texture/UV claim."
+    },
+    {
+      "finding_id": "F4-downstream-prerequisites",
+      "claim": "Untreated Ghidra FPATAN at 00492EAF blocks the visible-bounds routine; host instruction service enables original adaptive production, while valid affine view, polygon ownership and material/raster initialization beyond 004937C0 remain untested.",
+      "status": "unresolved",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SERVICE_LEDGER.md",
+          "sha256": "463e67c1689da24718abf43ffeedca0a31241841632a7629e9fecad62c30ddf2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "796eb48e48975abdca7393d51cf7df13d742f6e227068a6df2aeca2dcb538f09"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPRODUCE.md",
+          "sha256": "b3b738c31076185a2cab33b19984aadd62647cbb3e8e6d0280dd00609a8f026b"
+        }
+      ],
+      "limitations": "Raw original-instruction failure is measured. Positive runs deliberately stop at pre-transform entry, not a claimed full pipeline failure. Renderer material/image and RND-R2/I1/G-RND-05 remain open."
+    }
+  ]
+}

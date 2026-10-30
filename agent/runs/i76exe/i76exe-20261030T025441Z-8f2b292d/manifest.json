@@ -1,0 +1,180 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261030T025441Z-8f2b292d",
+  "track": "i76exe",
+  "topic": "M-RND-05 original M06 visible-terrain adaptive primitive and source material provenance",
+  "base_commit": "b219f0f2edea9da7f6ea9f44b80de90d4ddecb49",
+  "started_at": "2026-10-30T02:54:41Z",
+  "summary": "Bounded positive original visible-terrain adaptive leaf generation from authenticated M06, with original writers, typed source checks, view reject/contrast, poisoned output storage and byte-identical fresh-project repeat. Rendered material/texture, affine transform/walker and image remain partial/unexecuted.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Licensed private original PE; entire annotated executable section equals raw retail bytes."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Authenticated archive provenance only; renderer resources intentionally not loaded in this bounded run."
+    },
+    {
+      "name": "miss8/M06.MSN",
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    },
+    {
+      "name": "miss8/M06.TER",
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "3c0fa9f4a5a066f3cc762f48c54beca518d2cfdd002b9e606e60b3c76d6b9a5a",
+      "bytes": 3597
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "b3b738c31076185a2cab33b19984aadd62647cbb3e8e6d0280dd00609a8f026b",
+      "bytes": 3765
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "463e67c1689da24718abf43ffeedca0a31241841632a7629e9fecad62c30ddf2",
+      "bytes": 4026
+    },
+    {
+      "path": "artifacts/VISIBLE_TERRAIN.md",
+      "kind": "report",
+      "sha256": "fa6d151fff37a44f27fc7850a4fbd29e2cc363b4627e87324ab28e34f574bfa5",
+      "bytes": 12406
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "e6d206a1ba62f372151cf437341a15b1e76cc340694c95901ce21060cc11cb8f",
+      "bytes": 2016
+    },
+    {
+      "path": "evidence/instruction_anchors.tsv",
+      "kind": "table",
+      "sha256": "8ff32a28cd07be007010ed0749be8f5c65c9d8389a9ed8c50582b89bf9be39a4",
+      "bytes": 4371
+    },
+    {
+      "path": "evidence/reproduction.json",
+      "kind": "table",
+      "sha256": "e64422c9a065c9eed8f1c1eae807ed717ec5b1398eb746d86620836f2429c141",
+      "bytes": 3382
+    },
+    {
+      "path": "evidence/results.json",
+      "kind": "table",
+      "sha256": "de50b3a60892d2bd6c7eaa808c4e7ad193a569fb89308dc6108d742f6c169a32",
+      "bytes": 11625
+    },
+    {
+      "path": "evidence/selected_events.tsv",
+      "kind": "table",
+      "sha256": "796eb48e48975abdca7393d51cf7df13d742f6e227068a6df2aeca2dcb538f09",
+      "bytes": 3927
+    },
+    {
+      "path": "scripts/I76_VisibleTerrainAudit.java",
+      "kind": "script",
+      "sha256": "d5115ae331b7b05c3c1d90a4f44be7fea89ca8b080ff267aa9ef5ef252551055",
+      "bytes": 2638
+    },
+    {
+      "path": "scripts/I76_VisibleTerrainProbe.java",
+      "kind": "script",
+      "sha256": "f4b7d0d960bc7364af788b93b82ccd67bf22f196c653e15a7c32c0d78d4409c7",
+      "bytes": 12600
+    },
+    {
+      "path": "scripts/reproduce.sh",
+      "kind": "script",
+      "sha256": "b22513baff068954a50968109d5109bcca268584668152a09e480b218861e567",
+      "bytes": 2012
+    },
+    {
+      "path": "scripts/verify_visible_terrain.py",
+      "kind": "script",
+      "sha256": "8beed1946d0c3225e7e150e942a3b00de606fea798c2d37b2552c23170f03210",
+      "bytes": 12574
+    },
+    {
+      "path": "scripts/x87_terrain_service.c",
+      "kind": "script",
+      "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1",
+      "bytes": 897
+    }
+  ],
+  "validation": {
+    "notes": "Private identities, retail opcode/section equality, all source heights and native writers, original leaf ownership and independent edge flattening, full page grids, material-predicate reads, independent numerical instruction checks, reject/contrast/poison/raw controls and fresh-project repeat. Counts measure checks only.",
+    "passed_count": 105139,
+    "status": "passed",
+    "test_count": 105139
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_VisibleTerrainAudit.java",
+        "sha256": "d5115ae331b7b05c3c1d90a4f44be7fea89ca8b080ff267aa9ef5ef252551055"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_VisibleTerrainProbe.java",
+        "sha256": "f4b7d0d960bc7364af788b93b82ccd67bf22f196c653e15a7c32c0d78d4409c7"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.sh",
+        "sha256": "b22513baff068954a50968109d5109bcca268584668152a09e480b218861e567"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_visible_terrain.py",
+        "sha256": "8beed1946d0c3225e7e150e942a3b00de606fea798c2d37b2552c23170f03210"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/x87_terrain_service.c",
+        "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1"
+      }
+    ],
+    "methods": [
+      "Authenticated protected main/protocol/ruleset bootstrap; isolated create-only branch and owned run scope.",
+      "Private PE/GZF/M06 identities; fresh read-only Ghidra audit compares entire executable section to retail PE and independently rechecks sparse opcode anchors.",
+      "Original WRLD/TDEF/ZMAP/ZONE/TER initializer followed by controlled direct original visible-terrain producer; logged local host FISTP/FPATAN and CRT/peripheral services.",
+      "Independent all-source lattice heights/page grid, original writer records, leaf allocation ownership, shared-edge graph and material predicate read checks.",
+      "Native shifted/rejected-view, unsupported FPATAN and poisoned output-storage controls; fresh imported project repeat."
+    ],
+    "limitations": "Licensed private inputs and x86_64 GNU C/x87 required. Controlled 118-dword view; direct terrain producer entry. Peripheral WRLD bodies and palette acquisition omitted, CRT/file mapping supplied; localized x87 services and ftol substitution. Positive leaf output only: stop before original 004937C0 transform; no original flattened polygons, descriptor/texture/UV/clip/draw/framebuffer, M-RND-03 or RND completion claim. Full reproduction is supplied for this bounded scope, not full retail rendering."
+  }
+}
