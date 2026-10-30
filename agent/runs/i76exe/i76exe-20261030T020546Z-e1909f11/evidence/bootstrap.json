@@ -1,0 +1,47 @@
+{
+  "repository": "jf-stargate/i76",
+  "default_branch": "main",
+  "base_commit": "d2072e673492b8fa72b268028890e6ef51dc2537",
+  "authenticated_by": [
+    "GitHub connected repository metadata: public jf-stargate/i76, default main",
+    "authenticated git fetch and GitHub ls-remote HEAD/main at exact base SHA"
+  ],
+  "protocol_version": "1.0.4",
+  "schema_version": "1.2.0",
+  "policy_reads": "AGENTS.md, VERSION, access.yaml, BOOTSTRAP.md read from captured origin/main before allocation; explicit SHA equals resolved immutable base",
+  "scope": "i76exe; advisory RND M-RND-02; original camera continuity only",
+  "branch": "agent/i76exe/i76exe-20261030T020546Z-e1909f11",
+  "allocation": "git worktree add -b from exact base; create-only local branch",
+  "workspace": "/media/neon-remote/prj/i76/rnd02-isolated",
+  "scratch": "/media/neon-remote/prj/i76/rnd02-private",
+  "enforcement": {
+    "ruleset_id": 25664125,
+    "enforcement": "active",
+    "main_requires_pr": true,
+    "formal_approvals": 0,
+    "required_check": "integrity",
+    "strict_checks": false,
+    "deletion_and_non_fast_forward_prohibited": true,
+    "credentials": "connected repository metadata reports admin; identity not independent of maintainer",
+    "bypass_visibility": "not established from public ruleset output; no bypass relied upon",
+    "decision": "proposal only; no main push, force push, merge or authoritative promotion"
+  },
+  "context": {
+    "open_pr_search": "GitHub search repo:jf-stargate/i76 is:pr is:open returned none at bootstrap and prepublication",
+    "branches": "GitHub search_branches consulted; separate existing local rnd01/control workspaces observed and not modified",
+    "accepted_runs_read": [
+      "i76exe-20261027T031313Z-32de4d1e",
+      "i76exe-20261028T172133Z-66a1688b",
+      "i76exe-20261023T153639Z-95865b83"
+    ],
+    "accepted_context": "VCF construction and bounded class scheduling promotions/reference inspected through RND index and baseline records; CAP-CONTROL-01 PR #64 already merged in base; no selected-post code reused"
+  },
+  "prepublication_main": "a474af7f893d240706e4bfa752e4dc0212e46ebd",
+  "prepublication_reconciliation": "PR #65 adds RND-v1 acceptance planning; protocol unchanged, direct M-RND-02 remains valid. Original base retained; no RND-R1/M06 scene/subsystem completion inferred.",
+  "policy_file_sha256": {
+    "AGENTS.md": "c15972561bb0835c50f962256e486096be0f3bc8567cbcdae41011d88990f3e2",
+    "agent/protocol/VERSION": "d1b77b88f4b9f675a900e4143ac768a21218623cfe1703ca43162388c3271bd6",
+    "agent/protocol/access.yaml": "d139243c39affe247c0afbc0af3ca40de0e6e28ff03f8d24f7c672401bffc4c9",
+    "agent/protocol/BOOTSTRAP.md": "13f4b819a5ebcef2a874bdd066f93f03ecc6e8e457b95daad3e258c2de0044c7"
+  }
+}
