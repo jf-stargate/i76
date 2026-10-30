@@ -2,7 +2,7 @@
 
 **Status: proposed technical planning for human review; not original-code evidence, a promoted contract or authorization for maintained reconstruction.** Source accepted `main`: `8b0cf1912b3b717e2e2eb7500e44b08f37a2972a` (2026-10-29 PDT). **Binary publication track:** `i76exe`; advisory owner [RND](subsystems/RND.md) with OBJ, GEO, VEH, ENG and RES interfaces. **Capability path:** [OBJ-02 → CAP-CAMERA-01 → CAP-SLICE-01](CAPABILITY_ROADMAP.md). Research publication is governed by the current [agent bootstrap](../../agent/protocol/BOOTSTRAP.md) and [access policy](../../agent/protocol/access.yaml), not this plan.
 
-**Finite completion definition:** [RND-v1 acceptance](subsystems/RND_ACCEPTANCE.md) sets required original-behavior, integrated and optional product gates. These four technical investigations **do not, by themselves, complete RND**. M-RND-01/02 primarily support RND-R1; M-RND-03 supports RND-R2/I1; M-RND-04 supports RND-R2/I1, but its bounded clip/draw criterion alone does not prove a complete M06 terrain/material/image path. Unassigned coverage gaps G-RND-05 (authentic scene/terrain/material output) and G-RND-06 (approved final-image oracle and tolerances) remain independently explicit. Do not mark a gate complete on milestone count. The acceptance contract governs *why* further work is necessary; this document governs *how* to run bounded experiments.
+**Finite completion definition:** [RND-v1 acceptance](subsystems/RND_ACCEPTANCE.md) sets required original-behavior, integrated and optional product gates. These bounded investigations **do not, by themselves, complete RND**. M-RND-01/02 provide accepted partial research evidence for RND-R1 ([#66](https://github.com/jf-stargate/i76/pull/66), [#67](https://github.com/jf-stargate/i76/pull/67)); M-RND-03 supports RND-R2/I1, M-RND-04 is gated downstream, and preparatory M-RND-05 independently probes original M06 visible-terrain/material source provenance. Neither M-RND-04 nor M-RND-05 alone proves a completed terrain-to-image path. Full G-RND-05 output integration remains gated on M-RND-03/04; G-RND-06 (approved original image oracle/tolerances) is still unassigned. Do not mark a gate complete on milestone count. The acceptance contract governs *why* further work is necessary; this document governs *how* to run bounded experiments.
 
 This is a **second, parallel subsystem workstream**. An independently assigned CAP-CONTROL-01 investigation has now produced [merged partial PR #64](https://github.com/jf-stargate/i76/pull/64); selected-player initialization/input/frame integration remains open. The RND assignments below neither duplicate nor assert completion of that work. The overall project end state and maintained reconstruction authorization remain decisions under [project objectives](PROJECT_OBJECTIVES.md).
 
@@ -20,16 +20,20 @@ This is not yet a native pixel image, live Windows frame, or original scheduler 
                   ┌─────────────┴─────────────┐
                   ▼                           ▼
      M-RND-01 native queue producer    M-RND-02 camera continuity
-         READY / independent              READY / independent
+       ACCEPTED bounded #66               ACCEPTED bounded #67
                   │                           │
-                  └─────────────┬─────────────┘
-                                ▼
-                M-RND-03 producer → consumer
-                      after 01 + 02 evidence
-                                │
-                                ▼
-                M-RND-04 native clip/draw boundary
-                      conditional after 03
+                  └─────────────┬─────────────┘           M-RND-05
+                                ▼                     M06 visible-terrain
+                M-RND-03 producer → consumer           and material path
+                   READY with #66 + #67                  READY / parallel
+                                │                           │
+                                ▼                           │
+                M-RND-04 native clip/draw boundary          │
+                      conditional after 03                 │
+                                └──────────────┬────────────┘
+                                               ▼
+                             later joint M06 terrain + image
+                               gate (not dispatched here)
 
  Separate CAP-CONTROL-01 selected-player work ───────────┐
                                                        └─► later CAP-SLICE-01
@@ -38,12 +42,13 @@ This is not yet a native pixel image, live Windows frame, or original scheduler 
 
 | Milestone | State for dispatch | Required predecessor | Primary outcome |
 | --- | --- | --- | --- |
-| **M-RND-01** | **READY** | Accepted camera projection/arena/VCF registration + RND index | Native `00457FF0` work-record production from registered objects |
-| **M-RND-02** | **READY** | Accepted original native-root camera and math startup | Persisted original `004C2730` camera/view data across controlled pose changes |
-| **M-RND-03** | **CONDITIONAL** | M-RND-01 + M-RND-02 accepted or independently reproducible, sufficiently validated compatible inputs | Original-generated record consumed by original `0048FAC0` in one continuous emulator state |
+| **M-RND-01** | **ACCEPTED bounded evidence** ([PR #66](https://github.com/jf-stargate/i76/pull/66)) | Accepted camera projection/arena/VCF registration + RND index | Native `00457FF0` work-record production from registered objects; not RND-R1 closure |
+| **M-RND-02** | **ACCEPTED bounded evidence** ([PR #67](https://github.com/jf-stargate/i76/pull/67)) | Accepted original native-root camera and math startup | Persisted original `004C2730` camera/view data across controlled pose changes; not RND-R1 closure |
+| **M-RND-03** | **READY** | Accepted [#66](https://github.com/jf-stargate/i76/pull/66) producer and [#67](https://github.com/jf-stargate/i76/pull/67) camera results; reconcile exact state and service contracts | Original-generated record consumed by original `0048FAC0` in one continuous emulator state |
 | **M-RND-04** | **CONDITIONAL** | M-RND-03 producer/consumer positive path | Bounded original `00471FD0 → 0047C2F0/00487EA0` clip/draw execution with independent geometry/output checks |
+| **M-RND-05** | **READY, preparatory** | Authenticated M06 terrain/WRLD loader evidence and original software terrain LOD map; independent of M-RND-03 | Original M06 visible-terrain tessellation/primitive and material-source ownership, without claiming full G-RND-05 rendering/pixels |
 
-**Dispatch policy:** Milestone ID is a stable *objective*, not a run ID or lock. Create one new owned `agent/runs/i76exe/<run-id>/` per investigation and one PR each. Concurrent workers use distinct local directories under `/media/neon-remote/prj/i76`; inspect existing state and never overwrite another agent's checkout or scratch. Independent RND-01/02 agents may start concurrently after the maintainer accepts this plan. M-RND-03/04 should wait for their prerequisites, not be sent automatically on a timer.
+**Dispatch policy:** Milestone ID is a stable *objective*, not a run ID or lock. Create one new owned `agent/runs/i76exe/<run-id>/` per investigation and one PR each. Concurrent workers use distinct local directories under `/media/neon-remote/prj/i76`; inspect existing state and never overwrite another agent's checkout or scratch. After accepted #66/#67, **M-RND-03 and preparatory M-RND-05 may start concurrently** in different worker sessions. M-RND-04 still waits for positive M-RND-03 evidence; full M06 terrain-to-image integration waits for the source contracts from both paths. Do not dispatch conditional tasks on a timer.
 
 ## M-RND-01 — Original visibility producer and bucket ownership (P0)
 
@@ -106,13 +111,35 @@ This is not yet a native pixel image, live Windows frame, or original scheduler 
 
 **Deliverables:** isolated original-code run, candidate clip/draw interface, original versus service ledger, bounded control records, verifier and reproducible source/fixture list. Full software or D3D picture is a **separate future acceptance gate**, not required here.
 
+## M-RND-05 — Original M06 visible-terrain primitive and material provenance (P1, independently dispatchable)
+
+**Question:** With byte-verified retail M06 WRLD/TDEF/ZMAP/ZONE and TER pages, can the original engine's **visible terrain** selection/tessellation path be traced and preferably executed to an original-authored terrain primitive and source material identity, without confusing this with the already validated **physics** height sampler or fabricating raster output?
+
+**Why independent:** [M-RND-03](#m-rnd-03--genuine-original-producer--consumer-pipeline-p1-gated) owns the *stock vehicle* class-1 world-visibility → kind-6 bucket → geometry-consumer bridge. This milestone owns the *M06 terrain/environment* source-to-visual-primitive boundary and **does not run or assert completion** of M-RND-03. The finite [RND-v1 contract](subsystems/RND_ACCEPTANCE.md) requires vehicle **and** M06 terrain/environment contribution. It is permissible to begin source-backed terrain producer work before M-RND-03/04 complete; **positive full terrain-to-image acceptance G-RND-05 remains gated** on downstream renderer integration.
+
+**Source evidence, original anchors and prerequisites:**
+- [Accepted M06 original terrain/physics run](../../agent/runs/i76exe/i76exe-20261028T174609Z-3f1f83f8/manifest.json), [report](../../agent/runs/i76exe/i76exe-20261028T174609Z-3f1f83f8/artifacts/AUTHENTIC_TERRAIN_PHYSICS.md), [reproduction](../../agent/runs/i76exe/i76exe-20261028T174609Z-3f1f83f8/artifacts/REPRODUCE.md) and [TER discovery](subsystems/TER.md): original `004B8A10`, `00493910/00493960/004939D0/00493BD0`, `00471400/00493080`, `006442C0/006442C4/00644380` and actual 16 M06 TER pages with validated material bits. **These establish sampling/physics, not rendering.**
+- [Historical terrain visual LOD reference](../../ref/level_format/i76_runtime_terrain_lod_reference.md) describes **binary-static/analytical** `004929B0`, `00490A00`, `004911E0`, `00491A30`, `004922F0/004924B0` and requires fresh retail opcode/xref verification; do **not** assume the old symbol names or complete native rendering from the historical model.
+- For optional roads, historical `004B8780` RSEG source/LOD associations may help identify material or UV routing, but editor road-kind-to-terrain material class is **not** direct proof of rendered road texture. Do not investigate polygon **collision** candidate list `0052B94C` (separate M-TER-02).
+- Private exact retail PE, ZFS, M06 MSN/WRLD/ZMAP/TER and annotated v97 GZF, with full digests and licensed local storage; original Ghidra 12.1.4 input and all inherited substitutions logged. No pixels or private asset dump is published.
+
+**Experiment and controls:**
+1. Pin current accepted `main`, accepted protocol and RND-v1 fixture requirements; read earlier M06 TER original-run data, visual LOD historical code and current renderer traversal reports. Verify private source identities. Resolve **original** callsite and dataflow from loaded M06 terrain/view to visible-region selection, subdivision and eventual triangle/primitive/submit handoff.
+2. Construct original M06 terrain state using the accepted loader, then try the smallest reproducible *original-instruction* bounded terrain-visibility/LOD/primitive production with a **controlled, recorded camera**. Log original PCs/branch operands, source TER page/row/col, resulting world positions, material class and producer-to-output buffer/face ownership. Clip, draw, texture decode and device operations may remain substituted if explicit.
+3. Independently check vertex heights/material classes against source TER bytes and the accepted typed grid conventions; check triangle winding/ordering or UV only when source evidence supports them. Include a second view/terrain-cell contrast or a clearly rejected/empty-region control and a fresh-project replay. Test that the harness did not author the claimed original primitive output or manufactured a terrain-render list.
+4. If native original terrain emission is blocked, publish the exact original caller/precondition, last executed original PC, static writer/reader inventory, and minimal missing initialized state; distinguish a **partial but useful interface map** from positive runtime production.
+
+**Complete:** at least one original-instruction visible-terrain LOD/tessellation path uses authenticated M06 terrain bytes to emit an identifiable terrain primitive or equivalent original-render handoff record, with original writer evidence, material/position provenance, an independent typed source check and negative/contrast control. **Partial:** original renderer producer/primitive path is mapped but not executed, or original source page/material is identified only as physics input. **Inconclusive:** missing authenticated scene or essential initialization prevents testing. **Invalid:** synthetic mesh/vertex list is attributed to original code; material word is mislabeled texture/UV; outputs rely on unreported service writes.
+
+**Deliverables:** one immutable `i76exe` research run and reviewable PR with source/VA map, actual terrain asset identities, original primitive events or precise blocker, source-to-geometry material ledger, independent verifier, reproducibility steps, negative and fresh-repeat control, and `artifacts/DOCUMENTATION_IMPACT.md`. **Do not** modify accepted run/reference files, consumer worker state, project governance, or implement an independent maintained renderer. Do not mark G-RND-05 or RND-R2/I1 complete merely from source-facing producer evidence.
+
 ## Relation to RND-v1 completion and new worker dispatch
 
 The contract [`subsystems/RND_ACCEPTANCE.md`](subsystems/RND_ACCEPTANCE.md) sets the finite target scenario and a separate acceptance decision. The present worker queue is not an exhaustive rendering backlog. After a reviewed research run, the coordinator must map observed findings and blockers to **RND-R1**, **RND-R2**, **RND-I1** and the specific `SC-RND` tests rather than continuing a function-by-function search.
 
-- **M-RND-01 → RND-R1** and **M-RND-02 → RND-R1:** both can be dispatched independently; each may return partial or negative evidence without auto-closing RND-R1.
-- **M-RND-03 → RND-R2/I1** and **M-RND-04 → RND-R2/I1:** are gated on positive, compatible source evidence and do not by themselves guarantee terrain/material output or any native framebuffer.
-- **G-RND-05** terrain/environment/material-to-output and **G-RND-06** approved original-to-image comparator remain **tracked, unassigned** gaps to close or explicitly scope-change during human review. Do not invent extra milestone IDs or independently maintained code merely because gaps are named.
+- **M-RND-01 → RND-R1** and **M-RND-02 → RND-R1:** merged [#66](https://github.com/jf-stargate/i76/pull/66) and [#67](https://github.com/jf-stargate/i76/pull/67) provide bounded accepted evidence, not a full ratified RND-R1/M06 fixture.
+- **M-RND-03 → RND-R2/I1:** now assignable based on accepted #66/#67, but must **join their original behavior in one emulator state**, not splice independent traces. **M-RND-04** remains downstream gated. Neither alone proves original terrain/material output or a framebuffer.
+- **M-RND-05 → G-RND-05 preliminary source/primitive provenance:** independently assignable M06 visual-terrain producer experiment, but **full G-RND-05 terrain→material→image acceptance stays blocked** until actual integrated renderer evidence from M-RND-03/04 and further necessary work. **G-RND-06** original image comparator/tolerances remains unassigned, subject to maintainer fixture decision. No independent maintained code is authorized.
 - **RND-P1** is not assigned to current original-binary researchers; independent maintained implementation requires its own authorization.
 
 ## Common validation and publication contract
@@ -127,26 +154,26 @@ For every worker:
 - Publish **only one new immutable owned run per PR** with required `manifest.json`, `findings.json`, `validation.json`, artifact hashes, research report, `artifacts/DOCUMENTATION_IMPACT.md` and precise failure/limits. Do not modify other runs, canonical references, governance or agent branches, and **do not merge**.
 - Review through normal protected `main` with required green trusted `integrity`, then human scientific/technical acceptance. Research acceptance is not automatic technical promotion.
 
-## Suggested CLI first-turn prompts
+## Suggested CLI first-turn prompts (current assignments)
 
-Use a **new** Codex session for each distinct assigned milestone. The short prompt is sufficient only because full objectives and procedures are in this accepted repository file:
+Use a **new** Codex session for each milestone, reading the full accepted section above. Do not dispatch M-RND-04 until M-RND-03's positive path is accepted.
 
-**Worker A (READY)**
+**Worker A — M-RND-03 (READY)**
 ```text
-Bootstrap independently against current protected main at https://github.com/jf-stargate/i76, following AGENTS.md and agent/protocol/BOOTSTRAP.md.
-Your assigned objective is M-RND-01 in manual/roadmap/RND_SUBSYSTEM_MILESTONES.md, using manual/roadmap/subsystems/RND.md.
-Read linked accepted evidence, confirm private source identities, and implement the bounded original-00457FF0 visibility-producer experiment with genuine original registered objects and original render arena.
-Do not synthesize a spatial record to claim original producer success. Include negative/control cases, explicit services, independent verification and full reproduction. Publish exactly one isolated immutable i76exe research run and PR; do not merge.
-Use an isolated directory under /media/neon-remote/prj/i76. Do not interfere with any concurrent CAP-CONTROL-01 worker.
+Bootstrap independently from current protected main at https://github.com/jf-stargate/i76, using AGENTS.md and agent/protocol/BOOTSTRAP.md.
+Read manual/roadmap/RND_SUBSYSTEM_MILESTONES.md (M-RND-03), manual/roadmap/subsystems/RND.md, and manual/roadmap/subsystems/RND_ACCEPTANCE.md.
+Read and reproduce accepted PR #66 M-RND-01 original kind-6 visibility producer and PR #67 M-RND-02 original camera continuity, plus earlier original synthetic kind-6 consumer reference. Reconcile their incompatible controlled camera/root/setup contexts explicitly.
+Create the smallest original-instruction same-emulator-state sequence: native stock vehicle/root+registry, original camera 00406AB0 and persistent 004C2730, original 00457FF0 work-record producer, original 0048FAC0 consumer and downstream 0048F4C0/0045D100/00471FD0 where reachable. Do not inject queue nodes or concatenate independent trace files to claim an integrated result. Record exact same-record address/owner/bucket, record 0x0A side path or an explicit documented exclusion, and original-vs-substituted services.
+Run negative/culled and repeat controls, independent verifiers and complete reproduction. Publish exactly one new immutable i76exe research run and reviewable PR, no canonical edits or merge. Use an isolated workspace under /media/neon-remote/prj/i76, distinct from the other worker.
 ```
 
-**Worker B (READY)**
+**Worker B — M-RND-05 (READY, preparatory)**
 ```text
-Bootstrap independently against current protected main at https://github.com/jf-stargate/i76, following AGENTS.md and agent/protocol/BOOTSTRAP.md.
-Your assigned objective is M-RND-02 in manual/roadmap/RND_SUBSYSTEM_MILESTONES.md, using manual/roadmap/subsystems/RND.md.
-Read linked accepted camera/root evidence, verify source identities and extend controlled original-00406AB0 camera continuity across two distinct native-root poses and consecutive calls while preserving persistent 004C2730 and smoothing state.
-Distinguish harness-controlled pose from native camera writes; do not investigate selected-player post/init owned by the active CAP-CONTROL-01 agent. Publish one isolated immutable i76exe research run, original-versus-substituted ledger, independent checks, negative/repeat controls, reproduction and reviewable PR; no merge.
-Use a distinct isolated directory under /media/neon-remote/prj/i76.
+Bootstrap independently from current protected main at https://github.com/jf-stargate/i76, using AGENTS.md and agent/protocol/BOOTSTRAP.md.
+Read manual/roadmap/RND_SUBSYSTEM_MILESTONES.md (M-RND-05), manual/roadmap/subsystems/RND.md, manual/roadmap/subsystems/TER.md and manual/roadmap/subsystems/RND_ACCEPTANCE.md.
+Investigate source-backed original M06 visual terrain path independently of M-RND-03: original M06 TDEF/ZMAP/ZONE/TER loading, visible region and terrain LOD producer 004929B0, 00490A00, 004911E0, 00491A30, 004922F0/004924B0, validating original opcode/call ownership against the retail PE rather than assuming historical names.
+Attempt a bounded original-instruction native terrain primitive/handoff produced from authenticated M06 terrain under a controlled documented view. Verify source page/coordinates/heights/material, original writer PCs and negative/contrast case with an independent check and fresh replay. If blocked, publish exact missing original state/branch and a useful static source-to-visual-interface map as partial evidence. Do not conflate terrain physics, road material classes, visible texture/UV, pixel rasterization or polygon collision; do not claim completed G-RND-05.
+Publish one isolated immutable i76exe research run, service ledger, full reproduction, documentation impact and reviewable PR. Do not touch Worker A's workspace or PR; do not merge.
 ```
 
-Do **not** dispatch M-RND-03 or M-RND-04 merely because these IDs exist; gate them on prerequisite evidence and normal review. If active agent work later overlaps or supersedes a milestone, reconcile against `main` rather than launching a duplicate.
+Any new source findings must be reviewed against the finite RND-v1 acceptance contract before spawning further milestones.
