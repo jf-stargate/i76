@@ -46,7 +46,7 @@ Instruction bytes and function disassembly were read from the authenticated Ghid
 - Rejected below-height view: original bounds result zero and zero vertices/edges/leaves.
 - Pool diagnostic: 139 original candidate records, 139 clip rejections, zero bin calls. Every record count/type and indexed XYZ tuple is checked independently.
 - Fresh project imported from the authenticated GZF repeats the primary trace and output byte-for-byte.
-- The independent verifier reports 2,501 passed checks. It derives source page, row, column, packed word, height, and material class directly from M06.MSN/M06.TER and does not call emulator code.
+- The independent verifier reports 2,506 passed checks. It derives source page, row, column, packed word, height, and material class directly from M06.MSN/M06.TER and does not call emulator code.
 
 ## Limits
 
