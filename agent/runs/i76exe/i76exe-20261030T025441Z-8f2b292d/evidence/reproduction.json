@@ -1,0 +1,47 @@
+{
+  "method": "Complete scripts/reproduce.sh executed from two new Ghidra projects with final scripts; no other run/private project required.",
+  "private_output_sha256": {
+    "below.tsv": "8063bcad24f80cbcffe2d4094ff41b45c705241198e7dddf216229363d68159f",
+    "below.tsv.arena.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "below.tsv.grid.bin": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7",
+    "below.tsv.vertices.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "contrast.tsv": "10b32e51b6cd0857b3316c193649e678153082628116a695e013af82d8b7f177",
+    "contrast.tsv.arena.bin": "8f3ef20d54f44565beb95cb66dca73add6279a3dd1eff36b185dac0a42ad130a",
+    "contrast.tsv.grid.bin": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7",
+    "contrast.tsv.vertices.bin": "d5bce41cf28f0a28e0522f8dd28354b40553ea19b72b266ab52c11e49e73f6aa",
+    "poison.tsv": "decb2a3e387c325887a997f473ccdfc459b86e841fc561e968cc1f3093a949c6",
+    "poison.tsv.arena.bin": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf",
+    "poison.tsv.grid.bin": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7",
+    "poison.tsv.vertices.bin": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0",
+    "primary.tsv": "5db5352387266c3553e1b5fa262ab893116311f01b878c6eff731e140e8cdf77",
+    "primary.tsv.arena.bin": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf",
+    "primary.tsv.grid.bin": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7",
+    "primary.tsv.vertices.bin": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0",
+    "raw.tsv": "7e035e49c364e75ba63ce5e06de5e75469b6b97fa3b041f794d8a90c9627325e",
+    "raw.tsv.arena.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw.tsv.grid.bin": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7",
+    "raw.tsv.vertices.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "protocol": "I76 protocol checks passed (advisory; no merge authority)",
+  "publication": "Only hashes and bounded derived source/primitive records; no PE, GZF, resources, bulk buffers or full decompilation.",
+  "script_sha256": {
+    "I76_VisibleTerrainAudit.java": "d5115ae331b7b05c3c1d90a4f44be7fea89ca8b080ff267aa9ef5ef252551055",
+    "I76_VisibleTerrainProbe.java": "f4b7d0d960bc7364af788b93b82ccd67bf22f196c653e15a7c32c0d78d4409c7",
+    "reproduce.sh": "b22513baff068954a50968109d5109bcca268584668152a09e480b218861e567",
+    "verify_visible_terrain.py": "8beed1946d0c3225e7e150e942a3b00de606fea798c2d37b2552c23170f03210",
+    "x87_terrain_service.c": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1"
+  },
+  "status": "passed",
+  "tool_versions": {
+    "ghidra": "12.1.4",
+    "host": "x86_64 GNU C / x87",
+    "java": "OpenJDK 27-ea",
+    "python": "3.14"
+  },
+  "verification": {
+    "notes": "Private identities, retail opcode/section equality, all source heights and native writers, original leaf ownership and independent edge flattening, full page grids, material-predicate reads, independent numerical instruction checks, reject/contrast/poison/raw controls and fresh-project repeat. Counts measure checks only.",
+    "passed_count": 105139,
+    "status": "passed",
+    "test_count": 105139
+  }
+}
