@@ -2,6 +2,8 @@
 
 **Status: proposed technical planning for human review; not original-code evidence, a promoted contract or authorization for maintained reconstruction.** Source accepted `main`: `8b0cf1912b3b717e2e2eb7500e44b08f37a2972a` (2026-10-29 PDT). **Binary publication track:** `i76exe`; advisory owner [RND](subsystems/RND.md) with OBJ, GEO, VEH, ENG and RES interfaces. **Capability path:** [OBJ-02 → CAP-CAMERA-01 → CAP-SLICE-01](CAPABILITY_ROADMAP.md). Research publication is governed by the current [agent bootstrap](../../agent/protocol/BOOTSTRAP.md) and [access policy](../../agent/protocol/access.yaml), not this plan.
 
+**Finite completion definition:** [RND-v1 acceptance](subsystems/RND_ACCEPTANCE.md) sets required original-behavior, integrated and optional product gates. These four technical investigations **do not, by themselves, complete RND**. M-RND-01/02 primarily support RND-R1; M-RND-03 supports RND-R2/I1; M-RND-04 supports RND-R2/I1, but its bounded clip/draw criterion alone does not prove a complete M06 terrain/material/image path. Unassigned coverage gaps G-RND-05 (authentic scene/terrain/material output) and G-RND-06 (approved final-image oracle and tolerances) remain independently explicit. Do not mark a gate complete on milestone count. The acceptance contract governs *why* further work is necessary; this document governs *how* to run bounded experiments.
+
 This is a **second, parallel subsystem workstream**. An independently started CLI agent already owns CAP-CONTROL-01 selected-player post/init; the RND assignments below do not implement or assert completion of that work. The overall project end state and maintained reconstruction authorization remain decisions under [project objectives](PROJECT_OBJECTIVES.md).
 
 ## Measurable RND capability target
@@ -103,6 +105,15 @@ This is not yet a native pixel image, live Windows frame, or original scheduler 
 **Complete:** one original clip/draw target executes through a measured, owned geometry case with independently verified output or state semantics, a distinct negative control, and no unexplained invalid memory state. **Partial:** reaches clip/draw entry but external service must still replace its body; native but no trustworthy output; historical synthetic-only record. **Invalid:** asserts pixels or GPU equivalence from polygon wrapper counts.
 
 **Deliverables:** isolated original-code run, candidate clip/draw interface, original versus service ledger, bounded control records, verifier and reproducible source/fixture list. Full software or D3D picture is a **separate future acceptance gate**, not required here.
+
+## Relation to RND-v1 completion and new worker dispatch
+
+The contract [`subsystems/RND_ACCEPTANCE.md`](subsystems/RND_ACCEPTANCE.md) sets the finite target scenario and a separate acceptance decision. The present worker queue is not an exhaustive rendering backlog. After a reviewed research run, the coordinator must map observed findings and blockers to **RND-R1**, **RND-R2**, **RND-I1** and the specific `SC-RND` tests rather than continuing a function-by-function search.
+
+- **M-RND-01 → RND-R1** and **M-RND-02 → RND-R1:** both can be dispatched independently; each may return partial or negative evidence without auto-closing RND-R1.
+- **M-RND-03 → RND-R2/I1** and **M-RND-04 → RND-R2/I1:** are gated on positive, compatible source evidence and do not by themselves guarantee terrain/material output or any native framebuffer.
+- **G-RND-05** terrain/environment/material-to-output and **G-RND-06** approved original-to-image comparator remain **tracked, unassigned** gaps to close or explicitly scope-change during human review. Do not invent extra milestone IDs or independently maintained code merely because gaps are named.
+- **RND-P1** is not assigned to current original-binary researchers; independent maintained implementation requires its own authorization.
 
 ## Common validation and publication contract
 
