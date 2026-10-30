@@ -1,0 +1,149 @@
+{
+  "identities": {
+    "exe": {
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "bytes": 1050624
+    },
+    "gzf": {
+      "sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "md5": "626cb75ee5232e083d00e2849dafd9ea",
+      "bytes": 6444695
+    },
+    "zfs": {
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "bytes": 55535506
+    },
+    "msn": {
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "bytes": 47814
+    },
+    "ter": {
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "bytes": 524288
+    },
+    "strlkup": {
+      "sha256": "767e0025a6532e44b5d8efdb40c0a95d115b1c608635869e00e47476dc219b44",
+      "md5": "e5951e0f025333c3c1616536ef28dc76",
+      "bytes": 55808
+    }
+  },
+  "cases": {
+    "pending_bus": {
+      "trace_sha256": "98c17d39b31e512fc83bad1ae73d108089a322ba84b5cd0be732ecf27007d9a1",
+      "memory_warnings": [
+        "WARN  Uninitialized memory read at 004461e0: ram:00000000:1 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0046ea39: ram:000c09f8:4 (EmulatorHelper)"
+      ],
+      "init_dispatches": 7,
+      "init_returns": 6
+    },
+    "pending_repeat": {
+      "trace_sha256": "98c17d39b31e512fc83bad1ae73d108089a322ba84b5cd0be732ecf27007d9a1",
+      "memory_warnings": [
+        "WARN  Uninitialized memory read at 004461e0: ram:00000000:1 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0046ea39: ram:000c09f8:4 (EmulatorHelper)"
+      ],
+      "init_dispatches": 7,
+      "init_returns": 6
+    },
+    "pending_unselected": {
+      "trace_sha256": "1000e15c4279e95e2133c546329aeb57d463d79984f70e674665f4996081b2e3",
+      "memory_warnings": [
+        "WARN  Uninitialized memory read at 004461e0: ram:00000000:1 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0046ea39: ram:000c09f8:4 (EmulatorHelper)"
+      ],
+      "init_dispatches": 7,
+      "init_returns": 6
+    },
+    "peripheral": {
+      "trace_sha256": "1a26aebdfd72c726895cd9af9d666262160b696ec391ce79d8d8cc079e50c7ef",
+      "memory_warnings": [
+        "WARN  Uninitialized memory read at 004461e0: ram:00000000:1 (EmulatorHelper)"
+      ],
+      "init_dispatches": 0,
+      "init_returns": 0
+    },
+    "noinit": {
+      "trace_sha256": "2d564204d225b7929e161767ff4420042a19af98b12e3309f4c22b242850b968",
+      "memory_warnings": [
+        "WARN  Uninitialized memory read at 004461e0: ram:00000000:1 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0046f43d: ram:0000000c:4 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0045f978: ram:00000070:4 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0045f97b: ram:00000108:4 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0045f9a2: ram:0000006c:4 (EmulatorHelper)",
+        "WARN  Uninitialized memory read at 0045faad: ram:0000a9b4:4 (EmulatorHelper)"
+      ],
+      "init_dispatches": 0,
+      "init_returns": 0
+    },
+    "postcontrol": {
+      "trace_sha256": "76db596357e161d95d715fcc2248cc50fc887be18bde19f2454fea0cabad8aa0",
+      "memory_warnings": [
+        "WARN  Uninitialized memory read at 004461e0: ram:00000000:1 (EmulatorHelper)"
+      ],
+      "init_dispatches": 0,
+      "init_returns": 0
+    },
+    "x87": {
+      "trace_sha256": "1caa1c159bc0fd9770b95754a86eff5226ed2d2eb1e73bdbe3ab8f4bedd8f81d",
+      "memory_warnings": [],
+      "init_dispatches": 0,
+      "init_returns": 0
+    },
+    "rawx87": {
+      "trace_sha256": "55d753a053288d91752d65d2f5200625926232f4f9e2a2e9e32af67189804a66",
+      "memory_warnings": [],
+      "init_dispatches": 0,
+      "init_returns": 0
+    }
+  },
+  "imports": {
+    "004BC2A8": [
+      "Strlkup.dll",
+      "StrLookup_Global_Object"
+    ],
+    "004BC2B0": [
+      "Strlkup.dll",
+      "StrLookupCreate"
+    ],
+    "004BC2B4": [
+      "Strlkup.dll",
+      "StrLookupFind"
+    ]
+  },
+  "dll_exports": {
+    "StrLookupCreate": "10001000",
+    "StrLookupDestroy": "10001A40",
+    "StrLookupFind": "10001AA0",
+    "StrLookupFormat": "10001AF0",
+    "StrLookup_Global_Object": "1000C030"
+  },
+  "anchors": {
+    "00402B3C": "689c264c00",
+    "00402B49": "e8de6b0000",
+    "00402B4E": "8b0da8c24b00",
+    "00402B57": "8901",
+    "0040972C": "ff25b0c24b00",
+    "00461B94": "8b7d08",
+    "00461BFF": "ffd0",
+    "00461C01": "83c404",
+    "004F7784": "20314600",
+    "004F778C": "50394600",
+    "004F7A5C": "b0f24600",
+    "004F7A64": "20f44600",
+    "004F79F4": "10f84500",
+    "004F79FC": "f0fa4500",
+    "0049D409": "d9fb",
+    "0049D40B": "d95dfc",
+    "0049D40E": "d95df8",
+    "00463963": "e83866ffff",
+    "0046396C": "e82f22feff",
+    "0046EA2F": "a1a8c24b00",
+    "0046EA39": "8b08",
+    "00409726": "ff25b4c24b00"
+  }
+}
