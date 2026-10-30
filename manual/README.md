@@ -7,3 +7,5 @@ The legacy `ref/` tree remains a preserved historical checkpoint, not a living t
 ## Proposed planning hierarchy
 
 For maintainer review (not yet adopted as an authoritative project charter): [project objectives](roadmap/PROJECT_OBJECTIVES.md) define desired outcomes and unresolved strategic choices; [capability roadmap](roadmap/CAPABILITY_ROADMAP.md) maps them to demonstrable integration gates; [ENG/VEH/TER research milestones](roadmap/ENGINE_SUBSYSTEM_MILESTONES.md) define bounded technical investigations. Codex run IDs and merged evidence are distinct from milestone approval.
+
+**Current parallel subsystem proposal:** [RND camera/visibility/rendering discovery](roadmap/subsystems/RND.md) and [RND CLI worker milestones](roadmap/RND_SUBSYSTEM_MILESTONES.md). Two initial RND investigations can proceed alongside the independent selected-player agent, subject to maintainer acceptance of their assignment and normal protected-CI review.

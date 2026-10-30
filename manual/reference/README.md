@@ -6,6 +6,7 @@ The original project's human-readable references continue under `ref/` until rev
 
 - [Original game mission architecture](../../ref/mission_execution/README.md): mission execution, FSM integration, current research checkpoints.
 - [Vehicle VCF construction, GEO cache, and TMT binding](engine/vehicle_construction.md): scoped original-instruction emulation evidence for two stock vehicles; [promotion crosswalk](../../agent/promotions/vehicle_vcf_geo_tmt_20261023.md).
+- [Bounded original class-1 frame scheduling](engine/frame_scheduling.md): class-list registration, descriptor-driven pre/post for controlled **unselected** bus/GTSi M06 frames, distinct from full WinMain/selected-player execution; [promotion crosswalk](../../agent/promotions/engine_class1_frame_scheduling_20261029.md).
 - [Retail object model](../../ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md): historical FSM-visible identity, damage, registration, ownership and lifecycle.
 - [Original level editor](../../ref/editor/README.md): terrain, road and intersection research.
 - [Original road and terrain authoring](../../ref/editor/road_terrain_serialization.md).
