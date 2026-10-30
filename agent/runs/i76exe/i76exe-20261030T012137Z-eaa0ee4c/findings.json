@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261030T012137Z-eaa0ee4c",
+  "findings": [
+    {
+      "finding_id": "F1-pending-localization-prerequisite",
+      "claim": "Original pending dispatcher 00461B80 calls and returns six descriptor initializers, then class32 damage-child construction reaches unresolved StrLookup_Global_Object/StrLookupFind imports before class1; independent EXE startup/import and retail DLL export checks identify the authentic localization construction prerequisite.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "af47444038c9c8f9ddbdc91c9a54b5c2accc24a4fff4e0ca2441bbe230febcef"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.json",
+          "sha256": "46a7982940ce2d9e0360aec0d85d20ef71f6f5f9cb6868ae398b3cfcb7f77dcd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_SelectedInitProbe.java",
+          "sha256": "72136cf4bb721dfca12f945b171b6cb558f719566947c5e1f967f3cbebc65a6a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_selected.py",
+          "sha256": "290f26541710510e2c24884216d510806aeccf7e33ebb581fdab0aa514d3f939"
+        }
+      ],
+      "limitations": "No complete pending drain or class1 through pending; data import and lookup are unprovided. This is the next exposed dependency, not an exhaustive enumeration of later requirements."
+    },
+    {
+      "finding_id": "F2-peripheral-original-initialization",
+      "claim": "Original class31 0046F2B0 allocates the animation consumed by 0046F420; original class34 0045F810 writes root/self linkage consumed by 0045FAF0. Initialized direct controls return without new invalid reads; omission reproduces the prior invalid reads.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "af47444038c9c8f9ddbdc91c9a54b5c2accc24a4fff4e0ca2441bbe230febcef"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.json",
+          "sha256": "46a7982940ce2d9e0360aec0d85d20ef71f6f5f9cb6868ae398b3cfcb7f77dcd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_SelectedInitProbe.java",
+          "sha256": "72136cf4bb721dfca12f945b171b6cb558f719566947c5e1f967f3cbebc65a6a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_selected.py",
+          "sha256": "290f26541710510e2c24884216d510806aeccf7e33ebb581fdab0aa514d3f939"
+        }
+      ],
+      "limitations": "Direct init/post controls are separate from complete pending scheduling. Inherited optional-geometry null-string warning remains; no general radar/texture/device correctness."
+    },
+    {
+      "finding_id": "F3-bounded-hardware-fsincos",
+      "claim": "Original FSINCOS 0049D409 and FSTP32 boundaries 0049D40B/0049D40E delegated to native x87 yield bit-identical original-helper returns to an independent native helper oracle for seven operands across four rounding modes; raw P-code negative stops at 0049D409.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "af47444038c9c8f9ddbdc91c9a54b5c2accc24a4fff4e0ca2441bbe230febcef"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.json",
+          "sha256": "46a7982940ce2d9e0360aec0d85d20ef71f6f5f9cb6868ae398b3cfcb7f77dcd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_SelectedInitProbe.java",
+          "sha256": "72136cf4bb721dfca12f945b171b6cb558f719566947c5e1f967f3cbebc65a6a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_selected.py",
+          "sha256": "290f26541710510e2c24884216d510806aeccf7e33ebb581fdab0aa514d3f939"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/x87_oracle.c",
+          "sha256": "c4154d848da7df451332e76814f62138986ccd73824e06c39c89137b9b255b27"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/x87_oracle.tsv",
+          "sha256": "4d1309b446621dd8f8ebeb7dcc38726d6edb334c56c1066e7ee95ab8d534e30e"
+        }
+      ],
+      "limitations": "Numerical instruction services, masked finite abs(x)<2^63 domain. No complete FPU status/tag/unmasked exception or arbitrary-value equivalence; inherited numerical services remain."
+    },
+    {
+      "finding_id": "F4-selected-direct-init-post-control",
+      "claim": "Entire original selected class1 initializer 00463120 and post 00463950 return in a direct control; original selected gate is true, initialization sets flag 0x80000 and seven list counts 6,5,4,5,4,5,4, without injected throttle/mode/speed commands.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "af47444038c9c8f9ddbdc91c9a54b5c2accc24a4fff4e0ca2441bbe230febcef"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.json",
+          "sha256": "46a7982940ce2d9e0360aec0d85d20ef71f6f5f9cb6868ae398b3cfcb7f77dcd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_SelectedInitProbe.java",
+          "sha256": "72136cf4bb721dfca12f945b171b6cb558f719566947c5e1f967f3cbebc65a6a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_selected.py",
+          "sha256": "290f26541710510e2c24884216d510806aeccf7e33ebb581fdab0aa514d3f939"
+        }
+      ],
+      "limitations": "Direct control only. Complete selected pending initialization/frame/input delivery and control-induced physical state change not established. Optional resources/services and inherited setup warning remain."
+    }
+  ]
+}
