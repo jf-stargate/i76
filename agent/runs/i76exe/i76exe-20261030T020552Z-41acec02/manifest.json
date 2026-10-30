@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "run_id": "i76exe-20261030T020552Z-41acec02",
+  "topic": "M-RND-01: original 00457FF0 stock-bus visibility work-record production",
+  "base_commit": "d2072e673492b8fa72b268028890e6ef51dc2537",
+  "started_at": "2026-10-30T02:05:52Z",
+  "summary": "Original 00457FF0 produces and inserts a kind-6 record owned by native registered stock bus root, with original store and bucket evidence. Original behind/empty controls and fresh byte-identical repeat; no synthetic queue node or consumer claim.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Measured private licensed input; no payload published."
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 234,
+    "passed_count": 234,
+    "notes": "Scientific verifier 196/196 including exact public evidence regeneration; four fresh read-only processes and byte-identical visible repeat. Trusted base unit suite 38/38. Structural/server integrity separate. M-RND-01 bounded producer result only; no RND subsystem/frame/pixel completion."
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "c1812ddb5177e2098ea62a7f360a8e4206c182ccd03d5dc9aaa6411e51b75a6e",
+      "bytes": 3745
+    },
+    {
+      "path": "artifacts/REPORT.md",
+      "kind": "report",
+      "sha256": "ce8280ea05d498951a1827f1525f86cdd4b7eee7fdf429ba9dd88c559b8b243e",
+      "bytes": 8875
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "032554a6932629afe7749b26529a273818f77b93518d45dd9c8a5952239689bd",
+      "bytes": 2617
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "a1418cbae3aac62fdb6e1488627d06428452bdad7d02bf881346d798edff5a01",
+      "bytes": 3255
+    },
+    {
+      "path": "evidence/producer_events.json",
+      "kind": "table",
+      "sha256": "7460f3e78044c5a49d3e17920f74889af5ccaf5463284eac281be7e3d6e95a5d",
+      "bytes": 44695
+    },
+    {
+      "path": "evidence/results.json",
+      "kind": "table",
+      "sha256": "0efa8768d2f9fcaffce3f163f0aca42072d27f131732ce337e95252744a2f71b",
+      "bytes": 12652
+    },
+    {
+      "path": "scripts/I76_VisibilityProducerProbe.java",
+      "kind": "script",
+      "sha256": "bd0978c89717227854c3d786de3f08c2e9f21b2da701f1c590383b989110e33e",
+      "bytes": 25384
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "97f50d093dd32b4b5b683359331c054e202c6c8ba9baaeaa0d86e70a10564f60",
+      "bytes": 2104
+    },
+    {
+      "path": "scripts/verify_producer.py",
+      "kind": "script",
+      "sha256": "0c76299f18ca6356bd47cf43e72b7b4a42dd6882ee61ebcb3a60bafcea9deaf8",
+      "bytes": 10311
+    }
+  ],
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "97f50d093dd32b4b5b683359331c054e202c6c8ba9baaeaa0d86e70a10564f60"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_producer.py",
+        "sha256": "0c76299f18ca6356bd47cf43e72b7b4a42dd6882ee61ebcb3a60bafcea9deaf8"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_VisibilityProducerProbe.java",
+        "sha256": "bd0978c89717227854c3d786de3f08c2e9f21b2da701f1c590383b989110e33e"
+      }
+    ],
+    "methods": [
+      "Pinned authenticated main/protocol 1.0.4; one create-only remote branch and distinct checkout.",
+      "Hash verified original PE/ZFS/GZF and privately extracted stock resources.",
+      "Fresh project import; four sequential read-only/noanalysis original-instruction process probes.",
+      "Independent PE/resource/typed-transform/frustum/record/bucket checks; exact reviewed artifact comparison and repeat."
+    ],
+    "limitations": "Requires licensed private PE/ZFS/v97 GZF, Ghidra12.1.4, compatible Java/Python/liblzo2. Construction/projection numerical, OS/CRT/resource/palette/ancillary services explicit. Controlled unselected root pose and viewport; original near/depth globals retained zero. One inherited optional geometry-name null read. No original consumer, scheduler, hardware numerical parity, M06 environment or pixels."
+  }
+}

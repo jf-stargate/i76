@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261030T020552Z-41acec02",
+  "findings": [
+    {
+      "finding_id": "F1-original-kind6-production",
+      "claim": "Original 00457FF0 produces and inserts a kind-6 record owned by native registered stock bus root, with original store and bucket evidence.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "0efa8768d2f9fcaffce3f163f0aca42072d27f131732ce337e95252744a2f71b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/producer_events.json",
+          "sha256": "7460f3e78044c5a49d3e17920f74889af5ccaf5463284eac281be7e3d6e95a5d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_VisibilityProducerProbe.java",
+          "sha256": "bd0978c89717227854c3d786de3f08c2e9f21b2da701f1c590383b989110e33e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_producer.py",
+          "sha256": "0c76299f18ca6356bd47cf43e72b7b4a42dd6882ee61ebcb3a60bafcea9deaf8"
+        }
+      ],
+      "limitations": "Original-instruction emulation with serviced construction and controlled projection/root pose. No consumer, follow-camera, WinMain or pixel claim."
+    },
+    {
+      "finding_id": "F2-culling-empty-repeat",
+      "claim": "Changing only controlled root Z +50 to -50 yields original rejection and no insertion; empty world also produces none; a separate visible process repeats byte-identically.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "0efa8768d2f9fcaffce3f163f0aca42072d27f131732ce337e95252744a2f71b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/producer_events.json",
+          "sha256": "7460f3e78044c5a49d3e17920f74889af5ccaf5463284eac281be7e3d6e95a5d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_VisibilityProducerProbe.java",
+          "sha256": "bd0978c89717227854c3d786de3f08c2e9f21b2da701f1c590383b989110e33e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_producer.py",
+          "sha256": "0c76299f18ca6356bd47cf43e72b7b4a42dd6882ee61ebcb3a60bafcea9deaf8"
+        }
+      ],
+      "limitations": "Bounded fresh stock-bus cases; no exhaustive boundary/numerical-hardware coverage."
+    },
+    {
+      "finding_id": "F3-rnd-integration-open",
+      "claim": "Original-produced record consumption, camera continuity and M06 material/terrain/image integration remain unverified by this run.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "0efa8768d2f9fcaffce3f163f0aca42072d27f131732ce337e95252744a2f71b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/producer_events.json",
+          "sha256": "7460f3e78044c5a49d3e17920f74889af5ccaf5463284eac281be7e3d6e95a5d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_VisibilityProducerProbe.java",
+          "sha256": "bd0978c89717227854c3d786de3f08c2e9f21b2da701f1c590383b989110e33e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_producer.py",
+          "sha256": "0c76299f18ca6356bd47cf43e72b7b4a42dd6882ee61ebcb3a60bafcea9deaf8"
+        }
+      ],
+      "limitations": "M-RND-03 requires separately compatible validated M-RND-02 camera evidence and same-state consumer reproduction."
+    }
+  ]
+}
