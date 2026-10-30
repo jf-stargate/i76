@@ -1,0 +1,163 @@
+{
+  "status": "passed",
+  "checks": 2501,
+  "primary": {
+    "source_vertices": 267,
+    "transformed_vertices": 267,
+    "max_abs_error_xyz": [
+      0.0,
+      4.577636715907829e-06,
+      0.0
+    ],
+    "material_class_counts": {
+      "1": 94,
+      "3": 71,
+      "7": 1,
+      "5": 43,
+      "0": 58
+    },
+    "source_pages": {
+      "11": 4,
+      "10": 1,
+      "9": 6,
+      "0": 256
+    },
+    "emitter_calls": 73,
+    "submitted_index_references": 237,
+    "allocator_returns_null": 73,
+    "null_record_snapshots_suppressed": 73,
+    "valid_polygon_records_claimed": 0,
+    "trace": "final.tsv"
+  },
+  "controlled_pool_diagnostic": {
+    "affine_translation": [
+      -2860.0,
+      -28.0,
+      -47900.0
+    ],
+    "pool_base": "47000000",
+    "allocation_service": "test-owned zeroed 1 MiB scratch; original 00490590 body retained",
+    "candidate_records_before_clip": 139,
+    "clip_rejected": 139,
+    "bin_calls": 0,
+    "candidate_record_xyz_verified_against_transformed_source_indices": 139
+  },
+  "controls": {
+    "contrast": "original walker returned; 97 vertices / 41 leaves / 256 edges",
+    "rejected": "00490B23 rejected bounds; zero geometry",
+    "fresh_project_repeat": "trace and grid/vertex/arena/pretransform/pointer-list outputs byte-identical after fresh GZF import"
+  },
+  "provenance_sample": [
+    {
+      "vertex_index": 0,
+      "source_grid_xyz": [
+        512.0,
+        81.0,
+        9568.0
+      ],
+      "source": {
+        "page": 11,
+        "row": 96,
+        "column": 0,
+        "word": "2051",
+        "height_low12": 81,
+        "material_class": 1,
+        "bit12": false
+      },
+      "transformed_xyz": [
+        2560.0,
+        8.100000381469727,
+        47840.0
+      ]
+    },
+    {
+      "vertex_index": 23,
+      "source_grid_xyz": [
+        568.0,
+        300.0,
+        9608.0
+      ],
+      "source": {
+        "page": 0,
+        "row": 8,
+        "column": 56,
+        "word": "012C",
+        "height_low12": 300,
+        "material_class": 0,
+        "bit12": false
+      },
+      "transformed_xyz": [
+        2840.0,
+        30.0,
+        48040.0
+      ]
+    },
+    {
+      "vertex_index": 20,
+      "source_grid_xyz": [
+        576.0,
+        309.0,
+        9608.0
+      ],
+      "source": {
+        "page": 0,
+        "row": 8,
+        "column": 64,
+        "word": "6135",
+        "height_low12": 309,
+        "material_class": 3,
+        "bit12": false
+      },
+      "transformed_xyz": [
+        2880.0,
+        30.899999618530273,
+        48040.0
+      ]
+    },
+    {
+      "vertex_index": 15,
+      "source_grid_xyz": [
+        576.0,
+        278.0,
+        9616.0
+      ],
+      "source": {
+        "page": 0,
+        "row": 16,
+        "column": 64,
+        "word": "2116",
+        "height_low12": 278,
+        "material_class": 1,
+        "bit12": false
+      },
+      "transformed_xyz": [
+        2880.0,
+        27.80000114440918,
+        48080.0
+      ]
+    },
+    {
+      "vertex_index": 22,
+      "source_grid_xyz": [
+        568.0,
+        252.0,
+        9616.0
+      ],
+      "source": {
+        "page": 0,
+        "row": 16,
+        "column": 56,
+        "word": "20FC",
+        "height_low12": 252,
+        "material_class": 1,
+        "bit12": false
+      },
+      "transformed_xyz": [
+        2840.0,
+        25.200000762939453,
+        48080.0
+      ]
+    }
+  ],
+  "scope": "Original transform/walker/polygon emitter executed. In the primary untouched allocator state, 00490590 reads zero cursor at 006543C0 and returns null; null-address records are not captured. A separate explicitly initialized test-owned pool allowed original candidate record writes at 004923AB; the original clip routine rejected every candidate, so no binned submission, material descriptor, texture, UV, framebuffer, or image is claimed."
+}

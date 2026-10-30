@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261030T123936Z-67b725af",
+  "track": "i76exe",
+  "topic": "M-RND-06 original M06 terrain transform and pre-clip polygon candidate provenance",
+  "base_commit": "3e10251444a117c8d9da053b6887245a2bc4dbcf",
+  "started_at": "2026-10-30T12:39:36Z",
+  "summary": "Original M06 adaptive terrain leaves transform through retail 004937C0 and enter retail 004922F0. A test-owned polygon arena permits 139 source-indexed candidate records before original 0047BF00 rejects all; original 0048FE10 binning and accepted renderer submission remain unproven.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Authenticated retail PE; executable section compared byte-for-byte by Ghidra audit."
+    },
+    {
+      "name": "i76_mission_v97_verified_names.gzf",
+      "kind": "other",
+      "md5": "626cb75ee5232e083d00e2849dafd9ea",
+      "sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "notes": "Authenticated annotated Ghidra archive; retained locally."
+    },
+    {
+      "name": "M06.MSN",
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "notes": "Authenticated M06 mission resource; bytes excluded."
+    },
+    {
+      "name": "M06.TER",
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "notes": "Authenticated M06 terrain resource; bytes excluded."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "Authenticated retail i76.exe annotated Ghidra baseline",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "Private authorized GZF handoff",
+      "notes": "Imported twice into separate projects for byte-identical primary repeat; no database changes."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/REPORT.md",
+      "kind": "report",
+      "sha256": "1c5789a951958ff4e9094056bf97513019f62b850768d4636c90f64b7c76d21a",
+      "bytes": 5913
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "36253e89f6d85e3752dc75d3f43ab35db0010bd415db6b4edcd51c5b4851dc77",
+      "bytes": 2193
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "53deecbd516fca9f72e63289a21c4047a662de748a3c865d318b3e0451042e71",
+      "bytes": 1468
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "8bdadc3fedf3e75a05021a958dac54a25d8598a781cda7488e61c8b107563a86",
+      "bytes": 3262
+    },
+    {
+      "path": "evidence/instruction_anchors.tsv",
+      "kind": "table",
+      "sha256": "e574718a73220863f1e0c2b01b41c7b8d51d24236aa7ad00c7297a91cd8e67eb",
+      "bytes": 1049
+    },
+    {
+      "path": "evidence/verification.json",
+      "kind": "test-result",
+      "sha256": "960b2c9347a5cf53fc33d073f129d0badeced6206151b57d823412573704fdbc",
+      "bytes": 3805
+    },
+    {
+      "path": "scripts/I76_VisibleTerrainAudit.java",
+      "kind": "script",
+      "sha256": "b7bbd0c5432678bb362b1f91bd29206b9f4803b59c3427dca1c6c32a2be31a21",
+      "bytes": 2693
+    },
+    {
+      "path": "scripts/I76_VisibleTerrainProbe.java",
+      "kind": "script",
+      "sha256": "2db50aa5c6c1bc44d803bc9cfa9f70ec3c4d2f84088699c9a134749a238e7b68",
+      "bytes": 15849
+    },
+    {
+      "path": "scripts/verify_transform_emission.py",
+      "kind": "script",
+      "sha256": "4e9cc22591a439329473273837a7fd1b01b66f273ea425a6047a8cd523862415",
+      "bytes": 6047
+    },
+    {
+      "path": "scripts/reproduce.sh",
+      "kind": "script",
+      "sha256": "25787ed1d0ade3a35a819d993a9694370a5b1f6d1d45e52c728f83c28ccf5e35",
+      "bytes": 2138
+    },
+    {
+      "path": "scripts/x87_terrain_service.c",
+      "kind": "script",
+      "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1",
+      "bytes": 897
+    }
+  ],
+  "validation": {
+    "status": "partial",
+    "test_count": 2501,
+    "passed_count": 2501,
+    "notes": "Independent checks pass for source TER provenance, affine transform, original polygon candidate tuples, negative and contrast controls, clip rejection, and fresh GZF reimport repeat. No accepted bin/render record."
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "script",
+        "ref": "scripts/reproduce.sh",
+        "sha256": "25787ed1d0ade3a35a819d993a9694370a5b1f6d1d45e52c728f83c28ccf5e35",
+        "notes": "Fresh GZF import, all controls, fresh import repeat, verifier and protocol validator."
+      }
+    ],
+    "methods": [
+      "Ghidra 12.1.4 headless original-instruction emulation",
+      "Authenticated M06.MSN and M06.TER source page/word verification",
+      "Explicit controlled affine inputs; no fabricated camera record",
+      "Independent source-to-output and polygon-record verifier"
+    ],
+    "limitations": "Numerical x87 and selected OS/resource services are substituted and disclosed. Test-owned polygon scratch is used only in the pool diagnostic. All candidate records are rejected by original clipping under the controlled, non-game-produced camera view; no raster/image or material identity is inferred."
+  }
+}

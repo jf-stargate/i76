@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261030T123936Z-67b725af",
+  "findings": [
+    {
+      "finding_id": "F1-original-transform",
+      "claim": "Original 004937C0 transforms all 267 authenticated M06 adaptive vertices in place; an independent comparison against the pre-transform source bytes and declared controlled affine agrees within float32 rounding.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {"kind":"run-artifact","ref":"evidence/verification.json","notes":"Independent M06 TER source and affine checks."},
+        {"kind":"retail-address","ref":"004937C0","address":"004937C0","notes":"Original transformed vertex loop and bounds update."},
+        {"kind":"script","ref":"scripts/I76_VisibleTerrainProbe.java","notes":"Captures pre-transform bytes at original entry; runs original body."}
+      ],
+      "limitations": "Controlled identity affine, not an original camera record; Ghidra emulation and declared numerical services rather than live retail execution."
+    },
+    {
+      "finding_id": "F2-original-preclip-candidates",
+      "claim": "With explicitly test-owned polygon scratch backing, original 004922F0 writes 139 0xB4-byte candidate records before calling original clip target 0047BF00, and each record XYZ tuple matches its original callback vertex index after the declared affine.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {"kind":"run-artifact","ref":"evidence/verification.json","notes":"Independent record-to-index reconciliation and controls."},
+        {"kind":"retail-address","ref":"004922F0","address":"004923AB","notes":"Original record bytes captured immediately before clip call."},
+        {"kind":"retail-address","ref":"00490590","address":"00490590","notes":"Original allocator body retained; test-owned pool pointer supplied only in diagnostic."}
+      ],
+      "limitations": "All 139 candidate records are rejected by the original clip callback under this controlled view and no original bin call follows. No stock renderer submission or image is claimed."
+    },
+    {
+      "finding_id": "F3-clip-context",
+      "claim": "The original clip callback returns zero for every candidate in this controlled affine and test-owned pool diagnostic.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {"kind":"retail-address","ref":"0047BF00","address":"004923B1","notes":"Original indirect clip callback target observed as 0047BF00."},
+        {"kind":"run-artifact","ref":"evidence/verification.json","notes":"139 clip results rejected; zero bin calls."}
+      ],
+      "limitations": "The view is not a game-produced camera and renderer clipping context is incomplete; this is not a claim about stock scene output."
+    },
+    {
+      "finding_id": "F4-material-descriptor-mapping",
+      "claim": "This run does not establish a mapping from source TER material class to selected renderer descriptor, texture, or UV.",
+      "status": "unresolved",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {"kind":"retail-address","ref":"004924B0","address":"004924CC","notes":"Alternate path reads runtime global 0059C558; this run does not enter the path."},
+        {"kind":"retail-address","ref":"00471F00","address":"00471F00","notes":"Selects one of two resource handles using render-context mode."},
+        {"kind":"run-artifact","ref":"artifacts/REPORT.md","notes":"TER source classes remain provenance only; no rendered material inference."}
+      ],
+      "limitations": "Required stock resource and camera/render-context initialization is incomplete; material paths were not isolated experimentally."
+    }
+  ]
+}
