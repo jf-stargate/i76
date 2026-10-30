@@ -1,10 +1,10 @@
 # RND — camera, visibility, spatial work queue and renderer
 
-**Track:** `i76exe` (original retail `i76.exe`). **Type:** advisory subsystem discovery index, not a recovered source module, exclusive ownership assignment or independently promoted behavioral reference. **Adjacent:** ENG scheduling, OBJ active-world registry, VEH selected camera/world pose, GEO geometry and TMT materials, TER environment, RES decoded raster inputs. Research is permitted to traverse boundaries. First-stage technical milestones: [RND worker milestones](../RND_SUBSYSTEM_MILESTONES.md). Program-level goal: [CAP-CAMERA-01 / CAP-SLICE-01](../CAPABILITY_ROADMAP.md).
+**Track:** `i76exe` (original retail `i76.exe`). **Type:** advisory subsystem discovery index, not a recovered source module, exclusive ownership assignment or independently promoted behavioral reference. **Adjacent:** ENG scheduling, OBJ active-world registry, VEH selected camera/world pose, GEO geometry and TMT materials, TER environment, RES decoded raster inputs. Research is permitted to traverse boundaries. **Completion boundary:** [RND-v1 acceptance](RND_ACCEPTANCE.md) defines a finite M06 representative scenario and distinct research/integration/product gates; these are **not** automatically satisfied by finishing the first four experiments. First-stage technical milestones: [RND worker milestones](../RND_SUBSYSTEM_MILESTONES.md). Program-level goal: [CAP-CAMERA-01 / CAP-SLICE-01](../CAPABILITY_ROADMAP.md).
 
 ## Why RND now
 
-The engine investigation has merged [bounded original descriptor-based class-1 pre/post dispatch](../../reference/engine/frame_scheduling.md), and an independent active CLI investigator is pursuing **CAP-CONTROL-01 selected-player initialization**. RND provides a complementary, independently useful camera-to-visibility-to-geometry research path. Its essential missing bridge is **authentic original visibility producer → original spatial queue → already-demonstrated consumer**; this should be tested before attempting actual pixels. Do not duplicate the selected-player agent.
+The engine investigation has merged [bounded original descriptor-based class-1 pre/post dispatch](../../reference/engine/frame_scheduling.md), and [merged PR #64](https://github.com/jf-stargate/i76/pull/64) has advanced **CAP-CONTROL-01** through bounded selected-init and x87 tests, while the full selected input/frame integration remains open. RND provides a complementary, independently useful camera-to-visibility-to-geometry research path. Its essential missing bridge is **authentic original visibility producer → original spatial queue → already-demonstrated consumer**; this should be tested before attempting actual pixels. Do not duplicate the selected-player agent.
 
 ## Original-code anchors and observed boundaries
 
@@ -33,6 +33,10 @@ The addresses above are retail virtual addresses, not claimed original source fu
 | [Original dispatcher](../../../agent/runs/i76exe/i76exe-20261029T170926Z-3a9402a5/manifest.json) | Original descriptor-driven, unselected pre/post; **no** selected-player post/camera or native render phase | [bounded accepted reference](../../reference/engine/frame_scheduling.md); separate active CAP-CONTROL-01 agent owns selected execution questions. |
 
 **Original inputs:** retail `i76.exe` SHA-256 `bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3`; `I76.ZFS` SHA-256 `0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d`; private annotated Ghidra v97 GZF SHA-256 `b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce`, per accepted manifests. No original binaries, GZF or bulk proprietary assets in this repository.
+
+## Subsystem closure
+
+For any statement that RND-v1 is “done”, consult [RND-v1 acceptance](RND_ACCEPTANCE.md), the specifically linked source-verification and promotion records, and a future separate human-reviewed acceptance decision. A validated original queue consumer or clip/draw entry is not equivalent to full RND-v1 research, integration, or independently maintained product completion. RND-v1 still requires source-backed M06 terrain/material/image coverage or an explicit reviewed scope change; the separate CAP-CONTROL-01 work (including accepted partial PR #64) belongs to ENG/VEH integration rather than being silently absorbed by RND.
 
 ## Unresolved contracts and experiment priorities
 
