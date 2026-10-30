@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "run_id": "i76exe-20261030T012137Z-eaa0ee4c",
+  "topic": "CAP-CONTROL-01 original selected initialization and post-update prerequisites",
+  "base_commit": "980037f49b348e14ccdde8ba2961174a8647f090",
+  "started_at": "2026-10-30T01:21:37Z",
+  "summary": "Original pending dispatch reaches authentic peripheral initialization then stops before class1 at unbound STRLKUP localization. Direct selected class1 and peripheral controls return; hardware FSINCOS/store rounding validated. CAP-CONTROL remains open.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "miss8/M06.MSN",
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "miss8/M06.TER",
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "STRLKUP.DLL",
+      "kind": "other",
+      "md5": "e5951e0f025333c3c1616536ef28dc76",
+      "sha256": "767e0025a6532e44b5d8efdb40c0a95d115b1c608635869e00e47476dc219b44",
+      "notes": "Measured private retail dependency, PE-parsed only. Not supplied as a successful service or published."
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 197,
+    "passed_count": 197,
+    "notes": "Scientific verifier 159/159, eight separate fresh-project cases including expected negatives; trusted-base .github tests 38/38. Capability remains incomplete. Local path/hash/schema and server integrity are separate publication gates; no gameplay/merge claim."
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/CAP_CONTROL_01.md",
+      "kind": "report",
+      "sha256": "5f978758e1ce67e6c74d75baed7c7abc8f30133170b48b4776adea873730871b",
+      "bytes": 10843
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "4c3063f53197595da54351fb45ca34c5a41fc95561994e701c316b281097a4b8",
+      "bytes": 6705
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "8e2149da18a0e003a51375000b60a09a52c6ef8aced74fdf6108d8e47cb96556",
+      "bytes": 3453
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "4fd174b6d923aafb126577caf134160aee58cec4d83c19d889e0ab6ec3607042",
+      "bytes": 3764
+    },
+    {
+      "path": "artifacts/VALIDATION_REPORT.md",
+      "kind": "report",
+      "sha256": "09c6b7b7530360b5fde137bb62454869f78f6fc4f2283191b44cea3b66010650",
+      "bytes": 2157
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "fdba77f88193080085cc34d3d98d7c49e8326d5eb21fa4d8fd7b949009f082db",
+      "bytes": 2007
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "22eb22e8d6a32730ee4e80268cea2d02fb6aa3d1df2831153ad842cb62a51807",
+      "bytes": 578
+    },
+    {
+      "path": "evidence/results.json",
+      "kind": "table",
+      "sha256": "af47444038c9c8f9ddbdc91c9a54b5c2accc24a4fff4e0ca2441bbe230febcef",
+      "bytes": 5022
+    },
+    {
+      "path": "evidence/selected_events.json",
+      "kind": "table",
+      "sha256": "46a7982940ce2d9e0360aec0d85d20ef71f6f5f9cb6868ae398b3cfcb7f77dcd",
+      "bytes": 64466
+    },
+    {
+      "path": "evidence/x87_oracle.tsv",
+      "kind": "table",
+      "sha256": "4d1309b446621dd8f8ebeb7dcc38726d6edb334c56c1066e7ee95ab8d534e30e",
+      "bytes": 868
+    },
+    {
+      "path": "scripts/I76_SelectedInitProbe.java",
+      "kind": "script",
+      "sha256": "72136cf4bb721dfca12f945b171b6cb558f719566947c5e1f967f3cbebc65a6a",
+      "bytes": 61572
+    },
+    {
+      "path": "scripts/prepare_private_inputs.py",
+      "kind": "script",
+      "sha256": "8d5144bed9328014ddb29f0476108b2b46ffa0b4012b8dacea10586d8e5788d9",
+      "bytes": 1950
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "89660562edd4e68bb5cd13a50b03668d498ae6d535fc5f0d53683e0427733c2e",
+      "bytes": 3108
+    },
+    {
+      "path": "scripts/verify_selected.py",
+      "kind": "script",
+      "sha256": "290f26541710510e2c24884216d510806aeccf7e33ebb581fdab0aa514d3f939",
+      "bytes": 9897
+    },
+    {
+      "path": "scripts/x87_fistp_service.c",
+      "kind": "script",
+      "sha256": "7012e1981f12d18563a2d0c22a9ab4edd49043036176781609a6759a2d9b352f",
+      "bytes": 1838
+    },
+    {
+      "path": "scripts/x87_oracle.c",
+      "kind": "script",
+      "sha256": "c4154d848da7df451332e76814f62138986ccd73824e06c39c89137b9b255b27",
+      "bytes": 554
+    }
+  ],
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_SelectedInitProbe.java",
+        "sha256": "72136cf4bb721dfca12f945b171b6cb558f719566947c5e1f967f3cbebc65a6a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/prepare_private_inputs.py",
+        "sha256": "8d5144bed9328014ddb29f0476108b2b46ffa0b4012b8dacea10586d8e5788d9"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "89660562edd4e68bb5cd13a50b03668d498ae6d535fc5f0d53683e0427733c2e"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_selected.py",
+        "sha256": "290f26541710510e2c24884216d510806aeccf7e33ebb581fdab0aa514d3f939"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/x87_fistp_service.c",
+        "sha256": "7012e1981f12d18563a2d0c22a9ab4edd49043036176781609a6759a2d9b352f"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/x87_oracle.c",
+        "sha256": "c4154d848da7df451332e76814f62138986ccd73824e06c39c89137b9b255b27"
+      }
+    ],
+    "methods": [
+      "Pin current main policy, merged M-ENG-01, roadmap and live enforcement; allocate owned branch/worktree.",
+      "Use authenticated accepted M06 and stock bus fixtures in fresh copied-GZF project; eight sequential independent processes.",
+      "Original pending indirect init lifecycle plus independent peripheral/direct selected and raw negative controls.",
+      "Independent PE opcode/import/export/startup audit and separately compiled native x87 full-helper oracle.",
+      "159 scientific checks, 38 trusted-base tests and immutable documentation-impact handoff."
+    ],
+    "limitations": "Licensed inputs and x86_64 hardware required. Original-instruction emulation with explicit inherited services, hardware numerical instruction boundaries and one inherited setup null warning. Pending dispatcher stops on localization before class1. Direct controls do not establish full selected pending/pre/post/input/control delivery/gameplay. See ledger and report."
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "repository": "jf-stargate/i76",
+  "default_branch": "main",
+  "base_commit": "980037f49b348e14ccdde8ba2961174a8647f090",
+  "protocol": "1.0.4",
+  "schema": "1.2.0",
+  "track": "i76exe",
+  "capability": "CAP-CONTROL-01",
+  "allocation": "GitHub create-only branch at captured SHA; separate local worktree",
+  "pr58": {
+    "merged": true,
+    "merge_commit": "e06ca00650c1bf1763fac68542f09e13e3b8e883",
+    "run": "i76exe-20261029T170926Z-3a9402a5"
+  },
+  "discovery": {
+    "open_prs": [],
+    "main_ruleset": 25664125,
+    "enforcement": "disabled",
+    "branch_protected": false,
+    "configured_checks": [
+      "integrity"
+    ],
+    "formal_approvals": 0,
+    "credential_permissions": "admin/maintain/push; no merge or bypass used",
+    "publication": "proposal-only; human acceptance required"
+  },
+  "read_context": [
+    "AGENTS.md",
+    "agent/protocol/VERSION",
+    "agent/protocol/access.yaml",
+    "agent/protocol/BOOTSTRAP.md",
+    "manual/roadmap/DOCUMENTATION_WORKFLOW.md",
+    "manual/roadmap/CAPABILITY_ROADMAP.md",
+    "agent/protocol/templates/DOCUMENTATION_IMPACT.md",
+    "manual/roadmap/subsystems/ENG.md (via parent discovery)",
+    "manual/roadmap/subsystems/VEH.md (via parent discovery)",
+    "manual/reference/engine/vehicle_construction.md (accepted adjacent promotion)",
+    "PR58 report, ledger, reproduction and source"
+  ],
+  "write_scope": "owned run only",
+  "publication_recheck": {
+    "main_commit": "8b0cf19",
+    "concurrent_merges": [
+      61,
+      62
+    ],
+    "change_scope": "documentation/promotion only; no overlap or policy/tooling changes",
+    "ruleset_enforcement": "active",
+    "ruleset_updated_at": "2026-10-30T01:25:54.637Z",
+    "required_check": "integrity",
+    "read": [
+      "manual/roadmap/CAPABILITY_ROADMAP.md",
+      "manual/reference/engine/frame_scheduling.md",
+      "agent/promotions/engine_class1_frame_scheduling_20261029.md"
+    ],
+    "action": "preserve original base per isolated run-only protocol; no rebase or merge"
+  }
+}
