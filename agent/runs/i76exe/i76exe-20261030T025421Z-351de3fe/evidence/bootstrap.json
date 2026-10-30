@@ -1,0 +1,47 @@
+{
+  "repository": "jf-stargate/i76",
+  "default_branch": "main",
+  "base_commit": "b219f0f2edea9da7f6ea9f44b80de90d4ddecb49",
+  "policy_sha256": {
+    "AGENTS.md": "c15972561bb0835c50f962256e486096be0f3bc8567cbcdae41011d88990f3e2",
+    "agent/protocol/VERSION": "d1b77b88f4b9f675a900e4143ac768a21218623cfe1703ca43162388c3271bd6",
+    "agent/protocol/access.yaml": "d139243c39affe247c0afbc0af3ca40de0e6e28ff03f8d24f7c672401bffc4c9",
+    "agent/protocol/BOOTSTRAP.md": "13f4b819a5ebcef2a874bdd066f93f03ecc6e8e457b95daad3e258c2de0044c7"
+  },
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "milestone": "M-RND-03",
+  "branch": "agent/i76exe/i76exe-20261030T025421Z-351de3fe",
+  "allocation": "create-only GitHub ref from pinned SHA; isolated clone rnd03-isolated",
+  "enforcement": {
+    "ruleset_id": 25664125,
+    "enforcement": "active",
+    "required_checks": [
+      "integrity"
+    ],
+    "formal_approvals": 0,
+    "current_user_can_bypass": "never",
+    "branch_protection_endpoint": "403 Resource not accessible by integration",
+    "manual_maintainer_acceptance": true,
+    "autonomous_merge": false
+  },
+  "open_prs_at_bootstrap": [],
+  "accepted_prs": [
+    {
+      "number": 66,
+      "merged": true,
+      "merge_commit": "f2134615ba8605bd5f2ef435169420685029251a"
+    },
+    {
+      "number": 67,
+      "merged": true
+    }
+  ],
+  "predecessor_artifact_hashes": "All 9 + 13 + 9 manifest-listed artifact hashes verified on pinned main; immutable accepted reports and code read.",
+  "scope": "Only owned run; no canonical/shared changes; no merge",
+  "research_lineage": {
+    "agent/runs/i76exe/i76exe-20261030T020552Z-41acec02/scripts/I76_VisibilityProducerProbe.java": "bd0978c89717227854c3d786de3f08c2e9f21b2da701f1c590383b989110e33e",
+    "agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/scripts/I76_CameraContinuityProbe.java": "cf801bcddaa25c93f6f40121603c5a6b8c127d92a407b093e471862c377f36f5",
+    "agent/runs/i76exe/i76exe-20261023T062154Z-62e3a718/scripts/I76_RenderSceneTraversalProbe.java": "153aa5be1cc550378d3f3379e2537ea83c446b492193560d5f39e86cbac671f0"
+  }
+}

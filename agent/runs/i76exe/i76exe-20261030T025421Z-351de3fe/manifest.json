@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Measured private licensed input; no payload published."
+    }
+  ],
+  "run_id": "i76exe-20261030T025421Z-351de3fe",
+  "topic": "M-RND-03: original selected-camera / unselected-bus producer-to-consumer same-state integration",
+  "base_commit": "b219f0f2edea9da7f6ea9f44b80de90d4ddecb49",
+  "started_at": "2026-10-30T02:54:21Z",
+  "summary": "One retained original-instruction state produces and consumes original kind6 and kind10, reaches retail GEO and separate polygon wrappers, and clears original bucket; source-backed controls/repeat and explicit clip/draw substitutes.",
+  "validation": {
+    "status": "passed",
+    "test_count": 1440,
+    "passed_count": 1440,
+    "notes": "1402 independent source/byte/numeric/chronology assertions across five processes; byte-identical fresh-project repeat and second complete final-driver reproduction. 38 trusted-base tests. Three additional verifier mutations rejected. Original clip/draw substituted; no pixels, live frame, M06 or RND-v1 closure. Structural CI separate."
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "5fb9d3dccf0e52293eea2bbd8067f34f766c060006cd23ea97c7834d2500437f",
+      "bytes": 3332
+    },
+    {
+      "path": "artifacts/REPORT.md",
+      "kind": "report",
+      "sha256": "57a7ea26ffa8211b59c84345023b162e815b8fbe00dabf51d5e17153cc7be959",
+      "bytes": 11802
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "f9f14463d55dc8af8d1e5e4b128d8d3ed4d00f5b536a90510e396b7c449cac0e",
+      "bytes": 3915
+    },
+    {
+      "path": "artifacts/SERVICES.md",
+      "kind": "report",
+      "sha256": "2b75827859f674f848e55c8ebda53ad678374925a2d2fb7b6f7466f2e287fe1a",
+      "bytes": 3949
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "1d2a01310f87b2191b0d95fb4bdf77e3edcdec1b09afca63b8b11a2c23252475",
+      "bytes": 2095
+    },
+    {
+      "path": "evidence/events.json",
+      "kind": "table",
+      "sha256": "7dd2fc3235cec1180b93abd3e8952e870e76825f8243ce5708041ae98ed97378",
+      "bytes": 355538
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "23c92540d12e489a4c23e2c3be4c513451b7bc7e571299440c42a161dc57a52e",
+      "bytes": 16228
+    },
+    {
+      "path": "evidence/summary.json",
+      "kind": "table",
+      "sha256": "51f0e0808cd64f68d7217e64d5e6ce82948ec0d419f16bf3a69fc17fb7578d87",
+      "bytes": 739
+    },
+    {
+      "path": "evidence/verifier_negative_checks.json",
+      "kind": "table",
+      "sha256": "4e56c4c18e4b9acd571df634cf01a88b62a46616336f68cea7d05c6e2e1040fa",
+      "bytes": 433
+    },
+    {
+      "path": "scripts/I76_CameraSourceAudit.java",
+      "kind": "script",
+      "sha256": "be677568a6c6619f42374e19e36f44feb701cba456b9ce972982619a7f28a97f",
+      "bytes": 2043
+    },
+    {
+      "path": "scripts/I76_IntegratedRenderProbe.java",
+      "kind": "script",
+      "sha256": "5c6d11058af846ba2a862009db85f42cab76112ae50e720fcd70cc32fe3b1dc9",
+      "bytes": 35827
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "021c2ef7ef9a07e0a506febe8334c8427fc3f85912b31c9b69ddc039b34c4bcd",
+      "bytes": 3228
+    },
+    {
+      "path": "scripts/verify_integration.py",
+      "kind": "script",
+      "sha256": "497dfb14eeca2efc22a339193df94aac01da64c35830eb166a3104e92566a71a",
+      "bytes": 17563
+    }
+  ],
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraSourceAudit.java",
+        "sha256": "be677568a6c6619f42374e19e36f44feb701cba456b9ce972982619a7f28a97f"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_IntegratedRenderProbe.java",
+        "sha256": "5c6d11058af846ba2a862009db85f42cab76112ae50e720fcd70cc32fe3b1dc9"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "021c2ef7ef9a07e0a506febe8334c8427fc3f85912b31c9b69ddc039b34c4bcd"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_integration.py",
+        "sha256": "497dfb14eeca2efc22a339193df94aac01da64c35830eb166a3104e92566a71a"
+      }
+    ],
+    "methods": [
+      "Pinned authenticated protected main policy and create-only isolated branch.",
+      "Measured licensed PE/ZFS/GZF; fresh private extraction/import and five read-only processes; repeat imports independent project.",
+      "One emulator per case from native construction/registration through original camera/producer/consumer/GEO/wrappers; original queue writes observed, host queue/view writes guarded.",
+      "Standalone source-byte/geometry/numerical/chronology/negative/repeat verification and sparse PE anchors; final driver rerun from fresh project."
+    ],
+    "limitations": "Private licensed retail inputs and annotated GZF required; Ghidra12.1.4/Java27/Python/liblzo2. Controlled two-stock-bus scene, poses and supplied depth range/CRT/OS/resource/numeric services. Clip/draw and pixel acquisition substituted. One inherited optional null geometry-name read. Incomplete nonessential vehicle resources. No native clipping/pixels/M06/scheduler/hardware x87 parity/RND-v1 completion."
+  }
+}
