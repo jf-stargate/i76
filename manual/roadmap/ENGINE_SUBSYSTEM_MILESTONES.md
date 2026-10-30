@@ -89,6 +89,8 @@ Milestone IDs are stable planning identifiers, **not run IDs**. Priority is prop
 
 ### M-ENG-01 — Reach class-1 through original descriptor-driven pre/post scheduling (P1)
 
+**Accepted bounded result (2026-10-29):** [PR #58](https://github.com/jf-stargate/i76/pull/58), merge `e06ca00650c1bf1763fac68542f09e13e3b8e883`, completed the original descriptor-driven pre and post invocation criterion for three controlled **unselected** frames of stock bus/GTSi. Its immutable [report](../../agent/runs/i76exe/i76exe-20261029T170926Z-3a9402a5/artifacts/M_ENG_01.md) and [findings](../../agent/runs/i76exe/i76exe-20261029T170926Z-3a9402a5/findings.json) supersede the *planning status* here, not the historical experiment design below. Complete pending initialization, selected-player post/peripheral behavior, real input and full WinMain remain unresolved. The acceptance of one bounded research run is not automatic canonical promotion.
+
 - **Owner / interfaces:** ENG primary; VEH, OBJ world membership, MLD/TER initialization where needed.
 - **Question:** Can original `00461C80`/`00461D50` invoke class-1 `00463800`/`00463950` through normal descriptor/collection traversal, **rather than** the harness calling callbacks directly?
 - **Evidence/gap:** [ENG frame audit](../../agent/runs/i76exe/i76exe-20261028T172133Z-66a1688b/artifacts/FRAME_INITIALIZATION.md) statically establishes gameplay-state-5 phase order and descriptor table (stride `0x34`; class-1 `004F777C`). [M06 replay](../../agent/runs/i76exe/i76exe-20261028T174609Z-3f1f83f8/artifacts/AUTHENTIC_TERRAIN_PHYSICS.md) executes callbacks **manually**.
