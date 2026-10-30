@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261030T125716Z-1011d511",
+  "track": "i76exe",
+  "topic": "M-RND-04: native kind-6 polygon projected-vertex preparation on integrated original vehicle geometry",
+  "base_commit": "3e10251444a117c8d9da053b6887245a2bc4dbcf",
+  "started_at": "2026-10-30T12:57:16Z",
+  "summary": "Removes only the kind-6 callback substitute at 0047C8D0 from the accepted PR #70 continuous original-instruction path; captures native output, a behind-camera negative and independent fresh-GZF-project repeat. Kind 10 and draw remain substituted.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed retail source; not published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Measured private licensed retail resources; not published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra program; newly imported private project for repeat."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "4e4b6172a0c36b3b31b970ecfc6b57816b43d603107d744dcd2e4c3390845ff2",
+      "bytes": 2645
+    },
+    {
+      "path": "artifacts/REPORT.md",
+      "kind": "report",
+      "sha256": "31114e3d7cf258bc51df90b9e04663006ac709cfcca18dc3d282de257247c417",
+      "bytes": 4101
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "ccc74a7fd86a6ae7a247570081dc8414edb81d10f079e1be0a57cfa65aa86aee",
+      "bytes": 3013
+    },
+    {
+      "path": "artifacts/SERVICES.md",
+      "kind": "report",
+      "sha256": "c6ba8d9d152934e31632b2becf92d2d150a55b6b47309b355b3fd9d63f9bf073",
+      "bytes": 2191
+    },
+    {
+      "path": "evidence/negative.tsv",
+      "kind": "table",
+      "sha256": "b3c4393578afdf7552ca5da5ea514064e1885f4c623967075d748c5158c3218a",
+      "bytes": 4175
+    },
+    {
+      "path": "evidence/positive.tsv",
+      "kind": "table",
+      "sha256": "aff3a768b3c54672e9cd4b0f102513e63703bbf5990635c629383d993e722105",
+      "bytes": 11295
+    },
+    {
+      "path": "evidence/repeat.tsv",
+      "kind": "table",
+      "sha256": "7e0945c1c7f7c83f96b9c64fab7b48298fe4f99d52c541049ac8a95648000349",
+      "bytes": 6055
+    },
+    {
+      "path": "evidence/retail_instructions.tsv",
+      "kind": "table",
+      "sha256": "059c7343282410e9dafa449d40665ba0dbece6d8fbd345f0444088ce75b73b81",
+      "bytes": 45005
+    },
+    {
+      "path": "scripts/I76_ClipSourceAudit.java",
+      "kind": "script",
+      "sha256": "fa1acd8763031bd1c8cd09fe84aebb7995b79bf7cb880f3cf2306a9c3db1012b",
+      "bytes": 2085
+    },
+    {
+      "path": "scripts/I76_IntegratedClipProbe.java",
+      "kind": "script",
+      "sha256": "d7f9e62b1e7ae7933d7c3b6cb97002d7be17fb7844eebea28469c3503b4f369b",
+      "bytes": 36421
+    },
+    {
+      "path": "scripts/verify_clipping.py",
+      "kind": "script",
+      "sha256": "7e479b77709547364f0570716e557a43cc8880c9c4ae549014c114067f86a23f",
+      "bytes": 3589
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 18,
+    "passed_count": 18,
+    "notes": "Standalone verifier validates native 0047C8D0 output and return across two kind-6 quads, source preservation, finite projected/depth fields, destination mutation, fresh imported GZF repeat, ownership chain, negative no-submission case, preserved substitutes and exact instruction anchors. Separately reran accepted PR #70 full verifier (1402 assertions, 5 cases) before this experiment."
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_IntegratedClipProbe.java",
+        "sha256": "d7f9e62b1e7ae7933d7c3b6cb97002d7be17fb7844eebea28469c3503b4f369b"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_ClipSourceAudit.java",
+        "sha256": "fa1acd8763031bd1c8cd09fe84aebb7995b79bf7cb880f3cf2306a9c3db1012b"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_clipping.py",
+        "sha256": "7e479b77709547364f0570716e557a43cc8880c9c4ae549014c114067f86a23f"
+      }
+    ],
+    "methods": [
+      "Reproduced accepted PR #70 end-to-end driver from a new private project; full verifier passed 1402 assertions across five processes.",
+      "Ran copied probe in one emulator per case, preserving original construction/registration, camera, producer/consumer, GEO traversal and polygon wrapper chronology.",
+      "Removed only kind-6 clip/prepare substitute; retained kind-10 clip and all draw/material/device service substitutions.",
+      "Captured callback arguments, source/destination bytes and original return EAX; instruction output stores independently inspected from retail source listing.",
+      "Ran behind-camera negative in a separate emulator process and visible repeat after importing GZF into a new private Ghidra project.",
+      "Standalone verifier rechecks committed bounded events and instruction excerpt."
+    ],
+    "limitations": "Ghidra EmulatorHelper execution, not native hardware/game runtime. Controlled scene pose/view/depth and accepted harness resource/CRT/OS/allocator services remain. The observed 0047C8D0 routine performs projection/preparation without creating a clipped intersection in this case. Kind-10 clip and both drawing callbacks remain substituted. No framebuffer, pixel, terrain or hardware raster claim. Licensed EXE/ZFS/GZF and project remain private; one inherited uninitialized read warning at 004461E0 during vehicle setup."
+  }
+}

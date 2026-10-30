@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261030T125716Z-1011d511",
+  "findings": [
+    {
+      "finding_id": "F1-native-kind6-projection-output",
+      "claim": "On two authenticated original kind-6 four-vertex vehicle polygons in the continuous PR #70 original producer/consumer/GEO state, original callback 0047C8D0 reads view 004C2730 and source records, writes changed projected output records to a separate destination, preserves source bytes and returns EAX=4. The output is repeat-identical in a separately imported GZF project and carries finite coordinates with positive reciprocal depths.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/positive.tsv",
+          "sha256": "aff3a768b3c54672e9cd4b0f102513e63703bbf5990635c629383d993e722105"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/repeat.tsv",
+          "sha256": "7e0945c1c7f7c83f96b9c64fab7b48298fe4f99d52c541049ac8a95648000349"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_instructions.tsv",
+          "sha256": "059c7343282410e9dafa449d40665ba0dbece6d8fbd345f0444088ce75b73b81"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_IntegratedClipProbe.java",
+          "sha256": "d7f9e62b1e7ae7933d7c3b6cb97002d7be17fb7844eebea28469c3503b4f369b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_clipping.py",
+          "sha256": "7e479b77709547364f0570716e557a43cc8880c9c4ae549014c114067f86a23f"
+        }
+      ],
+      "limitations": "Ghidra emulated original instructions; projection/preparation was measured but no clip-plane intersection occurred. Harness supplies controlled state and documented services. No draw, framebuffer or pixels."
+    },
+    {
+      "finding_id": "F2-dispatch-entry-reconciliation",
+      "claim": "The original wrapper dispatch is mode-specific: observed kind-6 flags 0x101 select 0047C8D0/0047CE40; kind-10 flags 0x80 select 0047BF00/0047D110; earlier mode 0x15 selects 0047C2F0/00487EA0. These addresses describe distinct dispatch entries rather than conflicting names for one callback.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/positive.tsv",
+          "sha256": "aff3a768b3c54672e9cd4b0f102513e63703bbf5990635c629383d993e722105"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_instructions.tsv",
+          "sha256": "059c7343282410e9dafa449d40665ba0dbece6d8fbd345f0444088ce75b73b81"
+        }
+      ],
+      "limitations": "Observed callback combinations only; not a complete semantic classification of every mode/table slot. Kind-10 and draw bodies remain service substitutions."
+    },
+    {
+      "finding_id": "F3-behind-camera-negative",
+      "claim": "With the same probe and separate unselected target moved behind the view, original traversal produces no polygon wrapper and no kind-6 native callback.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/negative.tsv",
+          "sha256": "b3c4393578afdf7552ca5da5ea514064e1885f4c623967075d748c5158c3218a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_clipping.py",
+          "sha256": "7e479b77709547364f0570716e557a43cc8880c9c4ae549014c114067f86a23f"
+        }
+      ],
+      "limitations": "One controlled behind-view case; it does not test partially clipped input."
+    }
+  ]
+}
