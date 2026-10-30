@@ -7,6 +7,7 @@
 | [ENG — lifecycle and frame scheduling](ENG.md) | Clock/math initialization, frame phases, class callbacks, lifecycle | WinMain static order and original frame/subdivision probe |
 | [VEH — construction and dynamics](VEH.md) | Class-1 runtime, VCF construction, pose integration, tires and suspension | Promoted construction reference and authentic-terrain replay |
 | [TER — physical environment](TER.md) | TDEF/ZMAP/ZONE, TER pages, height/material/normal, road/surface interfaces | M06 original loader/sampler and editor cross-track survey |
+| [RND — camera/visibility/rendering](RND.md) | Original camera state, active-world visibility, spatial work queues, geometry traversal and clip/draw boundary | [Dedicated RND CLI worker milestones](../RND_SUBSYSTEM_MILESTONES.md), prioritizing native queue producer and camera continuity |
 
 These are **functional research ownership labels**, not recovered C translation units, exclusive write rights, or independent binary publication tracks. An original function, run, or script may legitimately be linked from several indexes. The editor (`i76edit.exe`) is a separate binary whose authoring/format observations can inform TER; editor internals remain editor-owned. The shell is also a distinct target, subject to whatever publication tracks the *currently accepted* protocol permits.
 
