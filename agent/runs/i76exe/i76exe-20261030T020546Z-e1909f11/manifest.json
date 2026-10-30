@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261030T020546Z-e1909f11",
+  "track": "i76exe",
+  "topic": "M-RND-02: persistent original camera continuity across controlled native-root poses with negative/history/repeat controls",
+  "base_commit": "d2072e673492b8fa72b268028890e6ef51dc2537",
+  "started_at": "2026-10-30T02:05:46Z",
+  "summary": "Original direct 00406AB0 continuity for bus/GTSi across translation/orientation and repeated calls; full camera/smoothing write provenance, exact source transforms, 58 calls and independent fresh-project repeat. No live selected-post, M06 scene or RND-v1 closure.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private extracted original i76.exe, no binary bytes published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Private original resource archive supplying GTSi/bus VCF/VDF/GEO/TMT fixture files, checksum verified and not published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private v97 GZF game-environment handoff",
+      "notes": "Ghidra headless read-only, no annotation or database mutation."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/CAMERA_CONTINUITY.md",
+      "kind": "report",
+      "sha256": "c0e90ce72f6c29d7b1adefe7b1b8777a3355624dffa3c19de321abc4c38d326d",
+      "bytes": 12513
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "d395b248948b87f974ead7a105b927d296a99e50120566e3bb1056dacc574d14",
+      "bytes": 3841
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "d3cf25d744dce78ea7459f97dca39d90cad190d00ed34d39961e1b6e5ac8d769",
+      "bytes": 6174
+    },
+    {
+      "path": "artifacts/SERVICES.md",
+      "kind": "report",
+      "sha256": "118d43afe3cdaae9df4fb1dcab8db7cee40433f5f624ab292219a47e131a67c5",
+      "bytes": 3892
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "755913574636060dd7ca147f23cf95521727c05cf44ee4e7f67cca22f4e29297",
+      "bytes": 2758
+    },
+    {
+      "path": "evidence/camera_events.tsv",
+      "kind": "table",
+      "sha256": "1ca50332ba00b3f72296675cb1e42913ac77e4e5f9c140686ba1ef92b833209a",
+      "bytes": 1051223
+    },
+    {
+      "path": "evidence/numerics.json",
+      "kind": "table",
+      "sha256": "9ff79ea2c8919faf72646e208530702eb7c1b632dca3f1ab25cb1bc2f7932a46",
+      "bytes": 43131
+    },
+    {
+      "path": "evidence/opcode_anchors.tsv",
+      "kind": "table",
+      "sha256": "abb2adbdfe580cbc656f43ed8953c473183cd72eaeca29c2edd423ce6b5c89e8",
+      "bytes": 3566
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "da63d96189c9f4b4605b7361bcf74dfb8b326285d450861f5664d5e56ffbc561",
+      "bytes": 11612
+    },
+    {
+      "path": "evidence/verification.json",
+      "kind": "test-result",
+      "sha256": "b521caf98966e1c1df366a32e1a6a0b374d25bf72cb9d44a19e94e3bcf33620c",
+      "bytes": 161
+    },
+    {
+      "path": "scripts/I76_CameraContinuityProbe.java",
+      "kind": "script",
+      "sha256": "cf801bcddaa25c93f6f40121603c5a6b8c127d92a407b093e471862c377f36f5",
+      "bytes": 31616
+    },
+    {
+      "path": "scripts/I76_CameraSourceAudit.java",
+      "kind": "script",
+      "sha256": "a070023807dd83636f7c2b72770a46b77116d860661bd4cd116c9ade236327ec",
+      "bytes": 1796
+    },
+    {
+      "path": "scripts/verify_continuity.py",
+      "kind": "script",
+      "sha256": "61eb8df73350b0c29ef693b9e2e4ff4451e1cd4de30a2b58394b5940ce256f38",
+      "bytes": 12271
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 9457,
+    "passed_count": 9457,
+    "notes": "58 original direct camera returns in 8 experiments; full 118-dword state and smoothing chronology; typed transforms, bounds, Gram and smoothing invariants; reset/stationary/cold-B/zero-basis/null-VLOC controls; independent fresh-project byte-identical repeat; retail PE opcode/identity, private GZF/ZFS, fixture and trace verification. Research assertions, not completion percentage or hardware parity."
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraContinuityProbe.java",
+        "sha256": "cf801bcddaa25c93f6f40121603c5a6b8c127d92a407b093e471862c377f36f5"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraSourceAudit.java",
+        "sha256": "a070023807dd83636f7c2b72770a46b77116d860661bd4cd116c9ade236327ec"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_continuity.py",
+        "sha256": "61eb8df73350b0c29ef693b9e2e4ff4451e1cd4de30a2b58394b5940ce256f38"
+      }
+    ],
+    "methods": [
+      "Fresh bootstrap and isolated create-only branch/worktree at authenticated main; live ruleset and active PR/branch discovery.",
+      "Hash private original PE/ZFS/GZF; independently extract fixtures from original archive; import separate private Ghidra projects.",
+      "Execute original native root, selected VCF/VLOC, world registration, math startup and camera projection; supply explicitly recorded pose/velocity/timer inputs.",
+      "Record direct original camera full return, six pose-read anchors, source matrix, all 118 dwords and every changed camera/smoothing dword with writer PC.",
+      "Independently verify inverse transforms, four frustum corners, bounding center/radius, Gram conditioning, smoothing recurrence, controls and fresh-project exact repeat.",
+      "Read-only sparse source audit and independent retail-PE opcode validation; full commands in REPRODUCE.md."
+    ],
+    "limitations": "Original-instruction emulation with documented OS/CRT/resource/trig/ftol/ancillary substitutes. Controlled constructed-root poses, runtime velocity, timers and direct camera entry; not native physics, original selected-post or scheduler. Known constructor x87/optional-geometry warnings remain. No hardware x87 parity, M06 mission scene, visibility, pixels, canonical promotion or RND-v1 closure. Complete reproduction procedure requires separately held licensed private inputs and matching tool versions; only bounded derived evidence is public."
+  }
+}

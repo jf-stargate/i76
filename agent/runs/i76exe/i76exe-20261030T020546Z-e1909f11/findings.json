@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261030T020546Z-e1909f11",
+  "findings": [
+    {
+      "finding_id": "rnd02-persistent-camera-pose-response",
+      "claim": "Original directly invoked 00406AB0 returns across A,A,B,B,C,C,A,A in one persistent original-created/VCF-attached/registered bus or GTSi emulator, retaining all 118 camera dwords and both measured smoothing regions. Controlled translation produces exact source-origin delta (10,20,30); controlled root rotation rotates the original attachment offset. All valid sampled six-double outputs are finite; the fixed origin and changing basis/corners are distinguished.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/camera_events.tsv",
+          "sha256": "1ca50332ba00b3f72296675cb1e42913ac77e4e5f9c140686ba1ef92b833209a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerics.json",
+          "sha256": "9ff79ea2c8919faf72646e208530702eb7c1b632dca3f1ab25cb1bc2f7932a46"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_CameraContinuityProbe.java",
+          "sha256": "cf801bcddaa25c93f6f40121603c5a6b8c127d92a407b093e471862c377f36f5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_CONTINUITY.md",
+          "sha256": "c0e90ce72f6c29d7b1adefe7b1b8777a3355624dffa3c19de321abc4c38d326d"
+        }
+      ],
+      "limitations": "Original-instruction emulation with documented OS/CRT/resource/trig/ftol/ancillary substitutes. Controlled constructed-root poses, runtime velocity, timers and direct camera entry; not native physics, original selected-post or scheduler. Known constructor x87/optional-geometry warnings remain. No hardware x87 parity, M06 mission scene, visibility, pixels, canonical promotion or RND-v1 closure."
+    },
+    {
+      "finding_id": "rnd02-view-field-provenance",
+      "claim": "Original 00472990 copies three source-origin doubles to 004C2730+0x160 and writes four transformed frustum-corner triples at +0x178..+0x1D7; original inverse view basis/translation and five-point bounding center/radius match independent typed calculations. The sampled six-double region is origin plus first corner, not a six-double camera transform.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/camera_events.tsv",
+          "sha256": "1ca50332ba00b3f72296675cb1e42913ac77e4e5f9c140686ba1ef92b833209a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/opcode_anchors.tsv",
+          "sha256": "abb2adbdfe580cbc656f43ed8953c473183cd72eaeca29c2edd423ce6b5c89e8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_continuity.py",
+          "sha256": "61eb8df73350b0c29ef693b9e2e4ff4451e1cd4de30a2b58394b5940ce256f38"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_CONTINUITY.md",
+          "sha256": "c0e90ce72f6c29d7b1adefe7b1b8777a3355624dffa3c19de321abc4c38d326d"
+        }
+      ],
+      "limitations": "Original-instruction emulation with documented OS/CRT/resource/trig/ftol/ancillary substitutes. Controlled constructed-root poses, runtime velocity, timers and direct camera entry; not native physics, original selected-post or scheduler. Known constructor x87/optional-geometry warnings remain. No hardware x87 parity, M06 mission scene, visibility, pixels, canonical promotion or RND-v1 closure."
+    },
+    {
+      "finding_id": "rnd02-controls-and-repeat",
+      "claim": "Bus stationary, explicit full camera/smoothing reset, cold-B, zero-basis and null-VLOC controls distinguish pose response, history and invalid/stale output. Zero basis yields six NaNs while null VLOC returns without camera/smoothing changes. A separate process in a freshly imported Ghidra project reproduces the full persistent bus trace byte-for-byte.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/camera_events.tsv",
+          "sha256": "1ca50332ba00b3f72296675cb1e42913ac77e4e5f9c140686ba1ef92b833209a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerics.json",
+          "sha256": "9ff79ea2c8919faf72646e208530702eb7c1b632dca3f1ab25cb1bc2f7932a46"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "da63d96189c9f4b4605b7361bcf74dfb8b326285d450861f5664d5e56ffbc561"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/verification.json",
+          "sha256": "b521caf98966e1c1df366a32e1a6a0b374d25bf72cb9d44a19e94e3bcf33620c"
+        }
+      ],
+      "limitations": "Original-instruction emulation with documented OS/CRT/resource/trig/ftol/ancillary substitutes. Controlled constructed-root poses, runtime velocity, timers and direct camera entry; not native physics, original selected-post or scheduler. Known constructor x87/optional-geometry warnings remain. No hardware x87 parity, M06 mission scene, visibility, pixels, canonical promotion or RND-v1 closure."
+    },
+    {
+      "finding_id": "rnd02-live-camera-gap",
+      "claim": "Controlled original-updated camera continuity does not establish native physics-produced pose, selected-player camera scheduling, hardware numerical parity, an authenticated M06 scene or RND-v1 research/integration/product completion.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_CONTINUITY.md",
+          "sha256": "c0e90ce72f6c29d7b1adefe7b1b8777a3355624dffa3c19de321abc4c38d326d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SERVICES.md",
+          "sha256": "118d43afe3cdaae9df4fb1dcab8db7cee40433f5f624ab292219a47e131a67c5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/DOCUMENTATION_IMPACT.md",
+          "sha256": "d395b248948b87f974ead7a105b927d296a99e50120566e3bb1056dacc574d14"
+        }
+      ],
+      "limitations": "Original-instruction emulation with documented OS/CRT/resource/trig/ftol/ancillary substitutes. Controlled constructed-root poses, runtime velocity, timers and direct camera entry; not native physics, original selected-post or scheduler. Known constructor x87/optional-geometry warnings remain. No hardware x87 parity, M06 mission scene, visibility, pixels, canonical promotion or RND-v1 closure."
+    }
+  ]
+}
