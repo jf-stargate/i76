@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261030T025421Z-351de3fe",
+  "findings": [
+    {
+      "finding_id": "F1-continuous-kind6-integration",
+      "claim": "Original selected camera and separately original constructed/registered unselected stock bus share one emulator state through 00457FF0 kind6 production, same-record 0048FAC0 consumption, 0045D530/0045CBE0 retail GEO and two 00471FD0 polygon wrappers.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/events.json",
+          "sha256": "7dd2fc3235cec1180b93abd3e8952e870e76825f8243ce5708041ae98ed97378"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "23c92540d12e489a4c23e2c3be4c513451b7bc7e571299440c42a161dc57a52e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/summary.json",
+          "sha256": "51f0e0808cd64f68d7217e64d5e6ce82948ec0d419f16bf3a69fc17fb7578d87"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_IntegratedRenderProbe.java",
+          "sha256": "5c6d11058af846ba2a862009db85f42cab76112ae50e720fcd70cc32fe3b1dc9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_integration.py",
+          "sha256": "497dfb14eeca2efc22a339193df94aac01da64c35830eb166a3104e92566a71a"
+        }
+      ],
+      "limitations": "Private licensed retail inputs and annotated GZF required; Ghidra12.1.4/Java27/Python/liblzo2. Controlled two-stock-bus scene, poses and supplied depth range/CRT/OS/resource/numeric services. Clip/draw and pixel acquisition substituted. One inherited optional null geometry-name read. Incomplete nonessential vehicle resources. No native clipping/pixels/M06/scheduler/hardware x87 parity/RND-v1 completion."
+    },
+    {
+      "finding_id": "F2-kind10-lifetimes",
+      "claim": "Original rejected camera-owner kind10 scratch lifetime precedes kind6 address reuse; distinct accepted target kind10 reaches 00490640 and its own wrapper with original +0x3C clearing accounted for.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/events.json",
+          "sha256": "7dd2fc3235cec1180b93abd3e8952e870e76825f8243ce5708041ae98ed97378"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "23c92540d12e489a4c23e2c3be4c513451b7bc7e571299440c42a161dc57a52e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/summary.json",
+          "sha256": "51f0e0808cd64f68d7217e64d5e6ce82948ec0d419f16bf3a69fc17fb7578d87"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_IntegratedRenderProbe.java",
+          "sha256": "5c6d11058af846ba2a862009db85f42cab76112ae50e720fcd70cc32fe3b1dc9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_integration.py",
+          "sha256": "497dfb14eeca2efc22a339193df94aac01da64c35830eb166a3104e92566a71a"
+        }
+      ],
+      "limitations": "Private licensed retail inputs and annotated GZF required; Ghidra12.1.4/Java27/Python/liblzo2. Controlled two-stock-bus scene, poses and supplied depth range/CRT/OS/resource/numeric services. Clip/draw and pixel acquisition substituted. One inherited optional null geometry-name read. Incomplete nonessential vehicle resources. No native clipping/pixels/M06/scheduler/hardware x87 parity/RND-v1 completion."
+    },
+    {
+      "finding_id": "F3-controls-and-source-verification",
+      "claim": "Original behind/empty/camera-only controls accept no records; source vertices, view, record stores and bucket lifecycle independently verify, and fresh-project full positive traces repeat byte-identically.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/events.json",
+          "sha256": "7dd2fc3235cec1180b93abd3e8952e870e76825f8243ce5708041ae98ed97378"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "23c92540d12e489a4c23e2c3be4c513451b7bc7e571299440c42a161dc57a52e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/summary.json",
+          "sha256": "51f0e0808cd64f68d7217e64d5e6ce82948ec0d419f16bf3a69fc17fb7578d87"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_IntegratedRenderProbe.java",
+          "sha256": "5c6d11058af846ba2a862009db85f42cab76112ae50e720fcd70cc32fe3b1dc9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_integration.py",
+          "sha256": "497dfb14eeca2efc22a339193df94aac01da64c35830eb166a3104e92566a71a"
+        }
+      ],
+      "limitations": "Private licensed retail inputs and annotated GZF required; Ghidra12.1.4/Java27/Python/liblzo2. Controlled two-stock-bus scene, poses and supplied depth range/CRT/OS/resource/numeric services. Clip/draw and pixel acquisition substituted. One inherited optional null geometry-name read. Incomplete nonessential vehicle resources. No native clipping/pixels/M06/scheduler/hardware x87 parity/RND-v1 completion."
+    },
+    {
+      "finding_id": "F4-rnd-output-gates-open",
+      "claim": "Native clipping/raster output, decoded texture/material images, M06 contribution, scheduler/selected gameplay integration and RND-v1 acceptance remain unverified by this run.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/events.json",
+          "sha256": "7dd2fc3235cec1180b93abd3e8952e870e76825f8243ce5708041ae98ed97378"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "23c92540d12e489a4c23e2c3be4c513451b7bc7e571299440c42a161dc57a52e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/summary.json",
+          "sha256": "51f0e0808cd64f68d7217e64d5e6ce82948ec0d419f16bf3a69fc17fb7578d87"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_IntegratedRenderProbe.java",
+          "sha256": "5c6d11058af846ba2a862009db85f42cab76112ae50e720fcd70cc32fe3b1dc9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_integration.py",
+          "sha256": "497dfb14eeca2efc22a339193df94aac01da64c35830eb166a3104e92566a71a"
+        }
+      ],
+      "limitations": "Private licensed retail inputs and annotated GZF required; Ghidra12.1.4/Java27/Python/liblzo2. Controlled two-stock-bus scene, poses and supplied depth range/CRT/OS/resource/numeric services. Clip/draw and pixel acquisition substituted. One inherited optional null geometry-name read. Incomplete nonessential vehicle resources. No native clipping/pixels/M06/scheduler/hardware x87 parity/RND-v1 completion."
+    }
+  ]
+}
