@@ -38,10 +38,16 @@ The addresses above are retail virtual addresses, not claimed original source fu
 
 For any statement that RND-v1 is “done”, consult [RND-v1 acceptance](RND_ACCEPTANCE.md), the specifically linked source-verification and promotion records, and a future separate human-reviewed acceptance decision. A validated original queue consumer or clip/draw entry is not equivalent to full RND-v1 research, integration, or independently maintained product completion. RND-v1 still requires source-backed M06 terrain/material/image coverage or an explicit reviewed scope change; the separate CAP-CONTROL-01 work (including accepted partial PR #64) belongs to ENG/VEH integration rather than being silently absorbed by RND.
 
+## Current dispatch status following accepted RND workers
+
+- **M-RND-01 accepted bounded result:** [merged #66](https://github.com/jf-stargate/i76/pull/66), original stock bus `00457FF0` produces its own kind-6 record and inserts it through original `0048FE10`, with cull/empty/repeat controls. No native consumer or M06 visual-scene output.
+- **M-RND-02 accepted bounded result:** [merged #67](https://github.com/jf-stargate/i76/pull/67), original `00406AB0` updates persistent `004C2730` camera/view across controlled root poses, including full record provenance, smoothing and invalid-state controls. No original selected-player frame or physics-produced pose.
+- **Next independent worker pair:** [M-RND-03 original same-state producer→consumer](../RND_SUBSYSTEM_MILESTONES.md) and [M-RND-05 original M06 visible-terrain source/primitive provenance](../RND_SUBSYSTEM_MILESTONES.md). Do not start M-RND-04 until M-RND-03 has accepted positive integration evidence. M-RND-05 is *preparatory* and does not independently close full G-RND-05 terrain/material→image output.
+
 ## Unresolved contracts and experiment priorities
 
-1. **Native queue producer:** source `00457FF0` with genuine `004572B0` registered world objects, original arena and documented view state → typed original kind-6 work records. Distinguish empty/cull conditions before claiming success. First RND worker.
-2. **Original camera-state continuity:** original `00405970`, selected `00406AB0`/camera mode and persistent `004C2730` over two or more controlled poses; validate view-state fields rather than finiteness alone. Independent second worker; no selected post requirement.
+1. **Native queue producer (bounded accepted #66):** source `00457FF0` with genuine `004572B0` registered world objects, original arena and documented view state → typed original kind-6 work records. Distinguish empty/cull conditions before claiming success. First RND worker.
+2. **Original camera-state continuity (bounded accepted #67):** original `00405970`, selected `00406AB0`/camera mode and persistent `004C2730` over two or more controlled poses; validate view-state fields rather than finiteness alone. Independent second worker; no selected post requirement.
 3. **Producer/consumer integration:** use original-produced work records with original `0048FAC0` and geometry traversal in one emulator state. This depends on (1) and adequate measured camera/view context from (2), not on a complete player-control lifecycle.
 4. **Clip/draw/pixel bridge:** original `00471FD0` clip/draw and resource decoding only after producer/consumer integration; keep output and asset licensing explicitly bounded.
 5. **Full frame scheduling:** integrate authentic selected-player frame/camera only after CAP-CONTROL-01 resolves original pending initialization and post-path blockers. A camera direct invocation is not proof of engine scheduling.
