@@ -1,0 +1,87 @@
+{
+  "unserviced_original_heap_initializer": [
+    {
+      "kind": "INITIALIZER_ATTEMPT",
+      "pc": "00474C10",
+      "detail": "existingHeap=00000000"
+    },
+    {
+      "kind": "ORIGINAL_FAILURE",
+      "pc": "000C0FE2",
+      "detail": "error=Instruction decode failed (invalid memory), PC=000c0fe2;registers=0,638582784,939611456,940109444,805425136"
+    }
+  ],
+  "original_surface_constructor_with_narrow_heap_service": [
+    {
+      "kind": "SURFACE_INIT_BEFORE",
+      "pc": "00474C60",
+      "detail": "descriptor=000000000000000000000000000000000000000000000000000000000000000000000000df0100007f0200000000000000000000;heapHandle=00000000"
+    },
+    {
+      "kind": "SURFACE_HEAP_SERVICE",
+      "pc": "000C0FFE",
+      "detail": "handle=00000000;flags=00000000;size=307232;result=3F000000;sentinel=A5;guard=CD"
+    },
+    {
+      "kind": "SURFACE_INIT_AFTER",
+      "pc": "00474C60",
+      "detail": "descriptor=80020000e001002000000000002c0100000000000000003f0000003f00000000000000007f020000df0100000100000000000000;raw=3F000000;base=3F000000;size=307200;ready=true"
+    }
+  ],
+  "original_palette_producer_attempt": [
+    {
+      "kind": "PALETTE_PRODUCER_ATTEMPT",
+      "pc": "004791E0",
+      "detail": "descriptor=005DCEC0;tableBefore=9f1dcbc35c350d6027f98be0f5c8b43b42ca52b7604459c0c42be3aa88913d47"
+    },
+    {
+      "kind": "ORIGINAL_FAILURE",
+      "pc": "000C0BFC",
+      "detail": "error=Instruction decode failed (invalid memory), PC=000c0bfc;registers=0,6410656,0,6148009,805425104"
+    }
+  ],
+  "absent_surface": [
+    {
+      "kind": "RASTER_ENTER",
+      "pc": "0047CB00",
+      "detail": "command=3E011440;descriptor=005DCEC0;fields=00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,000001DF,0000027F,00000000,00000000;pending=1D203D3A;slot=3E01135C"
+    },
+    {
+      "kind": "SURFACE_BLOCKER",
+      "pc": "0047CC25",
+      "detail": "read=000000E9;pitch=0;base=00000000"
+    }
+  ],
+  "behind_camera": [
+    {
+      "kind": "CONTROLLED_TARGET_POSE",
+      "pc": "00000000",
+      "detail": "z=-50.0;root=0000000000000000000080bf000000000000803f000000000000803f0000000000000000000000000000000000000000000000000000000000000000000049c0"
+    },
+    {
+      "kind": "FRAMEBUFFER_FINAL",
+      "pc": "00000000",
+      "detail": "base=3F000000;size=307200;pitch=640;changed=0;writes=0;calls=0;returns=0;sha256=887ce002f12080c41feb253090d7788b06b8d4c9677c60cef48f61969e76a42d;guards=CD_intact"
+    }
+  ],
+  "deliberate_corruptions": [
+    {
+      "field": "first original writer destination",
+      "from": "3F030F69",
+      "to": "3F030F6A",
+      "rejected": true
+    },
+    {
+      "field": "final framebuffer base",
+      "from": "3F000000",
+      "to": "3F000001",
+      "rejected": true
+    },
+    {
+      "field": "first output byte",
+      "from": 31,
+      "to": 30,
+      "rejected": true
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "descriptor_va": "005DCEC0",
+  "original_constructor_entry": "00474C60",
+  "original_copy_writer": {"pc": "00474D32", "retail_bytes": "f3a5", "operation": "REP MOVSD of 13 local DWORDs to destination descriptor"},
+  "measured_constructor_arguments": {"destination": "005DCEC0", "width": 640, "height": 480, "external_base": "00000000", "mode": 0},
+  "external_allocation": {"pc": "000C0FFE", "caller_pc": "00474CA9", "retail_caller_bytes": "ff1508c14b00", "request_bytes": 307232, "returned": "3F000000", "initial_byte": "A5", "guard_byte": "CD", "heap_handle": "00000000"},
+  "fields_after_original_copy": [
+    {"offset": "00", "value": "00000280", "meaning": "pitch bytes per row", "producer_anchor": "00474CE3"},
+    {"offset": "04", "value": "200001E0", "meaning": "original surface flags; full bit interpretation unresolved", "producer_anchor": "00474D17"},
+    {"offset": "08", "value": "00000000", "meaning": "mode argument", "producer_anchor": "00474CF3"},
+    {"offset": "0C", "value": "00012C00", "meaning": "width times height divided by four", "producer_anchor": "00474D09"},
+    {"offset": "10", "value": "00000000", "meaning": "width times height remainder modulo 32", "producer_anchor": "00474CED"},
+    {"offset": "14", "value": "3F000000", "meaning": "aligned byte base read by callback", "producer_anchor": "00474CBA"},
+    {"offset": "18", "value": "3F000000", "meaning": "raw allocation for release", "producer_anchor": "00474CB1"},
+    {"offset": "1C", "value": "00000000", "meaning": "X byte offset read by callback", "producer_anchor": "00474C22"},
+    {"offset": "20", "value": "00000000", "meaning": "Y row offset read by callback", "producer_anchor": "00474C22"},
+    {"offset": "24", "value": "0000027F", "meaning": "inclusive max X", "producer_anchor": "00474D11"},
+    {"offset": "28", "value": "000001DF", "meaning": "inclusive max Y", "producer_anchor": "00474D12"},
+    {"offset": "2C", "value": "00000001", "meaning": "allocated backing ownership state", "producer_anchor": "00474CFC"},
+    {"offset": "30", "value": "00000000", "meaning": "unresolved field", "producer_anchor": "00474C22"}
+  ],
+  "callback_anchors": [
+    {"pc": "0047CB2F", "retail_bytes": "8911", "meaning": "commit pending packed span from command +28 to slot at command +30"},
+    {"pc": "0047CB6D", "retail_bytes": "0fafc3", "meaning": "multiply pitch by span Y"},
+    {"pc": "0047CB7C", "retail_bytes": "03c2", "meaning": "add packed X"},
+    {"pc": "0047CB8A", "retail_bytes": "03c7", "meaning": "add descriptor base and offsets"},
+    {"pc": "0047CC55", "retail_bytes": "8a840aa0b26100", "meaning": "lookup indexed byte from table at 0061B2A0"},
+    {"pc": "0047CC62", "retail_bytes": "8807", "meaning": "store one original output byte"},
+    {"pc": "0047CE38", "retail_bytes": "c3", "meaning": "original callback return"}
+  ],
+  "method": "Static authenticated retail opcode/dataflow audit plus original-constructor before/after and original-callback instruction/byte trace. Ghidra names are navigation only."
+}
