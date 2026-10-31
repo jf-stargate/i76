@@ -1,0 +1,60 @@
+{
+  "inputs": {
+    "exe": {
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "bytes": 1050624
+    },
+    "gzf": {
+      "sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "bytes": 6444695
+    },
+    "zfs": {
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "bytes": 55535506
+    }
+  },
+  "versions": {
+    "ghidra": "12.1.4 PUBLIC",
+    "java": "OpenJDK 27-ea+34-1-Debian",
+    "headless_sha256": "302880328a0024ee24cfe0326d4d9a61c2237116d95f2e0e0df090f747f95e30"
+  },
+  "baseline_verifier": {
+    "status": "passed",
+    "assertions": 1402,
+    "cases": 5
+  },
+  "native_verifier": {
+    "status": "passed",
+    "assertions": 2769,
+    "public_assertions": 293,
+    "cases": 3
+  },
+  "private_traces": {
+    "native_visible": {
+      "bytes": 505245,
+      "sha256": "5a6104dbf1d48896380deb5bda28a0433906178aaabf9abbf1c9ab1f98130355"
+    },
+    "native_behind": {
+      "bytes": 451781,
+      "sha256": "04cf6a8ce3472d7ea861316cec6faa60393aa8285ad2232ebdabc5e932605400"
+    },
+    "native_repeat": {
+      "bytes": 505245,
+      "sha256": "5a6104dbf1d48896380deb5bda28a0433906178aaabf9abbf1c9ab1f98130355"
+    }
+  },
+  "second_complete_driver": {
+    "native_visible": {
+      "bytes": 505245,
+      "sha256": "5a6104dbf1d48896380deb5bda28a0433906178aaabf9abbf1c9ab1f98130355"
+    },
+    "native_behind": {
+      "bytes": 451781,
+      "sha256": "04cf6a8ce3472d7ea861316cec6faa60393aa8285ad2232ebdabc5e932605400"
+    },
+    "native_repeat": {
+      "bytes": 505245,
+      "sha256": "5a6104dbf1d48896380deb5bda28a0433906178aaabf9abbf1c9ab1f98130355"
+    }
+  }
+}

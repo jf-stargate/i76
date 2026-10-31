@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Measured private licensed input; no payload published."
+    }
+  ],
+  "run_id": "i76exe-20261031T002217Z-b156a7f6",
+  "topic": "M-RND-04 independent replication: original vehicle polygon projection and actual clip/draw dispatch",
+  "base_commit": "3e10251444a117c8d9da053b6887245a2bc4dbcf",
+  "started_at": "2026-10-31T00:22:17Z",
+  "summary": "Fresh accepted PR70 reproduction followed by one removed C8D0 service: original source-backed projection independently verifies; actual secondary BF00 fallback and substituted draw distinguished. Behind and fresh-import repeats pass; clipping intersections and native pixels unresolved.",
+  "validation": {
+    "status": "passed",
+    "test_count": 4209,
+    "passed_count": 4209,
+    "notes": "1402 unchanged accepted baseline source checks + 2769 independent polygon checks + 38 trusted pinned unit tests. Four additional deliberate corruption controls rejected; published corrupted sample separately rejects. Two complete fresh drivers, separate native fresh-import repeat byte-identical. Native projection only; no demonstrated clipping intersections/pixels or milestone closure. Structural CI separate."
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "6d25e2d91710f8500c3caa01655241e2c1b1b650cacbfbfa2be71532e57b65a0",
+      "bytes": 1646
+    },
+    {
+      "path": "artifacts/EXECUTION_NOTES.md",
+      "kind": "report",
+      "sha256": "b2b02970f6af9edbd4a0f2d685bd195460fd1616fc865dbfe24b005b66cf573a",
+      "bytes": 3554
+    },
+    {
+      "path": "artifacts/REPORT.md",
+      "kind": "report",
+      "sha256": "b02461af3c6f270abf12abb31e30d4923a4632738bf4e1d8a1d452b2aac8f874",
+      "bytes": 9162
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "627f01eae9364ce2a17942a0d48d8cec0821aef0d2ecba9a15a8e2ca4caaee78",
+      "bytes": 2805
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "a8fd9b35ec5540aa89dda42a5c329f7a139f7189f209f304e758fd22cad1ab90",
+      "bytes": 5333
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "64aed3db2b3a613899a2a65337acd30a4f7338963ed50408686df20091ed4f81",
+      "bytes": 494
+    },
+    {
+      "path": "evidence/corrupted_sample.json",
+      "kind": "table",
+      "sha256": "427f1758311e199a7807bb52342b57bf55fdbce55635ae9e206d73a074e6e3f1",
+      "bytes": 369473
+    },
+    {
+      "path": "evidence/negative_controls.json",
+      "kind": "table",
+      "sha256": "0dcaee17df5445b1d3ea589e011aaf3491a892943d0a7a5675fcf86465e94d52",
+      "bytes": 502
+    },
+    {
+      "path": "evidence/numerical_results.json",
+      "kind": "table",
+      "sha256": "c532af5848f75cfda895faa2cc85db159590323f4dbe19613757c511bb3ec507",
+      "bytes": 2294
+    },
+    {
+      "path": "evidence/polygon_events.json",
+      "kind": "table",
+      "sha256": "a451bd6498945f7df26e7dcea6ab4932d7d6d767599c90ea0f9625940faf0277",
+      "bytes": 369473
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "c40b20cbb978e9a1ac2833c80e12e142e221e28c95edd3d17c49ab40cfc1e733",
+      "bytes": 1678
+    },
+    {
+      "path": "evidence/retail_dispatch.json",
+      "kind": "table",
+      "sha256": "23d484f20afc6aacb5cc11341117332e615e4c97537430cd9fe1d92f567b8286",
+      "bytes": 191221
+    },
+    {
+      "path": "scripts/I76_CameraSourceAudit.java",
+      "kind": "script",
+      "sha256": "be677568a6c6619f42374e19e36f44feb701cba456b9ce972982619a7f28a97f",
+      "bytes": 2043
+    },
+    {
+      "path": "scripts/I76_PolygonBoundaryProbe.java",
+      "kind": "script",
+      "sha256": "ebebf510e4bd26d3e18032c3ea9470aa87bb16b1c546ebb94f868243bc9cb4b0",
+      "bytes": 38328
+    },
+    {
+      "path": "scripts/audit_dispatch.py",
+      "kind": "script",
+      "sha256": "8878f811399284dc35bcf4684ff3bc43aa13396c412dd81624f8b4b215b45e2d",
+      "bytes": 1643
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "9b0a14e84f8b5071b37e6501ad2683344a6ca1b0df8f53b254c1a47587727b57",
+      "bytes": 2889
+    },
+    {
+      "path": "scripts/verify_polygon.py",
+      "kind": "script",
+      "sha256": "6a7662e80d6d62f056de4f10adbc1db1a5e5d04e5d9e812bb7150c97d400514c",
+      "bytes": 12705
+    }
+  ],
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraSourceAudit.java",
+        "sha256": "be677568a6c6619f42374e19e36f44feb701cba456b9ce972982619a7f28a97f"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_PolygonBoundaryProbe.java",
+        "sha256": "ebebf510e4bd26d3e18032c3ea9470aa87bb16b1c546ebb94f868243bc9cb4b0"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/audit_dispatch.py",
+        "sha256": "8878f811399284dc35bcf4684ff3bc43aa13396c412dd81624f8b4b215b45e2d"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "9b0a14e84f8b5071b37e6501ad2683344a6ca1b0df8f53b254c1a47587727b57"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_polygon.py",
+        "sha256": "6a7662e80d6d62f056de4f10adbc1db1a5e5d04e5d9e812bb7150c97d400514c"
+      }
+    ],
+    "methods": [
+      "Pinned protected main with authenticated GitHub enforcement and isolated create-only branch.",
+      "Unchanged complete PR70 fresh-project driver and source verifier pass before original-body extension.",
+      "One existing C8D0 service removed; original retired-store/argument/memory/return and subsequent callsite capture.",
+      "Standalone original-source numerical, dispatch/instruction, memory, chronology, corruption, behind and fresh-import repeat checks."
+    ],
+    "limitations": "Original-instruction emulator with controlled poses, explicit inherited OS/CRT/resource/math/texture/draw services, zero descriptor extents and one inherited optional null-name read. No hardware x87 parity, actual clipping intersection, native draw/pixels, M06 or RND-v1 completion. Comparison PR metadata summaries inadvertently exposed but not used; no comparison code/artifacts read."
+  }
+}
