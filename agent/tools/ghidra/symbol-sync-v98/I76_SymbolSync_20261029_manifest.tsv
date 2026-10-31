@@ -1,0 +1,152 @@
+kind	address	name	tier	source	source_path	note
+F	004AD6F0	VEH_ConstructFromVCF	P	P-VEH	manual/reference/engine/vehicle_construction.md	Original top-level VCF construction; tested bus and GTSi
+F	004B75A0	VEH_InstantiateVGEO100ByteBodyPart	P	P-VEH	manual/reference/engine/vehicle_construction.md	100-byte VGEO body-part path (not 120-byte)
+F	004B7800	VEH_InstantiateVGEO120BytePath	P	P-VEH	manual/reference/engine/vehicle_construction.md	Distinct 120-byte instantiation path, not 100-byte body-part path
+F	00449680	GEO_RegisterObjectTextureSlot	P	P-VEH	manual/reference/engine/vehicle_construction.md	Owner-specific TMT keyed registration
+F	0044AB90	GEO_DecodeTMTDescriptor	P	P-VEH	manual/reference/engine/vehicle_construction.md	Parse/copy TMT descriptor header and frame names
+F	0044AC80	GEO_CreateOwnerTMTSlotRecord	P	P-VEH	manual/reference/engine/vehicle_construction.md	Create owner-to-cached-TMT record
+F	004469A0	GEO_LookupOrLoadGeometry	P	P-VEH	manual/reference/engine/vehicle_construction.md	Resource lookup and GEO handle creation
+F	00446C90	GEO_ConstructGeometryFromBytes	P	P-VEH	manual/reference/engine/vehicle_construction.md	Construct runtime GEO representation from retail data
+F	004466C0	GEO_SelectBodyGeometryGroup	P	P-VEH	manual/reference/engine/vehicle_construction.md	Group 0/4/0 caching transition tested on one node
+F	00461970	ENG_RegisterClassNode	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original class-node registration
+F	0049C320	ENG_InsertClassListNode	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original class-list insertion
+F	00461C80	ENG_DispatchClassPreCallbacks	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original descriptor-driven pre traversal
+F	00461D50	ENG_DispatchClassPostCallbacks	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original descriptor-driven post traversal
+F	0045F0F0	OBJ_ResolveClassObjectForDispatch	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original class-collection object resolver
+F	00463120	VEH_Class1Initialize	P	P-ENG	manual/reference/engine/frame_scheduling.md	Class-1 descriptor initializer; selected direct control later confirmed
+F	00463800	VEH_Class1PreUpdate	P	P-ENG	manual/reference/engine/frame_scheduling.md	Class-1 descriptor pre callback
+F	00463950	VEH_Class1PostUpdate	P	P-ENG	manual/reference/engine/frame_scheduling.md	Correct descriptor post entry, not internal 004639A0
+F	0049C920	ENG_UpdateClockFromTicks	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original clock update with supplied GetTickCount
+D	004F777C	g_ENG_Class1Descriptor	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original class-1 descriptor row; slots at +8/+C/+10
+D	0054B204	g_ENG_ClassListHead	P	P-ENG	manual/reference/engine/frame_scheduling.md	Original class collection head, NOT active world registry
+D	0054B208	g_ENG_ClassPendingListHead	P	P-ENG	manual/reference/engine/frame_scheduling.md	Pending entries refer to class nodes, not owners directly
+F	00493C50	MATH_InitializeApproxInvSqrtSeeds	A	A-ENG	manual/roadmap/subsystems/ENG.md	Initializes 256-byte reciprocal-sqrt seed table
+F	0049C7F0	ENG_InitializeFrameReciprocals	A	A-ENG	manual/roadmap/subsystems/ENG.md	Initializes 20 float reciprocals and clock context
+F	0049CBE0	ENG_InitializeFrameSubdivision	A	A-ENG	manual/roadmap/subsystems/ENG.md	Initializes current-frame subdivision rate
+F	0049CC20	ENG_ComputeCurrentFrameSubsteps	A	A-ENG	manual/roadmap/subsystems/ENG.md	Bounded current-frame subdivision, not persistent accumulator
+F	0049CCA0	ENG_ConsumeFrameSubstepDuration	A	A-ENG	manual/roadmap/subsystems/ENG.md	Current-frame substep duration consumer
+F	00494710	MATH_ApplyVehicleBasisNormalization	A	A-ENG	manual/roadmap/subsystems/ENG.md	Observed basis normalization chain
+F	00495000	MATH_ApproxInverseSquareRoot	A	A-ENG	manual/roadmap/subsystems/ENG.md	Seed-table inverse-sqrt consumer
+F	00461B80	ENG_InitializePendingClassNodes	A	A-ENG	manual/roadmap/subsystems/ENG.md	Pending descriptor-init dispatcher; can stop on STRLKUP
+F	0045EBD0	OBJ_CreateRootWorldObject	A	A-VEH	manual/roadmap/subsystems/VEH.md	Original root/world-object creation
+F	00465370	VEH_PreUpdateControllerStage	A	A-VEH	manual/roadmap/subsystems/VEH.md	Observed class-1 active-branch controller stage
+F	0043A3C0	VEH_IntegrateRootMotionStage	A	A-VEH	manual/roadmap/subsystems/VEH.md	Observed original root-integrator call chain
+F	0043BDF0	VEH_UpdateRootBasisAndVelocity	A	A-VEH	manual/roadmap/subsystems/VEH.md	Integrator with vehicle root basis/velocity updates
+F	00438FD0	VEH_RunWheelSuspensionPath	A	A-VEH	manual/roadmap/subsystems/VEH.md	Original wheel/suspension path in authentic M06
+F	0043A5D0	VEH_UpdateSuspensionContact	A	A-VEH	manual/roadmap/subsystems/VEH.md	Original contact/suspension descendant
+F	0046DC10	VEH_ComputeTireContactMode0	A	A-VEH	manual/roadmap/subsystems/VEH.md	Mode-0 tire contact in sampled M06 scenarios
+F	00437230	VEH_ComputeContactNormalBranch	A	A-VEH	manual/roadmap/subsystems/VEH.md	Original normal branch reached during tire contact
+F	0046D760	VEH_InitializeSuspensionFilter	A	A-VEH	manual/roadmap/subsystems/VEH.md	Filter coefficient warm-up path
+F	0049E0F0	VEH_ComputeSuspensionFilterCoefficient	A	A-VEH	manual/roadmap/subsystems/VEH.md	X87 COS-dependent coefficient helper
+F	0049E1B0	VEH_ApplySuspensionFilterRecurrence	A	A-VEH	manual/roadmap/subsystems/VEH.md	Filter recurrence for sampled tire states
+F	00469B00	VEH_LoadEngineSoundRegistry	A	A-VEH	manual/roadmap/subsystems/VEH.md	engsnd.dat engine-component registry startup
+F	00469F10	VEH_LookupEngineComponentRegistry	A	A-VEH	manual/roadmap/subsystems/VEH.md	Engine component ID selection during CDF
+F	004B42B0	MLD_LoadMissionDescriptorBWD2	A	A-TER	manual/roadmap/subsystems/TER.md	Original outer mission descriptor loader
+F	004B3DB0	MLD_DispatchTaggedChunkDescriptors	A	A-TER	manual/roadmap/subsystems/TER.md	Generic 16-byte tagged descriptor parser
+F	004B8A10	TER_LoadWRLDMaterialProperties	A	A-TER	manual/roadmap/subsystems/TER.md	WREV-9 material-record loader
+F	00493910	TER_InitializeTerrainFromTDEF	A	A-TER	manual/roadmap/subsystems/TER.md	Original terrain/TDEF startup entry
+F	00471400	TER_OpenOrMapTerrainResource	A	A-TER	manual/roadmap/subsystems/TER.md	Original mapped terrain-file wrapper; Win32 supplied
+F	00493080	TER_InitializeTerrainPageGrid	A	A-TER	manual/roadmap/subsystems/TER.md	Installs step reciprocal and TER page pointer grid
+F	00493550	TER_SampleBilinearHeightXZ	A	A-TER	manual/roadmap/subsystems/TER.md	CORRECTION: bilinear low12 height (x87 ST0), NOT transform/bounds
+F	004927B0	TER_SamplePackedMaterialXZ	A	A-TER	manual/roadmap/subsystems/TER.md	Sample material bits15..13; bit12 unresolved
+F	004931C0	TER_SampleSurfaceNormalXZ	A	A-TER	manual/roadmap/subsystems/TER.md	CORRECTION: computed normal, NOT material word
+F	00440740	TER_ProbeSpecialFourPointSurface	A	A-TER	manual/roadmap/subsystems/TER.md	Tested zero for upright cases, not general polygon contact
+F	0043E530	TER_QueryGeneralSurface	A	A-TER	manual/roadmap/subsystems/TER.md	Static polygon-candidate versus heightfield fallthrough; ownership unproved
+D	00655180	g_MATH_ApproxInvSqrtSeedTable	A	A-ENG	manual/roadmap/subsystems/ENG.md	256-byte seed table initialized by 00493C50
+D	005A7E20	g_ENG_FrameReciprocalTable	A	A-ENG	manual/roadmap/subsystems/ENG.md	Twenty reciprocal float entries
+D	005A7E1C	g_ENG_FrameReciprocalContext	A	A-ENG	manual/roadmap/subsystems/ENG.md	Adjacent time counter context
+D	004FE420	g_ENG_FrameDeltaSeconds	A	A-ENG	manual/roadmap/subsystems/ENG.md	Delta used by vehicle and camera
+D	00644220	g_TER_WorldMaterialProperties	A	A-TER	manual/roadmap/subsystems/TER.md	WRLD WREV-9 material table, not page data
+D	006442C0	g_TER_GridStep	A	A-TER	manual/roadmap/subsystems/TER.md	Original grid step 5
+D	006442C4	g_TER_GridStepReciprocal	A	A-TER	manual/roadmap/subsystems/TER.md	Original step reciprocal float 0.2
+D	00644380	g_TER_TerrainPagePointerGrid	A	A-TER	manual/roadmap/subsystems/TER.md	16384 terrain pointer-grid entries; 16 backed TER pages in M06
+F	0049C360	ENG_RemovePendingClassListNode	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	Original pending-node unlink after completed init
+F	0046D820	VEH_ClassTireInitialize	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	Class tire descriptor initializer
+F	0046F2B0	VEH_Class31InitializeAnimation	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	Initializes animation consumed by class31 post
+F	0046F420	VEH_Class31PostUpdateAnimation	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	CORRECTION: consumes initialized animation; not resource release
+F	0045F810	VEH_Class34InitializeRootLink	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	Initializes root/self linkage consumed by class34 post
+F	0045FAF0	VEH_Class34PostUpdate	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	Post callback consumes class34 root/self linkage
+F	0046DFE0	VEH_Class32InitializeDamageChild	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	Pending initialization stops at unresolved localization dependency
+F	0049D400	MATH_ComputeSineCosineX87Helper	A	A-SELECT	agent/runs/i76exe/i76exe-20261030T012137Z-eaa0ee4c/artifacts/CAP_CONTROL_01.md	Original trig helper containing FSINCOS at 0049D409
+F	00405970	RND_InitializeCameraProjection	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Original viewport/camera setup, copies 118 dwords
+F	00406AB0	RND_UpdateSelectedVehicleCamera	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Original selected vehicle camera callback; controlled direct invokes
+F	00437F90	RND_BuildVehicleCameraBasis	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Original camera basis/smoothing computation
+F	00472400	RND_BuildProjectionState	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Projection builder used by camera callbacks
+F	00472990	RND_ApplyCameraViewTransform	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Original persistent view record writer
+F	00472D30	RND_TransformPointUsingInverseView	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Bounded inverse-view point outputs from original record
+D	004C2730	g_RND_PersistentCameraView	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Full 472-byte camera record, not 432
+D	004C2908	g_RND_SelectedCameraActiveWorldEntry	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Adjacent active-entry pointer outside view record
+D	004C2964	g_RND_CameraAngularHistory	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Camera history outside persistent view record
+D	0052B93C	g_RND_CameraSmoothingHistory	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Smoothing history outside view record
+D	004FE428	g_RND_CameraTimeScaleConstant	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Retail mapped .06 in controlled camera sequence
+D	004C2728	g_RND_CameraMode	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Controlled mapped zero in selected callback sequence
+D	00536770	g_RND_CameraAngleInput0	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Supplied integer angle input 0, positional semantics unverified
+D	00536778	g_RND_CameraAngleInput1	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Supplied integer angle input 1, positional semantics unverified
+D	00536780	g_RND_CameraAngleInput2	A	A-RND02	agent/runs/i76exe/i76exe-20261030T020546Z-e1909f11/artifacts/CAMERA_CONTINUITY.md	Supplied integer angle input 2, positional semantics unverified
+F	00457FF0	RND_ProduceVisibleWorldWorkRecords	A	A-RND01	agent/runs/i76exe/i76exe-20261030T020552Z-41acec02/artifacts/REPORT.md	Original registered-world producer with positive kind-6 record
+F	00472C10	RND_ClassifyObjectAgainstView	A	A-RND01	agent/runs/i76exe/i76exe-20261030T020552Z-41acec02/artifacts/REPORT.md	Observed visible/behind classifier, result zero accepts
+F	0048FE10	RND_InsertDepthBucketWorkRecord	A	A-RND01	agent/runs/i76exe/i76exe-20261030T020552Z-41acec02/artifacts/REPORT.md	Original work arena/bucket insertion
+F	00490590	RND_AllocateWorkRecordFromArena	A	A-RND01	agent/runs/i76exe/i76exe-20261030T020552Z-41acec02/artifacts/REPORT.md	Original record arena allocation/initialization
+F	0048F9B0	RND_InitializeWorkArenas	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Five original allocation requests and bucket tables
+F	0048FAC0	RND_ConsumeDepthBucketQueue	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Original queue consumption from same producer-emulator state
+F	0048F4C0	RND_ConsumeKind6Record	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Kind-6 dispatch to geometry traversal
+F	00490640	RND_ConsumeKind10Record	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Kind-10 dispatch/face path in bounded integrated scene
+F	0045D530	GEO_TraverseSecondaryRenderGeometry	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Consumes original kind-6 subrecord to geometry traversal
+F	0045CBE0	GEO_BuildRenderPolygonFromGeometry	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Observed retail GEO construction and polygon wrapper path
+F	00471FD0	RND_EmitPolygonWrapper	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Actual polygon wrapper invoked; clipping/draw intercepted
+D	00542830	g_OBJ_ActiveWorldRegistry	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	First active-world entry; not class callback list
+D	0054A25C	g_OBJ_ActiveWorldEntryCount	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Active-world entry count distinct from class list
+D	00654380	g_RND_WorkRecordArenaCursor	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Original work-record arena cursor/bucket state region
+D	006543A4	g_RND_FrameFarDepthBound	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Supplied 4095 for integrated bucket scanning; original scheduler unknown
+D	006543AC	g_RND_FrameNearDepthBound	A	A-RND03	agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md	Observed near bound; full frame initialization not proved
+F	00490A00	TER_BuildAdaptiveVisibleTerrain	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Original adaptive M06 visual primitive producer, not contact/triangles
+F	004929B0	TER_ComputeVisibleTerrainBounds	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Original visible terrain bounds/height guard
+F	004911E0	TER_SubdivideVisibleTerrainQuads	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Adaptive plane/material/error subdivision
+F	00491810	TER_AllocateVisibleTerrainLeaf	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Original 0x1C-byte leaf primitive alloc/init
+F	004918B0	TER_AllocateVisibleTerrainEdge	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Original edge allocation in adaptive builder
+F	004918F0	TER_SplitVisibleTerrainEdge	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Shared edge midpoint splitter
+F	00493160	TER_ReadPackedTerrainGridWord	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Original page grid lookup/low12 word for visible heights
+D	005DD320	g_RND_VertexScratchBuffer	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Source-coordinate vertex-buffer pointer in terrain run
+D	005DD324	g_RND_WorkArenaBase	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Companion work/terrain arena base pointer in terrain run
+D	005DD2EC	g_TER_VisibleTerrainAuxXZBuffer	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Auxiliary source XZ buffer pointer
+D	0059C560	g_TER_VisibleTerrainFirstLeaf	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	First leaf linked list pointer
+D	0059C574	g_TER_VisibleTerrainLastLeaf	A	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Last leaf linked list pointer
+F	0040A320	FSM_RunMissionFrameIfEnabled	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical static mission frame/gates
+F	004149F0	FSM_UpdateCooperativeScriptScheduler	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical mission VM cooperative scheduler
+F	00414670	FSM_DispatchScriptInterpreter	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical interpreter/host ABI
+F	00412CE0	FSM_DispatchScriptHostCommand	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical host handler
+F	00412830	AI_EvaluateBehaviorTransition	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical AI behavior transition evaluator
+F	00412680	AI_SelectWeightedBehavior	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical weighted selector
+F	0041FC40	AI_ConsumeDriveControlQueue	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical drive-control queue consumption
+F	0041F8E0	AI_ApplyQueuedDriveControl	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical queue-to-control conversion
+F	0041FCE0	AI_CheckDriveControlDone	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical non-consuming drained flag reader
+F	004155F0	AI_AdvanceDamageEpoch	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical damage epoch advance
+F	00409980	OBJ_OnWorldObjectUnregister	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical FSM invalidation callback
+F	00409BD0	OBJ_RegisterUnregisterCallback	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical world callback registration
+F	004572B0	OBJ_RegisterActiveWorldEntry	H	H-OBJ	ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md	Original active-world registry; multiple accepted investigations
+F	00457420	OBJ_UnregisterActiveWorldEntryAndRelease	H	H-OBJ	ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md	Historical counted release after callbacks
+F	00462040	VEH_DispatchClassDamage	H	H-OBJ	ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md	Historical 13-slot class damage dispatcher
+F	00463A80	VEH_HandleClass1VehicleDamage	H	H-OBJ	ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md	Historical class-1 damage callback
+F	00465AF0	VEH_ApplyPartDamage	H	H-OBJ	ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md	Historical part damage/death flag update
+F	00466180	VEH_PropagateCatastrophicWorldDeath	H	H-OBJ	ref/vehicle_object_model/i76_vehicle_object_runtime_reference.md	Historical catastrophic damage death propagation
+D	0054A178	g_OBJ_NameRegistryContext	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical 16-byte registry context initialized by 004AD410
+D	004C3E50	g_AI_BehaviorDescriptorTable	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical 34 rows stride 0x1354
+D	00524550	g_AI_DamageEpoch	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical mission-frame damage epoch
+D	005A7E14	g_FSM_ElapsedMissionClock	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical mission deadline accumulator
+D	0051F640	g_FSM_MissionFrameGate	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical mission update gate
+D	0051F5C0	g_FSM_SecondaryMissionFrameGate	H	H-FSM	ref/mission_execution/MISSION_EXECUTION_CONTRACT.md	Historical mission update gate
+F	004937C0	TER_TransformVisibleTerrainPrimitives	H	H-TER	ref/level_format/i76_runtime_terrain_lod_reference.md	Static downstream transform entry; M-RND-05 stopped before execution
+F	00472220	RND_BuildCameraProjectionMatrix	H	H-RND	manual/roadmap/subsystems/RND.md	Older camera/type-10 evidence; defer corroboration
+F	0045D100	GEO_TraversePrimaryRenderGeometry	H	H-RND	manual/roadmap/subsystems/RND.md	Historical traversal entry; kind-6 subrecord uses secondary
+F	0048F2B0	RND_ProduceKind10FaceRecord	H	H-RND	manual/roadmap/subsystems/RND.md	Older type-10 route; precise semantics bounded
+F	00491A30	TER_WalkAdaptivePrimitiveLeafList	H	H-RND	manual/roadmap/subsystems/RND.md	Static visible terrain leaf walker, not executed by M-RND-05
+F	004922F0	TER_EmitSoftwareTerrainPolygonWork	H	H-RND	manual/roadmap/subsystems/RND.md	Static callback-controlled terrain polygon path
+F	004923F0	TER_PrepareAlternateTerrainPolygon	H	H-RND	manual/roadmap/subsystems/RND.md	Static alternate polygon path
+F	004924B0	TER_EmitAlternateTerrainPolygonWork	H	H-RND	manual/roadmap/subsystems/RND.md	Static alternate polygon emitter
+D	00654B8B	g_TER_VisibleTerrainOutputModeByte	H	A-RND05	agent/runs/i76exe/i76exe-20261030T025441Z-8f2b292d/artifacts/VISIBLE_TERRAIN.md	Static output-mode selector; downstream paths unexecuted
+D	004FACA8	g_RND_WorkRecordKindDispatchTable	H	H-RND	manual/roadmap/subsystems/RND.md	Kind-specific consumer dispatch
+D	004FACF8	g_RND_WorkRecordKindSizeTable	H	H-RND	manual/roadmap/subsystems/RND.md	Kind-6 size 0x28 + 0x1C header
+D	0052B94C	g_TER_CollisionCandidateList	H	A-TER	manual/roadmap/subsystems/TER.md	Historical candidate list; population bridge unresolved
+D	00644200	g_TER_SceneRegisteredPolygonList	H	A-TER	manual/roadmap/subsystems/TER.md	Historical separate list; population bridge unresolved
+D	005DB988	g_TER_RoadSegmentListHead	H	A-TER	manual/roadmap/subsystems/TER.md	Historical RSEG road-strip list
+D	005DB98C	g_TER_RoadSegmentListTail	H	A-TER	manual/roadmap/subsystems/TER.md	Historical RSEG road-strip list tail
