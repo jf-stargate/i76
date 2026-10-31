@@ -1,0 +1,331 @@
+{
+  "accepted_baseline_validation": {
+    "notes": "Private identities, retail opcode/section equality, all source heights and native writers, original leaf ownership and independent edge flattening, full page grids, material-predicate reads, independent numerical instruction checks, reject/contrast/poison/raw controls and fresh-project repeat. Counts measure checks only.",
+    "passed_count": 105139,
+    "status": "passed",
+    "test_count": 105139
+  },
+  "audit_sha256": "93f471a853491f29675493fefd5c8a2b26ba8dabf86749d25f0186abf38c0b41",
+  "input_identities": {
+    "exe": {
+      "bytes": 1050624,
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3"
+    },
+    "gzf": {
+      "bytes": 6444695,
+      "md5": "626cb75ee5232e083d00e2849dafd9ea",
+      "sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce"
+    },
+    "msn": {
+      "bytes": 47814,
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f"
+    },
+    "ter": {
+      "bytes": 524288,
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea"
+    },
+    "zfs": {
+      "bytes": 55535506,
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d"
+    }
+  },
+  "negative_controls": [
+    "source height corruption rejected",
+    "post-transform coordinate corruption rejected",
+    "emitted record corruption rejected"
+  ],
+  "new_standalone_validation": {
+    "notes": "Actually executed standalone assertions; source provenance, exact rounded transforms, original writes, leaf and candidate ownership, null baseline and separate allocator diagnostic, controls and fresh repeat where requested.",
+    "passed_count": 209140,
+    "status": "passed",
+    "test_count": 209140
+  },
+  "private_output_inventory": [
+    {
+      "bytes": 1250814,
+      "private_relative_name": "research/alternate.tsv",
+      "sha256": "61fef7203de40d12ea219f2b824aa9e263916e99b164517127396fdc4fa6fb71"
+    },
+    {
+      "bytes": 13732,
+      "private_relative_name": "research/alternate.tsv.arena.bin",
+      "sha256": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf"
+    },
+    {
+      "bytes": 49152,
+      "private_relative_name": "research/alternate.tsv.buckets.bin",
+      "sha256": "2aae7dc846aaf25f1cadf55f1666862046c6db9d65d84bdc07fa039dac405606"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "research/alternate.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 0,
+      "private_relative_name": "research/alternate.tsv.polygons.bin",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/alternate.tsv.post.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/alternate.tsv.pre.bin",
+      "sha256": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/alternate.tsv.vertices.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 316089,
+      "private_relative_name": "research/baseline.tsv",
+      "sha256": "8109c7d6ac003e4195ac0c280cb55311be707b5c57ad92083963245b057a96b6"
+    },
+    {
+      "bytes": 13732,
+      "private_relative_name": "research/baseline.tsv.arena.bin",
+      "sha256": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "research/baseline.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/baseline.tsv.post.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/baseline.tsv.pre.bin",
+      "sha256": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/baseline.tsv.vertices.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 4465,
+      "private_relative_name": "research/below.tsv",
+      "sha256": "6c3ed320c8e51f09ccfbc08426c671071df05ea9464e63c244789866f4b2ef36"
+    },
+    {
+      "bytes": 0,
+      "private_relative_name": "research/below.tsv.arena.bin",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "research/below.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 0,
+      "private_relative_name": "research/below.tsv.vertices.bin",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 157961,
+      "private_relative_name": "research/contrast.tsv",
+      "sha256": "848543bfc3caa733070ea1f6a058f6eaffddf737000658ff2494a5bbb0142d32"
+    },
+    {
+      "bytes": 4220,
+      "private_relative_name": "research/contrast.tsv.arena.bin",
+      "sha256": "8f3ef20d54f44565beb95cb66dca73add6279a3dd1eff36b185dac0a42ad130a"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "research/contrast.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 1164,
+      "private_relative_name": "research/contrast.tsv.post.bin",
+      "sha256": "e747b7ad6ed38569db31c527578f47da248405abcb4c86c0667d203254940623"
+    },
+    {
+      "bytes": 1164,
+      "private_relative_name": "research/contrast.tsv.pre.bin",
+      "sha256": "d5bce41cf28f0a28e0522f8dd28354b40553ea19b72b266ab52c11e49e73f6aa"
+    },
+    {
+      "bytes": 1164,
+      "private_relative_name": "research/contrast.tsv.vertices.bin",
+      "sha256": "e747b7ad6ed38569db31c527578f47da248405abcb4c86c0667d203254940623"
+    },
+    {
+      "bytes": 2198687,
+      "private_relative_name": "research/diagnostic.tsv",
+      "sha256": "fca5d72414ed74fd851a043a8068d630deb237826aab978cafcebd14d3126cc2"
+    },
+    {
+      "bytes": 13732,
+      "private_relative_name": "research/diagnostic.tsv.arena.bin",
+      "sha256": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf"
+    },
+    {
+      "bytes": 49152,
+      "private_relative_name": "research/diagnostic.tsv.buckets.bin",
+      "sha256": "2aae7dc846aaf25f1cadf55f1666862046c6db9d65d84bdc07fa039dac405606"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "research/diagnostic.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 0,
+      "private_relative_name": "research/diagnostic.tsv.polygons.bin",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/diagnostic.tsv.post.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/diagnostic.tsv.pre.bin",
+      "sha256": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/diagnostic.tsv.vertices.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 315445,
+      "private_relative_name": "research/primary.tsv",
+      "sha256": "c2ad9a693e3f0400d9ad14438cc3e739cd6c8362b409b242cb7d969c3ccb84d5"
+    },
+    {
+      "bytes": 13732,
+      "private_relative_name": "research/primary.tsv.arena.bin",
+      "sha256": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "research/primary.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/primary.tsv.post.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/primary.tsv.pre.bin",
+      "sha256": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/primary.tsv.vertices.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 2025377,
+      "private_relative_name": "research/projected.tsv",
+      "sha256": "6e6ea2f0eafbd2c6a51cfc7fe8ccfb15b3d0e7b08cfad2e9a0ed4ef93ae90d4f"
+    },
+    {
+      "bytes": 13732,
+      "private_relative_name": "research/projected.tsv.arena.bin",
+      "sha256": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf"
+    },
+    {
+      "bytes": 49152,
+      "private_relative_name": "research/projected.tsv.buckets.bin",
+      "sha256": "91cfc0b5de7d252f089c5879abaeca6e7d850c078b80914328f5347bee132360"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "research/projected.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 23144,
+      "private_relative_name": "research/projected.tsv.polygons.bin",
+      "sha256": "c6d42db5bb032e55fd14ff3e5b1f5b7554f3d7a41b76acd73b3d30cd6edb6a66"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/projected.tsv.post.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/projected.tsv.pre.bin",
+      "sha256": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "research/projected.tsv.vertices.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 2025377,
+      "private_relative_name": "repeat/projected.tsv",
+      "sha256": "6e6ea2f0eafbd2c6a51cfc7fe8ccfb15b3d0e7b08cfad2e9a0ed4ef93ae90d4f"
+    },
+    {
+      "bytes": 13732,
+      "private_relative_name": "repeat/projected.tsv.arena.bin",
+      "sha256": "eece35ca3b9affd65c869b69813ab779cdfa58c84a90f98bd912c3521e6004bf"
+    },
+    {
+      "bytes": 49152,
+      "private_relative_name": "repeat/projected.tsv.buckets.bin",
+      "sha256": "91cfc0b5de7d252f089c5879abaeca6e7d850c078b80914328f5347bee132360"
+    },
+    {
+      "bytes": 65536,
+      "private_relative_name": "repeat/projected.tsv.grid.bin",
+      "sha256": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7"
+    },
+    {
+      "bytes": 23144,
+      "private_relative_name": "repeat/projected.tsv.polygons.bin",
+      "sha256": "c6d42db5bb032e55fd14ff3e5b1f5b7554f3d7a41b76acd73b3d30cd6edb6a66"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "repeat/projected.tsv.post.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "repeat/projected.tsv.pre.bin",
+      "sha256": "3d7ad44fdee7076e9a76e9ab087464e3f10b33b988f8f0de7236927e19c10fd0"
+    },
+    {
+      "bytes": 3204,
+      "private_relative_name": "repeat/projected.tsv.vertices.bin",
+      "sha256": "9d70f0de631bba654f936f24b8c259a6d0ff714eae8fec7c780d19e402b1f62a"
+    }
+  ],
+  "repeat": "projected full trace and seven sidecars exactly equal from fresh import",
+  "runtime": {
+    "ghidra": "12.1.4",
+    "java": "OpenJDK 27-ea+34-1-Debian",
+    "model": "Exact model identifier not exposed; Codex assistant via API; no subagents",
+    "platform": "x86_64",
+    "python": "3.14.8"
+  },
+  "trusted_unit_tests": {
+    "github": 38,
+    "protocol": 11
+  }
+}

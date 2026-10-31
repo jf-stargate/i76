@@ -1,0 +1,146 @@
+{
+  "findings": [
+    {
+      "claim": "Original 004937C0 transforms 267 authenticated M06 vertices with a declared proper controlled affine fixture; all 801 coordinates match independently rounded source-derived values.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "010a6eaeb6324796eddd08734e643767ff709aeffbb58bb7c52f335761095ad3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "fc47583bd6b31882eea3884a54f4379678ad45b2ba69d61882f53bab694825c6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "72f95516575b6986857225262e2c70ac7c93c96499630c739eda812b91f4b38b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "904d7aafdc4a96223841be05baf02e36e275495ff08f1a38553261e93bb52eb9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_handoff.py",
+          "sha256": "6a07adadad5bcce18546206667aa03f9f93cfcee8e19d9979d4f73ee56326902"
+        }
+      ],
+      "finding_id": "F1-transform",
+      "limitations": "Controlled affine, direct original routine calls and declared external/numerical services; no original camera provenance.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Untouched original 00490590 returns null; separate original 0048F9B0 initialization with supplied heap backing installs cursor and original bucket-zero state.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "010a6eaeb6324796eddd08734e643767ff709aeffbb58bb7c52f335761095ad3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "fc47583bd6b31882eea3884a54f4379678ad45b2ba69d61882f53bab694825c6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "72f95516575b6986857225262e2c70ac7c93c96499630c739eda812b91f4b38b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "904d7aafdc4a96223841be05baf02e36e275495ff08f1a38553261e93bb52eb9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_handoff.py",
+          "sha256": "6a07adadad5bcce18546206667aa03f9f93cfcee8e19d9979d4f73ee56326902"
+        }
+      ],
+      "finding_id": "F2-allocation",
+      "limitations": "Diagnostic backing is not proof of retail OS allocation, capacity/reset/frame lifecycle; Ghidra permits observed null writes.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original adaptive walker/emitter forms source-owned polygon records; arena-only context rejects 538 attempts, while separate declared projection context clips and actually bins 182 records in 21 original buckets.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "010a6eaeb6324796eddd08734e643767ff709aeffbb58bb7c52f335761095ad3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "fc47583bd6b31882eea3884a54f4379678ad45b2ba69d61882f53bab694825c6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "72f95516575b6986857225262e2c70ac7c93c96499630c739eda812b91f4b38b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "904d7aafdc4a96223841be05baf02e36e275495ff08f1a38553261e93bb52eb9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_handoff.py",
+          "sha256": "6a07adadad5bcce18546206667aa03f9f93cfcee8e19d9979d4f73ee56326902"
+        }
+      ],
+      "finding_id": "F3-clip-bin",
+      "limitations": "Original clip arithmetic retained; external CRT stack-to-record memcpy supplied. Controlled projection and heap; no consumer/raster/pixels.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original ordinary emitter writes B4 independently of TER classes; original alternate selector reads a null descriptor pair and writes a null descriptor/F4 header with texture initialization omitted.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "010a6eaeb6324796eddd08734e643767ff709aeffbb58bb7c52f335761095ad3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "fc47583bd6b31882eea3884a54f4379678ad45b2ba69d61882f53bab694825c6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "72f95516575b6986857225262e2c70ac7c93c96499630c739eda812b91f4b38b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "904d7aafdc4a96223841be05baf02e36e275495ff08f1a38553261e93bb52eb9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_handoff.py",
+          "sha256": "6a07adadad5bcce18546206667aa03f9f93cfcee8e19d9979d4f73ee56326902"
+        }
+      ],
+      "finding_id": "F4-material-boundary",
+      "limitations": "No texture identity, UV provenance, palette success, alternate accepted submission or image claim.",
+      "scope": "game",
+      "status": "proven"
+    }
+  ],
+  "run_id": "i76exe-20261031T002156Z-133da9a8",
+  "schema_version": "1.2.0"
+}

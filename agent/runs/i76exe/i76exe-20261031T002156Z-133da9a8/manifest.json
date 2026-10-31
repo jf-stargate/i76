@@ -1,0 +1,198 @@
+{
+  "artifacts": [
+    {
+      "bytes": 2817,
+      "kind": "report",
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "sha256": "494b2508169d171f44e009000f5a1e1914d329172117ec37fd40f73271c562f7"
+    },
+    {
+      "bytes": 5573,
+      "kind": "report",
+      "path": "artifacts/EXECUTION_NOTES.md",
+      "sha256": "55c9f5a012d4a7d063b6e6bb12a23cedb5e077ebdfb3303eab5056851b8c3f75"
+    },
+    {
+      "bytes": 14640,
+      "kind": "report",
+      "path": "artifacts/REPORT.md",
+      "sha256": "010a6eaeb6324796eddd08734e643767ff709aeffbb58bb7c52f335761095ad3"
+    },
+    {
+      "bytes": 3497,
+      "kind": "report",
+      "path": "artifacts/REPRODUCE.md",
+      "sha256": "1823d9314b28b07b1884f715aca3248a3fbbbb33fd347da165bdfe561b193246"
+    },
+    {
+      "bytes": 3710,
+      "kind": "report",
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "sha256": "940afc275b316cab0dc1432a47a465dc09f5519acf33e09732a5c8dc2fd3531e"
+    },
+    {
+      "bytes": 968,
+      "kind": "table",
+      "path": "evidence/bootstrap.json",
+      "sha256": "1e0c5d37a97837606e6ad3d8fdd15e0c61e7c68339cf9875421e4636b0c7744e"
+    },
+    {
+      "bytes": 2261,
+      "kind": "table",
+      "path": "evidence/instruction_anchors.tsv",
+      "sha256": "72f95516575b6986857225262e2c70ac7c93c96499630c739eda812b91f4b38b"
+    },
+    {
+      "bytes": 12237,
+      "kind": "table",
+      "path": "evidence/reproduction.json",
+      "sha256": "e8313ae1167b13f193ef307c954762514c137e36a25f3e67fa8be128ec8d7e64"
+    },
+    {
+      "bytes": 7786,
+      "kind": "table",
+      "path": "evidence/results.json",
+      "sha256": "fc47583bd6b31882eea3884a54f4379678ad45b2ba69d61882f53bab694825c6"
+    },
+    {
+      "bytes": 9413,
+      "kind": "table",
+      "path": "evidence/selected_events.tsv",
+      "sha256": "904d7aafdc4a96223841be05baf02e36e275495ff08f1a38553261e93bb52eb9"
+    },
+    {
+      "bytes": 2638,
+      "kind": "script",
+      "path": "scripts/I76_TerrainHandoffAudit.java",
+      "sha256": "bfaa49e6f8acbdb3761d0769997466dde90bbd51164ff9c763ae0f9c3f7bbd04"
+    },
+    {
+      "bytes": 18338,
+      "kind": "script",
+      "path": "scripts/I76_TerrainHandoffProbe.java",
+      "sha256": "d5b008fbfc91830ffef93a0ea9a848ee4bb6e7a5428d6b73c22bcdc4b0b749dc"
+    },
+    {
+      "bytes": 1047,
+      "kind": "script",
+      "path": "scripts/check_publication.py",
+      "sha256": "a18679e01f2e06d673409eae76ca09807a126c8171c7ea650605c148c5d7263e"
+    },
+    {
+      "bytes": 2841,
+      "kind": "script",
+      "path": "scripts/reproduce.sh",
+      "sha256": "84147164fc8a610b05d4b665164c039529bf7951c6899210aa1e45f7a0088ed6"
+    },
+    {
+      "bytes": 19849,
+      "kind": "script",
+      "path": "scripts/verify_handoff.py",
+      "sha256": "6a07adadad5bcce18546206667aa03f9f93cfcee8e19d9979d4f73ee56326902"
+    },
+    {
+      "bytes": 897,
+      "kind": "script",
+      "path": "scripts/x87_terrain_service.c",
+      "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1"
+    }
+  ],
+  "base_commit": "3e10251444a117c8d9da053b6887245a2bc4dbcf",
+  "baselines": [
+    {
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "notes": "Read-only Ghidra, no symbol mutations.",
+      "program_name": "i76_mission_v97_verified_names",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "version": "12.1.4"
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "name": "i76.exe",
+      "notes": "Licensed authenticated retail PE; fresh annotated executable section compared byte-for-byte.",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3"
+    },
+    {
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "name": "I76.ZFS",
+      "notes": "Authenticated archive provenance only; renderer resources intentionally not loaded in this bounded run.",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d"
+    },
+    {
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "name": "miss8/M06.MSN",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published.",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f"
+    },
+    {
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "name": "miss8/M06.TER",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published.",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea"
+    }
+  ],
+  "protocol_version": "1.0.4",
+  "reproducibility": {
+    "limitations": "Licensed private source inputs; direct original routine invocation in Ghidra with localized x87, CRT/file/peripheral and diagnostic heap services. Controlled affine/visibility/projection rather than original camera output. CRT exact copy of original clip stack is supplied. No retail allocation/frame lifecycle, palette/texture/UV authentication, draw/raster/framebuffer, RND completion or reconstruction claim.",
+    "methods": [
+      "Unchanged accepted M-RND-05 fresh reproduction before extension.",
+      "Fresh annotated GZF import and exact executable section/retail instruction audit.",
+      "Original affine transform, source-byte/rounded-coordinate and original-write verification.",
+      "Original walker, untouched null allocator baseline, separate original arena initialization with supplied heap.",
+      "Original projection/clip and original bucket mutations/final chains in controlled projection diagnostic.",
+      "Changed/rejected view controls, byte-identical fresh projected repeat and three verifier corruption rejections."
+    ],
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_TerrainHandoffAudit.java",
+        "sha256": "bfaa49e6f8acbdb3761d0769997466dde90bbd51164ff9c763ae0f9c3f7bbd04"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_TerrainHandoffProbe.java",
+        "sha256": "d5b008fbfc91830ffef93a0ea9a848ee4bb6e7a5428d6b73c22bcdc4b0b749dc"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/check_publication.py",
+        "sha256": "a18679e01f2e06d673409eae76ca09807a126c8171c7ea650605c148c5d7263e"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.sh",
+        "sha256": "84147164fc8a610b05d4b665164c039529bf7951c6899210aa1e45f7a0088ed6"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_handoff.py",
+        "sha256": "6a07adadad5bcce18546206667aa03f9f93cfcee8e19d9979d4f73ee56326902"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/x87_terrain_service.c",
+        "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1"
+      }
+    ],
+    "status": "partial"
+  },
+  "run_id": "i76exe-20261031T002156Z-133da9a8",
+  "schema_version": "1.2.0",
+  "started_at": "2026-10-31T00:21:56Z",
+  "summary": "Original source-terrain affine transform and source-owned polygon candidates. Untouched allocator returns null; separate original-init/heap and projected diagnostics reach original clipping and 182 actual binned records. No authentic frame allocation lifecycle, textures or rendering output.",
+  "topic": "Independent M-RND-06 original M06 transform, adaptive walker and polygon clip/bin handoff",
+  "track": "i76exe",
+  "validation": {
+    "notes": "Actually executed standalone assertions; source provenance, exact rounded transforms, original writes, leaf and candidate ownership, null baseline and separate allocator diagnostic, controls and fresh repeat where requested.",
+    "passed_count": 209140,
+    "status": "passed",
+    "test_count": 209140
+  }
+}
