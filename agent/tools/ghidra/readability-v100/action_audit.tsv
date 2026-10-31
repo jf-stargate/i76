@@ -1,0 +1,15 @@
+action	target	source_or_rationale
+CALLBACK_TYPE	/Interstate76/Research-v100/I76_Class1Callback	void callback(void *); return unused in observed dispatch; #58/#62
+DESCRIPTOR_TYPE	/Interstate76/Research-v100/I76_Class1Descriptor_0x34	0x34 stride, typed +8/+c/+10 callbacks; #58/#62
+PARAM	00490A00 parameter[0] camera_view	int -> I76_CameraView_0x1D8*; #69/#76/#78 original camera pointer to M06 adaptive builder
+PARAM	004929B0 parameter[0] camera_view	int -> I76_CameraView_0x1D8*; #76/#78 original camera pointer to terrain visible bounds
+PARAM	00457FF0 parameter[0] camera_view	int * -> I76_CameraView_0x1D8*; #66/#70 original visibility producer receives retained camera
+PARAM	0048FAC0 parameter[0] camera_view	float * -> I76_CameraView_0x1D8*; #70/#80 typed original bucket queue consumer camera
+PARAM	00472C10 parameter[0] camera_view	int -> I76_CameraView_0x1D8*; #67/#76 original frustum classification view
+PARAM	0047CB00 parameter[0] draw_command	byte * -> I76_SoftwareDrawCommand_0x60*; #75/#77/#79 original indexed software span callback first argument
+PARAM	0047CB00 parameter[1] surface_descriptor	int * -> I76_SoftwareSurface_0x34*; #77/#81 original span callback second argument
+PARAM	00474C60 parameter[0] surface_descriptor	int * -> I76_SoftwareSurface_0x34*; #77/#79 13-DWORD output surface descriptor
+RETURN	00491810 return I76_TerrainAdaptiveLeaf_0x1C *	short* -> typed leaf*; #69/#78 original 0x1C linked leaf allocation
+CALLBACK_SLOT	004F777C class-1 callable slots +8/+c/+10 slot +8	00463120 original class-1 callable; #58/#62
+CALLBACK_SLOT	004F777C class-1 callable slots +8/+c/+10 slot +c	00463800 original class-1 callable; #58/#62
+CALLBACK_SLOT	004F777C class-1 callable slots +8/+c/+10 slot +10	00463950 original class-1 callable; #58/#62
