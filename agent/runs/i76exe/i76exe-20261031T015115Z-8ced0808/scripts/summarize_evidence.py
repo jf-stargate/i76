@@ -50,6 +50,7 @@ evidence={
  'private_trace_sha256':{n:sha(a.private/(n+'.tsv')) for n in ('diagnostic','offset','behind','absent','init_raw','palette_raw')},
  'private_framebuffer_sha256':{n:sha(a.private/(n+'.tsv.frame')) for n in ('diagnostic','offset','behind','fresh_repeat')}
 }
+evidence['private_guard_sha256']={n:sha(a.private/(n+'.tsv.guards')) for n in ('diagnostic','offset','behind','fresh_repeat')}
 # Keep the original callback only: command/edge and scene traces remain private and
 # independently verifiable through the accepted predecessor's published evidence.
 evidence['all_original_table_read_registers']=[r for r in evidence['all_original_table_read_registers'] if r['pc']=='0047CC55']

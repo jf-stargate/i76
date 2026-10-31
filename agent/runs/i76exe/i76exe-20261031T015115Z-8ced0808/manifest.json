@@ -35,9 +35,9 @@
   "summary": "Complete bounded controlled diagnostic indexed-byte result: original 00474C60 descriptor constructor with supplied allocation; original 0047CB00 returns twice and writes 210 verified framebuffer bytes from authentic stock-bus spans. Original heap and palette initialization blockers preserved; no authentic retail color or complete image.",
   "validation": {
     "status": "passed",
-    "test_count": 3712,
-    "passed_count": 3712,
-    "notes": "Own standalone verifier: 3593 positive assertions and 81 executed assertions during three rejected corruption attempts; trusted pinned-base GitHub/protocol unit suite: 38/38. Unchanged accepted PR75 reproduction independently passed 11350 native assertions plus 292 delegated source/projection assertions and predecessor checks, counted separately. Two original callbacks returned with 210 byte stores; behind, absent-surface, X-offset and fresh-GZF controls passed. Structural protocol/integrity and exact GitHub CI are separate publication gates."
+    "test_count": 3724,
+    "passed_count": 3724,
+    "notes": "Own standalone verifier: 3601 positive assertions and 85 executed assertions during three rejected corruption attempts; trusted pinned-base GitHub/protocol unit suite: 38/38. Unchanged accepted PR75 reproduction independently passed 11350 native assertions plus 292 delegated source/projection assertions and predecessor checks, counted separately. Clean end-to-end run-owned reproducer passed. Two original callbacks returned with 210 byte stores; behind, absent-surface, X-offset, fresh-GZF and independently captured guard controls passed. Structural protocol/integrity and exact GitHub CI are separate publication gates."
   },
   "artifacts": [
     {
@@ -49,26 +49,26 @@
     {
       "path": "artifacts/EXECUTION_NOTES.md",
       "kind": "report",
-      "sha256": "afcf56ea1330e8b100eab4a3626b66b07e27694bddeda636cd323bf176e06d57",
-      "bytes": 3016
+      "sha256": "b64c7c2e862ac786b0704a939ce1b1702d4c9325a8734c0ee0db42d65b479173",
+      "bytes": 3316
     },
     {
       "path": "artifacts/REPORT.md",
       "kind": "report",
-      "sha256": "af4954c817db19a98fc908ad9f3b34c52a0889e208375efb7e7e0ea00a14de8a",
-      "bytes": 7038
+      "sha256": "f16f6a304346de14a021b871f7c01b8825626a904f7f118c3c232534479d7dcf",
+      "bytes": 7074
     },
     {
       "path": "artifacts/REPRODUCE.md",
       "kind": "report",
-      "sha256": "6681b795cb6d49eba2e24f4bc20f8ca1db8ea9748a36ce227483d9654e6d4b44",
-      "bytes": 3309
+      "sha256": "5eedf289566ce65cfd2943524518fa291a766b5e3be0f2b43d26bfdc42441e6f",
+      "bytes": 3336
     },
     {
       "path": "artifacts/SERVICE_LEDGER.md",
       "kind": "report",
-      "sha256": "55a74ea1e86cdbc050e54bee9095c55530a7e28b8d68f769957c0d6dff4de4f0",
-      "bytes": 3719
+      "sha256": "d4afac0bb5f58b7fe6d55754b3d76667abde78840b8bc8398e2ea52d1e182f4a",
+      "bytes": 3911
     },
     {
       "path": "evidence/controls.json",
@@ -91,8 +91,8 @@
     {
       "path": "evidence/raster_results.json",
       "kind": "table",
-      "sha256": "65787f5f65e0d0ed2bf1505e555db66288dc5547b60e963585c0faff99482b23",
-      "bytes": 72067
+      "sha256": "88c1f300adfbd7b2e90e248b74e5096e6ed3d79f8dcb74c8c7a886a067d6abd3",
+      "bytes": 72437
     },
     {
       "path": "evidence/retail_raster_opcodes.json",
@@ -109,26 +109,26 @@
     {
       "path": "scripts/I76_RasterProbe.java",
       "kind": "script",
-      "sha256": "eca224d7369b482fa380f7efff7e57b2f3dada7435d789c7b01e42238c53c878",
-      "bytes": 48708
+      "sha256": "c8332a5be625bb7cba4f4080fedcc5ae1171b2fd6a9d7f02b744786dae08fb4a",
+      "bytes": 49022
     },
     {
       "path": "scripts/reproduce.py",
       "kind": "script",
-      "sha256": "ca05d7580deb256d093e9bb4f939af13991f7dc164423b38a0c6ba003908daf4",
-      "bytes": 4104
+      "sha256": "cef4a1e48c8c366a96a05d5c7df6a2d5f2cf66fd8cbd29634ee141afdab90a66",
+      "bytes": 4238
     },
     {
       "path": "scripts/summarize_evidence.py",
       "kind": "script",
-      "sha256": "06eac66655e84316846a81ce953f2ef04037ccee9ce2f7b127a177cb61d03d9e",
-      "bytes": 4626
+      "sha256": "62d1e490d27875419bea4738d9f33754099ffdfe21055580f583d0c766f3d8a8",
+      "bytes": 4753
     },
     {
       "path": "scripts/verify_raster.py",
       "kind": "script",
-      "sha256": "3e6d42a684547f487a3fe37b34998e0585d7ab24439c0935d0e299b0a7517143",
-      "bytes": 12063
+      "sha256": "cdef31b72dcddb0902f005265e2ff6de090e2513e14a6864fb55ccfa8232370b",
+      "bytes": 12792
     }
   ],
   "reproducibility": {
@@ -142,22 +142,22 @@
       {
         "kind": "run-artifact",
         "ref": "scripts/I76_RasterProbe.java",
-        "sha256": "eca224d7369b482fa380f7efff7e57b2f3dada7435d789c7b01e42238c53c878"
+        "sha256": "c8332a5be625bb7cba4f4080fedcc5ae1171b2fd6a9d7f02b744786dae08fb4a"
       },
       {
         "kind": "run-artifact",
         "ref": "scripts/reproduce.py",
-        "sha256": "ca05d7580deb256d093e9bb4f939af13991f7dc164423b38a0c6ba003908daf4"
+        "sha256": "cef4a1e48c8c366a96a05d5c7df6a2d5f2cf66fd8cbd29634ee141afdab90a66"
       },
       {
         "kind": "run-artifact",
         "ref": "scripts/summarize_evidence.py",
-        "sha256": "06eac66655e84316846a81ce953f2ef04037ccee9ce2f7b127a177cb61d03d9e"
+        "sha256": "62d1e490d27875419bea4738d9f33754099ffdfe21055580f583d0c766f3d8a8"
       },
       {
         "kind": "run-artifact",
         "ref": "scripts/verify_raster.py",
-        "sha256": "3e6d42a684547f487a3fe37b34998e0585d7ab24439c0935d0e299b0a7517143"
+        "sha256": "cdef31b72dcddb0902f005265e2ff6de090e2513e14a6864fb55ccfa8232370b"
       }
     ],
     "methods": [

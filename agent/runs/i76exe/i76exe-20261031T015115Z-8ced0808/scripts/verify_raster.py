@@ -51,15 +51,18 @@ def baseline_spans(rows):
         check(word(cmd, 0x30) == int(fields['spanAddress'], 16)+len(raw)-4, 'pending slot pointer')
         commands[int(fields['address'], 16)] = {'packed': words[1:-1]+[word(cmd, 0x28)], 'pending':word(cmd, 0x28), 'slot':word(cmd, 0x30), 'color':cmd[0]}
     check(len(commands) == 2, 'two native commands')
+    packed=[v for cmd in commands.values() for v in cmd['packed']]
+    check(len(packed)==14 and [(v>>21,(v>>10)&0x7ff,v&0x3ff) for v in packed]==[(233,15,y) for y in range(313,327)], 'fourteen authenticated source spans')
     return commands
 
-def verify_case(name, rows, frame, commands, offset, need_pixels):
+def verify_case(name, rows, frame, commands, offset, need_pixels, guards):
     calls = [r for r in rows if r[0] == 'RASTER_ENTER']
     returns = [r for r in rows if r[0] == 'RASTER_RETURN']
     writes = [r for r in rows if r[0] == 'RASTER_BYTE_WRITE']
     finishes = [r for r in rows if r[0] == 'FRAMEBUFFER_FINAL']
     if not need_pixels:
         check(len(calls) == 0 and len(returns) == 0 and len(writes) == 0, name+' has no raster output')
+        check(guards==b'\xcd'*32, name+' exact independent guard bytes')
         return {'case':name,'writes':0,'returns':0}
     check(len(calls) == 2 and len(returns) == 2, name+' two original callback returns')
     check(len(finishes) == 1, name+' final framebuffer record')
@@ -68,6 +71,7 @@ def verify_case(name, rows, frame, commands, offset, need_pixels):
     base = int(f['base'], 16)
     check(base == 0x3f000000 and int(f['pitch']) == 640 and int(f['size']) == len(frame), name+' original descriptor base/pitch/size')
     check(f['guards'] == 'CD_intact', name+' guards intact')
+    check(guards==b'\xcd'*32, name+' exact independent guard bytes')
     check(hashlib.sha256(frame).hexdigest() == f['sha256'], name+' framebuffer hash')
     check(int(f['writes']) == len(writes) and int(f['calls']) == len(calls) and int(f['returns']) == len(returns), name+' trace counts')
     table = bytes(((i & 255)+(i >> 8)) & 255 for i in range(8192))
@@ -78,6 +82,7 @@ def verify_case(name, rows, frame, commands, offset, need_pixels):
     check(len(init) == 1 and init[0][2]['ready'] == 'true', name+' original constructor returned valid descriptor')
     desc = bytes.fromhex(init[0][2]['descriptor'])
     check(word(desc, 0) == 640 and word(desc, 0x14) == base and word(desc, 0x1c) == 0 and word(desc, 0x20) == 0, name+' original descriptor field ownership')
+    check(word(desc,0x0c)==76800 and word(desc,0x24)==639 and word(desc,0x28)==479 and word(desc,0x2c)==1, name+' original descriptor capacity and extent')
     for kind, pc, fields, _ in calls:
         cmd = int(fields['command'], 16)
         check(cmd in commands, name+' original command identity')
@@ -154,7 +159,8 @@ def main():
             offsets=[r for r in rows if r[0]=='SUPPLIED_VIEWPORT_OFFSET']
             check(len(offsets)==1 and offsets[0][2]['x']=='4' and offsets[0][2]['y']=='0','controlled viewport offset')
         frame=(a.private/(name+'.tsv.frame')).read_bytes() if positive else b''
-        result.append(verify_case(name,rows,frame,commands,off,positive))
+        guards=(a.private/(name+'.tsv.guards')).read_bytes()
+        result.append(verify_case(name,rows,frame,commands,off,positive,guards))
     absent=events(a.private/'absent.tsv')
     blockers=[r for r in absent if r[0]=='SURFACE_BLOCKER']
     check(len(blockers)==1 and blockers[0][1]==0x47cc25, 'absent surface rejected at original destination read')
@@ -165,7 +171,8 @@ def main():
     check((a.private/'behind.tsv.frame').read_bytes()==b'\xa5'*(640*480), 'behind-camera framebuffer unchanged')
     repeat=events(a.private/'fresh_repeat.tsv')
     repeat_frame=(a.private/'fresh_repeat.tsv.frame').read_bytes()
-    repeat_result=verify_case('fresh_repeat',repeat,repeat_frame,commands,0,True)
+    repeat_guards=(a.private/'fresh_repeat.tsv.guards').read_bytes()
+    repeat_result=verify_case('fresh_repeat',repeat,repeat_frame,commands,0,True,repeat_guards)
     check(repeat_frame==(a.private/'diagnostic.tsv.frame').read_bytes(), 'fresh-project exact framebuffer equality')
     check([(r[0],r[1],r[2]) for r in repeat if r[0] in ('RASTER_ENTER','RASTER_BYTE_WRITE','RASTER_RETURN','FRAMEBUFFER_FINAL')]==[(r[0],r[1],r[2]) for r in events(a.private/'diagnostic.tsv') if r[0] in ('RASTER_ENTER','RASTER_BYTE_WRITE','RASTER_RETURN','FRAMEBUFFER_FINAL')], 'fresh-project exact raster events')
     positive_assertions=assertions
@@ -177,7 +184,7 @@ def main():
             bad=a.private/('corrupt_'+key+'.tsv')
             bad.write_text(text.replace(old,new,1))
             try:
-                verify_case(key,events(bad),(a.private/'diagnostic.tsv.frame').read_bytes(),commands,0,True)
+                verify_case(key,events(bad),(a.private/'diagnostic.tsv.frame').read_bytes(),commands,0,True,(a.private/'diagnostic.tsv.guards').read_bytes())
             except AssertionError:
                 pass
             else:

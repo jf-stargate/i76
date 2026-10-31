@@ -47,6 +47,7 @@ assert status.returncode==0 and 'ERROR' not in (a.work/'fresh_import.log').read_
 invoke('fresh_repeat',fresh,'visible','diagnostic')
 assert (a.work/'diagnostic.tsv').read_bytes()==(a.work/'fresh_repeat.tsv').read_bytes(),'full original trace fresh equality'
 assert (a.work/'diagnostic.tsv.frame').read_bytes()==(a.work/'fresh_repeat.tsv.frame').read_bytes(),'framebuffer fresh equality'
+assert (a.work/'diagnostic.tsv.guards').read_bytes()==(a.work/'fresh_repeat.tsv.guards').read_bytes(),'surface guards fresh equality'
 with (a.work/'raster_opcodes.log').open('w') as log:
     status=subprocess.run([str(a.headless),str(baseline/'baseline'),'research','-process','i76_mission_v97_verified_names','-readOnly','-noanalysis','-scriptPath',str(run/'scripts'),'-postScript','I76_RasterOpcodeAudit.java',str(a.work/'raster_opcodes.tsv'),str(a.work/'diagnostic.tsv')],stdout=log,stderr=subprocess.STDOUT,env=env)
 assert status.returncode==0 and 'SCRIPT ERROR' not in (a.work/'raster_opcodes.log').read_text(),'opcode audit'

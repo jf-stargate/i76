@@ -18,7 +18,7 @@ public class I76_RasterProbe extends GhidraScript {
  void mem(long p,int n){if(producing)throw new IllegalStateException("harness memory allocation during producer");hostWrite(p,new byte[n]);}
  boolean viewSealed=false;boolean queueSealed=false;long sealedEnd;int hostWrites;
  void checkHostWrite(long p,int n){
-  hostWrites++;for(var kv:drawAllocations.entrySet())if(p<kv.getKey()+kv.getValue()&&p+n>kv.getKey())throw new IllegalStateException("host wrote existing draw allocation");if(viewSealed&&p<CAMERA+472&&p+n>CAMERA)throw new IllegalStateException("host camera write after callbacks");
+  hostWrites++;for(var kv:drawAllocations.entrySet())if(p<kv.getKey()+kv.getValue()&&p+n>kv.getKey())throw new IllegalStateException("host wrote existing draw allocation");if(surfaceRaw!=0&&!surfaceAllocating&&p<surfaceRaw+surfaceRawSize&&p+n>surfaceRaw)throw new IllegalStateException("host wrote surface after allocation");if(viewSealed&&p<CAMERA+472&&p+n>CAMERA)throw new IllegalStateException("host camera write after callbacks");
   if(queueSealed && ((p<sealedEnd&&p+n>0x38000000L)||(p<0x6543c8L&&p+n>0x654380L)))throw new IllegalStateException("host write to original queue at "+hx(p));
  }
  void hostWrite(long p,byte[] b){checkHostWrite(p,b.length);e.writeMemory(a(p),b);}
@@ -344,7 +344,7 @@ public class I76_RasterProbe extends GhidraScript {
     if(rasterCase.equals("offset")){w32(0x5dcedcL,4);log("SUPPLIED_VIEWPORT_OFFSET",0x5dcedcL,"x=4;y=0");}
    }
    if(flushEnabled){inDraw=true;runCall(0x473640L,0x5dcec0L);inDraw=false;}
-   if(surfaceReady){byte[] framebuffer=e.readMemory(a(surfaceBase),surfaceSize);int changed=0;for(byte b:framebuffer)if((b&255)!=0xa5)changed++;for(long at:new long[]{surfaceRaw-16,surfaceRaw+surfaceRawSize})for(byte b:e.readMemory(a(at),16))if((b&255)!=0xcd)throw new Exception("surface guard changed at "+hx(at));Files.write(Paths.get(tracePath+".frame"),framebuffer);log("FRAMEBUFFER_FINAL",0,"base="+hx(surfaceBase)+";size="+surfaceSize+";pitch="+u32(0x5dcec0L)+";changed="+changed+";writes="+rasterWrites+";calls="+rasterCalls+";returns="+rasterReturns+";sha256="+sha(framebuffer)+";guards=CD_intact");}
+   if(surfaceReady){byte[] framebuffer=e.readMemory(a(surfaceBase),surfaceSize);int changed=0;for(byte b:framebuffer)if((b&255)!=0xa5)changed++;byte[] guards=new byte[32];for(int side=0;side<2;side++){long at=side==0?surfaceRaw-16:surfaceRaw+surfaceRawSize;byte[] span=e.readMemory(a(at),16);for(byte b:span)if((b&255)!=0xcd)throw new Exception("surface guard changed at "+hx(at));System.arraycopy(span,0,guards,side*16,16);}Files.write(Paths.get(tracePath+".frame"),framebuffer);Files.write(Paths.get(tracePath+".guards"),guards);log("FRAMEBUFFER_FINAL",0,"base="+hx(surfaceBase)+";size="+surfaceSize+";pitch="+u32(0x5dcec0L)+";changed="+changed+";writes="+rasterWrites+";calls="+rasterCalls+";returns="+rasterReturns+";sha256="+sha(framebuffer)+";guards=CD_intact");}
    if(registeredEntry!=0)log("WORLD_AFTER",registeredEntry,"words="+vec(registeredEntry,30));
    log("PRODUCER_COMPLETE",0x457ff0L,"worldCount="+u32(0x54a25cL));
   }finally{e.dispose();}
