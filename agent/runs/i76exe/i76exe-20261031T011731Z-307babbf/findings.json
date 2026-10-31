@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261031T011731Z-307babbf",
+  "findings": [
+    {
+      "finding_id": "F1-native-command-edges",
+      "claim": "Authenticated original vehicle polygons reach unsubstituted 0047CE40; both calls return to 004721B3 with two original 0x60 commands, four original 0x20 edges and verified source/output ownership.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/draw_events.json",
+          "sha256": "901979250e0f9b3b1f0b0f98956d88ddcd1c9d0f7b4590d151f74ca66d7a7ba2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcodes.json",
+          "sha256": "9bc808cfd9480f0a8520482bd6eda7f3b8219051e77ac25ead87c33fb0340956"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "59e3a4c96617f8cb05c828eaed187252615625ad40523dfdd421f89b2b22125a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_DrawBoundaryProbe.java",
+          "sha256": "44ac7e289371d0e6bd33593474cb96974ff0ad5bbc790f230d564954183a643a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_draw.py",
+          "sha256": "6334f3a9e327667a6788fc052054946c9f3effaeb4fb1923d520bd9a7bc60680"
+        }
+      ],
+      "limitations": "Original-instruction Ghidra emulation with inherited scene/resource/CRT/math/texture services, explicit original workspace initialization and two added narrow CRT allocation/free services. Kind10 draw remains substituted. No hardware x87 parity, clipping intersection, complete scene, framebuffer writes, maintained renderer or RND-v1 completion."
+    },
+    {
+      "finding_id": "F2-native-packed-spans",
+      "claim": "Original 00473640/00474380 finalization and observed writer 00473236 produce 14 packed spans at X233 length15 Y313..326; last spans remain in native command +28 pending callback entry store. Natural original dispatch reaches 0047CB00 before its first instruction.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/draw_events.json",
+          "sha256": "901979250e0f9b3b1f0b0f98956d88ddcd1c9d0f7b4590d151f74ca66d7a7ba2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcodes.json",
+          "sha256": "9bc808cfd9480f0a8520482bd6eda7f3b8219051e77ac25ead87c33fb0340956"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "59e3a4c96617f8cb05c828eaed187252615625ad40523dfdd421f89b2b22125a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_DrawBoundaryProbe.java",
+          "sha256": "44ac7e289371d0e6bd33593474cb96974ff0ad5bbc790f230d564954183a643a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_draw.py",
+          "sha256": "6334f3a9e327667a6788fc052054946c9f3effaeb4fb1923d520bd9a7bc60680"
+        }
+      ],
+      "limitations": "Original-instruction Ghidra emulation with inherited scene/resource/CRT/math/texture services, explicit original workspace initialization and two added narrow CRT allocation/free services. Kind10 draw remains substituted. No hardware x87 parity, clipping intersection, complete scene, framebuffer writes, maintained renderer or RND-v1 completion. Finalizer does not return; no pixel callback instruction executes. Packed stream is jointly represented by buffer and final pending command word."
+    },
+    {
+      "finding_id": "F3-independent-verification",
+      "claim": "Independent source/projection arithmetic, exact command/edge metadata, exact float32 spill-aware inverse/plane and exact scanline records pass positive, original behind-camera, fresh-GZF byte-repeat and six deliberate evidence-corruption controls.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/draw_events.json",
+          "sha256": "901979250e0f9b3b1f0b0f98956d88ddcd1c9d0f7b4590d151f74ca66d7a7ba2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcodes.json",
+          "sha256": "9bc808cfd9480f0a8520482bd6eda7f3b8219051e77ac25ead87c33fb0340956"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "59e3a4c96617f8cb05c828eaed187252615625ad40523dfdd421f89b2b22125a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_DrawBoundaryProbe.java",
+          "sha256": "44ac7e289371d0e6bd33593474cb96974ff0ad5bbc790f230d564954183a643a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_draw.py",
+          "sha256": "6334f3a9e327667a6788fc052054946c9f3effaeb4fb1923d520bd9a7bc60680"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/negative_controls.json",
+          "sha256": "e6af8b9d8ec3ad8c350224d4ef503c3a3ed47f2357a57577d2e4bb9c49dc96aa"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "5f8d117bc7b0da5c91c8bdee5ec3d8cc5336c505a6ecda346f9c1d3b4c1542f5"
+        }
+      ],
+      "limitations": "Original-instruction Ghidra emulation with inherited scene/resource/CRT/math/texture services, explicit original workspace initialization and two added narrow CRT allocation/free services. Kind10 draw remains substituted. No hardware x87 parity, clipping intersection, complete scene, framebuffer writes, maintained renderer or RND-v1 completion. Numerical exactness is measured for these two original polygons, not generalized to every geometry or hardware FPU."
+    },
+    {
+      "finding_id": "F4-image-prerequisite",
+      "claim": "Source-backed pixels remain unresolved at original 0047CB00 entry: inherited 005DCEC0 has zero pitch/base contributions; no owned framebuffer or authenticated palette/shade-table setup has been established.",
+      "status": "unresolved",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/draw_events.json",
+          "sha256": "901979250e0f9b3b1f0b0f98956d88ddcd1c9d0f7b4590d151f74ca66d7a7ba2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcodes.json",
+          "sha256": "9bc808cfd9480f0a8520482bd6eda7f3b8219051e77ac25ead87c33fb0340956"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/blockers.json",
+          "sha256": "9f763f28fb63e321d44cd8caa8de6d8fc8e5f902197578f70fa1f2d92b85f1c5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SERVICE_LEDGER.md",
+          "sha256": "8eef6ece0e2af1a7408b643a28163af4798352c8884a8b1bdb808058f04a1307"
+        }
+      ],
+      "limitations": "Static callback byte-store evidence establishes an indexed-color path only. Coherent original surface descriptor/framebuffer and palette/shade initialization are required before actual image claims."
+    }
+  ]
+}

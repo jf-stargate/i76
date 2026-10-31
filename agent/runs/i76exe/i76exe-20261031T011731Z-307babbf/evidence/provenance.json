@@ -1,0 +1,70 @@
+{
+  "inputs": {
+    "exe": {
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "bytes": 1050624
+    },
+    "zfs": {
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "bytes": 55535506
+    },
+    "gzf": {
+      "sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "md5": "626cb75ee5232e083d00e2849dafd9ea",
+      "bytes": 6444695
+    }
+  },
+  "toolchain": "Ghidra 12.1.4 PUBLIC; OpenJDK 27-ea; Python3",
+  "probe_sha256": "44ac7e289371d0e6bd33593474cb96974ff0ad5bbc790f230d564954183a643a",
+  "retail_instruction_count": 1528,
+  "private_traces": {
+    "visible": {
+      "sha256": "d14124faad981c924ae6b4d876a80918f2034288fd1491b0e2e9721ac2d6b442",
+      "bytes": 2455085,
+      "only_uninitialized_warning": "inherited optional null geometry name at 004461E0",
+      "complete": true
+    },
+    "behind": {
+      "sha256": "e8354bb8dd10ac545c323aa976bfc6148a9af2bdeea254f1877e8858de5f49e7",
+      "bytes": 724775,
+      "only_uninitialized_warning": "inherited optional null geometry name at 004461E0",
+      "complete": true
+    },
+    "repeat": {
+      "sha256": "d14124faad981c924ae6b4d876a80918f2034288fd1491b0e2e9721ac2d6b442",
+      "bytes": 2455085,
+      "only_uninitialized_warning": "inherited optional null geometry name at 004461E0",
+      "complete": true
+    },
+    "flush": {
+      "sha256": "23a7047cda5f4829d811a06d1daba0213295fe45b8c1942e5097273390a95ebe",
+      "bytes": 17471776,
+      "only_uninitialized_warning": "inherited optional null geometry name at 004461E0",
+      "complete": true
+    },
+    "flush_repeat": {
+      "sha256": "23a7047cda5f4829d811a06d1daba0213295fe45b8c1942e5097273390a95ebe",
+      "bytes": 17471776,
+      "only_uninitialized_warning": "inherited optional null geometry name at 004461E0",
+      "complete": true
+    }
+  },
+  "fresh_imports": [
+    "accepted baseline fresh import",
+    "accepted polygon fresh import",
+    "native command fresh import",
+    "native finalizer fresh import"
+  ],
+  "driver_sha256": "10f9fa0e8d06cf4550ed6267a612b832b01a2d3e63b3582eabccf060da003b1b",
+  "full_driver_log_sha256": "52861c5f961f631193656f7e54b42bde14bdeb9a481abf66b0fc1ed66a710efe",
+  "baseline_source_assertions": 1402,
+  "accepted_polygon_source_assertions_without_mutations": 2769,
+  "draw_positive_assertions_including_private_and_retail_checks": 11350,
+  "additional_upstream_source_projection_assertions": 292,
+  "trusted_base_unit_tests": 38,
+  "deliberate_draw_corruptions_rejected": 6,
+  "private_projects": "owned isolated scratch; no original binaries or project payloads published",
+  "observations": "original instruction emulation with supplied services; fresh-import full traces identical; no callback pixel instruction executed"
+}
