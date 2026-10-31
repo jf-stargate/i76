@@ -13,3 +13,5 @@ D: standalone source/world/view/projection and store-replay verifier passed 2,76
 E: new complete driver reruns accepted baseline before native visible/behind/fresh-import-repeat; complete native traces byte-identical across separate projects. Final driver passed again in another new work directory. Trusted pinned unit suite 38/38 and protocol validator pass. Preflight/CI details are reported with the PR; structural integrity is not scientific milestone acceptance.
 
 Original camera and queue chronological boundaries are never restored from checkpoints or fabricated. Source audit/decompiler output and full raw traces stay private. Published evidence is a bounded allowlist plus source vertex excerpt, instruction/table evidence and calculated results. No accepted run, canonical documentation or comparison branch was modified; no merge performed.
+
+Publication preflight recovery: first pr_integrity invocation supplied an incorrectly transcribed non-existent head SHA and failed Git object lookup. Retried with exact git rev-parse HEAD; trusted inspection passed (20 append-only files, 17 artifacts, 5 findings). No validator bypass or research change.
