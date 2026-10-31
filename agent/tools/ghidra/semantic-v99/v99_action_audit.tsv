@@ -1,0 +1,87 @@
+action	target	evidence_or_reason
+STRUCT	 	/Interstate76/Research-v99/I76_CameraView_0x1D8 size=472; partial fields only, not automatically applied to memory
+STRUCT	 	/Interstate76/Research-v99/I76_RenderWorkKind6_0x44 size=68; partial fields only, not automatically applied to memory
+STRUCT	 	/Interstate76/Research-v99/I76_SoftwareSurface_0x34 size=52; partial fields only, not automatically applied to memory
+STRUCT	 	/Interstate76/Research-v99/I76_SoftwareDrawCommand_0x60 size=96; partial fields only, not automatically applied to memory
+STRUCT	 	/Interstate76/Research-v99/I76_TerrainAdaptiveLeaf_0x1C size=28; partial fields only, not automatically applied to memory
+STRUCT	 	/Interstate76/Research-v99/I76_ProjectVertex_0x18 size=24; partial fields only, not automatically applied to memory
+STRUCT	 	/Interstate76/Research-v99/I76_WorldObjectPosePrefix_0x58 size=88; partial fields only, not automatically applied to memory
+STRUCT	 	/Interstate76/Research-v99/I76_ClassDescriptor_0x34 size=52; partial fields only, not automatically applied to memory
+GLOBAL	0061B2A0 -> g_RND_ShadeLookup256x256	#81/#84; static 65536-byte shade-row by palette-index table
+GLOBAL	 	0059B388 -> g_RND_PaletteSquaredDifferenceTable #81/#84; 512 dword signed-square entries -256..255
+GLOBAL	00654398 -> g_RND_PolygonRecordArenaBase	#76/#80; original renderer polygon allocation base
+CORRECTION	00654380 g_RND_WorkRecordArenaCursor -> g_TER_AdaptiveEdgeLeafArenaCursor	#69/#80: source edge/leaf allocations use this cursor, distinct from polygon record cursor 006543C0
+CORRECTION	005DD324 g_RND_WorkArenaBase -> g_RND_SharedTerrainVehicleScratchBase	#80: terrain edge/leaf arena reused for stock GEO scratch
+CORRECTION	005DD2EC g_runtime_terrain_vertex_aux_projected_lighting_buffer -> g_TER_SourceVertexAuxAlias	#80: pointer aliases upper half of the same 108000-byte XYZ allocation
+TYPE	004FE420 as float	frame delta seconds; #50/#62
+TYPE	006442C0 as int	M06 source grid step 5; #51/#78
+TYPE	006442C4 as float	M06 reciprocal grid step 0.2; #51/#78
+TYPE	006543A4 as float	frame work queue maximum depth bound; #76/#78
+TYPE	006543AC as float	frame work queue minimum depth bound; #76/#78
+PARAM	00493550 arg0 -> world_x	TER sampler; M06 physics evidence #51
+PARAM	00493550 arg1 -> world_z	TER sampler; M06 physics evidence #51
+PARAM	004927B0 arg0 -> world_x	packed material sampler; #51
+PARAM	004927B0 arg1 -> world_z	packed material sampler; #51
+PARAM	00493160 arg0 -> sample_x	source pointer-grid sampler; #69/#78
+PARAM	00493160 arg1 -> sample_z	source pointer-grid sampler; #69/#78
+PARAM	00490A00 arg0 -> camera_view	original visual terrain builder #69/#76
+PARAM	004929B0 arg0 -> camera_view	original terrain visible-bounds selection #76
+PARAM	00457FF0 arg0 -> camera_view	original visibility producer #66/#70
+PARAM	0048FE10 arg0 -> view_depth	depth-based original bucket insert #66/#70
+PARAM	0048FAC0 arg0 -> camera_view	original bucket consumer #70/#80
+PARAM	00472C10 arg0 -> camera_view	original view classification #67/#70
+PARAM	00472C10 arg1 -> sphere_center_xyz	original frustum sphere classifier #66/#70
+PARAM	00472C10 arg2 -> sphere_radius	original frustum sphere classifier #66/#70
+PARAM	004918F0 arg0 -> shared_edge	original edge splitting #69
+PARAM	004791E0 arg0 -> palette_context	shade-column producer #81/#84
+PARAM	004791E0 arg1 -> optional_luminance_table	nullable copy branch #81/#84
+PARAM	004796A0 arg0 -> red	nearest ACT color lookup #81/#84
+PARAM	004796A0 arg1 -> green	nearest ACT color lookup #81/#84
+PARAM	004796A0 arg2 -> blue	nearest ACT color lookup #81/#84
+PARAM	00474C60 arg0 -> surface_descriptor	13-dword software surface constructor #77/#79
+PARAM	00474C60 arg1 -> byte_pitch	original constructor writes field +0 #77/#79
+PARAM	00474C60 arg2 -> height_rows	original constructor derives width*height and max Y #77/#79
+PARAM	00474C60 arg3 -> optional_backing_pixels	original constructor uses caller buffer or HeapAlloc #77/#79
+PARAM	00474C60 arg4 -> pixel_format_mode	source mode==1 doubles allocation; exact format unresolved #77/#79
+PARAM	0047CB00 arg0 -> draw_command	source reads +0x18,+0x30,+0x58 from 0x60-byte draw command #75/#79
+PARAM	0047CB00 arg1 -> surface_descriptor	source reads byte pitch +0 and offsets +0x14/+0x1C from caller surface #77/#81
+PARAM	00463120 arg0 -> vehicle_root	class-1 selected init owns original world object #64
+PARAM	00463800 arg0 -> vehicle_root	descriptor class-1 pre callback #58/#62
+PARAM	00463950 arg0 -> vehicle_root	descriptor class-1 post callback #58/#64
+PARAM	004AD6F0 arg0 -> world_object	original top-level VCF construction #16
+PARAM	00449680 arg0 -> world_object_identity	original per-owner TMT registration #16
+PARAM	00491810 arg0 -> edge_ref_0	four source edge references; #69/#78
+PARAM	00491810 arg1 -> edge_ref_1	four source edge references; #69/#78
+PARAM	00491810 arg2 -> edge_ref_2	four source edge references; #69/#78
+PARAM	00491810 arg3 -> edge_ref_3	four source edge references; #69/#78
+RETURN	00493550 bilinear sampler -> float ST0	#51 executed x87 FPU returns packed terrain height in ST0; decompiler uint was misleading
+LOCAL	00493550 local_18 -> sample_x_index	verified bilinear X lattice integer in decompiled original sampler #51
+LOCAL	00493550 local_10 -> sample_z_index	verified bilinear Z lattice integer in decompiled original sampler #51
+LOCAL	004796A0 local_4 -> best_palette_index	lowest squared RGB distance candidate cached by original #81
+LOCAL	0047CB00 local_8 -> pixel_cursor	original writes indexed shade bytes through this advancing pointer #77/#81
+LOCAL	 	0047CB00 local_14 -> span_blocks_remaining decrements per 16-pixel unrolled group in original raster #77
+LOCAL	00474C60 local_1c -> raw_allocation	actual HeapAlloc pointer or NULL for caller-owned backing #77
+LOCAL	00474C60 local_20 -> aligned_pixel_base	original masks byte pointer to 32-byte alignment #77
+LOCAL	00474C60 local_10 -> max_x_inclusive	constructed from byte pitch minus one #77
+LOCAL	00474C60 local_c -> max_y_inclusive	constructed from height minus one #77
+MAP	004C2730 installed camera	#67/#76 472-byte persistent camera
+MAP	0061B2A0 installed shade	#81/#84 original static 65536-byte shade lookup table
+COMMENT	00493550 evidence	#51 original bilinear packed low12 height sampler (X/Z doubles, ST0 result). This is NOT a world transform/bounds helper.
+COMMENT	004931C0 evidence	#51 original terrain normal calculation, NOT the packed material word sampler. Packed bit12 remains unresolved.
+COMMENT	00463120 evidence	#64 direct selected class-1 init returns; full pending-list selected initialization/input delivery remains unresolved.
+COMMENT	00457FF0 evidence	#66/#70 produces original kind-6/10 work records from registered objects. Do not equate active world registry with class callback list.
+COMMENT	00490A00 evidence	#69/#74/#76 original adaptive terrain produces source primitives and then emits bin candidates. Rendering/pixels require distinct stages.
+COMMENT	004937C0 evidence	#74/#76 original terrain source-to-view transform; a #69 diagnostic stopped BEFORE its entry.
+COMMENT	0048FAC0 evidence	#70/#80 consumes original typed work queue and clears buckets; does not prove native terrain pixels.
+COMMENT	0047C8D0 evidence	#73 confirmed untextured kind-6 projected polygon path, flag 0x101. Not the old assumed mode-0x15 path.
+COMMENT	0047CE40 evidence	#75 confirmed original untextured draw submission, flag 0x01, 0x60-byte command/0x20-byte edges.
+COMMENT	0047CB00 evidence	#77/#81 original software 8-bit indexed raster span writer; returned bytes require authenticated palette and materials for color fidelity.
+COMMENT	004791E0 evidence	#81/#84 original palette shade table producer for ONE fully observed 256-byte color column; full return not observed.
+COMMENT	004796A0 evidence	#81/#84 original nearest-color palette cache indexed by quantized RGB; searches palette entries 0..254.
+COMMENT	004C2730 evidence	#67/#76 original retained 0x1D8-byte camera view. Near/far are +0x108/+0x138, not depth bucket bounds.
+COMMENT	00654380 evidence	#69/#80 visual terrain leaf/edge arena cursor; distinct from polygon queue cursor 006543C0. Earlier v98 label may conflate them.
+COMMENT	006543A4 evidence	#76/#78 terrain-derived depth-bucket maximum, not camera far clipping plane. Some earlier harness values were supplied.
+SKIP	006543AC evidence	preserve existing repeatable comment
+COMMENT	0061B2A0 evidence	#81/#84 0x10000-byte shade lookup table indexed shade*256 + palette index; only one native-produced column proven.
+COMMENT	005DD2EC evidence	#80 original scratch pointer aliases upper half of one 108000-byte source buffer, not an independent allocation.
+COMMENT	005DD324 evidence	#80 terrain leaf/edge scratch later reused by vehicle GEO traversal; external backing not retail allocation evidence.
