@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261031T161025Z-d3f083fc",
+  "findings": [
+    {
+      "finding_id": "F1-unified-ownership",
+      "claim": "Original authenticated M06 terrain and stock-bus records coexist in one retained original camera/arena and reach distinct original submission/dispatch paths.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "limitations": "Direct original-instruction subset with resource/heap/CRT/numerical and consumer clip/draw services. No full retail frame, materials, native rendering, pixels, mission spawn or hardware parity.",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "6f41cb3004a8d8a1b91408a8e83af09c102b818384a4e2f81bd48892a01222ae"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/MEMORY_OWNERSHIP.md",
+          "sha256": "1db0d3b195a352c2e2a10f156348181c25cf158ae24992d683cfa22f5f02015f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "50382cba89c031e1bdf02199962ccfcd1d30611d78fc2eb30d52dc7093c1cf94"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/opcodes.json",
+          "sha256": "2fec4a12538c9424cc8b7b31d50418fd90d9693114325712d3d006387fe60135"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_all.py",
+          "sha256": "79d6eeb245fd9f01e6bde836a56f2a37a4628ebdd2bc68f231110b5abc081081"
+        }
+      ]
+    },
+    {
+      "finding_id": "F2-scratch-lifetime",
+      "claim": "Original scratch install uses XYZ+0xD2F0 auxiliary alias; terrain copies output before vehicle GEO reuses scratch.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "limitations": "Direct original-instruction subset with resource/heap/CRT/numerical and consumer clip/draw services. No full retail frame, materials, native rendering, pixels, mission spawn or hardware parity.",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "6f41cb3004a8d8a1b91408a8e83af09c102b818384a4e2f81bd48892a01222ae"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/MEMORY_OWNERSHIP.md",
+          "sha256": "1db0d3b195a352c2e2a10f156348181c25cf158ae24992d683cfa22f5f02015f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "50382cba89c031e1bdf02199962ccfcd1d30611d78fc2eb30d52dc7093c1cf94"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/opcodes.json",
+          "sha256": "2fec4a12538c9424cc8b7b31d50418fd90d9693114325712d3d006387fe60135"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_all.py",
+          "sha256": "79d6eeb245fd9f01e6bde836a56f2a37a4628ebdd2bc68f231110b5abc081081"
+        }
+      ]
+    },
+    {
+      "finding_id": "F3-depth-lifecycle",
+      "claim": "Terrain min=-300 permits camera-owner kind10 depth -5 insertion; original consumer order and clearing/reset are independently verified.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "limitations": "Direct original-instruction subset with resource/heap/CRT/numerical and consumer clip/draw services. No full retail frame, materials, native rendering, pixels, mission spawn or hardware parity.",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "6f41cb3004a8d8a1b91408a8e83af09c102b818384a4e2f81bd48892a01222ae"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/MEMORY_OWNERSHIP.md",
+          "sha256": "1db0d3b195a352c2e2a10f156348181c25cf158ae24992d683cfa22f5f02015f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "50382cba89c031e1bdf02199962ccfcd1d30611d78fc2eb30d52dc7093c1cf94"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/opcodes.json",
+          "sha256": "2fec4a12538c9424cc8b7b31d50418fd90d9693114325712d3d006387fe60135"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_all.py",
+          "sha256": "79d6eeb245fd9f01e6bde836a56f2a37a4628ebdd2bc68f231110b5abc081081"
+        }
+      ]
+    }
+  ]
+}

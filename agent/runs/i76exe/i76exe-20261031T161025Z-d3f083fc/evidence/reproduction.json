@@ -1,0 +1,21 @@
+{
+  "base_commit": "6d151459f92b75aaadd5221dc8edd8e4776651ff",
+  "vehicle_baseline": {
+    "status": "passed",
+    "assertions": 1402,
+    "source_verification": true,
+    "cases": 5
+  },
+  "terrain_baseline": {
+    "status": "passed",
+    "test_count": 89114,
+    "passed_count": 89114,
+    "notes": "Executed standalone checks of original field ownership, M06 source, camera/frustum, rounded transforms, independent depth/screen clipping, final bucket chains, differential/negative/repeat and deliberate corruptions when requested."
+  },
+  "trusted_unit_tests": {
+    "protocol": 11,
+    "ci": 38
+  },
+  "final_driver": "scripts/reproduce.sh",
+  "source_scratch": "original allocation/install prefix with alias +0xD2F0; prior exploratory disjoint backing excluded from final result"
+}
