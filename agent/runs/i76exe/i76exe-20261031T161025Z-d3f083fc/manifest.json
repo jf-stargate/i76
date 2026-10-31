@@ -1,0 +1,223 @@
+{
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "bytes": 1274,
+      "sha256": "74cbe47ef7f97c2c5778a82c767230a4ece0f91e4cacb60b0d0b0d2ae2b8c0cf",
+      "kind": "report"
+    },
+    {
+      "path": "artifacts/EXECUTION_NOTES.md",
+      "bytes": 1564,
+      "sha256": "9a65ea10a89da0f992ba1d0cc7f6e853aaa25fae2861b783cfa2e7684838804c",
+      "kind": "report"
+    },
+    {
+      "path": "artifacts/MEMORY_OWNERSHIP.md",
+      "bytes": 3728,
+      "sha256": "1db0d3b195a352c2e2a10f156348181c25cf158ae24992d683cfa22f5f02015f",
+      "kind": "report"
+    },
+    {
+      "path": "artifacts/REPORT.md",
+      "bytes": 7115,
+      "sha256": "6f41cb3004a8d8a1b91408a8e83af09c102b818384a4e2f81bd48892a01222ae",
+      "kind": "report"
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "bytes": 1720,
+      "sha256": "978073035f0a52b4573817efe97eee51301483afe9eef3fba8fe04353ecf007f",
+      "kind": "report"
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "bytes": 3532,
+      "sha256": "383d6377549506d6bb1b8d4ba4a78430eb5e52c599f99ee7f0962f38ce942f1c",
+      "kind": "report"
+    },
+    {
+      "path": "evidence/instruction_anchors.tsv",
+      "bytes": 5934,
+      "sha256": "d061f8a89ea0880d0813114329b57b6374d9752792a518f3ac446befd170e68c",
+      "kind": "table"
+    },
+    {
+      "path": "evidence/opcodes.json",
+      "bytes": 1487,
+      "sha256": "2fec4a12538c9424cc8b7b31d50418fd90d9693114325712d3d006387fe60135",
+      "kind": "table"
+    },
+    {
+      "path": "evidence/reproduction.json",
+      "bytes": 787,
+      "sha256": "ffdc851dace670c6af4246aca841cec49d5fc7c6a7b920b0c485328f731e08b0",
+      "kind": "table"
+    },
+    {
+      "path": "evidence/results.json",
+      "bytes": 3529,
+      "sha256": "50382cba89c031e1bdf02199962ccfcd1d30611d78fc2eb30d52dc7093c1cf94",
+      "kind": "table"
+    },
+    {
+      "path": "evidence/selected_events.tsv",
+      "bytes": 7381,
+      "sha256": "bcf927f5a304712fa4d9298ca2b7aac8be70c2289a372152245bed1039ee0584",
+      "kind": "table"
+    },
+    {
+      "path": "scripts/I76_UnifiedAudit.java",
+      "bytes": 3231,
+      "sha256": "dfc553f179353001b4e7890277ca2e2ac4ce6740fa5cddd62cb058caee67d8dc",
+      "kind": "script"
+    },
+    {
+      "path": "scripts/I76_UnifiedBase.java",
+      "bytes": 37039,
+      "sha256": "e9a802d6417544260ec803ea160893dd46ac50064bc1b98921c97627fc6e1549",
+      "kind": "script"
+    },
+    {
+      "path": "scripts/I76_UnifiedProbe.java",
+      "bytes": 15363,
+      "sha256": "c36679e564aa098143bd5c5d671e67860c661db7cc9e39096722b8991b08cba7",
+      "kind": "script"
+    },
+    {
+      "path": "scripts/check_publication.py",
+      "bytes": 713,
+      "sha256": "815162309d5db79298a5a36f47ee990b50d81473d8b22930530f1f3529de8440",
+      "kind": "script"
+    },
+    {
+      "path": "scripts/reproduce.sh",
+      "bytes": 2280,
+      "sha256": "17d8e763058e33bd2d7c3f08f7456942b51c7064c87251323a265aa2a8808996",
+      "kind": "script"
+    },
+    {
+      "path": "scripts/verify_all.py",
+      "bytes": 5521,
+      "sha256": "79d6eeb245fd9f01e6bde836a56f2a37a4628ebdd2bc68f231110b5abc081081",
+      "kind": "script"
+    },
+    {
+      "path": "scripts/verify_terrain.py",
+      "bytes": 20162,
+      "sha256": "0f4d51bbbc32430bf7cb8aa212d300f81f2da5afa0eae1a7e0dce409db5acbac",
+      "kind": "script"
+    },
+    {
+      "path": "scripts/verify_unified.py",
+      "bytes": 6712,
+      "sha256": "a7326d00a13616821c3ee2d0e7d0ff639f5b750fdde0e4ee111a699c16baa8cc",
+      "kind": "script"
+    }
+  ],
+  "base_commit": "6d151459f92b75aaadd5221dc8edd8e4776651ff",
+  "baselines": [
+    {
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "notes": "Read-only Ghidra, no symbol mutations.",
+      "program_name": "i76_mission_v97_verified_names",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "version": "12.1.4"
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "name": "i76.exe",
+      "notes": "Licensed authenticated retail PE; fresh annotated executable section compared byte-for-byte.",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3"
+    },
+    {
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "name": "I76.ZFS",
+      "notes": "Authenticated retail ZFS; 65 stock fixtures extracted.",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d"
+    },
+    {
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "name": "miss8/M06.MSN",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published.",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f"
+    },
+    {
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "name": "miss8/M06.TER",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published.",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea"
+    }
+  ],
+  "protocol_version": "1.0.4",
+  "reproducibility": {
+    "status": "partial",
+    "methods": [
+      "Unchanged #76/#70 full reproduction.",
+      "Original scratch install, camera, terrain, vehicle and consumer in one state.",
+      "Independent source/clip/GEO/queue checks, five controls, fresh repeat and corruption."
+    ],
+    "limitations": "Direct original-instruction subset with resource/heap/CRT/numerical and consumer clip/draw services. No full retail frame, materials, native rendering, pixels, mission spawn or hardware parity.",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_UnifiedAudit.java",
+        "sha256": "dfc553f179353001b4e7890277ca2e2ac4ce6740fa5cddd62cb058caee67d8dc"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_UnifiedBase.java",
+        "sha256": "e9a802d6417544260ec803ea160893dd46ac50064bc1b98921c97627fc6e1549"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_UnifiedProbe.java",
+        "sha256": "c36679e564aa098143bd5c5d671e67860c661db7cc9e39096722b8991b08cba7"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/check_publication.py",
+        "sha256": "815162309d5db79298a5a36f47ee990b50d81473d8b22930530f1f3529de8440"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.sh",
+        "sha256": "17d8e763058e33bd2d7c3f08f7456942b51c7064c87251323a265aa2a8808996"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_all.py",
+        "sha256": "79d6eeb245fd9f01e6bde836a56f2a37a4628ebdd2bc68f231110b5abc081081"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_terrain.py",
+        "sha256": "0f4d51bbbc32430bf7cb8aa212d300f81f2da5afa0eae1a7e0dce409db5acbac"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_unified.py",
+        "sha256": "a7326d00a13616821c3ee2d0e7d0ff639f5b750fdde0e4ee111a699c16baa8cc"
+      }
+    ]
+  },
+  "run_id": "i76exe-20261031T161025Z-d3f083fc",
+  "schema_version": "1.2.0",
+  "started_at": "2026-10-31T16:10:25Z",
+  "summary": "One retained original camera/arena produces and consumes distinct terrain and stock-vehicle contributions; five controls, fresh repeat and corruption. No full frame or pixels.",
+  "topic": "M-RND-11 unified original M06 terrain and stock-vehicle submission",
+  "track": "i76exe",
+  "validation": {
+    "notes": "Standalone source/camera/terrain clip, typed arena/store chronology, GEO transforms, exact consumer order, five controls, exact fresh-GZF repeat and consumed-owner corruption. Bounded original-instruction state with declared services; no pixels.",
+    "passed_count": 131751,
+    "status": "passed",
+    "test_count": 131751
+  }
+}

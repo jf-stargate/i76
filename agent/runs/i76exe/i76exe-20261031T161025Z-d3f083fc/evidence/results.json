@@ -1,0 +1,88 @@
+{
+  "cases": {
+    "behind": {
+      "checks": 8522,
+      "other_records": 1,
+      "status": "passed",
+      "terrain_records": 30,
+      "vehicle_records": 0
+    },
+    "below": {
+      "checks": 8347,
+      "other_records": 2,
+      "status": "passed",
+      "terrain_records": 0,
+      "vehicle_records": 1
+    },
+    "camera_only": {
+      "checks": 8522,
+      "other_records": 1,
+      "status": "passed",
+      "terrain_records": 30,
+      "vehicle_records": 0
+    },
+    "contrast": {
+      "checks": 8479,
+      "other_records": 2,
+      "status": "passed",
+      "terrain_records": 13,
+      "vehicle_records": 1
+    },
+    "visible": {
+      "checks": 8614,
+      "other_records": 2,
+      "status": "passed",
+      "terrain_records": 30,
+      "vehicle_records": 1
+    }
+  },
+  "corruption": "consumed-owner rejected",
+  "fresh_repeat": {
+    ".arena.bin": "2650131ce067d02790b9bec8278c38c873d3f102c688ce7e4eba28dfe268569c",
+    ".before.buckets.bin": "abe8ebdcc62d08e8615514e6f7d1082a9b6c045e73324a2c53633321cbf3800b",
+    ".before.observed.bin": "0518ed7bd324331b3fd7c19ba52689250c45fc6c51cfaa83ccf7577da8f1ec38",
+    ".before.records.bin": "b1aecb8991c0c2e8b2b48fcc0fae6fef0d3f26a7e405430e26f9802f494193ed",
+    ".buckets.bin": "abe8ebdcc62d08e8615514e6f7d1082a9b6c045e73324a2c53633321cbf3800b",
+    ".consumed.buckets.bin": "2aae7dc846aaf25f1cadf55f1666862046c6db9d65d84bdc07fa039dac405606",
+    ".consumed.observed.bin": "28c2c39a163864599b6a8e84b1bf2bfa2b09d70cceef5b0e71d01d39eae0af3a",
+    ".consumed.records.bin": "084fed08b978af4d7d196a7446a86b58009e636b611db16211b65a9aadff29c5",
+    ".grid.bin": "c5fd5b8dcf77aa5e3518d304f1596702e26049edfb8ecaca9d0f03c4647795d7",
+    ".polygons.bin": "b1aecb8991c0c2e8b2b48fcc0fae6fef0d3f26a7e405430e26f9802f494193ed",
+    ".post.bin": "0c3bfd3ef28cde8f1da1183f5b000cc1367ef3591adb18e1b65ef9851ae4393a",
+    ".pre.bin": "1d6281ffea7340bf5eca159487840ab045528999bb4b6062072f89fd03c3110b",
+    ".produced.buckets.bin": "314d3a6fa2fdc9fb45a92b3ed00dec6c1c41f7678a4d78bf3c504587490cc6eb",
+    ".produced.observed.bin": "1638d7296b7a06dafc7997003775f96fb5f23f65400af139813610b3d5922ef4",
+    ".produced.records.bin": "d49a1781bceb02efee4fece24faf0f312bd399028569e327c840052d08ee268c",
+    ".vertices.bin": "0c3bfd3ef28cde8f1da1183f5b000cc1367ef3591adb18e1b65ef9851ae4393a",
+    ".view.bin": "9c4739852b02dba849ce00b166c4f5cfc5f07db5e684053c83b4d001aca817e1",
+    "trace": "ca25e9c202149ea6517def3af2202c1d59abff29ca6490cfdc76a3b91977e3f8"
+  },
+  "terrain_validation": {
+    "notes": "Executed standalone checks of original field ownership, M06 source, camera/frustum, rounded transforms, independent depth/screen clipping, final bucket chains, differential/negative/repeat and deliberate corruptions when requested.",
+    "passed_count": 89098,
+    "status": "passed",
+    "test_count": 89098
+  },
+  "traces": {
+    "behind": {
+      "bytes": 2972354,
+      "sha256": "ad378600d466e29a8d2996fa96755bcf2b410ec2ab99c569944a5f5345122437"
+    },
+    "below": {
+      "bytes": 2199170,
+      "sha256": "6cc6fe513e5f49b23f4df81357e03967ae84239dec17aebd77115066d5b638ba"
+    },
+    "camera_only": {
+      "bytes": 2943017,
+      "sha256": "2e7514cbc593feb459ed24931c5fe7485992c0b7c0559b95f2e99efa18a61fec"
+    },
+    "contrast": {
+      "bytes": 2547626,
+      "sha256": "6aa3dda1f755ecf61e967ddead34f8fce09a437a293b298c44c89da43b5a1e83"
+    },
+    "visible": {
+      "bytes": 3021952,
+      "sha256": "ca25e9c202149ea6517def3af2202c1d59abff29ca6490cfdc76a3b91977e3f8"
+    }
+  }
+}
