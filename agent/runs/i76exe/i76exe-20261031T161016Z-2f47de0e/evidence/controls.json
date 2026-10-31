@@ -1,0 +1,58 @@
+{
+  "unserviced_numeric": [
+    [
+      "visible",
+      "PALETTE_PRODUCER_ATTEMPT",
+      "004791E0",
+      "descriptor=005DCEC0;tableBefore=9f1dcbc35c350d6027f98be0f5c8b43b42ca52b7604459c0c42be3aa88913d47"
+    ],
+    [
+      "visible",
+      "UNSERVICED_NUMERICAL_STATE",
+      "004BA090",
+      "sp=3001CFD0;return=0047932C;fpu=4000a33332f600000000,0,0,0,0,0,0,0;control=895"
+    ],
+    [
+      "visible",
+      "ORIGINAL_FAILURE",
+      "000C0BFC",
+      "error=Instruction decode failed (invalid memory), PC=000c0bfc;registers=0,6410656,0,6148009,805425104"
+    ]
+  ],
+  "missing_palette": [
+    [
+      "visible",
+      "PALETTE_INPUT_BLOCKER",
+      "00479202",
+      "source=000000E8"
+    ]
+  ],
+  "standalone_verification": {
+    "accepted_source_linkage": true,
+    "arithmetic_limit": "exact float32 shade recurrence, conversions, nearest-color and cache independently checked",
+    "corruption_rejected": true,
+    "distinct_table_values": [
+      0,
+      43,
+      59,
+      249,
+      250,
+      251,
+      252,
+      254
+    ],
+    "frame_sha256": "caf6c543352cfa5ebbaf808a36215a662389ff2f524a62e90ab73301960c6ff7",
+    "index": 7936,
+    "original_pixel_stores": 210,
+    "original_table_stores": 256,
+    "retail_instructions_verified": 797,
+    "value": 0
+  },
+  "accepted_baseline_log_sha256": "6fe7eec950b15a20a66425ee8cfff16ce62b7064087a61c5a1c5d69700ab23f2",
+  "private_trace_hashes": {
+    "positive": "dfc8b1c75cc488233ebe67ad5acf8816d4d2ab9cc80dd8ff0e44d1eb1f16c3b6",
+    "raw": "f1a27f6de80dd7290fa66ad665db8bf9031a34d493acf0af19c98b2a63e900c7",
+    "missing": "6e2773faacdb460d9deebf95f7f5b60ed9bec3553be7f50cf5f938d5eb89230b",
+    "repeat": "dfc8b1c75cc488233ebe67ad5acf8816d4d2ab9cc80dd8ff0e44d1eb1f16c3b6"
+  }
+}

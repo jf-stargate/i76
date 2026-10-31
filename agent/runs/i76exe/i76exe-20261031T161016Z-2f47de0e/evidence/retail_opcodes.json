@@ -1,0 +1,4787 @@
+{
+  "instructions": [
+    {
+      "va": "00474C10",
+      "hex": "6a00",
+      "assembly": "PUSH 0x0",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C12",
+      "hex": "6800000600",
+      "assembly": "PUSH 0x60000",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C17",
+      "hex": "6a00",
+      "assembly": "PUSH 0x0",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C19",
+      "hex": "ff1510c14b00",
+      "assembly": "CALL dword ptr [0x004bc110]",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C1F",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C21",
+      "hex": "a3c8da5800",
+      "assembly": "MOV [0x0058dac8],EAX",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C26",
+      "hex": "750d",
+      "assembly": "JNZ 0x00474c35",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C28",
+      "hex": "68909d4f00",
+      "assembly": "PUSH 0x4f9d90",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C2D",
+      "hex": "e89e89fbff",
+      "assembly": "CALL 0x0042d5d0",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C32",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C35",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "00474c10 report_not_enough_graphic_buffer_memory"
+    },
+    {
+      "va": "00474C60",
+      "hex": "83ec34",
+      "assembly": "SUB ESP,0x34",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C63",
+      "hex": "b90d000000",
+      "assembly": "MOV ECX,0xd",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C68",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C6A",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C6B",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C6C",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C6D",
+      "hex": "8b5c2448",
+      "assembly": "MOV EBX,dword ptr [ESP + 0x48]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C71",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C72",
+      "hex": "8b6c2458",
+      "assembly": "MOV EBP,dword ptr [ESP + 0x58]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C76",
+      "hex": "8d7c2410",
+      "assembly": "LEA EDI,[ESP + 0x10]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C7A",
+      "hex": "f3ab",
+      "assembly": "STOSD.REP ES:EDI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C7C",
+      "hex": "8b7c2450",
+      "assembly": "MOV EDI,dword ptr [ESP + 0x50]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C80",
+      "hex": "8bf7",
+      "assembly": "MOV ESI,EDI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C82",
+      "hex": "0faff3",
+      "assembly": "IMUL ESI,EBX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C85",
+      "hex": "83fd01",
+      "assembly": "CMP EBP,0x1",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C88",
+      "hex": "7502",
+      "assembly": "JNZ 0x00474c8c",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C8A",
+      "hex": "d1e6",
+      "assembly": "SHL ESI,0x1",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C8C",
+      "hex": "85f6",
+      "assembly": "TEST ESI,ESI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C8E",
+      "hex": "0f8e8f000000",
+      "assembly": "JLE 0x00474d23",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C94",
+      "hex": "8b442454",
+      "assembly": "MOV EAX,dword ptr [ESP + 0x54]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C98",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C9A",
+      "hex": "7526",
+      "assembly": "JNZ 0x00474cc2",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474C9C",
+      "hex": "8b0dc8da5800",
+      "assembly": "MOV ECX,dword ptr [0x0058dac8]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CA2",
+      "hex": "8d4620",
+      "assembly": "LEA EAX,[ESI + 0x20]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CA5",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CA6",
+      "hex": "6a00",
+      "assembly": "PUSH 0x0",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CA8",
+      "hex": "51",
+      "assembly": "PUSH ECX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CA9",
+      "hex": "ff1508c14b00",
+      "assembly": "CALL dword ptr [0x004bc108]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CAF",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CB1",
+      "hex": "89442428",
+      "assembly": "MOV dword ptr [ESP + 0x28],EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CB5",
+      "hex": "746c",
+      "assembly": "JZ 0x00474d23",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CB7",
+      "hex": "83c01f",
+      "assembly": "ADD EAX,0x1f",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CBA",
+      "hex": "24e0",
+      "assembly": "AND AL,0xe0",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CBC",
+      "hex": "89442424",
+      "assembly": "MOV dword ptr [ESP + 0x24],EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CC0",
+      "hex": "eb14",
+      "assembly": "JMP 0x00474cd6",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CC2",
+      "hex": "89442424",
+      "assembly": "MOV dword ptr [ESP + 0x24],EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CC6",
+      "hex": "c744242800000000",
+      "assembly": "MOV dword ptr [ESP + 0x28],0x0",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CCE",
+      "hex": "c744244001000000",
+      "assembly": "MOV dword ptr [ESP + 0x40],0x1",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CD6",
+      "hex": "8b442414",
+      "assembly": "MOV EAX,dword ptr [ESP + 0x14]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CDA",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CDC",
+      "hex": "8bc8",
+      "assembly": "MOV ECX,EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CDE",
+      "hex": "83e21f",
+      "assembly": "AND EDX,0x1f",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CE1",
+      "hex": "33cf",
+      "assembly": "XOR ECX,EDI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CE3",
+      "hex": "895c2410",
+      "assembly": "MOV dword ptr [ESP + 0x10],EBX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CE7",
+      "hex": "81e1ffffff1f",
+      "assembly": "AND ECX,0x1fffffff",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CED",
+      "hex": "89542420",
+      "assembly": "MOV dword ptr [ESP + 0x20],EDX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CF1",
+      "hex": "33c1",
+      "assembly": "XOR EAX,ECX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CF3",
+      "hex": "896c2418",
+      "assembly": "MOV dword ptr [ESP + 0x18],EBP",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CF7",
+      "hex": "0d00000020",
+      "assembly": "OR EAX,0x20000000",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474CFC",
+      "hex": "c744243c01000000",
+      "assembly": "MOV dword ptr [ESP + 0x3c],0x1",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D04",
+      "hex": "25ffffffbf",
+      "assembly": "AND EAX,0xbfffffff",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D09",
+      "hex": "c1fe02",
+      "assembly": "SAR ESI,0x2",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D0C",
+      "hex": "25ffffff7f",
+      "assembly": "AND EAX,0x7fffffff",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D11",
+      "hex": "4b",
+      "assembly": "DEC EBX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D12",
+      "hex": "4f",
+      "assembly": "DEC EDI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D13",
+      "hex": "8974241c",
+      "assembly": "MOV dword ptr [ESP + 0x1c],ESI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D17",
+      "hex": "89442414",
+      "assembly": "MOV dword ptr [ESP + 0x14],EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D1B",
+      "hex": "895c2434",
+      "assembly": "MOV dword ptr [ESP + 0x34],EBX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D1F",
+      "hex": "897c2438",
+      "assembly": "MOV dword ptr [ESP + 0x38],EDI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D23",
+      "hex": "8b442448",
+      "assembly": "MOV EAX,dword ptr [ESP + 0x48]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D27",
+      "hex": "b90d000000",
+      "assembly": "MOV ECX,0xd",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D2C",
+      "hex": "8d742410",
+      "assembly": "LEA ESI,[ESP + 0x10]",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D30",
+      "hex": "8bf8",
+      "assembly": "MOV EDI,EAX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D32",
+      "hex": "f3a5",
+      "assembly": "MOVSD.REP ES:EDI,ESI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D34",
+      "hex": "5f",
+      "assembly": "POP EDI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D35",
+      "hex": "5e",
+      "assembly": "POP ESI",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D36",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D37",
+      "hex": "5b",
+      "assembly": "POP EBX",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D38",
+      "hex": "83c434",
+      "assembly": "ADD ESP,0x34",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "00474D3B",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "00474c60 construct_bitmap_surface_context"
+    },
+    {
+      "va": "004791E0",
+      "hex": "8b542404",
+      "assembly": "MOV EDX,dword ptr [ESP + 0x4]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791E4",
+      "hex": "a188bb5900",
+      "assembly": "MOV EAX,[0x0059bb88]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791E9",
+      "hex": "83ec1c",
+      "assembly": "SUB ESP,0x1c",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791EC",
+      "hex": "b9c0000000",
+      "assembly": "MOV ECX,0xc0",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791F1",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791F3",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791F4",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791F5",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791F6",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791F7",
+      "hex": "8db2e8000000",
+      "assembly": "LEA ESI,[EDX + 0xe8]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004791FD",
+      "hex": "bfe0326400",
+      "assembly": "MOV EDI,0x6432e0",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479202",
+      "hex": "f3a5",
+      "assembly": "MOVSD.REP ES:EDI,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479204",
+      "hex": "7525",
+      "assembly": "JNZ 0x0047922b",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479206",
+      "hex": "c70588bb590088b75900",
+      "assembly": "MOV dword ptr [0x0059bb88],0x59b788",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479210",
+      "hex": "b800ffffff",
+      "assembly": "MOV EAX,0xffffff00",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479215",
+      "hex": "8bc8",
+      "assembly": "MOV ECX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479217",
+      "hex": "8b3588bb5900",
+      "assembly": "MOV ESI,dword ptr [0x0059bb88]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047921D",
+      "hex": "0fafc8",
+      "assembly": "IMUL ECX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479220",
+      "hex": "890c86",
+      "assembly": "MOV dword ptr [ESI + EAX*0x4],ECX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479223",
+      "hex": "40",
+      "assembly": "INC EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479224",
+      "hex": "3d00010000",
+      "assembly": "CMP EAX,0x100",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479229",
+      "hex": "7cea",
+      "assembly": "JL 0x00479215",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047922B",
+      "hex": "8b742434",
+      "assembly": "MOV ESI,dword ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047922F",
+      "hex": "b900200000",
+      "assembly": "MOV ECX,0x2000",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479234",
+      "hex": "83c8ff",
+      "assembly": "OR EAX,0xffffffff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479237",
+      "hex": "bfe0b26300",
+      "assembly": "MOV EDI,0x63b2e0",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047923C",
+      "hex": "85f6",
+      "assembly": "TEST ESI,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047923E",
+      "hex": "f3ab",
+      "assembly": "STOSD.REP ES:EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479240",
+      "hex": "7414",
+      "assembly": "JZ 0x00479256",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479242",
+      "hex": "b900400000",
+      "assembly": "MOV ECX,0x4000",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479247",
+      "hex": "bfa0b26100",
+      "assembly": "MOV EDI,0x61b2a0",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047924C",
+      "hex": "f3a5",
+      "assembly": "MOVSD.REP ES:EDI,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047924E",
+      "hex": "5f",
+      "assembly": "POP EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047924F",
+      "hex": "5e",
+      "assembly": "POP ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479250",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479251",
+      "hex": "5b",
+      "assembly": "POP EBX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479252",
+      "hex": "83c41c",
+      "assembly": "ADD ESP,0x1c",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479255",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479256",
+      "hex": "81c2e9000000",
+      "assembly": "ADD EDX,0xe9",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047925C",
+      "hex": "c744241400000000",
+      "assembly": "MOV dword ptr [ESP + 0x14],0x0",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479264",
+      "hex": "89542424",
+      "assembly": "MOV dword ptr [ESP + 0x24],EDX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479268",
+      "hex": "eb04",
+      "assembly": "JMP 0x0047926e",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047926A",
+      "hex": "8b542424",
+      "assembly": "MOV EDX,dword ptr [ESP + 0x24]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047926E",
+      "hex": "8b4c2414",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x14]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479272",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479274",
+      "hex": "8a42ff",
+      "assembly": "MOV AL,byte ptr [EDX + -0x1]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479277",
+      "hex": "bd18000000",
+      "assembly": "MOV EBP,0x18",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047927C",
+      "hex": "8db1a0d16100",
+      "assembly": "LEA ESI,[ECX + 0x61d1a0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479282",
+      "hex": "33c9",
+      "assembly": "XOR ECX,ECX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479284",
+      "hex": "8a0a",
+      "assembly": "MOV CL,byte ptr [EDX]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479286",
+      "hex": "89442430",
+      "assembly": "MOV dword ptr [ESP + 0x30],EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047928A",
+      "hex": "db442430",
+      "assembly": "FILD dword ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047928E",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479290",
+      "hex": "894c2434",
+      "assembly": "MOV dword ptr [ESP + 0x34],ECX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479294",
+      "hex": "8a4201",
+      "assembly": "MOV AL,byte ptr [EDX + 0x1]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479297",
+      "hex": "89742428",
+      "assembly": "MOV dword ptr [ESP + 0x28],ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047929B",
+      "hex": "db442434",
+      "assembly": "FILD dword ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047929F",
+      "hex": "89442430",
+      "assembly": "MOV dword ptr [ESP + 0x30],EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792A3",
+      "hex": "8bde",
+      "assembly": "MOV EBX,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792A5",
+      "hex": "db442430",
+      "assembly": "FILD dword ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792A9",
+      "hex": "d9ca",
+      "assembly": "FXCH ST2",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792AB",
+      "hex": "d80d98e64b00",
+      "assembly": "FMUL float ptr [0x004be698]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792B1",
+      "hex": "d905e4e64b00",
+      "assembly": "FLD float ptr [0x004be6e4]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792B7",
+      "hex": "d9ca",
+      "assembly": "FXCH ST2",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792B9",
+      "hex": "d80d98e64b00",
+      "assembly": "FMUL float ptr [0x004be698]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792BF",
+      "hex": "d9cb",
+      "assembly": "FXCH ST3",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792C1",
+      "hex": "d80d98e64b00",
+      "assembly": "FMUL float ptr [0x004be698]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792C7",
+      "hex": "d9c9",
+      "assembly": "FXCH",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792C9",
+      "hex": "d825e4e64b00",
+      "assembly": "FSUB float ptr [0x004be6e4]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792CF",
+      "hex": "d9cb",
+      "assembly": "FXCH ST3",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792D1",
+      "hex": "d825e4e64b00",
+      "assembly": "FSUB float ptr [0x004be6e4]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792D7",
+      "hex": "d9c9",
+      "assembly": "FXCH",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792D9",
+      "hex": "d825e4e64b00",
+      "assembly": "FSUB float ptr [0x004be6e4]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792DF",
+      "hex": "d905e4e64b00",
+      "assembly": "FLD float ptr [0x004be6e4]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792E5",
+      "hex": "d905e4e64b00",
+      "assembly": "FLD float ptr [0x004be6e4]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792EB",
+      "hex": "d9cd",
+      "assembly": "FXCH ST5",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792ED",
+      "hex": "d80de8e64b00",
+      "assembly": "FMUL float ptr [0x004be6e8]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792F3",
+      "hex": "d95c2418",
+      "assembly": "FSTP float ptr [ESP + 0x18]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792F7",
+      "hex": "d9ca",
+      "assembly": "FXCH ST2",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792F9",
+      "hex": "d80de8e64b00",
+      "assembly": "FMUL float ptr [0x004be6e8]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004792FF",
+      "hex": "d9c9",
+      "assembly": "FXCH",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479301",
+      "hex": "d80de8e64b00",
+      "assembly": "FMUL float ptr [0x004be6e8]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479307",
+      "hex": "d9cb",
+      "assembly": "FXCH ST3",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479309",
+      "hex": "d95c2430",
+      "assembly": "FSTP float ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047930D",
+      "hex": "d95c241c",
+      "assembly": "FSTP float ptr [ESP + 0x1c]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479311",
+      "hex": "d95c2434",
+      "assembly": "FSTP float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479315",
+      "hex": "d95c2420",
+      "assembly": "FSTP float ptr [ESP + 0x20]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479319",
+      "hex": "d95c2410",
+      "assembly": "FSTP float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047931D",
+      "hex": "d9442430",
+      "assembly": "FLD float ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479321",
+      "hex": "d80dd0e64b00",
+      "assembly": "FMUL float ptr [0x004be6d0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479327",
+      "hex": "e8640d0400",
+      "assembly": "CALL 0x004ba090",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047932C",
+      "hex": "d9442434",
+      "assembly": "FLD float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479330",
+      "hex": "d80dd0e64b00",
+      "assembly": "FMUL float ptr [0x004be6d0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479336",
+      "hex": "8bf0",
+      "assembly": "MOV ESI,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479338",
+      "hex": "e8530d0400",
+      "assembly": "CALL 0x004ba090",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047933D",
+      "hex": "d9442410",
+      "assembly": "FLD float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479341",
+      "hex": "d80dd0e64b00",
+      "assembly": "FMUL float ptr [0x004be6d0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479347",
+      "hex": "8bf8",
+      "assembly": "MOV EDI,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479349",
+      "hex": "e8420d0400",
+      "assembly": "CALL 0x004ba090",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047934E",
+      "hex": "85f6",
+      "assembly": "TEST ESI,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479350",
+      "hex": "7d04",
+      "assembly": "JGE 0x00479356",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479352",
+      "hex": "33f6",
+      "assembly": "XOR ESI,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479354",
+      "hex": "eb0d",
+      "assembly": "JMP 0x00479363",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479356",
+      "hex": "81feff000000",
+      "assembly": "CMP ESI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047935C",
+      "hex": "7e05",
+      "assembly": "JLE 0x00479363",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047935E",
+      "hex": "beff000000",
+      "assembly": "MOV ESI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479363",
+      "hex": "85ff",
+      "assembly": "TEST EDI,EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479365",
+      "hex": "7d04",
+      "assembly": "JGE 0x0047936b",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479367",
+      "hex": "33ff",
+      "assembly": "XOR EDI,EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479369",
+      "hex": "eb0d",
+      "assembly": "JMP 0x00479378",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047936B",
+      "hex": "81ffff000000",
+      "assembly": "CMP EDI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479371",
+      "hex": "7e05",
+      "assembly": "JLE 0x00479378",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479373",
+      "hex": "bfff000000",
+      "assembly": "MOV EDI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479378",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047937A",
+      "hex": "7d04",
+      "assembly": "JGE 0x00479380",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047937C",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047937E",
+      "hex": "eb0c",
+      "assembly": "JMP 0x0047938c",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479380",
+      "hex": "3dff000000",
+      "assembly": "CMP EAX,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479385",
+      "hex": "7e05",
+      "assembly": "JLE 0x0047938c",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479387",
+      "hex": "b8ff000000",
+      "assembly": "MOV EAX,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047938C",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047938D",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047938E",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047938F",
+      "hex": "e80c030000",
+      "assembly": "CALL 0x004796a0",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479394",
+      "hex": "d9442424",
+      "assembly": "FLD float ptr [ESP + 0x24]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479398",
+      "hex": "d844243c",
+      "assembly": "FADD float ptr [ESP + 0x3c]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047939C",
+      "hex": "25ff000000",
+      "assembly": "AND EAX,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793A1",
+      "hex": "83c40c",
+      "assembly": "ADD ESP,0xc",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793A4",
+      "hex": "8803",
+      "assembly": "MOV byte ptr [EBX],AL",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793A6",
+      "hex": "81eb00010000",
+      "assembly": "SUB EBX,0x100",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793AC",
+      "hex": "4d",
+      "assembly": "DEC EBP",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793AD",
+      "hex": "d95c2430",
+      "assembly": "FSTP float ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793B1",
+      "hex": "d944241c",
+      "assembly": "FLD float ptr [ESP + 0x1c]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793B5",
+      "hex": "d8442434",
+      "assembly": "FADD float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793B9",
+      "hex": "d95c2434",
+      "assembly": "FSTP float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793BD",
+      "hex": "d9442420",
+      "assembly": "FLD float ptr [ESP + 0x20]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793C1",
+      "hex": "d8442410",
+      "assembly": "FADD float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793C5",
+      "hex": "d95c2410",
+      "assembly": "FSTP float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793C9",
+      "hex": "0f854effffff",
+      "assembly": "JNZ 0x0047931d",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793CF",
+      "hex": "d905e0e64b00",
+      "assembly": "FLD float ptr [0x004be6e0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793D5",
+      "hex": "d905e0e64b00",
+      "assembly": "FLD float ptr [0x004be6e0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793DB",
+      "hex": "d905e0e64b00",
+      "assembly": "FLD float ptr [0x004be6e0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793E1",
+      "hex": "d9ca",
+      "assembly": "FXCH ST2",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793E3",
+      "hex": "d8642430",
+      "assembly": "FSUB float ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793E7",
+      "hex": "d9c9",
+      "assembly": "FXCH",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793E9",
+      "hex": "d8642434",
+      "assembly": "FSUB float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793ED",
+      "hex": "d9ca",
+      "assembly": "FXCH ST2",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793EF",
+      "hex": "d8642410",
+      "assembly": "FSUB float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793F3",
+      "hex": "d9c9",
+      "assembly": "FXCH",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793F5",
+      "hex": "d80dece64b00",
+      "assembly": "FMUL float ptr [0x004be6ec]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793FB",
+      "hex": "d9ca",
+      "assembly": "FXCH ST2",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004793FD",
+      "hex": "d80dece64b00",
+      "assembly": "FMUL float ptr [0x004be6ec]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479403",
+      "hex": "d9c9",
+      "assembly": "FXCH",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479405",
+      "hex": "d80dece64b00",
+      "assembly": "FMUL float ptr [0x004be6ec]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047940B",
+      "hex": "d9ca",
+      "assembly": "FXCH ST2",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047940D",
+      "hex": "d95c2418",
+      "assembly": "FSTP float ptr [ESP + 0x18]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479411",
+      "hex": "8b4c2414",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x14]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479415",
+      "hex": "bd08000000",
+      "assembly": "MOV EBP,0x8",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047941A",
+      "hex": "d95c241c",
+      "assembly": "FSTP float ptr [ESP + 0x1c]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047941E",
+      "hex": "8d99a0b96100",
+      "assembly": "LEA EBX,[ECX + 0x61b9a0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479424",
+      "hex": "d95c2420",
+      "assembly": "FSTP float ptr [ESP + 0x20]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479428",
+      "hex": "d9442430",
+      "assembly": "FLD float ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047942C",
+      "hex": "d80dd0e64b00",
+      "assembly": "FMUL float ptr [0x004be6d0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479432",
+      "hex": "e8590c0400",
+      "assembly": "CALL 0x004ba090",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479437",
+      "hex": "d9442434",
+      "assembly": "FLD float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047943B",
+      "hex": "d80dd0e64b00",
+      "assembly": "FMUL float ptr [0x004be6d0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479441",
+      "hex": "8bf0",
+      "assembly": "MOV ESI,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479443",
+      "hex": "e8480c0400",
+      "assembly": "CALL 0x004ba090",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479448",
+      "hex": "d9442410",
+      "assembly": "FLD float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047944C",
+      "hex": "d80dd0e64b00",
+      "assembly": "FMUL float ptr [0x004be6d0]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479452",
+      "hex": "8bf8",
+      "assembly": "MOV EDI,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479454",
+      "hex": "e8370c0400",
+      "assembly": "CALL 0x004ba090",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479459",
+      "hex": "85f6",
+      "assembly": "TEST ESI,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047945B",
+      "hex": "7d04",
+      "assembly": "JGE 0x00479461",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047945D",
+      "hex": "33f6",
+      "assembly": "XOR ESI,ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047945F",
+      "hex": "eb0d",
+      "assembly": "JMP 0x0047946e",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479461",
+      "hex": "81feff000000",
+      "assembly": "CMP ESI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479467",
+      "hex": "7e05",
+      "assembly": "JLE 0x0047946e",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479469",
+      "hex": "beff000000",
+      "assembly": "MOV ESI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047946E",
+      "hex": "85ff",
+      "assembly": "TEST EDI,EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479470",
+      "hex": "7d04",
+      "assembly": "JGE 0x00479476",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479472",
+      "hex": "33ff",
+      "assembly": "XOR EDI,EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479474",
+      "hex": "eb0d",
+      "assembly": "JMP 0x00479483",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479476",
+      "hex": "81ffff000000",
+      "assembly": "CMP EDI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047947C",
+      "hex": "7e05",
+      "assembly": "JLE 0x00479483",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047947E",
+      "hex": "bfff000000",
+      "assembly": "MOV EDI,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479483",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479485",
+      "hex": "7d04",
+      "assembly": "JGE 0x0047948b",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479487",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479489",
+      "hex": "eb0c",
+      "assembly": "JMP 0x00479497",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047948B",
+      "hex": "3dff000000",
+      "assembly": "CMP EAX,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479490",
+      "hex": "7e05",
+      "assembly": "JLE 0x00479497",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479492",
+      "hex": "b8ff000000",
+      "assembly": "MOV EAX,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479497",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479498",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479499",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047949A",
+      "hex": "e801020000",
+      "assembly": "CALL 0x004796a0",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047949F",
+      "hex": "d9442424",
+      "assembly": "FLD float ptr [ESP + 0x24]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794A3",
+      "hex": "d844243c",
+      "assembly": "FADD float ptr [ESP + 0x3c]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794A7",
+      "hex": "25ff000000",
+      "assembly": "AND EAX,0xff",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794AC",
+      "hex": "83c40c",
+      "assembly": "ADD ESP,0xc",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794AF",
+      "hex": "8803",
+      "assembly": "MOV byte ptr [EBX],AL",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794B1",
+      "hex": "81eb00010000",
+      "assembly": "SUB EBX,0x100",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794B7",
+      "hex": "4d",
+      "assembly": "DEC EBP",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794B8",
+      "hex": "d95c2430",
+      "assembly": "FSTP float ptr [ESP + 0x30]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794BC",
+      "hex": "d944241c",
+      "assembly": "FLD float ptr [ESP + 0x1c]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794C0",
+      "hex": "d8442434",
+      "assembly": "FADD float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794C4",
+      "hex": "d95c2434",
+      "assembly": "FSTP float ptr [ESP + 0x34]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794C8",
+      "hex": "d9442420",
+      "assembly": "FLD float ptr [ESP + 0x20]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794CC",
+      "hex": "d8442410",
+      "assembly": "FADD float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794D0",
+      "hex": "d95c2410",
+      "assembly": "FSTP float ptr [ESP + 0x10]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794D4",
+      "hex": "0f854effffff",
+      "assembly": "JNZ 0x00479428",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794DA",
+      "hex": "8b742428",
+      "assembly": "MOV ESI,dword ptr [ESP + 0x28]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794DE",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794E0",
+      "hex": "ba70000000",
+      "assembly": "MOV EDX,0x70",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794E5",
+      "hex": "8a06",
+      "assembly": "MOV AL,byte ptr [ESI]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794E7",
+      "hex": "8d8e00010000",
+      "assembly": "LEA ECX,[ESI + 0x100]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794ED",
+      "hex": "8801",
+      "assembly": "MOV byte ptr [ECX],AL",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794EF",
+      "hex": "81c100010000",
+      "assembly": "ADD ECX,0x100",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794F5",
+      "hex": "4a",
+      "assembly": "DEC EDX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794F6",
+      "hex": "75f5",
+      "assembly": "JNZ 0x004794ed",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794F8",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004794FA",
+      "hex": "8d8e00e00000",
+      "assembly": "LEA ECX,[ESI + 0xe000]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479500",
+      "hex": "8a8600e1ffff",
+      "assembly": "MOV AL,byte ptr [ESI + 0xffffe100]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479506",
+      "hex": "ba70000000",
+      "assembly": "MOV EDX,0x70",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047950B",
+      "hex": "8801",
+      "assembly": "MOV byte ptr [ECX],AL",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047950D",
+      "hex": "81e900010000",
+      "assembly": "SUB ECX,0x100",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479513",
+      "hex": "4a",
+      "assembly": "DEC EDX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479514",
+      "hex": "75f5",
+      "assembly": "JNZ 0x0047950b",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479516",
+      "hex": "8b442414",
+      "assembly": "MOV EAX,dword ptr [ESP + 0x14]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047951A",
+      "hex": "8b542424",
+      "assembly": "MOV EDX,dword ptr [ESP + 0x24]",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047951E",
+      "hex": "40",
+      "assembly": "INC EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047951F",
+      "hex": "83c203",
+      "assembly": "ADD EDX,0x3",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479522",
+      "hex": "3d00010000",
+      "assembly": "CMP EAX,0x100",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479527",
+      "hex": "89442414",
+      "assembly": "MOV dword ptr [ESP + 0x14],EAX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047952B",
+      "hex": "89542424",
+      "assembly": "MOV dword ptr [ESP + 0x24],EDX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047952F",
+      "hex": "0f8235fdffff",
+      "assembly": "JC 0x0047926a",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479535",
+      "hex": "5f",
+      "assembly": "POP EDI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479536",
+      "hex": "5e",
+      "assembly": "POP ESI",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479537",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479538",
+      "hex": "5b",
+      "assembly": "POP EBX",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "00479539",
+      "hex": "83c41c",
+      "assembly": "ADD ESP,0x1c",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "0047953C",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "004791e0 geometry_projection_clip_context_helper_004791e0"
+    },
+    {
+      "va": "004796A0",
+      "hex": "83ec08",
+      "assembly": "SUB ESP,0x8",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796A3",
+      "hex": "8b44240c",
+      "assembly": "MOV EAX,dword ptr [ESP + 0xc]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796A7",
+      "hex": "8b4c2410",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x10]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796AB",
+      "hex": "8b542414",
+      "assembly": "MOV EDX,dword ptr [ESP + 0x14]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796AF",
+      "hex": "c1f803",
+      "assembly": "SAR EAX,0x3",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796B2",
+      "hex": "c1e005",
+      "assembly": "SHL EAX,0x5",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796B5",
+      "hex": "c1f903",
+      "assembly": "SAR ECX,0x3",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796B8",
+      "hex": "03c1",
+      "assembly": "ADD EAX,ECX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796BA",
+      "hex": "c1e005",
+      "assembly": "SHL EAX,0x5",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796BD",
+      "hex": "c1fa03",
+      "assembly": "SAR EDX,0x3",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796C0",
+      "hex": "8d8410e0b26300",
+      "assembly": "LEA EAX,[EAX + EDX*0x1 + 0x63b2e0]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796C7",
+      "hex": "89442400",
+      "assembly": "MOV dword ptr [ESP],EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796CB",
+      "hex": "8a00",
+      "assembly": "MOV AL,byte ptr [EAX]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796CD",
+      "hex": "3cff",
+      "assembly": "CMP AL,0xff",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796CF",
+      "hex": "7565",
+      "assembly": "JNZ 0x00479736",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796D1",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796D2",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796D3",
+      "hex": "8b3588bb5900",
+      "assembly": "MOV ESI,dword ptr [0x0059bb88]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796D9",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796DA",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796DB",
+      "hex": "bfffffff7f",
+      "assembly": "MOV EDI,0x7fffffff",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796E0",
+      "hex": "33ed",
+      "assembly": "XOR EBP,EBP",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796E2",
+      "hex": "bae0326400",
+      "assembly": "MOV EDX,0x6432e0",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796E7",
+      "hex": "8b4c2424",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x24]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796EB",
+      "hex": "8b5c2420",
+      "assembly": "MOV EBX,dword ptr [ESP + 0x20]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796EF",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796F1",
+      "hex": "8a4202",
+      "assembly": "MOV AL,byte ptr [EDX + 0x2]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796F4",
+      "hex": "2bc8",
+      "assembly": "SUB ECX,EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796F6",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796F8",
+      "hex": "8a4201",
+      "assembly": "MOV AL,byte ptr [EDX + 0x1]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796FB",
+      "hex": "8b0c8e",
+      "assembly": "MOV ECX,dword ptr [ESI + ECX*0x4]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "004796FE",
+      "hex": "2bd8",
+      "assembly": "SUB EBX,EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479700",
+      "hex": "8b049e",
+      "assembly": "MOV EAX,dword ptr [ESI + EBX*0x4]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479703",
+      "hex": "8b5c241c",
+      "assembly": "MOV EBX,dword ptr [ESP + 0x1c]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479707",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479709",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047970B",
+      "hex": "8a02",
+      "assembly": "MOV AL,byte ptr [EDX]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047970D",
+      "hex": "2bd8",
+      "assembly": "SUB EBX,EAX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047970F",
+      "hex": "030c9e",
+      "assembly": "ADD ECX,dword ptr [ESI + EBX*0x4]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479712",
+      "hex": "3bcf",
+      "assembly": "CMP ECX,EDI",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479714",
+      "hex": "7d06",
+      "assembly": "JGE 0x0047971c",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479716",
+      "hex": "896c2414",
+      "assembly": "MOV dword ptr [ESP + 0x14],EBP",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047971A",
+      "hex": "8bf9",
+      "assembly": "MOV EDI,ECX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047971C",
+      "hex": "83c203",
+      "assembly": "ADD EDX,0x3",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047971F",
+      "hex": "45",
+      "assembly": "INC EBP",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479720",
+      "hex": "81fadd356400",
+      "assembly": "CMP EDX,0x6435dd",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479726",
+      "hex": "7cbf",
+      "assembly": "JL 0x004796e7",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479728",
+      "hex": "8b4c2410",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x10]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047972C",
+      "hex": "8a442414",
+      "assembly": "MOV AL,byte ptr [ESP + 0x14]",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479730",
+      "hex": "5b",
+      "assembly": "POP EBX",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479731",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479732",
+      "hex": "5e",
+      "assembly": "POP ESI",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479733",
+      "hex": "8801",
+      "assembly": "MOV byte ptr [ECX],AL",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479735",
+      "hex": "5f",
+      "assembly": "POP EDI",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479736",
+      "hex": "83c408",
+      "assembly": "ADD ESP,0x8",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "00479739",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "004796a0 cache_nearest_palette_cube_index"
+    },
+    {
+      "va": "0047CB00",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB01",
+      "hex": "8bec",
+      "assembly": "MOV EBP,ESP",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB03",
+      "hex": "83ec20",
+      "assembly": "SUB ESP,0x20",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB06",
+      "hex": "8b450c",
+      "assembly": "MOV EAX,dword ptr [EBP + 0xc]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB09",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB0A",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB0B",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB0C",
+      "hex": "8b18",
+      "assembly": "MOV EBX,dword ptr [EAX]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB0E",
+      "hex": "8b7820",
+      "assembly": "MOV EDI,dword ptr [EAX + 0x20]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB11",
+      "hex": "0faffb",
+      "assembly": "IMUL EDI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB14",
+      "hex": "8b5014",
+      "assembly": "MOV EDX,dword ptr [EAX + 0x14]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB17",
+      "hex": "8b481c",
+      "assembly": "MOV ECX,dword ptr [EAX + 0x1c]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB1A",
+      "hex": "8b7508",
+      "assembly": "MOV ESI,dword ptr [EBP + 0x8]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB1D",
+      "hex": "03fa",
+      "assembly": "ADD EDI,EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB1F",
+      "hex": "03f9",
+      "assembly": "ADD EDI,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB21",
+      "hex": "895de8",
+      "assembly": "MOV dword ptr [EBP + -0x18],EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB24",
+      "hex": "8b4e30",
+      "assembly": "MOV ECX,dword ptr [ESI + 0x30]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB27",
+      "hex": "8a06",
+      "assembly": "MOV AL,byte ptr [ESI]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB29",
+      "hex": "8b5628",
+      "assembly": "MOV EDX,dword ptr [ESI + 0x28]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB2C",
+      "hex": "88450f",
+      "assembly": "MOV byte ptr [EBP + 0xf],AL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB2F",
+      "hex": "8911",
+      "assembly": "MOV dword ptr [ECX],EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB31",
+      "hex": "8b462c",
+      "assembly": "MOV EAX,dword ptr [ESI + 0x2c]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB34",
+      "hex": "83c104",
+      "assembly": "ADD ECX,0x4",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB37",
+      "hex": "83c004",
+      "assembly": "ADD EAX,0x4",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB3A",
+      "hex": "3bc1",
+      "assembly": "CMP EAX,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB3C",
+      "hex": "897de4",
+      "assembly": "MOV dword ptr [EBP + -0x1c],EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB3F",
+      "hex": "894de0",
+      "assembly": "MOV dword ptr [EBP + -0x20],ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB42",
+      "hex": "0f84ea020000",
+      "assembly": "JZ 0x0047ce32",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB48",
+      "hex": "eb0c",
+      "assembly": "JMP 0x0047cb56",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB4A",
+      "hex": "8b45ec",
+      "assembly": "MOV EAX,dword ptr [EBP + -0x14]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB4D",
+      "hex": "8b7508",
+      "assembly": "MOV ESI,dword ptr [EBP + 0x8]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB50",
+      "hex": "8b5de8",
+      "assembly": "MOV EBX,dword ptr [EBP + -0x18]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB53",
+      "hex": "8b7de4",
+      "assembly": "MOV EDI,dword ptr [EBP + -0x1c]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB56",
+      "hex": "8b08",
+      "assembly": "MOV ECX,dword ptr [EAX]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB58",
+      "hex": "83c004",
+      "assembly": "ADD EAX,0x4",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB5B",
+      "hex": "d94658",
+      "assembly": "FLD float ptr [ESI + 0x58]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB5E",
+      "hex": "8945ec",
+      "assembly": "MOV dword ptr [EBP + -0x14],EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB61",
+      "hex": "8bc1",
+      "assembly": "MOV EAX,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB63",
+      "hex": "25ff030000",
+      "assembly": "AND EAX,0x3ff",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB68",
+      "hex": "8bd1",
+      "assembly": "MOV EDX,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB6A",
+      "hex": "8945f0",
+      "assembly": "MOV dword ptr [EBP + -0x10],EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB6D",
+      "hex": "0fafc3",
+      "assembly": "IMUL EAX,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB70",
+      "hex": "db45f0",
+      "assembly": "FILD dword ptr [EBP + -0x10]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB73",
+      "hex": "c1ea15",
+      "assembly": "SHR EDX,0x15",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB76",
+      "hex": "d84e5c",
+      "assembly": "FMUL float ptr [ESI + 0x5c]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB79",
+      "hex": "8955f4",
+      "assembly": "MOV dword ptr [EBP + -0xc],EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB7C",
+      "hex": "03c2",
+      "assembly": "ADD EAX,EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB7E",
+      "hex": "db45f4",
+      "assembly": "FILD dword ptr [EBP + -0xc]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB81",
+      "hex": "c1e90a",
+      "assembly": "SHR ECX,0xa",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB84",
+      "hex": "81e1ff070000",
+      "assembly": "AND ECX,0x7ff",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB8A",
+      "hex": "03c7",
+      "assembly": "ADD EAX,EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB8C",
+      "hex": "d8ca",
+      "assembly": "FMUL ST2",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB8E",
+      "hex": "49",
+      "assembly": "DEC ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB8F",
+      "hex": "8bd8",
+      "assembly": "MOV EBX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB91",
+      "hex": "8bf9",
+      "assembly": "MOV EDI,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB93",
+      "hex": "895dfc",
+      "assembly": "MOV dword ptr [EBP + -0x4],EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB96",
+      "hex": "dec1",
+      "assembly": "FADDP",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB98",
+      "hex": "83e70f",
+      "assembly": "AND EDI,0xf",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB9B",
+      "hex": "897df0",
+      "assembly": "MOV dword ptr [EBP + -0x10],EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CB9E",
+      "hex": "d84618",
+      "assembly": "FADD float ptr [ESI + 0x18]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBA1",
+      "hex": "8bf1",
+      "assembly": "MOV ESI,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBA3",
+      "hex": "c1fe04",
+      "assembly": "SAR ESI,0x4",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBA6",
+      "hex": "d9c0",
+      "assembly": "FLD ST0",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBA8",
+      "hex": "dc0518af4f00",
+      "assembly": "FADD double ptr [0x004faf18]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBAE",
+      "hex": "dd1d50bc5900",
+      "assembly": "FSTP double ptr [0x0059bc50]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBB4",
+      "hex": "db45f0",
+      "assembly": "FILD dword ptr [EBP + -0x10]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBB7",
+      "hex": "8b1550bc5900",
+      "assembly": "MOV EDX,dword ptr [0x0059bc50]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBBD",
+      "hex": "f7c200e0ffff",
+      "assembly": "TEST EDX,0xffffe000",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBC3",
+      "hex": "d8ca",
+      "assembly": "FMUL ST2",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBC5",
+      "hex": "d8c1",
+      "assembly": "FADD ST0,ST1",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBC7",
+      "hex": "d95df8",
+      "assembly": "FSTP float ptr [EBP + -0x8]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBCA",
+      "hex": "ddd8",
+      "assembly": "FSTP ST0",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBCC",
+      "hex": "d9c0",
+      "assembly": "FLD ST0",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBCE",
+      "hex": "dc0518af4f00",
+      "assembly": "FADD double ptr [0x004faf18]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBD4",
+      "hex": "dd1da0bb5900",
+      "assembly": "FSTP double ptr [0x0059bba0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBDA",
+      "hex": "d80d74e74b00",
+      "assembly": "FMUL float ptr [0x004be774]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBE0",
+      "hex": "d95df4",
+      "assembly": "FSTP float ptr [EBP + -0xc]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBE3",
+      "hex": "7414",
+      "assembly": "JZ 0x0047cbf9",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBE5",
+      "hex": "f7d2",
+      "assembly": "NOT EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBE7",
+      "hex": "c1ea13",
+      "assembly": "SHR EDX,0x13",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBEA",
+      "hex": "891550bc5900",
+      "assembly": "MOV dword ptr [0x0059bc50],EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBF0",
+      "hex": "db0550bc5900",
+      "assembly": "FILD dword ptr [0x0059bc50]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBF6",
+      "hex": "d95df8",
+      "assembly": "FSTP float ptr [EBP + -0x8]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBF9",
+      "hex": "a1a0bb5900",
+      "assembly": "MOV EAX,[0x0059bba0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CBFE",
+      "hex": "0fafc1",
+      "assembly": "IMUL EAX,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC01",
+      "hex": "03c2",
+      "assembly": "ADD EAX,EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC03",
+      "hex": "a900e0ffff",
+      "assembly": "TEST EAX,0xffffe000",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC08",
+      "hex": "741b",
+      "assembly": "JZ 0x0047cc25",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC0A",
+      "hex": "f7d0",
+      "assembly": "NOT EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC0C",
+      "hex": "c1e813",
+      "assembly": "SHR EAX,0x13",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC0F",
+      "hex": "2bc2",
+      "assembly": "SUB EAX,EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC11",
+      "hex": "99",
+      "assembly": "CDQ",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC12",
+      "hex": "f7f9",
+      "assembly": "IDIV ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC14",
+      "hex": "a3a0bb5900",
+      "assembly": "MOV [0x0059bba0],EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC19",
+      "hex": "c1e004",
+      "assembly": "SHL EAX,0x4",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC1C",
+      "hex": "8945f0",
+      "assembly": "MOV dword ptr [EBP + -0x10],EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC1F",
+      "hex": "db45f0",
+      "assembly": "FILD dword ptr [EBP + -0x10]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC22",
+      "hex": "d95df4",
+      "assembly": "FSTP float ptr [EBP + -0xc]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC25",
+      "hex": "8a03",
+      "assembly": "MOV AL,byte ptr [EBX]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC27",
+      "hex": "8d4c1f01",
+      "assembly": "LEA ECX,[EDI + EBX*0x1 + 0x1]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC2B",
+      "hex": "890d38bd5900",
+      "assembly": "MOV dword ptr [0x0059bd38],ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC31",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC32",
+      "hex": "33d2",
+      "assembly": "XOR EDX,EDX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC34",
+      "hex": "8a550f",
+      "assembly": "MOV DL,byte ptr [EBP + 0xf]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC37",
+      "hex": "8b7dfc",
+      "assembly": "MOV EDI,dword ptr [EBP + -0x4]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC3A",
+      "hex": "a138bd5900",
+      "assembly": "MOV EAX,[0x0059bd38]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC3F",
+      "hex": "3bf8",
+      "assembly": "CMP EDI,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC41",
+      "hex": "7433",
+      "assembly": "JZ 0x0047cc76",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC43",
+      "hex": "8b0d50bc5900",
+      "assembly": "MOV ECX,dword ptr [0x0059bc50]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC49",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC4F",
+      "hex": "8b1da0bb5900",
+      "assembly": "MOV EBX,dword ptr [0x0059bba0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC55",
+      "hex": "8a840aa0b26100",
+      "assembly": "MOV AL,byte ptr [EDX + ECX*0x1 + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC5C",
+      "hex": "8b0d50bc5900",
+      "assembly": "MOV ECX,dword ptr [0x0059bc50]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC62",
+      "hex": "8807",
+      "assembly": "MOV byte ptr [EDI],AL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC64",
+      "hex": "03cb",
+      "assembly": "ADD ECX,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC66",
+      "hex": "890d50bc5900",
+      "assembly": "MOV dword ptr [0x0059bc50],ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC6C",
+      "hex": "47",
+      "assembly": "INC EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC6D",
+      "hex": "a138bd5900",
+      "assembly": "MOV EAX,[0x0059bd38]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC72",
+      "hex": "3bf8",
+      "assembly": "CMP EDI,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC74",
+      "hex": "75cd",
+      "assembly": "JNZ 0x0047cc43",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC76",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC77",
+      "hex": "897dfc",
+      "assembly": "MOV dword ptr [EBP + -0x4],EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC7A",
+      "hex": "4e",
+      "assembly": "DEC ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC7B",
+      "hex": "0f88a3010000",
+      "assembly": "JS 0x0047ce24",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC81",
+      "hex": "46",
+      "assembly": "INC ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC82",
+      "hex": "8975f0",
+      "assembly": "MOV dword ptr [EBP + -0x10],ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC85",
+      "hex": "d945f8",
+      "assembly": "FLD float ptr [EBP + -0x8]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC88",
+      "hex": "dc0518af4f00",
+      "assembly": "FADD double ptr [0x004faf18]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC8E",
+      "hex": "8b55fc",
+      "assembly": "MOV EDX,dword ptr [EBP + -0x4]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC91",
+      "hex": "83c20f",
+      "assembly": "ADD EDX,0xf",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC94",
+      "hex": "83e2e0",
+      "assembly": "AND EDX,0xffffffe0",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC97",
+      "hex": "dd1d50bc5900",
+      "assembly": "FSTP double ptr [0x0059bc50]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CC9D",
+      "hex": "d945f8",
+      "assembly": "FLD float ptr [EBP + -0x8]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCA0",
+      "hex": "d845f4",
+      "assembly": "FADD float ptr [EBP + -0xc]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCA3",
+      "hex": "8a02",
+      "assembly": "MOV AL,byte ptr [EDX]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCA5",
+      "hex": "d95df8",
+      "assembly": "FSTP float ptr [EBP + -0x8]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCA8",
+      "hex": "8b7dfc",
+      "assembly": "MOV EDI,dword ptr [EBP + -0x4]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCAB",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCAD",
+      "hex": "8b3550bc5900",
+      "assembly": "MOV ESI,dword ptr [0x0059bc50]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCB3",
+      "hex": "8a450f",
+      "assembly": "MOV AL,byte ptr [EBP + 0xf]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCB6",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCB8",
+      "hex": "8b1da0bb5900",
+      "assembly": "MOV EBX,dword ptr [0x0059bba0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCBE",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCC4",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCC6",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCC8",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCCA",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCD0",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCD2",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCD4",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCDA",
+      "hex": "880f",
+      "assembly": "MOV byte ptr [EDI],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCDC",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCDE",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCE4",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCE6",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCE8",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCEE",
+      "hex": "885701",
+      "assembly": "MOV byte ptr [EDI + 0x1],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCF1",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCF3",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCF9",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCFB",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CCFD",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD03",
+      "hex": "884f02",
+      "assembly": "MOV byte ptr [EDI + 0x2],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD06",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD08",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD0E",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD10",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD12",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD18",
+      "hex": "885703",
+      "assembly": "MOV byte ptr [EDI + 0x3],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD1B",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD1D",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD23",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD25",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD27",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD2D",
+      "hex": "884f04",
+      "assembly": "MOV byte ptr [EDI + 0x4],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD30",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD32",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD38",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD3A",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD3C",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD42",
+      "hex": "885705",
+      "assembly": "MOV byte ptr [EDI + 0x5],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD45",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD47",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD4D",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD4F",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD51",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD57",
+      "hex": "884f06",
+      "assembly": "MOV byte ptr [EDI + 0x6],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD5A",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD5C",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD62",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD64",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD66",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD6C",
+      "hex": "885707",
+      "assembly": "MOV byte ptr [EDI + 0x7],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD6F",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD71",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD77",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD79",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD7B",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD81",
+      "hex": "884f08",
+      "assembly": "MOV byte ptr [EDI + 0x8],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD84",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD86",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD8C",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD8E",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD90",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD96",
+      "hex": "885709",
+      "assembly": "MOV byte ptr [EDI + 0x9],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD99",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CD9B",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDA1",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDA3",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDA5",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDAB",
+      "hex": "884f0a",
+      "assembly": "MOV byte ptr [EDI + 0xa],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDAE",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDB0",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDB6",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDB8",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDBA",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDC0",
+      "hex": "88570b",
+      "assembly": "MOV byte ptr [EDI + 0xb],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDC3",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDC5",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDCB",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDCD",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDCF",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDD5",
+      "hex": "884f0c",
+      "assembly": "MOV byte ptr [EDI + 0xc],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDD8",
+      "hex": "8bce",
+      "assembly": "MOV ECX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDDA",
+      "hex": "81e1001f0000",
+      "assembly": "AND ECX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDE0",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDE2",
+      "hex": "03c8",
+      "assembly": "ADD ECX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDE4",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDEA",
+      "hex": "88570d",
+      "assembly": "MOV byte ptr [EDI + 0xd],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDED",
+      "hex": "8bd6",
+      "assembly": "MOV EDX,ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDEF",
+      "hex": "81e2001f0000",
+      "assembly": "AND EDX,0x1f00",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDF5",
+      "hex": "8a89a0b26100",
+      "assembly": "MOV CL,byte ptr [ECX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDFB",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CDFD",
+      "hex": "884f0e",
+      "assembly": "MOV byte ptr [EDI + 0xe],CL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE00",
+      "hex": "83c710",
+      "assembly": "ADD EDI,0x10",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE03",
+      "hex": "03f3",
+      "assembly": "ADD ESI,EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE05",
+      "hex": "893550bc5900",
+      "assembly": "MOV dword ptr [0x0059bc50],ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE0B",
+      "hex": "8a92a0b26100",
+      "assembly": "MOV DL,byte ptr [EDX + 0x61b2a0]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE11",
+      "hex": "8857ff",
+      "assembly": "MOV byte ptr [EDI + -0x1],DL",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE14",
+      "hex": "897dfc",
+      "assembly": "MOV dword ptr [EBP + -0x4],EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE17",
+      "hex": "8b45f0",
+      "assembly": "MOV EAX,dword ptr [EBP + -0x10]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE1A",
+      "hex": "48",
+      "assembly": "DEC EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE1B",
+      "hex": "8945f0",
+      "assembly": "MOV dword ptr [EBP + -0x10],EAX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE1E",
+      "hex": "0f8561feffff",
+      "assembly": "JNZ 0x0047cc85",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE24",
+      "hex": "8b4de0",
+      "assembly": "MOV ECX,dword ptr [EBP + -0x20]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE27",
+      "hex": "8b45ec",
+      "assembly": "MOV EAX,dword ptr [EBP + -0x14]",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE2A",
+      "hex": "3bc1",
+      "assembly": "CMP EAX,ECX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE2C",
+      "hex": "0f8518fdffff",
+      "assembly": "JNZ 0x0047cb4a",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE32",
+      "hex": "5f",
+      "assembly": "POP EDI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE33",
+      "hex": "5e",
+      "assembly": "POP ESI",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE34",
+      "hex": "5b",
+      "assembly": "POP EBX",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE35",
+      "hex": "8be5",
+      "assembly": "MOV ESP,EBP",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE37",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0047CE38",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "0047cb00 raster_emit_flat_shaded_gradient_spans"
+    },
+    {
+      "va": "0048DC60",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC61",
+      "hex": "8b6c2408",
+      "assembly": "MOV EBP,dword ptr [ESP + 0x8]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC65",
+      "hex": "8b85e0000000",
+      "assembly": "MOV EAX,dword ptr [EBP + 0xe0]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC6B",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC6D",
+      "hex": "7504",
+      "assembly": "JNZ 0x0048dc73",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC6F",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC71",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC72",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC73",
+      "hex": "8b542414",
+      "assembly": "MOV EDX,dword ptr [ESP + 0x14]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC77",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC78",
+      "hex": "8b7c2410",
+      "assembly": "MOV EDI,dword ptr [ESP + 0x10]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC7C",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC7D",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC7E",
+      "hex": "8b5c241c",
+      "assembly": "MOV EBX,dword ptr [ESP + 0x1c]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC82",
+      "hex": "8d047f",
+      "assembly": "LEA EAX,[EDI + EDI*0x2]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC85",
+      "hex": "8d0c5b",
+      "assembly": "LEA ECX,[EBX + EBX*0x2]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC88",
+      "hex": "03d0",
+      "assembly": "ADD EDX,EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC8A",
+      "hex": "51",
+      "assembly": "PUSH ECX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC8B",
+      "hex": "8d8405e8000000",
+      "assembly": "LEA EAX,[EBP + EAX*0x1 + 0xe8]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC92",
+      "hex": "52",
+      "assembly": "PUSH EDX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC93",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC94",
+      "hex": "ff15f0c14b00",
+      "assembly": "CALL dword ptr [0x004bc1f0]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC9A",
+      "hex": "8b4c2420",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x20]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DC9E",
+      "hex": "83c40c",
+      "assembly": "ADD ESP,0xc",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCA1",
+      "hex": "8db5e8000000",
+      "assembly": "LEA ESI,[EBP + 0xe8]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCA7",
+      "hex": "81c5e9000000",
+      "assembly": "ADD EBP,0xe9",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCAD",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCAE",
+      "hex": "c681ea00000000",
+      "assembly": "MOV byte ptr [ECX + 0xea],0x0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCB5",
+      "hex": "c60600",
+      "assembly": "MOV byte ptr [ESI],0x0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCB8",
+      "hex": "c6450000",
+      "assembly": "MOV byte ptr [EBP],0x0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCBC",
+      "hex": "e8dfb8feff",
+      "assembly": "CALL 0x004795a0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCC1",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCC4",
+      "hex": "6a00",
+      "assembly": "PUSH 0x0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCC6",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCC7",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCC8",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCC9",
+      "hex": "e822bbfeff",
+      "assembly": "CALL 0x004797f0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCCE",
+      "hex": "83c410",
+      "assembly": "ADD ESP,0x10",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCD1",
+      "hex": "b8e5a44f00",
+      "assembly": "MOV EAX,0x4fa4e5",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCD6",
+      "hex": "8bcd",
+      "assembly": "MOV ECX,EBP",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCD8",
+      "hex": "ba04000000",
+      "assembly": "MOV EDX,0x4",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCDD",
+      "hex": "8a59ff",
+      "assembly": "MOV BL,byte ptr [ECX + -0x1]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCE0",
+      "hex": "83c103",
+      "assembly": "ADD ECX,0x3",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCE3",
+      "hex": "8858ff",
+      "assembly": "MOV byte ptr [EAX + -0x1],BL",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCE6",
+      "hex": "8a59fd",
+      "assembly": "MOV BL,byte ptr [ECX + -0x3]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCE9",
+      "hex": "8818",
+      "assembly": "MOV byte ptr [EAX],BL",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCEB",
+      "hex": "8a59fe",
+      "assembly": "MOV BL,byte ptr [ECX + -0x2]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCEE",
+      "hex": "885801",
+      "assembly": "MOV byte ptr [EAX + 0x1],BL",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCF1",
+      "hex": "885002",
+      "assembly": "MOV byte ptr [EAX + 0x2],DL",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCF4",
+      "hex": "03c2",
+      "assembly": "ADD EAX,EDX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCF6",
+      "hex": "3de5a84f00",
+      "assembly": "CMP EAX,0x4fa8e5",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCFB",
+      "hex": "7ce0",
+      "assembly": "JL 0x0048dcdd",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DCFD",
+      "hex": "a1b4c15900",
+      "assembly": "MOV EAX,[0x0059c1b4]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD02",
+      "hex": "85c0",
+      "assembly": "TEST EAX,EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD04",
+      "hex": "7527",
+      "assembly": "JNZ 0x0048dd2d",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD06",
+      "hex": "68e0a44f00",
+      "assembly": "PUSH 0x4fa4e0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD0B",
+      "hex": "ff1560c04b00",
+      "assembly": "CALL dword ptr [0x004bc060]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD11",
+      "hex": "8b15b0c15900",
+      "assembly": "MOV EDX,dword ptr [0x0059c1b0]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD17",
+      "hex": "6a00",
+      "assembly": "PUSH 0x0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD19",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD1A",
+      "hex": "52",
+      "assembly": "PUSH EDX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD1B",
+      "hex": "a3b4c15900",
+      "assembly": "MOV [0x0059c1b4],EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD20",
+      "hex": "ff158cc04b00",
+      "assembly": "CALL dword ptr [0x004bc08c]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD26",
+      "hex": "a3b8c15900",
+      "assembly": "MOV [0x0059c1b8],EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD2B",
+      "hex": "eb13",
+      "assembly": "JMP 0x0048dd40",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD2D",
+      "hex": "68e4a44f00",
+      "assembly": "PUSH 0x4fa4e4",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD32",
+      "hex": "6800010000",
+      "assembly": "PUSH 0x100",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD37",
+      "hex": "6a00",
+      "assembly": "PUSH 0x0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD39",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD3A",
+      "hex": "ff1564c04b00",
+      "assembly": "CALL dword ptr [0x004bc064]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD40",
+      "hex": "a1b0c15900",
+      "assembly": "MOV EAX,[0x0059c1b0]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD45",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD46",
+      "hex": "ff1590c04b00",
+      "assembly": "CALL dword ptr [0x004bc090]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD4C",
+      "hex": "8b4c2424",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x24]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD50",
+      "hex": "8b542414",
+      "assembly": "MOV EDX,dword ptr [ESP + 0x14]",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD54",
+      "hex": "51",
+      "assembly": "PUSH ECX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD55",
+      "hex": "52",
+      "assembly": "PUSH EDX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD56",
+      "hex": "e885b4feff",
+      "assembly": "CALL 0x004791e0",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD5B",
+      "hex": "83c408",
+      "assembly": "ADD ESP,0x8",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD5E",
+      "hex": "b801000000",
+      "assembly": "MOV EAX,0x1",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD63",
+      "hex": "5b",
+      "assembly": "POP EBX",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD64",
+      "hex": "5e",
+      "assembly": "POP ESI",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD65",
+      "hex": "5f",
+      "assembly": "POP EDI",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD66",
+      "hex": "5d",
+      "assembly": "POP EBP",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD67",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "0048dc60 update_bitmap_palette_entries_and_realize"
+    },
+    {
+      "va": "0048DD70",
+      "hex": "8b442404",
+      "assembly": "MOV EAX,dword ptr [ESP + 0x4]",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD74",
+      "hex": "8b88e0000000",
+      "assembly": "MOV ECX,dword ptr [EAX + 0xe0]",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD7A",
+      "hex": "85c9",
+      "assembly": "TEST ECX,ECX",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD7C",
+      "hex": "7503",
+      "assembly": "JNZ 0x0048dd81",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD7E",
+      "hex": "33c0",
+      "assembly": "XOR EAX,EAX",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD80",
+      "hex": "c3",
+      "assembly": "RET",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD81",
+      "hex": "8b4c2408",
+      "assembly": "MOV ECX,dword ptr [ESP + 0x8]",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD85",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD86",
+      "hex": "b8e5a44f00",
+      "assembly": "MOV EAX,0x4fa4e5",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD8B",
+      "hex": "83c102",
+      "assembly": "ADD ECX,0x2",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "0048DD8E",
+      "hex": "ba04000000",
+      "assembly": "MOV EDX,0x4",
+      "annotated_function": "undefined"
+    },
+    {
+      "va": "004B8A10",
+      "hex": "53",
+      "assembly": "PUSH EBX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A11",
+      "hex": "8b5c2408",
+      "assembly": "MOV EBX,dword ptr [ESP + 0x8]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A15",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A16",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A17",
+      "hex": "8b4308",
+      "assembly": "MOV EAX,dword ptr [EBX + 0x8]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A1A",
+      "hex": "57",
+      "assembly": "PUSH EDI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A1B",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A1C",
+      "hex": "e8ffa8f6ff",
+      "assembly": "CALL 0x00423320",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A21",
+      "hex": "8b8b9b000000",
+      "assembly": "MOV ECX,dword ptr [EBX + 0x9b]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A27",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A2A",
+      "hex": "51",
+      "assembly": "PUSH ECX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A2B",
+      "hex": "e8d0f0fbff",
+      "assembly": "CALL 0x00477b00",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A30",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A33",
+      "hex": "8d7326",
+      "assembly": "LEA ESI,[EBX + 0x26]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A36",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A37",
+      "hex": "e88475fbff",
+      "assembly": "CALL 0x0046ffc0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A3C",
+      "hex": "8be8",
+      "assembly": "MOV EBP,EAX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A3E",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A41",
+      "hex": "85ed",
+      "assembly": "TEST EBP,EBP",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A43",
+      "hex": "750e",
+      "assembly": "JNZ 0x004b8a53",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A45",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A46",
+      "hex": "68fc0d5000",
+      "assembly": "PUSH 0x500dfc",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A4B",
+      "hex": "e8804bf7ff",
+      "assembly": "CALL 0x0042d5d0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A50",
+      "hex": "83c408",
+      "assembly": "ADD ESP,0x8",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A53",
+      "hex": "8d7333",
+      "assembly": "LEA ESI,[EBX + 0x33]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A56",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A57",
+      "hex": "e86475fbff",
+      "assembly": "CALL 0x0046ffc0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A5C",
+      "hex": "8bf8",
+      "assembly": "MOV EDI,EAX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A5E",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A61",
+      "hex": "85ff",
+      "assembly": "TEST EDI,EDI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A63",
+      "hex": "897c2414",
+      "assembly": "MOV dword ptr [ESP + 0x14],EDI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A67",
+      "hex": "750e",
+      "assembly": "JNZ 0x004b8a77",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A69",
+      "hex": "56",
+      "assembly": "PUSH ESI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A6A",
+      "hex": "68d80d5000",
+      "assembly": "PUSH 0x500dd8",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A6F",
+      "hex": "e85c4bf7ff",
+      "assembly": "CALL 0x0042d5d0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A74",
+      "hex": "83c408",
+      "assembly": "ADD ESP,0x8",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A77",
+      "hex": "85ed",
+      "assembly": "TEST EBP,EBP",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A79",
+      "hex": "742d",
+      "assembly": "JZ 0x004b8aa8",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A7B",
+      "hex": "8b542414",
+      "assembly": "MOV EDX,dword ptr [ESP + 0x14]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A7F",
+      "hex": "b9c0000000",
+      "assembly": "MOV ECX,0xc0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A84",
+      "hex": "52",
+      "assembly": "PUSH EDX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A85",
+      "hex": "55",
+      "assembly": "PUSH EBP",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A86",
+      "hex": "8bf5",
+      "assembly": "MOV ESI,EBP",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A88",
+      "hex": "bf70a14f00",
+      "assembly": "MOV EDI,0x4fa170",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A8D",
+      "hex": "6800010000",
+      "assembly": "PUSH 0x100",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A92",
+      "hex": "6a00",
+      "assembly": "PUSH 0x0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A94",
+      "hex": "f3a5",
+      "assembly": "MOVSD.REP ES:EDI,ESI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A96",
+      "hex": "68c0ce5d00",
+      "assembly": "PUSH 0x5dcec0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8A9B",
+      "hex": "ff15c4d25d00",
+      "assembly": "CALL dword ptr [0x005dd2c4]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AA1",
+      "hex": "8b7c2428",
+      "assembly": "MOV EDI,dword ptr [ESP + 0x28]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AA5",
+      "hex": "83c414",
+      "assembly": "ADD ESP,0x14",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AA8",
+      "hex": "85ff",
+      "assembly": "TEST EDI,EDI",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AAA",
+      "hex": "740c",
+      "assembly": "JZ 0x004b8ab8",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AAC",
+      "hex": "8d4333",
+      "assembly": "LEA EAX,[EBX + 0x33]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AAF",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AB0",
+      "hex": "e88b72fbff",
+      "assembly": "CALL 0x0046fd40",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AB5",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AB8",
+      "hex": "85ed",
+      "assembly": "TEST EBP,EBP",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8ABA",
+      "hex": "740c",
+      "assembly": "JZ 0x004b8ac8",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8ABC",
+      "hex": "8d4326",
+      "assembly": "LEA EAX,[EBX + 0x26]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8ABF",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AC0",
+      "hex": "e87b72fbff",
+      "assembly": "CALL 0x0046fd40",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AC5",
+      "hex": "83c404",
+      "assembly": "ADD ESP,0x4",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8AC8",
+      "hex": "8d4340",
+      "assembly": "LEA EAX,[EBX + 0x40]",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8ACB",
+      "hex": "50",
+      "assembly": "PUSH EAX",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004B8ACC",
+      "hex": "e8ef74fbff",
+      "assembly": "CALL 0x0046ffc0",
+      "annotated_function": "004b8a10 load_palette_luminance_translucency_tables"
+    },
+    {
+      "va": "004BA090",
+      "hex": "ff257cc24b00",
+      "assembly": "JMP dword ptr [0x004bc27c]",
+      "annotated_function": "004ba090 ftol"
+    }
+  ],
+  "method": "fresh read-only GZF instruction listing; every byte independently compared to authenticated retail PE"
+}

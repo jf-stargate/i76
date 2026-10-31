@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261031T161016Z-2f47de0e",
+  "findings": [
+    {
+      "finding_id": "F1-table-ownership",
+      "claim": "Original 004791E0 has null-argument calculation and nonnull 65536-byte copy branches; CB00 consumes an 8192-byte masked window. Only one color column was generated in this experiment.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_opcodes.json",
+          "sha256": "b44ca96f9ceae2832cc1aa3f5eabb3c33cef4709b82e661d1f1030f6a2b8e5b8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_xrefs.json",
+          "sha256": "671ac3cb2e35a860a7a7d5d35c0aaf29e4a203f5c34ef9449500f6b9677aa499"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/field_provenance.json",
+          "sha256": "fe54265f93506ea941482c8c86d5e714b612172ab9ec8a8760c3742c196f9878"
+        }
+      ],
+      "limitations": "One original-generated color column only; deliberate stop at 0047951E. Authentic m02.act bytes installed by harness; inherited GEO-time nearest-color service keeps command color zero controlled. Host _ftol service is not retail native instructions; no authentic RGB/material or RND completion claim."
+    },
+    {
+      "finding_id": "F2-native-source-backed-column",
+      "claim": "Original 004791E0 reached 0047951E after 256 native stores for resource-backed m02.act color0; independent shade recurrence, conversion, nearest-color/cache and final column verification passed with eight distinct byte values.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/measurements.json",
+          "sha256": "b62c4e70090ce99a231e4de9f738e412b3c3b771a00c4486502a87f6bd47430c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/verification.json",
+          "sha256": "1e085f48bc1c093c21a610937efd9b93e108bc0c23139743bd5d66c1d8842eb0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/input_provenance.json",
+          "sha256": "9d668bfbe5305f14cdc6c12bbf006eea98e1a68abc36d8fb460f4e42ea472f94"
+        }
+      ],
+      "limitations": "One original-generated color column only; deliberate stop at 0047951E. Authentic m02.act bytes installed by harness; inherited GEO-time nearest-color service keeps command color zero controlled. Host _ftol service is not retail native instructions; no authentic RGB/material or RND completion claim."
+    },
+    {
+      "finding_id": "F3-native-consumption",
+      "claim": "Original 0047CB00 returned twice and 0047CC62 made 210 bounded stores of byte0 using original-generated table index7936; source/command/span linkage, complete framebuffer, guards and fresh repeat were independently verified.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/measurements.json",
+          "sha256": "b62c4e70090ce99a231e4de9f738e412b3c3b771a00c4486502a87f6bd47430c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/verification.json",
+          "sha256": "1e085f48bc1c093c21a610937efd9b93e108bc0c23139743bd5d66c1d8842eb0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/controls.json",
+          "sha256": "deec8cc8ac21f0091952d85f4717a21509eea5809864cad14f52de45a8ab6716"
+        }
+      ],
+      "limitations": "One original-generated color column only; deliberate stop at 0047951E. Authentic m02.act bytes installed by harness; inherited GEO-time nearest-color service keeps command color zero controlled. Host _ftol service is not retail native instructions; no authentic RGB/material or RND completion claim."
+    },
+    {
+      "finding_id": "F4-authentic-color-limit",
+      "claim": "Original numerical failure at unmapped MSVCRT _ftol target000C0BFC is preserved. A finite-range host conversion service advances native table generation; authentic retail palette/LUM initialization and GEO-time material color remain unproven.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/controls.json",
+          "sha256": "deec8cc8ac21f0091952d85f4717a21509eea5809864cad14f52de45a8ab6716"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SERVICE_LEDGER.md",
+          "sha256": "e8e7e344403a371f7955454fec9f631532c1e2f53eef25b7fd1311fa9834e5b7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/input_provenance.json",
+          "sha256": "9d668bfbe5305f14cdc6c12bbf006eea98e1a68abc36d8fb460f4e42ea472f94"
+        }
+      ],
+      "limitations": "One original-generated color column only; deliberate stop at 0047951E. Authentic m02.act bytes installed by harness; inherited GEO-time nearest-color service keeps command color zero controlled. Host _ftol service is not retail native instructions; no authentic RGB/material or RND completion claim."
+    }
+  ]
+}
