@@ -1,0 +1,14 @@
+# Documentation impact — original camera to M06 terrain context
+
+Run `i76exe-20261031T011728Z-b887fccd`, track i76exe, base `4de0c902628535fd91c3a5bd7b15b3af622d7ee8`. PE/GZF/ZFS/MSN/TER identities in manifest and results. PR pending at artifact construction. Classification: **candidate update; no canonical change** in this PR.
+
+For future RND/TER camera/terrain sections under `manual/reference/engine/`, reconcile immutable #67/#70/#69/#74 and historical `ref/level_format/i76_runtime_terrain_lod_reference.md`. Evidence digests for every item below are in manifest/findings; no accepted run is rewritten.
+
+- F1-coherent-camera: original `00405970/00472220/00472400/00472530` and two `00406AB0` callbacks produce a single retained view, origin/corners/inverse context that drives original M06 selection/transform/clip/bin. `REPORT.md`, `results.json`, selected events, sparse instructions and standalone verifier. Proven within original-instruction emulation, high confidence; explicitly controlled root/viewport/time/resource/math services. Add bounded positive integration evidence, not mission spawn/physics/scheduler/frame/image claims.
+- F2-field-ownership: exact near is view+108=0.1f, far +138=150; projection and terrain depth/bucket globals have separate owners. The inherited #67 descriptor has swapped max X/Y and zero width despite its verbal 640×480 description; our owned fixture corrects it using original instructions. Narrow historical viewport/near terminology through separate steward review; do not mutate old evidence.
+- F3-native-arena: original `0048F9B0`, `00490590`, `0048FE10` own initialization, scratch and bin state over supplied external backing; source scratch bases remain controlled. Consumer reset is source-audited, unexecuted. Add precise original-versus-service ledger, avoid retail allocation/frame lifecycle claims.
+- F4-output-prerequisite: common terrain/vehicle scratch and queue lifecycle, original material/texture/palette setup and downstream output remain separate. No draw-command study, pixels, RND-v1 acceptance or new gate. Defer image/subsystem completion statements.
+
+All claims are evidence-linked original-instruction or binary-static findings, not canonical promotion. The coherent camera-to-bin result removes #74's independent rendering/visibility origin mismatch for two declared test poses. It does not authenticate an M06 vehicle spawn or image oracle. Frustum plane normalization and basis conditioning preserve measured original emulator approximations; no synthetic repair.
+
+A designated documentation steward may reconcile **merged** runs in a separate fresh-base promotion/reference PR after maintainer request. Only the human maintainer accepts promotion. No edits to `ref/`, `manual/reference/`, `agent/promotions/`, shared tooling, governance or another run.

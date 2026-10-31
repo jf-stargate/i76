@@ -1,0 +1,206 @@
+{
+  "artifacts": [
+    {
+      "bytes": 2834,
+      "kind": "report",
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "sha256": "a791be23854869a7347f03b910bf6a09e2d1adba40022c0cf1957cb40f597a58"
+    },
+    {
+      "bytes": 7038,
+      "kind": "report",
+      "path": "artifacts/EXECUTION_NOTES.md",
+      "sha256": "71338449b017bbfbc8fbdbd4987b6e85b9ebfe4ce9e037873d1d8c169958b9c0"
+    },
+    {
+      "bytes": 16179,
+      "kind": "report",
+      "path": "artifacts/REPORT.md",
+      "sha256": "9533863b94267ff02032c5c13d54e1b829bf6011b41b8c659d6d409da9e587c2"
+    },
+    {
+      "bytes": 3425,
+      "kind": "report",
+      "path": "artifacts/REPRODUCE.md",
+      "sha256": "80885c434572738399aaa790aee4ef441b0fdf04e5f5c225e85148b7232514a8"
+    },
+    {
+      "bytes": 4827,
+      "kind": "report",
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "sha256": "183510041bcefa2e39ffdb2410177b7c5e0d2cfc6073e9f47402ba23d5b805f7"
+    },
+    {
+      "bytes": 538,
+      "kind": "table",
+      "path": "evidence/bootstrap.json",
+      "sha256": "01c27bcd1861ea364f2b7af6ca7124a63a2bcc75738c8000bd38a5dc5b85e810"
+    },
+    {
+      "bytes": 5934,
+      "kind": "table",
+      "path": "evidence/instruction_anchors.tsv",
+      "sha256": "d061f8a89ea0880d0813114329b57b6374d9752792a518f3ac446befd170e68c"
+    },
+    {
+      "bytes": 18270,
+      "kind": "table",
+      "path": "evidence/reproduction.json",
+      "sha256": "241b4d78744e9c8c4f4549bfb00c87b0a8c470b99f2ebb6961aea6a8e908fd8c"
+    },
+    {
+      "bytes": 5475,
+      "kind": "table",
+      "path": "evidence/results.json",
+      "sha256": "d33d25aafddbcc378013fe6df7037fdc93dbd0c60e7736065861ef9ae512912e"
+    },
+    {
+      "bytes": 32442,
+      "kind": "table",
+      "path": "evidence/selected_events.tsv",
+      "sha256": "9a30c644ca5128f30e5d99bd7c98d27e3528a7d95421f7affde2e9a26b2b4321"
+    },
+    {
+      "bytes": 31761,
+      "kind": "script",
+      "path": "scripts/I76_CameraBase.java",
+      "sha256": "44f0194de7a22786b27491c2a37d539ce42d44fc60039e82c6c13a55327fb2a2"
+    },
+    {
+      "bytes": 15779,
+      "kind": "script",
+      "path": "scripts/I76_CameraTerrainProbe.java",
+      "sha256": "2106bd88cecb4c44791ea743d581affe18919f2aa5ceeaffbddf986acc747d36"
+    },
+    {
+      "bytes": 3055,
+      "kind": "script",
+      "path": "scripts/I76_ContextAudit.java",
+      "sha256": "6a35a5c462641e38b3f61c84fc981b350a0a108061050d018eec52ea44abb98a"
+    },
+    {
+      "bytes": 1047,
+      "kind": "script",
+      "path": "scripts/check_publication.py",
+      "sha256": "a18679e01f2e06d673409eae76ca09807a126c8171c7ea650605c148c5d7263e"
+    },
+    {
+      "bytes": 2562,
+      "kind": "script",
+      "path": "scripts/reproduce.sh",
+      "sha256": "9345e759df0d91b1fdc94cfb505e4eada9008e40b6c08d9187489120d8cced2b"
+    },
+    {
+      "bytes": 20199,
+      "kind": "script",
+      "path": "scripts/verify_context.py",
+      "sha256": "8922c23e53c32bacad8b9df2da8769a6a3412f5c1ef3c5a5f11592979ac450b0"
+    },
+    {
+      "bytes": 897,
+      "kind": "script",
+      "path": "scripts/x87_terrain_service.c",
+      "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1"
+    }
+  ],
+  "base_commit": "4de0c902628535fd91c3a5bd7b15b3af622d7ee8",
+  "baselines": [
+    {
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "notes": "Read-only Ghidra, no symbol mutations.",
+      "program_name": "i76_mission_v97_verified_names",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "version": "12.1.4"
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "name": "i76.exe",
+      "notes": "Licensed authenticated retail PE; fresh annotated executable section compared byte-for-byte.",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3"
+    },
+    {
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "name": "I76.ZFS",
+      "notes": "Authenticated retail ZFS; 64 exact stock vehicle fixtures extracted and independently checked.",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d"
+    },
+    {
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "name": "miss8/M06.MSN",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published.",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f"
+    },
+    {
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "name": "miss8/M06.TER",
+      "notes": "Privately supplied/extracted retail input; only digests and derived observations published.",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea"
+    }
+  ],
+  "protocol_version": "1.0.4",
+  "reproducibility": {
+    "limitations": "Original-instruction emulation with controlled root/viewport/time/velocity, external resource/CRT/numerical/backing services. No original mission spawn, physics pose, selected scheduler, complete allocation/reset/frame lifecycle, texture/UV/palette, draw-command/raster/image or subsystem completion.",
+    "methods": [
+      "Unchanged accepted #74 full fresh reproduction including #69.",
+      "Original registered stock bus, native projection, two callbacks, same-state authenticated M06 terrain and original clipping/binning.",
+      "Standalone all-source, camera/plane/transform, clip/bucket verification, negative/contrast and exact fresh repeat; three deliberate corruptions."
+    ],
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraBase.java",
+        "sha256": "44f0194de7a22786b27491c2a37d539ce42d44fc60039e82c6c13a55327fb2a2"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraTerrainProbe.java",
+        "sha256": "2106bd88cecb4c44791ea743d581affe18919f2aa5ceeaffbddf986acc747d36"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_ContextAudit.java",
+        "sha256": "6a35a5c462641e38b3f61c84fc981b350a0a108061050d018eec52ea44abb98a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/check_publication.py",
+        "sha256": "a18679e01f2e06d673409eae76ca09807a126c8171c7ea650605c148c5d7263e"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.sh",
+        "sha256": "9345e759df0d91b1fdc94cfb505e4eada9008e40b6c08d9187489120d8cced2b"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_context.py",
+        "sha256": "8922c23e53c32bacad8b9df2da8769a6a3412f5c1ef3c5a5f11592979ac450b0"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/x87_terrain_service.c",
+        "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1"
+      }
+    ],
+    "status": "partial"
+  },
+  "run_id": "i76exe-20261031T011728Z-b887fccd",
+  "schema_version": "1.2.0",
+  "started_at": "2026-10-31T01:17:28Z",
+  "summary": "One persistent original-updated camera drives authenticated M06 original terrain selection, transformation, clipping and 30/13 binned records under two controlled root poses; viewport/root/OS/resource/numerical services bounded. No complete frame, draw or image.",
+  "topic": "M-RND-08 original M06 camera and renderer context integration",
+  "track": "i76exe",
+  "validation": {
+    "notes": "Executed standalone checks of original field ownership, M06 source, camera/frustum, rounded transforms, independent depth/screen clipping, final bucket chains, differential/negative/repeat and deliberate corruptions when requested.",
+    "passed_count": 89114,
+    "status": "passed",
+    "test_count": 89114
+  }
+}

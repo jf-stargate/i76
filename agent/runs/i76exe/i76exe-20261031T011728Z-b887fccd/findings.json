@@ -1,0 +1,146 @@
+{
+  "findings": [
+    {
+      "claim": "Original camera/projection/callback writers produce one retained coherent camera driving original authenticated M06 terrain transform, clip and 30/13 actual binned records in two controlled root configurations.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "9533863b94267ff02032c5c13d54e1b829bf6011b41b8c659d6d409da9e587c2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "d061f8a89ea0880d0813114329b57b6374d9752792a518f3ac446befd170e68c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "d33d25aafddbcc378013fe6df7037fdc93dbd0c60e7736065861ef9ae512912e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "9a30c644ca5128f30e5d99bd7c98d27e3528a7d95421f7affde2e9a26b2b4321"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_context.py",
+          "sha256": "8922c23e53c32bacad8b9df2da8769a6a3412f5c1ef3c5a5f11592979ac450b0"
+        }
+      ],
+      "finding_id": "F1-coherent-camera",
+      "limitations": "Original-instruction emulation with controlled root/viewport/time/velocity, external resource/CRT/numerical/backing services. No original mission spawn, physics pose, selected scheduler, complete allocation/reset/frame lifecycle, texture/UV/palette, draw-command/raster/image or subsystem completion.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original near clipping is view+108=0.1f and far +138=150; viewport maxima are X at descriptor+24 and Y at +28; renderer depth/bucket bounds have distinct original terrain writers.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "9533863b94267ff02032c5c13d54e1b829bf6011b41b8c659d6d409da9e587c2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "d061f8a89ea0880d0813114329b57b6374d9752792a518f3ac446befd170e68c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "d33d25aafddbcc378013fe6df7037fdc93dbd0c60e7736065861ef9ae512912e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "9a30c644ca5128f30e5d99bd7c98d27e3528a7d95421f7affde2e9a26b2b4321"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_context.py",
+          "sha256": "8922c23e53c32bacad8b9df2da8769a6a3412f5c1ef3c5a5f11592979ac450b0"
+        }
+      ],
+      "finding_id": "F2-field-ownership",
+      "limitations": "Original-instruction emulation with controlled root/viewport/time/velocity, external resource/CRT/numerical/backing services. No original mission spawn, physics pose, selected scheduler, complete allocation/reset/frame lifecycle, texture/UV/palette, draw-command/raster/image or subsystem completion.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original arena initialization, polygon scratch allocation and bin advancement/links execute over supplied backing; consumer reset is independently source-audited but not executed here.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "9533863b94267ff02032c5c13d54e1b829bf6011b41b8c659d6d409da9e587c2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "d061f8a89ea0880d0813114329b57b6374d9752792a518f3ac446befd170e68c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "d33d25aafddbcc378013fe6df7037fdc93dbd0c60e7736065861ef9ae512912e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "9a30c644ca5128f30e5d99bd7c98d27e3528a7d95421f7affde2e9a26b2b4321"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_context.py",
+          "sha256": "8922c23e53c32bacad8b9df2da8769a6a3412f5c1ef3c5a5f11592979ac450b0"
+        }
+      ],
+      "finding_id": "F3-native-arena",
+      "limitations": "Original-instruction emulation with controlled root/viewport/time/velocity, external resource/CRT/numerical/backing services. No original mission spawn, physics pose, selected scheduler, complete allocation/reset/frame lifecycle, texture/UV/palette, draw-command/raster/image or subsystem completion.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Unified camera-to-image still requires common terrain/vehicle scratch/queue lifecycle, authenticated material/texture/palette initialization and downstream output; no full original frame or drawing is demonstrated.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "9533863b94267ff02032c5c13d54e1b829bf6011b41b8c659d6d409da9e587c2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "d061f8a89ea0880d0813114329b57b6374d9752792a518f3ac446befd170e68c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "d33d25aafddbcc378013fe6df7037fdc93dbd0c60e7736065861ef9ae512912e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_events.tsv",
+          "sha256": "9a30c644ca5128f30e5d99bd7c98d27e3528a7d95421f7affde2e9a26b2b4321"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_context.py",
+          "sha256": "8922c23e53c32bacad8b9df2da8769a6a3412f5c1ef3c5a5f11592979ac450b0"
+        }
+      ],
+      "finding_id": "F4-output-prerequisite",
+      "limitations": "Original-instruction emulation with controlled root/viewport/time/velocity, external resource/CRT/numerical/backing services. No original mission spawn, physics pose, selected scheduler, complete allocation/reset/frame lifecycle, texture/UV/palette, draw-command/raster/image or subsystem completion.",
+      "scope": "game",
+      "status": "inferred"
+    }
+  ],
+  "run_id": "i76exe-20261031T011728Z-b887fccd",
+  "schema_version": "1.2.0"
+}
