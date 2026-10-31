@@ -1,0 +1,60 @@
+{
+  "records": [
+    {
+      "field": "producer argument1 +E8, 768 bytes",
+      "owner": "controlled context; source authenticated m02.act",
+      "writer": "host installation, then original 00479202 palette copy",
+      "consumer": "00479274/84/94 and 004796A0",
+      "limit": "retail scene palette selection and normalization unexecuted"
+    },
+    {
+      "field": "0061B2A0 + shade*256 + color",
+      "owner": "static retail image storage, 65536-byte extent",
+      "writer": "004793A4,004794AF,004794ED,0047950B; 256 stores for color0",
+      "consumer": "0047CC55 uses (shade & 1F00)+command color",
+      "limit": "other columns not generated; original producer deliberately stopped at 0047951E"
+    },
+    {
+      "field": "006432E0 palette sample bytes",
+      "owner": "native palette copy",
+      "writer": "00479202 REP MOVSD from context+E8",
+      "consumer": "004796A0 nearest search",
+      "limit": "search excludes palette entry255; cache order matters"
+    },
+    {
+      "field": "0059B388..0059BB87 squared differences",
+      "owner": "static retail image storage",
+      "writer": "00479220 with -256..255 squared",
+      "consumer": "004796A0 distance lookup",
+      "limit": "measured initialization hash verified"
+    },
+    {
+      "field": "0063B2E0..006432DF nearest cache",
+      "owner": "static retail image storage",
+      "writer": "0047923E initializes FF; 00479733 caches result",
+      "consumer": "004796A0 5-bit/channel quantized key",
+      "limit": "first encounter wins; not independent nearest search per query"
+    },
+    {
+      "field": "GEO source section+8/+9/+A -> runtime section+8",
+      "owner": "source GEO and original runtime section",
+      "writer": "00446C90 calls 004796A0 at 00446F44",
+      "consumer": "downstream geometry material/color logic",
+      "limit": "static source contract only here; inherited helper substitutes zero during dynamic GEO construction"
+    },
+    {
+      "field": "framebuffer base/pitch and stores",
+      "owner": "declared guarded allocation; original descriptor",
+      "writer": "00474C60 descriptor; 0047CC62 210 byte stores",
+      "consumer": "indexed output bytes, not RGB",
+      "limit": "surface backing supplied; authentic color/OS device lifecycle unproven"
+    }
+  ],
+  "evidence": [
+    "measurements.json",
+    "retail_opcodes.json",
+    "retail_xrefs.json",
+    "input_provenance.json"
+  ],
+  "status": "native-emulated and binary-static with explicit limits"
+}
