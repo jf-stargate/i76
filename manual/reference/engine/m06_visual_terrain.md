@@ -1,9 +1,9 @@
 # M06 visual terrain — original source, camera, adaptive polygon and bin contract
 
-**Status:** Proposed curated reference. This file is a human-review candidate, **not** an accepted renderer implementation or a completed retail M06 image.  
+**Status:** Curated technical reference (earlier M06 promotion accepted by merged PR #78); the unified submission extension is a **new candidate for human review**, not an accepted renderer implementation or a complete retail M06 image.  
 **Binary:** original retail `i76.exe` (`i76exe` track), advisory TER/RND interfaces; separate `i76edit` and shared renderer investigations are not silently incorporated.  
-**Promotion crosswalk:** [proposed M06 visual terrain decision](../../../agent/promotions/m06_visual_terrain_20261031.md).  
-**Evidence:** merged [#67](https://github.com/jf-stargate/i76/pull/67), [#69](https://github.com/jf-stargate/i76/pull/69), [#70](https://github.com/jf-stargate/i76/pull/70), [#74](https://github.com/jf-stargate/i76/pull/74), [#76](https://github.com/jf-stargate/i76/pull/76); see linked exact run findings, manifests and service ledgers below.
+**Promotion crosswalk:** [historical M06 visual terrain decision (merged PR #78)](../../../agent/promotions/m06_visual_terrain_20261031.md); [candidate unified terrain/vehicle submission decision](../../../agent/promotions/m06_unified_terrain_vehicle_submission_20261031.md). Earlier promotion text is immutable decision history.  
+**Evidence:** merged [#67](https://github.com/jf-stargate/i76/pull/67), [#69](https://github.com/jf-stargate/i76/pull/69), [#70](https://github.com/jf-stargate/i76/pull/70), [#74](https://github.com/jf-stargate/i76/pull/74), [#76](https://github.com/jf-stargate/i76/pull/76), and [#80](https://github.com/jf-stargate/i76/pull/80); see linked exact runs, manifests, service ledgers and promotion crosswalks. #80 is merged *research evidence*; the new reference interpretation remains proposed until human acceptance.
 
 ## Interpretation and evidence tiers
 
@@ -21,12 +21,19 @@ authenticated M06.MSN TDEF/ZMAP/ZONE + M06.TER
   → 00490590 scratch cursor → 0047BF00 depth/projection
   → 0047B8C0 screen clip → external CRT copy
   → 0048FE10 original spatial-bin insertion
-  → [NOT demonstrated here: M06 queue consumption / draw / pixels]
+  → 00457FF0 original stock-vehicle kind-6/kind-10 production
+      (same persistent view and polygon arena; scratch is reusable)
+  → 0048FAC0 original descending-bucket consumer
+      positive-count terrain: direct 00471FD0 polygon submission
+      zero-count kinds 6/10: 0048F4C0/00490640 typed dispatch,
+      then original GEO/polygon preparation for the kind-6 body
+  → 0048FD6D/0048FD7B bucket clearing and arena cursor reset
+  → [NOT demonstrated: original downstream raster, materials or pixels]
 ```
 
-Original projection and geometry state come from one **retained** camera record `004C2730`, produced by `00405970 → 00472220/00472400/00472530` and two `00406AB0` callbacks on an original-constructed and registered bus with a **controlled root pose**. The camera is not replaced between terrain selection and binning in #76. Earlier #69/#74 artificially authored aspects of that record and remain valid only within their declared diagnostics. Both the software frame's `00401DE1 → 00490A00` call and the later queue consumer are source-audited in #76; **the full original frame is not executed**.
+Original projection and geometry state come from one **retained** camera record `004C2730`, produced by `00405970 → 00472220/00472400/00472530` and two `00406AB0` callbacks on an original-constructed and registered bus with a **controlled root pose**. The camera is not replaced between terrain selection and binning in #76, or between terrain, vehicle and consumer in #80. Earlier #69/#74 artificially authored aspects of that record and remain valid only within their declared diagnostics. Software-frame callsites `00401DE1 → 00490A00`, `00401E2C → 00457FF0` and `00401E8D → 0048FAC0` are **binary-static** scheduling evidence; #80 executes the three bodies directly in order, not the full original frame or intervening passes.
 
-“Original-instruction” here means retail x86 executed under Ghidra 12.1.4 with explicit services; “binary-static” means disassembly/call/dataflow verified but not executed for this M06 experiment; “derived” means independently computed interpretation or verifier. Names are research labels, not original source symbols. No assertion about actual displayed texture or framebuffer follows from a successful bin insertion.
+“Original-instruction” here means retail x86 executed under Ghidra 12.1.4 with explicit services; “binary-static” means disassembly/call/dataflow verified but not executed at the stated boundary; “independently derived” means verifier interpretation or reproduction, not itself a retail instruction; “externally supplied” means harness poses, allocations, resources or substituted service outputs; “unresolved” marks evidence not established. Every execution claim is limited to its named run and service ledger. Names are research labels, not original source symbols. No assertion about actual displayed texture or framebuffer follows from a successful bin insertion.
 
 ## Retail source identity and terrain scale
 
@@ -148,13 +155,13 @@ The source emitter at `00492305` writes kind 0, `0049230C` writes **literal B4**
 | `00654390/006543B8/006543BC`, `006543A0/006543B4/0065438C` | Original span/effect auxiliary buffers, pointers/limits initialized from supplied backing; consumers not fully exercised in #76 |
 | `006543AC` (minimum depth), `006543A4` (maximum depth) | **Terrain producer** `004938DF` writes minimum -300; `004938FF` writes source-dependent max. Additional original entry/reject stores occur at `00490B2F/00490B39`. These globals are not camera view +108/+138 |
 | `006442F4`, `004938EA` | Terrain transform minimum packed-height related state; not a translated camera origin |
-| `00654380`, `005DD320/2EC/324` | Source adaptive leaf/edge arena cursor and XYZ/aux/arena bases; not the polygon allocation cursor `006543C0`; bases externally backed |
+| `00654380`, `005DD320/2EC/324` | Separate source adaptive leaf/edge cursor and XYZ/aux/arena bases, not polygon cursor `006543C0`. In #76 bases were separately supplied; in #80 original `00402F98..00402FF7` installs **XYZ and +0xD2F0 auxiliary alias** in one 108,000-byte externally backed allocation, plus 524,288-byte leaf/GEO scratch. See unified ownership section. |
 | `0048FE10`; `004903E7/00490400/00490421` | Original bucket count/head/tail/links and record-cursor mutations, independently traced/traversed |
-| `0048FAC0`, `0048FD6D/0048FD7B/0048FDE2/DEC` | **Binary-static in #76:** consumer dispatch, first-table clearing, cursor reset to base and depth sentinel writes +1,000,000/-1,000,000. #70 dynamically executes related queue consumption/reset for **vehicle kinds**, not M06 terrain pixels |
+| `0048FAC0`, `0048FD6D/0048FD7B/0048FDE2/DEC` | **Binary-static in #76; original-instruction executed in #80:** mixed terrain/vehicle typed consumption and first-table clearing, cursor reset to base, depth sentinels +1,000,000/-1,000,000. #70 previously executed a **vehicle-only** queue, without M06 terrain or pixels. |
 
 The original `0048F9B0` requests buffers sized **370,000, 128,000, 49,152, 49,152, 2,880 bytes**, via original allocation entry points `00498940/00499CE0` with external deterministic zero backing at diagnostic addresses `48000000..48400000`. The original initializer writes table and cursor globals; it does **not** establish retail OS allocation, exhaustion limits or full-frame reuse. The untouched allocator before this setup returns null (shown in #74), which is **missing experiment setup**, not a defect in the retail game.
 
-Depth distinctions are mandatory: **0.1/150** are camera-local clipping values in original view in #76; **-300 / source-dependent maximum** are terrain-written global depth/bin limits; **4095** was intentionally supplied as a queue scan bound in #70 (and as a controlled camera far in #74); **±1,000,000** are audited post-consumer reset sentinels. The original source `0048FAC0` uses shared type-dispatched terrain/vehicle work; reset between producers would lose queued work. This reference has **no executed same-frame M06 terrain+vehicle queue coexistence**, nor original consumer/draw output for M06.
+Depth distinctions are mandatory: **0.1/150** are camera-local clipping values in original view in #76; **-300 / source-dependent maximum** are terrain-written global depth/bin limits; **4095** was intentionally supplied as a queue scan bound in #70 (and as a controlled camera far in #74); **±1,000,000** are audited post-consumer reset sentinels. The original source `0048FAC0` uses shared type-dispatched terrain/vehicle work; reset between producers would lose queued work. **#80 now executes same-emulator M06 terrain+vehicle coexistence and original consumer traversal/cleanup**, with no intervening host queue reset. The experiment directly invokes a bounded software-path subset, **not a fully scheduled same retail frame**, and consumer-selected clip/draw services still substitute downstream rendering; no authentic M06 raster or pixels have been shown.
 
 ### Actual bounded results by experiment
 
@@ -163,9 +170,64 @@ Depth distinctions are mandatory: **0.1/150** are camera-local clipping values i
 | #69 | supplied visibility/LOD record, invalid affine | 267 vertices / 743 edges / 172 leaves; contrast 97/256/41; rejection 0 | before transform `004937C0` |
 | #74 | supplied separate visibility and affine, then diagnostic clip fields/heap | 267 transformed vertices; arena-only 538 clip rejections; diagnostic 182 accepted records / 21 bins / 23,144 bytes | coherent original camera, consumer/pixels |
 | #76 | **same original-built camera** after two callbacks, root pose controlled | primary 171 vertices / 79 leaves, 181 polygon **attempts**, **30 accepted records** / 10 bins / 3,792 bytes; X-shift 93/30, 45 attempts, **13 accepted** / 10 bins / 1,732 bytes; below-height 0 | M06 consumer/draw/pixels and genuine frame |
-| #70 (adjacent) | original selected camera on one bus; separate unselected bus target, controlled poses | original kind-6 and kind-10 vehicle work records consumed through GEO/polygon wrappers; queue cleared | original M06 terrain, real native raster/clip pixels |
+| #70 (adjacent) | original selected camera on one bus; separate unselected bus target, controlled poses | original kind-6 and kind-10 vehicle work records consumed through GEO/polygon wrappers; queue cleared, camera-owner depth -5 rejected under supplied near 0 | original M06 terrain, real native raster/clip pixels |
+| #80 (unified) | **one sealed original-built 472-byte camera**, two original-constructed stock buses with controlled poses | 30 terrain + 1 target kind-6 + 2 kind-10 accepted in one arena (33); direct terrain submission, typed vehicle dispatch/GEO, original bucket/cursor/depth cleanup; controls 13/1/2 and 0/1/2 | unmodified original clip/draw, materials/palette, pixels, full retail scheduler/physics |
 
 #76 independently checked final chain membership for **all 43** accepted records over two poses; original stores/links and exact source indices are validated. Counts describe controlled original-instruction experiments, not frame rates, scene fidelity or an automatically ratified RND-v1 gate. Source [#74 report](../../../agent/runs/i76exe/i76exe-20261031T002156Z-133da9a8/artifacts/REPORT.md), [#76 report](../../../agent/runs/i76exe/i76exe-20261031T011728Z-b887fccd/artifacts/REPORT.md) and [#70 report](../../../agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md).
+
+## Unified original terrain/vehicle ownership and consumer (merged research #80; proposed reference extension)
+
+**Evidence classifications:** All statements attributed to [#80's immutable run](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/manifest.json) are **original-instruction emulation with stated substitutions** unless marked binary-static, independently derived, externally supplied or unresolved. Finding IDs [`F1-unified-ownership`, `F2-scratch-lifetime`, `F3-depth-lifecycle`](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/findings.json) crosswalk to the [separate promotion candidate](../../../agent/promotions/m06_unified_terrain_vehicle_submission_20261031.md). Main source artifacts are [REPORT](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/artifacts/REPORT.md), [MEMORY_OWNERSHIP](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/artifacts/MEMORY_OWNERSHIP.md), [original opcode anchors](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/evidence/instruction_anchors.tsv), [selected events](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/evidence/selected_events.tsv) and [service ledger](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/artifacts/SERVICE_LEDGER.md). Original retail binary, GZF and M06 resources are privately authenticated by the run, **not** independently replayed by this documentation change.
+
+### Same state and retail callsites
+
+**Original-instruction emulation:** #80 retains one Ghidra emulator, two original `0045EBD0/004AD6F0/004572B0` stock-bus construction/registration paths and one selected/registered camera at `004C2730..004C2907`. Original `00405970` and two `00406AB0` callbacks build/update that 472-byte record; its bytes remain unchanged across original M06 load/terrain `00490A00`, vehicle visibility `00457FF0` and consumer `0048FAC0(view,1)`. The camera-owner root is selected, the target bus separately unselected; original status code and registration select those roles. The root poses are **externally supplied**: selected camera `(2952.5,60,48152.5)`, target `(2952.5,60,48202.5)`, target basis rows `(0,0,-1);(0,1,0);(1,0,0)`, with declared shift/behind/below controls. Viewport 640×480, delta .016, velocity `(2,0,1)` and angle integers are also supplied. Neither mission spawn nor physics authored these poses.
+
+**Binary-static scheduling context:** `00401DE1` calls terrain, `00401E2C` vehicle visibility, `00401E8D` consumer in the original software frame. **Original-instruction experiment:** #80 directly calls the three original bodies in that order after original setup and one original `0048F9B0` renderer initialization. No host arena reset, second view, synthetic queue node or copied predecessor trace intervenes. Roads, skids, flamer, dust, tracers, HUD, particles, sky, device and timing passes are explicitly **omitted**, so this is a bounded contribution lifecycle, not full-frame scheduler execution.
+
+### Original source scratch install and memory lifetime
+
+**Original-instruction emulation with externally supplied allocation backing:** The source initialization span `00402F98..00402FF7` requests 108,000 bytes, installs its returned pointer to `005DD320` at `00402FAC`, adds `0xD2F0` at `00402FC5` and writes the **alias** to `005DD2EC` at `00402FD4`. It then requests 524,288 bytes at `00402FD9` and stores that pointer at `005DD324` via `00402FE3`. The host supplies the requested pages, **not a second separately allocated auxiliary buffer**. #76 used separate controlled XYZ/aux/edge backing; that is a prior diagnostic fixture, superseded only as a *native scratch-ownership interpretation*, not as its measured geometry.
+
+| Region / original installer | Measured ownership and lifetime in #80 |
+|---|---|
+| `42000000..4201A5DF`, `005DD320` | 108,000-byte source/transform and subsequently vehicle-transformed-position backing; original installer, supplied heap |
+| `4200D2F0..4201A5DF`, `005DD2EC` | Auxiliary pointer **aliases the upper half of that same allocation**; terrain attributes, not independently allocated memory |
+| `44000000..4407FFFF`, `005DD324` | 524,288-byte shared terrain edge/leaf and then vehicle GEO record scratch; `00490A92` starts terrain cursor, `0045D571` reloads backing for vehicle |
+| `48000000..4805A54F`, `00654398/39C/C0` | Separate original renderer polygon arena with **supplied** 370,000-byte backing and original `0048F9B0` initializer |
+| `48200000..4820BFFF`, `006543B0/384` | Separate primary 4096×12-byte bucket table, original head/tail/count writes and consumer clearing |
+| `48100000`, `48300000`, `48400000` families | Separate supplied 128,000-byte span, 49,152-byte secondary bucket and 2,880-byte effects backing; not all downstream uses executed |
+
+**Original-instruction/independently derived ownership check:** Terrain's `0047BF00/0047B8C0` path and narrowly substituted CRT memcpy copy the **original-produced clipped vertices** into variable-stride polygon records (`0x1C + 0x18*n`) before vehicle `0045CBE0` reuses source/leaf/GEO scratch. Queued terrain records retain their own copied vertex bytes and original links; vehicle scratch overwrites do not imply mutation of those queue records. The independent verifier reconstructs the original retired queue writes and checks record identity/order. Allocation failure, overrun/exhaustion, retail Windows heap behavior and lifetime over an actual retail frame are **unresolved**; source buffer ownership does not prove them.
+
+### Original typed insertion, dispatch and retirement
+
+**Original-instruction emulation, primary fixture:** Terrain produces 171 original source vertices, 79 adaptive leaves, 181 polygon **attempts** and **30 accepted** positive-vertex kind-0 records (`0xB4` ordinary header), 10 bins, 3,792 bytes. Arena cursor then equals `48000ED0`. Original terrain `004938DF` writes global minimum depth `006543AC=-300`; `004938FF` writes source-dependent maximum `006543A4`. These globals differ from original camera-local near/far (`view+108=0.1f`, `view+138=150f`) and from #70's **externally supplied** far scan bound 4095.
+
+| Consecutive record | Original header/owner semantics | Cursor after insertion |
+|---|---|---|
+| `48000000..48000ECF` | 30 terrain polygons, positive vertex count, original bin links, `0xB4` literal **not verified displayed texture** | `48000ED0` |
+| `48000ED0` | Camera-owner kind 10, owner `27000E00`, depth **-5**, stride `0x74` (116 bytes) | `48000F44` |
+| `48000F44` | Target kind 6, root owner `26100000` / registry entry `005428A8`, stride `0x44` (68 bytes) | `48000F88` |
+| `48000F88` | Target kind 10, owner `27006600`, stride `0x74`; its +0x40 is matrix data, not kind-6 registry | `48000FFC` |
+
+**Reconciled depth difference:** #70's vehicle-only fixture supplied near 0 and far 4095; the camera-owner depth -5 kind-10 *attempt* was rejected by original insertion and its cursor reused. In #80 the same class of original camera-owner work **is accepted** because original terrain has first established -300 as the minimum. This is a difference in original insertion **eligibility resulting from prior depth state**, not contradictory conclusions about the kind-10 producer. The reported 33 entries are accepted records, not total attempts, and are not final pixels.
+
+**Original-instruction emulation:** Consumer `0048FAC0(view,1)` walks shared primary buckets in descending bin/link order. Positive-vertex terrain work takes the direct original `00471FD0` submission branch (all 30 records observed). Zero-vertex kind-6 and kind-10 entries use the retail type dispatch table (original `0048F4C0` / `00490640`); the kind-6 target traverses original `0045D530 → 0045CBE0`, source-authenticated `xb11bdym.geo` body at `27006800`, 16 vertices transformed through original body/world plus sealed view, and two polygon wrappers. The kind-10 original +0x3C field is cleared during consumption; no record owner is fabricated. The independently derived verifier checks **exact all-record descending traversal**, headers, source GEO and queue mutation chronology. Original `0048FD6D` zeroes primary buckets, `0048FD7B` restores cursor to `48000000`, `0048FDE2/FDEC` restore +1,000,000/-1,000,000 depth sentinels; cleanup argument 1 clears effects state.
+
+**Externally supplied consumer service boundary:** The original selected consumer clip service copies original vertices and returns a count; the selected draw target returns success. Those are **not original native clip/draw/raster instruction execution**. Original `00471FD0` receipt, stock GEO preparation and consumer cleanup demonstrate submission/retirement only, never displayed materials, textured polygons, framebuffer data or authentic terrain rasterization.
+
+### Controls and verification limits
+
+| #80 fresh control | Terrain records | Kind-6 records | Kind-10 records | Original bounded consequence |
+|---|---:|---:|---:|---|
+| Primary M06 + target | 30 | 1 | 2 | 33 queued, original typed dispatch, cleanup |
+| Target absent | 30 | 0 | 1 | Selected camera light survives; terrain unchanged |
+| Target behind | 30 | 0 | 1 | Original target cull; same camera terrain |
+| Selected camera/root X+200 | 13 | 1 | 2 | Different coherent original view |
+| Both roots Y=-100 | 0 | 1 | 2 | Terrain rejected, vehicle still eligible/consumed |
+
+**Independently derived checks** reported by #80: 131,751 standalone validations, five controls, a fresh imported GZF repeat with identical primary trace and 17 output sidecars, an independently rejected mutated consumed kind-6 owner, and source opcode/dispatch/queue/GEO verification. Prior #76/#70 reproducers and trusted 11 protocol + 38 CI unit tests were separately run, not counted as pixel tests. The [reproduction procedure](../../../agent/runs/i76exe/i76exe-20261031T161025Z-d3f083fc/artifacts/REPRODUCE.md) needs private licensed source files; this steward checked public evidence and manifest hashes, **did not rerun** the private emulator. Native consumer clip/draw, material and original retail frame remain **unresolved**.
 
 ## Source classes versus actual rendered materials
 
@@ -183,7 +245,7 @@ Historical [runtime adaptive LOD](../../../ref/level_format/i76_runtime_terrain_
 | Original `004B8A10/00493910/00493080/00490A00` and source/adaptive transform/walk | Authenticated private M06 MSN/TER via supplied Win32 file handles/mapping; source scratch backing; WRLD peripheral/texture initialization omitted; palette acquisition fails to null and original error paths run |
 | Original numerical terrain bounds/sampler algorithm and FPU-sensitive callsites | Narrow host x87 FISTP at `004935EE/00493608`, FPATAN at `00492EAF`, original CRT ftol at external `004BA090`, Java sin/cos service at `0049D400`, emulated x87 control word initialized to `037F`. **No hardware-wide x87 claim**; raw untreated FPATAN fails in Ghidra, not retail |
 | Original `0048F9B0/00490590/0047BF00/0047B8C0/0048FE10` | Supplied deterministic memory for five heap allocations; imported CRT memcpy of original-produced clipped stack; no reconstructed geometry and no original OS frame allocation guarantee |
-| Static frame dispatch `00403E64/00401C90/00401CC0`, original queue consumer `0048FAC0` and downstream write/reset instructions | Source-disassembly audit only for the integrated M06 path; never claimed as executed full WinMain frame, M06 draw or framebuffer copy |
+| Static frame dispatch `00403E64/00401C90/00401CC0` and software callsites; **#80 executes original scratch install, mixed producers, original `0048FAC0` and reset instructions** | Original software frame schedule is audited, not invoked in its entirety; consumer-selected clip/copy/draw services remain substituted. No full WinMain, authentic M06 raster or framebuffer copy |
 
 Note `00403E64` is **inside** its containing FSM frame code: a PUSH of `004C2730`, followed by call `00401C90` at `00403E69`, **not** a function entry. `00401C90` selects `00401FA0` or software `00401CC0` by flow-state tests; `00401DE1` is the original software terrain call. Labels like “AI/frame-update” were superseded by the audited instructions. This audit alone does not prove that the full frame schedules the particular controlled #76 experiment.
 
@@ -198,10 +260,11 @@ Detailed run-by-run service inventories: [#67 camera services](../../../agent/ru
 3. **Terrain bin depths vs camera depths (#70/#74/#76):** `006543AC/+A4` terrain writes, `view+108/+138` camera fields, #70 4095 supplied scan bound and post-consumer reset sentinels have different ownership.
 4. **Visibility vs affine origin (#74 → #76):** separate #74 Z=48152.5 visibility and Z=47800 affine origin were diagnostic. #76 replaces that *interpretation* with one original camera record, not the earlier measured results.
 5. **Material class vs displayed texture:** historical class/road spatial correlations survive, but rendered texture/UV/palette assignment remains unproved. Retain older LOD exporter as diagnostic only.
-6. **Arena and reset:** #74 null allocator before init is missing backing/setup; #76 supports original arena writes; #70 supplies vehicle consumer execution, but no same-state M06 terrain consumer proof exists.
+6. **Arena and reset (#70/#76 → #80):** #74 null allocator before init reflects missing backing/setup; #76 supports terrain bins with separately supplied scratch; #70 supplies vehicle-only consumer execution. #80 now executes **one shared original terrain+vehicle arena and consumer cleanup** with original source-scratch alias installation; no complete retail frame or original raster is proven.
+7. **Kind-10 camera-owner depth (#70 → #80):** #70's supplied near=0 rejects camera light depth -5. M06 `004938DF` sets minimum -300 in #80, making the same kind of original light work eligible. Do not mistake reuse of a rejected record cursor in #70 for a permanent owner/record identity.
 
-Required next evidence: a **single shared frame** with original-compatible scratch and terrain/vehicle producer/consumer lifetime, original resource-backed material/texture/palette services and downstream original draw/raster/framebuffer capture compared to authenticated source. Also unresolved are original selected-player scheduling, physics-produced M06 poses, full OS allocation/reset lifecycle, source bit 12, hardware parity and non-M06 generalization. No existing run authorizes reconstructive code or claims completed original rendering.
+**First missing rendering dependency:** authenticate original M06 WRLD material/output initialization (including `004908F0` and descriptor success) and advance the **currently substituted consumer clip/draw operations**, then demonstrate actual texture/UV/palette/output buffer/framebuffer behavior with independent pixel comparisons. The shared producer/arena/consumer subset is now executed in #80; what remains is downstream material/output and authentic native drawing. Separately unresolved: original full-frame peripheral scheduling, selected-player/physics M06 poses, retail OS allocation/exhaustion lifetime, source bit 12, hardware x87 parity and non-M06 generalization. No run authorizes reconstructive code or proves RND-v1 completed.
 
 Further navigation: [RND subsystem and acceptance](../../roadmap/subsystems/RND.md), [TER and physics boundary](../../roadmap/subsystems/TER.md), [RND acceptance gates](../../roadmap/subsystems/RND_ACCEPTANCE.md), [original class-1 scheduling](frame_scheduling.md), [original vehicle VCF](vehicle_construction.md), [mission format and execution](../../../ref/mission_execution/README.md), [historical LOD and renderer notes](../../../ref/level_format/i76_runtime_terrain_lod_reference.md), and [editor road/terrain data](../../../ref/editor/road_terrain_serialization.md).
 
-**Promotion remains pending:** original evidence is merged, but this new reference and its proposed reconciliation require a separate human maintainer decision and current-base passing trusted `integrity`. It makes no change to the shared software-renderer reference or navigation index.
+**Promotion status:** the earlier M06 visual-terrain reference/promotion were merged in PR #78. The **#80 unified submission interpretation here is proposed**, not accepted until a separate human maintainer decision and exact-head trusted `integrity` review. The shared software-renderer reference and navigation index are outside this change.
