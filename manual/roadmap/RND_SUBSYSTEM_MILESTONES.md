@@ -64,7 +64,7 @@ The next five sections retain the **original assignment questions, controls and 
 
 ## M-RND-01 — Original visibility producer and bucket ownership (P0)
 
-**Retrospective (accepted #66):** Original kind-6 visibility and insertion were demonstrated with cull/empty/repeat controls. The §Evidence/gap§ and imperative §Complete/Partial§ definitions below are the **historical 2026-10-29 charter**, not an open request to rerun the same producer. [Accepted report](../../agent/runs/i76exe/i76exe-20261030T020552Z-41acec02/artifacts/REPORT.md).
+**Retrospective (accepted #66):** Original kind-6 visibility and insertion were demonstrated with cull/empty/repeat controls. The `Evidence/gap` and imperative `Complete/Partial` definitions below are the **historical 2026-10-29 charter**, not an open request to rerun the same producer. [Accepted report](../../agent/runs/i76exe/i76exe-20261030T020552Z-41acec02/artifacts/REPORT.md).
 
 **Question:** Can original `00457FF0`, operating on real `004572B0` registered stock vehicle world entries and a source-backed view/arena context, create original kind-6 work records in original spatial buckets without the harness writing nodes, head pointers or bucket indices?
 
@@ -105,7 +105,7 @@ The next five sections retain the **original assignment questions, controls and 
 
 ## M-RND-03 — Genuine original producer → consumer pipeline (P1; gated)
 
-**Retrospective (accepted #70):** The exact same original kind-6 record is produced and consumed in one camera/emulator state and reaches authentic GEO/wrapper submission; clip/draw remain services *in that run*. This original charter is not §READY§ for new assignment. [Accepted report](../../agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md).
+**Retrospective (accepted #70):** The exact same original kind-6 record is produced and consumed in one camera/emulator state and reaches authentic GEO/wrapper submission; clip/draw remain services *in that run*. This original charter is not `READY` for new assignment. [Accepted report](../../agent/runs/i76exe/i76exe-20261030T025421Z-351de3fe/artifacts/REPORT.md).
 
 **Question:** Can the **same** constructed/registered original world and original arena, with a measured original camera/view record, run original `00457FF0` and then original `0048FAC0` so producer-created work records trigger original `0048F4C0 → 0045D100/0045D530 → 00471FD0` without queue-node injection?
 
@@ -119,7 +119,7 @@ The next five sections retain the **original assignment questions, controls and 
 
 ## M-RND-04 — Native clip/draw and material handoff (P2; conditional)
 
-**Retrospective (accepted #73/#75, extended #77):** Original tested stock-bus mode §0x101§ selects §0047C8D0§, original §0047BF00§ fallback and draw §0047CE40§; native commands/edges/spans followed. Original §0047CB00/0047CC62§ produced diagnostic indexed bytes in #77. The **historical** charter's suggested textured §0047C2F0/00487EA0§ is not the observed dispatch and remains static evidence; real clipping-plane intersections and authentic material remain open. [#73 report](../../agent/runs/i76exe/i76exe-20261031T002217Z-b156a7f6/artifacts/REPORT.md), [#75 report](../../agent/runs/i76exe/i76exe-20261031T011731Z-307babbf/artifacts/REPORT.md).
+**Retrospective (accepted #73/#75, extended #77):** Original tested stock-bus mode `0x101` selects `0047C8D0`, original `0047BF00` fallback and draw `0047CE40`; native commands/edges/spans followed. Original `0047CB00/0047CC62` produced diagnostic indexed bytes in #77. The **historical** charter's suggested textured `0047C2F0/00487EA0` is not the observed dispatch and remains static evidence; real clipping-plane intersections and authentic material remain open. [#73 report](../../agent/runs/i76exe/i76exe-20261031T002217Z-b156a7f6/artifacts/REPORT.md), [#75 report](../../agent/runs/i76exe/i76exe-20261031T011731Z-307babbf/artifacts/REPORT.md).
 
 **Question:** Once source-backed scene producer→consumer→polygon submission exists, can a bounded original `00471FD0` path reach original `0047C2F0` clip and `00487EA0` draw behavior (or the correct backend-specific targets) with valid camera, geometry, material and scratch ownership, and measurable geometry/output invariants?
 
