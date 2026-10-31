@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra, no symbol mutations."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed input; no payload published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Measured private licensed input; no payload published."
+    }
+  ],
+  "run_id": "i76exe-20261031T011731Z-307babbf",
+  "topic": "M-RND-07: original vehicle draw commands, edge/interpolation state and native deferred scanline spans",
+  "base_commit": "4de0c902628535fd91c3a5bd7b15b3af622d7ee8",
+  "started_at": "2026-10-31T01:17:31Z",
+  "summary": "Complete bounded command/span result: original CE40 returns two commands and four edges from authenticated vehicle GEO; original finalizer produces 14 packed spans and reaches original CB00 entry. Guarded CRT backing and original workspace initialization identified; source arithmetic, negative/fresh/corruption controls pass. No framebuffer writes or image.",
+  "validation": {
+    "status": "passed",
+    "test_count": 15851,
+    "passed_count": 15851,
+    "notes": "1402 accepted continuous baseline source assertions + 2769 accepted polygon source assertions + 11350 native verifier assertions + 292 delegated upstream source/projection assertions + 38 trusted pinned unit tests. Six new deliberate corruptions and the published bad sample reject; inherited accepted corruption controls also reject. Complete new driver and separate fresh-GZF command/span repeats pass; full private traces byte-identical. Native commands/edges/spans only; pre-instruction pixel callback boundary; no pixels or maintained renderer. Structural integrity/CI checked separately on exact proposed/published commit."
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "d6a0e5c6f58c305d8ab7d630550e3b8ff52f1e44f7b948806d7261ea712e9c19",
+      "bytes": 2635
+    },
+    {
+      "path": "artifacts/EXECUTION_NOTES.md",
+      "kind": "report",
+      "sha256": "5c7b55f19dd0d9242fba3f14ba59c639715e1dee8ca3d9528d84ea8a81a715e0",
+      "bytes": 4194
+    },
+    {
+      "path": "artifacts/REPORT.md",
+      "kind": "report",
+      "sha256": "af0c01c2c786f98241d41b6acfe8554339dd3987683eb9485636f936247d6f0c",
+      "bytes": 12864
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "16e7e527fdef0f2b18ccedca3b1f24088fcea77255288fe921c15491a57f1e85",
+      "bytes": 4103
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "8eef6ece0e2af1a7408b643a28163af4798352c8884a8b1bdb808058f04a1307",
+      "bytes": 6492
+    },
+    {
+      "path": "evidence/blockers.json",
+      "kind": "table",
+      "sha256": "9f763f28fb63e321d44cd8caa8de6d8fc8e5f902197578f70fa1f2d92b85f1c5",
+      "bytes": 15369
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "7201752385e178058da9f16975741afe48687cb5ade5483094ba74a33c62c25f",
+      "bytes": 1966
+    },
+    {
+      "path": "evidence/corrupted_sample.json",
+      "kind": "table",
+      "sha256": "e8d680a48bb66171371f34718b2180fece3f09aaf6aaf2c0976179297340fde0",
+      "bytes": 1941729
+    },
+    {
+      "path": "evidence/draw_events.json",
+      "kind": "table",
+      "sha256": "901979250e0f9b3b1f0b0f98956d88ddcd1c9d0f7b4590d151f74ca66d7a7ba2",
+      "bytes": 1941729
+    },
+    {
+      "path": "evidence/negative_controls.json",
+      "kind": "table",
+      "sha256": "e6af8b9d8ec3ad8c350224d4ef503c3a3ed47f2357a57577d2e4bb9c49dc96aa",
+      "bytes": 785
+    },
+    {
+      "path": "evidence/numerical_results.json",
+      "kind": "table",
+      "sha256": "59e3a4c96617f8cb05c828eaed187252615625ad40523dfdd421f89b2b22125a",
+      "bytes": 8898
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "5f8d117bc7b0da5c91c8bdee5ec3d8cc5336c505a6ecda346f9c1d3b4c1542f5",
+      "bytes": 2901
+    },
+    {
+      "path": "evidence/retail_opcodes.json",
+      "kind": "table",
+      "sha256": "9bc808cfd9480f0a8520482bd6eda7f3b8219051e77ac25ead87c33fb0340956",
+      "bytes": 279042
+    },
+    {
+      "path": "scripts/I76_CameraSourceAudit.java",
+      "kind": "script",
+      "sha256": "d132ba30ec343a3c612330457b5ff1732e783b03ca777212d20213cb94f7ce6f",
+      "bytes": 2343
+    },
+    {
+      "path": "scripts/I76_DrawBoundaryProbe.java",
+      "kind": "script",
+      "sha256": "44ac7e289371d0e6bd33593474cb96974ff0ad5bbc790f230d564954183a643a",
+      "bytes": 43438
+    },
+    {
+      "path": "scripts/I76_DrawOpcodeAudit.java",
+      "kind": "script",
+      "sha256": "362f2459e933a909122ac31b787159cc5982ee4792256692a256db1b601c416c",
+      "bytes": 1491
+    },
+    {
+      "path": "scripts/audit_retail.py",
+      "kind": "script",
+      "sha256": "8039d2124326e8fc0b48d2cb2f2fcd542cf56fdfec8d0fa412de27a506e53db4",
+      "bytes": 1327
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "10f9fa0e8d06cf4550ed6267a612b832b01a2d3e63b3582eabccf060da003b1b",
+      "bytes": 3765
+    },
+    {
+      "path": "scripts/verify_draw.py",
+      "kind": "script",
+      "sha256": "6334f3a9e327667a6788fc052054946c9f3effaeb4fb1923d520bd9a7bc60680",
+      "bytes": 16964
+    }
+  ],
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_CameraSourceAudit.java",
+        "sha256": "d132ba30ec343a3c612330457b5ff1732e783b03ca777212d20213cb94f7ce6f"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_DrawBoundaryProbe.java",
+        "sha256": "44ac7e289371d0e6bd33593474cb96974ff0ad5bbc790f230d564954183a643a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_DrawOpcodeAudit.java",
+        "sha256": "362f2459e933a909122ac31b787159cc5982ee4792256692a256db1b601c416c"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/audit_retail.py",
+        "sha256": "8039d2124326e8fc0b48d2cb2f2fcd542cf56fdfec8d0fa412de27a506e53db4"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "10f9fa0e8d06cf4550ed6267a612b832b01a2d3e63b3582eabccf060da003b1b"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_draw.py",
+        "sha256": "6334f3a9e327667a6788fc052054946c9f3effaeb4fb1923d520bd9a7bc60680"
+      }
+    ],
+    "methods": [
+      "Authenticated pinned-main bootstrap, active ruleset inspection, fresh create-only i76exe branch and isolated checkout/scratch.",
+      "Unchanged accepted full continuous camera/visibility/queue and polygon reproduction before extension; authentic scene chronology and original-produced polygons.",
+      "One CE40 substitution removed; staged import/capacity/delete blockers; original workspace/command/edge/plane/finalizer instructions with guarded allocation-only backing.",
+      "Standalone source, retail opcode, byte chronology, exact command/edge/span and float32 spill-aware inverse/plane checks; original behind-camera control, distinct fresh imports, six corruption rejections and public bad sample.",
+      "Trusted pinned policy validator, 38 unit tests and exact-commit integrity gates before PR publication; leave unmerged."
+    ],
+    "limitations": "Original-instruction Ghidra emulation with inherited scene/resource/CRT/math/texture services, explicit original workspace initialization and two added narrow CRT allocation/free services. Kind10 draw remains substituted. No hardware x87 parity, clipping intersection, complete scene, framebuffer writes, maintained renderer or RND-v1 completion. Furthest observed raster boundary is pre-instruction 0047CB00; surface pitch/base and palette/shade initialization remain missing. Original finalizer supplies a split span representation with final pending span in command header; no callback store or image is inferred."
+  }
+}
