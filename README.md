@@ -7,7 +7,9 @@ All automated research agents and new conversations should begin with [AGENTS.md
 
 ### Local Codex CLI workspace
 
-On the local machine where it is available, use `/media/neon-remote/prj/i76` as the workspace root for Codex CLI intermediate work: temporary worktrees, experimental scripts, traces, logs, and generated test artifacts. Do not create separate `/home/z/i76-*` project workspaces (for example, `/home/z/i76-mter01`) for new investigations. Isolate concurrent investigations in distinct child directories under the specified root. Inspect existing contents before writing: do not overwrite a working checkout, active session, or private input assets. This is a machine-specific workspace preference, not a repository publication path or a change to the protected-`main`/immutable-run protocol.
+On the local machine where it is available, keep `/media/neon-remote/prj/i76` as the **main repository checkout**. Use `/media/neon-remote/prj/i76/runs/<worker-id>/` as the **default local execution workspace** for each Codex CLI agent: isolated Git worktrees/checkouts, experimental scripts, traces, logs, and generated test artifacts. Allocate a distinct `<worker-id>` per concurrent worker (the research `run_id` is a suitable choice), and inspect existing workspaces before creating or writing to one. Do not overwrite an active session, working checkout, or private input assets, and do not create separate `/home/z/i76-*` project workspaces for new investigations.
+
+The root `/runs/` directory is ignored by Git for **local-only workspaces and scratch data**. It is **not** the publication location: research evidence selected for publication must be committed within the worker's isolated Git branch at `agent/runs/<track>/<run_id>/`, per the accepted [bootstrap procedure](agent/protocol/BOOTSTRAP.md). Do not commit private Ghidra projects, proprietary resources, or incidental local scratch. This machine-specific layout changes neither research run/branch identity nor protected-`main`, immutable-run, or human-merge requirements.
 
 ## Mission VM, loader ABI, and original-code emulation (2026-10-21)
 
