@@ -24,4 +24,6 @@ Run `i76exe-20261031T011728Z-b887fccd`; allocated 2026-10-31 01:17:28 UTC (2026-
 
 - The first local PR-integrity invocation passed symbolic HEAD and was rejected because exact 40-character SHAs are required. Retried with the measured full commit SHA; no symbolic-ref check is counted as a pass.
 
+- Initial branch push hit sandbox DNS failure resolving github.com. Retried the same isolated-branch push with the required network escalation; it succeeded without force or main mutation. This external permission affects publication only, not scientific execution.
+
 External interventions are exactly the supplied services in SERVICE_LEDGER.md. No manual polygon, queue link, selected-player event, mission spawn, synthetic projection, independently moved visibility origin or patched original body is introduced. No retail frame/draw/image claim follows from these checkpoints.
