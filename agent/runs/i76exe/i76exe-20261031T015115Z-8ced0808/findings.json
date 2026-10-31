@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261031T015115Z-8ced0808",
+  "findings": [
+    {
+      "finding_id": "F1-surface-contract",
+      "claim": "Original 00474C60 returned after requesting 307232 bytes through an imported allocator; original 00474D32 copied a 13-DWORD descriptor with pitch 640, base 3F000000 and zero X/Y offsets. Original 0047CB00 computes a byte destination from these fields. Unserviced original heap init 00474C10 stops at 000C0FE2.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/field_provenance.json",
+          "sha256": "36ca6f0c026d03b4ee5321c56344aa95db1775de1d7212146ae81d8ab73d6b3b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/raster_results.json",
+          "sha256": "65787f5f65e0d0ed2bf1505e555db66288dc5547b60e963585c0faff99482b23"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_raster_opcodes.json",
+          "sha256": "49bf41ae44fd0c18567ade2bbb44023cef33e27edbe5c6e14a0da4d8ba0ba5d7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/controls.json",
+          "sha256": "9eb90bc85e2f4458870e96566b64d7547ae0aa87bb70e027a2b32873d3c986bf"
+        }
+      ],
+      "limitations": "Original-instruction Ghidra emulation with inherited PR75 scene/resource/CRT/math services. Diagnostic 640x480 backing and 8192-byte shade table supplied; no authentic palette, OS device/lock lifecycle, complete image or RND-v1 claim. Shade-index trajectory is measured, not independently rederived from x87 planes."
+    },
+    {
+      "finding_id": "F2-original-raster-byte-writes",
+      "claim": "From authenticated original stock-bus commands and fourteen native spans, two complete original 0047CB00 callbacks returned and original 0047CC62 executed 210 bounded 8-bit framebuffer stores. All changed bytes equal indexed value 31 from a declared supplied diagnostic shade table.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/raster_results.json",
+          "sha256": "65787f5f65e0d0ed2bf1505e555db66288dc5547b60e963585c0faff99482b23"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_raster_opcodes.json",
+          "sha256": "49bf41ae44fd0c18567ade2bbb44023cef33e27edbe5c6e14a0da4d8ba0ba5d7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_RasterProbe.java",
+          "sha256": "eca224d7369b482fa380f7efff7e57b2f3dada7435d789c7b01e42238c53c878"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_raster.py",
+          "sha256": "3e6d42a684547f487a3fe37b34998e0585d7ab24439c0935d0e299b0a7517143"
+        }
+      ],
+      "limitations": "Original-instruction Ghidra emulation with inherited PR75 scene/resource/CRT/math services. Diagnostic 640x480 backing and 8192-byte shade table supplied; no authentic palette, OS device/lock lifecycle, complete image or RND-v1 claim. Shade-index trajectory is measured, not independently rederived from x87 planes."
+    },
+    {
+      "finding_id": "F3-original-palette-blocker",
+      "claim": "Original 004791E0 palette producer was entered after original descriptor construction but stopped at imported float-to-integer target 000C0BFC; the positive uses an explicitly supplied 8192-byte table and cannot establish authentic retail color/material output.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/controls.json",
+          "sha256": "9eb90bc85e2f4458870e96566b64d7547ae0aa87bb70e027a2b32873d3c986bf"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_raster_opcodes.json",
+          "sha256": "49bf41ae44fd0c18567ade2bbb44023cef33e27edbe5c6e14a0da4d8ba0ba5d7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SERVICE_LEDGER.md",
+          "sha256": "55a74ea1e86cdbc050e54bee9095c55530a7e28b8d68f769957c0d6dff4de4f0"
+        }
+      ],
+      "limitations": "Original-instruction Ghidra emulation with inherited PR75 scene/resource/CRT/math services. Diagnostic 640x480 backing and 8192-byte shade table supplied; no authentic palette, OS device/lock lifecycle, complete image or RND-v1 claim. Shade-index trajectory is measured, not independently rederived from x87 planes."
+    },
+    {
+      "finding_id": "F4-controls-and-independent-checks",
+      "claim": "Standalone verifier checked original source linkage, command/span ownership, all destinations and bytes, table reads, guards and exact fresh-GZF repeat. Original behind-camera and absent-surface controls made zero pixel writes; an X-offset variation shifted 210 addresses; three evidence corruptions rejected.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/raster_results.json",
+          "sha256": "65787f5f65e0d0ed2bf1505e555db66288dc5547b60e963585c0faff99482b23"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/controls.json",
+          "sha256": "9eb90bc85e2f4458870e96566b64d7547ae0aa87bb70e027a2b32873d3c986bf"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_raster.py",
+          "sha256": "3e6d42a684547f487a3fe37b34998e0585d7ab24439c0935d0e299b0a7517143"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "0100dfcede10e84a70b1300ed01c6a08598d35b8299b2e33fa0d47825e994e29"
+        }
+      ],
+      "limitations": "Original-instruction Ghidra emulation with inherited PR75 scene/resource/CRT/math services. Diagnostic 640x480 backing and 8192-byte shade table supplied; no authentic palette, OS device/lock lifecycle, complete image or RND-v1 claim. Shade-index trajectory is measured, not independently rederived from x87 planes."
+    }
+  ]
+}

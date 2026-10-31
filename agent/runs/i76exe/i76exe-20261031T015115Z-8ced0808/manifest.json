@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "track": "i76exe",
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "user-private annotated retail i76.exe Ghidra v97 verified names",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "user-private annotated GZF in game-environment handoff",
+      "notes": "Read-only Ghidra; freshly imported positive repeat; no symbol mutations."
+    }
+  ],
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private licensed input; no payload published."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "other",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Private licensed input; no payload published."
+    }
+  ],
+  "run_id": "i76exe-20261031T015115Z-8ced0808",
+  "topic": "M-RND-09: original software raster and bounded framebuffer-byte output",
+  "base_commit": "f2bcfbf40db8873bc4a787c9a3ceb3f305fbb019",
+  "started_at": "2026-10-31T01:51:15Z",
+  "summary": "Complete bounded controlled diagnostic indexed-byte result: original 00474C60 descriptor constructor with supplied allocation; original 0047CB00 returns twice and writes 210 verified framebuffer bytes from authentic stock-bus spans. Original heap and palette initialization blockers preserved; no authentic retail color or complete image.",
+  "validation": {
+    "status": "passed",
+    "test_count": 3712,
+    "passed_count": 3712,
+    "notes": "Own standalone verifier: 3593 positive assertions and 81 executed assertions during three rejected corruption attempts; trusted pinned-base GitHub/protocol unit suite: 38/38. Unchanged accepted PR75 reproduction independently passed 11350 native assertions plus 292 delegated source/projection assertions and predecessor checks, counted separately. Two original callbacks returned with 210 byte stores; behind, absent-surface, X-offset and fresh-GZF controls passed. Structural protocol/integrity and exact GitHub CI are separate publication gates."
+  },
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "fd75b4f8ba2cfa65838ddca8c4554ec02587fbe0686ea73949a6784937ca2c6b",
+      "bytes": 2816
+    },
+    {
+      "path": "artifacts/EXECUTION_NOTES.md",
+      "kind": "report",
+      "sha256": "afcf56ea1330e8b100eab4a3626b66b07e27694bddeda636cd323bf176e06d57",
+      "bytes": 3016
+    },
+    {
+      "path": "artifacts/REPORT.md",
+      "kind": "report",
+      "sha256": "af4954c817db19a98fc908ad9f3b34c52a0889e208375efb7e7e0ea00a14de8a",
+      "bytes": 7038
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "6681b795cb6d49eba2e24f4bc20f8ca1db8ea9748a36ce227483d9654e6d4b44",
+      "bytes": 3309
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "55a74ea1e86cdbc050e54bee9095c55530a7e28b8d68f769957c0d6dff4de4f0",
+      "bytes": 3719
+    },
+    {
+      "path": "evidence/controls.json",
+      "kind": "table",
+      "sha256": "9eb90bc85e2f4458870e96566b64d7547ae0aa87bb70e027a2b32873d3c986bf",
+      "bytes": 2867
+    },
+    {
+      "path": "evidence/field_provenance.json",
+      "kind": "table",
+      "sha256": "36ca6f0c026d03b4ee5321c56344aa95db1775de1d7212146ae81d8ab73d6b3b",
+      "bytes": 3027
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "0100dfcede10e84a70b1300ed01c6a08598d35b8299b2e33fa0d47825e994e29",
+      "bytes": 604
+    },
+    {
+      "path": "evidence/raster_results.json",
+      "kind": "table",
+      "sha256": "65787f5f65e0d0ed2bf1505e555db66288dc5547b60e963585c0faff99482b23",
+      "bytes": 72067
+    },
+    {
+      "path": "evidence/retail_raster_opcodes.json",
+      "kind": "table",
+      "sha256": "49bf41ae44fd0c18567ade2bbb44023cef33e27edbe5c6e14a0da4d8ba0ba5d7",
+      "bytes": 82955
+    },
+    {
+      "path": "scripts/I76_RasterOpcodeAudit.java",
+      "kind": "script",
+      "sha256": "48f39fee39e36eefe176eb9a1f6df6cc0fd3602a330ebea911f051dc7ef28750",
+      "bytes": 1475
+    },
+    {
+      "path": "scripts/I76_RasterProbe.java",
+      "kind": "script",
+      "sha256": "eca224d7369b482fa380f7efff7e57b2f3dada7435d789c7b01e42238c53c878",
+      "bytes": 48708
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "ca05d7580deb256d093e9bb4f939af13991f7dc164423b38a0c6ba003908daf4",
+      "bytes": 4104
+    },
+    {
+      "path": "scripts/summarize_evidence.py",
+      "kind": "script",
+      "sha256": "06eac66655e84316846a81ce953f2ef04037ccee9ce2f7b127a177cb61d03d9e",
+      "bytes": 4626
+    },
+    {
+      "path": "scripts/verify_raster.py",
+      "kind": "script",
+      "sha256": "3e6d42a684547f487a3fe37b34998e0585d7ab24439c0935d0e299b0a7517143",
+      "bytes": 12063
+    }
+  ],
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RasterOpcodeAudit.java",
+        "sha256": "48f39fee39e36eefe176eb9a1f6df6cc0fd3602a330ebea911f051dc7ef28750"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/I76_RasterProbe.java",
+        "sha256": "eca224d7369b482fa380f7efff7e57b2f3dada7435d789c7b01e42238c53c878"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "ca05d7580deb256d093e9bb4f939af13991f7dc164423b38a0c6ba003908daf4"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/summarize_evidence.py",
+        "sha256": "06eac66655e84316846a81ce953f2ef04037ccee9ce2f7b127a177cb61d03d9e"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_raster.py",
+        "sha256": "3e6d42a684547f487a3fe37b34998e0585d7ab24439c0935d0e299b0a7517143"
+      }
+    ],
+    "methods": [
+      "Pinned protected-main bootstrap and one isolated create-only i76exe run branch.",
+      "Unchanged accepted PR75 complete reproduction before extension.",
+      "Read-only Ghidra original initializer/callback execution with guarded surface allocation and explicitly supplied diagnostic table.",
+      "Independent retail opcode/source/span/address/table/writer/full-buffer verification, behind/absent/offset/fresh controls and corruption rejections.",
+      "Trusted pinned-base protocol, unit and exact candidate-integrity preflight before review PR publication."
+    ],
+    "limitations": "Original-instruction Ghidra emulation with inherited PR75 scene/resource/CRT/math services. Diagnostic 640x480 backing and 8192-byte shade table supplied; no authentic palette, OS device/lock lifecycle, complete image or RND-v1 claim. Shade-index trajectory is measured, not independently rederived from x87 planes."
+  }
+}
