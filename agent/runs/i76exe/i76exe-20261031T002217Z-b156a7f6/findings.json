@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261031T002217Z-b156a7f6",
+  "findings": [
+    {
+      "finding_id": "F1-original-projection-return",
+      "claim": "Original 0047C8D0 projects two original producer/consumer GEO quads, preserves source, writes screen XY/reciprocal Z/final attribute, leaves unused words unchanged and returns four at 004720AF.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/polygon_events.json",
+          "sha256": "a451bd6498945f7df26e7dcea6ab4932d7d6d767599c90ea0f9625940faf0277"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_dispatch.json",
+          "sha256": "23d484f20afc6aacb5cc11341117332e615e4c97537430cd9fe1d92f567b8286"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "c532af5848f75cfda895faa2cc85db159590323f4dbe19613757c511bb3ec507"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_PolygonBoundaryProbe.java",
+          "sha256": "ebebf510e4bd26d3e18032c3ea9470aa87bb16b1c546ebb94f868243bc9cb4b0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_polygon.py",
+          "sha256": "6a7662e80d6d62f056de4f10adbc1db1a5e5d04e5d9e812bb7150c97d400514c"
+        }
+      ],
+      "limitations": "Original-instruction emulator with controlled poses, explicit inherited OS/CRT/resource/math/texture/draw services, zero descriptor extents and one inherited optional null-name read. No hardware x87 parity, actual clipping intersection, native draw/pixels, M06 or RND-v1 completion. Comparison PR metadata summaries inadvertently exposed but not used; no comparison code/artifacts read."
+    },
+    {
+      "finding_id": "F2-independent-source-numerics",
+      "claim": "Independent retail source vertices, row-vector world/view matrices and measured projection parameters reproduce all eight screen XY and reciprocal-depth outputs within declared float32 tolerances.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/polygon_events.json",
+          "sha256": "a451bd6498945f7df26e7dcea6ab4932d7d6d767599c90ea0f9625940faf0277"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_dispatch.json",
+          "sha256": "23d484f20afc6aacb5cc11341117332e615e4c97537430cd9fe1d92f567b8286"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "c532af5848f75cfda895faa2cc85db159590323f4dbe19613757c511bb3ec507"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_PolygonBoundaryProbe.java",
+          "sha256": "ebebf510e4bd26d3e18032c3ea9470aa87bb16b1c546ebb94f868243bc9cb4b0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_polygon.py",
+          "sha256": "6a7662e80d6d62f056de4f10adbc1db1a5e5d04e5d9e812bb7150c97d400514c"
+        }
+      ],
+      "limitations": "Original-instruction emulator with controlled poses, explicit inherited OS/CRT/resource/math/texture/draw services, zero descriptor extents and one inherited optional null-name read. No hardware x87 parity, actual clipping intersection, native draw/pixels, M06 or RND-v1 completion. Comparison PR metadata summaries inadvertently exposed but not used; no comparison code/artifacts read."
+    },
+    {
+      "finding_id": "F3-real-dispatch-and-fallback",
+      "claim": "Kind6 actually dispatches index101/C8D0 then index1/BF00 then index1/CE40; secondary BF00 was already original under the accepted harness. Kind10 retains initial BF00/D110 services, while C2F0/87EA0 pair is at retail index15.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/polygon_events.json",
+          "sha256": "a451bd6498945f7df26e7dcea6ab4932d7d6d767599c90ea0f9625940faf0277"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_dispatch.json",
+          "sha256": "23d484f20afc6aacb5cc11341117332e615e4c97537430cd9fe1d92f567b8286"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "c532af5848f75cfda895faa2cc85db159590323f4dbe19613757c511bb3ec507"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_PolygonBoundaryProbe.java",
+          "sha256": "ebebf510e4bd26d3e18032c3ea9470aa87bb16b1c546ebb94f868243bc9cb4b0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_polygon.py",
+          "sha256": "6a7662e80d6d62f056de4f10adbc1db1a5e5d04e5d9e812bb7150c97d400514c"
+        }
+      ],
+      "limitations": "Original-instruction emulator with controlled poses, explicit inherited OS/CRT/resource/math/texture/draw services, zero descriptor extents and one inherited optional null-name read. No hardware x87 parity, actual clipping intersection, native draw/pixels, M06 or RND-v1 completion. Comparison PR metadata summaries inadvertently exposed but not used; no comparison code/artifacts read."
+    },
+    {
+      "finding_id": "F4-negative-repeat",
+      "claim": "Behind-camera target produces no accepted polygons; complete positive native traces repeat byte-identically after a fresh GZF import and in a second complete baseline-plus-extension reproduction.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/polygon_events.json",
+          "sha256": "a451bd6498945f7df26e7dcea6ab4932d7d6d767599c90ea0f9625940faf0277"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_dispatch.json",
+          "sha256": "23d484f20afc6aacb5cc11341117332e615e4c97537430cd9fe1d92f567b8286"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "c532af5848f75cfda895faa2cc85db159590323f4dbe19613757c511bb3ec507"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_PolygonBoundaryProbe.java",
+          "sha256": "ebebf510e4bd26d3e18032c3ea9470aa87bb16b1c546ebb94f868243bc9cb4b0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_polygon.py",
+          "sha256": "6a7662e80d6d62f056de4f10adbc1db1a5e5d04e5d9e812bb7150c97d400514c"
+        }
+      ],
+      "limitations": "Original-instruction emulator with controlled poses, explicit inherited OS/CRT/resource/math/texture/draw services, zero descriptor extents and one inherited optional null-name read. No hardware x87 parity, actual clipping intersection, native draw/pixels, M06 or RND-v1 completion. Comparison PR metadata summaries inadvertently exposed but not used; no comparison code/artifacts read."
+    },
+    {
+      "finding_id": "F5-clipping-drawing-prerequisites",
+      "claim": "Actual clipping-plane intersections, valid raster descriptor extents/surface, native draw execution, textured outputs, pixels and M06 integration remain unverified.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/polygon_events.json",
+          "sha256": "a451bd6498945f7df26e7dcea6ab4932d7d6d767599c90ea0f9625940faf0277"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/retail_dispatch.json",
+          "sha256": "23d484f20afc6aacb5cc11341117332e615e4c97537430cd9fe1d92f567b8286"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numerical_results.json",
+          "sha256": "c532af5848f75cfda895faa2cc85db159590323f4dbe19613757c511bb3ec507"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/I76_PolygonBoundaryProbe.java",
+          "sha256": "ebebf510e4bd26d3e18032c3ea9470aa87bb16b1c546ebb94f868243bc9cb4b0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_polygon.py",
+          "sha256": "6a7662e80d6d62f056de4f10adbc1db1a5e5d04e5d9e812bb7150c97d400514c"
+        }
+      ],
+      "limitations": "Original-instruction emulator with controlled poses, explicit inherited OS/CRT/resource/math/texture/draw services, zero descriptor extents and one inherited optional null-name read. No hardware x87 parity, actual clipping intersection, native draw/pixels, M06 or RND-v1 completion. Comparison PR metadata summaries inadvertently exposed but not used; no comparison code/artifacts read."
+    }
+  ]
+}
