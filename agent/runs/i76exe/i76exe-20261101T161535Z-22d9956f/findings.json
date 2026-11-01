@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261101T161535Z-22d9956f",
+  "findings": [
+    {
+      "finding_id": "RES.C1",
+      "claim": "The general acquisition entry returns either loaded-file inline payload bytes or a PIX member interior byte pointer, not a uniform record handle.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "0046FFC0",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. Return arithmetic 0047011C and 00470BB2; original BWD2 and GEO consumers."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "0046FFC0",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. Does not demonstrate an executed end-to-end acquisition or a complete lifetime guarantee."
+    },
+    {
+      "finding_id": "RES.C2",
+      "claim": "Global 00609564 selects indexed-first when zero and loaded-file-first when nonzero, with fallback on a null first result.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "0046FFC0",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 0047000F..00470050 conditional branches and direct call destinations."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "0046FFC0",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. The active value in any particular mission/install was not observed; loaded-file path includes loose and ZFS sources."
+    },
+    {
+      "finding_id": "RES.C3",
+      "claim": "The entry lowercases a 16-byte strncpy copy; indexed and registered lookup compare four 32-bit key-word differences, including padding.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "00470CA0",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 0046FFCF, 0046FFDD, 00470CA0..00470CC9; PIX row zeroing/lowercase in 00470660."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "00470CA0",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. Long inputs are not safely terminated; direct helper callers must supply key representation. Arbitrary key comparator ordering is not certified."
+    },
+    {
+      "finding_id": "RES.C4",
+      "claim": "Loaded-file acquisition uses a 0x24-byte heap header with 16-bit references, a hash link and purge links, returning inline payload at +0x24.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "00470070",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 00470084..00470123 hit; 00470193..004702AC allocate/load/insert; 0046FE30 release."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "00470070",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. Unknown +0x16 bytes, long-name termination, invalidation invariants and runtime hit/reuse remain untested."
+    },
+    {
+      "finding_id": "RES.C5",
+      "claim": "Global 00609584 changes by one per loaded-file record insertion or eviction, whereas 00609560 changes by header-plus-payload byte size.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "00470070",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 00470289..004702A7 insert; 0046FBE0 eviction including 0046FCBF."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "00470070",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. Historical used_bytes name is not applied as truth; initialization and full budget enforcement are outside this audit."
+    },
+    {
+      "finding_id": "RES.C6",
+      "claim": "PIX member rows have stride 0x1C and select separate 0x18-byte PAK retention rows; member acquisition retains a whole cached package and returns base plus member offset.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "00470B20",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 00470660 construction; 00470B3A..00470BB2 acquisition; 00470BC0 aggregate release."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "00470B20",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. No visible acquire-time member bounds check; failed-load reporter and duplicate/malformed PIX behavior are unresolved."
+    },
+    {
+      "finding_id": "RES.C7",
+      "claim": "Registered 0x30-byte key rows contain source-membership bits; the resolver returns a static 0x10C-byte mounted-source row and can close handles and invoke a media callback.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "004B2E00",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 004B2E41 search; 004B2E8A..004B2F01 membership; 004B2F03..004B2FF5 selection and source-row return; 004B2B30 registration."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "004B2E00",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. Exact media/configuration contract and malformed empty-membership behavior are not runtime-validated."
+    },
+    {
+      "finding_id": "RES.C8",
+      "claim": "Registered payload loading formats one selected source path, dispatches by a .zfs substring, and supports a supplied destination/capacity or allocation.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "004B3030",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 004B3030 formatting; 004B3110 open; 004B3151 and 004B317A delegated reads; 004B3212..004B3283 loose-file length/capacity/read."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "004B3030",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. ZFS decoder internals, allocated-reader free contract and all error reporter outcomes are not established."
+    },
+    {
+      "finding_id": "RES.C9",
+      "claim": "The existence query checks PIX-member or registered-key table membership rather than loaded-cache residency or payload readability.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "00470340",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. Calls to 00470C70 and 004B34F0, each implemented as bsearch with no load."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "00470340",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. A true result does not imply source selection succeeds or bytes remain available."
+    },
+    {
+      "finding_id": "RES.C10",
+      "claim": "Name-based release and size query try PIX first independently of the acquisition preference; zero direct-file references queue a record for later purge.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/STATIC_AFTER.tsv",
+          "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+          "address": "0046FD40",
+          "notes": "Binary-static PE-matching function hashes and call/xref metadata. 0046FD40 calls 00470BC0 first; 0046FEE0 calls 00470C40 first; 0046FE30 queues at zero."
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+          "address": "0046FD40",
+          "notes": "Instruction anchors and bounded proposed names/offsets; see semantic reports."
+        }
+      ],
+      "limitations": "Binary-static, not original-instruction or native Windows execution. Direct-first collision consequences require valid runtime state/source candidates; this is a static asymmetry, not a proven retail bug."
+    },
+    {
+      "finding_id": "RES.U1",
+      "claim": "Actual mission acquisition policy, collision invariants, complete media/teardown contracts and original end-to-end acquisition execution remain unresolved.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/UNRESOLVED_SEMANTICS.md",
+          "sha256": "f46c8d4f07beb3a2b2c7ecaf80f0e87495c3795e9a036110fe2307ad6963adcc",
+          "notes": "Specific competing interpretations and discriminating evidence."
+        }
+      ],
+      "limitations": "No original acquisition emulation campaign was performed; prior vehicle harness substituted acquire/size/release."
+    }
+  ]
+}
