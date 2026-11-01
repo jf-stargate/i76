@@ -1,0 +1,27 @@
+address	existing_name_or_type	proposed_name_or_type	evidence	confidence	applied_or_skipped
+00493080	undefined4 __cdecl build_runtime_terrain_page_grid_from_zmap(undefined4 param_1, int param_2, float param_3)	int __cdecl build_runtime_terrain_page_grid_from_zmap(uint setup_value, int mode, float sample_spacing)	A1-A4; original matching code range	high	applied: signature only; existing analyst function name retained
+00493160	ushort __cdecl TER_ReadPackedTerrainGridWord(int param_1, int param_2)	ushort __cdecl TER_ReadPackedTerrainGridWord(int sample_x, int sample_z)	A5-A7; original matching code range	high	applied: signature only; existing analyst function name retained
+004931c0	undefined __cdecl TER_SampleSurfaceNormalXZ(float * param_1, double param_2, undefined4 param_3, undefined4 param_4)	void __cdecl TER_SampleSurfaceNormalXZ(TER_Normal3f * out_normal, double world_x, double world_z)	A15-A21; original matching code range	high	applied: signature only; existing analyst function name retained
+00493550	uint __cdecl TER_SampleBilinearHeightXZ(double param_1, double param_2)	double __cdecl TER_SampleBilinearHeightXZ(double world_x, double world_z)	A8-A12; original matching code range	high	applied: signature only; existing analyst function name retained
+004927b0	ushort __cdecl lookup_terrain_material_index_at_world_xz(double param_1, double param_2)	ushort __cdecl lookup_terrain_material_index_at_world_xz(double world_x, double world_z)	A13-A14; original matching code range	high	applied: signature only; existing analyst function name retained
+006442c0	g_TER_GridStep	g_TER_GridStep : float	A2	high	applied: previously undefined data; existing USER_DEFINED names retained
+006442c4	g_TER_GridStepReciprocal	g_TER_GridStepReciprocal : float	A2	high	applied: previously undefined data; existing USER_DEFINED names retained
+00644380	g_runtime_terrain_page_pointer_grid	g_runtime_terrain_page_pointer_grid : uint16_t *[16384]	A3-A7	high	applied: previously undefined data; existing USER_DEFINED names retained
+004faf18	fpu_double_to_integer_magic_bias	fpu_double_to_integer_magic_bias : double	A8/A13/A15	high	applied: previously undefined data; existing USER_DEFINED names retained
+004be8a0	DAT_004be8a0	DAT_004be8a0 : float (0)	A8	high	applied: previously undefined data; existing USER_DEFINED names retained
+004be8a8	DAT_004be8a8	DAT_004be8a8 : float (0.1)	A12/A20	high	applied: previously undefined data; existing USER_DEFINED names retained
+004be8ac	DAT_004be8ac	DAT_004be8ac : float (-1)	A20	high	applied: previously undefined data; existing USER_DEFINED names retained
+type	absent	TER_Page { uint16_t samples[128][128]; } (32768 bytes)	A4-A7	high	applied: type only, no mapped instances
+type	absent	TER_Normal3f { float x,y,z; } (12 bytes)	A21	high	applied: type and output pointer
+00493160	TER_ReadPackedTerrainGridWord	TER_ReadHeight12	A7	high	skipped: preserve USER_DEFINED function symbol; correction comment added
+004931a4	interior MOV AX instruction in 00493160	no new function	A7	high	skipped: not a separate function
+006442d0	DAT_006442d0	setup_value storage; meaning unknown	A2	unknown	skipped: no speculative semantic label
+004fad20/004fad24	DAT symbols	mode constants; consumer meaning unknown	A1	unknown	skipped: no speculative semantic label
+0059c588	DAT_0059c588	borrowed default page	A3	medium	skipped: initialization/lifetime not established
+00495000	MATH_ApproxInverseSquareRoot	numeric x87 helper; signature left intact	A20	high	skipped: no broader math migration
+004ba090	ftol	x87-input CRT thunk; import implementation unavailable	A16	medium	skipped: no misleading ordinary argumentless C prototype introduced
+00493080	existing historical comments	additive repeatable semantic correction	ORIGINAL_CODE.tsv	high	applied: preserves original text
+00493160	existing historical comments	additive repeatable semantic correction	ORIGINAL_CODE.tsv	high	applied: preserves original text
+004931c0	existing historical comments	additive repeatable semantic correction	ORIGINAL_CODE.tsv	high	applied: preserves original text
+00493550	existing historical comments	additive repeatable semantic correction	ORIGINAL_CODE.tsv	high	applied: preserves original text
+004927b0	existing historical comments	additive repeatable semantic correction	ORIGINAL_CODE.tsv	high	applied: preserves original text

@@ -1,0 +1,23 @@
+evidence_id	retail_va	binary_static_observation
+A1	00493080..004930CF	mode argument at stack+8 selects literal settings at 004FAD20/24; other mode values use defaults
+A2	004930CF..004930FB	FDIV sample spacing; globals 006442C0/C4; opaque first argument copied to 006442D0
+A3	004930EC..00493103	REP STOSD fills 0x4000 pointers at 00644380 with 0059C588
+A4	00493103..0049314C;00493BA7..00493BBC;00493BD0..00493BE7	80x80 byte ZMAP overlay at 0xC18 (+24,+24), FF skip, active-page helper; TER pages advance 0x8000; caller supplies spacing5
+A5	00493160..00493188	add0xC00 each axis; mask0x7F; SAR X by7; local row stride128; grid row maskFFFFFF80
+A6	0049318A..0049319D	signed page upper bound; no negative page check; local upper/lower checks
+A7	0049319D..004931B2	load page pointer, interior word load004931A4, AND0xFFF004931A8, zero on rejected index
+A8	00493556..004935A7;004FAF18;004BE8A0	double world FMUL; bias double=6755399441055744; signed admission0..0x2800; outside FLD zero
+A9	004935AA..00493608	save RC; FLDCW004935CA sets0400 round-down; double scaled stores; FISTP qword at004935EE/00493608
+A10	0049360B..0049374F	four independently addressed page reads; mask each low12; invalid corner contributes0
+A11	0049374F..00493792	two X interpolations stored as float0049375D/00493769; restore saved RC bits at00493792
+A12	00493795..004937B2;00440883..004408B3	final Z interpolation FMUL float0.1 then RET with ST0; caller passes two doubles and uses FSUB on result
+A13	004927B3..00492840	bias-based double coordinate conversion; admission failure returns5; repeat conversions for indexing
+A14	00492844..0049288F	page index includes explicit negative guard; invalid index returns0; uint16 sample shifted13
+A15	004931C3..00493246	double X at entry stack+8,Z+16; bias admission; fallback writes float{0,1,0} to caller pointer
+A16	00493247..00493282;004BA090	scaled coordinate passed in x87 to imported ftol thunk twice; import implementation absent
+A17	00493286..00493297	FSUBR original world doubles by integer indices; FCOMPP selects branch; no fractional-coordinate rescale
+A18	0049329D..004933A5	branch z-iz>x-ix: h01,h11,h00; X=h01-h11; Z=h00-h01
+A19	004933AA..004934AF	branch z-iz<=x-ix: h10,h00,h11; X=h10-h00; Z=h11-h10
+A20	004934B3..0049350C;00495000..0049505C	scale slopes by reciprocal*float0.1; float slope stores; add1 via subtract float(-1); double norm-square; table-seeded approximate inverse sqrt
+A21	00493510..00493542	three float results written to output+0/+4/+8; no allocation; void C interface
+A22	00493BF0..00493C0B	ZMAP accessor and indexed active-page pointer getter; borrowed storage

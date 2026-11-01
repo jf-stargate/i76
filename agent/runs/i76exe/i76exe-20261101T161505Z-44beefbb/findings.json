@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261101T161505Z-44beefbb",
+  "findings": [
+    {
+      "finding_id": "TER-A-layout",
+      "claim": "The runtime grid borrows 0x8000-byte packed pages; setup overlays an 80x80 ZMAP at +24/+24, and integer sample lookup adds 3072 then splits page/local bits. 004931A4 is an interior load and 00493160 returns height12.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+          "sha256": "3f01b9c51c99ef5b1bb3847441dc052762255feadb2bb07b4827823465b041e2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/ORIGINAL_CODE.tsv",
+          "sha256": "465183cc2ff42b6a889ff2258e1731b9e6e2c9aff8cf86180a32ddfcc993f136"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/code_ranges.tsv",
+          "sha256": "da9ec139a07756b3ec2406b2bae911f8926b4955206a5cdaa8553ecdf05dea5b"
+        }
+      ],
+      "limitations": "Binary-static reconstruction; no default-page initialization/lifetime or all-mission claim. Original helper lacks negative page guard; not a general safe coordinate API."
+    },
+    {
+      "finding_id": "TER-A-height-abi",
+      "claim": "00493550 has two stack double inputs and numeric x87 ST0 output; double is a readable ABI presentation without hidden result storage. Original RC-down FISTP, float X-row stores and restored-RC final Z interpolation must be preserved.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+          "sha256": "3f01b9c51c99ef5b1bb3847441dc052762255feadb2bb07b4827823465b041e2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/READABILITY_AUDIT.md",
+          "sha256": "7dff990c1e38e3015cfeacd4b623a31abb855f50ad6411de4659e08102283a90"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/ORIGINAL_CODE.tsv",
+          "sha256": "465183cc2ff42b6a889ff2258e1731b9e6e2c9aff8cf86180a32ddfcc993f136"
+        }
+      ],
+      "limitations": "Original source return declaration is not recovered; no final float/double store proves declared precision. Historical hardware FISTP qualification retained; no emulator/hardware replay here."
+    },
+    {
+      "finding_id": "TER-A-normal-material",
+      "claim": "Material uses rounded sample selection and class bits15..13 with outside/invalid fallbacks5/0; normal writes three caller-owned floats using distinct triangle branches, literal world-minus-index comparison and approximate inverse square root.",
+      "status": "derived",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+          "sha256": "3f01b9c51c99ef5b1bb3847441dc052762255feadb2bb07b4827823465b041e2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/ORIGINAL_CODE.tsv",
+          "sha256": "465183cc2ff42b6a889ff2258e1731b9e6e2c9aff8cf86180a32ddfcc993f136"
+        }
+      ],
+      "limitations": "Static branches, not broad numerical validation. ftol truncation is a CRT-contract assumption; external implementation unavailable. Bit12, collision behavior and triangle intent unresolved."
+    },
+    {
+      "finding_id": "TER-A-readability",
+      "claim": "A guarded dry-run-first script improves all five target decompilations in the supplied disposable GZF: 19 applied changes, zero new on repeat, unchanged code/body ranges and function count, with verified ST0 and packed normal argument storage.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/capture_checks.json",
+          "sha256": "ef026a14fcce91fa773df90aceb3e94d0e5e0f21650834088c93e9ded39ff9bd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/readability_metrics.tsv",
+          "sha256": "eb5b0729c68f811346e7c1ff586a8fcd161612c8d89102276f2749b10bf472df"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/annotation_trial.json",
+          "sha256": "544692ba3c2ee9063e1dba21b59743aeccc2b905aa3cffc8c69c989bd3aa4296"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "1e97ff75ca261f1336bc60d94993830f118f66e940c98a2cc36009e982241bd7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/TerrainSemantic.java",
+          "sha256": "21679ce69f1fe994af0a062ff5a2e4581bb461e4966981aa3f60d8ffbf27d57f"
+        }
+      ],
+      "limitations": "Specific Ghidra12.1.4/private GZF trial only. ROUND/input-cast/import-prototype artifacts and stale preserved comments remain; rejected dynamic-alignment trial is documented. No baseline promotion or user database modification."
+    }
+  ]
+}

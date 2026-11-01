@@ -1,0 +1,103 @@
+{
+  "checks": [
+    {
+      "check": "retail PE SHA256",
+      "passed": true
+    },
+    {
+      "check": "private GZF SHA256",
+      "passed": true
+    },
+    {
+      "check": "dry-run capture unchanged",
+      "passed": true
+    },
+    {
+      "check": "function count preserved",
+      "passed": true
+    },
+    {
+      "check": "00493080 instructions and body unchanged",
+      "passed": true
+    },
+    {
+      "check": "00493160 instructions and body unchanged",
+      "passed": true
+    },
+    {
+      "check": "004931c0 instructions and body unchanged",
+      "passed": true
+    },
+    {
+      "check": "00493550 instructions and body unchanged",
+      "passed": true
+    },
+    {
+      "check": "004927b0 instructions and body unchanged",
+      "passed": true
+    },
+    {
+      "check": "height has only two 8-byte stack parameters",
+      "passed": true
+    },
+    {
+      "check": "height return in ST0 without hidden pointer",
+      "passed": true
+    },
+    {
+      "check": "height full four-corner calculation visible",
+      "passed": true
+    },
+    {
+      "check": "normal packed stack offsets preserved",
+      "passed": true
+    },
+    {
+      "check": "normal no invented alignment gap",
+      "passed": true
+    },
+    {
+      "check": "normal named fields visible",
+      "passed": true
+    },
+    {
+      "check": "page size 32768",
+      "passed": true
+    },
+    {
+      "check": "pointer grid has 16384 uint16 pointers",
+      "passed": true
+    },
+    {
+      "check": "existing user global names retained",
+      "passed": true
+    },
+    {
+      "check": "00493080 guard equals original PE",
+      "passed": true
+    },
+    {
+      "check": "00493160 guard equals original PE",
+      "passed": true
+    },
+    {
+      "check": "004931c0 guard equals original PE",
+      "passed": true
+    },
+    {
+      "check": "00493550 guard equals original PE",
+      "passed": true
+    },
+    {
+      "check": "004927b0 guard equals original PE",
+      "passed": true
+    }
+  ],
+  "passed": 23,
+  "total": 23,
+  "private_capture_sha256": {
+    "final_before.txt": "624ef4dffce0e189f1b2c0de1983455a8a1974d2c8077dbe51f01f7a380e7bbf",
+    "after_dry.txt": "624ef4dffce0e189f1b2c0de1983455a8a1974d2c8077dbe51f01f7a380e7bbf",
+    "final_after.txt": "c6f9f100816d450e5c7f23106b66adbda7a10ee0e58a9f4bad73f0f03714641e"
+  }
+}
