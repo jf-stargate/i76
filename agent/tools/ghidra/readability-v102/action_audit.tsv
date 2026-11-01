@@ -1,0 +1,17 @@
+kind	target	evidence_or_reason
+FUNCDEF	/Interstate76/Research-v102/I76_ClassRuntimeFactory	class runtime factory +04
+FUNCDEF	/Interstate76/Research-v102/I76_ClassPhaseCallback	class init/pre/post +08/+0C/+10
+FUNCDEF	/Interstate76/Research-v102/I76_ClassDamageCallback	class damage +28
+STRUCT	/Interstate76/Research-v102/I76_ClassDescriptor_0x34	original class-table stride 0x34; indexed dispatch and distinct callback signatures
+RUNTIME_PREFIX	/Interstate76/Research-v102/I76_Class31RuntimeObserved_0x04	original decompiled field stores; class-specific, not installed at world+0x70
+RUNTIME_PREFIX	/Interstate76/Research-v102/I76_Class34RuntimeObserved_0x80	original decompiled field stores; class-specific, not installed at world+0x70
+RUNTIME_PREFIX	/Interstate76/Research-v102/I76_Class32_33VisualRuntimeObserved_0x10	original decompiled field stores; class-specific, not installed at world+0x70
+TABLE	004F76E0 class descriptor table[27]	27x52 typed dispatch; verified original code targets=113, source pointer xrefs=42; preserved two internal labels and 3 comments
+PARAM	00462040 arg0 -> world_node	damage dispatcher dereferences world+6C before indexing +28
+PARAM	00463A80 arg0 -> vehicle_root	class-1 damage callback reads world+10/+70
+PARAM	0046F2B0 arg0 -> world_node	class31 initializer dereferences world+70/+5C
+PARAM	0045F810 arg0 -> world_node	class34 initializer dereferences world+70
+PARAM	0046DFE0 arg0 -> world_node	class32/33 visual initializer dereferences world+6C/+70
+PARAM	00461970 class_id argument	original 00461970 stores discriminator at world+6C
+GLOBAL	0054B20C g_ENG_PendingClassNodeCount	pending insert +1 at 00461970 and unlink -1 in 00461B80
+GLOBAL	0054B210 g_ENG_RegisteredClassNodeCount	enrolled list insert +1 at 00461970 and unlink -1 in 00461C80/1D50
