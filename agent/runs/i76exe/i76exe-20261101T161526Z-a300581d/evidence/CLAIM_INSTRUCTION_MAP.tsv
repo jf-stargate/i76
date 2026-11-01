@@ -1,0 +1,17 @@
+claim	address_range	observation	classification
+allocation	004104CC-0041051A	HeapAlloc flags zero, size 0x10BC; append and terminate nodes	binary-static
+seed	0041052A-00410591	entry index, context count and forty words; cursor from count	binary-static
+initialize	00412500-004125B4	global-word relocation and synthetic saved frame	binary-static
+kind-dispatch	004146BC-004146CE	kind minus one; unsigned range 0..13; jump table	binary-static
+address-vs-value	00414701-004147CA	frame-relative addresses/loads; separate operand and host cursors	binary-static
+branch	0041481B-0041484E	absolute indexed jumps; condition zero takes branch	binary-static
+yield	00414989-004149AA	indexed resume; return zero without loop tail	binary-static
+call	00414874-004148C2	saved prior frame then return IP; frame points at return IP	binary-static
+return	004148C7-004148FC	restore IP/frame; cursor=frame-(4*p+4); compare with node base	binary-static
+host	00412CFA-00412D09;004144C2-004144DB	opcode at record+50; normal cursor reset and IP+8	binary-static
+budget	004146AB-004146B2;00414960-00414976	greater than 800 latch; loop-tail count reaches 1000 exits	binary-static
+invalid-kind	00414953-00414976;0042D5D0	no IP change; reporter RET; repeated dispatch eventually exit	derived from binary-static
+scheduler	00414A58-00414B38	head removal loop then predecessor traversal; same-pass successors	binary-static
+deadline	004149F6-00414A16	check elapsed and set flow before checking head	binary-static
+runtime-gate	0040A320-0040A343;0040A5BE-0040A658	outer and mode gates; epoch after scheduler/alternate AI	binary-static
+call-envelopes	0040A5F0-0040A649;00414A34-00414A5D;00414909-0041494E	16/12/12 pushed words and caller cleanups	binary-static

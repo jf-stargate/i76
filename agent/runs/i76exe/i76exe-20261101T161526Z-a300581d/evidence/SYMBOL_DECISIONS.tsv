@@ -1,0 +1,14 @@
+address	semantic_alias	conceptual_signature	confidence	annotation_decision	qualification
+00410490	load_execution_nodes	void cdecl(Addr32* head, int32_t* count, HANDLE32 heap)	high	deferred after rejected phase-typing trial	reads shared stream; seed IP remains index until relocation
+00412500	initialize_execution_nodes	void cdecl(VmNode32* first, int32_t count, Addr32 token_base, Addr32 global_words)	high	deferred after rejected phase-typing trial	initializes existing nodes, not command records
+00414670	execute_until_suspend	int32_t cdecl(VmNode32*, token_base, command_base, command_count, media_base, media_count, position_base, position_count, actor_base, actor_count_pointer, opaque_word, visit_ordinal)	high	type node and expose 12-word envelope	0 yield; 1 cursor-at-node completion; last role unused in audited body
+004149F0	scheduler_update	void cdecl(token_count, token_base, command_base, command_count, media_base, media_count, position_base, position_count, actor_base, actor_count_pointer, VmNode32** head, int32_t* count, global_words, global_count, HANDLE32 heap, opaque_word)	high	type head/count and expose 16-word envelope	flat original call, not conceptual MissionServices structure
+0040A320	mission_runtime_update	void cdecl(opaque_word forwarded_to_scheduler)	medium	leave signature unchanged	caller EBP+8 forwarded as scheduler word16; original intended role unresolved
+00412CE0	dispatch_host	void cdecl(VmNode32*, uint32_t source_index, command_base, command_count, media_base, media_count, position_base, position_count, actor_base, actor_count_pointer, opaque_word, void* scratch)	high	type node and expose 12-word envelope	trailing words supplied, no consumer identified; no whole 96-handler retyping
+0051F628	pending_vm_head	VmNode32*	high	proposal only; no global mutation	address supplied by runtime call
+0051F62C	pending_vm_count	int32_t	high	proposal only; no global mutation	scalar count must stay scalar
+005244DC	instruction_budget_latch	uint32_t	high	existing label retained	set after retired>800; shared with some host-to-AI calls
+005244E0	mission_deadline	float32	high	existing label retained	scheduler checks before head
+005244E4	mission_deadline_next_state	uint32_t	high	existing label retained	game flow state, not VM token index
+0051F640	runtime_outer_gate	uint32_t	high	address-based alias only	meaning beyond observed gate unresolved
+0051F5C0	alternate_runtime_gate	uint32_t	high	address-based alias only	meaning beyond observed gate unresolved

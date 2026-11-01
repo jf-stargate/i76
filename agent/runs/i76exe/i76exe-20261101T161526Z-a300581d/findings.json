@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261101T161526Z-a300581d",
+  "findings": [
+    {
+      "finding_id": "FSM-B-layout",
+      "claim": "The 0x10BC node has separate mixed operand/frame and host-argument regions, with a pre-relocation index-to-address phase transition.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+          "sha256": "acb0cdc688b6f75daf31da1216f1c6bd858b2a42ebecbcf261d8bbf65af8e5db"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/vm_architecture.c",
+          "sha256": "4357f95f208f004d2d16a40db59f8b62b55601bc09bfc847ad644f6b749564ba"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/BINARY_VERIFICATION.json",
+          "sha256": "9f3cdb37a58e0367eafb96a89580e20be4fdd41cc43d1580bc3e48823c69be23"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe",
+          "address": "00410490;00412500"
+        }
+      ],
+      "limitations": "Binary-static only; unknown allocation contents retained; conceptual source is not an original developer type."
+    },
+    {
+      "finding_id": "FSM-B-control",
+      "claim": "The fourteen token kinds implement explicit indexed yields, frame-linked calls and cursor-based completion; warning and fatal budgets are not scheduler time slices.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+          "sha256": "acb0cdc688b6f75daf31da1216f1c6bd858b2a42ebecbcf261d8bbf65af8e5db"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/CLAIM_INSTRUCTION_MAP.tsv",
+          "sha256": "6cc446410f76db52df13e3a479a6a5cbcbaf45a204396fafaed9c78a5ffdc1ad"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/BINARY_VERIFICATION.json",
+          "sha256": "9f3cdb37a58e0367eafb96a89580e20be4fdd41cc43d1580bc3e48823c69be23"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe",
+          "address": "00414670"
+        }
+      ],
+      "limitations": "No dynamic nested-call or malformed-input execution; corpus absence of kinds 2,3,11 is inherited evidence."
+    },
+    {
+      "finding_id": "FSM-B-scheduler",
+      "claim": "Scheduler traverses in list order, retains yielded nodes, unlinks/frees completed nodes and advances to successors in the same pass under the runtime gates.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CONTROL_FLOW.md",
+          "sha256": "b951d21a4feb9078264e9054563343e7f997c1ee0d5564756c7c64cf9e8c384f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+          "sha256": "acb0cdc688b6f75daf31da1216f1c6bd858b2a42ebecbcf261d8bbf65af8e5db"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/BINARY_VERIFICATION.json",
+          "sha256": "9f3cdb37a58e0367eafb96a89580e20be4fdd41cc43d1580bc3e48823c69be23"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe",
+          "address": "004149F0;0040A320"
+        }
+      ],
+      "limitations": "Direct static path; indirect mutation/recursion unexcluded. Unified source loop is derived for well-formed lists and normal callbacks."
+    },
+    {
+      "finding_id": "FSM-B-abi-envelope",
+      "claim": "Examined callers supply 16 scheduler words and 12 interpreter/dispatcher words, exceeding historical formal counts while preserving the existing parameter offsets.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+          "sha256": "acb0cdc688b6f75daf31da1216f1c6bd858b2a42ebecbcf261d8bbf65af8e5db"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/SYMBOL_DECISIONS.tsv",
+          "sha256": "29705378c9a0d96c07a3dc1e8f9161d517c418b6bf7e38e3aa7776e5f25e45fe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/BINARY_VERIFICATION.json",
+          "sha256": "9f3cdb37a58e0367eafb96a89580e20be4fdd41cc43d1580bc3e48823c69be23"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe",
+          "address": "0040A644;00414A58;00414AE4;00414949"
+        }
+      ],
+      "limitations": "Supplied stack words are proven; ultimate purpose of forwarded word and unused scratch/ordinal remains unresolved; no original source prototype claimed."
+    },
+    {
+      "finding_id": "FSM-B-readability",
+      "claim": "Live-node typing exposes interpreter and scheduler fields; restricting propagation avoids displaying import-stage scalar entry indices as pointers.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/READABILITY_AUDIT.md",
+          "sha256": "235cb7eb2538b8b5d438595a54113acb3b0a8596108f9e607d3565111eb8f0f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/READABILITY_METRICS.tsv",
+          "sha256": "d14b18ec08868134290b26a67c867155f0b456f8e15886929ecbcefd54e2a8a8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/PilotBAnnotations.java",
+          "sha256": "69b8f4e72cfd00c54ac18f9dbb70df47ab8ad6d2ef59b2ed9d09fc2bf876558f"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "i76.exe",
+          "address": "00414670;004149F0;00410490"
+        }
+      ],
+      "limitations": "Disposable v97 baseline only; loader typing trial rejected. Ghidra retains comparison casts and split scratch locals. Not a canonical annotation migration."
+    }
+  ]
+}

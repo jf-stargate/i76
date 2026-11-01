@@ -1,0 +1,11 @@
+# Bootstrap and scope
+
+Repository identity authenticated through GitHub connector: `jf-stargate/i76`, repository ID `1240020485`, default branch `main`. SSH fetch resolved exact protected head `8b16e9f81159c9f0f4dea63e16d69d79355b6d49`. Trusted policy was re-read from that fetched ref, not from the older working-tree checkout. Protocol 1.0.4, research schema 1.2.0. Run/branch `i76exe-20261101T161526Z-a300581d` / `agent/i76exe/i76exe-20261101T161526Z-a300581d` allocated uniquely in a new isolated checkout. Advisory subsystem FSM. No subagents used.
+
+GitHub ruleset 25664125 inspected live: active, targets main, requires PR and `integrity`, zero formal approvals, discussion resolution, no bypass actors, current user cannot bypass. Human acceptance remains mandatory; no direct-main push or merge is authorized. This PR is a run-only research proposal.
+
+Open-PR discovery found #101, the v102 class-dispatch/runtime-prefix proposal. Current main includes accepted #99/#100 v100/v101 tooling. Their READMEs were consulted; this run used its own v97 import and avoided their object/class type definitions. Branch search also inspected existing `agent/i76exe` branches; no existing run or branch was reused. Local sibling workspaces were inspected only to find an available private GZF; no shared project was opened for writing.
+
+Accepted mission research is in the historical mission-execution reference and v97 snapshot, with v98 host re-decompilation and parser/loader checkpoints. Current class scheduling promotion and living frame reference were read for integration boundaries. They explicitly exclude a full FSM/gameplay execution test. Main has no promoted mission-VM reference page or FSM-specific discovery index. Exact consulted-source hashes appear in SOURCE_PROVENANCE.tsv.
+
+Write scope: this run directory and private sibling disposable projects/output only. No accepted run, ref checkpoint, shared/canonical document, governance, Ghidra installation, or other agent project was changed. No original-instruction execution, mission loading experiment, AI-state recovery or complete 96-command audit was performed. Publication includes authored source sketches, selected tiny comparison excerpts, metadata and evidence hashes; no original bytes, complete decompiler exports, resource data or Ghidra databases.
