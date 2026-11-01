@@ -1,0 +1,20 @@
+{
+  "positive_checks": [
+    {
+      "executable_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "matched_function_ranges": 23,
+      "method": "static byte comparison; no original execution"
+    },
+    {
+      "executable_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "matched_function_ranges": 24,
+      "method": "static byte comparison; no original execution"
+    }
+  ],
+  "unchanged_preannotation_ranges": 23,
+  "wrong_executable_rejected": true,
+  "corrupt_range_digest_rejected": true,
+  "layout_check": "cc -std=c11 -Wall -Wextra -Werror -pedantic -fsyntax-only -x c artifacts/resource_design.h; exit 0",
+  "annotation_dry_apply_repeat": "9/0, 9/0, 0/9; functions 2335; no errors",
+  "scope": "static validation only; no acquisition execution"
+}

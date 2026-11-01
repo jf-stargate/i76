@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261101T161535Z-22d9956f",
+  "track": "i76exe",
+  "topic": "Semantic recovery Pilot C: original resource acquisition, storage and byte retention",
+  "base_commit": "8b16e9f81159c9f0f4dea63e16d69d79355b6d49",
+  "started_at": "2026-11-01T16:15:35Z",
+  "summary": "Independent binary-static reconstruction of six RES targets with bounded index, release and caller dependencies; nine guarded default parameter names validated in disposable Ghidra; no maintained loader implementation or original acquisition execution.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private licensed orig/i76.exe; no payload published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "Ghidra 12.1.4 PUBLIC / annotations v97",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "private-v97-b2f76177fbab3d6d",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "private local eng01-private/project/i76_mission_v97_verified_names.gzf",
+      "notes": "Measured GZF, fresh disposable import into pilotc-private/project/research; source database untouched."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "2ff48b8a758ab99a95c92eccd9e28c17e69c4b7de9a6c6dbf80f59e01c820e90",
+      "bytes": 4843
+    },
+    {
+      "path": "artifacts/READABILITY_AUDIT.md",
+      "kind": "report",
+      "sha256": "9e13ea42373dfc58247a89b9c507f803ac3b50e0d55a731f94a8ed482846ce91",
+      "bytes": 3713
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "746fef5cbbbcdd22c72af41ee8d95e8d7a834fdd618ee4c71264f478522797fc",
+      "bytes": 6009
+    },
+    {
+      "path": "artifacts/RESOURCE_CONTROL_FLOW.md",
+      "kind": "report",
+      "sha256": "89f1591cd5c2233beee88a0b857eb1997488a5a7654bd2d63cb0a8a98fa7bbf5",
+      "bytes": 8204
+    },
+    {
+      "path": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+      "kind": "report",
+      "sha256": "7f003fd487c71d3a2dccf79b15df2101947e6aee14fe4f00ebfc65e76daa3dcd",
+      "bytes": 13195
+    },
+    {
+      "path": "artifacts/UNRESOLVED_SEMANTICS.md",
+      "kind": "report",
+      "sha256": "f46c8d4f07beb3a2b2c7ecaf80f0e87495c3795e9a036110fe2307ad6963adcc",
+      "bytes": 4755
+    },
+    {
+      "path": "artifacts/resource_design.h",
+      "kind": "other",
+      "sha256": "a925ada5284338eb19a5fced68aac9df59c70510ab87a3b10f5fbcfc2962227a",
+      "bytes": 3714
+    },
+    {
+      "path": "evidence/ACCEPTED_SOURCES.tsv",
+      "kind": "table",
+      "sha256": "3084b3c40ba0a1afaeba346a94b4d935bf06af4366708d09ea256c2fc2ec1b3e",
+      "bytes": 5269
+    },
+    {
+      "path": "evidence/ANNOTATION_VALIDATION.txt",
+      "kind": "test-result",
+      "sha256": "07c1a2567947b421f5cfe8e3f9d390821d1e880e31673e7eb95ee1f916da9ec4",
+      "bytes": 3625
+    },
+    {
+      "path": "evidence/STATIC_AFTER.tsv",
+      "kind": "table",
+      "sha256": "2d9c6bba9dbc9a04495aaefadba1fa125dd5277e75f3b6471090d4b77a842d1f",
+      "bytes": 21587
+    },
+    {
+      "path": "evidence/STATIC_AUDIT.tsv",
+      "kind": "table",
+      "sha256": "28216e9732e785847ae4bc06a7e5ec08af5511496b02b1f64084b744fbc789dd",
+      "bytes": 19976
+    },
+    {
+      "path": "evidence/STATIC_VALIDATION.json",
+      "kind": "test-result",
+      "sha256": "9bff2d0eb70f0104ca6767baafc1f6a52dcae16b79008f68206ae96ce1bb4fbe",
+      "bytes": 826
+    },
+    {
+      "path": "evidence/SYMBOL_DECISIONS.tsv",
+      "kind": "table",
+      "sha256": "52524dee42415535656d35d7aea31a54d8f0030da32c55e573f304c363ba9213",
+      "bytes": 6793
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "other",
+      "sha256": "172fdabe97e82dbc4b54847407ef5f683311bb41258746faf2fb6e53d8768468",
+      "bytes": 8141
+    },
+    {
+      "path": "scripts/PilotCParameterNames.java",
+      "kind": "script",
+      "sha256": "3b21121c1b8d24272c0d1f2739bd2efb3ff8b0da05602529be6fc52a6401c7fb",
+      "bytes": 2955
+    },
+    {
+      "path": "scripts/PilotCStaticAudit.java",
+      "kind": "script",
+      "sha256": "8fca999958cf3fc325ae469a6ce4363c274066373d5001d8ff4a93af71963bcd",
+      "bytes": 2337
+    },
+    {
+      "path": "scripts/verify_static_identity.py",
+      "kind": "script",
+      "sha256": "7d227dec6de176fb43c06c2cd4d39bf9e758507de2061a4744f382101a370c83",
+      "bytes": 1876
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 9,
+    "passed_count": 9,
+    "notes": "Static-only: before 23 and final 24 function ranges match PE; wrong executable and corrupt range digest rejected; 23 common code ranges unchanged; strict C11 layout compile; Ghidra dry/apply/repeat 9,9,0 changes, 2335 functions. No original acquisition execution claimed."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/PilotCStaticAudit.java",
+        "sha256": "8fca999958cf3fc325ae469a6ce4363c274066373d5001d8ff4a93af71963bcd"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/PilotCParameterNames.java",
+        "sha256": "3b21121c1b8d24272c0d1f2739bd2efb3ff8b0da05602529be6fc52a6401c7fb"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/verify_static_identity.py",
+        "sha256": "7d227dec6de176fb43c06c2cd4d39bf9e758507de2061a4744f382101a370c83"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "artifacts/resource_design.h",
+        "sha256": "a925ada5284338eb19a5fced68aac9df59c70510ab87a3b10f5fbcfc2962227a"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "artifacts/REPRODUCE.md",
+        "sha256": "746fef5cbbbcdd22c72af41ee8d95e8d7a834fdd618ee4c71264f478522797fc"
+      }
+    ],
+    "methods": [
+      "Independent PE section/range hash comparison against authenticated retail executable",
+      "Ghidra 12.1.4 decompilation, original x86 and cross-reference review in disposable GZF import",
+      "Guarded default parameter-only dry/apply/repeat with transactions and existing analyst-name preservation",
+      "Strict C11 compile-time structure offset/size assertions",
+      "Accepted vehicle-provider interception and historical snapshot/reference comparison"
+    ],
+    "limitations": "Private licensed PE and annotated GZF required. No original acquisition execution, cold/hit trace, full runtime media contract, archive decoder audit or complete release/invalidation proof. Initial 23-function audit expanded to 24 for size-helper dependency; scripts reproduce final coverage. C semantic interpretation requires human review."
+  }
+}

@@ -1,0 +1,43 @@
+kind	address_or_offset	proposal	confidence	decision	strongest_original_evidence	claim
+prototype	0046FFC0	uint8_t *res_acquire(const char *logical_name)	high	proposal; default parameter renamed only	0047001D/2E/3F/50 branch calls; payload return producers 0047011C and 00470BB2	C1,C2
+prototype	00470070	uint8_t *res_acquire_loaded_file(const char *logical_name)	high	proposal; default parameter renamed only	004700B9 chain comparison; 0047011C header+24; 004701E0 load wrapper; 00470272 ref init	C1,C4
+prototype	00470340	bool res_is_indexed_or_registered(const char *logical_name)	high	proposal; default parameter renamed only	00470340 calls 00470C70 then 004B34F0; both binary searches, not file opens	C9
+prototype	00470B20	uint8_t *res_acquire_pix_member(const char *key16)	high	proposal; default parameter named logical_name; types retained	00470B3A bsearch stride 1C; 00470B66 loaded-file call; 00470BB2 base+offset	C1,C6
+prototype	004B2E00	MountedSource32 *res_select_source(const char *key16)	high	proposal; existing resolve_virtual_filename_to_mounted_source preserved; key16 applied	004B2E41 bsearch stride 30; 004B2F2B/004B2FEB return static source base+index*10C	C7
+prototype	004B3030	uint8_t *res_read_registered(const char *key16,uint32_t *out_size,uint8_t *destination,int32_t capacity)	high	proposal; four default parameter names applied; types retained	004B3110 archive open; 004B3151 caller-buffer read; 004B317A allocated read; 004B3225 size; 004B322A capacity	C8
+parameter	004B3030 arg1	logical_name	high	applied over DEFAULT param_1	passed to 004B2E00 and used as file/member name	C8
+parameter	004B3030 arg2	out_size	high	applied over DEFAULT param_2	004B3225 writes ftell result; forwarded to archive readers	C8
+parameter	004B3030 arg3	destination	high	applied over DEFAULT param_3	004B3223 null test; 004B324A allocation only for null	C8
+parameter	004B3030 arg4	destination_capacity	high	applied over DEFAULT param_4	004B322A compare file length against supplied capacity	C8
+record	LoadedFile32 +00..0F	stored filename storage[16]	high	header proposal; only 15 bytes copied; byte15 not explicitly initialized	00470250 PUSH 0F; 00470278 strncpy	C4
+field	LoadedFile32 +10:int32	allocation_payload_size	high	proposal; saved pre-read query size	00470157 saved size; 004701D1 restored; 00470280 header store	C4
+field	LoadedFile32 +14:16bit	references	high	proposal; no overflow guarantee	00470118 increment word; 00470272 init 1; 0046FE30 decrement and purge insertion	C4,C10
+field	LoadedFile32 +16:16bit	unknown_16	unknown	leave unknown; no annotation	gap between word +14 and pointer +18; insertion does not store +16	C4
+field	LoadedFile32 +18:ptr32	hash_next	high	proposal	004700C2 chain traversal; 00470266 link insertion	C4
+field	LoadedFile32 +1C:ptr32	purge_toward_newer	high	proposal; direction relative to insertion head	0046FE30 new zero-ref head linked from old head +1C; 004700D7..00470115 unlink	C4,C10
+field	LoadedFile32 +20:ptr32	purge_toward_older	high	proposal	0046FE30 new head +20 receives previous head; hit unlink mirrors +1C	C4,C10
+field	LoadedFile32 +24:uint8[]	inline payload	high	proposal	004701D5 destination LEA; 0047011C return LEA	C1,C4
+storage	LoadedFile32 heap	global heap handle at 00609594	high	no global rename	00470193..004701A1 allocation; 004701EC..004701F4 failed-load free	C4
+field	PixMember32 +00:16 bytes	member_key	high	proposal	00470660 zero row, sscanf name and lowercase; comparator 00470CA0 four words	C3,C6
+field	PixMember32 +10:u32	package_index	high	proposal	00470B4B index scaled by 24; producer 00470660 assigns package ordinal	C6
+field	PixMember32 +14:i32	payload_offset	high	proposal; no bounds proof	00470BAA load offset and 00470BB2 add to package pointer	C6
+field	PixMember32 +18:i32	payload_length	high	proposal	00470660 sscanf third field; 00470C40 returns member+18; acquisition does not read it	C6,C10
+storage	PixMember32 array	0058D91C pointer; 0058D928 count; stride 1C	high	proposal	00470B20..00470B3A; 00470660 count*1C allocation	C6
+field	PakRetention32 +00:16 bytes	package_name	high	proposal	004706EF..00470700 replace extension with .pak; 00470B65 passes entry start to 00470070	C6
+field	PakRetention32 +10:ptr32	loaded_package_bytes	high	proposal	00470B5A read; 00470B74 store loaded-file return	C6
+field	PakRetention32 +14:u32	member_references	high	proposal	00470B9B..00470BA0 increment; 00470BC0 decrement and backing release at zero	C6,C10
+storage	PakRetention32 array	0058D920 pointer; stride 18	high	proposal	00470667..00470675 initial calloc(64,24); 00470B4F..00470B57 row arithmetic	C6
+field	RegisteredKey32 +00:16 bytes	key	high	proposal	004B2B30 copies key; 004B2E14..004B2E36 copies four words into search key	C7
+field	RegisteredKey32 +10..2F	uint32_t source_membership[8]	high	proposal	004B2E9D bitword lookup and 004B2EBA bit test; 004B2B30 limits index to 255 and sets bit	C7
+storage	RegisteredKey32 array	005DACC8 pointer; 005DACCC count; stride 30	high	proposal	004B2E28..004B2E41 bsearch; 004B2B30 HeapReAlloc and qsort	C7
+field	MountedSource32 +00..FF	path storage[256]	high	proposal	004B3030 path copy/format; +100 flag; +10C row stride	C7,C8
+field	MountedSource32 +100:i32	path_mode	medium	neutral alias; full policy unresolved	004B2ECB..004B2ED6 selection; 004B3030 zero root/CD formatting versus nonzero direct copy	C7,C8
+field	MountedSource32 +104:i32	root_index	medium	also media-selector comparison; broader semantics unresolved	004B2EE2 compare current selector; 004B2F57 root stride 300; 004B3030 root formatting	C7,C8
+field	MountedSource32 +108:ptr32	cached_zfs_handle	high	proposal	004B3118 stores archive open return; 004B3146 read; 004B2F77..004B2F86 close/reset	C7,C8
+storage	MountedSource32 array	006592E0 static base; 256 slots; stride 10C	high	proposal	004B2E7F starts flag at base+100; 004B2EF4 stride10C; 004B2F2B returns row base	C7
+symbol	00609564	prefer_loaded_file_path	medium	proposal only; no runtime default asserted	0047000F..00470050 chooses loaded-file versus PIX-first order	C2
+symbol	00609584	loaded_file_record_count	high	proposal; preserve used_bytes annotation	0047029B..004702A7 +1; 0046FCBF -1 per allocation	C5
+symbol	00609560	remaining_cache_byte_budget	medium	proposal; full enforcement not recovered	00470289..004702A1 subtract size+24; 0046FBE0 eviction adds size+24	C5
+symbol	004702D0	invalidate_loaded_file_by_name	high	proposal; preserve canonicalize_resource_key_16byte	hash lookup followed by call to 0046FBE0; no input character stores	C10
+caller	004B41E0	BWD2 acquire/size/parse/release	high	retain existing caller annotation	004B420A acquire; 004B421C size; 004B4278 release	C1,C10
+caller	004469A0	GEO consumes source bytes then releases	high	distinguish geometry cache from RES	00446A3E acquire; 00446A8E constructor; 00446A9E release	C1,C10

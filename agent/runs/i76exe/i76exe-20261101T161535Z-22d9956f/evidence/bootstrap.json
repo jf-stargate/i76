@@ -1,0 +1,261 @@
+{
+  "base_commit": "8b16e9f81159c9f0f4dea63e16d69d79355b6d49",
+  "repository_id": 1240020485,
+  "repository": "jf-stargate/i76",
+  "default_branch": "main",
+  "protected": true,
+  "protocol": "1.0.4",
+  "ruleset": {
+    "id": 25664125,
+    "name": "I76 main — reviewed research publication",
+    "target": "branch",
+    "source_type": "Repository",
+    "source": "jf-stargate/i76",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": [
+          "refs/heads/main"
+        ]
+      }
+    },
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "dismiss_stale_reviews_on_push": true,
+          "required_reviewers": [],
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": [
+            "merge",
+            "squash",
+            "rebase"
+          ]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": false,
+          "do_not_enforce_on_create": false,
+          "required_status_checks": [
+            {
+              "context": "integrity"
+            }
+          ]
+        }
+      }
+    ],
+    "node_id": "RRS_lACqUmVwb3NpdG9yec5J6TYFzgGHmn0",
+    "created_at": "2026-10-22T11:27:54.186-07:00",
+    "updated_at": "2026-10-29T18:25:54.637-07:00",
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/jf-stargate/i76/rulesets/25664125"
+      },
+      "html": {
+        "href": "https://github.com/jf-stargate/i76/rules/25664125"
+      }
+    }
+  },
+  "open_prs": [
+    {
+      "number": 101,
+      "title": "Tools(i76exe): v102 typed class-dispatch table and C-readable runtime prefixes",
+      "head": "e38eaa0ef0bdb9b0340f9ddcfb4d727fcaffca40",
+      "branch": "tools/ghidra-v102-class-dispatch-20261031"
+    }
+  ],
+  "branches": [
+    {
+      "name": "agent/i76edit/i76edit-20261023T013651Z-21de63e4",
+      "sha": "5e4d36cde7229ba20abb2b93124d20724e31d785"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T020247Z-70ae8183",
+      "sha": "05e178fd9acc181328de685089f37f2f41eb9324"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T023107Z-5ce8ac14",
+      "sha": "1ad5a8753d69605b0ac12d4de25de21a6b5a1c1e"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T023352Z-7bf9792b",
+      "sha": "4f8ce1a76b4a75ff7196ac0fa3904ec217c2f8a3"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T025734Z-5492075e",
+      "sha": "3e7c4f8a8fe218131809029ae5830e27a962a20a"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T031245Z-fec7cae2",
+      "sha": "1e186de6e43669c264aa251a26912a5ef0331ffa"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T043010Z-a8d70545",
+      "sha": "cdda16a5467871b1d6dc387801807c240f2ba918"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T045502Z-05173d2e",
+      "sha": "37daf428ff598e596dc0865ec22a733fd7732f70"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T062209Z-7504f18b",
+      "sha": "b956f587ded8c80a93129c379c73a27d3918f4a2"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T065437Z-0e28a278",
+      "sha": "31a301b28ddcffb8ce7b12c4c4e02385391e55ab"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T072227Z-ea5043d8",
+      "sha": "f1e13240947a782d29618eff874e961f4f4e4142"
+    },
+    {
+      "name": "agent/i76edit/i76edit-20261023T153200Z-64b4e9ad",
+      "sha": "1780cf79dea909bcf45340c9c609affa1347b77d"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261022T232710Z-96c58505",
+      "sha": "c07b830f89bbb112e570ee8ee576a143078bfa7a"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261023T032812Z-044e59e2",
+      "sha": "d4e7188c3b588bea563560a1614ee2ae530dab63"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261023T042231Z-4e59e782",
+      "sha": "3d7efcdc70b36a13a96597600aae56f45b864982"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261023T044729Z-42a0573a",
+      "sha": "fc444d49538fc456d98ba59d5a8e07ccd8ec18b8"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261023T062154Z-62e3a718",
+      "sha": "296f988d7c6aebfa3b0753df1a82a377ad9f809e"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261023T065502Z-dea36f3e",
+      "sha": "14d6630759bde021dfe765c884d4cba89e946e51"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261023T072053Z-c5725c60",
+      "sha": "f91285bbd9c4b61fec1f524ab6dcdba7838323c6"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261023T153639Z-95865b83",
+      "sha": "6c7d48d9aefd8f11d6370fb638580a80c0a23893"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261024T021540Z-84ef6779",
+      "sha": "dab394497fb2e782fbb89a9c72405fcef1f7a4d1"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261024T232546Z-11d4e2ec",
+      "sha": "5581c6bf0a62a0d193ac1e08561d2000d374dbdc"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261030T040000Z-7b2f4a19",
+      "sha": "3e10251444a117c8d9da053b6887245a2bc4dbcf"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261030T123936Z-67b725af",
+      "sha": "28eaa4a8a9a5c307a10ec1fa37c07d5003f853c6"
+    },
+    {
+      "name": "agent/i76exe/i76exe-20261030T125716Z-1011d511",
+      "sha": "a72c0f4357624ef292481cef54b12658364a64e0"
+    },
+    {
+      "name": "agent/shared/shared-20261022T043403Z-da3692e8",
+      "sha": "473d9e09e30fa217da47164915ae923ae6a70158"
+    },
+    {
+      "name": "agent/shared/shared-20261022T184050Z-65bd4391",
+      "sha": "e87571a8927c21f428082eaf664968e017bddada"
+    },
+    {
+      "name": "agent/shared/shared-20261022T191025Z-54ee4aa4",
+      "sha": "f60490821fec57699b832e3350f82e462744bfc4"
+    },
+    {
+      "name": "agent/shared/shared-20261022T191725Z-9c5e4953",
+      "sha": "6a1dc1c444c308e2dfcb27d3cb357e608ba69fae"
+    },
+    {
+      "name": "agent/shared/shared-20261022T201324Z-331e598f",
+      "sha": "ad74048f69f8e55c9224c1578d76409a713b3aac"
+    },
+    {
+      "name": "archive/pre-subsystem-architecture-20261028",
+      "sha": "026fd0daacb21b4da122163186a8ec2f4b49d894"
+    },
+    {
+      "name": "documentation/promote-vehicle-vcf-tmt-geo-20261023",
+      "sha": "adff0212ae859ceb39607434dbd77f02f5e91c0c"
+    },
+    {
+      "name": "governance/bootstrap-protocol-v1-20261021",
+      "sha": "9fdad095c4ed7c36d0f1857efe9246aea7cbb55a"
+    },
+    {
+      "name": "governance/deployment-record-20261022",
+      "sha": "52bab3dac713f13685b838b3d8a36e1fe35c1a40"
+    },
+    {
+      "name": "governance/documentation-promotion-workflow-20261023",
+      "sha": "64e3fbf9fe5498ac46154a95b1a663c0887b9cba"
+    },
+    {
+      "name": "governance/loose-required-checks-protocol-1-0-2-20261023",
+      "sha": "9cd69d81710ceedc25ee87490df66360c16c1553"
+    },
+    {
+      "name": "governance/manual-acceptance-protocol-v1-0-1-20261022",
+      "sha": "e8406667b82b90c25d213a1d080bdb6389cdc2ee"
+    },
+    {
+      "name": "governance/research-acceptance-status-20261022",
+      "sha": "733e4d837c5bdba0691b119686db7f75352fa5bc"
+    },
+    {
+      "name": "governance/research-provenance-v1-1-20261022",
+      "sha": "4678e318610c9e2210c1603ace745143683c9abc"
+    },
+    {
+      "name": "governance/trusted-ci-enforcement-v1-20261021",
+      "sha": "b06bea885059bc1f93762b047ffc1c6713652528"
+    },
+    {
+      "name": "main",
+      "sha": "8b16e9f81159c9f0f4dea63e16d69d79355b6d49"
+    },
+    {
+      "name": "migration/legacy-research-index-v1-20261021",
+      "sha": "e69fc5b586767811ca4f567abf110c97439e57fc"
+    },
+    {
+      "name": "test/invalid-run-ci-20261022",
+      "sha": "ba2b23a7857bf1618afacbf21bad16e19b23919c"
+    },
+    {
+      "name": "tools/ghidra-v102-class-dispatch-20261031",
+      "sha": "e38eaa0ef0bdb9b0340f9ddcfb4d727fcaffca40"
+    }
+  ],
+  "scope": "i76exe / RES; owned run only; independent static semantics; no implementation or merge"
+}
