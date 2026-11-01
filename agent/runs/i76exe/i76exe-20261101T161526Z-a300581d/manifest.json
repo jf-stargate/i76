@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261101T161526Z-a300581d",
+  "track": "i76exe",
+  "topic": "Semantic recovery pilot B: mission VM and cooperative scheduler",
+  "base_commit": "8b16e9f81159c9f0f4dea63e16d69d79355b6d49",
+  "started_at": "2026-11-01T16:15:26Z",
+  "summary": "Original-authored C architecture from authenticated retail instructions; bounded live-node Ghidra typing, exact call envelopes and evidence-linked documentation handoff. Run-only proposal, no implementation or canonical promotion.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured supplied retail PE; private, no proprietary bytes published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "Ghidra 12.1.4 / annotated v97",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "i76_mission_v97_verified_names.gzf",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "notes": "Measured private GZF; fresh disposable imports. All selected instruction bytes independently verified against PE; no v98-v102 migrations applied."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/BOOTSTRAP_AND_SCOPE.md",
+      "kind": "report",
+      "sha256": "5312085ea2cf1e9b363b386fb38049513bd01abd41a4e88f1045767d39bd9a91",
+      "bytes": 2326
+    },
+    {
+      "path": "artifacts/CONTROL_FLOW.md",
+      "kind": "report",
+      "sha256": "b951d21a4feb9078264e9054563343e7f997c1ee0d5564756c7c64cf9e8c384f",
+      "bytes": 3573
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "df6c9656ee9fa2cf50a57a8af0c1e8db9d7ac25b1f33104a3ca4db56129c4efa",
+      "bytes": 3737
+    },
+    {
+      "path": "artifacts/READABILITY_AUDIT.md",
+      "kind": "report",
+      "sha256": "235cb7eb2538b8b5d438595a54113acb3b0a8596108f9e607d3565111eb8f0f4",
+      "bytes": 5042
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "0080a13331342a57524874f1afb11aceddd010b382813c3efe0d76101ce04948",
+      "bytes": 3458
+    },
+    {
+      "path": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+      "kind": "report",
+      "sha256": "acb0cdc688b6f75daf31da1216f1c6bd858b2a42ebecbcf261d8bbf65af8e5db",
+      "bytes": 14793
+    },
+    {
+      "path": "artifacts/vm_architecture.c",
+      "kind": "report",
+      "sha256": "4357f95f208f004d2d16a40db59f8b62b55601bc09bfc847ad644f6b749564ba",
+      "bytes": 9240
+    },
+    {
+      "path": "evidence/BINARY_VERIFICATION.json",
+      "kind": "test-result",
+      "sha256": "9f3cdb37a58e0367eafb96a89580e20be4fdd41cc43d1580bc3e48823c69be23",
+      "bytes": 2562
+    },
+    {
+      "path": "evidence/CLAIM_INSTRUCTION_MAP.tsv",
+      "kind": "table",
+      "sha256": "6cc446410f76db52df13e3a479a6a5cbcbaf45a204396fafaed9c78a5ffdc1ad",
+      "bytes": 1720
+    },
+    {
+      "path": "evidence/READABILITY_METRICS.tsv",
+      "kind": "table",
+      "sha256": "d14b18ec08868134290b26a67c867155f0b456f8e15886929ecbcefd54e2a8a8",
+      "bytes": 1133
+    },
+    {
+      "path": "evidence/SOURCE_PROVENANCE.tsv",
+      "kind": "table",
+      "sha256": "72c9b63405df4e859c6c01463bc5ffab1d7031993b824a75f5c168e671da989a",
+      "bytes": 6049
+    },
+    {
+      "path": "evidence/SYMBOL_DECISIONS.tsv",
+      "kind": "table",
+      "sha256": "29705378c9a0d96c07a3dc1e8f9161d517c418b6bf7e38e3aa7776e5f25e45fe",
+      "bytes": 2490
+    },
+    {
+      "path": "evidence/VALIDATION_CHECKS.json",
+      "kind": "test-result",
+      "sha256": "2638fd22ba5aab3f1aa747a311895683688bf750bdee10f4a4b9b44d29f86755",
+      "bytes": 2423
+    },
+    {
+      "path": "scripts/PilotBAnnotations.java",
+      "kind": "script",
+      "sha256": "69b8f4e72cfd00c54ac18f9dbb70df47ab8ad6d2ef59b2ed9d09fc2bf876558f",
+      "bytes": 7688
+    },
+    {
+      "path": "scripts/verify_evidence.py",
+      "kind": "script",
+      "sha256": "932507f09998fb7c82168cd03f28e6fa78bb8165308274086ca42841f8791ee7",
+      "bytes": 2812
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 25,
+    "passed_count": 25,
+    "notes": "25 grouped static evidence/layout/readability checks in evidence/VALIDATION_CHECKS.json; 2489 instruction rows authenticated; no runtime execution. Protocol/schema and trusted Git-object integrity checked separately before PR publication."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "script",
+        "ref": "scripts/PilotBAnnotations.java",
+        "sha256": "69b8f4e72cfd00c54ac18f9dbb70df47ab8ad6d2ef59b2ed9d09fc2bf876558f"
+      },
+      {
+        "kind": "script",
+        "ref": "scripts/verify_evidence.py",
+        "sha256": "932507f09998fb7c82168cd03f28e6fa78bb8165308274086ca42841f8791ee7"
+      }
+    ],
+    "methods": [
+      "Authenticated retail PE section mapping and selected instruction byte equality",
+      "Read-only accepted research reconciliation and targeted Ghidra decompilation",
+      "Guarded disposable-project typing with fixed before/after sample",
+      "Original-authored C11 explanatory source and fixed-width layout assertions"
+    ],
+    "limitations": "Requires private retail PE and v97 GZF. No full Windows execution, instruction emulation, VM dynamic trace or newly regenerated mission corpus. Inherited corpus counts identified as such; opaque trailing purposes and indirect paths unresolved."
+  }
+}
