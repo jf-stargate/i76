@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261101T161505Z-44beefbb",
+  "track": "i76exe",
+  "topic": "Semantic recovery pilot A: runtime terrain sampling and guarded Ghidra readability",
+  "base_commit": "8b16e9f81159c9f0f4dea63e16d69d79355b6d49",
+  "started_at": "2026-11-01T16:15:05Z",
+  "summary": "Source-level explanatory C model of page initialization, lattice height12, bilinear height, material and normal. Original PE and actual private v98 GZF inspected. Preserves x87 ABI/rounding qualifications and literal normal branch details. 19 guarded annotations tested in disposable Ghidra; no canonical/shared edits, private payloads or runtime reconstruction.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured user-private retail PE; no original payload published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76.exe",
+      "baseline_id": "private supplied v98 GZF d48df73d; actual 2337-function program, domain i76_mission_v98_verified_names",
+      "baseline_sha256": "d48df73dc331b87c2bae23f4f481be102aa0a77c6baceb01687de8a6e0e57fbd",
+      "storage_ref": "user-private scratch_data/i76_mission_v98_verified_names.gzf",
+      "notes": "Imported into new disposable terrain_release project; actual symbols/types audited. No assumption of v99/v100/v101 migrations. Supplied GZF unchanged."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "99a9da56f5caf0e5cd34008e8e1eff17448e77e203861848575665a32626d06e",
+      "bytes": 4276
+    },
+    {
+      "path": "artifacts/READABILITY_AUDIT.md",
+      "kind": "report",
+      "sha256": "7dff990c1e38e3015cfeacd4b623a31abb855f50ad6411de4659e08102283a90",
+      "bytes": 6520
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "0723929459fad7f39c95f4266cb04fb9b3691c3111c3252f111fb66e52614e9e",
+      "bytes": 4256
+    },
+    {
+      "path": "artifacts/SEMANTIC_RECONSTRUCTION.md",
+      "kind": "report",
+      "sha256": "3f01b9c51c99ef5b1bb3847441dc052762255feadb2bb07b4827823465b041e2",
+      "bytes": 14216
+    },
+    {
+      "path": "evidence/ORIGINAL_CODE.tsv",
+      "kind": "table",
+      "sha256": "465183cc2ff42b6a889ff2258e1731b9e6e2c9aff8cf86180a32ddfcc993f136",
+      "bytes": 2610
+    },
+    {
+      "path": "evidence/SYMBOL_DECISIONS.tsv",
+      "kind": "table",
+      "sha256": "1e97ff75ca261f1336bc60d94993830f118f66e940c98a2cc36009e982241bd7",
+      "bytes": 4325
+    },
+    {
+      "path": "evidence/annotation_trial.json",
+      "kind": "table",
+      "sha256": "544692ba3c2ee9063e1dba21b59743aeccc2b905aa3cffc8c69c989bd3aa4296",
+      "bytes": 879
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "5bd39d8c330a52068b42121c2721242489694ad5fec27c58370f2a90013e9a81",
+      "bytes": 1218
+    },
+    {
+      "path": "evidence/capture_checks.json",
+      "kind": "table",
+      "sha256": "ef026a14fcce91fa773df90aceb3e94d0e5e0f21650834088c93e9ded39ff9bd",
+      "bytes": 2338
+    },
+    {
+      "path": "evidence/code_ranges.tsv",
+      "kind": "table",
+      "sha256": "da9ec139a07756b3ec2406b2bae911f8926b4955206a5cdaa8553ecdf05dea5b",
+      "bytes": 411
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "791ce56be5c1ea0faaf435279cf4ed686b45287457a3165f3b5947685b0cd53f",
+      "bytes": 9194
+    },
+    {
+      "path": "evidence/readability_metrics.tsv",
+      "kind": "table",
+      "sha256": "eb5b0729c68f811346e7c1ff586a8fcd161612c8d89102276f2749b10bf472df",
+      "bytes": 281
+    },
+    {
+      "path": "scripts/TerrainInspect.java",
+      "kind": "script",
+      "sha256": "d6bca0376b6af47083c9a07865c41b5d16ff548fd2e416fa49b2990d45fdb943",
+      "bytes": 1953
+    },
+    {
+      "path": "scripts/TerrainSemantic.java",
+      "kind": "script",
+      "sha256": "21679ce69f1fe994af0a062ff5a2e4581bb461e4966981aa3f60d8ffbf27d57f",
+      "bytes": 8685
+    },
+    {
+      "path": "scripts/audit_captures.py",
+      "kind": "script",
+      "sha256": "1eb4bfc66932e27fb5d5eaa3cbea9aa9358b3e84d0d5be889ac3622d3065ac71",
+      "bytes": 4781
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 23,
+    "passed_count": 23,
+    "notes": "Private PE/GZF identities, unchanged dry-run capture, preserved 2337 function count, five unchanged instruction sequences/body ranges and independent original PE guard hashes, height two-double/ST0 ABI/full calculation, packed normal stack offsets/named fields, exact page/grid type sizes and inventoried analyst globals. Ghidra trial: 19 planned/applied; repeat 0 new/19 already, no errors. No new runtime/emulator or hardware FISTP checks; historical M06 results not counted."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TerrainSemantic.java",
+        "sha256": "21679ce69f1fe994af0a062ff5a2e4581bb461e4966981aa3f60d8ffbf27d57f"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TerrainInspect.java",
+        "sha256": "d6bca0376b6af47083c9a07865c41b5d16ff548fd2e416fa49b2990d45fdb943"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/audit_captures.py",
+        "sha256": "1eb4bfc66932e27fb5d5eaa3cbea9aa9358b3e84d0d5be889ac3622d3065ac71"
+      }
+    ],
+    "methods": [
+      "Pinned main and policy1.0.4, checked active GitHub ruleset and open PR101; new run-only branch/worktree.",
+      "Hash private inputs, independently derive five PE section code-range digests and verify actual Ghidra memory before annotations.",
+      "Direct original instruction/decompiler inspection with historical snapshots and M06 execution evidence as corroboration.",
+      "Fresh disposable GZF import: same-function before/dry/apply/repeat/after; 23 independent capture and identity checks; document rejected dynamic normal stack alignment."
+    ],
+    "limitations": "Private retail PE and supplied annotated GZF required. Static semantic reconstruction and Ghidra12.1.4 readability only; no new mission, runtime/emulator or hardware execution. Source declared return precision, bit12, normal intent, imported CRT implementation, full collision and untested missions remain unproven. Full captures and databases private; earlier M06 validation not rerun."
+  }
+}
