@@ -16,10 +16,10 @@ The original project's human-readable references continue under `ref/` until rev
 - [Historical level format](../../ref/level_format/i76_runtime_level_and_terrain_format_notes.md).
 - [Resource archive research](../../ref/zfs/): existing ZFS reference directory.
 
-- [Retail terrain sampling](engine/terrain_sampling.md): original packed TER pages, height/material/normal queries and x87 ABI limits (candidate promotion, not yet accepted).
-- [Retail mission VM](engine/mission_vm.md): original 0x10BC execution node, cooperative scheduler and synchronous host dispatch (candidate promotion).
+- [Retail terrain sampling](engine/terrain_sampling.md): original packed TER pages, height/material/normal queries and x87 ABI limits.
+- [Retail mission VM](engine/mission_vm.md): original 0x10BC execution node, cooperative scheduler and synchronous host dispatch.
 - [Retail resource acquisition](engine/resource_acquisition.md): original loaded-file and PIX/PAK ownership, registered-source selection and name-release asymmetry (candidate promotion).
-- [Candidate private v99 Ghidra baseline identity](../../agent/baselines/i76exe_v99_candidate_20261102.md): supplied GZF hash and container integrity; internal annotation audit and canonical baseline promotion pending.
+- [Candidate private v99 Ghidra baseline identity](../../agent/baselines/i76exe_v99_candidate_20261102.md): supplied GZF hash and container integrity; internal annotation audit and baseline promotion pending.
 
 **Subsystem discovery (advisory navigation, not promoted findings):** [ENG / VEH / TER indexes](../roadmap/subsystems/README.md) collect original-function anchors, immutable research runs, reproducibility links and unresolved boundaries for cold-start investigations. Their inclusion here does not promote the linked research conclusions.
 

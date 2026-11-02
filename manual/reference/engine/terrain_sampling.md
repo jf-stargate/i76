@@ -1,6 +1,6 @@
 # Retail terrain sampling — original C-level contract
 
-**Status:** Proposed binary-static technical reference; see [promotion decision](../../../agent/promotions/semantic_ter_fsm_res_20261102.md). **Executable:** retail `i76.exe` SHA-256 `bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3`. Not original developer source. Research: [Pilot A](../../../agent/runs/i76exe/i76exe-20261101T161505Z-44beefbb/artifacts/SEMANTIC_RECONSTRUCTION.md); reconciled migration: [PR #105](../../../agent/tools/ghidra/semantic-consolidation/CONFLICTS.md).
+**Evidence tier:** Binary-static technical reference, subject to the linked promotion decision; see [promotion decision](../../../agent/promotions/semantic_ter_fsm_res_20261102.md). **Executable:** retail `i76.exe` SHA-256 `bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3`. Not original developer source. Research: [Pilot A](../../../agent/runs/i76exe/i76exe-20261101T161505Z-44beefbb/artifacts/SEMANTIC_RECONSTRUCTION.md); reconciled migration: [PR #105](../../../agent/tools/ghidra/semantic-consolidation/CONFLICTS.md).
 
 ## Storage and ownership
 

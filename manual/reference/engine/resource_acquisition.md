@@ -1,6 +1,6 @@
 # Retail resource acquisition — keys, payloads and retention
 
-**Status:** Proposed **binary-static** reference based on [Pilot C](../../../agent/runs/i76exe/i76exe-20261101T161535Z-22d9956f/artifacts/SEMANTIC_RECONSTRUCTION.md), [control flow](../../../agent/runs/i76exe/i76exe-20261101T161535Z-22d9956f/artifacts/RESOURCE_CONTROL_FLOW.md) and [promotion proposal](../../../agent/promotions/semantic_ter_fsm_res_20261102.md). Original retail `i76.exe` SHA-256 `bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3`. No native end-to-end acquisition executed.
+**Evidence tier:** **Binary-static** reference, subject to the linked promotion decision, based on [Pilot C](../../../agent/runs/i76exe/i76exe-20261101T161535Z-22d9956f/artifacts/SEMANTIC_RECONSTRUCTION.md), [control flow](../../../agent/runs/i76exe/i76exe-20261101T161535Z-22d9956f/artifacts/RESOURCE_CONTROL_FLOW.md) and [promotion proposal](../../../agent/promotions/semantic_ter_fsm_res_20261102.md). Original retail `i76.exe` SHA-256 `bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3`. No native end-to-end acquisition executed.
 
 ## Acquisition
 

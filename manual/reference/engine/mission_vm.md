@@ -1,6 +1,6 @@
 # Retail mission VM and cooperative scheduler
 
-**Status:** Proposed binary-static reference; see [promotion decision](../../../agent/promotions/semantic_ter_fsm_res_20261102.md). Original `i76.exe` SHA-256 `bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3`. This is a semantic model, not original developer source or a tested replacement VM.
+**Evidence tier:** Binary-static reference, subject to the linked promotion decision; see [promotion decision](../../../agent/promotions/semantic_ter_fsm_res_20261102.md). Original `i76.exe` SHA-256 `bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3`. This is a semantic model, not original developer source or a tested replacement VM.
 
 Primary evidence: [Pilot B](../../../agent/runs/i76exe/i76exe-20261101T161526Z-a300581d/artifacts/SEMANTIC_RECONSTRUCTION.md), [original-source control-flow audit](../../../agent/runs/i76exe/i76exe-20261101T161526Z-a300581d/artifacts/CONTROL_FLOW.md), historical `ref/mission_execution/MISSION_EXECUTION_CONTRACT.md` and `ref/mission_execution/HOST_COMMAND_ABI_CONTRACT.md`. Pilot B verified 2,489 instructions in six original retail function ranges; it did not run the original VM.
 

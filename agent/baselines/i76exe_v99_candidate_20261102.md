@@ -12,12 +12,16 @@
 | Size | 6,500,304 bytes |
 | Container | Java serialization header containing one ZIP-style streamed `FOLDER_ITEM` |
 | Container verification | Deflated member decompressed; CRC32 `143109bd`, compressed size 6,500,199 bytes and uncompressed size 22,970,368 bytes matched the recorded data descriptor |
-| Retail target | User identifies this as the i76.exe Ghidra program; the original PE identity and program metadata **inside this GZF have not been independently confirmed** |
+| Retail target | Embedded `Program Information.Executable SHA256` and `Program Information.Executable MD5` metadata exactly match the verified retail PE hashes; source GZF schema was not reconstructed or loaded through Ghidra |
 | Ghidra version | **Not measured from this GZF in a Ghidra runtime**; previous migrations used 12.1.4 |
 | Internal function, symbol, comment and type inventory | **Pending** |
 | Storage | User-provided private conversation attachment. Not published or retrievable from this public repository |
 
-The digest and archive checks establish file identity and container integrity, **not** identity of the imported program, accuracy of its annotations, or the presence of specific migrations. The filename `v99` is user-assigned versioning, **not proof** that repository's shared `semantic-v99`, `readability-v100`, `readability-v101`, `readability-v102` or `semantic-consolidation` scripts were applied.
+The whole-file digest and deflate descriptor verify container integrity. Raw decompressed database bytes also contain retail executable hash metadata matching the independently accepted PE identity and named type/category records. These checks **do not** establish correctness of code bodies, use-site typing, complete program inventory or signature equivalence. The filename `v99` is user-assigned versioning, **not proof** that repository's shared `semantic-v99`, `readability-v100`, `readability-v101`, `readability-v102` or `semantic-consolidation` scripts were applied.
+
+## Limited embedded metadata inspection (not a Ghidra program import)
+
+The decompressed 22,970,368-byte `FOLDER_ITEM` contains unambiguous ASCII property records `Program Information.Executable SHA256` and `Program Information.Executable MD5`, followed by the expected retail hashes. Its type/name table also contains `Interstate76`, `Research-v99`, `SemanticConsolidation`, `VmNode`, `VmToken`, `TER_Page`, and `TER_Normal3f`. These are **presence observations only**; raw byte searching cannot establish field offsets, function signatures, effective decompiler results, how many annotations were applied, or absence of conflicts. The Ghidra runtime audit remains mandatory.
 
 ## Relationship to merged evidence
 
