@@ -1,0 +1,47 @@
+{
+  "base_commit": "3efea4bc25b2614ac93b593ebfa49e57c2170bde",
+  "ghidra": "12.1.4",
+  "input_gzf_sha256": "d48df73dc331b87c2bae23f4f481be102aa0a77c6baceb01687de8a6e0e57fbd",
+  "defined_functions": 2102,
+  "external_functions": 235,
+  "new_operations": {
+    "applied": 29,
+    "already": 1,
+    "preserved": 0,
+    "conflict": 1
+  },
+  "repeat_operations": {
+    "applied": 0,
+    "already": 30,
+    "preserved": 0,
+    "conflict": 1
+  },
+  "decompilation_sample": 279,
+  "changed_digests": 33,
+  "reviewed_target_improvements": 14,
+  "cosmetic_caller_regressions": 2,
+  "repository_unit_tests": 38,
+  "checks": {
+    "retail_file_and_pe": "passed",
+    "all_defined_bodies_and_boundaries": "passed",
+    "analyst_symbols_comments_types": "passed",
+    "preview_and_repeat_invariance": "passed",
+    "explicit_normal_eax_and_packed_stack": "passed",
+    "numeric_height_st0": "passed",
+    "vm_import_nonpropagation": "passed",
+    "eng_obj_controls": "passed",
+    "strict_c11_layouts": "passed",
+    "inventory_paths_and_digests": "passed",
+    "five_negative_fixtures": "passed",
+    "subsequent_saved_rollback_audit": "passed",
+    "protocol_validation": "passed",
+    "trusted_pr_head_integrity": "see PR current head check"
+  },
+  "limitations": [
+    "Latest privately edited baseline unavailable",
+    "No runtime VM/resource execution",
+    "Spacing type conflict retained",
+    "Two cosmetic label regressions",
+    "Five RES layouts and five return propagations deferred"
+  ]
+}
