@@ -1,0 +1,85 @@
+{
+  "base_commit": "3efea4bc25b2614ac93b593ebfa49e57c2170bde",
+  "scope": "Final handoff verification against retained final ABI captures; no new runtime experiment",
+  "accepted_dependencies": [
+    101,
+    102,
+    103,
+    104
+  ],
+  "final_capture_selection": "Explicit EAX normal return; superseded unassigned-return trial excluded",
+  "capture_digest_checks": 42,
+  "capture_digest_mismatches": 0,
+  "public_action_ledgers_match_private": true,
+  "regenerated_metrics_match_public": true,
+  "saved_safety_tables_and_all_279_C_files_equal_after": true,
+  "negative_fixtures": {
+    "parameter": "PASS parameter fixture; saved rollback must be verified by separate audit",
+    "type": "PASS type fixture; saved rollback must be verified by separate audit",
+    "guard": "PASS guard fixture; saved rollback must be verified by separate audit",
+    "pe": "PASS pe fixture; saved rollback must be verified by separate audit",
+    "rollback": "PASS rollback fixture; saved rollback must be verified by separate audit"
+  },
+  "new_operation_dispositions": {
+    "APPLY": 29,
+    "CONFLICT": 1,
+    "ALREADY": 1
+  },
+  "repeat_operation_dispositions": {
+    "ALREADY": 30,
+    "CONFLICT": 1
+  },
+  "inventory_record_dispositions": {
+    "ALREADY": 154,
+    "PRESERVE": 13,
+    "APPLY": 66,
+    "CONFLICT": 2,
+    "DEFER": 51
+  },
+  "defined_bodies_verified_against_retail_PE": 2102,
+  "decompiled_sample": 279,
+  "changed_C_digests": 33,
+  "reviewed_target_improvements": 14,
+  "cosmetic_caller_regressions": 2,
+  "aggregate_metrics": {
+    "named_fields": {
+      "before": 0,
+      "after": 317
+    },
+    "anonymous_params": {
+      "before": 4113,
+      "after": 3739
+    },
+    "anonymous_globals": {
+      "before": 2738,
+      "after": 2734
+    },
+    "pointer_casts": {
+      "before": 4963,
+      "after": 4846
+    },
+    "all_casts": {
+      "before": 7382,
+      "after": 7240
+    },
+    "grid_accesses": {
+      "before": 0,
+      "after": 14
+    }
+  },
+  "checks_rerun": [
+    "validate.py with private final ABI captures and authenticated retail PE",
+    "byte equality of regenerated versus published readability_metrics.tsv",
+    "strict C11 layout compilation, including Pilot C header",
+    "protected-base protocol validator",
+    "38 repository unit tests"
+  ],
+  "trusted_integrity": "Required separately on exact published head; consult GitHub integrity check",
+  "limitations": [
+    "No new Ghidra execution required for handoff; verified retained final captures and logs",
+    "Compatibility limited to measured private v98-derived baseline",
+    "Spacing conflict retained; two cosmetic caller regressions retained",
+    "Five resource layouts and five return prototypes individually deferred",
+    "No runtime VM/resource execution or canonical promotion"
+  ]
+}
