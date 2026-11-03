@@ -14,8 +14,9 @@
 
 ## Conventions adopted
 
-1. Use `lower_snake_case` for types, functions, fields, enum types and constants; `i76_` prefixes are allowed on public data contracts. Avoid enforced PascalCase names.
+1. Use `lower_snake_case` for types, functions, fields, enum types and constants. **Every publicly visible type and free function has the `i76_` prefix**. Do not declare project namespaces (named or anonymous); file-local helpers use `static` linkage.
 2. Prefer plain structs, visible ownership, and explicit lifecycle functions or small methods. No hidden resource teardown, deep object trees, or template-heavy wrappers.
+   Prefer C-style local declarations at the start of a function or the smallest logical block, with explicit types and required zero/null/value initialization. Avoid `auto` and large inline initializer expressions except when clearly more readable.
 3. Separate state input, state update, and emitted output. Avoid `printf` directly from simulation or parser code: emit structured diagnostics to an injected sink so tests can capture or discard them. Host/frontends decide how to present them.
 4. Keep `SDL_*`, terminal, audio and OS calls inside backend implementation files. No platform header in portable engine public headers.
 5. Keep large algorithms in `.cpp` when helpful for GDB stepping, despite the sample's header-inline experimentation. Public headers describe data and behavior; tests exercise both.
