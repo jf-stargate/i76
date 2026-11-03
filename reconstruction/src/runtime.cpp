@@ -11,13 +11,13 @@ static void record_diagnostic(void* context, const i76_diagnostic_event& event)
 
 static void record_scene(void* context, const i76_scene_frame& frame)
 {
-    auto* record = static_cast<i76_recording_outputs*>(context);
+    i76_recording_outputs* record = static_cast<i76_recording_outputs*>(context);
     record->scene.push_back(frame);
 }
 
 static void record_audio(void* context, const i76_audio_event& event)
 {
-    auto* record = static_cast<i76_recording_outputs*>(context);
+    i76_recording_outputs* record = static_cast<i76_recording_outputs*>(context);
     record->audio.push_back(event);
 }
 
