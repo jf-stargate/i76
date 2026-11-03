@@ -1,0 +1,99 @@
+{
+  "program": "i76.exe",
+  "ghidra": "12.1.4",
+  "java": "OpenJDK 27-ea build 27-ea+34-1-Debian",
+  "language": "x86:LE:32:default",
+  "image_base": "00400000",
+  "defined_functions": 2102,
+  "external_functions": 235,
+  "function_name_sources": {
+    "USER_DEFINED": 2036,
+    "DEFAULT": 22,
+    "ANALYSIS": 44
+  },
+  "symbol_count": 27100,
+  "symbol_sources": {
+    "IMPORTED": 245,
+    "DEFAULT": 21306,
+    "USER_DEFINED": 2436,
+    "ANALYSIS": 3113
+  },
+  "type_entries": 387,
+  "comment_address_kind_rows": 3402,
+  "defined_data_entries": 12661,
+  "defined_structure_components": 653,
+  "compared_structures": [
+    {
+      "path": "/Interstate76/SemanticConsolidation/TER_Normal3f",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/SemanticConsolidation/TER_Page",
+      "ghidra_isEquivalent": false,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/SemanticConsolidation/VmToken",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/SemanticConsolidation/VmNode",
+      "ghidra_isEquivalent": false,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_CameraView_0x1D8",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_RenderWorkKind6_0x44",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_SoftwareSurface_0x34",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_SoftwareDrawCommand_0x60",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_TerrainAdaptiveLeaf_0x1C",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_ProjectVertex_0x18",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_WorldObjectPosePrefix_0x58",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    },
+    {
+      "path": "/Interstate76/Research-v99/I76_ClassDescriptor_0x34",
+      "ghidra_isEquivalent": true,
+      "semantic_shape_matches": true
+    }
+  ],
+  "coverage_counts": {
+    "ALREADY": 110,
+    "PRESERVE": 1,
+    "MISSING": 61,
+    "CONFLICT": 1,
+    "DEFER": 10
+  },
+  "proposed_annotation_edits": [
+    "006442C0 /int -> /float",
+    "004ED7EC /pointer -> /TerminatedCString, length 4"
+  ],
+  "provenance_limit": "Names, matching layout and USER_DEFINED sources do not identify the author or prove which migration was run."
+}

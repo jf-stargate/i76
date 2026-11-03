@@ -1,0 +1,178 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261103T011951Z-e8b8ea6e",
+  "track": "i76exe",
+  "topic": "Exact v99 annotation inventory, accepted migration audit and bounded terrain storage correction",
+  "base_commit": "9576fc573964bed624a08d878886ccad40a63d7a",
+  "started_at": "2026-11-03T01:19:51Z",
+  "summary": "Audit-only immutable evidence plus two-data disposable annotation trial. No canonical/baseline promotion; standalone tooling proposed separately in PR107.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Measured private retail PE; no original payload published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76.exe",
+      "baseline_id": "i76_mission_v99_verified_names.gzf; exact 6500304-byte maintainer-selected export",
+      "baseline_sha256": "ca211238170806eda27a2b4ecf6aee2192abb69df27fe56f106b455ac75bc710",
+      "storage_ref": "maintainer-private verified v99 export; not distributed",
+      "notes": "New disposable noanalysis import; 2102 defined and 235 external functions. Original export unchanged. Full captures and local handoff retained privately."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/BASELINE_AUDIT.md",
+      "kind": "report",
+      "sha256": "3f942588e4eff587f1e740a3c397542c99795d8501d00fda9ccde7b6897f518e",
+      "bytes": 5533
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "b3cef41049764cc4b8bcfed362456111c1821450230cb98377865d9d91b8f1ef",
+      "bytes": 2760
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "d83beb5e2f4535a7f90541d421e59f279ca09a1f9eeb9dfa965c196f58e1fe5a",
+      "bytes": 4559
+    },
+    {
+      "path": "artifacts/TERRAIN_AUDIT.md",
+      "kind": "report",
+      "sha256": "774a3bcdedf008cf5774890b26e7d7821cffb8dfe98b5dbd8af4c7a4334de31b",
+      "bytes": 7382
+    },
+    {
+      "path": "artifacts/TOOLING_HANDOFF.md",
+      "kind": "report",
+      "sha256": "3906af1770b5914813853716ce9a45b5ac404d3de73789c3865f254e6c0dcb54",
+      "bytes": 980
+    },
+    {
+      "path": "artifacts/VALIDATION.md",
+      "kind": "report",
+      "sha256": "4d445d3ff41e1f254f76eef1606ffc56df23aeb5bbb51cd51e7699ecdc082c0b",
+      "bytes": 3460
+    },
+    {
+      "path": "evidence/baseline_inventory_summary.json",
+      "kind": "table",
+      "sha256": "911a1e639ab0c17767e6cd14bb9d6f5f54f62e2252d7bfe79f5787a7e88a8d96",
+      "bytes": 2835
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "bc0a373ed421fc69852155fe650d325bb2c1ca847d8a068e03d3a08ffb24369a",
+      "bytes": 1454
+    },
+    {
+      "path": "evidence/capture_validation.json",
+      "kind": "table",
+      "sha256": "3e4a71284e5385668d77bbfda2547409d83b0c1058638b83fe36e404ef67fe0a",
+      "bytes": 11176
+    },
+    {
+      "path": "evidence/migration_coverage.tsv",
+      "kind": "table",
+      "sha256": "e8e5739784e4813af4818d51d4b24ab1f2695bda8e15fe5a32bd44f5b2a1a749",
+      "bytes": 39990
+    },
+    {
+      "path": "evidence/readability_digests.tsv",
+      "kind": "table",
+      "sha256": "5ec341532aeecb18f101242ab72f1fa74f7bd1695d8c3601480c8b261e7e4c81",
+      "bytes": 2933
+    },
+    {
+      "path": "evidence/selected_functions.tsv",
+      "kind": "table",
+      "sha256": "71cfb07cddb6c56a398bcc8d75a1cf410110df78dc20b22423fceb7e02f2b08d",
+      "bytes": 4197
+    },
+    {
+      "path": "evidence/source_digests.json",
+      "kind": "table",
+      "sha256": "81757c07c469096fcd4c50436607b7d41fe761ccdf3c74cc402dce2ebf731602",
+      "bytes": 10557
+    },
+    {
+      "path": "evidence/spacing_references.tsv",
+      "kind": "table",
+      "sha256": "06ad8edc8c81affb0fba68bf907deaa2bfa6307565d228dae1a5aa163c7e626b",
+      "bytes": 2088
+    },
+    {
+      "path": "evidence/tooling_identity.json",
+      "kind": "table",
+      "sha256": "c593aea32b978a25022c4909b5bfce10edbac9f2e364a115a658ab3bc0adff99",
+      "bytes": 964
+    },
+    {
+      "path": "scripts/TerrainBaselineInventory.java",
+      "kind": "script",
+      "sha256": "c7199005835c64e500f8ab93190a46c51a3b153f5e0fbd7c5c99ae8da219f549",
+      "bytes": 3220
+    },
+    {
+      "path": "scripts/TerrainShapeAudit.java",
+      "kind": "script",
+      "sha256": "2a061892916481310159b87523582193b31efb178f6e15cf1182756f64e71853",
+      "bytes": 1770
+    },
+    {
+      "path": "scripts/validate_captures.py",
+      "kind": "script",
+      "sha256": "7b86de4e4a90ee2d3b1bbf30d865b0f194ebe29cff605f9b066753b3de3402b7",
+      "bytes": 6744
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 26,
+    "passed_count": 26,
+    "notes": "Exact v99/retail identities; 2102 PE-verified original bodies; preview and saved rollback equality; seven negative fixtures; two data definitions only; 289 C captures, 10 reviewed changes; after/repeat equality. Ghidra12.1.4 headless only, no GUI/runtime test. CI is separately checked at exact PR head."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TerrainBaselineInventory.java",
+        "sha256": "c7199005835c64e500f8ab93190a46c51a3b153f5e0fbd7c5c99ae8da219f549"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TerrainShapeAudit.java",
+        "sha256": "2a061892916481310159b87523582193b31efb178f6e15cf1182756f64e71853"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/validate_captures.py",
+        "sha256": "7b86de4e4a90ee2d3b1bbf30d865b0f194ebe29cff605f9b066753b3de3402b7"
+      },
+      {
+        "kind": "git-blob",
+        "ref": "be7c7fcfdd30df2809694c173da96e7410da0078:agent/tools/ghidra/terrain-storage/I76_TerrainStorageAudit_20261103.java",
+        "sha256": "1e97c285faa5deccb3f0ed3313e0639caf5058ab6b4cf03066560a898c4a4625"
+      }
+    ],
+    "methods": [
+      "Pin main/policy1.0.4, authenticate accepted PRs, effective rules and pending PR106; allocate new owned run and separate tooling branch.",
+      "Hash exact private inputs; import GZF in disposable Ghidra12.1.4 with noanalysis; record full function/type/symbol/comment/data inventories.",
+      "Run historical scripts only in preview; independently reconcile structural/comment/signature semantic equivalence; map every historical operation.",
+      "Independently compare all original function ranges/hashes to retail PE; inspect instructions and all spacing address-literal occurrences; capture and review caller C.",
+      "Execute guarded preview/apply/repeat, seven negative fixtures and independent saved rollback captures; publish reviewed bounded metadata/digests only."
+    ],
+    "limitations": "Private retail PE/exact annotated GZF required. Static semantics and headless annotation experiments only; no GUI/live database, game, emulator or hardware x87 execution. Script provenance, original declared precision, bit12, normal intent, audio tag purpose, page lifetime and missing v100-v102 passes remain unresolved."
+  }
+}

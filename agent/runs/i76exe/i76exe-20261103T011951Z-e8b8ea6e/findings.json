@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261103T011951Z-e8b8ea6e",
+  "findings": [
+    {
+      "finding_id": "V99-AUDIT-state",
+      "claim": "The exact supplied private v99 GZF contains 110 accepted historical operation results, lacks 61 complete results, preserves one comment and retains one spacing type conflict; ten resource deferrals remain scoped separately.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/BASELINE_AUDIT.md",
+          "sha256": "3f942588e4eff587f1e740a3c397542c99795d8501d00fda9ccde7b6897f518e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/migration_coverage.tsv",
+          "sha256": "e8e5739784e4813af4818d51d4b24ab1f2695bda8e15fe5a32bd44f5b2a1a749"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/baseline_inventory_summary.json",
+          "sha256": "911a1e639ab0c17767e6cd14bb9d6f5f54f62e2252d7bfe79f5787a7e88a8d96"
+        }
+      ],
+      "limitations": "Measured program state, not proof of script execution/provenance. Fifty-six missing operations are v100-v102; five are incomplete consolidation qualification comments."
+    },
+    {
+      "finding_id": "TER-SPACING-float",
+      "claim": "006442C0 consistently uses float spacing in identified setup and arithmetic consumers; a guarded four-byte int-to-float correction removes misleading decompiler casts without changing original code or adjacent data.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TERRAIN_AUDIT.md",
+          "sha256": "774a3bcdedf008cf5774890b26e7d7821cffb8dfe98b5dbd8af4c7a4334de31b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/spacing_references.tsv",
+          "sha256": "06ad8edc8c81affb0fba68bf907deaa2bfa6307565d228dae1a5aa163c7e626b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/capture_validation.json",
+          "sha256": "3e4a71284e5385668d77bbfda2547409d83b0c1058638b83fe36e404ef67fe0a"
+        }
+      ],
+      "limitations": "Static writer/reader coverage; arbitrary indirect runtime writes and original source declaration unavailable."
+    },
+    {
+      "finding_id": "TER-AUD-literal",
+      "claim": "004ED7EC stores the terminated aud literal, whose prior generic-pointer definition falsely generated a terrain-grid interior-pointer label; string typing corrects six audio caller decompilations.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TERRAIN_AUDIT.md",
+          "sha256": "774a3bcdedf008cf5774890b26e7d7821cffb8dfe98b5dbd8af4c7a4334de31b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/readability_digests.tsv",
+          "sha256": "5ec341532aeecb18f101242ab72f1fa74f7bd1695d8c3601480c8b261e7e4c81"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/capture_validation.json",
+          "sha256": "3e4a71284e5385668d77bbfda2547409d83b0c1058638b83fe36e404ef67fe0a"
+        }
+      ],
+      "limitations": "Literal content/address passing supported; the tag parameter purpose and wider cleanup ownership contract remain unresolved. Narrows accepted consolidation interior-pointer interpretation without rewriting its evidence."
+    },
+    {
+      "finding_id": "TER-ABI-retain",
+      "claim": "Private v99 already represents terrain normal with explicit output +4, doubles +8/+16 and EAX output-alias return, and bilinear height with two doubles and numeric ST0; both signatures are preserved.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TERRAIN_AUDIT.md",
+          "sha256": "774a3bcdedf008cf5774890b26e7d7821cffb8dfe98b5dbd8af4c7a4334de31b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_functions.tsv",
+          "sha256": "71cfb07cddb6c56a398bcc8d75a1cf410110df78dc20b22423fceb7e02f2b08d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/capture_validation.json",
+          "sha256": "3e4a71284e5385668d77bbfda2547409d83b0c1058638b83fe36e404ef67fe0a"
+        }
+      ],
+      "limitations": "Original C declaration precision and exact x87 arithmetic are not reconstructed; no hidden pointer introduced and no runtime test claimed."
+    },
+    {
+      "finding_id": "TER-STORAGE-validation",
+      "claim": "The standalone two-data migration previews/applies/repeats with 2/2/0 actions; seven negative cases and independent captures verify preservation/rollback; all 2102 original function bodies and all signatures remain unchanged.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/VALIDATION.md",
+          "sha256": "4d445d3ff41e1f254f76eef1606ffc56df23aeb5bbb51cd51e7699ecdc082c0b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/capture_validation.json",
+          "sha256": "3e4a71284e5385668d77bbfda2547409d83b0c1058638b83fe36e404ef67fe0a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/tooling_identity.json",
+          "sha256": "c593aea32b978a25022c4909b5bfce10edbac9f2e364a115a658ab3bc0adff99"
+        }
+      ],
+      "limitations": "Exact private v99/Ghidra12.1.4 headless trial; Script Manager dialog and live database were not tested. Maintainer acceptance still required."
+    }
+  ]
+}
