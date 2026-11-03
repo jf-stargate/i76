@@ -24,6 +24,6 @@ Expected on exact original v99: **54 eligible = 2 terrain corrections + 52 histo
 | v100 `00472C10` | Float-plane traversal becomes byte-array casts without a readability gain |
 | v101 `00409980` | Active-entry pointer variable becomes a numeric bucket index |
 
-The script never undoes an existing analyst annotation to enforce these deferrals. Their original signatures remain intact on exact v99. See [research operation ledger](../../../runs/i76exe/i76exe-20261103T030709Z-1758109b/evidence/operations.tsv) and [readability review](../../../runs/i76exe/i76exe-20261103T030709Z-1758109b/artifacts/READABILITY.md). That research PR may remain unmerged independently of this tooling proposal.
+The script never undoes an existing analyst annotation to enforce these deferrals. Their original signatures remain intact on exact v99. See [research operation ledger](../../../runs/i76exe/i76exe-20261103T030709Z-1758109b/evidence/operations.tsv) and [readability review](../../../runs/i76exe/i76exe-20261103T030709Z-1758109b/artifacts/READABILITY.md). The [research PR #110](https://github.com/jf-stargate/i76/pull/110) may remain unmerged independently of this [tooling PR #109](https://github.com/jf-stargate/i76/pull/109).
 
 Source lineage: accepted `readability-v100`, `readability-v101`, `readability-v102` tools at `430ef59c8396db9880cd95e6f6ba9d1bd81e9c20`; accepted terrain correction from PR #107. Their historical baseline was v98-derived and is not evidence that the maintainer already applied them to v99. This tool changes no canonical reference or baseline identity.
