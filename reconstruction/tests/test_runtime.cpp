@@ -5,7 +5,7 @@
 #include <limits>
 
 
-std::uint32_t failures{};
+static std::uint32_t failures = 0;
 
 static void expect(bool condition, const char* label)
 {
@@ -67,8 +67,8 @@ static void check_fixed_clock()
 {
     i76_runtime game{};
     i76_runtime_config config{};
-    config.tick_rate = 100U;
     i76_recording_outputs record{};
+    config.tick_rate = 100U;
     expect(i76_runtime_initialize(game, config, i76_make_recording_outputs(record)) ==
                i76_result_code::ok,
            "init clock fixture");
@@ -111,15 +111,16 @@ static void check_outputs()
     i76_runtime null_game{};
     i76_runtime record_game{};
     i76_runtime_config config{};
-    config.tick_rate = 60U;
     i76_recording_outputs record{};
+    std::uint32_t index = 0;
+    config.tick_rate = 60U;
     expect(i76_runtime_initialize(null_game, config, i76_make_null_outputs()) ==
                i76_result_code::ok,
            "null init");
     expect(i76_runtime_initialize(record_game, config, i76_make_recording_outputs(record)) ==
                i76_result_code::ok,
            "record init");
-    for (std::uint32_t index{}; index < 5U; ++index) {
+    for (index = 0; index < 5U; ++index) {
         expect(i76_runtime_step(null_game, 1U) == i76_result_code::ok &&
                    i76_runtime_step(record_game, 1U) == i76_result_code::ok,
                "advance with interchangeable sinks");
