@@ -1,0 +1,18 @@
+# Documentation impact — v99 audit and selective semantic integration
+
+Run `i76exe-20261103T030709Z-1758109b`, track i76exe, original base `430ef59c8396db9880cd95e6f6ba9d1bd81e9c20`. Binary/GZF identities are in manifest and RECONCILIATION.md. Evidence tier: binary-static plus disposable Ghidra annotation experiments. Classification: **candidate update**, no canonical changes in this research PR.
+
+## Precise steward handoff
+
+After this run is merged/reviewed, prepare a **separate fresh-base documentation PR**; keep existing run/promotion history immutable.
+
+1. `agent/baselines/i76exe_v99_candidate_20261102.md`: update the current-status wording “internal annotations NOT audited”, pending inventory, unmeasured Ghidra version and audit checklist with accepted #108's runtime audit: Ghidra12.1.4, 2102 defined +235 external, original-body verification, exact annotation coverage. Retain the candidate/non-promoted status. The selected original GZF still lacks the historical v100–v102 operations; integration occurred only in a disposable derivative.
+2. `agent/promotions/semantic_ter_fsm_res_20261102.md`: record a later reconciliation referencing #108 rather than rewriting the original source experiment. Its v99-unaudited and spacing-deferred claims are historically scoped; current status now has exact audited ABI/layout and accepted PR #107 tooling. Do not claim the maintainer ran #107 or this new tool.
+3. `manual/reference/engine/terrain_sampling.md`, “Unresolved / non-promoted”: replace the current “pending guarded migration” status with the measured int baseline and available accepted float/string correction, citing #108/#107. Preserve unresolved bit12/x87/ownership limits. Explain `004ED7EC` is `aud` text, not an interior grid ownership relationship.
+4. `manual/reference/engine/mission_vm.md` final v99-unaudited sentence: exact audited VmNode semantic layout and live-node signatures are already present (#108), although five consolidated qualification comments are incomplete. This campaign adds **no** new VM structure/behavior; do not call the interpreter fully reconstructed.
+5. `manual/reference/engine/resource_acquisition.md` v99-unaudited sentence: existing resource inputs are verified; five structure and five return propagations remain deferred. The incomplete qualification comments remain untouched. No unified resource handle or ownership upgrade.
+6. At a later OBJ/ENG/RND milestone, cite this run's `evidence/operations.tsv`, READABILITY.md and capture_validation.json: **52 restored /4 deliberately deferred**, typed 27×0x34 dispatch array, 0xB0/0x0C/0x78 distinctions, opaque +0x70 and contextual +0x68. Newly merged tooling alone is never evidence of user-side execution. Add the four variable-lifetime/array-presentation deferrals to future readability work; no claimed C++ vtable or universal payload.
+
+Candidate findings RECON-state, RECON-readability, RECON-safety link the ledger, measured digest table and private-capture aggregate validation. All artifact SHA-256/byte lengths are in this run manifest. Historical `ref/` remains frozen; it is not the target for these current-status updates. No edits to `manual/`, `agent/promotions/`, prior runs or baseline registry are included here.
+
+Recommended next major campaign: **mission VM runtime structures and interpreter readability**, starting at `00410490`, `00412500`, `00414670`, `004149F0`, `00412CE0`; retain phase-qualified live cursor and serialized/relocation distinctions, explicit host ABI and unresolved VM trailing words. First split reused pointer/index variables, then validate scoped propagation using the same caller/digest method. Keep pending dispatch/destruction and universal resource ownership outside unproven scope.

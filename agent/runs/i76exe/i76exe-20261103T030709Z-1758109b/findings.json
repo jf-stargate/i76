@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261103T030709Z-1758109b",
+  "findings": [
+    {
+      "finding_id": "RECON-state",
+      "claim": "Exact v99 lacks all 56 historical v100-v102 operations; 52 were restored on a disposable derivative and four deliberately deferred after C review. Two accepted terrain corrections were separately absent and restored.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RECONCILIATION.md",
+          "sha256": "652c066e1326ca22c4d91cc056ca3cdb677b49753b41e517325bbb891c1a8274"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/operations.tsv",
+          "sha256": "9e2dee7d9ec7198d134a7e2d2b7f1858d414056c9ffc54fd1c0b39c567b25194"
+        }
+      ],
+      "limitations": "Observed annotations are not script-execution provenance; no live database/baseline promotion."
+    },
+    {
+      "finding_id": "RECON-readability",
+      "claim": "Broader caller review reveals variable-lifetime and copy-loop regressions in four historical parameter candidates; the selected integration exposes typed class dispatch and true world/list/active-entry layouts while preserving opaque runtime/link interpretations.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/READABILITY.md",
+          "sha256": "836ed8230c245e87ca7fb21fb68c4ea293b2d11ee535477cbe0e59be947d938b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selected_decompilation_digests.tsv",
+          "sha256": "edf3c69af0e0d06639218e198c997cdac72bd4dad604f4829cfdc65afe4430b5"
+        }
+      ],
+      "limitations": "419-function static C sample, not entire program; neutral casts and residual copy/clear artifacts are separately documented."
+    },
+    {
+      "finding_id": "RECON-safety",
+      "claim": "Final standalone reconciliation passes 55 independent assertions and ten negative cases, produces identical staged/one-shot captures, and repeats with zero edits after 54 including-terrain operations.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/capture_validation.json",
+          "sha256": "8aa1fad87df2cffac17db956baa6294f2c69b4d4321a1c84804228b480dbeb7e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPRODUCE.md",
+          "sha256": "c175b92b4c746dd242f959047ef339a06021a9b8729951e8daf9f05cc5cb7386"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TOOLING.md",
+          "sha256": "805f0af4144f459f985c14b151f58befafac3be745eb2dc1bcbd7f0caea6f715"
+        }
+      ],
+      "limitations": "Headless Ghidra12.1.4 only. GUI application remains untested; incompatibilities abort and preserve analyst changes."
+    }
+  ]
+}
