@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261103T030709Z-1758109b",
+  "track": "i76exe",
+  "topic": "v100-v102 selective semantic restoration on exact v99 with protected terrain/VM/resource annotations",
+  "base_commit": "430ef59c8396db9880cd95e6f6ba9d1bd81e9c20",
+  "started_at": "2026-11-03T03:07:09Z",
+  "summary": "Immutable reconciliation evidence,52 historical operations restored and4 readability deferrals; standalone integrated tool proposed separately. No canonical/baseline promotion.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private licensed PE, independently section-mapped body verification."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "12.1.4",
+      "program_name": "i76.exe",
+      "baseline_id": "i76_mission_v99_verified_names.gzf; exact6500304-byte selected export",
+      "baseline_sha256": "ca211238170806eda27a2b4ecf6aee2192abb69df27fe56f106b455ac75bc710",
+      "storage_ref": "maintainer-private export; not distributed",
+      "notes": "New noanalysis disposable imports only; original/live database untouched."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "0f748ece0095b820abc9815a9a593484d794ca76aee814a08439ddc09800dde6",
+      "bytes": 3759
+    },
+    {
+      "path": "artifacts/READABILITY.md",
+      "kind": "report",
+      "sha256": "836ed8230c245e87ca7fb21fb68c4ea293b2d11ee535477cbe0e59be947d938b",
+      "bytes": 5748
+    },
+    {
+      "path": "artifacts/RECONCILIATION.md",
+      "kind": "report",
+      "sha256": "652c066e1326ca22c4d91cc056ca3cdb677b49753b41e517325bbb891c1a8274",
+      "bytes": 4953
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "c175b92b4c746dd242f959047ef339a06021a9b8729951e8daf9f05cc5cb7386",
+      "bytes": 2854
+    },
+    {
+      "path": "artifacts/TOOLING.md",
+      "kind": "report",
+      "sha256": "ccbf80952c3292c3affd2752af7dd520a8db604635bdf586cc4bb11af865e6da",
+      "bytes": 712
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "006b0b5d879c70d8382b27683bc3d7116ffe61a3f578466f84b9ba543a89bff5",
+      "bytes": 506
+    },
+    {
+      "path": "evidence/capture_validation.json",
+      "kind": "table",
+      "sha256": "8aa1fad87df2cffac17db956baa6294f2c69b4d4321a1c84804228b480dbeb7e",
+      "bytes": 37882
+    },
+    {
+      "path": "evidence/operations.tsv",
+      "kind": "table",
+      "sha256": "9e2dee7d9ec7198d134a7e2d2b7f1858d414056c9ffc54fd1c0b39c567b25194",
+      "bytes": 29822
+    },
+    {
+      "path": "evidence/selected_decompilation_digests.tsv",
+      "kind": "table",
+      "sha256": "edf3c69af0e0d06639218e198c997cdac72bd4dad604f4829cfdc65afe4430b5",
+      "bytes": 23201
+    },
+    {
+      "path": "scripts/RestorationInventory.java",
+      "kind": "script",
+      "sha256": "3aae7d9549bbcf787ca036119ef2d2221f4894bc79aee57b6e5b7a2de3c3b249",
+      "bytes": 7012
+    },
+    {
+      "path": "scripts/RestorationSafety.java",
+      "kind": "script",
+      "sha256": "fd44dfbefae70345f09c3754e52d4d72d36d3c41d2df78813d0e1b0760808367",
+      "bytes": 3028
+    },
+    {
+      "path": "scripts/validate_restoration.py",
+      "kind": "script",
+      "sha256": "91512da242ff1e624f869ed1121f88b2e7aef7b6ebaa179d7712e967d230ae83",
+      "bytes": 7834
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 55,
+    "passed_count": 55,
+    "notes": "2102 PE-verified bodies/ranges; 419 C captures; 52 historical +2 terrain operations,4 deferred;10 negative cases; saved rollback/default-preview/repeat and staged/one-shot equality;22 reviewed signature changes;GUI untested."
+  },
+  "reproducibility": {
+    "status": "partial",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/RestorationInventory.java",
+        "sha256": "3aae7d9549bbcf787ca036119ef2d2221f4894bc79aee57b6e5b7a2de3c3b249"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/RestorationSafety.java",
+        "sha256": "fd44dfbefae70345f09c3754e52d4d72d36d3c41d2df78813d0e1b0760808367"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/validate_restoration.py",
+        "sha256": "91512da242ff1e624f869ed1121f88b2e7aef7b6ebaa179d7712e967d230ae83"
+      }
+    ],
+    "methods": [
+      "Pin current main/protocol1.0.4 and effective GitHub rules;review merged106-108 and historical tools.",
+      "Hash exact inputs;noanalysis import;capture complete annotations and419 target/caller C functions.",
+      "Independently PE-verify all2102 original bodies;preview/apply/reconcile each stage;reject regressions in separate trials.",
+      "Validate guarded standalone default preview,staged/one-shot identity,zero-edit repeat and10 negative cases with independent rollback capture."
+    ],
+    "limitations": "Private exact GZF/PE required;binary-static and annotation experiments only;GUI/runtime untested;four parameter deferrals and documented copy/clear artifacts remain."
+  }
+}
