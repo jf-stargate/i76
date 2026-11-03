@@ -2,48 +2,5 @@
   "status": "passed",
   "test_count": 7,
   "passed_count": 7,
-  "checks": [
-    {
-      "name": "retail_text",
-      "status": "passed",
-      "detail": "765525 bytes compared; zero mismatches"
-    },
-    {
-      "name": "function_entries",
-      "status": "passed",
-      "detail": "42 exact Ghidra entries; 2102 total defined and 235 external"
-    },
-    {
-      "name": "inventory_repeat",
-      "status": "passed",
-      "detail": "identical SHA-256 on repeated read-only extraction"
-    },
-    {
-      "name": "database_unchanged",
-      "status": "passed",
-      "detail": "all nine stored project files byte-identical before audit and after final extraction, including program database; preserves boundaries, names, signatures, structures and comments"
-    },
-    {
-      "name": "input_unchanged",
-      "status": "passed",
-      "detail": "retail/GZF SHA-256 match expected identities"
-    },
-    {
-      "name": "manual_audit",
-      "status": "passed",
-      "detail": "22 distinct functions audited at instruction/xref level; five grouping relationships, three boundaries and one negative example"
-    },
-    {
-      "name": "bounded_analysis",
-      "status": "passed",
-      "detail": "42 rows, 32 assigned to eight candidate cores; ten unassigned; no whole-executable partition"
-    }
-  ],
-  "private_evidence_sha256": {
-    "inventory.tsv": "859b0b3b35d2e6b1aefd4b616e6d2150e5ce99d0dff14fc713af21335c68f7e1",
-    "audit.txt": "ed45b6c45f3c4468f8440e58357914cb63376956017349ecd1ff64f707292385",
-    "project-before.sha256": "ed36a198f971954e333873e42bb98116aa2ef082658d0e10b251f6e08eac09bc",
-    "validation.txt": "57d6b85ffea4443b817a2cdefda0cbc49801c11b393e44e0a366e184bc447595"
-  },
-  "limitations": "Database fingerprint captured after initial inventory, before instruction audit, then checked after repeated extraction. Initial extraction is read-only and its script contains no mutation calls. No GUI project was opened. Qualitative original-source attribution remains unvalidated."
+  "notes": "Read-only inventory, retail text, database/input integrity, 42 entry checks and 22-function instruction audits passed. Details and limitations in evidence/validation_details.json; source attribution remains inferred."
 }
