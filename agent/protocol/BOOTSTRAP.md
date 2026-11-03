@@ -1,4 +1,4 @@
-# Bootstrap v1.0.4: cold-start agent procedure
+# Bootstrap v1.0.5: cold-start agent procedure
 
 This procedure is independent of conversation memory. A new agent needs only the repository URL, GitHub read access, and—if proposing changes—permission to create an isolated branch/PR. No previous chat transcript or local cache may be assumed.
 
@@ -29,12 +29,12 @@ This procedure is independent of conversation memory. A new agent needs only the
 - **`main` advances:** do not rebase isolated run-only PRs solely because unrelated work merged, provided the head is unchanged, checks passed and no conflict exists. Revalidate canonical, governance and shared changes against updated `main`. Never silently adopt another agent's canonical edits.
 - **Conflicting `manual/` conclusions:** both findings remain discoverable; canonical reference stays unchanged until reviewer approves a reconciliation PR.
 - **No GitHub enforcement visibility:** agent may keep work on an isolated branch/draft PR but must not autonomously merge or report it as accepted.
-- **Same GitHub identity used by agent and user:** accepted for this small manually supervised experiment; there is no identity-based independent review, and the agent must not self-merge. The human makes the merge decision. Passing CI alone is never approval.
+- **Same GitHub identity used by agent and user:** accepted for this small manually supervised experiment; there is no identity-based independent review, and the agent must not self-merge. The human makes all research, documentation, governance and baseline merge decisions. Only the conditional reconstruction implementation exception is eligible for self-merge after activation and exact-head tests. Passing CI alone is never approval.
 - **Security or licensing uncertainty:** fail closed on publication of suspicious binaries, secrets or unreviewed proprietary resources.
 
 ## First-time protocol deployment
 
-The repository retains historical `ref/`, `scripts/`, and `snapshot/` trees. The publication protocol is accepted; the live ruleset 25664125 and trusted CI must still be checked at each new agent bootstrap. Formal independent GitHub approvals and separate credentials are intentionally not required for this experiment. Protocol 1.0.4 retains `autonomous_run_merge: false`; documentation stewardship adds no merge authority or new GitHub ruleset.
+The repository retains historical `ref/`, `scripts/`, and `snapshot/` trees. The publication protocol is accepted; the live ruleset 25664125 and trusted CI must still be checked at each new agent bootstrap. Formal independent GitHub approvals and separate credentials are intentionally not required for this experiment. Protocol 1.0.5 retains `autonomous_run_merge: false`; documentation stewardship adds no merge authority. Conditional reconstruction implementation merge is separately governed and does not itself configure GitHub rules.
 
 ## Four-track cold start and experimental-tool freedom
 
@@ -43,3 +43,7 @@ The repository retains historical `ref/`, `scripts/`, and `snapshot/` trees. The
 3. New research should use schema `1.2.0`; existing active `1.1.0` (and accepted `1.0.0`) investigations remain valid under their original schemas. An `i76shell` `1.2.0` run must identify the actual source DLL with an input of kind `shell-dll` and measured MD5/SHA-256, plus a Ghidra baseline with version, program name, baseline ID and digest. Private binaries/databases remain private. The registry selects validation by **declared schema version**.
 4. Investigators may construct and publish reproducible original-instruction emulators, stubbed/synthetic services, models, decoders, comparators and regression harnesses as run-owned experimental evidence. Such original executable code is **not** a promoted behavioral specification or automatically maintained reconstruction. Human-reviewed separate promotion and explicit reconstruction authorization still apply.
 5. Governance amendments use fresh-base isolated proposal branches, never invented run directories. The trusted-base CI must not execute proposed PR validators as authority. Inspect the candidate code/tests independently and obtain explicit manual maintainer acceptance; do not self-merge.
+
+## Conditional reconstruction implementation acceptance
+
+For an implementation-only reconstruction PR, read [RECONSTRUCTION_MERGE.md](RECONSTRUCTION_MERGE.md) from the pinned protected default branch. Self-merge is prohibited until the human accepts the standards (#112), framework (#114) and CI (#115), and every exact-head status and path gate passes. The exception never includes changes to governance, workflows, standards, research or canonical materials. If in doubt, propose only.

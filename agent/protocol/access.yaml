@@ -1,4 +1,4 @@
-schema_version: "1.0.4"
+schema_version: "1.0.5"
 repository: "jf-stargate/i76"
 default_branch: "main"
 default: "deny"
@@ -34,6 +34,10 @@ principal_rules:
     may_authorize_governance_and_baseline_promotion: true
     must_verify_enforcement: true
 path_rules:
+  - prefix: "reconstruction/"
+    class: "maintained-reconstruction"
+    allowed_proposal: "isolated-branch"
+    acceptance: "conditional-implementation-merge-only-after-activation-and-exact-head-ci;otherwise-human-review"
   - prefix: "agent/runs/"
     class: "append-only-runs"
     allowed_proposal: "create-only-under-owned-run-id"
@@ -124,3 +128,42 @@ documentation:
   steward_input: "merged-runs-and-accepted-promotion-records-only"
   acceptance: "separate-fresh-base-pr-plus-manual-maintainer-decision"
   mutate_merged_runs: false
+
+reconstruction_merge:
+  authority: "conditional-implementation-self-merge"
+  procedure: "agent/protocol/RECONSTRUCTION_MERGE.md"
+  activation:
+    accepted_prs: [112, 114, 115]
+    accepted_workflow: ".github/workflows/reconstruction-ci.yml"
+    accepted_test_policy: "reconstruction/TESTING.md"
+    require_live_main_protection_and_integrity: true
+    on_unknown: "proposal-only"
+  eligible:
+    target: "main"
+    head_repository: "jf-stargate/i76"
+    branch_prefixes: ["feature/reconstruction-", "reconstruction/"]
+    changed_path_prefix: "reconstruction/"
+    exclusive_path_scope: true
+    no_deletions_renames_symlinks_or_submodules: true
+    require_latest_main_as_ancestor: true
+    require_mergeable_nondraft_and_resolved_threads: true
+    prohibit_test_weakening: true
+    protected_files:
+      - "reconstruction/CODING_STANDARDS.md"
+      - "reconstruction/TESTING.md"
+      - "reconstruction/ARCHITECTURE.md"
+      - "reconstruction/STYLE_GUIDE.md"
+      - "reconstruction/README.md"
+      - "reconstruction/.clang-format"
+  exact_head_required_success_checks:
+    - "integrity"
+    - "linux-gcc-ctest"
+    - "linux-clang-ctest"
+    - "windows-msvc-ctest"
+    - "linux-asan-ubsan-ctest"
+    - "linux-coverage"
+    - "linux-valgrind-memcheck"
+  require_trusted_accepted_workflow_origin: true
+  failure_disposition: "proposal-only"
+  direct_main_push: false
+  research_governance_baseline_or_documentation_self_merge: false

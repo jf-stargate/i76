@@ -10,8 +10,18 @@ def policy():
     p=yaml.safe_load((P/"access.yaml").read_text())
     assert p["default"]=="deny" and p["publication"]["direct_main_push"] is False
     assert p["publication"]["autonomous_run_merge"] is False
-    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.4"
+    assert (P/"VERSION").read_text().strip()==p["schema_version"]=="1.0.5"
     assert p["publication"]["required_formal_approvals"]==0
+    r=p["reconstruction_merge"]
+    assert r["authority"]=="conditional-implementation-self-merge"
+    assert r["eligible"]["changed_path_prefix"]=="reconstruction/"
+    assert r["eligible"]["exclusive_path_scope"] is True
+    assert r["eligible"]["no_deletions_renames_symlinks_or_submodules"] is True
+    assert r["eligible"]["prohibit_test_weakening"] is True
+    assert r["research_governance_baseline_or_documentation_self_merge"] is False
+    assert r["activation"]["on_unknown"]=="proposal-only"
+    assert len(r["exact_head_required_success_checks"])==7
+    assert (P/"RECONSTRUCTION_MERGE.md").is_file()
     assert p["publication"]["manual_maintainer_decision_required"] is True
     assert p["publication"]["require_separate_reviewer_for_authoritative_changes"] is False
     assert p["publication"]["require_current_base_revalidation"] is False
