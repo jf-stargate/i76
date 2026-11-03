@@ -19,7 +19,8 @@
 
 - Prefer **plain data structures and ordinary free functions** over deep inheritance, virtual interfaces, elaborate generic frameworks, or an ECS introduced in advance of actual needs.
 - Use namespace i76 and narrow named namespaces for modules; never put using namespace directives in public headers.
-- Filenames: lower_snake_case.cpp/.hpp; types and enum types: PascalCase; functions, variables, fields, namespaces: lower_snake_case; compile-time constants: kPascalCase; macros, when unavoidable: I76_UPPER_CASE.
+- Filenames: `lower_snake_case.cpp` with `lower_snake_case.h` headers (use `.hpp` only where justified); types, enum types, functions, fields, variables, namespaces, and `constexpr` names: `lower_snake_case`. A descriptive `i76_` prefix is acceptable for public/data-contract types, including inside the `i76` namespace. Macros, when unavoidable: `I76_UPPER_CASE`.
+- Prefer inspectable `struct` state with small explicit methods (`init`, `shutdown`, `clear`, `tick`) or ordinary free functions. Both are permitted; do not mandate PascalCase classes or deep interface inheritance. Keep substantive implementation in `.cpp` when this materially improves debugger stepping and rebuild times.
 - **Use explicit-width integer types for all first-party application state, parameters, return values, and persistent IDs:** `std::int8_t`, `std::uint8_t`, `std::int16_t`, `std::uint16_t`, `std::int32_t`, `std::uint32_t`, `std::int64_t`, or `std::uint64_t` from `<cstdint>`. Do not use unqualified `short`, `int`, `long`, `long long`, or aliases like `uint` in first-party interfaces or storage. Use the same rule for local integers where practicable.
 - **Explicit exceptions:** `std::size_t` for native memory sizes, array sizes and indices; `std::ptrdiff_t` for native pointer/range differences; `std::uintptr_t` only for genuinely pointer-sized diagnostics/interoperability; `bool` for logical state; and the exact types required by standard-library, OS, or third-party APIs (including the C++ `main` return type). Convert at the boundary with bounds checks; never propagate an ambiguous external type into engine interfaces.
 - Give enum classes explicit fixed-width underlying types (for example, `enum class MissionState : std::uint8_t`). Resource IDs, game ticks, packet fields, object handles, serialized lengths and bitfields MUST have deliberately chosen documented widths. No implicit assumption that native `size_t` or pointer size equals retail binary data size.
@@ -31,7 +32,8 @@
 - Use named functions for simulation math when operator overloads would obscure control flow. Avoid clever expression templates and user-defined implicit conversions.
 - No function-like macros for logic, iteration, allocation, object access, or error propagation. Preprocessor use is limited to guards, portability switches, and tightly justified compile-time configuration.
 - Each public header MUST include what it uses; never rely on transitive includes. Keep public headers small and implementation details out of interfaces.
-- Apply reconstruction/.clang-format to new C++ files. Four-space indent, 100-column guideline, braces as configured; avoid manual formatting wars.
+- Apply `reconstruction/.clang-format` to new C++ files. Four-space indent, 100-column guideline, and left-attached pointers (`type* value`) reflect the supplied handwritten example. Section banners and explicit validation branches are welcome; do not create formatting-only churn in historical research.
+- Treat the maintainer's handwritten `i69` code as **style guidance, not a code dependency or accepted engine implementation**. Keep its plain structs, consistent lower_snake_case, direct state flow, and lifecycle clarity; use the accompanying [STYLE_GUIDE.md](STYLE_GUIDE.md) for specific observations. Do not import the uploaded source or prebuilt binary into the public repository.
 
 ## 3. Standard-library containers and strings
 
@@ -47,7 +49,7 @@
 
 The project favors **visible, deliberate lifecycle transitions**. C++ standard containers may own their storage and release it through scope-bound deterministic destruction; that is accepted. Destruction of meaningful *engine state* must not be hidden inside an arbitrary object graph.
 
-- Expose explicit operations such as app_initialize/app_shutdown, mission_load/mission_unload, resource_open/resource_close, and session_start/session_stop. Name the owner of every persistent resource.
+- Expose explicit operations such as `app_initialize`/`app_shutdown`, `mission_load`/`mission_unload`, `resource_open`/`resource_close`, and `session_start`/`session_stop`. Name the owner of every persistent resource. **Do not make window creation or SDL video initialization a precondition of app initialization.**
 - Do not put OS handles, GPU allocations, network sessions, or mission teardown side effects in surprise destructors. Their release MUST occur at explicit and testable shutdown points. A destructor may defensively assert a resource was released or perform trivial local cleanup, but should not quietly implement the application's state machine.
 - Prefer value storage and containers for small owned data. std::unique_ptr may be used sparingly for clear single-owner heap objects; do not build the world-object graph out of unique_ptr chains. std::shared_ptr and std::weak_ptr require a specific documented justification and review.
 - Avoid raw owning new/delete in gameplay code. Centralize construction in modules/factories with explicit corresponding teardown. Non-owning raw pointers are acceptable for short-lived access when lifetime is obvious.
@@ -55,6 +57,16 @@ The project favors **visible, deliberate lifecycle transitions**. C++ standard c
 - Do not allocate, release, or relocate core simulation state unexpectedly during a frame. Preallocate and reserve when practical; any runtime allocation path MUST be observable and documented.
 - Never create mutable globals or side-effectful static initialization for registries, configuration, logging, or game state. Pass contexts explicitly.
 - Do not conflate deterministic destructor timing with deterministic gameplay. Scheduling, ordering, RNG, and mutation phases are independently specified below.
+
+## 4a. Platform independence and substitutable outputs
+
+The proposed portable architecture is in [ARCHITECTURE.md](ARCHITECTURE.md). The engine, mission VM, and world simulation MUST NOT require SDL, a window, graphics device, audio device, terminal, interactive input, or a particular operating system to initialize and execute.
+
+- Keep input producers, clocks, file/resource providers, and output consumers behind narrow typed ports. Every external **output** (render/scene presentation, audio, debug drawing, telemetry, diagnostics/logging, persistent-file writes, and later network emission) MUST support a null/discard sink and a test capture/mock sink where the channel exists. A null sink must not alter simulation state or demand a device; a capture sink must expose exactly what was emitted.
+- A **window is optional**. SDL3 video and SDL3 GPU initialization belong exclusively to the optional graphical host/backend, never the engine core or the headless/terminal host. A terminal frontend such as Notcurses is an optional adapter alongside a line-mode CLI and graphical UI.
+- The engine publishes typed, bounded, owned-or-lifetime-documented frame data, events, and inspectable snapshots. Backends do not receive raw pointers into a mutable world as durable identities. Preserve event ordering and object handles across sinks.
+- Keep core game time independent of the OS clock: the host supplies elapsed real time, while the runtime advances an explicit fixed-step simulation clock. Never call `std::chrono::steady_clock::now()` within deterministic world/FSM updates.
+- Backend changes MUST be testable: run equivalent deterministic scenarios under null and recording sinks and assert identical world state and event sequence. Add cross-platform compile/functional coverage and device-free lifecycle tests.
 
 ## 5. World objects and stable identity
 
@@ -122,10 +134,10 @@ The project favors **visible, deliberate lifecycle transitions**. C++ standard c
 
 The first application-framework PR should demonstrate all of these, using synthetic fixtures only:
 
-1. Configure, build, and run a minimal i76 executable in headless mode, linked against a testable core library.
+1. Configure, build, and run a minimal i76 executable in headless mode **with no display server, terminal, sound card, or input device**, linked against a testable core library.
 2. Initialize and shut down the application explicitly; demonstrate repeat initialization/shutdown or document the exact lifetime constraints.
 3. Parse basic CLI arguments and support help, version, and exit commands with clear errors.
-4. Provide a small shared command dispatch interface that a future GUI can invoke; no graphical shell is required for this milestone.
+4. Provide a small shared command dispatch interface for CLI, future TUI, and future GUI frontends; add null and recording sinks for the initial output channels, with identical simulation results.
 5. Produce GDB-readable state and demonstrate a GDB/TUI invocation.
 6. Include targeted unit tests for all new core/application behavior and functional headless CLI tests, including failure and shutdown paths.
 7. Establish CTest, Linux sanitizer and coverage configurations, and a Valgrind-compatible debug build. Run a Memcheck smoke suite; provide labeled Helgrind targets when threading is introduced.
