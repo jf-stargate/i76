@@ -1,0 +1,23 @@
+relationship	function	instruction_va	instruction	interpretation
+G1	00493080	004930f6	MOV EDI,0x644380	initializer selects shared grid; REP STOSD at 00493101 writes it
+G1	00493160	0049319d	MOV EAX,dword ptr [EAX*0x4 + 0x644380]	lattice reader consumes same page grid
+G1	004931c0	004931c3	FLD float ptr [0x006442c4]	normal sampler consumes initialized reciprocal spacing
+G1	00493550	00493556	FLD float ptr [0x006442c4]	height sampler shares same spacing
+G2	00410490	00410495	MOV ECX,dword ptr [0x005244d0]	stream-state reader
+G2	004105a0	004105a5	MOV ECX,dword ptr [0x005244d0]	same stream-state reader
+G2	00410720	00410738	MOV [0x005244d0],EAX	stream initializer; direct calls smaller importers
+G3	00412cc0	00412cc0	MOV dword ptr [0x005244dc],0x0	execution-state reset
+G3	00412ce0	00412da1	MOV ECX,dword ptr [0x005244dc]	dispatcher shares execution state
+G3	00414670	00414949	CALL 0x00412ce0	interpreter invokes dispatcher
+G3	004149f0	00414a58	CALL 0x00414670	scheduler invokes interpreter
+G4	00470660	00470677	MOV [0x0058d920],EAX	PIX setup writes index state
+G4	00470ac0	00470acf	MOV EAX,[0x0058d920]	teardown consumes index state
+G4	00470b20	00470b52	MOV EAX,[0x0058d920]	payload lookup consumes index state
+G5	004b3000	004b3014	CALL 0x004b3030	registered read wrapper
+G5	004b3030	004b3042	CALL 0x004b2e00	registered reader invokes resolver
+G5	004b2e00	004b2e0d	PUSH 0x470ca0	function-pointer comparator dependency crosses code neighborhoods
+B1	004937c0	004937c9	MOV EAX,[0x006442c0]	terrain finalizer grid-state side
+B1	00493910	00493919	MOV EDI,0x5a4768	loader-state side; ZMAP initialization
+B2	004703a0	004703a0	MOV EAX,[0x00654b80]	texture region begins with display mode state; membership predecessor has no bounded data targets
+B3	00470580	00470580	MOV EAX,[0x00654b80]	texture release state differs from following PIX initializer at 00470677
+NEG	00493150	00493150	JMP 0x00493c10	adjacent thunk does not establish sampler common-file ownership
