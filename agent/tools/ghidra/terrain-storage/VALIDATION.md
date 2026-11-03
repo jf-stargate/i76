@@ -1,0 +1,17 @@
+# Executed validation and limits
+
+Final tested migration: `I76_TerrainStorageAudit_20261103.java`, SHA-256 `1e97c285faa5deccb3f0ed3313e0639caf5058ab6b4cf03066560a898c4a4625`. Separate fresh-base shared-tool proposal; no companion TSV or external binary file required at execution. The audit's PE comparisons are independent of the migration's embedded original-body guards.
+
+- Final preview: **2 eligible, no edits**. Seven tables and every one of the 279 initial C captures match the original before capture.
+- Apply: **2 changed, committed=true**. Repeat: **0 changed, 2 already**. All saved tables and C in both after/repeat capture sets match exactly.
+- Independent section-mapped PE verification: **2,102 defined body hashes/ranges pass**; function table/signatures and instruction captures are unchanged after application.
+- **289 unique C functions** captured, **10 changed /279 unchanged**. Ten complete changed bodies/diffs reviewed. Five terrain functions, direct callers of accepted control targets, all six audio literal callers and spacing readers included. This is not an all-transitive-caller or whole-program decompilation claim.
+- All analyst USER_DEFINED symbols, old type-library entries, all 3,402 comments and all function signatures/storage are identical. Only defined-data rows **006442C0 and 004ED7EC** differ. A generated string label replaces a generated pointer label; the false pointer data reference is removed as a consequence of accurate string typing.
+- **Seven negative cases passed:** incompatible spacing type, analyst string label, overlapping eight-byte definition, altered original function byte, wrong executable metadata, unexpected failure immediately after the first data edit, and invalid mode. Fixtures run only in a disposable project. A subsequent independent capture confirms saved functions/symbols/types/comments/instructions/data and every C capture equal the pre-test state. This checks actual rollback, not merely a transaction flag.
+- **12 structure layouts** compare equal by recursive offsets, dimensions, names and component types. Ghidra isEquivalent rejects two despite matching semantic layouts. No type was replaced to satisfy that comparator.
+
+The separate research run’s `scripts/validate_captures.py` executed **26 independent assertions, 26 passing**; result and capture digests are in the separate research run’s `evidence/capture_validation.json`. Seven fixture cases are additionally reported explicitly rather than inflated into individual function-body assertion counts.
+
+The final clean negative/apply logs contain no script errors. Earlier development trials rejected an invalid createData overload, a null generic-pointer comparison, and a byte fixture that tried to modify a still-defined instruction. Those fixtures were fixed and rerun; they are not claimed as passing tests. The unmodified v102 preview intentionally fails on its absent prerequisite and is an audit observation, not a successful migration run.
+
+**Environment limit:** Java script compilation/execution was tested through **analyzeHeadless 12.1.4**, not the graphical Script Manager. The no-argument GUI choice dialog has not been exercised. No live GUI database was opened or changed. Suitable as a guarded maintainer-review candidate for the measured v99 database after backup and preview; no blanket compatibility claim for later analyst edits. Unknown preexisting definitions must remain preserved. No runtime, game-launch, hardware x87 or emulator check was performed.
