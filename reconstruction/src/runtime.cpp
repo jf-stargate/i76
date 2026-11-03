@@ -5,7 +5,7 @@
 
 static void record_diagnostic(void* context, const i76_diagnostic_event& event)
 {
-    auto* record = static_cast<i76_recording_outputs*>(context);
+    i76_recording_outputs* record = static_cast<i76_recording_outputs*>(context);
     record->diagnostics.push_back(event);
 }
 
@@ -23,8 +23,9 @@ static void record_audio(void* context, const i76_audio_event& event)
 
 static void emit_frame(i76_runtime& game)
 {
+    i76_scene_frame frame = {};
+
     if (game.outputs.scene.submit != nullptr) {
-        i76_scene_frame frame{};
         frame.tick = game.state.tick;
         game.outputs.scene.submit(game.outputs.scene.context, frame);
     }
@@ -76,6 +77,8 @@ i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept
 
 i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count)
 {
+    std::uint32_t index = 0;
+
     if (!game.state.initialized) {
         return i76_result_code::not_initialized;
     }
@@ -85,7 +88,7 @@ i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count)
     }
 
     // A manually requested step is permitted while paused, like a debugger.
-    for (std::uint32_t index{}; index < count; ++index) {
+    for (index = 0; index < count; ++index) {
         ++game.state.tick;
         emit_frame(game);
     }
@@ -94,6 +97,9 @@ i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count)
 
 i76_result_code i76_runtime_advance_time(i76_runtime& game, std::uint64_t elapsed_ns)
 {
+    std::uint64_t total_ns = 0;
+    std::uint64_t count = 0;
+
     if (!game.state.initialized) {
         return i76_result_code::not_initialized;
     }
@@ -104,8 +110,8 @@ i76_result_code i76_runtime_advance_time(i76_runtime& game, std::uint64_t elapse
         return i76_result_code::overflow;
     }
 
-    const std::uint64_t total_ns = game.state.accumulated_ns + elapsed_ns;
-    const std::uint64_t count = total_ns / game.state.tick_period_ns;
+    total_ns = game.state.accumulated_ns + elapsed_ns;
+    count = total_ns / game.state.tick_period_ns;
     if (count > i76_k_max_ticks_per_call ||
         count > std::numeric_limits<std::uint64_t>::max() - game.state.tick) {
         return i76_result_code::overflow;
@@ -140,11 +146,12 @@ i76_result_code i76_runtime_request_exit(i76_runtime& game) noexcept
 
 i76_result_code i76_runtime_emit_audio(i76_runtime& game, std::uint32_t sound_id)
 {
+    i76_audio_event event = {};
+
     if (!game.state.initialized) {
         return i76_result_code::not_initialized;
     }
     if (game.outputs.audio.submit != nullptr) {
-        i76_audio_event event{};
         event.tick = game.state.tick;
         event.sound_id = sound_id;
         game.outputs.audio.submit(game.outputs.audio.context, event);
@@ -154,8 +161,9 @@ i76_result_code i76_runtime_emit_audio(i76_runtime& game, std::uint32_t sound_id
 
 void i76_runtime_emit_diagnostic(i76_runtime& game, i76_diagnostic_level level, const std::string& message)
 {
+    i76_diagnostic_event event = {};
+
     if (game.state.initialized && game.outputs.diagnostics.submit != nullptr) {
-        i76_diagnostic_event event{};
         event.tick = game.state.tick;
         event.level = level;
         event.message = message;
