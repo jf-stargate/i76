@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261103T180453Z-3e27445e",
+  "track": "i76exe",
+  "topic": "Original translation-unit discovery Pilot 1: bounded TER/FSM/RES",
+  "base_commit": "deaef41589671984c7e65010b2ecde351ad9ddf4",
+  "started_at": "2026-11-03T18:04:53Z",
+  "summary": "Read-only v100 inventory; eight provisional cores, no recovered filenames, no HIGH source attribution.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3"
+    },
+    {
+      "name": "i76exe_v100.gzf",
+      "kind": "other",
+      "md5": "bd62f1b3dc87548e7b27fc97a68cddd6",
+      "sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0"
+    }
+  ],
+  "baselines": [
+    {
+      "version": "Ghidra 12.1.4",
+      "program_name": "i76exe_v100",
+      "baseline_id": "i76exe_v100.gzf",
+      "baseline_sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0",
+      "storage_ref": "private maintainer export"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/BOUNDARY_ANALYSIS.md",
+      "kind": "report",
+      "sha256": "e36797cbd530407f0e5fb8adae255e648736569154b3b7533b2ddc8dafa5b79d",
+      "bytes": 3734
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "dfb34674c4fbf43614a47cf30476748d4f0f57f8cfa753d61fc5f6764023f48d",
+      "bytes": 1534
+    },
+    {
+      "path": "artifacts/METHOD_EVALUATION.md",
+      "kind": "report",
+      "sha256": "78ab4a199f8b7cf020d5c82f1581a9b06ce96456bec3a3511fdc3ada96fcfe97",
+      "bytes": 3799
+    },
+    {
+      "path": "artifacts/PROVENANCE.md",
+      "kind": "report",
+      "sha256": "c09038d94266fad0cd3c22e005cc2f7b6042b43f502de87c30ec712b24509a64",
+      "bytes": 1214
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "4260918259a52e46c3df8190f470d386b5836b200fca44808568ac4bc62e15b6",
+      "bytes": 2330
+    },
+    {
+      "path": "artifacts/TRANSLATION_UNIT_CANDIDATES.md",
+      "kind": "report",
+      "sha256": "92afcf38e91910bba264661418f368e0d35df431de3bf00cbc65546a213f2393",
+      "bytes": 8421
+    },
+    {
+      "path": "evidence/function_evidence.tsv",
+      "kind": "table",
+      "sha256": "61728e9d307fa8a841e61577dbffceb3f2eb20e9d68e7c1a9cab68aea44e28a3",
+      "bytes": 4595
+    },
+    {
+      "path": "evidence/group_metrics.txt",
+      "kind": "report",
+      "sha256": "c0f4f588750af62d21298d69b1d449c49c1f0c970333caf851c36a8f4ccc2dc5",
+      "bytes": 2080
+    },
+    {
+      "path": "evidence/manual_audit.tsv",
+      "kind": "table",
+      "sha256": "7d8faacfc8f9cd67a8bb37104d914b79f959a358fcda369836cd6d6562bbf6b4",
+      "bytes": 1953
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "report",
+      "sha256": "69c048a2035b10ea682c403982e9cfefd4a02dff47339c7c8ea3985a5370fae4",
+      "bytes": 620
+    },
+    {
+      "path": "scripts/TuAudit.java",
+      "kind": "script",
+      "sha256": "cf16ad1685fb596efe969d90e643876d5bd48225f976617aa94422d38c43ba2c",
+      "bytes": 1600
+    },
+    {
+      "path": "scripts/TuInventory.java",
+      "kind": "script",
+      "sha256": "56c5df81aa7b60a9cc2324033c4cafef99dbf4679fe34d3a715d74344d8e0b83",
+      "bytes": 1742
+    },
+    {
+      "path": "scripts/TuValidate.java",
+      "kind": "script",
+      "sha256": "07beb1d1d858e226ba142eadcf09250e92e722ecb80557e5d7caf5f0ae607971",
+      "bytes": 1065
+    },
+    {
+      "path": "scripts/analyze.py",
+      "kind": "script",
+      "sha256": "0e7fcd9f2f17d0a17d7ed77710dac9cc350704afc463849320ee7c302c9253c3",
+      "bytes": 2397
+    },
+    {
+      "path": "scripts/provenance.py",
+      "kind": "script",
+      "sha256": "5bc8bba301a9a284d7478d4450e1693a41c8dc49dc7ce4b72d669bef896778f1",
+      "bytes": 1183
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 7,
+    "passed_count": 7
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TuAudit.java",
+        "sha256": "cf16ad1685fb596efe969d90e643876d5bd48225f976617aa94422d38c43ba2c"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TuInventory.java",
+        "sha256": "56c5df81aa7b60a9cc2324033c4cafef99dbf4679fe34d3a715d74344d8e0b83"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TuValidate.java",
+        "sha256": "07beb1d1d858e226ba142eadcf09250e92e722ecb80557e5d7caf5f0ae607971"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/analyze.py",
+        "sha256": "0e7fcd9f2f17d0a17d7ed77710dac9cc350704afc463849320ee7c302c9253c3"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/provenance.py",
+        "sha256": "5bc8bba301a9a284d7478d4450e1693a41c8dc49dc7ce4b72d669bef896778f1"
+      }
+    ],
+    "methods": [
+      "Ghidra read-only noanalysis extraction",
+      "standard-library bounded call/data analysis",
+      "manual instruction/xref audits",
+      "PE provenance parsing",
+      "database/input integrity checks"
+    ],
+    "limitations": "Requires private licensed executable and exact v100 export; source ownership is inferred, not ground-truthed."
+  }
+}

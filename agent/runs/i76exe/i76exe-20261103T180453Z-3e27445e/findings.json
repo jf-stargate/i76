@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261103T180453Z-3e27445e",
+  "findings": [
+    {
+      "finding_id": "TU-PILOT-01",
+      "claim": "Eight candidate cores support bounded source-organization hypotheses, with no HIGH confidence original-file attribution.",
+      "status": "inferred",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TRANSLATION_UNIT_CANDIDATES.md"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/manual_audit.tsv"
+        }
+      ],
+      "limitations": "LOW/MODERATE qualitative categories; no independent source ground truth; exact boundaries unresolved."
+    },
+    {
+      "finding_id": "TU-PILOT-02",
+      "claim": "Retail PE exposes no COFF symbol table or debug directory; scanned CodeView markers and printable source-path candidates are absent.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json"
+        }
+      ],
+      "limitations": "Declared static scans only; Rich metadata exists but does not identify source files."
+    }
+  ]
+}
