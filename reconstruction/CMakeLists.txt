@@ -18,6 +18,16 @@ endif()
 
 add_library(i76_core STATIC src/runtime.cpp src/command.cpp)
 target_include_directories(i76_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+# Keep the default Debug build suitable for GDB/TUI on Linux.
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(i76_core PUBLIC
+        $<$<CONFIG:Debug>:-O0>
+        $<$<CONFIG:Debug>:-fno-omit-frame-pointer>
+    )
+endif()
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(i76_core PUBLIC $<$<CONFIG:Debug>:-ggdb3>)
+endif()
 if(MSVC)
     target_compile_options(i76_core PRIVATE /W4 /permissive-)
 else()
