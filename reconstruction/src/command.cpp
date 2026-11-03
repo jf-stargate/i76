@@ -8,11 +8,14 @@
 
 static std::string_view trim(std::string_view input)
 {
-    const std::size_t start = input.find_first_not_of(" \t\r\n");
+    std::size_t start = 0;
+    std::size_t end = 0;
+
+    start = input.find_first_not_of(" \t\r\n");
     if (start == std::string_view::npos) {
         return {};
     }
-    const std::size_t end = input.find_last_not_of(" \t\r\n");
+    end = input.find_last_not_of(" \t\r\n");
     return input.substr(start, end - start + 1U);
 }
 
@@ -30,6 +33,10 @@ static i76_command_result make_reply(i76_runtime& game, i76_result_code code, st
 
 i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
 {
+    std::size_t split = 0;
+    std::string_view command = {};
+    std::string_view args = {};
+
     if (!game.state.initialized) {
         return {i76_result_code::not_initialized, "runtime is not initialized"};
     }
@@ -38,9 +45,9 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
         return make_reply(game, i76_result_code::invalid_argument, "empty command");
     }
 
-    const std::size_t split = line.find_first_of(" \t");
-    const std::string_view command = line.substr(0, split);
-    const std::string_view args = split == std::string_view::npos ? std::string_view{}
+    split = line.find_first_of(" \t");
+    command = line.substr(0, split);
+    args = split == std::string_view::npos ? std::string_view{}
                                                                      : trim(line.substr(split));
     if (command == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
@@ -65,18 +72,23 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
         return make_reply(game, i76_result_code::ok, "exit requested");
     }
     if (command == "step") {
-        std::uint32_t count{};
+        std::uint32_t count = 0;
+        const char* begin = nullptr;
+        const char* end = nullptr;
+        std::from_chars_result parsed = {};
+        i76_result_code result = i76_result_code::ok;
+
         if (args.empty()) {
             return make_reply(game, i76_result_code::invalid_argument, "step requires a count");
         }
-        const char* const begin = args.data();
-        const char* const end = begin + args.size();
-        const std::from_chars_result parsed = std::from_chars(begin, end, count, 10);
+        begin = args.data();
+        end = begin + args.size();
+        parsed = std::from_chars(begin, end, count, 10);
         if (parsed.ec != std::errc{} || parsed.ptr != end || count == 0U ||
             count > i76_k_max_ticks_per_call) {
             return make_reply(game, i76_result_code::invalid_argument, "invalid step count");
         }
-        const i76_result_code result = i76_runtime_step(game, count);
+        result = i76_runtime_step(game, count);
         if (result != i76_result_code::ok) {
             return make_reply(game, result, "unable to advance simulation");
         }
