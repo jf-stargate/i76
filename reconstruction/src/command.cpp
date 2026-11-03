@@ -21,12 +21,15 @@ static std::string_view trim(std::string_view input)
 
 static i76_command_result make_reply(i76_runtime& game, i76_result_code code, std::string message)
 {
-    i76_command_result reply{};
+    i76_command_result reply = {};
+    i76_diagnostic_level level = i76_diagnostic_level::error;
+
     reply.code = code;
     reply.message = std::move(message);
-    i76_runtime_emit_diagnostic(game, code == i76_result_code::ok ? i76_diagnostic_level::info
-                                                            : i76_diagnostic_level::error,
-                            reply.message);
+    if (code == i76_result_code::ok) {
+        level = i76_diagnostic_level::info;
+    }
+    i76_runtime_emit_diagnostic(game, level, reply.message);
     return reply;
 }
 
@@ -47,8 +50,11 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
 
     split = line.find_first_of(" \t");
     command = line.substr(0, split);
-    args = split == std::string_view::npos ? std::string_view{}
-                                                                     : trim(line.substr(split));
+    if (split == std::string_view::npos) {
+        args = {};
+    } else {
+        args = trim(line.substr(split));
+    }
     if (command == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
                           "commands: help status pause resume step <count> quit");
