@@ -6,9 +6,8 @@
 #include <string>
 #include <vector>
 
-namespace {
 
-int run(int argc, char* argv[])
+static int run(int argc, char* argv[])
 {
     std::vector<std::string> commands{};
     bool interactive{};
@@ -39,20 +38,20 @@ int run(int argc, char* argv[])
         return 2;
     }
 
-    i76::runtime game{};
-    i76::runtime_config config{};
+    i76_runtime game{};
+    i76_runtime_config config{};
     config.tick_rate = 60U;
-    const i76::result_code initialized =
-        i76::runtime_initialize(game, config, i76::make_null_outputs());
-    if (initialized != i76::result_code::ok) {
-        std::cerr << "unable to initialize runtime\n";
+    const i76_result_code initialized =
+        i76_runtime_initialize(game, config, i76_make_null_outputs());
+    if (initialized != i76_result_code::ok) {
+        std::cerr << "unable to initialize i76_runtime\n";
         return 1;
     }
 
     int exit_code{};
     const auto process = [&](const std::string& command) {
-        const i76::command_result result = i76::execute_command(game, command);
-        if (result.code == i76::result_code::ok) {
+        const i76_command_result result = i76_execute_command(game, command);
+        if (result.code == i76_result_code::ok) {
             std::cout << result.message << '\n';
         } else {
             std::cerr << result.message << '\n';
@@ -73,11 +72,10 @@ int run(int argc, char* argv[])
         }
     }
 
-    const i76::result_code shutdown = i76::runtime_shutdown(game);
-    return shutdown == i76::result_code::ok ? exit_code : 1;
+    const i76_result_code shutdown = i76_runtime_shutdown(game);
+    return shutdown == i76_result_code::ok ? exit_code : 1;
 }
 
-} // namespace
 
 int main(int argc, char* argv[])
 {
