@@ -107,7 +107,7 @@ jobs:
         # Branch coverage is advisory until the approved diff-based 80% policy
         # is implemented; the initial command parser contains compiler-generated
         # exception branches not reachable through normal input tests.
-        run: gcovr --root reconstruction --filter 'reconstruction/src/' --print-summary --fail-under-line 90
+        run: gcovr --root . --filter 'reconstruction/src/' --print-summary --fail-under-line 90
 
   linux-valgrind:
     name: linux-valgrind-memcheck

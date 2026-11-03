@@ -5,15 +5,13 @@
 #include <string>
 #include <string_view>
 
-namespace i76 {
 
-struct command_result {
-    result_code code{};
+struct i76_command_result {
+    i76_result_code code{};
     std::string message{};
 };
 
 // Parse and execute one command at a well-defined host/simulation boundary.
-// In particular, a failed parse must not mutate the runtime.
-command_result execute_command(runtime& game, std::string_view line);
+// In particular, a failed parse must not mutate the i76_runtime.
+i76_command_result i76_execute_command(i76_runtime& game, std::string_view line);
 
-} // namespace i76
