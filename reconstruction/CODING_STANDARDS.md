@@ -1,6 +1,6 @@
 # I76 reconstruction — C++20 coding standards
 
-**Status:** Proposed v0.1.0 for maintainer acceptance. **Scope:** independently authored code under reconstruction/, not original-binary research, historical snapshots, or the agent publication protocol. These are proposed engineering conventions, not claims about the original game's implementation.
+**Status:** Proposed v0.2.0 for maintainer acceptance. **Scope:** independently authored code under reconstruction/, not original-binary research, historical snapshots, or the agent publication protocol. These are proposed engineering conventions, not claims about the original game's implementation.
 
 **Primary goal:** A playable, maintainable logical reimplementation of Interstate '76 that consumes original game resources supplied by the player. Reproduce observable resource, mission/FSM, vehicle, and gameplay semantics where needed; do not reproduce retail allocation strategies, shell ABI, object layouts, or binary compatibility merely for similarity.
 
@@ -80,15 +80,25 @@ The project favors **visible, deliberate lifecycle transitions**. C++ standard c
 - Logging and diagnostics must not alter simulation results. Record state transitions, allocations of note, asset failures, and command execution with enough context to reproduce failures.
 - Keep the debugging console's user-visible error reporting separate from internal diagnostic logging.
 
-## 8. Debug builds, quality, and tests
+## 8. Debug builds, automated testing, and quality gates
 
-- Default developer debug configuration: full GDB symbols, -O0, preserved frame pointers, no LTO, and symbols for private implementation types. Prefer -ggdb3 when using GCC. Provide a separate optimized build.
-- Enable useful warnings on first-party targets (at minimum -Wall -Wextra -Wpedantic for GCC/Clang; appropriate MSVC equivalents). Fix warnings rather than suppressing categories globally. Consider -Wconversion/-Wshadow per target as code stabilizes.
-- Provide separate AddressSanitizer and UndefinedBehaviorSanitizer test configurations on supported compilers. Keep sanitizer and ordinary GDB builds separate; do not assume sanitizer results replace direct debugging.
-- Add CTest unit tests for containers/ownership contracts, parsers, handle invalidation, mission load/unload, VM execution and ordering, and commands as these modules are introduced. Use synthetic fixtures in public CI.
-- Every new public entry point MUST have at least one success-path test and relevant failure-path coverage, unless the PR documents why testing is deferred.
-- Favor regression snapshots of *structured* parsed world/VM state and behavior over image-only assertions. Compare against measured retail evidence where available, clearly labeling original instruction, emulation, inference, or approximation.
-- No PR should claim a test passed unless it was actually run. Report exact commands, platform/compiler, failures, and untested targets.
+**Testing is required for every first-party production change.** The detailed test matrix, tool commands, CI plan, and coverage policy are in [TESTING.md](TESTING.md).
+
+- Default debug builds: full GDB symbols, -O0, preserved frame pointers, no LTO, and inspectable private implementation types. Prefer -ggdb3 with GCC. Keep optimized builds separate.
+- Enable useful first-party compiler warnings (at least -Wall -Wextra -Wpedantic on GCC/Clang or MSVC equivalents); fix warnings rather than globally silencing them.
+- Register every test with CTest and label it unit, functional, threaded, memcheck, or helgrind as appropriate. Public CI must use synthetic fixtures without proprietary retail assets, external services, or graphical devices.
+- **Every new or modified public behavior, command, bug fix, nontrivial algorithm, parser or state transition MUST have automated unit-test coverage**, including success, failure and relevant boundary paths. Data declarations and platform shims can be tested via a documented consumer; exceptions require maintainer review.
+- **Every new executable feature or cross-subsystem behavior MUST have functional/integration tests wherever feasible.** Prefer exercising the real headless executable with controlled clocks, seeded RNG and synthetic fixtures. When a real device is required, test through a backend double and document an optional real-device check.
+- Lifecycle changes MUST test partial initialization failures, cleanup, repeated load/unload and stale handles. FSM and world changes MUST test ordering and destroyed/missing actor references. Functional tests MUST assert meaningful state, not merely process exit.
+- Do not disable, silently skip, or tolerate flaky tests to make PRs pass. Document unavoidable platform skips as reviewed exceptions. A compiled-only or skipped test is not a passing test.
+- Measure first-party core line and branch coverage in Linux CI once the framework exists. **Initial minimum for new/changed testable core logic: 90% lines and 80% branches**, with reviewed exceptions for hardware-specific glue or unreachable defensive paths. A high coverage percentage alone does not establish correctness.
+- Provide separate debug-symbol **ASan/UBSan**, **Memcheck**, and **Helgrind** configurations. Do not run Memcheck on ASan-instrumented binaries; consider ThreadSanitizer separately for threaded targets where supported.
+- **Valgrind Memcheck (Linux):** a fast representative memory/ownership/teardown suite on each reconstruction PR; expanded eligible suite nightly or on manual dispatch. Valgrind errors and definite/possible leaks fail with a nonzero exit code. Report still-reachable blocks separately.
+- **Valgrind Helgrind (Linux):** once threading exists, PR-gated tests for changes touching shared state, queues, worker threads, or network handoff, and an expanded recurring suite. Tests MUST actually exercise concurrent paths; a passing single-thread test provides no race guarantee.
+- No accepted unsuppressed first-party memory errors, definite/possible leaks, or first-party race/lock-order reports. Keep any suppressions narrow, versioned and justified. Do not suppress entire modules.
+- CI MUST include Linux and Windows builds/unit/functional tests, Linux ASan/UBSan, coverage, and Linux Memcheck; add Helgrind and TSan for actual concurrency. Missing required tools must fail a CI job rather than silently omit it.
+- New/changed code PRs MUST report exact commands, OS/compiler, test counts and failures, coverage, sanitizer and Valgrind applicability, skips, and untested behavior. Never claim tests passed when they were not run.
+- Build/test workflows executing PR source MUST use read-only, unprivileged pull_request permissions and no secrets. The existing trusted-base research integrity check is separate; adding a .github/ workflow requires its own reviewed governance proposal.
 
 ## 9. Source portability, review, and future C extraction
 
@@ -111,7 +121,10 @@ The first application-framework PR should demonstrate all of these, using synthe
 2. Initialize and shut down the application explicitly; demonstrate repeat initialization/shutdown or document the exact lifetime constraints.
 3. Parse basic CLI arguments and support help, version, and exit commands with clear errors.
 4. Provide a small shared command dispatch interface that a future GUI can invoke; no graphical shell is required for this milestone.
-5. Produce GDB-readable state and CTest results; document a working GDB/TUI debug invocation.
-6. Create no dependency on proprietary retail resources, original binaries, or the original shell DLL.
+5. Produce GDB-readable state and demonstrate a GDB/TUI invocation.
+6. Include targeted unit tests for all new core/application behavior and functional headless CLI tests, including failure and shutdown paths.
+7. Establish CTest, Linux sanitizer and coverage configurations, and a Valgrind-compatible debug build. Run a Memcheck smoke suite; provide labeled Helgrind targets when threading is introduced.
+8. Propose the executable reconstruction CI workflow through a separate reviewed .github/ change; do not claim automated enforcement until that workflow is merged and running.
+9. Create no dependency on proprietary retail resources, original binaries, or the original shell DLL.
 
 **Review boundary:** Accepting this coding standard does not accept the earlier research roadmap's remaining gameplay or original-instruction claims. Implementation choices and reverse-engineering evidence retain separate provenance.

@@ -6,7 +6,7 @@
 
 **Language:** C++20, intentionally procedural and GDB-friendly. Standard containers and strings are permitted. Runtime resource lifecycles, simulation ordering, and object identities remain explicit.
 
-**Before contributing:** Read [CODING_STANDARDS.md](CODING_STANDARDS.md) and the repository's [AGENTS.md](../AGENTS.md) publication rules. The scoped [.clang-format](.clang-format) applies to new C++ source under this directory.
+**Before contributing:** Read [CODING_STANDARDS.md](CODING_STANDARDS.md), [TESTING.md](TESTING.md), and the repository's [AGENTS.md](../AGENTS.md) publication rules. The scoped [.clang-format](.clang-format) applies to new C++ source under this directory.
 
 **Current state:** Coding standard proposed first. No application framework, asset loader, or game-runtime implementation is claimed to exist yet.
 
