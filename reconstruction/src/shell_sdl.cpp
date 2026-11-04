@@ -7,20 +7,27 @@
 #include <iostream>
 #include <string>
 
-static void shell_sdl_process_key(i76_shell_state& shell, i76_runtime& game, SDL_Keycode key)
+// -----------------------------------------------------------------------------
+// Translate SDL key presses into shell navigation commands.
+// -----------------------------------------------------------------------------
+static void shell_sdl_process_key(i76_shell_state& shell,
+                                  i76_runtime& game,
+                                  SDL_Keycode key)
 {
     i76_shell_view view = i76_shell_make_view(shell);
     std::uint32_t index = 0;
 
     if (key == SDLK_UP) {
         if (view.item_count != 0U) {
-            shell.selected_index = (shell.selected_index + view.item_count - 1U) % view.item_count;
+            shell.selected_index = (shell.selected_index + view.item_count - 1U)
+                % view.item_count;
         }
         return;
     }
     if (key == SDLK_DOWN) {
         if (view.item_count != 0U) {
-            shell.selected_index = (shell.selected_index + 1U) % view.item_count;
+            shell.selected_index = (shell.selected_index + 1U) %
+                view.item_count;
         }
         return;
     }
@@ -42,7 +49,11 @@ static void shell_sdl_process_key(i76_shell_state& shell, i76_runtime& game, SDL
     }
 }
 
-static bool shell_sdl_present(SDL_Renderer* renderer, const i76_shell_state& shell,
+// -----------------------------------------------------------------------------
+// Draw a shell frame using the optional SDL renderer.
+// -----------------------------------------------------------------------------
+static bool shell_sdl_present(SDL_Renderer* renderer,
+                              const i76_shell_state& shell,
                               const i76_runtime& game)
 {
     i76_shell_view view = i76_shell_make_view(shell);
@@ -60,7 +71,8 @@ static bool shell_sdl_present(SDL_Renderer* renderer, const i76_shell_state& she
     status = "tick " + std::to_string(game.state.tick) + " | " +
              (game.state.paused ? "PAUSED" : "READY") +
              " | objects " + std::to_string(i76_world_count(game.world)) +
-             " | level " + (game.active_level.loaded ? game.active_level.definition.name :
+             " | level " + (game.active_level.loaded ?
+                 game.active_level.definition.name :
                               std::string("none")) + " | Esc: back/exit";
 
     SDL_SetRenderDrawColor(renderer, 20U, 23U, 28U, 255U);
@@ -82,7 +94,8 @@ static bool shell_sdl_present(SDL_Renderer* renderer, const i76_shell_state& she
         } else {
             SDL_SetRenderDrawColor(renderer, 225U, 230U, 235U, 255U);
         }
-        label = std::to_string(index + 1U) + ". " + std::string(view.items[index].label);
+        label = std::to_string(index + 1U) + ". " +
+            std::string(view.items[index].label);
         SDL_RenderDebugText(renderer, 32.0f, y, label.c_str());
     }
 
@@ -99,16 +112,22 @@ static bool shell_sdl_present(SDL_Renderer* renderer, const i76_shell_state& she
             object = i76_world_lookup(game.world, object_handle);
             if (object != nullptr) {
                 label = std::to_string(object_handle.slot) + ":" +
-                        std::to_string(object_handle.generation) + " " + object->name;
+                        std::to_string(object_handle.generation) + " " +
+                        object->name;
                 SDL_RenderDebugText(renderer, 28.0f, 314.0f +
-                                    static_cast<float>(object_index) * 16.0f, label.c_str());
+                                    static_cast<float>(object_index) * 16.0f,
+                                    label.c_str());
             }
         }
     }
     return SDL_RenderPresent(renderer);
 }
 
-std::int32_t i76_run_sdl_shell(i76_shell_state& shell, i76_runtime& game,
+// -----------------------------------------------------------------------------
+// Run the SDL shell frontend with bounded frame handling.
+// -----------------------------------------------------------------------------
+std::int32_t i76_run_sdl_shell(i76_shell_state& shell,
+                               i76_runtime& game,
                                std::uint32_t maximum_frames)
 {
     SDL_Window* window = nullptr;
@@ -124,11 +143,15 @@ std::int32_t i76_run_sdl_shell(i76_shell_state& shell, i76_runtime& game,
     }
     video_initialized = SDL_Init(SDL_INIT_VIDEO);
     if (!video_initialized) {
-        std::cerr << "SDL video initialization failed: " << SDL_GetError() << '\n';
+        std::cerr << "SDL video initialization failed: " << SDL_GetError() <<
+            '\n';
         return 1;
     }
-    window_created = SDL_CreateWindowAndRenderer("Interstate '76 | Reconstruction", 1200, 800,
-                                                  SDL_WINDOW_RESIZABLE, &window, &renderer);
+    window_created =
+        SDL_CreateWindowAndRenderer("Interstate '76 | Reconstruction", 1200,
+            800,
+                                                  SDL_WINDOW_RESIZABLE, &window,
+                                                  &renderer);
     if (!window_created) {
         std::cerr << "SDL window creation failed: " << SDL_GetError() << '\n';
         SDL_Quit();
@@ -148,7 +171,8 @@ std::int32_t i76_run_sdl_shell(i76_shell_state& shell, i76_runtime& game,
             break;
         }
         if (!shell_sdl_present(renderer, shell, game)) {
-            std::cerr << "SDL shell presentation failed: " << SDL_GetError() << '\n';
+            std::cerr << "SDL shell presentation failed: " << SDL_GetError() <<
+                '\n';
             result = 1;
             break;
         }

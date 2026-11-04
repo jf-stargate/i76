@@ -3,6 +3,9 @@
 
 #include <iostream>
 
+// -----------------------------------------------------------------------------
+// Print the current shell menu to its terminal output stream.
+// -----------------------------------------------------------------------------
 static void print_shell_menu(const i76_shell_state& shell, std::ostream& output)
 {
     i76_shell_view view = i76_shell_make_view(shell);
@@ -11,14 +14,21 @@ static void print_shell_menu(const i76_shell_state& shell, std::ostream& output)
     output << "\n== " << view.title << " ==\n";
     output << view.subtitle << "\n";
     for (index = 0; index < view.item_count; ++index) {
-        output << "  " << (index + 1U) << ") " << view.items[index].label << "\n";
+        output << "  " << (index + 1U) << ") " << view.items[index].label <<
+            "\n";
     }
     output << "Type a number or 'help'.\n";
 }
 
-static void process_shell_command(i76_shell_state& shell, i76_runtime& game,
-                                  std::string_view line, std::int32_t& exit_code,
-                                  std::ostream& output, std::ostream& errors)
+// -----------------------------------------------------------------------------
+// Execute a terminal shell command and print its result.
+// -----------------------------------------------------------------------------
+static void process_shell_command(i76_shell_state& shell,
+                                  i76_runtime& game,
+                                  std::string_view line,
+                                  std::int32_t& exit_code,
+                                  std::ostream& output,
+                                  std::ostream& errors)
 {
     i76_shell_page previous = shell.page;
     i76_command_result reply = i76_shell_execute(shell, game, line);
@@ -34,9 +44,16 @@ static void process_shell_command(i76_shell_state& shell, i76_runtime& game,
     }
 }
 
-std::int32_t i76_run_terminal_shell(i76_shell_state& shell, i76_runtime& game,
-                                    const std::vector<std::string>& commands, bool interactive,
-                                    std::istream& input, std::ostream& output, std::ostream& errors)
+// -----------------------------------------------------------------------------
+// Run the interactive or scripted terminal shell frontend.
+// -----------------------------------------------------------------------------
+std::int32_t i76_run_terminal_shell(i76_shell_state& shell,
+                                    i76_runtime& game,
+                                    const std::vector<std::string>& commands,
+                                    bool interactive,
+                                    std::istream& input,
+                                    std::ostream& output,
+                                    std::ostream& errors)
 {
     std::int32_t exit_code = 0;
     std::string line = {};

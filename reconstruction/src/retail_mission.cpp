@@ -4,7 +4,11 @@
 #include <limits>
 #include <utility>
 
-static i76_retail_result fail(i76_retail_error& error, i76_retail_result code,
+// -----------------------------------------------------------------------------
+// Record the specific retail-data error and byte offset.
+// -----------------------------------------------------------------------------
+static i76_retail_result fail(i76_retail_error& error,
+                              i76_retail_result code,
                               std::uint32_t offset) noexcept
 {
     error.code = code;
@@ -12,13 +16,19 @@ static i76_retail_result fail(i76_retail_error& error, i76_retail_result code,
     return code;
 }
 
+// -----------------------------------------------------------------------------
+// Compare a decoded BWD2 record with an expected FourCC.
+// -----------------------------------------------------------------------------
 static bool is_tag(const i76_bwd2_chunk& chunk, const char* name) noexcept
 {
     return std::strcmp(chunk.tag, name) == 0;
 }
 
+// -----------------------------------------------------------------------------
+// Find the semantic section matching a source byte offset.
+// -----------------------------------------------------------------------------
 static i76_retail_section* find_section(i76_retail_mission_definition& mission,
-                                         std::uint32_t offset) noexcept
+                                        std::uint32_t offset) noexcept
 {
     for (i76_retail_section& section : mission.sections) {
         if (section.offset == offset) {
@@ -28,6 +38,9 @@ static i76_retail_section* find_section(i76_retail_mission_definition& mission,
     return nullptr;
 }
 
+// -----------------------------------------------------------------------------
+// Validate the 80-by-80 terrain page map and collect page statistics.
+// -----------------------------------------------------------------------------
 static i76_retail_result decode_zmap(std::span<const std::uint8_t> bytes,
                                      const i76_bwd2_chunk& chunk,
                                      i76_retail_terrain_definition& terrain,
@@ -37,8 +50,10 @@ static i76_retail_result decode_zmap(std::span<const std::uint8_t> bytes,
     std::uint8_t index{};
     std::size_t position{};
 
-    if (terrain.has_zmap || chunk.payload_size != 1U + terrain.page_indices.size()) {
-        return fail(error, i76_retail_result::invalid_terrain_map, chunk.offset);
+    if (terrain.has_zmap || chunk.payload_size != 1U +
+        terrain.page_indices.size()) {
+        return fail(error, i76_retail_result::invalid_terrain_map,
+            chunk.offset);
     }
     terrain.has_zmap = true;
     terrain.zmap_offset = chunk.offset;
@@ -51,7 +66,8 @@ static i76_retail_result decode_zmap(std::span<const std::uint8_t> bytes,
         }
         if (index >= terrain.active_pages) {
             return fail(error, i76_retail_result::invalid_terrain_map,
-                        chunk.payload_offset + 1U + static_cast<std::uint32_t>(position));
+                        chunk.payload_offset + 1U +
+                        static_cast<std::uint32_t>(position));
         }
         ++terrain.mapped_cells;
         if (!seen[index]) {
@@ -62,6 +78,9 @@ static i76_retail_result decode_zmap(std::span<const std::uint8_t> bytes,
     return i76_retail_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Decode and validate the ZONE sidecar name and opaque prefix.
+// -----------------------------------------------------------------------------
 static i76_retail_result decode_zone(std::span<const std::uint8_t> bytes,
                                      const i76_bwd2_chunk& chunk,
                                      i76_retail_terrain_definition& terrain,
@@ -72,7 +91,8 @@ static i76_retail_result decode_zone(std::span<const std::uint8_t> bytes,
     std::string normalized{};
 
     if (terrain.has_zone || chunk.payload_size != 14U) {
-        return fail(error, i76_retail_result::invalid_terrain_name, chunk.offset);
+        return fail(error, i76_retail_result::invalid_terrain_name,
+            chunk.offset);
     }
     terrain.has_zone = true;
     terrain.zone_offset = chunk.offset;
@@ -84,19 +104,25 @@ static i76_retail_result decode_zone(std::span<const std::uint8_t> bytes,
     while (end < 13U && bytes[chunk.payload_offset + 1U + end] != 0U) {
         ++end;
     }
-    raw.assign(reinterpret_cast<const char*>(bytes.data() + chunk.payload_offset + 1U), end);
-    if (i76_resource_normalize_name(raw, normalized) != i76_resource_result::ok ||
+    raw.assign(reinterpret_cast<const char*>(bytes.data() + chunk.payload_offset
+        + 1U), end);
+    if (i76_resource_normalize_name(raw, normalized) != i76_resource_result::ok
+        ||
         normalized.find('/') != std::string::npos) {
-        return fail(error, i76_retail_result::invalid_terrain_name, chunk.payload_offset + 1U);
+        return fail(error, i76_retail_result::invalid_terrain_name,
+            chunk.payload_offset + 1U);
     }
     terrain.sidecar = std::move(normalized);
     return i76_retail_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Build an owned retail mission description without modifying runtime state.
+// -----------------------------------------------------------------------------
 i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
-                                            std::string_view name,
-                                            i76_retail_mission_definition& output,
-                                            i76_retail_error& error)
+                                          std::string_view name,
+                                          i76_retail_mission_definition& output,
+                                          i76_retail_error& error)
 {
     i76_retail_mission_definition candidate{};
     i76_bwd2_document document{};
@@ -109,11 +135,13 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
     std::size_t index{};
 
     error = {};
-    if (i76_resource_normalize_name(name, normalized) != i76_resource_result::ok) {
+    if (i76_resource_normalize_name(name, normalized) !=
+        i76_resource_result::ok) {
         return fail(error, i76_retail_result::invalid_argument, 0U);
     }
     if (i76_bwd2_parse(bytes, document, bwd2_error) != i76_bwd2_result::ok) {
-        return fail(error, i76_retail_result::invalid_structure, bwd2_error.offset);
+        return fail(error, i76_retail_result::invalid_structure,
+            bwd2_error.offset);
     }
     if (document.chunks.empty() || !is_tag(document.chunks[0], "BWD2") ||
         document.chunks[0].size != 8U) {
@@ -129,7 +157,8 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
         }
         if (is_tag(chunk, "REV")) {
             if (candidate.has_revision || !chunk.has_revision) {
-                return fail(error, i76_retail_result::invalid_record, chunk.offset);
+                return fail(error, i76_retail_result::invalid_record,
+                    chunk.offset);
             }
             candidate.has_revision = true;
             candidate.revision = chunk.revision;
@@ -140,7 +169,8 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
             entry.bytes = chunk.size;
             for (const i76_retail_section& existing : candidate.sections) {
                 if (existing.tag == entry.tag) {
-                    return fail(error, i76_retail_result::invalid_record, chunk.offset);
+                    return fail(error, i76_retail_result::invalid_record,
+                        chunk.offset);
                 }
             }
             candidate.sections.push_back(std::move(entry));
@@ -165,13 +195,15 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
         ++section->direct_children;
         if (chunk.has_revision) {
             if (section->has_revision) {
-                return fail(error, i76_retail_result::invalid_record, chunk.offset);
+                return fail(error, i76_retail_result::invalid_record,
+                    chunk.offset);
             }
             section->has_revision = true;
             section->revision = chunk.revision;
         }
         if (section->tag == "WDEF" && is_tag(chunk, "WRLD")) {
-            ++candidate.wrld_records; // Opaque until WRLD field offsets are validated.
+            // Opaque until WRLD field offsets are validated.
+            ++candidate.wrld_records;
         }
         if (section->tag == "ODEF" && is_tag(chunk, "OBJ")) {
             ++candidate.object_records;
@@ -194,10 +226,12 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
     if (candidate.terrain.has_zone) {
         separator = candidate.name.find_last_of('/');
         if (separator != std::string::npos) {
-            candidate.terrain.resource_name = candidate.name.substr(0U, separator + 1U);
+            candidate.terrain.resource_name = candidate.name.substr(0U,
+                separator + 1U);
         }
         candidate.terrain.resource_name += candidate.terrain.sidecar;
-        if (candidate.terrain.resource_name.size() > i76_resource_max_name_length) {
+        if (candidate.terrain.resource_name.size() >
+            i76_resource_max_name_length) {
             return fail(error, i76_retail_result::invalid_terrain_name,
                         candidate.terrain.zone_offset);
         }
@@ -206,6 +240,9 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
     return i76_retail_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Acquire, decode, and release the selected retail mission bytes.
+// -----------------------------------------------------------------------------
 i76_retail_result i76_retail_mission_read(i76_resource_store& resources,
                                           std::string_view name,
                                           i76_retail_mission_definition& output,
@@ -235,7 +272,8 @@ i76_retail_result i76_retail_mission_read(i76_resource_store& resources,
         if (entry == nullptr) {
             status = fail(error, i76_retail_result::resource_error, 0U);
         } else {
-            status = i76_retail_mission_decode(entry->bytes, name, output, error);
+            status = i76_retail_mission_decode(entry->bytes, name, output,
+                error);
         }
     } catch (...) {
         i76_resource_release(resources, handle);
@@ -245,10 +283,13 @@ i76_retail_result i76_retail_mission_read(i76_resource_store& resources,
     return status;
 }
 
+// -----------------------------------------------------------------------------
+// Validate a TER sidecar and summarize its packed terrain samples.
+// -----------------------------------------------------------------------------
 i76_retail_result i76_retail_terrain_probe(i76_resource_store& resources,
-                                           const i76_retail_mission_definition& mission,
-                                           i76_retail_terrain_samples& output,
-                                           i76_retail_error& error)
+                                   const i76_retail_mission_definition& mission,
+                                   i76_retail_terrain_samples& output,
+                                   i76_retail_error& error)
 {
     i76_retail_terrain_samples candidate{};
     i76_resource_handle handle{};
@@ -267,7 +308,8 @@ i76_retail_result i76_retail_terrain_probe(i76_resource_store& resources,
     if (!mission.terrain.has_zmap || !mission.terrain.has_zone) {
         return fail(error, i76_retail_result::missing_terrain, 0U);
     }
-    acquisition = i76_resource_acquire(resources, mission.terrain.resource_name, handle);
+    acquisition = i76_resource_acquire(resources, mission.terrain.resource_name,
+        handle);
     if (acquisition != i76_resource_result::ok) {
         if (acquisition == i76_resource_result::not_found) {
             return fail(error, i76_retail_result::resource_not_found, 0U);
@@ -288,7 +330,8 @@ i76_retail_result i76_retail_terrain_probe(i76_resource_store& resources,
             candidate.height_min = std::numeric_limits<std::uint16_t>::max();
             for (index = 0U; index < expected; index += 2U) {
                 word = static_cast<std::uint16_t>(entry->bytes[index]) |
-                       static_cast<std::uint16_t>(entry->bytes[index + 1U]) << 8U;
+                       static_cast<std::uint16_t>(entry->bytes[index + 1U]) <<
+                           8U;
                 const std::uint16_t height = word & 0x0fffU;
                 if (height < candidate.height_min) {
                     candidate.height_min = height;
@@ -317,20 +360,30 @@ i76_retail_result i76_retail_terrain_probe(i76_resource_store& resources,
     return status;
 }
 
+// -----------------------------------------------------------------------------
+// Return a stable diagnostic name for a retail decode result.
+// -----------------------------------------------------------------------------
 const char* i76_retail_result_name(i76_retail_result result) noexcept
 {
     switch (result) {
     case i76_retail_result::ok: return "ok";
     case i76_retail_result::invalid_argument: return "invalid mission name";
-    case i76_retail_result::not_initialized: return "resource store not initialized";
+    case i76_retail_result::not_initialized: return
+        "resource store not initialized";
     case i76_retail_result::resource_not_found: return "resource not found";
     case i76_retail_result::resource_error: return "resource read failure";
-    case i76_retail_result::invalid_structure: return "invalid BWD2 mission structure";
-    case i76_retail_result::invalid_record: return "invalid mission section or revision";
-    case i76_retail_result::invalid_terrain_map: return "invalid ZMAP length, duplicate, or page index";
-    case i76_retail_result::invalid_terrain_name: return "invalid ZONE terrain filename";
-    case i76_retail_result::missing_terrain: return "missing ZMAP or ZONE metadata";
-    case i76_retail_result::invalid_terrain_size: return "TER sidecar page count or byte size mismatch";
+    case i76_retail_result::invalid_structure: return
+        "invalid BWD2 mission structure";
+    case i76_retail_result::invalid_record: return
+        "invalid mission section or revision";
+    case i76_retail_result::invalid_terrain_map: return
+        "invalid ZMAP length, duplicate, or page index";
+    case i76_retail_result::invalid_terrain_name: return
+        "invalid ZONE terrain filename";
+    case i76_retail_result::missing_terrain: return
+        "missing ZMAP or ZONE metadata";
+    case i76_retail_result::invalid_terrain_size: return
+        "TER sidecar page count or byte size mismatch";
     }
     return "unknown retail mission reader error";
 }
