@@ -35,10 +35,13 @@ struct i76_shell_state {
     std::string notice{};
 };
 
-i76_result_code i76_shell_initialize(i76_shell_state& shell, const i76_runtime& game) noexcept;
+i76_result_code i76_shell_initialize(i76_shell_state& shell,
+                                     const i76_runtime& game) noexcept;
 i76_result_code i76_shell_shutdown(i76_shell_state& shell);
 i76_shell_view i76_shell_make_view(const i76_shell_state& shell) noexcept;
-i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
+i76_command_result i76_shell_execute(i76_shell_state& shell,
+                                     i76_runtime& game,
                                      std::string_view command);
-i76_command_result i76_shell_select(i76_shell_state& shell, i76_runtime& game,
+i76_command_result i76_shell_select(i76_shell_state& shell,
+                                    i76_runtime& game,
                                     std::uint32_t item_index);

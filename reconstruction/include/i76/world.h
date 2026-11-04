@@ -63,14 +63,18 @@ inline constexpr std::size_t i76_world_max_name_length = 64U;
 i76_world_result i76_world_initialize(i76_world_registry& world) noexcept;
 i76_world_result i76_world_shutdown(i76_world_registry& world) noexcept;
 i76_world_result i76_world_clear(i76_world_registry& world) noexcept;
-i76_world_result i76_world_create(i76_world_registry& world, i76_world_kind kind,
-                                   std::string_view name, i76_world_handle& handle);
-i76_world_result i76_world_destroy(i76_world_registry& world, i76_world_handle handle) noexcept;
+i76_world_result i76_world_create(i76_world_registry& world,
+                                  i76_world_kind kind,
+                                  std::string_view name,
+                                  i76_world_handle& handle);
+i76_world_result i76_world_destroy(i76_world_registry& world,
+                                   i76_world_handle handle) noexcept;
 
 // Borrowed object pointers are invalidated by any mutating registry operation.
-// Never retain one across a frame boundary; persist the generation-checked handle.
+// Never retain one across a frame boundary; persist the generation-checked
+// handle.
 const i76_world_object* i76_world_lookup(const i76_world_registry& world,
-                                          i76_world_handle handle) noexcept;
+                                         i76_world_handle handle) noexcept;
 std::size_t i76_world_count(const i76_world_registry& world) noexcept;
 i76_world_handle i76_world_handle_at(const i76_world_registry& world,
-                                      std::size_t creation_index) noexcept;
+                                     std::size_t creation_index) noexcept;

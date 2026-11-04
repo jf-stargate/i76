@@ -7,7 +7,8 @@
 #include <string_view>
 #include <vector>
 
-// Resource IDs are runtime identities, not retail cache-record pointers or names.
+// Resource IDs are runtime identities, not retail cache-record pointers or
+// names.
 struct i76_resource_handle {
     std::uint32_t slot{};
     std::uint64_t generation{};
@@ -75,23 +76,30 @@ inline constexpr std::size_t i76_resource_max_name_length = 255U;
 
 i76_resource_result i76_resource_initialize(i76_resource_store& store) noexcept;
 i76_resource_result i76_resource_shutdown(i76_resource_store& store) noexcept;
-i76_resource_result i76_resource_mount_memory(i76_resource_store& store, std::string_view name);
-i76_resource_result i76_resource_mount_directory(i76_resource_store& store, std::string_view path);
+i76_resource_result i76_resource_mount_memory(i76_resource_store& store,
+                                              std::string_view name);
+i76_resource_result i76_resource_mount_directory(i76_resource_store& store,
+                                                 std::string_view path);
 // Mount IDs are stable across removals; an in-use mount cannot be removed.
 i76_resource_result i76_resource_unmount(i76_resource_store& store,
-                                          std::uint64_t mount_id) noexcept;
+                                         std::uint64_t mount_id) noexcept;
 i76_resource_result i76_resource_find_mount(const i76_resource_store& store,
-                                              std::string_view name,
-                                              std::uint64_t& mount_id);
-i76_resource_result i76_resource_add_memory(i76_resource_store& store, std::string_view mount,
-                                             std::string_view name,
-                                             std::span<const std::uint8_t> bytes);
-i76_resource_result i76_resource_acquire(i76_resource_store& store, std::string_view name,
-                                          i76_resource_handle& handle);
+                                            std::string_view name,
+                                            std::uint64_t& mount_id);
+i76_resource_result i76_resource_add_memory(i76_resource_store& store,
+                                           std::string_view mount,
+                                           std::string_view name,
+                                           std::span<const std::uint8_t> bytes);
+i76_resource_result i76_resource_acquire(i76_resource_store& store,
+                                         std::string_view name,
+                                         i76_resource_handle& handle);
 i76_resource_result i76_resource_release(i76_resource_store& store,
-                                          i76_resource_handle handle) noexcept;
+                                         i76_resource_handle handle) noexcept;
 const i76_resource_entry* i76_resource_lookup(const i76_resource_store& store,
-                                              i76_resource_handle handle) noexcept;
-i76_resource_stats i76_resource_get_stats(const i76_resource_store& store) noexcept;
-// Lowercase ASCII keys; never accept absolute paths, traversal or empty segments.
-i76_resource_result i76_resource_normalize_name(std::string_view name, std::string& normalized);
+                                           i76_resource_handle handle) noexcept;
+i76_resource_stats i76_resource_get_stats(const i76_resource_store& store
+                                      ) noexcept;
+// Lowercase ASCII keys; never accept absolute paths, traversal or empty
+// segments.
+i76_resource_result i76_resource_normalize_name(std::string_view name,
+                                                std::string& normalized);

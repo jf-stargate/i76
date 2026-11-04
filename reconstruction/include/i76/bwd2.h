@@ -8,7 +8,8 @@
 #include <string_view>
 #include <vector>
 
-// Read-only structural inventory. No game callbacks, asset decoding, or runtime mutation.
+// Read-only structural inventory. No game callbacks, asset decoding, or runtime
+// mutation.
 enum class i76_bwd2_result : std::uint8_t {
     ok = 0,
     invalid_argument,
@@ -56,16 +57,19 @@ inline constexpr std::size_t i76_bwd2_max_bytes = i76_resource_max_bytes;
 inline constexpr std::uint32_t i76_bwd2_max_chunks = 16384U;
 inline constexpr std::uint8_t i76_bwd2_max_depth = 16U;
 
-// Parse a BWD2 stream (retail eight-byte marker or legacy synthetic enclosing root).
+// Parse a BWD2 stream (retail eight-byte marker or legacy synthetic enclosing
+// root).
 // On failure, `document` is unchanged;
 // `error` contains a stable error class and the offending byte offset.
 i76_bwd2_result i76_bwd2_parse(std::span<const std::uint8_t> bytes,
-                                i76_bwd2_document& document,
-                                i76_bwd2_error& error);
+                               i76_bwd2_document& document,
+                               i76_bwd2_error& error);
 
 // Acquire via existing in-memory or directory mounts, inspect, then release.
 // This never retains resource handles or modifies the active level/world.
-i76_bwd2_result i76_bwd2_read(i76_resource_store& store, std::string_view name,
-                               i76_bwd2_document& document, i76_bwd2_error& error);
+i76_bwd2_result i76_bwd2_read(i76_resource_store& store,
+                              std::string_view name,
+                              i76_bwd2_document& document,
+                              i76_bwd2_error& error);
 
 const char* i76_bwd2_result_name(i76_bwd2_result result) noexcept;
