@@ -349,6 +349,10 @@ i76_command_result i76_console_execute(i76_runtime& game, std::string_view line)
         return console_reply(game, i76_result_code::invalid_argument,
                              "usage: " + std::string(definition->usage));
     }
+    if (definition->name == "sim" && !args.empty()) {
+        return console_reply(game, i76_result_code::unknown_command,
+                             "unknown simulation action (help sim)");
+    }
     if (definition->name == "sim" || definition->name == "sim help" ||
         definition->name == "resource help" || definition->name == "level help" ||
         definition->name == "object help") {
