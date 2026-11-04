@@ -84,6 +84,47 @@ static std::vector<std::uint8_t> retail_example()
     return bytes;
 }
 
+// The stock mission layout is a flat top-level stream with bounded section bodies.
+static void test_full_retail_layout()
+{
+    std::vector<std::uint8_t> bytes = chunk("BWD2", {});
+    std::vector<std::uint8_t> adef = {};
+    i76_bwd2_document document = {};
+    i76_bwd2_error error = {};
+
+    append(bytes, revision("REV", 2U));
+    append(bytes, chunk("WDEF", revision("WREV", 9U)));
+    append(bytes, chunk("TDEF", revision("TREV", 4U)));
+    append(bytes, chunk("RDEF", revision("RREV", 1U)));
+    append(bytes, chunk("ODEF", revision("OREV", 3U)));
+    append(bytes, chunk("LDEF", revision("LREV", 1U)));
+    append(adef, revision("AREV", 1U));
+    append(adef, chunk("FSM", {}));
+    append(adef, chunk("EXIT", {}));
+    append(bytes, chunk("ADEF", adef));
+    append(bytes, chunk("EXIT", {}));
+
+    expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok &&
+               document.chunks.size() == 17U && document.byte_count == bytes.size(),
+           "full retail-style outer stream parses with bounded sections");
+    expect(std::string_view(document.chunks[0].tag) == "BWD2" &&
+               std::string_view(document.chunks[1].tag) == "REV" &&
+               std::string_view(document.chunks[2].tag) == "WDEF" &&
+               std::string_view(document.chunks[4].tag) == "TDEF" &&
+               std::string_view(document.chunks[6].tag) == "RDEF" &&
+               std::string_view(document.chunks[8].tag) == "ODEF" &&
+               std::string_view(document.chunks[10].tag) == "LDEF" &&
+               std::string_view(document.chunks[12].tag) == "ADEF" &&
+               std::string_view(document.chunks[16].tag) == "EXIT",
+           "original observed section ordering remains visible");
+    expect(document.chunks[12].parent == 0U &&
+               document.chunks[13].parent == 13U &&
+               document.chunks[14].parent == 13U &&
+               document.chunks[16].parent == 0U &&
+               document.chunks[16].offset + document.chunks[16].size == bytes.size(),
+           "section depths and terminal EXIT bounds are preserved");
+}
+
 static void test_retail_marker()
 {
     std::vector<std::uint8_t> bytes = retail_example();
@@ -349,6 +390,7 @@ int main()
 {
     test_structure();
     test_retail_marker();
+    test_full_retail_layout();
     test_invalid_inputs();
     test_resource_lifetime();
     return failures == 0U ? 0 : 1;
