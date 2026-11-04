@@ -163,3 +163,36 @@ also be removed, after which `demo.level` is unavailable until the runtime is
 reinitialized. Resource lookup still uses the existing last-mounted-first
 priority for **uncached** names; already acquired byte leases retain their
 original source until the last reference is released.
+
+
+## Retail semantic inspection (milestone 3)
+
+Retail BWD2 missions remain **read-only**. The new `i76_retail_mission_definition`
+is independent of `i76_level_definition` (the synthetic activation format).
+After mounting a user-supplied game directory, run:
+
+```text
+level summary miss16/M06.MSN
+level dependencies miss16/M06.MSN
+level terrain miss16/M06.MSN
+```
+
+`summary` decodes mission/section revisions, section sizes, counts of recognizable
+WRLD, OBJ, RSEG and FSM records, plus ZMAP/ZONE terrain metadata. `terrain`
+validates all 6,400 ZMAP page indices, resolves the ZONE .TER name **relative to
+the mission directory**, checks the page count and byte size, and computes
+packed 16-bit sample statistics (height range, surface flag count, and eight
+surface-class histograms). `dependencies` reports the one verified dependency
+format (ZONE .TER) and its lookup/validation result. WRLD remains opaque:
+**its filename-field offsets are not yet established to implementation confidence**.
+
+Parsing and probing acquire/release resource leases within each call; neither
+modifies `prepared_level`, `active_level`, the world registry, or simulation.
+Missing sidecars are reported as errors for `terrain`, but displayed as a
+dependency status for `dependencies`. A failure never overwrites an existing
+successful typed definition.
+
+Unit tests and a full-process synthetic MISS16/M06.MSN + M06.TER fixture
+exercise the code without shipping licensed game resources. On a local retail
+installation, use the three commands above as an opt-in corpus smoke test.
+See [RETAIL_MISSION.md](RETAIL_MISSION.md) for detailed format limits.

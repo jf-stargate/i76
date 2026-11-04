@@ -23,14 +23,17 @@ target_include_directories(i76_assets PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/includ
 add_library(i76_bwd2 STATIC src/bwd2.cpp)
 target_include_directories(i76_bwd2 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(i76_bwd2 PUBLIC i76_assets)
+add_library(i76_retail_mission STATIC src/retail_mission.cpp)
+target_include_directories(i76_retail_mission PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(i76_retail_mission PUBLIC i76_bwd2 i76_assets)
 add_library(i76_level STATIC src/level.cpp)
 target_include_directories(i76_level PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(i76_level PUBLIC i76_assets i76_world)
 target_include_directories(i76_world PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 add_library(i76_core STATIC src/runtime.cpp src/command.cpp src/console.cpp src/shell.cpp)
 target_include_directories(i76_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(i76_core PUBLIC i76_bwd2 i76_level i76_assets i76_world)
-foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2)
+target_link_libraries(i76_core PUBLIC i76_retail_mission i76_bwd2 i76_level i76_assets i76_world)
+foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2 i76_retail_mission)
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         target_compile_options(${i76_target} PUBLIC
             $<$<CONFIG:Debug>:-O0>
@@ -65,7 +68,7 @@ if(I76_ENABLE_SDL3)
     target_compile_definitions(i76 PRIVATE I76_ENABLE_SDL3=1)
 endif()
 
-foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2 i76_terminal_input)
+foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2 i76_retail_mission i76_terminal_input)
     if(I76_ENABLE_SANITIZERS)
         target_compile_options(${i76_target} PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
         target_link_options(${i76_target} PUBLIC -fsanitize=address,undefined)
@@ -78,6 +81,32 @@ endforeach()
 
 if(I76_BUILD_TESTS)
     enable_testing()
+    add_executable(i76_unit_retail_mission tests/test_retail_mission.cpp)
+    target_link_libraries(i76_unit_retail_mission PRIVATE i76_core)
+    add_test(NAME unit_retail_mission COMMAND i76_unit_retail_mission)
+    set_tests_properties(unit_retail_mission PROPERTIES LABELS "unit;memcheck")
+
+    add_test(NAME functional_retail_fixture_setup COMMAND i76_unit_retail_mission
+        --make-fixture "${CMAKE_CURRENT_BINARY_DIR}/retail-fixture")
+    set_tests_properties(functional_retail_fixture_setup PROPERTIES
+        LABELS "functional" FIXTURES_SETUP retail_fixture)
+
+    add_test(NAME functional_retail_summary COMMAND i76 --headless
+        --command "resource mount ${CMAKE_CURRENT_BINARY_DIR}/retail-fixture"
+        --command "level summary miss16/m06.msn"
+        --command "level dependencies miss16/m06.msn"
+        --command "level terrain miss16/m06.msn")
+    set_tests_properties(functional_retail_summary PROPERTIES
+        LABELS "functional" FIXTURES_REQUIRED retail_fixture
+        PASS_REGULAR_EXPRESSION "height_max=1024")
+
+    add_test(NAME functional_retail_shell COMMAND i76 --shell
+        --command "resource mount ${CMAKE_CURRENT_BINARY_DIR}/retail-fixture"
+        --command "level terrain miss16/m06.msn")
+    set_tests_properties(functional_retail_shell PROPERTIES
+        LABELS "functional" FIXTURES_REQUIRED retail_fixture
+        PASS_REGULAR_EXPRESSION "retail terrain miss16/m06.msn")
+
     add_executable(i76_unit_bwd2 tests/test_bwd2.cpp)
     target_link_libraries(i76_unit_bwd2 PRIVATE i76_bwd2)
     add_test(NAME unit_bwd2 COMMAND i76_unit_bwd2)
