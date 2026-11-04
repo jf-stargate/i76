@@ -179,8 +179,8 @@ static std::int32_t run(int argc, char* argv[])
         if (interactive
             && !game.state.exit_requested) {
             while (!game.state.exit_requested
-                   && i76_terminal_read_line(std::cin, std::cout, editor, "i76> ",
-                       line)) {
+                   && i76_terminal_read_line(
+                          std::cin, std::cout, editor, "i76> ", line)) {
                 process_runtime_command(game, line, exit_code);
             }
         }

@@ -345,7 +345,7 @@ static void test_resource_and_commands()
                    && samples.height_max == 1024U
                    && samples.surface_flags == 1U
                    && samples.surface_classes[7] == 1U
-                   && samples.surface_classes[0] == i76_retail_terrain_page_samples -
+           && samples.surface_classes[0] == i76_retail_terrain_page_samples -
                    1U,
            "TER little-endian packed samples and surface classes");
     stats = i76_resource_get_stats(store);
@@ -370,7 +370,7 @@ static void test_resource_and_commands()
     expect(i76_retail_mission_read(store, "miss16/absent.msn", mission,
         error) ==
                i76_retail_result::ok
-                   && i76_retail_terrain_probe(store, mission, samples, error) ==
+           && i76_retail_terrain_probe(store, mission, samples, error) ==
                    i76_retail_result::resource_not_found
                    && i76_resource_get_stats(store).references == 0U,
            "missing TER is distinct from valid mission decode and leaks no "
@@ -383,7 +383,7 @@ static void test_resource_and_commands()
         error) ==
                i76_retail_result::ok
                    && mission.terrain.zone_prefix_byte == 0xffU
-                   && i76_retail_terrain_probe(store, mission, samples, error) ==
+           && i76_retail_terrain_probe(store, mission, samples, error) ==
                    i76_retail_result::ok
                    && samples.pages == 1U
                    && i76_resource_get_stats(store).references == 0U,

@@ -159,7 +159,7 @@ static void test_console_and_directory()
            "automatic BWD2 inspection by .msn suffix");
     expect(i76_execute_command(game, "level inspect sample.spc").code ==
                i76_result_code::ok
-                   && i76_execute_command(game, "level inspect sample.lvl").code ==
+           && i76_execute_command(game, "level inspect sample.lvl").code ==
                    i76_result_code::ok,
            "SPC and LVL suffixes also select BWD2 inspection");
     reply = i76_execute_command(game, "level sections sample.msn");

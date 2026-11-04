@@ -221,7 +221,8 @@ static bool matches_name(const i76_console_definition& definition,
             boundary = definition.name.size();
         }
         if (part >= values.size()
-            || definition.name.substr(start, boundary - start) != values[part]) {
+            || definition.name.substr(start, boundary - start) !=
+                   values[part]) {
             return false;
         }
         ++part;

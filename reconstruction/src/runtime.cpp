@@ -161,7 +161,8 @@ i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count)
     }
     if (count == 0U
         || count > i76_k_max_ticks_per_call
-        || game.state.tick > std::numeric_limits<std::uint64_t>::max() - count) {
+        || game.state.tick >
+               std::numeric_limits<std::uint64_t>::max() - count) {
         return i76_result_code::invalid_argument;
     }
     for (index = 0; index < count; ++index) {
@@ -193,7 +194,8 @@ i76_result_code i76_runtime_advance_time(i76_runtime& game,
     total_ns = game.state.accumulated_ns + elapsed_ns;
     count = total_ns / game.state.tick_period_ns;
     if (count > i76_k_max_ticks_per_call
-        || count > std::numeric_limits<std::uint64_t>::max() - game.state.tick) {
+        || count >
+               std::numeric_limits<std::uint64_t>::max() - game.state.tick) {
         return i76_result_code::overflow;
     }
     game.state.accumulated_ns = total_ns % game.state.tick_period_ns;
