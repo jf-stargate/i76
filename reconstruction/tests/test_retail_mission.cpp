@@ -113,7 +113,8 @@ static std::vector<std::uint8_t> sample_mission(std::uint8_t zmap_pages = 1U,
         map[100U] = cell_page;
     }
     zone[0] = zone_prefix_byte;
-    for (std::size_t index = 0U; index < zone_name.size() && index < 13U;
+    for (std::size_t index = 0U; index < zone_name.size()
+         && index < 13U;
         ++index) {
         zone[index + 1U] = static_cast<std::uint8_t>(zone_name[index]);
     }
@@ -185,8 +186,9 @@ static bool write_fixture(const std::filesystem::path& root)
     const std::filesystem::path terrain = root / "MISS16" / "M06.TER";
 
     std::filesystem::create_directories(mission.parent_path(), error);
-    return !error && write_bytes(mission, sample_mission()) &&
-           write_bytes(terrain, sample_ter());
+    return !error
+           && write_bytes(mission, sample_mission())
+           && write_bytes(terrain, sample_ter());
 }
 
 // -----------------------------------------------------------------------------
@@ -203,52 +205,57 @@ static void test_decode()
         error) ==
                i76_retail_result::ok,
                    "decode synthetic retail mission marker stream");
-    expect(document.name == "miss16/m06.msn" && document.revision == 2U &&
-               document.chunk_count > 20U && document.sections.size() == 6U,
+    expect(document.name == "miss16/m06.msn"
+           && document.revision == 2U
+           && document.chunk_count > 20U
+           && document.sections.size() == 6U,
            "typed mission owns normalized identity and all six sections");
-    expect(document.wrld_records == 1U && document.object_records == 1U &&
-               document.route_records == 1U && document.fsm_records == 1U,
+    expect(document.wrld_records == 1U
+           && document.object_records == 1U
+           && document.route_records == 1U
+           && document.fsm_records == 1U,
            "recognized record counts");
-    expect(document.sections[0].tag == "WDEF" &&
-               document.sections[0].has_revision &&
-                   document.sections[0].revision == 9U &&
-               document.sections[1].tag == "TDEF" &&
-               document.sections[1].has_revision &&
-                   document.sections[1].revision == 4U,
+    expect(document.sections[0].tag == "WDEF"
+           && document.sections[0].has_revision
+           && document.sections[0].revision == 9U
+           && document.sections[1].tag == "TDEF"
+           && document.sections[1].has_revision
+           && document.sections[1].revision == 4U,
            "section revision tags interpreted without consuming opaque bytes");
-    expect(document.terrain.has_zmap && document.terrain.has_zone &&
-               document.terrain.active_pages == 1U &&
-               document.terrain.mapped_cells == 2U &&
-               document.terrain.referenced_pages == 1U &&
-               document.terrain.page_indices[0] == 0U &&
-               document.terrain.page_indices[1] == 0xffU &&
-               document.terrain.resource_name == "miss16/m06.ter" &&
-               document.terrain.zone_prefix_byte == 0U,
+    expect(document.terrain.has_zmap
+           && document.terrain.has_zone
+           && document.terrain.active_pages == 1U
+           && document.terrain.mapped_cells == 2U
+           && document.terrain.referenced_pages == 1U
+           && document.terrain.page_indices[0] == 0U
+           && document.terrain.page_indices[1] == 0xffU
+           && document.terrain.resource_name == "miss16/m06.ter"
+           && document.terrain.zone_prefix_byte == 0U,
            "ZMAP/ZONE parsed and sidecar name normalized relative to mission");
 
     unchanged = document;
     bytes = sample_mission(1U, 1U);
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document,
         error) ==
-               i76_retail_result::invalid_terrain_map &&
-               error.offset > 0U &&
-               document.terrain.resource_name ==
+               i76_retail_result::invalid_terrain_map
+                   && error.offset > 0U
+                   && document.terrain.resource_name ==
                    unchanged.terrain.resource_name,
            "out-of-range ZMAP index rejected without output mutation");
     bytes = sample_mission(1U, 0U, 2U);
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document,
         error) ==
-               i76_retail_result::ok &&
-               document.terrain.active_pages == 1U &&
-               document.terrain.zone_prefix_byte == 2U &&
-               document.terrain.resource_name == "miss16/m06.ter",
+               i76_retail_result::ok
+                   && document.terrain.active_pages == 1U
+                   && document.terrain.zone_prefix_byte == 2U
+                   && document.terrain.resource_name == "miss16/m06.ter",
            "ZONE prefix is not a second ZMAP page count");
     bytes = sample_mission(1U, 0U, 0xffU);
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document,
         error) ==
-               i76_retail_result::ok &&
-               document.terrain.active_pages == 1U &&
-               document.terrain.zone_prefix_byte == 0xffU,
+               i76_retail_result::ok
+                   && document.terrain.active_pages == 1U
+                   && document.terrain.zone_prefix_byte == 0xffU,
            "opaque ZONE prefix preserves arbitrary byte value");
     bytes = sample_mission(1U, 0U, 1U, "../x.ter");
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document,
@@ -268,14 +275,16 @@ static void test_decode()
     bytes = sample_mission(1U, 0U, 1U, "M06.TER", false);
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document,
         error) ==
-               i76_retail_result::ok && !document.terrain.has_zmap &&
-               document.terrain.has_zone,
+               i76_retail_result::ok
+                   && !document.terrain.has_zmap
+                   && document.terrain.has_zone,
                    "missing ZMAP is reported as incomplete, not invented");
     bytes = sample_mission(1U, 0U, 1U, "M06.TER", true, false);
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document,
         error) ==
-               i76_retail_result::ok && document.terrain.has_zmap &&
-               !document.terrain.has_zone,
+               i76_retail_result::ok
+                   && document.terrain.has_zmap
+                   && !document.terrain.has_zone,
                    "missing ZONE is reported as incomplete");
     bytes = sample_mission();
     bytes[4] = static_cast<std::uint8_t>(bytes.size());
@@ -311,8 +320,8 @@ static void test_resource_and_commands()
     expect(i76_retail_mission_read(store, "miss16/m06.msn", mission, error) ==
                i76_retail_result::not_initialized,
                    "read requires provider init");
-    expect(i76_resource_initialize(store) == i76_resource_result::ok &&
-               i76_resource_mount_memory(store, "fixture") ==
+    expect(i76_resource_initialize(store) == i76_resource_result::ok
+           && i76_resource_mount_memory(store, "fixture") ==
                    i76_resource_result::ok,
            "create in-memory resource store");
     expect(i76_resource_add_memory(store, "fixture", "miss16/m06.msn",
@@ -325,27 +334,31 @@ static void test_resource_and_commands()
                i76_retail_result::ok,
                    "read through provider and release mission lease");
     stats = i76_resource_get_stats(store);
-    expect(stats.references == 0U && stats.cached_bytes == 0U,
+    expect(stats.references == 0U
+           && stats.cached_bytes == 0U,
            "mission decoding does not retain resource bytes");
     expect(i76_retail_terrain_probe(store, mission, samples, error) ==
-               i76_retail_result::ok && samples.pages == 1U &&
-               samples.samples == i76_retail_terrain_page_samples &&
-               samples.height_min == 0U && samples.height_max == 1024U &&
-               samples.surface_flags == 1U && samples.surface_classes[7] == 1U
-                   &&
-               samples.surface_classes[0] == i76_retail_terrain_page_samples -
+               i76_retail_result::ok
+                   && samples.pages == 1U
+                   && samples.samples == i76_retail_terrain_page_samples
+                   && samples.height_min == 0U
+                   && samples.height_max == 1024U
+                   && samples.surface_flags == 1U
+                   && samples.surface_classes[7] == 1U
+                   && samples.surface_classes[0] == i76_retail_terrain_page_samples -
                    1U,
            "TER little-endian packed samples and surface classes");
     stats = i76_resource_get_stats(store);
-    expect(stats.references == 0U && stats.cached_bytes == 0U,
+    expect(stats.references == 0U
+           && stats.cached_bytes == 0U,
            "TER scan releases resource lease");
 
     expect(i76_resource_acquire(store, "miss16/m06.ter",
         held) == i76_resource_result::ok,
            "external retained TER lease");
     expect(i76_retail_terrain_probe(store, mission, samples, error) ==
-        i76_retail_result::ok &&
-               i76_resource_get_stats(store).references == 1U,
+        i76_retail_result::ok
+            && i76_resource_get_stats(store).references == 1U,
            "reader does not release externally held reference");
     expect(i76_resource_release(store, held) == i76_resource_result::ok,
            "release external reference");
@@ -356,10 +369,10 @@ static void test_resource_and_commands()
                    "register mission with missing sidecar");
     expect(i76_retail_mission_read(store, "miss16/absent.msn", mission,
         error) ==
-               i76_retail_result::ok &&
-               i76_retail_terrain_probe(store, mission, samples, error) ==
-                   i76_retail_result::resource_not_found &&
-               i76_resource_get_stats(store).references == 0U,
+               i76_retail_result::ok
+                   && i76_retail_terrain_probe(store, mission, samples, error) ==
+                   i76_retail_result::resource_not_found
+                   && i76_resource_get_stats(store).references == 0U,
            "missing TER is distinct from valid mission decode and leaks no "
            "resource lease");
     expect(i76_resource_add_memory(store, "fixture", "miss16/prefix.msn",
@@ -368,12 +381,12 @@ static void test_resource_and_commands()
                    "register mission with unrelated ZONE prefix");
     expect(i76_retail_mission_read(store, "miss16/prefix.msn", mission,
         error) ==
-               i76_retail_result::ok &&
-               mission.terrain.zone_prefix_byte == 0xffU &&
-               i76_retail_terrain_probe(store, mission, samples, error) ==
-                   i76_retail_result::ok &&
-               samples.pages == 1U &&
-               i76_resource_get_stats(store).references == 0U,
+               i76_retail_result::ok
+                   && mission.terrain.zone_prefix_byte == 0xffU
+                   && i76_retail_terrain_probe(store, mission, samples, error) ==
+                   i76_retail_result::ok
+                   && samples.pages == 1U
+                   && i76_resource_get_stats(store).references == 0U,
            "valid TER page count comes from ZMAP and lease releases after "
            "probe");
     expect(i76_resource_add_memory(store, "fixture", "miss16/short.ter",
@@ -386,7 +399,8 @@ static void test_resource_and_commands()
                i76_retail_result::ok, "decode short-sidecar mission");
     samples.pages = 99U;
     expect(i76_retail_terrain_probe(store, mission, samples, error) ==
-               i76_retail_result::invalid_terrain_size && samples.pages == 99U,
+               i76_retail_result::invalid_terrain_size
+                   && samples.pages == 99U,
            "invalid sidecar size rejected transactionally");
     stats = i76_resource_get_stats(store);
     expect(stats.references == 0U, "failing sidecar scan releases lease");
@@ -407,8 +421,7 @@ static void test_resource_and_commands()
                i76_result_code::ok, "initialize runtime");
     expect(i76_resource_add_memory(game.resources, "builtin", "miss16/m06.msn",
                                    sample_mission()) == i76_resource_result::ok
-                                   &&
-               i76_resource_add_memory(game.resources, "builtin",
+                        && i76_resource_add_memory(game.resources, "builtin",
                    "miss16/m06.ter",
                                        sample_ter()) == i76_resource_result::ok,
            "register retail style fixture with runtime");
@@ -418,22 +431,22 @@ static void test_resource_and_commands()
     const std::uint64_t object_generation = game.world.last_generation;
     const std::uint64_t tick = game.state.tick;
     response = i76_execute_command(game, "level summary miss16/m06.msn");
-    expect(response.code == i76_result_code::ok &&
-               response.message.find("revision=2") != std::string::npos &&
-               response.message.find("WRLD=1") != std::string::npos &&
-               response.message.find("ZONE sidecar=miss16/m06.ter") !=
+    expect(response.code == i76_result_code::ok
+           && response.message.find("revision=2") != std::string::npos
+           && response.message.find("WRLD=1") != std::string::npos
+           && response.message.find("ZONE sidecar=miss16/m06.ter") !=
                    std::string::npos,
            "registered summary command exposes parsed structure");
     response = i76_execute_command(game, "level terrain miss16/m06.msn");
-    expect(response.code == i76_result_code::ok &&
-               response.message.find("height_max=1024") != std::string::npos &&
-               response.message.find("surface_class=7 samples=1") !=
+    expect(response.code == i76_result_code::ok
+           && response.message.find("height_max=1024") != std::string::npos
+           && response.message.find("surface_class=7 samples=1") !=
                    std::string::npos,
            "registered terrain command validates packed TER");
     response = i76_execute_command(game, "level dependencies miss16/m06.msn");
-    expect(response.code == i76_result_code::ok &&
-               response.message.find("status=ok") != std::string::npos &&
-               response.message.find("resource fields not yet decoded") !=
+    expect(response.code == i76_result_code::ok
+           && response.message.find("status=ok") != std::string::npos
+           && response.message.find("resource fields not yet decoded") !=
                    std::string::npos,
            "registered dependency command reports scope honestly");
     expect(i76_resource_add_memory(game.resources, "builtin",
@@ -443,8 +456,8 @@ static void test_resource_and_commands()
                    "runtime registers intentionally missing sidecar");
     response = i76_execute_command(game,
         "level dependencies miss16/absent.msn");
-    expect(response.code == i76_result_code::ok &&
-               response.message.find("status=resource not found") !=
+    expect(response.code == i76_result_code::ok
+           && response.message.find("status=resource not found") !=
                    std::string::npos,
            "dependencies reports missing TER without treating mission "
            "metadata as invalid");
@@ -454,9 +467,11 @@ static void test_resource_and_commands()
                i76_result_code::ok, "missing retail command input rejected");
     expect(i76_execute_command(game, "level load miss16/m06.msn").code !=
                i76_result_code::ok, "retail activation stays disabled");
-    expect(game.world.last_generation == object_generation &&
-               game.state.tick == tick && game.active_level.loaded &&
-               i76_world_count(game.world) == 2U && !game.prepared_level.ready,
+    expect(game.world.last_generation == object_generation
+           && game.state.tick == tick
+           && game.active_level.loaded
+           && i76_world_count(game.world) == 2U
+           && !game.prepared_level.ready,
            "read-only commands do not modify simulation or active synthetic "
            "level");
     expect(i76_resource_get_stats(game.resources).references == 1U,
@@ -481,16 +496,18 @@ static void test_casefold_directory()
     std::filesystem::remove_all(root, ec);
     expect(write_fixture(root),
         "write uppercase synthetic mission and TER fixtures");
-    expect(i76_resource_initialize(store) == i76_resource_result::ok &&
-               i76_resource_mount_directory(store, root.string()) ==
+    expect(i76_resource_initialize(store) == i76_resource_result::ok
+           && i76_resource_mount_directory(store, root.string()) ==
                    i76_resource_result::ok,
            "mount test fixture directory");
     expect(i76_retail_mission_read(store, "miss16/m06.msn", mission, error) ==
-               i76_retail_result::ok && mission.terrain.resource_name ==
+               i76_retail_result::ok
+                   && mission.terrain.resource_name ==
                    "miss16/m06.ter",
            "casefold mission and ZONE path lookup");
     expect(i76_retail_terrain_probe(store, mission, samples, error) ==
-               i76_retail_result::ok && samples.height_max == 1024U,
+               i76_retail_result::ok
+                   && samples.height_max == 1024U,
            "casefold sidecar acquisition and sample check");
     expect(i76_resource_get_stats(store).references == 0U,
            "casefold reader releases all lease references");
@@ -504,7 +521,8 @@ static void test_casefold_directory()
 // -----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-    if (argc == 3 && std::string_view(argv[1]) == "--make-fixture") {
+    if (argc == 3
+        && std::string_view(argv[1]) == "--make-fixture") {
         return write_fixture(std::filesystem::path(argv[2])) ? 0 : 1;
     }
     if (argc != 1) {
