@@ -29,3 +29,19 @@
 ## Not copied into the repository
 
 No game source, SDL harness, archive entries, or compiled binary from the supplied example were committed. Its prototype algorithms, clock parameters and resource definitions have **not** been accepted as I76 engine behavior. The guidance above reflects only its code style and architectural patterns.
+
+
+## Formatting conventions for the maintained reconstruction
+
+Use an 80-column limit in source files and public headers. For function
+declarations that exceed the limit, place every parameter after the first
+on a separate line. Continuations should align with the first parameter
+where they fit, or use a four-space fallback.
+
+Every function definition in C or C++ implementation and test sources must
+begin with an 80-column dashed comment banner and one or two informative
+sentences. Comments should describe what a function accomplishes, not merely
+repeat its identifier. The banner is adjacent to the function signature;
+header declarations may instead use their regular API documentation.
+
+The historical i69 sample and archived research source remain out of scope.
