@@ -69,3 +69,15 @@ The shell/test session is deliberately single-threaded; Helgrind is not applicab
 ## World-object inspection
 
 The synthetic test session now starts with two debug objects. Use `object list`, `object inspect <slot:generation>`, `object spawn <vehicle|scenery|marker> <name>`, `object destroy <slot:generation>`, and `object clear`. Returning to the main menu clears session objects while preserving handle-generation history. See [WORLD.md](WORLD.md).
+
+## Synthetic level and resource operations (milestone 1)
+
+The `play` menu entry now loads the built-in `demo.level` manifest through the real resource
+store and prepared-level lifecycle rather than constructing example objects directly. Returning
+to the menu unloads the active level and releases its asset references.
+
+The terminal and headless command services also support `resource list`,
+`resource mount <directory>`, `level inspect <name>`, `level prepare <name>`, `level activate`,
+`level load <name>`, `level discard`, `level status`, `level unload`, and `asset stats`.
+See [LEVEL_LOADING.md](LEVEL_LOADING.md) for usage, limits and the intentionally synthetic file
+format. Original `.MSN` and game-archive decoding are not implemented yet.

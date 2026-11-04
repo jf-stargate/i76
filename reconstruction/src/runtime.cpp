@@ -2,6 +2,11 @@
 
 #include <limits>
 
+static constexpr std::uint8_t demo_level[] =
+    "I76LEVEL 1\nasset demo_shared.dat\nobject vehicle demo_car demo_shared.dat\n"
+    "object marker demo_checkpoint\n";
+static constexpr std::uint8_t demo_shared[] = "synthetic asset payload";
+
 static void record_diagnostic(void* context, const i76_diagnostic_event& event)
 {
     i76_recording_outputs* record = static_cast<i76_recording_outputs*>(context);
@@ -49,9 +54,10 @@ i76_output_ports i76_make_recording_outputs(i76_recording_outputs& record) noexc
 }
 
 i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config config,
-                                        i76_output_ports outputs) noexcept
+                                        i76_output_ports outputs)
 {
     i76_world_result world_result = i76_world_result::ok;
+    i76_resource_result resource_result = i76_resource_result::ok;
 
     if (game.state.initialized) {
         return i76_result_code::already_initialized;
@@ -64,6 +70,23 @@ i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config con
         return i76_result_code::invalid_argument;
     }
 
+    resource_result = i76_resource_initialize(game.resources);
+    if (resource_result == i76_resource_result::ok) {
+        resource_result = i76_resource_mount_memory(game.resources, "builtin");
+    }
+    if (resource_result == i76_resource_result::ok) {
+        resource_result = i76_resource_add_memory(game.resources, "builtin", "demo.level",
+                                                  {demo_level, sizeof(demo_level) - 1U});
+    }
+    if (resource_result == i76_resource_result::ok) {
+        resource_result = i76_resource_add_memory(game.resources, "builtin", "demo_shared.dat",
+                                                  {demo_shared, sizeof(demo_shared) - 1U});
+    }
+    if (resource_result != i76_resource_result::ok) {
+        i76_resource_shutdown(game.resources);
+        i76_world_shutdown(game.world);
+        return i76_result_code::invalid_argument;
+    }
     game.state = {};
     game.outputs = outputs;
     game.state.initialized = true;
@@ -76,6 +99,13 @@ i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept
 {
     if (!game.state.initialized) {
         return i76_result_code::not_initialized;
+    }
+    i76_level_discard(game.resources, game.prepared_level);
+    if (game.active_level.loaded) {
+        i76_level_unload(game.world, game.resources, game.active_level);
+    }
+    if (i76_resource_shutdown(game.resources) != i76_resource_result::ok) {
+        return i76_result_code::invalid_argument; // Caller still owns a resource lease.
     }
     i76_world_shutdown(game.world);
     game.state = {};

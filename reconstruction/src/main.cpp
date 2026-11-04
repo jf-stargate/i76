@@ -20,7 +20,8 @@ static void print_help()
     std::cout << "usage: i76 [--headless] [--command <text>]... [--interactive]\n"
               << "       i76 --shell[=terminal|sdl] [--command <text>]... [--interactive]\n"
               << "       i76 --shell=sdl [--shell-frames <count>]\n"
-              << "commands: help status pause resume step <count> quit\n";
+              << "commands: help status pause resume step <count> object <action> "
+                 "resource <action> level <action> asset stats quit\n";
 }
 
 static void process_runtime_command(i76_runtime& game, const std::string& command,

@@ -18,11 +18,16 @@ if((I76_ENABLE_SANITIZERS OR I76_ENABLE_COVERAGE) AND MSVC)
 endif()
 
 add_library(i76_world STATIC src/world.cpp)
+add_library(i76_assets STATIC src/resource.cpp src/resource_directory.cpp)
+target_include_directories(i76_assets PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+add_library(i76_level STATIC src/level.cpp)
+target_include_directories(i76_level PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(i76_level PUBLIC i76_assets i76_world)
 target_include_directories(i76_world PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 add_library(i76_core STATIC src/runtime.cpp src/command.cpp src/shell.cpp)
 target_include_directories(i76_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(i76_core PUBLIC i76_world)
-foreach(i76_target IN ITEMS i76_core i76_world)
+target_link_libraries(i76_core PUBLIC i76_level i76_assets i76_world)
+foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level)
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         target_compile_options(${i76_target} PUBLIC
             $<$<CONFIG:Debug>:-O0>
@@ -49,7 +54,7 @@ if(I76_ENABLE_SDL3)
     target_compile_definitions(i76 PRIVATE I76_ENABLE_SDL3=1)
 endif()
 
-foreach(i76_target IN ITEMS i76_core i76_world)
+foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level)
     if(I76_ENABLE_SANITIZERS)
         target_compile_options(${i76_target} PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
         target_link_options(${i76_target} PUBLIC -fsanitize=address,undefined)
@@ -62,6 +67,36 @@ endforeach()
 
 if(I76_BUILD_TESTS)
     enable_testing()
+    add_executable(i76_unit_level_commands tests/test_level_commands.cpp)
+    target_link_libraries(i76_unit_level_commands PRIVATE i76_core)
+    add_test(NAME unit_level_commands COMMAND i76_unit_level_commands)
+    set_tests_properties(unit_level_commands PROPERTIES LABELS "unit;memcheck")
+
+    add_executable(i76_unit_resources tests/test_resources.cpp)
+    target_link_libraries(i76_unit_resources PRIVATE i76_assets)
+    add_test(NAME unit_resources COMMAND i76_unit_resources)
+    set_tests_properties(unit_resources PROPERTIES LABELS "unit;memcheck")
+
+    add_executable(i76_unit_level tests/test_level.cpp)
+    target_link_libraries(i76_unit_level PRIVATE i76_core)
+    add_test(NAME unit_level COMMAND i76_unit_level)
+    set_tests_properties(unit_level PROPERTIES LABELS "unit;memcheck")
+
+    add_test(NAME functional_level_lifecycle COMMAND i76 --headless
+        --command "level prepare demo.level" --command "level status"
+        --command "level activate" --command "object list"
+        --command "asset stats" --command "level unload" --command "asset stats")
+    set_tests_properties(functional_level_lifecycle PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "level unloaded")
+    add_test(NAME functional_level_shell COMMAND i76 --shell
+        --command "level inspect demo.level" --command "level load demo.level"
+        --command "object list" --command "level unload" --command "level status")
+    set_tests_properties(functional_level_shell PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "level loaded=none")
+    add_test(NAME functional_level_missing COMMAND i76 --headless
+        --command "level load nonexisting.level")
+    set_tests_properties(functional_level_missing PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+
     add_executable(i76_unit_world tests/test_world.cpp)
     target_link_libraries(i76_unit_world PRIVATE i76_world)
     add_test(NAME unit_world COMMAND i76_unit_world)

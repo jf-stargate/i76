@@ -59,7 +59,9 @@ static bool shell_sdl_present(SDL_Renderer* renderer, const i76_shell_state& she
 
     status = "tick " + std::to_string(game.state.tick) + " | " +
              (game.state.paused ? "PAUSED" : "READY") +
-             " | objects " + std::to_string(i76_world_count(game.world)) + " | Esc: back/exit";
+             " | objects " + std::to_string(i76_world_count(game.world)) +
+             " | level " + (game.active_level.loaded ? game.active_level.definition.name :
+                              std::string("none")) + " | Esc: back/exit";
 
     SDL_SetRenderDrawColor(renderer, 20U, 23U, 28U, 255U);
     if (!SDL_RenderClear(renderer)) {
