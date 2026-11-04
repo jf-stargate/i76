@@ -7,6 +7,9 @@
 
 static std::uint32_t failures = 0;
 
+// -----------------------------------------------------------------------------
+// Record a test failure when the expected condition is false.
+// -----------------------------------------------------------------------------
 static void expect(bool condition, const char* label)
 {
     if (!condition) {
@@ -15,6 +18,9 @@ static void expect(bool condition, const char* label)
     }
 }
 
+// -----------------------------------------------------------------------------
+// Verify runtime initialization and shutdown behavior.
+// -----------------------------------------------------------------------------
 static void check_lifecycle()
 {
     i76_runtime game{};
@@ -28,9 +34,11 @@ static void check_lifecycle()
            "reject shutdown before init");
     expect(i76_runtime_step(game, 1U) == i76_result_code::not_initialized,
            "reject manual step before init");
-    expect(i76_runtime_advance_time(game, 1U) == i76_result_code::not_initialized,
+    expect(i76_runtime_advance_time(game,
+        1U) == i76_result_code::not_initialized,
            "reject clock advance before init");
-    expect(i76_runtime_set_paused(game, true) == i76_result_code::not_initialized,
+    expect(i76_runtime_set_paused(game,
+        true) == i76_result_code::not_initialized,
            "reject pause before init");
     expect(i76_runtime_request_exit(game) == i76_result_code::not_initialized,
            "reject quit before init");
@@ -47,29 +55,36 @@ static void check_lifecycle()
                i76_result_code::invalid_argument,
            "reject excessive tick rate");
     config.tick_rate = 60U;
-    expect(i76_runtime_initialize(game, config, i76_make_recording_outputs(record)) ==
+    expect(i76_runtime_initialize(game, config,
+        i76_make_recording_outputs(record)) ==
                i76_result_code::ok,
            "init");
     expect(i76_runtime_initialize(game, config, i76_make_null_outputs()) ==
                i76_result_code::already_initialized,
            "reject duplicate init");
-    expect(game.outputs.scene.submit != nullptr, "duplicate init keeps outputs");
+    expect(game.outputs.scene.submit != nullptr,
+        "duplicate init keeps outputs");
     expect(i76_runtime_shutdown(game) == i76_result_code::ok, "shutdown");
     expect(game.state.tick == 0U && game.outputs.scene.submit == nullptr,
            "shutdown zeroes state and sinks");
     expect(i76_runtime_initialize(game, config, i76_make_null_outputs()) ==
                i76_result_code::ok,
            "repeat init");
-    expect(i76_runtime_shutdown(game) == i76_result_code::ok, "repeat shutdown");
+    expect(i76_runtime_shutdown(game) == i76_result_code::ok,
+        "repeat shutdown");
 }
 
+// -----------------------------------------------------------------------------
+// Verify deterministic simulation ticks and pause behavior.
+// -----------------------------------------------------------------------------
 static void check_fixed_clock()
 {
     i76_runtime game{};
     i76_runtime_config config{};
     i76_recording_outputs record{};
     config.tick_rate = 100U;
-    expect(i76_runtime_initialize(game, config, i76_make_recording_outputs(record)) ==
+    expect(i76_runtime_initialize(game, config,
+        i76_make_recording_outputs(record)) ==
                i76_result_code::ok,
            "init clock fixture");
     expect(i76_runtime_advance_time(game, 9'000'000U) == i76_result_code::ok &&
@@ -100,12 +115,16 @@ static void check_fixed_clock()
     expect(i76_runtime_step(game, i76_k_max_ticks_per_call + 1U) ==
                i76_result_code::invalid_argument && game.state.tick == 4U,
            "large manual step rejected without mutation");
-    expect(i76_runtime_advance_time(game, std::numeric_limits<std::uint64_t>::max()) ==
+    expect(i76_runtime_advance_time(game,
+        std::numeric_limits<std::uint64_t>::max()) ==
                i76_result_code::overflow && game.state.tick == 4U,
            "excessive clock input rejected without mutation");
     expect(i76_runtime_shutdown(game) == i76_result_code::ok, "clock cleanup");
 }
 
+// -----------------------------------------------------------------------------
+// Verify scene, audio, and diagnostic recording sinks.
+// -----------------------------------------------------------------------------
 static void check_outputs()
 {
     i76_runtime null_game{};
@@ -117,7 +136,8 @@ static void check_outputs()
     expect(i76_runtime_initialize(null_game, config, i76_make_null_outputs()) ==
                i76_result_code::ok,
            "null init");
-    expect(i76_runtime_initialize(record_game, config, i76_make_recording_outputs(record)) ==
+    expect(i76_runtime_initialize(record_game, config,
+        i76_make_recording_outputs(record)) ==
                i76_result_code::ok,
            "record init");
     for (index = 0; index < 5U; ++index) {
@@ -126,18 +146,21 @@ static void check_outputs()
                "advance with interchangeable sinks");
     }
     expect(record.scene.size() == 5U, "recorded frame count");
-    i76_runtime_emit_diagnostic(null_game, i76_diagnostic_level::error, "ignored");
+    i76_runtime_emit_diagnostic(null_game, i76_diagnostic_level::error,
+        "ignored");
     expect(i76_runtime_advance_time(null_game, 0U) == i76_result_code::ok,
            "zero elapsed host time is valid");
 
-    expect(null_game.state.tick == record_game.state.tick, "sinks preserve simulation");
+    expect(null_game.state.tick == record_game.state.tick,
+        "sinks preserve simulation");
     expect(i76_runtime_emit_audio(record_game, 17U) == i76_result_code::ok &&
                i76_runtime_emit_audio(null_game, 17U) == i76_result_code::ok,
            "audio outputs can be null or recorded");
     expect(record.audio.size() == 1U && record.audio[0].sound_id == 17U &&
                record.audio[0].tick == 5U,
            "audio event content");
-    i76_runtime_emit_diagnostic(record_game, i76_diagnostic_level::info, "synthetic");
+    i76_runtime_emit_diagnostic(record_game, i76_diagnostic_level::info,
+        "synthetic");
     expect(record.diagnostics.size() == 1U &&
                record.diagnostics[0].message == "synthetic",
            "diagnostic recording");
@@ -148,6 +171,9 @@ static void check_outputs()
 }
 
 
+// -----------------------------------------------------------------------------
+// Run the test suite or produce a fixture for functional tests.
+// -----------------------------------------------------------------------------
 int main()
 {
     check_lifecycle();
