@@ -1,0 +1,79 @@
+{
+  "evidence": [
+    "instructions.json",
+    "corpus.json"
+  ],
+  "payload": {
+    "bounds_checked_original": false,
+    "member_decompression_in_indexed_path": false,
+    "offset_origin": "first byte of decoded whole logical PAK resource",
+    "return_expression": "pak_bytes + member.offset"
+  },
+  "reader_policy": {
+    "ambiguous_key": "error unless explicit ordinal",
+    "integer_domain": "0..2147483647 decimal",
+    "max_entries": 250000,
+    "max_index_bytes": 16777216,
+    "max_name_bytes": 15,
+    "max_pak_bytes": 134217728,
+    "overlaps": "accept bounded aliases",
+    "zero_length": "accept if offset within backing"
+  },
+  "runtime": {
+    "association": "first-dot same-stem .pak logical key, PAK ID from PIX enumeration",
+    "comparator": "first nonzero signed32(uint32(left_dword-right_dword)) across 4 DWORDs",
+    "duplicate_winner": "unresolved",
+    "endianness": "little",
+    "member_stride": 28,
+    "pak_stride": 24,
+    "search": "CRT bsearch",
+    "sort": "CRT qsort"
+  },
+  "serialized": {
+    "absent_from_serialization": [
+      "pak_ordinal",
+      "payload_pointer",
+      "references",
+      "member_compression_flag",
+      "expanded_member_size"
+    ],
+    "encoding_verified": "ASCII",
+    "entry": {
+      "scan_format": "%s %d %d",
+      "tokens": [
+        {
+          "name": "logical_name",
+          "ordinal": 0,
+          "runtime_name_region_bytes": 16,
+          "runtime_offset": 0,
+          "serialized_offset": "variable token position"
+        },
+        {
+          "name": "absolute_logical_PAK_offset",
+          "ordinal": 1,
+          "runtime_bytes": 4,
+          "runtime_offset": 20,
+          "serialized_offset": "variable token position"
+        },
+        {
+          "name": "member_byte_length",
+          "ordinal": 2,
+          "runtime_bytes": 4,
+          "runtime_offset": 24,
+          "serialized_offset": "variable token position"
+        }
+      ]
+    },
+    "header": {
+      "meaning": "declared member count",
+      "offset": 0,
+      "scan_format": "%d"
+    },
+    "line_separator_observed": "CRLF",
+    "line_separator_required_by_code": "LF",
+    "record_width": "variable",
+    "signature": null,
+    "version": null
+  },
+  "variant": "base-game PIX text index / logical PAK byte stream"
+}
