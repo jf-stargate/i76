@@ -273,6 +273,15 @@ static void test_resource_and_commands()
     expect(i76_resource_release(store, held) == i76_resource_result::ok,
            "release external reference");
 
+    expect(i76_resource_add_memory(store, "fixture", "miss16/absent.msn",
+                                   sample_mission(1U, 0U, 1U, "absent.ter")) ==
+               i76_resource_result::ok, "register mission with missing sidecar");
+    expect(i76_retail_mission_read(store, "miss16/absent.msn", mission, error) ==
+               i76_retail_result::ok &&
+               i76_retail_terrain_probe(store, mission, samples, error) ==
+                   i76_retail_result::resource_not_found &&
+               i76_resource_get_stats(store).references == 0U,
+           "missing TER is distinct from valid mission decode and leaks no resource lease");
     expect(i76_resource_add_memory(store, "fixture", "miss16/short.ter",
                                    std::vector<std::uint8_t>(64U, 0U)) ==
                i76_resource_result::ok, "register truncated sidecar");
@@ -323,6 +332,15 @@ static void test_resource_and_commands()
                response.message.find("status=ok") != std::string::npos &&
                response.message.find("resource fields not yet decoded") != std::string::npos,
            "registered dependency command reports scope honestly");
+    expect(i76_resource_add_memory(game.resources, "builtin", "miss16/absent.msn",
+                                   sample_mission(1U, 0U, 1U, "absent.ter")) ==
+               i76_resource_result::ok, "runtime registers intentionally missing sidecar");
+    response = i76_execute_command(game, "level dependencies miss16/absent.msn");
+    expect(response.code == i76_result_code::ok &&
+               response.message.find("status=resource not found") != std::string::npos,
+           "dependencies reports missing TER without treating mission metadata as invalid");
+    expect(i76_execute_command(game, "level terrain miss16/absent.msn").code !=
+               i76_result_code::ok, "terrain probe rejects absent sidecar");
     expect(i76_execute_command(game, "level summary missing.msn").code !=
                i76_result_code::ok, "missing retail command input rejected");
     expect(i76_execute_command(game, "level load miss16/m06.msn").code !=
