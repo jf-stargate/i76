@@ -87,15 +87,16 @@ i76_shell_view i76_shell_make_view(const i76_shell_state& shell) noexcept
         break;
     case i76_shell_page::session:
         view.title = "TEST SESSION";
-        view.subtitle = "Synthetic clock only - missions and gameplay are not implemented";
+        view.subtitle = "Synthetic world registry - missions and gameplay are not implemented";
         view.items[0] = {"Status", "status"};
         view.items[1] = {"Step 1 tick", "step 1"};
         view.items[2] = {"Step 60 ticks", "step 60"};
-        view.items[3] = {"Pause", "pause"};
-        view.items[4] = {"Resume", "resume"};
-        view.items[5] = {"Return to menu", "menu"};
-        view.items[6] = {"Exit", "exit"};
-        view.item_count = 7U;
+        view.items[3] = {"List world objects", "object list"};
+        view.items[4] = {"Pause", "pause"};
+        view.items[5] = {"Resume", "resume"};
+        view.items[6] = {"Return to menu", "menu"};
+        view.items[7] = {"Exit", "exit"};
+        view.item_count = 8U;
         break;
     }
     return view;
@@ -106,6 +107,8 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
 {
     i76_command_result result = {};
     i76_result_code code = i76_result_code::ok;
+    i76_world_result world_code = i76_world_result::ok;
+    i76_world_handle demo_handle = {};
     std::uint32_t index = 0;
 
     if (!shell.initialized || !game.state.initialized) {
@@ -119,7 +122,8 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
     }
     if (command == "help") {
         return shell_reply(shell, game, i76_result_code::ok,
-                           "select 1-8 or use: play options about back menu status pause resume step <n> exit");
+                           "select 1-8 or use: play options about back menu status pause resume "
+                           "step <n> object <action> exit");
     }
     if (command == "exit" || command == "quit") {
         code = i76_runtime_request_exit(game);
@@ -130,16 +134,37 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
             return shell_reply(shell, game, i76_result_code::invalid_argument,
                                "already at main menu");
         }
+        if (shell.page == i76_shell_page::session) {
+            world_code = i76_world_clear(game.world);
+            if (world_code != i76_world_result::ok) {
+                return shell_reply(shell, game, i76_result_code::not_initialized,
+                                   "unable to unload test world");
+            }
+        }
         shell.page = i76_shell_page::main_menu;
         shell.selected_index = 0U;
         return shell_reply(shell, game, i76_result_code::ok, "main menu");
     }
     if (shell.page == i76_shell_page::main_menu) {
         if (command == "play") {
+            world_code = i76_world_clear(game.world);
+            if (world_code == i76_world_result::ok) {
+                world_code = i76_world_create(game.world, i76_world_kind::vehicle,
+                                               "demo_car", demo_handle);
+            }
+            if (world_code == i76_world_result::ok) {
+                world_code = i76_world_create(game.world, i76_world_kind::marker,
+                                               "demo_checkpoint", demo_handle);
+            }
+            if (world_code != i76_world_result::ok) {
+                i76_world_clear(game.world);
+                return shell_reply(shell, game, i76_result_code::overflow,
+                                   "unable to initialize synthetic world");
+            }
             shell.page = i76_shell_page::session;
             shell.selected_index = 0U;
             return shell_reply(shell, game, i76_result_code::ok,
-                               "test session started (no mission loaded)");
+                               "test session started (2 synthetic objects; no mission loaded)");
         }
         if (command == "options") {
             shell.page = i76_shell_page::options;
@@ -155,7 +180,8 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
     if (shell.page == i76_shell_page::session) {
         if (command == "status" || command == "pause" || command == "resume" ||
             command == "step" || command.starts_with("step ") ||
-            command.starts_with("step\t")) {
+            command.starts_with("step\t") || command == "object" ||
+            command.starts_with("object ") || command.starts_with("object\t")) {
             result = i76_execute_command(game, command);
             shell.notice = result.message;
             return result;

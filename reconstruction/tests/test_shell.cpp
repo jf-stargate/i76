@@ -87,7 +87,7 @@ static void test_navigation()
     expect(i76_shell_execute(shell, game, "1").code == i76_result_code::ok &&
                shell.page == i76_shell_page::session, "start synthetic session");
     view = i76_shell_make_view(shell);
-    expect(view.item_count == 7U && view.items[1].command == "step 1",
+    expect(view.item_count == 8U && view.items[1].command == "step 1",
            "session actions exposed as data");
     expect(i76_shell_execute(shell, game, "step 3").code == i76_result_code::ok &&
                game.state.tick == 3U, "session dispatches runtime step");

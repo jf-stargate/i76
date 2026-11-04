@@ -21,3 +21,5 @@ python3 reconstruction/tools/valgrind_ctest.py --build-dir build/i76-debug --too
 ```
 
 Unit tests exercise the runtime's lifecycle/clock/outputs and shell state transitions; functional tests invoke the real CLI. The reconstruction CI workflow runs GCC, Clang, MSVC, sanitizers, coverage, and Memcheck on submitted reconstruction changes. Helgrind remains conditional on the introduction of threaded tests.
+
+The portable application now owns a separate generation-checked world-object registry, with a shell-accessible inspector and synthetic fixture objects. See [WORLD.md](WORLD.md) for handle lifetimes, debug commands and tests.
