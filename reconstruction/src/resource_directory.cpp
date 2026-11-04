@@ -38,7 +38,8 @@ i76_resource_result i76_resource_directory_validate(std::string_view path,
     if (path.empty()) {
         return i76_resource_result::invalid_argument;
     }
-    directory = std::filesystem::canonical(std::filesystem::path(std::string(path)), error);
+    directory = std::filesystem::canonical(
+        std::filesystem::path(std::string(path)), error);
     if (error || !std::filesystem::is_directory(directory, error) || error) {
         return i76_resource_result::invalid_argument;
     }

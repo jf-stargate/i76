@@ -355,7 +355,7 @@ i76_level_result i76_level_activate(i76_world_registry& world,
     for (index = 0; index < prepared.definition.objects.size(); ++index) {
         world_result = i76_world_create(replacement,
             prepared.definition.objects[index].kind,
-                                         prepared.definition.objects[index].name, handle);
+                         prepared.definition.objects[index].name, handle);
         if (world_result != i76_world_result::ok) {
             i76_world_shutdown(replacement);
             return i76_level_result::activation_failed;

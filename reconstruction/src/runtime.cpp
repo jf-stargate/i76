@@ -3,7 +3,8 @@
 #include <limits>
 
 static constexpr std::uint8_t demo_level[] =
-    "I76LEVEL 1\nasset demo_shared.dat\nobject vehicle demo_car demo_shared.dat\n"
+    "I76LEVEL 1\nasset demo_shared.dat\nobject vehicle demo_car "
+    "demo_shared.dat\n"
     "object marker demo_checkpoint\n";
 static constexpr std::uint8_t demo_shared[] = "synthetic asset payload";
 

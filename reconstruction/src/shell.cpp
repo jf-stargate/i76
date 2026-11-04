@@ -157,8 +157,10 @@ i76_command_result i76_shell_execute(i76_shell_state& shell,
     }
     if (command == "help") {
         return shell_reply(shell, game, i76_result_code::ok,
-                           "select 1-8 or use: play options about back menu status pause resume "
-                           "step <n> object <action> level <action> resource <action> asset stats exit");
+                           "select 1-8 or use: play options about back menu "
+                           "status pause resume "
+                           "step <n> object <action> level <action> "
+                           "resource <action> asset stats exit");
     }
     if (command == "exit" || command == "quit") {
         code = i76_runtime_request_exit(game);
@@ -211,7 +213,8 @@ i76_command_result i76_shell_execute(i76_shell_state& shell,
             shell.page = i76_shell_page::session;
             shell.selected_index = 0U;
             return shell_reply(shell, game, i76_result_code::ok,
-                               "test session started (2 synthetic objects; no retail mission)");
+                               "test session started (2 synthetic objects; "
+                               "no retail mission)");
         }
         if (command == "options") {
             shell.page = i76_shell_page::options;

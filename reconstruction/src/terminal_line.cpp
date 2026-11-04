@@ -109,7 +109,8 @@ static void redraw(std::ostream& output,
     std::size_t back = 0;
 
     output << "\r\x1b[2K" << prompt << editor.line;
-    back = visible_characters(std::string_view(editor.line).substr(editor.cursor));
+    back = visible_characters(
+        std::string_view(editor.line).substr(editor.cursor));
     if (back != 0U) {
         output << "\x1b[" << back << 'D';
     }

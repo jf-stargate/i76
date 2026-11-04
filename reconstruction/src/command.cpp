@@ -163,8 +163,10 @@ static i76_command_result execute_object_command(i76_runtime& game,
     verb = take_token(args);
     if ((verb.empty() || verb == "help") && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "object commands: object list | spawn <vehicle|scenery|marker> <name> | "
-                          "inspect <slot:generation> | destroy <slot:generation> | clear");
+                          "object commands: object list | spawn "
+                          "<vehicle|scenery|marker> <name> | "
+                          "inspect <slot:generation> | destroy "
+                          "<slot:generation> | clear");
     }
     if (verb == "list" && args.empty()) {
         count = i76_world_count(game.world);
@@ -190,7 +192,8 @@ static i76_command_result execute_object_command(i76_runtime& game,
         kind = parse_kind(kind_text);
         if (kind == i76_world_kind::none || name.empty()) {
             return make_reply(game, i76_result_code::invalid_argument,
-                              "usage: object spawn <vehicle|scenery|marker> <name>");
+                              "usage: object spawn <vehicle|scenery|marker> "
+                              "<name>");
         }
         status = i76_world_create(game.world, kind, name, handle);
         if (status == i76_world_result::invalid_argument) {
@@ -308,7 +311,8 @@ static i76_command_result execute_resource_command(i76_runtime& game,
     verb = take_token(args);
     if (verb == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "resource commands: resource list | resource mounts | "
+                          "resource commands: resource list | resource "
+                          "mounts | "
                           "resource cache | resource mount <directory> | "
                           "resource unmount <id|name>");
     }
@@ -364,7 +368,8 @@ static i76_command_result execute_resource_command(i76_runtime& game,
         lookup = i76_resource_find_mount(game.resources, args, id);
         if (lookup == i76_resource_result::invalid_argument) {
             return make_reply(game, i76_result_code::invalid_argument,
-                              "ambiguous mount name; use the numeric ID from resource list");
+                              "ambiguous mount name; use the numeric ID "
+                              "from resource list");
         }
         if (lookup == i76_resource_result::not_found) {
             begin = args.data();
@@ -372,7 +377,8 @@ static i76_command_result execute_resource_command(i76_runtime& game,
             parsed = std::from_chars(begin, end, id, 10);
             if (parsed.ec != std::errc{} || parsed.ptr != end || id == 0U) {
                 return make_reply(game, i76_result_code::invalid_argument,
-                                  "usage: resource unmount <mount id|mount path/name>");
+                                  "usage: resource unmount <mount id|mount "
+                                  "path/name>");
             }
         }
         code = i76_resource_unmount(game.resources, id);
@@ -618,7 +624,10 @@ static i76_command_result execute_level_command(i76_runtime& game,
     verb = take_token(args);
     if (verb == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "level commands: inspect <name> | sections <BWD2 name> | summary <mission> | terrain <mission> | dependencies <mission> | prepare <synthetic name> | activate | load <synthetic name> | "
+                          "level commands: inspect <name> | sections <BWD2 "
+                          "name> | summary <mission> | terrain <mission> | "
+                          "dependencies <mission> | prepare <synthetic "
+                          "name> | activate | load <synthetic name> | "
                           "discard | unload | status");
     }
     if ((verb == "summary" || verb == "terrain" || verb == "dependencies") &&
@@ -655,7 +664,8 @@ static i76_command_result execute_level_command(i76_runtime& game,
     if ((verb == "prepare" || verb == "load") && !args.empty()) {
         if (bwd2_extension(args)) {
             return make_reply(game, i76_result_code::invalid_argument,
-                              "retail BWD2 activation is not implemented; use level inspect or level sections");
+                              "retail BWD2 activation is not implemented; "
+                              "use level inspect or level sections");
         }
         code = i76_level_prepare(game.resources, args, game.prepared_level);
         if (code != i76_level_result::ok) {
@@ -730,7 +740,8 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
     args = line;
     if (command == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "commands: help status pause resume step <count> object <action> resource <action> "
+                          "commands: help status pause resume step <count> "
+                          "object <action> resource <action> "
                           "level <action> asset stats quit");
     }
     if (command == "status" && args.empty()) {

@@ -302,9 +302,8 @@ static std::string find_entries(std::string_view search)
 // Read or update a supported typed console variable.
 // -----------------------------------------------------------------------------
 static i76_command_result variable_execute(i76_runtime& game,
-                                           const i76_console_definition&
-                                           definition,
-                                           const std::vector<std::string>& args)
+                                     const i76_console_definition& definition,
+                                     const std::vector<std::string>& args)
 {
     std::string value = {};
 
