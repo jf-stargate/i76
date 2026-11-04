@@ -37,10 +37,16 @@ it intentionally rejects the enclosing-root form used by some older synthetic
 BWD2 structural tests. It is deliberately independent of the synthetic
 `I76LEVEL 1` prepare/activate pipeline.
 
-ZMAP payload is exactly 6,401 bytes (count + 80×80 indices). A cell value of
-0xff means unused; every other cell must be below the active-page count. ZONE
-payload is 14 bytes (count + 13-byte filename), and the two counts must
-agree. Names use the existing resource-key normalization and traversal guards.
+ZMAP payload is exactly 6,401 bytes (active page count + 80×80 indices).
+A cell value of 0xff means unused; every other cell must be below the ZMAP
+active-page count. ZONE payload is 14 bytes (an **opaque prefix byte** followed
+by a 13-byte filename). The original retail ZONE handler (004939D0) reads the
+filename at chunk offset +9 and uses the ZMAP-derived global page count; it
+does **not** compare ZONE payload byte 0 with the ZMAP count. An earlier
+implementation mistakenly enforced that equality and rejected real missions at
+the ZONE chunk offset (e.g. 0x1aa0). The byte is retained as
+`zone_prefix_byte` for diagnostic inspection without assigning an unverified
+meaning. Names use existing resource-key normalization and traversal guards.
 All read operations release byte leases on success and error. Partial decoding
 never commits into the caller's previous definition.
 

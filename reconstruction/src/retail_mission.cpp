@@ -65,8 +65,7 @@ static i76_retail_result decode_zmap(std::span<const std::uint8_t> bytes,
 static i76_retail_result decode_zone(std::span<const std::uint8_t> bytes,
                                      const i76_bwd2_chunk& chunk,
                                      i76_retail_terrain_definition& terrain,
-                                     i76_retail_error& error,
-                                     std::uint8_t& declared_pages)
+                                     i76_retail_error& error)
 {
     std::size_t end{};
     std::string raw{};
@@ -77,7 +76,10 @@ static i76_retail_result decode_zone(std::span<const std::uint8_t> bytes,
     }
     terrain.has_zone = true;
     terrain.zone_offset = chunk.offset;
-    declared_pages = bytes[chunk.payload_offset];
+    // Retail ZONE handler 004939D0 reads the filename from payload +1;
+    // it obtains its page count from the prior ZMAP handler's state.
+    // The first ZONE payload byte is not a second validated page count.
+    terrain.zone_prefix_byte = bytes[chunk.payload_offset];
     end = 0U;
     while (end < 13U && bytes[chunk.payload_offset + 1U + end] != 0U) {
         ++end;
@@ -101,7 +103,6 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
     i76_bwd2_error bwd2_error{};
     i76_retail_result status{i76_retail_result::ok};
     std::string normalized{};
-    std::uint8_t zone_pages{};
     const i76_bwd2_chunk* parent{};
     i76_retail_section* section{};
     std::size_t separator{};
@@ -184,16 +185,11 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
         if (section->tag == "TDEF" && is_tag(chunk, "ZMAP")) {
             status = decode_zmap(bytes, chunk, candidate.terrain, error);
         } else if (section->tag == "TDEF" && is_tag(chunk, "ZONE")) {
-            status = decode_zone(bytes, chunk, candidate.terrain, error, zone_pages);
+            status = decode_zone(bytes, chunk, candidate.terrain, error);
         }
         if (status != i76_retail_result::ok) {
             return status;
         }
-    }
-    if (candidate.terrain.has_zone && candidate.terrain.has_zmap &&
-        candidate.terrain.active_pages != zone_pages) {
-        return fail(error, i76_retail_result::invalid_terrain_map,
-                    candidate.terrain.zone_offset);
     }
     if (candidate.terrain.has_zone) {
         separator = candidate.name.find_last_of('/');
@@ -331,7 +327,7 @@ const char* i76_retail_result_name(i76_retail_result result) noexcept
     case i76_retail_result::resource_error: return "resource read failure";
     case i76_retail_result::invalid_structure: return "invalid BWD2 mission structure";
     case i76_retail_result::invalid_record: return "invalid mission section or revision";
-    case i76_retail_result::invalid_terrain_map: return "invalid ZMAP or ZONE page counts";
+    case i76_retail_result::invalid_terrain_map: return "invalid ZMAP length, duplicate, or page index";
     case i76_retail_result::invalid_terrain_name: return "invalid ZONE terrain filename";
     case i76_retail_result::missing_terrain: return "missing ZMAP or ZONE metadata";
     case i76_retail_result::invalid_terrain_size: return "TER sidecar page count or byte size mismatch";

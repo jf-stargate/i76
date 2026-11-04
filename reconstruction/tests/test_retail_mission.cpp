@@ -66,7 +66,7 @@ static std::vector<std::uint8_t> sample_ter()
 
 static std::vector<std::uint8_t> sample_mission(
     std::uint8_t zmap_pages = 1U, std::uint8_t cell_page = 0U,
-    std::uint8_t zone_pages = 1U, std::string_view zone_name = "M06.TER",
+    std::uint8_t zone_prefix_byte = 0U, std::string_view zone_name = "M06.TER",
     bool include_zmap = true, bool include_zone = true, bool short_zmap = false,
     bool repeat_zmap = false)
 {
@@ -86,7 +86,7 @@ static std::vector<std::uint8_t> sample_mission(
         map[1] = cell_page;
         map[100U] = cell_page;
     }
-    zone[0] = zone_pages;
+    zone[0] = zone_prefix_byte;
     for (std::size_t index = 0U; index < zone_name.size() && index < 13U; ++index) {
         zone[index + 1U] = static_cast<std::uint8_t>(zone_name[index]);
     }
@@ -182,7 +182,8 @@ static void test_decode()
                document.terrain.referenced_pages == 1U &&
                document.terrain.page_indices[0] == 0U &&
                document.terrain.page_indices[1] == 0xffU &&
-               document.terrain.resource_name == "miss16/m06.ter",
+               document.terrain.resource_name == "miss16/m06.ter" &&
+               document.terrain.zone_prefix_byte == 0U,
            "ZMAP/ZONE parsed and sidecar name normalized relative to mission");
 
     unchanged = document;
@@ -194,8 +195,17 @@ static void test_decode()
            "out-of-range ZMAP index rejected without output mutation");
     bytes = sample_mission(1U, 0U, 2U);
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document, error) ==
-               i76_retail_result::invalid_terrain_map,
-           "disagreeing ZMAP and ZONE page count rejected");
+               i76_retail_result::ok &&
+               document.terrain.active_pages == 1U &&
+               document.terrain.zone_prefix_byte == 2U &&
+               document.terrain.resource_name == "miss16/m06.ter",
+           "ZONE prefix is not a second ZMAP page count");
+    bytes = sample_mission(1U, 0U, 0xffU);
+    expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document, error) ==
+               i76_retail_result::ok &&
+               document.terrain.active_pages == 1U &&
+               document.terrain.zone_prefix_byte == 0xffU,
+           "opaque ZONE prefix preserves arbitrary byte value");
     bytes = sample_mission(1U, 0U, 1U, "../x.ter");
     expect(i76_retail_mission_decode(bytes, "miss16/m06.msn", document, error) ==
                i76_retail_result::invalid_terrain_name,
@@ -282,6 +292,17 @@ static void test_resource_and_commands()
                    i76_retail_result::resource_not_found &&
                i76_resource_get_stats(store).references == 0U,
            "missing TER is distinct from valid mission decode and leaks no resource lease");
+    expect(i76_resource_add_memory(store, "fixture", "miss16/prefix.msn",
+                                   sample_mission(1U, 0U, 0xffU, "m06.ter")) ==
+               i76_resource_result::ok, "register mission with unrelated ZONE prefix");
+    expect(i76_retail_mission_read(store, "miss16/prefix.msn", mission, error) ==
+               i76_retail_result::ok &&
+               mission.terrain.zone_prefix_byte == 0xffU &&
+               i76_retail_terrain_probe(store, mission, samples, error) ==
+                   i76_retail_result::ok &&
+               samples.pages == 1U &&
+               i76_resource_get_stats(store).references == 0U,
+           "valid TER page count comes from ZMAP and lease releases after probe");
     expect(i76_resource_add_memory(store, "fixture", "miss16/short.ter",
                                    std::vector<std::uint8_t>(64U, 0U)) ==
                i76_resource_result::ok, "register truncated sidecar");
