@@ -163,7 +163,8 @@ static void test_transactional_lifecycle()
     fresh = i76_world_handle_at(game.world, 0U);
     expect(fresh.slot == old.slot && fresh.generation > old.generation &&
                i76_world_lookup(game.world, old) == nullptr,
-           "replacement invalidates stale handles without resetting generation");
+           "replacement invalidates stale handles without resetting "
+           "generation");
     expect(i76_resource_get_stats(game.resources).references == 1U,
            "old asset lease released on successful swap");
     expect(i76_level_unload(game.world, game.resources, game.active_level) ==

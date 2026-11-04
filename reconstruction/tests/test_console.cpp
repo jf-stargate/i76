@@ -38,7 +38,8 @@ static void test_lexer()
     tokens = i76_console_tokenize("object spawn vehicle \"dune buggy\"");
     expect(tokens.error.empty() && tokens.values.size() == 4U &&
            tokens.values[3] == "dune buggy", "quoted object name");
-    tokens = i76_console_tokenize("object spawn vehicle pre\"middle part\"post");
+    tokens = i76_console_tokenize("object spawn vehicle "
+                                  "pre\"middle part\"post");
     expect(tokens.error.empty() && tokens.values.size() == 4U &&
            tokens.values[3] == "premiddle partpost",
                "adjacent bare and quoted segments");

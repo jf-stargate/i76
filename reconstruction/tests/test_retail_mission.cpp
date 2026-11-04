@@ -374,7 +374,8 @@ static void test_resource_and_commands()
                    i76_retail_result::ok &&
                samples.pages == 1U &&
                i76_resource_get_stats(store).references == 0U,
-           "valid TER page count comes from ZMAP and lease releases after probe");
+           "valid TER page count comes from ZMAP and lease releases after "
+           "probe");
     expect(i76_resource_add_memory(store, "fixture", "miss16/short.ter",
                                    std::vector<std::uint8_t>(64U, 0U)) ==
                i76_resource_result::ok, "register truncated sidecar");
