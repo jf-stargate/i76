@@ -8,6 +8,9 @@
 
 static std::uint32_t failures = 0;
 
+// -----------------------------------------------------------------------------
+// Record a test failure when an assertion does not hold.
+// -----------------------------------------------------------------------------
 static void expect(bool condition, const char* label)
 {
     if (!condition) {
@@ -16,6 +19,9 @@ static void expect(bool condition, const char* label)
     }
 }
 
+// -----------------------------------------------------------------------------
+// Verify commands and directory provider behavior and error cases.
+// -----------------------------------------------------------------------------
 static void test_commands_and_directory_provider()
 {
     i76_runtime game = {};
@@ -24,27 +30,34 @@ static void test_commands_and_directory_provider()
     i76_command_result result = {};
     i76_world_handle original = {};
     i76_resource_stats stats = {};
-    std::filesystem::path root = std::filesystem::temp_directory_path() / "i76_level_cli_test_1";
+    std::filesystem::path root = std::filesystem::temp_directory_path() /
+        "i76_level_cli_test_1";
     std::ofstream stream = {};
     std::error_code error = {};
     std::string mount_command = {};
 
     config.tick_rate = 60U;
-    expect(i76_runtime_initialize(game, config, i76_make_recording_outputs(record)) ==
+    expect(i76_runtime_initialize(game, config,
+        i76_make_recording_outputs(record)) ==
                i76_result_code::ok, "init fixture runtime");
-    expect(i76_execute_command(game, "resource help").message.find("resource list") !=
+    expect(i76_execute_command(game,
+        "resource help").message.find("resource list") !=
                std::string::npos, "resource help");
-    expect(i76_execute_command(game, "resource list").message.find("(memory)") !=
+    expect(i76_execute_command(game, "resource list").message.find("(memory)")
+        !=
                std::string::npos, "default memory provider listed");
     expect(i76_execute_command(game, "resource invalid").code ==
                i76_result_code::invalid_argument, "invalid resource command");
-    expect(i76_execute_command(game, "resource mount /i76-nonexisting-directory").code ==
-               i76_result_code::invalid_argument, "nonexistent directory rejected");
+    expect(i76_execute_command(game,
+        "resource mount /i76-nonexisting-directory").code ==
+               i76_result_code::invalid_argument,
+                   "nonexistent directory rejected");
     expect(i76_execute_command(game, "asset stats").message.find("cached=0") !=
                std::string::npos, "initial empty cache stats");
     expect(i76_execute_command(game, "asset list").code ==
                i76_result_code::invalid_argument, "invalid asset command");
-    expect(i76_execute_command(game, "level help").message.find("level commands") !=
+    expect(i76_execute_command(game,
+        "level help").message.find("level commands") !=
                std::string::npos, "level help");
     expect(i76_execute_command(game, "level activate").code ==
                i76_result_code::invalid_argument, "activate without prepare");
@@ -53,23 +66,29 @@ static void test_commands_and_directory_provider()
     expect(i76_execute_command(game, "level discard").code ==
                i76_result_code::invalid_argument, "discard without prepare");
     expect(i76_execute_command(game, "level inspect ../escape").code ==
-               i76_result_code::invalid_argument, "unsafe level inspect rejected");
-    expect(i76_execute_command(game, "level inspect demo.level").message.find("objects=2") !=
+               i76_result_code::invalid_argument,
+                   "unsafe level inspect rejected");
+    expect(i76_execute_command(game,
+        "level inspect demo.level").message.find("objects=2") !=
                std::string::npos, "inspect without loading");
     expect(!game.prepared_level.ready && i76_world_count(game.world) == 0U &&
                i76_resource_get_stats(game.resources).references == 0U,
            "inspect is side-effect free");
-    expect(i76_execute_command(game, "level prepare demo.level").code == i76_result_code::ok,
+    expect(i76_execute_command(game, "level prepare demo.level").code ==
+        i76_result_code::ok,
            "prepare command");
-    expect(i76_execute_command(game, "level status").message.find("prepared=demo.level") !=
+    expect(i76_execute_command(game,
+        "level status").message.find("prepared=demo.level") !=
                std::string::npos, "status reports pending preparation");
     expect(i76_execute_command(game, "level prepare demo.level").code ==
                i76_result_code::invalid_argument, "duplicate prepare rejected");
-    expect(i76_execute_command(game, "level discard").code == i76_result_code::ok,
+    expect(i76_execute_command(game, "level discard").code ==
+        i76_result_code::ok,
            "discard command");
     expect(i76_resource_get_stats(game.resources).references == 0U,
            "discard drops prepared leases");
-    expect(i76_execute_command(game, "level load demo.level").code == i76_result_code::ok,
+    expect(i76_execute_command(game, "level load demo.level").code ==
+        i76_result_code::ok,
            "load command");
     original = i76_world_handle_at(game.world, 0U);
     result = i76_execute_command(game, "level status");
@@ -80,17 +99,20 @@ static void test_commands_and_directory_provider()
                i76_result_code::invalid_argument &&
                i76_world_lookup(game.world, original) != nullptr,
            "failed load retains old world and leases");
-    expect(i76_execute_command(game, "level unload").code == i76_result_code::ok &&
+    expect(i76_execute_command(game, "level unload").code == i76_result_code::ok
+        &&
                i76_world_lookup(game.world, original) == nullptr,
            "explicit unload invalidates world handles");
     expect(i76_execute_command(game, "level badcommand").code ==
-               i76_result_code::invalid_argument, "unknown level action rejected");
+               i76_result_code::invalid_argument,
+                   "unknown level action rejected");
 
     std::filesystem::remove_all(root, error);
     std::filesystem::create_directories(root, error);
     expect(!error, "create directory fixture");
     stream.open(root / "external.level", std::ios::binary);
-    stream << "I76LEVEL 1\nasset external.bin\nobject scenery tower external.bin\n";
+    stream << "I76LEVEL 1\nasset external.bin\nobject scenery tower "
+    "external.bin\n";
     stream.close();
     stream.open(root / "external.bin", std::ios::binary);
     stream << "GEO-fixture";
@@ -98,14 +120,17 @@ static void test_commands_and_directory_provider()
     mount_command = "resource mount " + root.string();
     expect(i76_execute_command(game, mount_command).code == i76_result_code::ok,
            "CLI mount directory");
-    expect(i76_execute_command(game, "resource list").message.find("(directory)") !=
+    expect(i76_execute_command(game,
+        "resource list").message.find("(directory)") !=
                std::string::npos, "directory mount listed");
     expect(i76_execute_command(game, "resource list").message.find("[2]") !=
                std::string::npos, "stable mount id visible");
-    expect(i76_execute_command(game, "resource unmount 2").code == i76_result_code::ok,
+    expect(i76_execute_command(game, "resource unmount 2").code ==
+        i76_result_code::ok,
            "unmount idle directory");
     expect(i76_execute_command(game, "resource unmount 2").code ==
-               i76_result_code::invalid_argument, "reject already removed mount");
+               i76_result_code::invalid_argument,
+                   "reject already removed mount");
     expect(i76_execute_command(game, mount_command).code == i76_result_code::ok,
            "remount directory with fresh id");
     expect(i76_execute_command(game, "resource list").message.find("[3]") !=
@@ -114,44 +139,61 @@ static void test_commands_and_directory_provider()
                i76_result_code::invalid_argument, "invalid selector rejected");
     expect(i76_execute_command(game, "resource unmount 0").code ==
                i76_result_code::invalid_argument, "zero selector rejected");
-    expect(i76_execute_command(game, "resource unmount 18446744073709551616").code ==
-               i76_result_code::invalid_argument, "overflowing selector rejected");
-    expect(i76_execute_command(game, "resource mounts").message.find("(directory)") !=
+    expect(i76_execute_command(game,
+        "resource unmount 18446744073709551616").code ==
+               i76_result_code::invalid_argument,
+                   "overflowing selector rejected");
+    expect(i76_execute_command(game,
+        "resource mounts").message.find("(directory)") !=
                std::string::npos, "mount-list alias");
 
-    expect(i76_execute_command(game, "level load external.level").code == i76_result_code::ok,
+    expect(i76_execute_command(game, "level load external.level").code ==
+        i76_result_code::ok,
            "load fixture from directory provider");
     expect(i76_world_count(game.world) == 1U &&
-               i76_world_lookup(game.world, i76_world_handle_at(game.world, 0U))->name == "tower",
+               i76_world_lookup(game.world, i76_world_handle_at(game.world,
+                   0U))->name == "tower",
            "external level object instantiated");
-    expect(i76_execute_command(game, "resource cache").message.find("external.bin") !=
+    expect(i76_execute_command(game,
+        "resource cache").message.find("external.bin") !=
                std::string::npos, "resource cache lists acquired files");
-    expect(i76_execute_command(game, "resource unmount 3").message.find("retained") !=
+    expect(i76_execute_command(game,
+        "resource unmount 3").message.find("retained") !=
                std::string::npos, "active-level lease prevents unmount");
     stats = i76_resource_get_stats(game.resources);
-    expect(stats.mount_count == 2U && stats.cached_bytes == 11U && stats.references == 1U,
+    expect(stats.mount_count == 2U && stats.cached_bytes == 11U &&
+        stats.references == 1U,
            "external dependency leased, bytes accounted");
-    expect(i76_execute_command(game, "level unload").code == i76_result_code::ok &&
+    expect(i76_execute_command(game, "level unload").code == i76_result_code::ok
+        &&
                i76_resource_get_stats(game.resources).references == 0U,
            "external asset lease released");
     expect(i76_execute_command(game,
                                "resource unmount " +
-                                   (root / ".." / root.filename()).string()).code ==
+                                   (root / ".." /
+                                   root.filename()).string()).code ==
                i76_result_code::ok,
            "directory unmount by canonicalizable path after unloading level");
-    expect(i76_execute_command(game, "resource unmount builtin").code == i76_result_code::ok,
+    expect(i76_execute_command(game, "resource unmount builtin").code ==
+        i76_result_code::ok,
            "exact-name memory unmount supported");
-    expect(i76_execute_command(game, "resource list").message.find("mounts=0") !=
+    expect(i76_execute_command(game, "resource list").message.find("mounts=0")
+        !=
                std::string::npos, "all mounts removed");
     expect(i76_execute_command(game, "level help extra").code ==
-               i76_result_code::invalid_argument, "reject extraneous level args");
+               i76_result_code::invalid_argument,
+                   "reject extraneous level args");
     expect(!record.diagnostics.empty() &&
                record.diagnostics.back().level == i76_diagnostic_level::error,
            "recording diagnostic sink captures errors");
-    expect(i76_runtime_shutdown(game) == i76_result_code::ok, "shutdown runtime fixture");
+    expect(i76_runtime_shutdown(game) == i76_result_code::ok,
+        "shutdown runtime fixture");
     std::filesystem::remove_all(root, error);
 }
 
+// -----------------------------------------------------------------------------
+// Run the test cases and return a failure status when any assertion fails.
+// -----------------------------------------------------------------------------
 int main()
 {
     test_commands_and_directory_provider();

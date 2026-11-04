@@ -36,8 +36,43 @@
 - Use named functions for simulation math when operator overloads would obscure control flow. Avoid clever expression templates and user-defined implicit conversions.
 - No function-like macros for logic, iteration, allocation, object access, or error propagation. Preprocessor use is limited to guards, portability switches, and tightly justified compile-time configuration.
 - Each public header MUST include what it uses; never rely on transitive includes. Keep public headers small and implementation details out of interfaces.
-- Apply `reconstruction/.clang-format` to new C++ files. Four-space indent, 100-column guideline, and left-attached pointers (`type* value`) reflect the supplied handwritten example. Section banners and explicit validation branches are welcome; do not create formatting-only churn in historical research.
+- Apply `reconstruction/.clang-format` to new C++ files. Four-space indentation, a hard 80-column limit, and left-attached pointers (`type* value`) reflect the maintained reconstruction style. Keep historical research and snapshots unchanged.
 - Treat the maintainer's handwritten `i69` code as **style guidance, not a code dependency or accepted engine implementation**. Keep its plain structs, consistent lower_snake_case, direct state flow, and lifecycle clarity; use the accompanying [STYLE_GUIDE.md](STYLE_GUIDE.md) for specific observations. Do not import the uploaded source or prebuilt binary into the public repository.
+
+
+
+### Line width, signatures, and function banners
+
+- Wrap C/C++ source and public-header declarations at **80 columns**,
+  including indentation and comments. Do not shorten identifiers or alter
+  literal contents merely to satisfy this rule; split adjacent C++ string
+  literals at safe word boundaries when necessary.
+- When a function's parameter list would exceed the limit, keep the first
+  parameter on the declaration line if possible, then put **each remaining
+  parameter on its own line**. Align continuation parameters with the first
+  when that stays within 80 columns; otherwise use four-space continuation.
+  Use the same convention for declarations and definitions.
+- Every function definition in maintained C/C++ implementation and test files
+  must have an immediately preceding descriptive banner. Use exactly
+  80-character dashed rules, a `//` comment description of one or two
+  informative sentences, and a closing 80-character dashed rule. Prefer a
+  statement of purpose, ownership, validation, or side effects over
+  restating the function's name. This includes file-local helpers and tests.
+- Keep the banner adjacent to the signature. The formatter does not generate
+  banner descriptions: authors must write and maintain them deliberately.
+
+```cpp
+// -----------------------------------------------------------------------------
+// Install the prepared level only after its world objects are valid.
+// -----------------------------------------------------------------------------
+i76_level_result i76_level_activate(i76_world_registry& world,
+                                    i76_resource_store& store,
+                                    i76_prepared_level& prepared,
+                                    i76_active_level& active)
+{
+    // ...
+}
+```
 
 ## 3. Standard-library containers and strings
 

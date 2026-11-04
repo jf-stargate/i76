@@ -16,16 +16,26 @@
 #include <system_error>
 #include <vector>
 
+// -----------------------------------------------------------------------------
+// Describe the executable's supported command-line options.
+// -----------------------------------------------------------------------------
 static void print_help()
 {
-    std::cout << "usage: i76 [--headless] [--command <text>]... [--interactive]\n"
-              << "       i76 --shell[=terminal|sdl] [--command <text>]... [--interactive]\n"
+    std::cout << "usage: i76 [--headless] [--command <text>]... "
+    "[--interactive]\n"
+              << "       i76 --shell[=terminal|sdl] [--command <text>]... "
+              "[--interactive]\n"
               << "       i76 --shell=sdl [--shell-frames <count>]\n"
-              << "commands: help status pause resume step <count> object <action> "
+              << "commands: help status pause resume step <count> object "
+              "<action> "
                  "resource <action> level <action> asset stats quit\n";
 }
 
-static void process_runtime_command(i76_runtime& game, const std::string& command,
+// -----------------------------------------------------------------------------
+// Run a headless command and report its result to the host.
+// -----------------------------------------------------------------------------
+static void process_runtime_command(i76_runtime& game,
+                                    const std::string& command,
                                     std::int32_t& exit_code)
 {
     i76_command_result result = i76_execute_command(game, command);
@@ -38,6 +48,9 @@ static void process_runtime_command(i76_runtime& game, const std::string& comman
     }
 }
 
+// -----------------------------------------------------------------------------
+// Initialize and run the selected application or command mode.
+// -----------------------------------------------------------------------------
 static std::int32_t run(int argc, char* argv[])
 {
     std::vector<std::string> commands = {};
@@ -88,7 +101,8 @@ static std::int32_t run(int argc, char* argv[])
             end = begin + value.size();
             maximum_frames = 0;
             parsed = std::from_chars(begin, end, maximum_frames, 10);
-            if (parsed.ec != std::errc{} || parsed.ptr != end || maximum_frames == 0U ||
+            if (parsed.ec != std::errc{} || parsed.ptr != end || maximum_frames
+                == 0U ||
                 maximum_frames > 10000U) {
                 std::cerr << "invalid shell frame count\n";
                 return 2;
@@ -124,8 +138,10 @@ static std::int32_t run(int argc, char* argv[])
         if (result == i76_result_code::ok) {
             if (shell_mode == "terminal") {
                 exit_code = i76_run_terminal_shell(shell, game, commands,
-                                                     interactive || commands.empty(),
-                                                     std::cin, std::cout, std::cerr);
+                                                     interactive ||
+                                                     commands.empty(),
+                                                     std::cin, std::cout,
+                                                     std::cerr);
             } else {
 #ifdef I76_ENABLE_SDL3
                 exit_code = i76_run_sdl_shell(shell, game, maximum_frames);
@@ -139,7 +155,8 @@ static std::int32_t run(int argc, char* argv[])
             std::cerr << "unable to initialize shell\n";
             exit_code = 1;
         }
-        if (shell.initialized && i76_shell_shutdown(shell) != i76_result_code::ok) {
+        if (shell.initialized && i76_shell_shutdown(shell) !=
+            i76_result_code::ok) {
             exit_code = 1;
         }
     } else {
@@ -152,7 +169,8 @@ static std::int32_t run(int argc, char* argv[])
         }
         if (interactive && !game.state.exit_requested) {
             while (!game.state.exit_requested &&
-                   i76_terminal_read_line(std::cin, std::cout, editor, "i76> ", line)) {
+                   i76_terminal_read_line(std::cin, std::cout, editor, "i76> ",
+                       line)) {
                 process_runtime_command(game, line, exit_code);
             }
         }
@@ -164,6 +182,9 @@ static std::int32_t run(int argc, char* argv[])
     return exit_code;
 }
 
+// -----------------------------------------------------------------------------
+// Parse process arguments and return the application's exit status.
+// -----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
     try {

@@ -3,28 +3,44 @@
 #include <limits>
 
 static constexpr std::uint8_t demo_level[] =
-    "I76LEVEL 1\nasset demo_shared.dat\nobject vehicle demo_car demo_shared.dat\n"
+    "I76LEVEL 1\nasset demo_shared.dat\nobject vehicle demo_car "
+    "demo_shared.dat\n"
     "object marker demo_checkpoint\n";
 static constexpr std::uint8_t demo_shared[] = "synthetic asset payload";
 
+// -----------------------------------------------------------------------------
+// Append a diagnostic event to the injected recording sink.
+// -----------------------------------------------------------------------------
 static void record_diagnostic(void* context, const i76_diagnostic_event& event)
 {
-    i76_recording_outputs* record = static_cast<i76_recording_outputs*>(context);
+    i76_recording_outputs* record =
+        static_cast<i76_recording_outputs*>(context);
     record->diagnostics.push_back(event);
 }
 
+// -----------------------------------------------------------------------------
+// Append a scene-frame event to the injected recording sink.
+// -----------------------------------------------------------------------------
 static void record_scene(void* context, const i76_scene_frame& frame)
 {
-    i76_recording_outputs* record = static_cast<i76_recording_outputs*>(context);
+    i76_recording_outputs* record =
+        static_cast<i76_recording_outputs*>(context);
     record->scene.push_back(frame);
 }
 
+// -----------------------------------------------------------------------------
+// Append an audio event to the injected recording sink.
+// -----------------------------------------------------------------------------
 static void record_audio(void* context, const i76_audio_event& event)
 {
-    i76_recording_outputs* record = static_cast<i76_recording_outputs*>(context);
+    i76_recording_outputs* record =
+        static_cast<i76_recording_outputs*>(context);
     record->audio.push_back(event);
 }
 
+// -----------------------------------------------------------------------------
+// Forward the current fixed-tick scene frame to an optional sink.
+// -----------------------------------------------------------------------------
 static void emit_frame(i76_runtime& game)
 {
     i76_scene_frame frame = {};
@@ -35,12 +51,19 @@ static void emit_frame(i76_runtime& game)
     }
 }
 
+// -----------------------------------------------------------------------------
+// Construct output ports that discard scene, audio, and diagnostics.
+// -----------------------------------------------------------------------------
 i76_output_ports i76_make_null_outputs() noexcept
 {
     return {};
 }
 
-i76_output_ports i76_make_recording_outputs(i76_recording_outputs& record) noexcept
+// -----------------------------------------------------------------------------
+// Connect runtime outputs to the supplied recording buffers.
+// -----------------------------------------------------------------------------
+i76_output_ports i76_make_recording_outputs(i76_recording_outputs& record
+                                         ) noexcept
 {
     i76_output_ports ports = {};
 
@@ -53,8 +76,12 @@ i76_output_ports i76_make_recording_outputs(i76_recording_outputs& record) noexc
     return ports;
 }
 
-i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config config,
-                                        i76_output_ports outputs)
+// -----------------------------------------------------------------------------
+// Initialize simulation timing, resources, world objects, and outputs.
+// -----------------------------------------------------------------------------
+i76_result_code i76_runtime_initialize(i76_runtime& game,
+                                       i76_runtime_config config,
+                                       i76_output_ports outputs)
 {
     i76_world_result world_result = i76_world_result::ok;
     i76_resource_result resource_result = i76_resource_result::ok;
@@ -75,12 +102,16 @@ i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config con
         resource_result = i76_resource_mount_memory(game.resources, "builtin");
     }
     if (resource_result == i76_resource_result::ok) {
-        resource_result = i76_resource_add_memory(game.resources, "builtin", "demo.level",
-                                                  {demo_level, sizeof(demo_level) - 1U});
+        resource_result = i76_resource_add_memory(game.resources, "builtin",
+            "demo.level",
+                                                  {demo_level,
+                                                  sizeof(demo_level) - 1U});
     }
     if (resource_result == i76_resource_result::ok) {
-        resource_result = i76_resource_add_memory(game.resources, "builtin", "demo_shared.dat",
-                                                  {demo_shared, sizeof(demo_shared) - 1U});
+        resource_result = i76_resource_add_memory(game.resources, "builtin",
+            "demo_shared.dat",
+                                                  {demo_shared,
+                                                  sizeof(demo_shared) - 1U});
     }
     if (resource_result != i76_resource_result::ok) {
         i76_resource_shutdown(game.resources);
@@ -95,6 +126,9 @@ i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config con
     return i76_result_code::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Release runtime-owned resources while preserving generation history.
+// -----------------------------------------------------------------------------
 i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept
 {
     if (!game.state.initialized) {
@@ -105,7 +139,8 @@ i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept
         i76_level_unload(game.world, game.resources, game.active_level);
     }
     if (i76_resource_shutdown(game.resources) != i76_resource_result::ok) {
-        return i76_result_code::invalid_argument; // Caller still owns a resource lease.
+        // Caller still owns a resource lease.
+        return i76_result_code::invalid_argument;
     }
     i76_world_shutdown(game.world);
     game.state = {};
@@ -113,6 +148,9 @@ i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept
     return i76_result_code::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Advance the fixed-step simulation by a validated tick count.
+// -----------------------------------------------------------------------------
 i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count)
 {
     std::uint32_t index = 0;
@@ -131,7 +169,11 @@ i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count)
     return i76_result_code::ok;
 }
 
-i76_result_code i76_runtime_advance_time(i76_runtime& game, std::uint64_t elapsed_ns)
+// -----------------------------------------------------------------------------
+// Translate host elapsed time into bounded simulation ticks.
+// -----------------------------------------------------------------------------
+i76_result_code i76_runtime_advance_time(i76_runtime& game,
+                                         std::uint64_t elapsed_ns)
 {
     std::uint64_t total_ns = 0;
     std::uint64_t count = 0;
@@ -142,7 +184,8 @@ i76_result_code i76_runtime_advance_time(i76_runtime& game, std::uint64_t elapse
     if (game.state.paused) {
         return i76_result_code::ok;
     }
-    if (elapsed_ns > std::numeric_limits<std::uint64_t>::max() - game.state.accumulated_ns) {
+    if (elapsed_ns > std::numeric_limits<std::uint64_t>::max() -
+        game.state.accumulated_ns) {
         return i76_result_code::overflow;
     }
     total_ns = game.state.accumulated_ns + elapsed_ns;
@@ -158,6 +201,9 @@ i76_result_code i76_runtime_advance_time(i76_runtime& game, std::uint64_t elapse
     return i76_result_code::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Update the real-time simulation pause state.
+// -----------------------------------------------------------------------------
 i76_result_code i76_runtime_set_paused(i76_runtime& game, bool paused) noexcept
 {
     if (!game.state.initialized) {
@@ -168,6 +214,9 @@ i76_result_code i76_runtime_set_paused(i76_runtime& game, bool paused) noexcept
     return i76_result_code::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Mark the runtime for orderly application exit.
+// -----------------------------------------------------------------------------
 i76_result_code i76_runtime_request_exit(i76_runtime& game) noexcept
 {
     if (!game.state.initialized) {
@@ -177,7 +226,11 @@ i76_result_code i76_runtime_request_exit(i76_runtime& game) noexcept
     return i76_result_code::ok;
 }
 
-i76_result_code i76_runtime_emit_audio(i76_runtime& game, std::uint32_t sound_id)
+// -----------------------------------------------------------------------------
+// Publish an audio event through the configured output sink.
+// -----------------------------------------------------------------------------
+i76_result_code i76_runtime_emit_audio(i76_runtime& game,
+                                       std::uint32_t sound_id)
 {
     i76_audio_event event = {};
 
@@ -192,7 +245,11 @@ i76_result_code i76_runtime_emit_audio(i76_runtime& game, std::uint32_t sound_id
     return i76_result_code::ok;
 }
 
-void i76_runtime_emit_diagnostic(i76_runtime& game, i76_diagnostic_level level,
+// -----------------------------------------------------------------------------
+// Publish a diagnostic event without direct host I/O.
+// -----------------------------------------------------------------------------
+void i76_runtime_emit_diagnostic(i76_runtime& game,
+                                 i76_diagnostic_level level,
                                  const std::string& message)
 {
     i76_diagnostic_event event = {};
@@ -201,6 +258,7 @@ void i76_runtime_emit_diagnostic(i76_runtime& game, i76_diagnostic_level level,
         event.tick = game.state.tick;
         event.level = level;
         event.message = message;
-        game.outputs.diagnostics.submit(game.outputs.diagnostics.context, event);
+        game.outputs.diagnostics.submit(game.outputs.diagnostics.context,
+            event);
     }
 }

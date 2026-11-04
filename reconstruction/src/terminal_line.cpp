@@ -22,6 +22,9 @@ struct i76_native_terminal {
     termios original{};
 #endif
 
+    // -------------------------------------------------------------------------
+    // Restore saved terminal mode when native input handling ends.
+    // -------------------------------------------------------------------------
     ~i76_native_terminal() noexcept
     {
         if (!enabled) {
@@ -35,8 +38,12 @@ struct i76_native_terminal {
     }
 };
 
-static bool enable_native_terminal(i76_native_terminal& terminal, std::istream& input,
-                                    std::ostream& output) noexcept
+// -----------------------------------------------------------------------------
+// Enable host terminal input and preserve its previous settings.
+// -----------------------------------------------------------------------------
+static bool enable_native_terminal(i76_native_terminal& terminal,
+                                   std::istream& input,
+                                   std::ostream& output) noexcept
 {
     if (&input != &std::cin || &output != &std::cout) {
         return false;
@@ -50,7 +57,8 @@ static bool enable_native_terminal(i76_native_terminal& terminal, std::istream& 
         return false;
     }
     if (!SetConsoleMode(terminal.output_handle,
-                        terminal.output_mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING)) {
+                        terminal.output_mode |
+                        ENABLE_VIRTUAL_TERMINAL_PROCESSING)) {
         return false;
     }
 #else
@@ -61,7 +69,8 @@ static bool enable_native_terminal(i76_native_terminal& terminal, std::istream& 
         return false;
     }
     raw = terminal.original;
-    raw.c_iflag &= static_cast<tcflag_t>(~(BRKINT | ICRNL | INPCK | ISTRIP | IXON));
+    raw.c_iflag &= static_cast<tcflag_t>(~(BRKINT | ICRNL | INPCK | ISTRIP |
+        IXON));
     raw.c_lflag &= static_cast<tcflag_t>(~(ECHO | ICANON | IEXTEN | ISIG));
     raw.c_cflag |= CS8;
     raw.c_cc[VMIN] = 1;
@@ -74,6 +83,9 @@ static bool enable_native_terminal(i76_native_terminal& terminal, std::istream& 
     return true;
 }
 
+// -----------------------------------------------------------------------------
+// Count visible UTF-8 code points in an editable terminal line.
+// -----------------------------------------------------------------------------
 static std::size_t visible_characters(std::string_view text) noexcept
 {
     std::size_t index = 0;
@@ -87,13 +99,18 @@ static std::size_t visible_characters(std::string_view text) noexcept
     return count;
 }
 
-static void redraw(std::ostream& output, std::string_view prompt,
+// -----------------------------------------------------------------------------
+// Redraw the current command and restore its visual cursor position.
+// -----------------------------------------------------------------------------
+static void redraw(std::ostream& output,
+                   std::string_view prompt,
                    const i76_line_editor& editor)
 {
     std::size_t back = 0;
 
     output << "\r\x1b[2K" << prompt << editor.line;
-    back = visible_characters(std::string_view(editor.line).substr(editor.cursor));
+    back = visible_characters(
+        std::string_view(editor.line).substr(editor.cursor));
     if (back != 0U) {
         output << "\x1b[" << back << 'D';
     }
@@ -101,6 +118,10 @@ static void redraw(std::ostream& output, std::string_view prompt,
 }
 
 #ifndef _WIN32
+
+// -----------------------------------------------------------------------------
+// Read one input byte from the configured native terminal.
+// -----------------------------------------------------------------------------
 static int read_native_byte() noexcept
 {
     unsigned char byte = 0;
@@ -108,6 +129,9 @@ static int read_native_byte() noexcept
     return read(STDIN_FILENO, &byte, 1) == 1 ? static_cast<int>(byte) : -1;
 }
 
+// -----------------------------------------------------------------------------
+// Poll briefly for an optional continuation input byte.
+// -----------------------------------------------------------------------------
 static int read_optional_byte() noexcept
 {
     pollfd descriptor = {};
@@ -122,6 +146,9 @@ static int read_optional_byte() noexcept
     return read_native_byte();
 }
 
+// -----------------------------------------------------------------------------
+// Translate terminal escape sequences into editor key actions.
+// -----------------------------------------------------------------------------
 static i76_line_key decode_escape(int& ordinary_byte) noexcept
 {
     char sequence[12] = {};
@@ -132,7 +159,8 @@ static i76_line_key decode_escape(int& ordinary_byte) noexcept
     ordinary_byte = -1;
     next = read_optional_byte();
     if (next != '[' && next != 'O') {
-        ordinary_byte = next; // ESC alone must not swallow the next normal keystroke
+        // ESC alone must not swallow the next normal keystroke
+        ordinary_byte = next;
         return i76_line_key::insert;
     }
     csi = next == '[';
@@ -171,6 +199,10 @@ static i76_line_key decode_escape(int& ordinary_byte) noexcept
 #endif
 
 #ifdef _WIN32
+
+// -----------------------------------------------------------------------------
+// Read and validate a UTF-8 code point from terminal input.
+// -----------------------------------------------------------------------------
 static std::string utf8_codepoint(std::uint32_t code)
 {
     std::string encoded = {};
@@ -194,9 +226,14 @@ static std::string utf8_codepoint(std::uint32_t code)
 }
 #endif
 
-bool i76_terminal_read_line(std::istream& input, std::ostream& output,
-                             i76_line_editor& editor, std::string_view prompt,
-                             std::string& result)
+// -----------------------------------------------------------------------------
+// Read one editable terminal command using the shared line editor.
+// -----------------------------------------------------------------------------
+bool i76_terminal_read_line(std::istream& input,
+                            std::ostream& output,
+                            i76_line_editor& editor,
+                            std::string_view prompt,
+                            std::string& result)
 {
     i76_native_terminal terminal = {};
     i76_line_key key = i76_line_key::insert;
@@ -282,7 +319,8 @@ bool i76_terminal_read_line(std::istream& input, std::ostream& output,
         if (text.empty() && character >= 0xC2U && character <= 0xF4U) {
             pending.clear();
             pending.push_back(static_cast<char>(character));
-            pending_bytes = character <= 0xDFU ? 1U : character <= 0xEFU ? 2U : 3U;
+            pending_bytes = character <= 0xDFU ? 1U : character <= 0xEFU ? 2U :
+                3U;
             continue;
         }
         if (character == 27U) {
@@ -296,9 +334,12 @@ bool i76_terminal_read_line(std::istream& input, std::ostream& output,
         else if (character == 5U) key = i76_line_key::end;
         else if (character == 3U) key = i76_line_key::cancel;
         else if (character == 4U) key = i76_line_key::eof;
-        else if (character == 127U || character == 8U) key = i76_line_key::backspace;
-        else if (character == '\n' || character == '\r') key = i76_line_key::enter;
-        else if (character >= 32U && character <= 126U) text.push_back(static_cast<char>(character));
+        else if (character == 127U || character == 8U) key =
+            i76_line_key::backspace;
+        else if (character == '\n' || character == '\r') key =
+            i76_line_key::enter;
+        else if (character >= 32U && character <= 126U)
+            text.push_back(static_cast<char>(character));
 
         if (key == i76_line_key::insert && text.empty()) {
             continue;

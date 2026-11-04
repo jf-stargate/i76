@@ -3,12 +3,18 @@
 #include <limits>
 #include <utility>
 
+// -----------------------------------------------------------------------------
+// Check that a world-object kind is supported.
+// -----------------------------------------------------------------------------
 static bool valid_kind(i76_world_kind kind) noexcept
 {
     return kind == i76_world_kind::vehicle || kind == i76_world_kind::scenery ||
            kind == i76_world_kind::marker;
 }
 
+// -----------------------------------------------------------------------------
+// Check object names for the permitted length and ASCII characters.
+// -----------------------------------------------------------------------------
 static bool valid_name(std::string_view name) noexcept
 {
     std::size_t index = 0;
@@ -26,6 +32,9 @@ static bool valid_name(std::string_view name) noexcept
     return true;
 }
 
+// -----------------------------------------------------------------------------
+// Initialize the world registry while retaining handle generations.
+// -----------------------------------------------------------------------------
 i76_world_result i76_world_initialize(i76_world_registry& world) noexcept
 {
     if (world.initialized) {
@@ -35,6 +44,9 @@ i76_world_result i76_world_initialize(i76_world_registry& world) noexcept
     return i76_world_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Remove world objects without invalidating the registry itself.
+// -----------------------------------------------------------------------------
 i76_world_result i76_world_clear(i76_world_registry& world) noexcept
 {
     std::size_t index = 0;
@@ -50,6 +62,9 @@ i76_world_result i76_world_clear(i76_world_registry& world) noexcept
     return i76_world_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Release world storage while keeping generation history.
+// -----------------------------------------------------------------------------
 i76_world_result i76_world_shutdown(i76_world_registry& world) noexcept
 {
     std::vector<i76_world_slot> empty_slots = {};
@@ -66,8 +81,13 @@ i76_world_result i76_world_shutdown(i76_world_registry& world) noexcept
     return i76_world_result::ok;
 }
 
-i76_world_result i76_world_create(i76_world_registry& world, i76_world_kind kind,
-                                   std::string_view name, i76_world_handle& handle)
+// -----------------------------------------------------------------------------
+// Allocate a generation-checked world object with stable ordering.
+// -----------------------------------------------------------------------------
+i76_world_result i76_world_create(i76_world_registry& world,
+                                  i76_world_kind kind,
+                                  std::string_view name,
+                                  i76_world_handle& handle)
 {
     std::size_t index = 0;
     std::size_t selected = 0;
@@ -96,7 +116,8 @@ i76_world_result i76_world_create(i76_world_registry& world, i76_world_kind kind
             }
         }
     }
-    if (selected == world.slots.size() && world.slots.size() >= i76_world_max_objects) {
+    if (selected == world.slots.size() && world.slots.size() >=
+        i76_world_max_objects) {
         return i76_world_result::capacity_exceeded;
     }
 
@@ -120,8 +141,11 @@ i76_world_result i76_world_create(i76_world_registry& world, i76_world_kind kind
     return i76_world_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Validate a world handle and return its live object if present.
+// -----------------------------------------------------------------------------
 const i76_world_object* i76_world_lookup(const i76_world_registry& world,
-                                          i76_world_handle handle) noexcept
+                                         i76_world_handle handle) noexcept
 {
     std::size_t index = 0;
     const i76_world_slot* slot = nullptr;
@@ -134,13 +158,18 @@ const i76_world_object* i76_world_lookup(const i76_world_registry& world,
         return nullptr;
     }
     slot = &world.slots[index];
-    if (!slot->occupied || slot->object.handle.generation != handle.generation) {
+    if (!slot->occupied || slot->object.handle.generation != handle.generation)
+        {
         return nullptr;
     }
     return &slot->object;
 }
 
-i76_world_result i76_world_destroy(i76_world_registry& world, i76_world_handle handle) noexcept
+// -----------------------------------------------------------------------------
+// Remove the object named by a valid generation-checked handle.
+// -----------------------------------------------------------------------------
+i76_world_result i76_world_destroy(i76_world_registry& world,
+                                   i76_world_handle handle) noexcept
 {
     std::size_t index = 0;
     std::size_t slot_index = 0;
@@ -165,13 +194,19 @@ i76_world_result i76_world_destroy(i76_world_registry& world, i76_world_handle h
     return i76_world_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Count live world objects in creation order.
+// -----------------------------------------------------------------------------
 std::size_t i76_world_count(const i76_world_registry& world) noexcept
 {
     return world.initialized ? world.creation_order.size() : 0U;
 }
 
+// -----------------------------------------------------------------------------
+// Return the live handle at a given creation-order position.
+// -----------------------------------------------------------------------------
 i76_world_handle i76_world_handle_at(const i76_world_registry& world,
-                                      std::size_t creation_index) noexcept
+                                     std::size_t creation_index) noexcept
 {
     if (!world.initialized || creation_index >= world.creation_order.size()) {
         return {};

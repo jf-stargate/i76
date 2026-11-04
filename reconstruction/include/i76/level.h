@@ -54,13 +54,18 @@ inline constexpr std::size_t i76_level_max_manifest_bytes = 65536U;
 i76_level_result i76_level_decode(std::span<const std::uint8_t> bytes,
                                   i76_level_definition& definition);
 // Parse a synthetic level without acquiring any of its dependencies.
-i76_level_result i76_level_read(i76_resource_store& store, std::string_view name,
+i76_level_result i76_level_read(i76_resource_store& store,
+                                std::string_view name,
                                 i76_level_definition& definition);
-i76_level_result i76_level_prepare(i76_resource_store& store, std::string_view name,
+i76_level_result i76_level_prepare(i76_resource_store& store,
+                                   std::string_view name,
                                    i76_prepared_level& prepared);
 i76_level_result i76_level_discard(i76_resource_store& store,
                                    i76_prepared_level& prepared) noexcept;
-i76_level_result i76_level_activate(i76_world_registry& world, i76_resource_store& store,
-                                    i76_prepared_level& prepared, i76_active_level& active);
-i76_level_result i76_level_unload(i76_world_registry& world, i76_resource_store& store,
+i76_level_result i76_level_activate(i76_world_registry& world,
+                                    i76_resource_store& store,
+                                    i76_prepared_level& prepared,
+                                    i76_active_level& active);
+i76_level_result i76_level_unload(i76_world_registry& world,
+                                  i76_resource_store& store,
                                   i76_active_level& active) noexcept;

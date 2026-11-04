@@ -79,13 +79,14 @@ struct i76_retail_terrain_samples {
 
 inline constexpr std::size_t i76_retail_terrain_width = 80U;
 inline constexpr std::size_t i76_retail_terrain_page_samples = 128U * 128U;
-inline constexpr std::size_t i76_retail_terrain_page_bytes = 2U * i76_retail_terrain_page_samples;
+inline constexpr std::size_t i76_retail_terrain_page_bytes = 2U *
+    i76_retail_terrain_page_samples;
 
 // Parse without retaining input data. On failure, previous output is unchanged.
 i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
-                                            std::string_view name,
-                                            i76_retail_mission_definition& output,
-                                            i76_retail_error& error);
+                                          std::string_view name,
+                                          i76_retail_mission_definition& output,
+                                          i76_retail_error& error);
 
 // Acquire mission bytes, decode and release even on failure.
 i76_retail_result i76_retail_mission_read(i76_resource_store& resources,
@@ -96,8 +97,8 @@ i76_retail_result i76_retail_mission_read(i76_resource_store& resources,
 // Resolve the known ZONE .TER sidecar relative to the mission directory and
 // check all packed samples. No world state or renderer resource is modified.
 i76_retail_result i76_retail_terrain_probe(i76_resource_store& resources,
-                                           const i76_retail_mission_definition& mission,
-                                           i76_retail_terrain_samples& output,
-                                           i76_retail_error& error);
+                                   const i76_retail_mission_definition& mission,
+                                   i76_retail_terrain_samples& output,
+                                   i76_retail_error& error);
 
 const char* i76_retail_result_name(i76_retail_result result) noexcept;

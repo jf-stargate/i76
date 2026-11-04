@@ -5,6 +5,10 @@
 #include <system_error>
 
 // Platform filesystem operations are deliberately confined to this provider.
+
+// -----------------------------------------------------------------------------
+// Check that a resolved filesystem path remains below its mount root.
+// -----------------------------------------------------------------------------
 static bool is_within(const std::filesystem::path& root,
                       const std::filesystem::path& candidate)
 {
@@ -21,7 +25,11 @@ static bool is_within(const std::filesystem::path& root,
     return true;
 }
 
-i76_resource_result i76_resource_directory_validate(std::string_view path, std::string& root)
+// -----------------------------------------------------------------------------
+// Resolve and validate a directory mount root.
+// -----------------------------------------------------------------------------
+i76_resource_result i76_resource_directory_validate(std::string_view path,
+    std::string& root)
 {
     std::error_code error = {};
     std::filesystem::path directory = {};
@@ -30,7 +38,8 @@ i76_resource_result i76_resource_directory_validate(std::string_view path, std::
     if (path.empty()) {
         return i76_resource_result::invalid_argument;
     }
-    directory = std::filesystem::canonical(std::filesystem::path(std::string(path)), error);
+    directory = std::filesystem::canonical(
+        std::filesystem::path(std::string(path)), error);
     if (error || !std::filesystem::is_directory(directory, error) || error) {
         return i76_resource_result::invalid_argument;
     }
@@ -40,8 +49,14 @@ i76_resource_result i76_resource_directory_validate(std::string_view path, std::
 
 // Legacy installations commonly have uppercase filenames. On case-sensitive
 // filesystems, try a deterministic ASCII case-folded component lookup only when
-// the literal normalized (lowercase) path does not exist. Ambiguity is an error.
-static bool ascii_case_match(const std::string& filename, const std::string& expected) noexcept
+// the literal normalized (lowercase) path does not exist. Ambiguity is an
+// error.
+
+// -----------------------------------------------------------------------------
+// Compare ASCII filenames ignoring case for retail assets.
+// -----------------------------------------------------------------------------
+static bool ascii_case_match(const std::string& filename,
+                             const std::string& expected) noexcept
 {
     std::size_t index = 0;
     char character = 0;
@@ -61,9 +76,12 @@ static bool ascii_case_match(const std::string& filename, const std::string& exp
     return true;
 }
 
+// -----------------------------------------------------------------------------
+// Resolve legacy filename casing without permitting path escapes.
+// -----------------------------------------------------------------------------
 static i76_resource_result find_casefolded(const std::filesystem::path& root,
-                                            const std::string& name,
-                                            std::filesystem::path& resolved)
+                                           const std::string& name,
+                                           std::filesystem::path& resolved)
 {
     std::filesystem::path candidate = root;
     std::filesystem::path matching = {};
@@ -83,12 +101,15 @@ static i76_resource_result find_casefolded(const std::filesystem::path& root,
             iterator = std::filesystem::directory_iterator(candidate, error);
             if (error) {
                 return error == std::errc::no_such_file_or_directory ?
-                           i76_resource_result::not_found : i76_resource_result::io_error;
+                           i76_resource_result::not_found :
+                           i76_resource_result::io_error;
             }
             while (iterator != end) {
-                if (ascii_case_match(iterator->path().filename().string(), component)) {
+                if (ascii_case_match(iterator->path().filename().string(),
+                    component)) {
                     if (found) {
-                        return i76_resource_result::io_error; // ambiguous legacy spelling
+                        // ambiguous legacy spelling
+                        return i76_resource_result::io_error;
                     }
                     matching = iterator->path();
                     found = true;
@@ -114,8 +135,12 @@ static i76_resource_result find_casefolded(const std::filesystem::path& root,
     return i76_resource_result::ok;
 }
 
-i76_resource_result i76_resource_directory_read(const std::string& root, const std::string& name,
-                                                 std::vector<std::uint8_t>& bytes)
+// -----------------------------------------------------------------------------
+// Read a bounded resource file from a validated mount.
+// -----------------------------------------------------------------------------
+i76_resource_result i76_resource_directory_read(const std::string& root,
+    const std::string& name,
+    std::vector<std::uint8_t>& bytes)
 {
     std::error_code error = {};
     std::filesystem::path root_path = {};
@@ -127,7 +152,8 @@ i76_resource_result i76_resource_directory_read(const std::string& root, const s
 
     bytes.clear();
     root_path = std::filesystem::path(root);
-    candidate = std::filesystem::weakly_canonical(root_path / std::filesystem::path(name), error);
+    candidate = std::filesystem::weakly_canonical(root_path /
+        std::filesystem::path(name), error);
     if (error || !is_within(root_path, candidate)) {
         return i76_resource_result::invalid_argument;
     }
@@ -142,7 +168,8 @@ i76_resource_result i76_resource_directory_read(const std::string& root, const s
         }
         error.clear();
         if (!std::filesystem::is_regular_file(candidate, error) || error) {
-            return error ? i76_resource_result::io_error : i76_resource_result::not_found;
+            return error ? i76_resource_result::io_error :
+                i76_resource_result::not_found;
         }
     }
     count = std::filesystem::file_size(candidate, error);

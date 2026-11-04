@@ -81,6 +81,17 @@ endforeach()
 
 if(I76_BUILD_TESTS)
     enable_testing()
+
+    # Keep the maintainer's source formatting contract checked on every
+    # platform where the Python interpreter is available.
+    find_package(Python3 COMPONENTS Interpreter QUIET)
+    if(Python3_Interpreter_FOUND)
+        add_test(NAME style_cpp_sources
+            COMMAND "${Python3_EXECUTABLE}"
+                "${CMAKE_CURRENT_SOURCE_DIR}/tools/check_cpp_style.py"
+                "${CMAKE_CURRENT_SOURCE_DIR}")
+        set_tests_properties(style_cpp_sources PROPERTIES LABELS "style")
+    endif()
     add_executable(i76_unit_retail_mission tests/test_retail_mission.cpp)
     target_link_libraries(i76_unit_retail_mission PRIVATE i76_core)
     add_test(NAME unit_retail_mission COMMAND i76_unit_retail_mission)
