@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.4",
+  "run_id": "i76exe-20261103T183247Z-f97a49da",
+  "track": "i76exe",
+  "topic": "Independent pilot 2: original translation-unit hypotheses in bounded TER/FSM/RES regions",
+  "base_commit": "deaef41589671984c7e65010b2ecde351ad9ddf4",
+  "started_at": "2026-11-03T18:32:47Z",
+  "summary": "Read-only static inventory of 2102 defined and 235 external functions; 42 bounded functions reviewed, nine candidate fragments, one unassigned thunk. No original source filenames, no HIGH boundary, no reconstruction or annotation edits. PR #111 contents excluded.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Verified supplied private input; payload not published"
+    },
+    {
+      "name": "i76exe_v100.gzf",
+      "kind": "other",
+      "md5": "bd62f1b3dc87548e7b27fc97a68cddd6",
+      "sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0",
+      "notes": "Verified supplied private input; payload not published"
+    }
+  ],
+  "baselines": [
+    {
+      "version": "Ghidra 12.1.4 PUBLIC / supplied v100",
+      "program_name": "i76.exe",
+      "baseline_id": "private-supplied-i76exe_v100",
+      "baseline_sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0",
+      "storage_ref": "private:user-supplied/scratch_data/i76exe_v100.gzf",
+      "notes": "Imported with -noanalysis into a disposable project. This run does not promote a canonical baseline."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/BOUNDARY_ANALYSIS.md",
+      "kind": "report",
+      "sha256": "4f99fa411bcf7325ca05d1091beb228b0ea1932593f0eb6864f179b7513009a8",
+      "bytes": 13973
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "5de522aea0bac47c696a6d88e7d1c8b7d0f8ab58c14d69d6814c551c127a7128",
+      "bytes": 2882
+    },
+    {
+      "path": "artifacts/METHOD_EVALUATION.md",
+      "kind": "report",
+      "sha256": "9a28b9d21ab710ede31f60a4d3f217df6b527e440e7d9f1cad8e055f1ebfa641",
+      "bytes": 8571
+    },
+    {
+      "path": "artifacts/PROVENANCE.md",
+      "kind": "report",
+      "sha256": "237069c6ef14dc1905abd142e3d958dc69438d61cf758fef36a999f7ad3f2194",
+      "bytes": 4252
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "9cd9ddcb8bd8dc99f87ae319053017ac27a021a80e1056a20b612bb9f9d3e850",
+      "bytes": 5813
+    },
+    {
+      "path": "artifacts/TRANSLATION_UNIT_CANDIDATES.md",
+      "kind": "report",
+      "sha256": "e483d3be3993c093938022244fac1c6769083208a25ad9794439cd3114fd76a4",
+      "bytes": 16526
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "782697f450d0b83547e198eac65b86ec97a757b350f82211cfc0a20e90f2f4f3",
+      "bytes": 1879
+    },
+    {
+      "path": "evidence/boundaries.tsv",
+      "kind": "table",
+      "sha256": "b1c3e3de17f153fd0e056b0815bfcdc0f1377ec94dc9003f26cc18c5c4d965f0",
+      "bytes": 1937
+    },
+    {
+      "path": "evidence/bounded_inventory.tsv",
+      "kind": "table",
+      "sha256": "740c427e78a11440ff87b38a94f756f925fa6e921e3927ab78d9d3470f2d0d08",
+      "bytes": 12722
+    },
+    {
+      "path": "evidence/cross_group.tsv",
+      "kind": "table",
+      "sha256": "81f9ebd52cf2418701a92e0ea28b6b5a4f4b006069f1456bc475a66332fc2094",
+      "bytes": 254
+    },
+    {
+      "path": "evidence/direct_calls.tsv",
+      "kind": "table",
+      "sha256": "48082a4f1f4790eaa8e4a4a077757cad9b4f8f23d2ebbdb108e31767810cfdc1",
+      "bytes": 16892
+    },
+    {
+      "path": "evidence/fresh_reproduction.json",
+      "kind": "test-result",
+      "sha256": "e714e72f4ab27fbf7eeb71dccad341d665f302d06418300172c044c9c125dd07",
+      "bytes": 600
+    },
+    {
+      "path": "evidence/function_ranges.tsv",
+      "kind": "table",
+      "sha256": "79dd4b8b4ff9bf6aa7910dded1160476c69f00ab8d04e4640b31641cd8cc17d8",
+      "bytes": 4150
+    },
+    {
+      "path": "evidence/group_connectivity.tsv",
+      "kind": "table",
+      "sha256": "41df921e1d1332399d7dd8c8d3b8c0b00f0ebfce342da21fd13ed8bf474c8d03",
+      "bytes": 422
+    },
+    {
+      "path": "evidence/hypotheses.json",
+      "kind": "table",
+      "sha256": "4cec4c618ddb3758e42117d89298ed666df6cc270475d7d0608bed11fb6ea344",
+      "bytes": 4755
+    },
+    {
+      "path": "evidence/instruction_evidence.tsv",
+      "kind": "table",
+      "sha256": "bcb9a89254d15c52d08357315c96f7bf5e805eec505094c85e387108ccadf77d",
+      "bytes": 6718
+    },
+    {
+      "path": "evidence/literal_evidence.tsv",
+      "kind": "table",
+      "sha256": "d7e738caaf4bc86cdd57fe7c1f2a20f6ca47fb8f481e4c928fbce35b97097fd6",
+      "bytes": 2171
+    },
+    {
+      "path": "evidence/membership.tsv",
+      "kind": "table",
+      "sha256": "c9951d393201b2fd0befedc1442c3f1c74efa993655c782898ec984aa7ee2912",
+      "bytes": 3341
+    },
+    {
+      "path": "evidence/pe_provenance.json",
+      "kind": "table",
+      "sha256": "87097a59beee51b7b29580daec151c821af44738b77d5ba88cf3d7cebc3d8af3",
+      "bytes": 1898
+    },
+    {
+      "path": "evidence/pointer_evidence.tsv",
+      "kind": "table",
+      "sha256": "c1c1cd75f7e8f0428937610506d591e829cc381db78815b69607aab745d29b62",
+      "bytes": 362
+    },
+    {
+      "path": "evidence/state_ownership.tsv",
+      "kind": "table",
+      "sha256": "f18cf0e12c1168c0d28c3d231fecb12ab7cdcaffe419a1b709de39cb8894ec2b",
+      "bytes": 7175
+    },
+    {
+      "path": "evidence/table_references.tsv",
+      "kind": "table",
+      "sha256": "8e167bf51a546147653214e77211e597b62f751ab8cf02243daef4a89e73ac75",
+      "bytes": 1397
+    },
+    {
+      "path": "evidence/validation_results.json",
+      "kind": "test-result",
+      "sha256": "ee09fd18a2786deca391037481a872700db42426840abdba70f1331bcd6bde2f",
+      "bytes": 17593
+    },
+    {
+      "path": "scripts/TUInventory.java",
+      "kind": "script",
+      "sha256": "2e377b3b9ca1f984543f2140453f104bae17b479c8c4b4fd4d170da566298737",
+      "bytes": 5902
+    },
+    {
+      "path": "scripts/TUValidate.java",
+      "kind": "script",
+      "sha256": "dd57527872b19e1b4d08e4493fefb1c8442b28cfd9df128f276c47485291c208",
+      "bytes": 1242
+    },
+    {
+      "path": "scripts/analyze.py",
+      "kind": "script",
+      "sha256": "7c7660fc7c1ae384bd09baf21157105d2cbbb6a32a06644a25f5659b1c63aea2",
+      "bytes": 14610
+    },
+    {
+      "path": "scripts/provenance.py",
+      "kind": "script",
+      "sha256": "b4f51c089b26df784767dcaa78ae69f7403878206568ebac320117c7deaed470",
+      "bytes": 3594
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "0ccb1587724f3373556b315e0401276895cc6b3a1c39fdab7664ba226375bab3",
+      "bytes": 2215
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 100,
+    "passed_count": 100,
+    "notes": "Factual binary-static checks only; 6 positive relationship reviews, 4 separation pairs and 6 negative examples. Fresh independent import additionally reproduced private captures. No verified TU boundary or runtime behavior."
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TUInventory.java",
+        "sha256": "2e377b3b9ca1f984543f2140453f104bae17b479c8c4b4fd4d170da566298737"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/TUValidate.java",
+        "sha256": "dd57527872b19e1b4d08e4493fefb1c8442b28cfd9df128f276c47485291c208"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/provenance.py",
+        "sha256": "b4f51c089b26df784767dcaa78ae69f7403878206568ebac320117c7deaed470"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/analyze.py",
+        "sha256": "7c7660fc7c1ae384bd09baf21157105d2cbbb6a32a06644a25f5659b1c63aea2"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "0ccb1587724f3373556b315e0401276895cc6b3a1c39fdab7664ba226375bab3"
+      }
+    ],
+    "methods": [
+      "Binary-static PE provenance inspection before grouping",
+      "Read-only whole-program Ghidra inventory; bounded instruction and data/reference review",
+      "Original PE body/envelope comparison; repeated and fresh-import capture equality",
+      "Reviewed hypotheses and qualitative alternatives, not automatic clustering"
+    ],
+    "limitations": "Requires private licensed PE and exact v100 GZF. Completeness refers to reproducible static extraction; original TU organization remains inferred without ground truth. Project housekeeping can change while program pages stay unchanged."
+  }
+}

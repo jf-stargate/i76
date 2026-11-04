@@ -1,0 +1,43 @@
+entry	name	body_bytes	end	gap_to_next	defined_call_targets	data_target_count	candidate
+00410490	load_serialized_fsm_linked_state_blocks	264	00410597	8		2	TU_FSM_01
+004105a0	load_serialized_fsm_record_array_with_bitfields	384	0041071f	0	004ba290	2	TU_FSM_01
+00410720	load_serialized_fsm_runtime_tables	742	00410a05	10	004102d0,00410490,004105a0	2	TU_FSM_01
+00410a10	fsm_resolve_host_command_name_to_opcode	6327	004122c6	9	0042d5d0	385	unassigned
+004122d0	validate_project_wav_smk_resource_list	301	004123fc	3	0042d5d0,00470340,0049a4c0	11	unassigned
+00412400	register_fsm_instance_ids_from_mission	244	004124f3	12	0040aeb0,0042d5d0,00457630,0045ed00	4	unassigned
+00412500	initialize_fsm_execution_node_relocations	182	004125b5	10		0	TU_FSM_01
+004125c0	finalize_loaded_fsm_runtime_tables	99	00412622	13	00410a10,004122d0,00412400,00412500	0	TU_FSM_01
+00412630	parse_fsm_tactics_tag	71	00412676	9	0042d5d0	4	unassigned
+00412680	select_ai_behavior_weighted_candidate	425	00412828	7	0042d5d0	6	unassigned
+00412830	update_vehicle_ai_target_and_attack_state	1024	00412c2f	144	00409f60,0040f8a0,00410260,00412680,00414ef0,0041c1c0,0042d5d0,0045ed00,0045ef70,0045f0f0,00467440	10	unassigned
+00412cc0	reset_fsm_instruction_minmax_state	21	00412cd4	11		2	TU_FSM_02
+00412ce0	dispatch_fsm_host_command_record	6146	004144e1	398	004096c0,0040a8a0,0040aa90,0040ab30,0040aed0,0040afc0,0040aff0,0040b0f0,0040b1f0,0040b2f0,0040b320,0040b360,0040b410,0040b7d0,0040b800,0040b840,0040b860,0040b8b0,0040b8e0,0040b940,0040b990,0040b9e0,0040ba60,0040bbc0,0040bc10,0040bc40,0040bd90,0040bdf0,0040be50,0040be60,0040bf20,0040bf50,0040bf60,0040bf90,0040bfc0,0040bfe0,0040c000,0040c020,0040c040,0040c060,0040c080,0040c0a0,0040c0c0,0040c0e0,00412830,00414bc0,00417bf0,0041f9c0,0041fb90,0041fc40,0041fce0,00423620,00423a10,0042d5d0,0044de40,0044dff0,0044e000,00457530,0045e9e0,0045ea90,0045eb30,0045f0f0,004621a0,00462c80,00462ca0,00467400,0049aec0,0049c7e0,0049d420,0049d470,0049d4a0,0049d5f0,0049d730,0049d740,0049dac0,0049dda0,004ba090	5	TU_FSM_02
+00414670	execute_fsm_vm_token_stream	827	004149b7	56	00412ce0,0042d5d0	3	TU_FSM_02
+004149f0	process_pending_fsm_instruction_list	339	00414b42	13	00402620,00414670,0049c7e0	2	TU_FSM_02
+0046fee0	get_loaded_resource_file_size	209	0046ffb0	15	00470c40,004b3310	1	TU_RES_01
+0046ffc0	open_resource_file_into_memory	162	00470061	14	00470070,00470b20	2	TU_RES_01
+00470070	load_resource_stream_into_loaded_cache	599	004702c6	9	00402290,0042d5d0,0046fbe0,004b3000,004b3310	13	TU_RES_01
+004702d0	canonicalize_resource_key_16byte	107	0047033a	5	0046fbe0	1	TU_RES_01
+00470340	resource_exists_in_cache_or_search_paths	81	00470390	15	00470c70,004b34f0	0	TU_RES_01
+004703a0	load_localized_texture_or_vqm_to_buffer	243	00470492	13	004478b0	6	TU_RES_04
+004704a0	load_localized_texture_resource_variant	223	0047057e	1	004474b0	6	TU_RES_04
+00470580	release_localized_texture_resource_variant	223	0047065e	1	00447b20	6	TU_RES_04
+00470660	load_pix_pak_resource_index	1114	00470ab9	6	00404d80,0042d5d0,00499d00,00499d20,004b2ac0,004b32f0,004b3550	13	TU_RES_02
+00470ac0	free_pix_pak_resource_index	84	00470b13	12	0046fe30,00499d40	3	TU_RES_02
+00470b20	load_indexed_resource_record_payload	150	00470bb5	10	0042d5d0,00470070	4	TU_RES_02
+004927b0	lookup_terrain_material_index_at_world_xz	224	0049288f	0		3	TU_TER_01
+00492890	terrain_map_context_helper_00492890	278	004929a5	10	00495000	0	unassigned
+004929b0	TER_ComputeVisibleTerrainBounds	1738	00493079	6	00492890,00493550	10	unassigned
+00493080	build_runtime_terrain_page_grid_from_zmap	205	0049314c	3	00493bf0,00493c00	9	TU_TER_01
+00493150	load_another_satellite_map	5	00493154	11		0	unassigned
+00493160	TER_ReadPackedTerrainGridWord	83	004931b2	13		1	TU_TER_01
+004931c0	TER_SampleSurfaceNormalXZ	899	00493542	13	00495000,004ba090	3	TU_TER_01
+00493550	TER_SampleBilinearHeightXZ	611	004937b2	13		3	TU_TER_01
+004937c0	terrain_runtime_finalize_or_draw_helper	329	00493908	7	0046edc0,00494e20	9	unassigned
+00493910	terrain_reverse_tag_handler	72	00493957	8	004b3db0	5	TU_TER_02
+00493960	report_zone_number_too_large	101	004939c4	11	0042d5d0	5	TU_TER_02
+004939d0	load_zone_satellite_map	510	00493bcd	2	004233d0,0042d5d0,00470d30,00471400,004b2350	14	TU_TER_02
+00493bd0	zone_satellite_map_context_helper_00493bd0	24	00493be7	8	00493080	1	TU_TER_02
+004b2e00	resolve_virtual_filename_to_mounted_source	502	004b2ff5	10	00470d30,004b9af0	14	TU_RES_03
+004b3000	load_registered_resource_payload_bool	35	004b3022	13	004b3030	0	TU_RES_03
+004b3030	load_registered_resource_payload	699	004b32ea	5	00404d80,00470d30,004b2e00,004b9740,004b9ba0,004b9db0	10	TU_RES_03

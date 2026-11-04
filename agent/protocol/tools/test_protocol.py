@@ -3,7 +3,7 @@ from validate_protocol import policy,evaluate,safe_path
 RUN="i76edit-20261021T221900Z-a7d2e2f4"
 BR="agent/i76edit/"+RUN
 class AccessTests(unittest.TestCase):
- def test_policy(self):self.assertEqual(policy()["schema_version"],"1.0.4")
+ def test_policy(self):self.assertEqual(policy()["schema_version"],"1.0.5")
  def test_own_run(self):self.assertTrue(evaluate(f"agent/runs/i76edit/{RUN}/manifest.json",RUN,BR))
  def test_shell_run(self):
   rid="i76shell-20261028T200000Z-11223344"
@@ -20,4 +20,17 @@ class AccessTests(unittest.TestCase):
    with self.assertRaises(ValueError):safe_path(p)
  def test_no_direct_publication(self):self.assertFalse(policy()["publication"]["direct_main_push"])
  def test_no_self_merge(self):self.assertFalse(policy()["publication"]["autonomous_run_merge"])
+ def test_reconstruction_scope_and_activation(self):
+  p=policy()
+  r=p["reconstruction_merge"]
+  self.assertEqual(r["authority"],"conditional-implementation-self-merge")
+  self.assertEqual(r["eligible"]["changed_path_prefix"],"reconstruction/")
+  self.assertTrue(r["eligible"]["exclusive_path_scope"])
+  self.assertTrue(r["eligible"]["prohibit_test_weakening"])
+  self.assertFalse(r["research_governance_baseline_or_documentation_self_merge"])
+  self.assertEqual(r["activation"]["on_unknown"],"proposal-only")
+  self.assertEqual(r["activation"]["accepted_prs"],[112,114,115])
+  self.assertEqual(set(r["exact_head_required_success_checks"]),{
+   "integrity","linux-gcc-ctest","linux-clang-ctest","windows-msvc-ctest",
+   "linux-asan-ubsan-ctest","linux-coverage","linux-valgrind-memcheck"})
 if __name__=="__main__":unittest.main()

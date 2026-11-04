@@ -1,4 +1,4 @@
-# I76 multi-agent repository protocol v1.0.4
+# I76 multi-agent repository protocol v1.0.5
 
 **Accepted on `main`; deployment partially verified.** Protocol instructions are normative after merge, while live GitHub enforcement requires independent verification. See [deployment record](../../manual/roadmap/ENFORCEMENT_STATUS.md).
 
@@ -9,7 +9,7 @@ Start at [AGENTS.md](../../AGENTS.md), read [access.yaml](access.yaml), then [BO
 - `agent/tools/`: analysis tooling; `agent/baselines/` and `agent/promotions/`: candidate/accepted provenance and promotion records as populated.
 - `ref/`: historical checkpoint, preserved rather than routinely rewritten. `scripts/`, `snapshot/`: still-active historical tools/evidence; consult before repeating analysis.
 - **Documentation handoff:** new substantive research runs provide a documentation-impact artifact (procedural expectation, not separately CI-enforced); a designated repository/documentation steward generates reconciled `manual/reference/` updates and `agent/promotions/` evidence crosswalks through separate human-reviewed PRs. Start at [the documentation workflow](../../manual/roadmap/DOCUMENTATION_WORKFLOW.md).
-- All v1 merges require a PR, passing `integrity` CI on the current head, and an explicit human maintainer merge decision. The proposed **loose** required-status policy avoids redundant rebases for unchanged isolated research runs; canonical, shared-tool, baseline, promotion and governance PRs still require a fresh-base human review and check. GitHub requires zero approving reviews; agents may not autonomously merge, directly update `main`, or change governing policy without maintainer acceptance.
+- All v1 merges require a PR and passing trusted `integrity` on the current head. Manual maintainer acceptance is the default, with a narrow conditional reconstruction implementation exception in [RECONSTRUCTION_MERGE.md](RECONSTRUCTION_MERGE.md). The proposed **loose** required-status policy avoids redundant rebases for unchanged isolated research runs; canonical, shared-tool, baseline, promotion and governance PRs still require a fresh-base human review and check. GitHub requires zero approving reviews; agents may not autonomously merge research, documentation or governance work, directly update `main`, or change governing policy without maintainer acceptance.
 - Multiple manually supervised conversations may overlap in subject matter, but cannot rewrite one another's runs. Git SHAs and PRs, not chat memory, anchor state.
 - Ruleset 25664125 must be read live: the committed JSON is a reference and does **not** configure GitHub. Loose required-status checks were observed active on 2026-10-26; future agents must reverify. See [batch acceptance](../../manual/roadmap/BATCH_PR_ACCEPTANCE.md); credential separation remains deferred.
 
@@ -22,3 +22,7 @@ Research record schemas 1.0.0, 1.1.0 and 1.2.0 are supported. New records defaul
 Experimental emulators, stubs, synthetic intercepted services, models, decoders and differential/regression harnesses remain permitted research tools. A research script or executable algorithm is not by itself maintained reconstruction. Promotion and independently maintained reconstruction require separate human-reviewed authorization. Never backfill historical shell investigations as fabricated runs.
 
 **CI trust boundary:** `pull_request_target` executes the `main` base-commit validator, not a PR's modified validator. Thus the governance PR introducing `1.2.0` can pass current trusted integrity checks without those checks exercising candidate `1.2.0` support. Review the new validators and independently run their unit tests before maintainer acceptance; after acceptance they become trusted for later shell research PRs.
+
+## Reconstruction implementation exception
+
+Once the maintainer accepts the standards/framework/CI activation prerequisites, an implementation agent may merge a strictly `reconstruction/`-only PR that passes exact-head trusted integrity, GCC, Clang, Windows MSVC, sanitizers, coverage and Memcheck. This is procedural, not an identity-based GitHub permission. No research, governance, CI or standards PR can self-merge. See [activation, scope, tests and failure procedure](RECONSTRUCTION_MERGE.md).

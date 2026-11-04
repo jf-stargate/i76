@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261103T183247Z-f97a49da",
+  "findings": [
+    {
+      "finding_id": "tu2.provenance",
+      "claim": "The inspected retail PE has no COFF symbols/file records, debug directory payload or recognized CodeView/PDB signature, and no useful original source-file identifier was recovered in the documented PE/history search.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/pe_provenance.json",
+          "sha256": "87097a59beee51b7b29580daec151c821af44738b77d5ba88cf3d7cebc3d8af3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PROVENANCE.md",
+          "sha256": "237069c6ef14dc1905abd142e3d958dc69438d61cf758fef36a999f7ad3f2194"
+        }
+      ],
+      "limitations": "Limited inspection scope; incidental MAP resource names and library/compiler metadata are not source provenance. No claim about private, unreachable or untracked artifacts."
+    },
+    {
+      "finding_id": "tu2.fragments",
+      "claim": "Nine provisional TU fragments group 41 of 42 bounded defined functions, with forwarding thunk 00493150 unassigned; no original filenames or independently verified compilation units were recovered.",
+      "status": "inferred",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/membership.tsv",
+          "sha256": "c9951d393201b2fd0befedc1442c3f1c74efa993655c782898ec984aa7ee2912"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/state_ownership.tsv",
+          "sha256": "f18cf0e12c1168c0d28c3d231fecb12ab7cdcaffe419a1b709de39cb8894ec2b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_evidence.tsv",
+          "sha256": "bcb9a89254d15c52d08357315c96f7bf5e805eec505094c85e387108ccadf77d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TRANSLATION_UNIT_CANDIDATES.md",
+          "sha256": "e483d3be3993c093938022244fac1c6769083208a25ad9794439cd3114fd76a4"
+        }
+      ],
+      "limitations": "Schema medium corresponds to MODERATE. Confidence concerns candidate coupling; fragments may merge or subdivide. Functional responsibility, direct calls and state access do not establish original C file linkage."
+    },
+    {
+      "finding_id": "tu2.boundaries",
+      "claim": "The map-to-loader and texture-wrapper-to-PIX transitions offer the strongest tested separation hypotheses, while the mission preparation-to-tactics cut remains LOW and no boundary reaches HIGH.",
+      "status": "inferred",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/boundaries.tsv",
+          "sha256": "b1c3e3de17f153fd0e056b0815bfcdc0f1377ec94dc9003f26cc18c5c4d965f0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/BOUNDARY_ANALYSIS.md",
+          "sha256": "4f99fa411bcf7325ca05d1091beb228b0ea1932593f0eb6864f179b7513009a8"
+        }
+      ],
+      "limitations": "No source ground truth or object-contribution records. Ordinary alignment, switch tables, interleaved thunks, shared configuration and larger single-file alternatives limit discrimination."
+    },
+    {
+      "finding_id": "tu2.method",
+      "claim": "Deterministic extraction and exact original-byte checks establish the reviewed static facts but do not justify an authoritative whole-executable TU partition.",
+      "status": "derived",
+      "confidence": "medium",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/validation_results.json",
+          "sha256": "ee09fd18a2786deca391037481a872700db42426840abdba70f1331bcd6bde2f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/fresh_reproduction.json",
+          "sha256": "e714e72f4ab27fbf7eeb71dccad341d665f302d06418300172c044c9c125dd07"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/METHOD_EVALUATION.md",
+          "sha256": "9a28b9d21ab710ede31f60a4d3f217df6b527e440e7d9f1cad8e055f1ebfa641"
+        }
+      ],
+      "limitations": "100 factual checks and manual relationship reviews do not calibrate source-file inference accuracy. Exploratory ranking is potentially useful; full executable partitioning remains unjustified."
+    }
+  ]
+}

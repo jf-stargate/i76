@@ -1,0 +1,222 @@
+{
+  "interpretation": "Provisional TU fragments, potentially mergeable; no independently verified original compilation units or filenames. Confidence in internal membership is distinct from confidence that adjacent fragments were separate source files.",
+  "groups": [
+    {
+      "id": "TER-map",
+      "confidence": "MODERATE",
+      "members": [
+        "004927b0",
+        "00492890",
+        "004929b0",
+        "00493080",
+        "00493160",
+        "004931c0",
+        "00493550",
+        "004937c0"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "TER-loader",
+      "confidence": "MODERATE",
+      "members": [
+        "00493910",
+        "00493960",
+        "004939d0",
+        "00493bd0"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "FSM-import-prepare",
+      "confidence": "MODERATE",
+      "members": [
+        "00410490",
+        "004105a0",
+        "00410720",
+        "00410a10",
+        "004122d0",
+        "00412400",
+        "00412500",
+        "004125c0"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "FSM-tactics",
+      "confidence": "MODERATE",
+      "members": [
+        "00412630",
+        "00412680",
+        "00412830"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "FSM-execute",
+      "confidence": "MODERATE",
+      "members": [
+        "00412cc0",
+        "00412ce0",
+        "00414670",
+        "004149f0"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "RES-cache-api",
+      "confidence": "MODERATE",
+      "members": [
+        "0046fee0",
+        "0046ffc0",
+        "00470070",
+        "004702d0",
+        "00470340"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "RES-texture-wrappers",
+      "confidence": "MODERATE",
+      "members": [
+        "004703a0",
+        "004704a0",
+        "00470580"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "RES-pix-pak",
+      "confidence": "MODERATE",
+      "members": [
+        "00470660",
+        "00470ac0",
+        "00470b20"
+      ],
+      "original_filename": null
+    },
+    {
+      "id": "RES-registered-source",
+      "confidence": "MODERATE",
+      "members": [
+        "004b2e00",
+        "004b3000",
+        "004b3030"
+      ],
+      "original_filename": null
+    }
+  ],
+  "unassigned": [
+    {
+      "entry": "00493150",
+      "reason": "Five-byte forwarding thunk to loader cleanup 00493c10 interleaved in map/sampler code; implementation ownership and thunk placement do not identify its source TU."
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "B01",
+      "left": "004937c0",
+      "right": "00493910",
+      "confidence": "MODERATE",
+      "decision": "proposed"
+    },
+    {
+      "id": "B02",
+      "left": "004929b0",
+      "right": "00493080",
+      "confidence": "LOW",
+      "decision": "rejected"
+    },
+    {
+      "id": "B03",
+      "left": "00493080",
+      "right": "00493150",
+      "confidence": "UNKNOWN",
+      "decision": "ambiguous"
+    },
+    {
+      "id": "B04",
+      "left": "00493150",
+      "right": "00493160",
+      "confidence": "UNKNOWN",
+      "decision": "ambiguous"
+    },
+    {
+      "id": "B05",
+      "left": "004125c0",
+      "right": "00412630",
+      "confidence": "LOW",
+      "decision": "proposed"
+    },
+    {
+      "id": "B06",
+      "left": "00412830",
+      "right": "00412cc0",
+      "confidence": "MODERATE",
+      "decision": "proposed"
+    },
+    {
+      "id": "B07",
+      "left": "00410720",
+      "right": "00410a10",
+      "confidence": "LOW",
+      "decision": "rejected"
+    },
+    {
+      "id": "B08",
+      "left": "004149f0",
+      "right": "00414b50",
+      "confidence": "LOW",
+      "decision": "ambiguous"
+    },
+    {
+      "id": "B09",
+      "left": "00470340",
+      "right": "004703a0",
+      "confidence": "MODERATE",
+      "decision": "proposed"
+    },
+    {
+      "id": "B10",
+      "left": "00470580",
+      "right": "00470660",
+      "confidence": "MODERATE",
+      "decision": "proposed"
+    },
+    {
+      "id": "B11",
+      "left": "004b2d50",
+      "right": "004b2e00",
+      "confidence": "LOW",
+      "decision": "rejected"
+    },
+    {
+      "id": "B12",
+      "left": "004b3030",
+      "right": "004b32f0",
+      "confidence": "LOW",
+      "decision": "rejected"
+    },
+    {
+      "id": "B13",
+      "left": "004b3550",
+      "right": "004b3570",
+      "confidence": "MODERATE",
+      "decision": "contextual-proposed"
+    },
+    {
+      "id": "B14",
+      "left": "00470ca0",
+      "right": "00470cd0",
+      "confidence": "MODERATE",
+      "decision": "contextual-proposed"
+    },
+    {
+      "id": "B15",
+      "left": "00493c40",
+      "right": "00493c50",
+      "confidence": "MODERATE",
+      "decision": "contextual-proposed"
+    }
+  ]
+}

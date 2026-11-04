@@ -1,0 +1,523 @@
+{
+  "method": "binary-static",
+  "defined_functions": 2102,
+  "external_functions": 235,
+  "bounded_functions": 42,
+  "assigned": 41,
+  "unassigned": 1,
+  "candidates": 9,
+  "tests": [
+    {
+      "check": "retail_sha256",
+      "passed": true,
+      "notes": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3"
+    },
+    {
+      "check": "gzf_sha256",
+      "passed": true,
+      "notes": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0"
+    },
+    {
+      "check": "defined_and_external_counts",
+      "passed": true,
+      "notes": "{'program': 'i76.exe', 'executable_sha256': 'bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3', 'language': 'x86:LE:32:default', 'compiler_spec': 'windows', 'defined_functions': 2102, 'external_functions': 235, 'modification_before': 3, 'modification_after': 3}"
+    },
+    {
+      "check": "bounded_coverage",
+      "passed": true,
+      "notes": "42 included, 41 provisionally assigned, one UNKNOWN forwarding thunk"
+    },
+    {
+      "check": "entry_00410490",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00410490",
+      "passed": true,
+      "notes": "00410597 689c9e98cf335ef95cc8d9e7ec7c5c6b456a554e0840f7cf79e634f53caba033"
+    },
+    {
+      "check": "entry_004105a0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004105a0",
+      "passed": true,
+      "notes": "0041071f 383a29bcd1253ba83fb4692c6ac303b3136004f215701535a78b42da264105d2"
+    },
+    {
+      "check": "entry_00410720",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00410720",
+      "passed": true,
+      "notes": "00410a05 f9148907011be97c518956e3db197907fbb81d86be1981c917cfc581e656e391"
+    },
+    {
+      "check": "entry_00410a10",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00410a10",
+      "passed": true,
+      "notes": "004122c6 3ebcc1c8a2acc2f12ec7bc157361c065a51b6cbb79e6a6e2fdd30e0df49daff4"
+    },
+    {
+      "check": "entry_004122d0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004122d0",
+      "passed": true,
+      "notes": "004123fc ded4a42e7f296e75a52e2c779910ce7e34b8387fe63bcd5baf5a503331968b9c"
+    },
+    {
+      "check": "entry_00412400",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00412400",
+      "passed": true,
+      "notes": "004124f3 64acc3d88ed4a5476b21f69bf8b3058416efe575ab1f7a3772e88888d5aeeb07"
+    },
+    {
+      "check": "entry_00412500",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00412500",
+      "passed": true,
+      "notes": "004125b5 b2506069da327cbb4f27017dd632da9e3a458b46f1af6ce3a215cce6f228af13"
+    },
+    {
+      "check": "entry_004125c0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004125c0",
+      "passed": true,
+      "notes": "00412622 c5884ca01afdf5376d947fc36a348f99ee5efbbf10c4bb11fd47f3d36293a236"
+    },
+    {
+      "check": "entry_00412630",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00412630",
+      "passed": true,
+      "notes": "00412676 7c2c3f00519029966dd53457826e5dab8594453b3e39d467fb7fa6dbd724173f"
+    },
+    {
+      "check": "entry_00412680",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00412680",
+      "passed": true,
+      "notes": "00412828 070b7e74cd8257e55fd28b0d1c42a392a56a19605e45920b6893891663f8723f"
+    },
+    {
+      "check": "entry_00412830",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00412830",
+      "passed": true,
+      "notes": "00412c2f 1de7a63d5914e35deddabc5c255edba4408bb40ba486ee986e7d8417c67c791b"
+    },
+    {
+      "check": "entry_00412cc0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00412cc0",
+      "passed": true,
+      "notes": "00412cd4 942e804759a22f2df1f69afbdee0a8b761bb411901c332ee6cd364182defe53f"
+    },
+    {
+      "check": "entry_00412ce0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00412ce0",
+      "passed": true,
+      "notes": "004144e1 d826a26669a4739303ed2cb4c70eecd6fcdb3fbb1251544a274888f45a5aec47"
+    },
+    {
+      "check": "entry_00414670",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00414670",
+      "passed": true,
+      "notes": "0041497b 3ab99ac22c53ff90f427ad0b57e0153804eeb0f4833010aae8dc15489ea7ea3f"
+    },
+    {
+      "check": "body_00414989",
+      "passed": true,
+      "notes": "004149b7 179a210778c16e9a1d9d6f184a7fdf4926db68836119589d6f6d9176881ef9ee"
+    },
+    {
+      "check": "entry_004149f0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004149f0",
+      "passed": true,
+      "notes": "00414b42 700d20f8144452ee778006d2c5ceeadacfda51d0ae591f5c3157cb6fecee5010"
+    },
+    {
+      "check": "entry_0046fee0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_0046fee0",
+      "passed": true,
+      "notes": "0046ffb0 842d95550956492fea02e45e5586c509b409fd3e9f930c79a3b4cffc56e6a2b4"
+    },
+    {
+      "check": "entry_0046ffc0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_0046ffc0",
+      "passed": true,
+      "notes": "00470061 dc2c6536b550804270ac41cfd3b134205544e559beef8c99aa6e6f5f59782f8e"
+    },
+    {
+      "check": "entry_00470070",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00470070",
+      "passed": true,
+      "notes": "004702c6 b8901547d251f124d1ed855e086a3f619274f1ea35ea2a8febf86211c689def0"
+    },
+    {
+      "check": "entry_004702d0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004702d0",
+      "passed": true,
+      "notes": "0047033a 25a8b7bc92a3e2bbb346ffeef91631f1d0e39f06b9d4b10850255e1448c91dba"
+    },
+    {
+      "check": "entry_00470340",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00470340",
+      "passed": true,
+      "notes": "00470390 2ccc992c91765b02140dc953173f19807d6fbfa0390c4d068734392fc99b09d9"
+    },
+    {
+      "check": "entry_004703a0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004703a0",
+      "passed": true,
+      "notes": "00470492 6dbad92b145d5920e7be87fb0ec2e4d676192afc7c5da8346d8c6023b9d4cf4c"
+    },
+    {
+      "check": "entry_004704a0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004704a0",
+      "passed": true,
+      "notes": "0047057e 8864c4dee57e0c287b1b5526ffdf52db7b13f328958e721b86229620faefc731"
+    },
+    {
+      "check": "entry_00470580",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00470580",
+      "passed": true,
+      "notes": "0047065e ec5f26c605ae4d3fda5cf02fde133316c75034f4ccc739e5ad3d276872827f37"
+    },
+    {
+      "check": "entry_00470660",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00470660",
+      "passed": true,
+      "notes": "00470ab9 6e1ff0872c537d48ef9a9d2889121cb0b2836caf4e9f7cf535b4ec44a6e4f741"
+    },
+    {
+      "check": "entry_00470ac0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00470ac0",
+      "passed": true,
+      "notes": "00470b13 2a53d6529953112c38cb79932afd48d08ade70a1f19a535078e1eeffd43cd9db"
+    },
+    {
+      "check": "entry_00470b20",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00470b20",
+      "passed": true,
+      "notes": "00470bb5 add815986965afc523dc075bbcb07340e0012ff72f075e482106ed70dcdc4119"
+    },
+    {
+      "check": "entry_004927b0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004927b0",
+      "passed": true,
+      "notes": "0049288f 1091c440f47c4cda959fb3aea82892a61757c20a1da51f95c4f9e8bfdfb24d74"
+    },
+    {
+      "check": "entry_00492890",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00492890",
+      "passed": true,
+      "notes": "004929a5 36f6eb7f6e8c0b8a7cedb122c004ea7d2edbdae86247ca2ee0aa0853852e3976"
+    },
+    {
+      "check": "entry_004929b0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004929b0",
+      "passed": true,
+      "notes": "00493079 6f31dd9645702010d958a7b5e61486305419b70f2db29b97a19eb0fb81131a17"
+    },
+    {
+      "check": "entry_00493080",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00493080",
+      "passed": true,
+      "notes": "0049314c e502bc5d513534d65743a441a6d145cbffe40b3f8dca15e923c5f56cc362bfd1"
+    },
+    {
+      "check": "entry_00493150",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00493150",
+      "passed": true,
+      "notes": "00493154 805e4fece940b9d7f258ac17a15af0470e8133f4846abffbcf0067c1da5b605e"
+    },
+    {
+      "check": "entry_00493160",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00493160",
+      "passed": true,
+      "notes": "004931b2 5fbed866b12508c94bf62e0923318d4a833da3c1208b4b4242b70a4e9daf7c64"
+    },
+    {
+      "check": "entry_004931c0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004931c0",
+      "passed": true,
+      "notes": "00493542 c5c418c9f40a521f8b7f16068063b0f765695db60c3732fc16c48bd77e799b0c"
+    },
+    {
+      "check": "entry_00493550",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00493550",
+      "passed": true,
+      "notes": "004937b2 dd3171475a30de903df9b35f8e486fd5f6b393add7d27a67d88a41f0ff763613"
+    },
+    {
+      "check": "entry_004937c0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004937c0",
+      "passed": true,
+      "notes": "00493908 094bf497e3f57ecfc175e78b07c04c48e2d4149024e80d5dc4b8d61a1ec9bb64"
+    },
+    {
+      "check": "entry_00493910",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00493910",
+      "passed": true,
+      "notes": "00493957 ef90acccd1212147f4f9c36757df5568706953b7df38ffa918608ed471c7eca9"
+    },
+    {
+      "check": "entry_00493960",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00493960",
+      "passed": true,
+      "notes": "004939c4 d358339827f35c80e5f59f6ec02a8961e2e4a682c62c8604b1d736e96e75b8b4"
+    },
+    {
+      "check": "entry_004939d0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004939d0",
+      "passed": true,
+      "notes": "00493bcd 8900b5ee69b55f8d5c7549328bf568b0a98fc36e2eed903c019af7d4642b7c7d"
+    },
+    {
+      "check": "entry_00493bd0",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_00493bd0",
+      "passed": true,
+      "notes": "00493be7 5ed8a32b9314385b1a2698eb9a041d2cc0cfac0282229f4a2b3d9d905b25a8f9"
+    },
+    {
+      "check": "entry_004b2e00",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004b2e00",
+      "passed": true,
+      "notes": "004b2ff5 55dc3c27ef9b8c5e1b3dfcf4ac00209712f45430cb31321f45143be759d47e56"
+    },
+    {
+      "check": "entry_004b3000",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004b3000",
+      "passed": true,
+      "notes": "004b3022 569ecb8193e1eb2f45e8164cfaebcac7d431ccc5745cade17d2307368d934913"
+    },
+    {
+      "check": "entry_004b3030",
+      "passed": true,
+      "notes": "Ghidra defined entry and first decoded instruction; no proof of original source symbol"
+    },
+    {
+      "check": "body_004b3030",
+      "passed": true,
+      "notes": "004b32ea 2a0486a1666661afcc1ec99a9c60803b63207a30b446c6b7d19d97366a953fa3"
+    },
+    {
+      "check": "envelope_004927b0",
+      "passed": true,
+      "notes": "00493be7 6a5e50643ea21930e95e43ef3dcdd37c6450bc76a9f83c96ba68c188d4180ed7"
+    },
+    {
+      "check": "envelope_00410490",
+      "passed": true,
+      "notes": "00414b42 9fd8b8d531eeb442b170a8a103078d2d50ea62b02996f348cc2a32681672b00c"
+    },
+    {
+      "check": "envelope_0046fee0",
+      "passed": true,
+      "notes": "00470bb5 40327878ab47e621844c3701569cbb9adad9bfdafeec03a915a759a79156f06e"
+    },
+    {
+      "check": "envelope_004b2e00",
+      "passed": true,
+      "notes": "004b32ea e9bf66aeee236cdf8cabec3fcefa0bf27472c41ad10d670c0cd7bb0ec2ae4581"
+    },
+    {
+      "check": "repeat_inventory.jsonl",
+      "passed": true,
+      "notes": "69c4ed9690d108480df936d413bd6ae38a2bf0b40d195a3c13782d84d933ffcd"
+    },
+    {
+      "check": "repeat_detail.jsonl",
+      "passed": true,
+      "notes": "90d2257237609ab75b628fc77b9b577709da28f5893a019514c6077b57359d16"
+    },
+    {
+      "check": "repeat_metadata.json",
+      "passed": true,
+      "notes": "3b79fcfc55e9b53939c3aca7d32cf55a4eb426efa2ef3386298186311e49991d"
+    },
+    {
+      "check": "modification_counter",
+      "passed": true,
+      "notes": "3 -> 3; same for envelope audit"
+    },
+    {
+      "check": "program_database_pages_unchanged",
+      "passed": true,
+      "notes": "pilot2.rep/idata/00/~00000000.db/db.1.gbf:9a6b0157b0b21f1b1978b422d8207b0fd917565862eea011e80d74b155d979de"
+    },
+    {
+      "check": "manual_instruction_checks",
+      "passed": true,
+      "notes": "Reviewed ledger: 6 positive relationships, 4 separation pairs, 6 negative qualifications; checks establish instruction/reference facts only"
+    },
+    {
+      "check": "callback_pointer_values",
+      "passed": true,
+      "notes": "Original PE pointer values; descriptor tags ZMAP, ZONE, EXIT manually checked; TREV descriptor calls external 004b4610"
+    }
+  ],
+  "test_count": 100,
+  "passed_count": 100,
+  "private_capture_digests": {
+    "inventory.jsonl": "69c4ed9690d108480df936d413bd6ae38a2bf0b40d195a3c13782d84d933ffcd",
+    "detail.jsonl": "90d2257237609ab75b628fc77b9b577709da28f5893a019514c6077b57359d16",
+    "metadata.json": "3b79fcfc55e9b53939c3aca7d32cf55a4eb426efa2ef3386298186311e49991d"
+  },
+  "project_housekeeping_changes": [
+    "pilot2.rep/idata/~index.bak",
+    "pilot2.rep/idata/~journal.bak"
+  ],
+  "limitations": "No source ground truth; passed factual checks do not validate TU boundaries. Program .gbf unchanged; project backup indexes/journal may be maintained even in read-only processing."
+}
