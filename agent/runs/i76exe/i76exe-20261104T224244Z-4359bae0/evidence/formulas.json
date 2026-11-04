@@ -1,0 +1,148 @@
+{
+  "formulas": [
+    {
+      "c_range": [
+        0,
+        2
+      ],
+      "channel_order": "RGB for palette/mask consumers; DIB helper differs",
+      "expression": "raw[i,c] = ACT[3*i+c]",
+      "i_range": [
+        0,
+        255
+      ],
+      "id": "act.raw",
+      "input_bytes": 768,
+      "status": "proven",
+      "va": "004b8a94",
+      "width": "uint8"
+    },
+    {
+      "expression": "memmove(context+0xe8+3*start, source+3*start,3*copy_count)",
+      "id": "palette.copy",
+      "scope": "original has no local capacity guard; model full update only",
+      "status": "proven",
+      "va": [
+        "0048dc94",
+        "00475a85",
+        "0042dc07",
+        "004345d7"
+      ]
+    },
+    {
+      "expression": "k = explicit>=1 ? explicit : (global00654b8c &255); if k<1 or k>10: k=3; LUT=006094a0+256*k",
+      "id": "correction.select",
+      "status": "proven",
+      "va": "004797f0"
+    },
+    {
+      "expression": "for i in [start,end): for c in [0,3): P[3*i+c]=LUT[uint8(P[3*i+c])]",
+      "id": "correction.apply",
+      "note": "copy_count is passed as end by callbacks, not start+count",
+      "status": "proven",
+      "va": "00479835",
+      "width": "uint8"
+    },
+    {
+      "expression": "integer_convert(255*pow(v/255,1/gamma[k-1]))",
+      "gamma": [
+        0.8,
+        0.9,
+        1,
+        1.2,
+        1.4,
+        1.6,
+        1.8,
+        2,
+        2.2,
+        2.5
+      ],
+      "id": "gamma.intent",
+      "status": "derived",
+      "unsupported": "exact imported CRT/x87 results not independently executed",
+      "va": "00479860"
+    },
+    {
+      "expression": "runtime_lum[0:65536]=resource_lum[0:65536]",
+      "id": "lum.copy",
+      "null": "x87 generation; unsupported by executable model",
+      "status": "proven",
+      "va": "0047924c"
+    },
+    {
+      "expression": "out=uint8(LUM[row_offset+uint8(source)])",
+      "id": "lum.lookup",
+      "output": "palette index byte, not RGB",
+      "row": "selected span path; varying example accumulator&0x1f00",
+      "status": "proven",
+      "va": [
+        "0047cc55",
+        "0048540f"
+      ]
+    },
+    {
+      "expression": "a=(first&255)*65536+32768; step=trunc(((last&255)-(first&255))*65536/32); for row=0..31: L[row,col&255]=(a>>16)&255; a+=step; rows32..143= row31; rows144..255=row0",
+      "id": "lum.column",
+      "observed_call": {
+        "column": 239,
+        "first": 224,
+        "last": 239,
+        "va": "004035ff"
+      },
+      "status": "proven",
+      "va": "00478b80"
+    },
+    {
+      "expression": "key=((R>>3)*32+(G>>3))*32+(B>>3); on miss choose earliest argmin over i=0..254 of sum_c(query[c]-palette[i,c])^2; cache first query result",
+      "id": "nearest.cache",
+      "input": "three bounded uint8 channels",
+      "output": "uint8 index excluding255",
+      "status": "proven",
+      "va": "004796a0"
+    },
+    {
+      "expression": "out=TBL[(uint8(source)<<8)|uint8(destination)]",
+      "id": "tbl.lookup",
+      "output": "uint8",
+      "status": "proven",
+      "va": [
+        "0047a4bc",
+        "0047af2f",
+        "00482b22"
+      ]
+    },
+    {
+      "expression": "runtime=copy(serialized65536); runtime[0xff00:0x10000]=bytes(0..255)",
+      "id": "tbl.init",
+      "status": "proven",
+      "va": "00479780"
+    },
+    {
+      "expression": "save T[row,255]; for row0..255: T[row,255]=row; draw; restore saved column on normal exit",
+      "id": "tbl.temporary_column",
+      "status": "proven",
+      "va": [
+        "00483cee",
+        "0048465e"
+      ]
+    },
+    {
+      "expression": "floor(uint8(channel)*2^width/256)<<shift",
+      "id": "pack.channel",
+      "scope": "contiguous disjoint nonzero <=8-bit masks fitting uint16 only",
+      "status": "proven",
+      "va": [
+        "0042d800",
+        "0042d630"
+      ]
+    },
+    {
+      "expression": "v=uint16(sum channel contributions); if v==0: v=(alpha==0 ? lowbit(blue_mask):0); result=v|alpha; result[255]=0",
+      "id": "pack.palette",
+      "plugin": "00434410 RGB565, no avoid-zero substitution, result[0]=result[255]=0",
+      "status": "proven",
+      "va": "0042d96c"
+    }
+  ],
+  "scope": "Binary-static formulas; arithmetic exactness explicitly bounded. No complete renderer equivalence."
+}
