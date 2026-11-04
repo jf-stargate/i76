@@ -81,3 +81,11 @@ The terminal and headless command services also support `resource list`,
 `level load <name>`, `level discard`, `level status`, `level unload`, and `asset stats`.
 See [LEVEL_LOADING.md](LEVEL_LOADING.md) for usage, limits and the intentionally synthetic file
 format. Original `.MSN` and game-archive decoding are not implemented yet.
+
+## Read-only original mission section inspection
+
+The mounted-directory resource provider can now inspect BWD2 chunk inventories
+from user-supplied `.MSN`, `.SPC`, or `.LVL` files (`level inspect M06.MSN`),
+including uppercase legacy filenames on Linux. `level sections <name>` forces
+BWD2 structural inspection without attempting to load a mission. See
+[BWD2.md](BWD2.md). Original mission activation remains unimplemented.

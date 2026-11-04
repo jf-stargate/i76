@@ -1,8 +1,20 @@
 # Level and resource lifecycle — milestone 1
 
-This is an independently authored, tested loading framework. It is **not** a retail `.MSN`/BWD2
-parser and does not load real vehicle/terrain/GEO formats. Those will use the same resource-provider
-interface in later milestones. No proprietary game resources are included in the repository.
+
+## BWD2 structure inspection (separate from activation)
+
+A bounded, read-only BWD2 chunk inspector is now available for `.MSN`, `.SPC`,
+and `.LVL` resources. It reports byte offsets, sizes, nesting and revision
+words, without changing prepared/active level state or claiming retail mission
+compatibility. Use `level inspect M06.MSN` or `level sections miss16/m06.msn`
+after mounting a directory. Only synthetic `I76LEVEL 1` files can currently be
+prepared or activated. See [BWD2.md](BWD2.md) for contract and limitations.
+
+This is an independently authored, tested loading framework. **Only the BWD2
+section structure is readable**; original `.MSN` levels cannot yet be activated,
+and real vehicle/terrain/GEO formats are not decoded. Those will use the same
+resource-provider interface in later milestones. No proprietary game resources
+are included in the repository.
 
 ## Ownership and stages
 
@@ -25,7 +37,7 @@ application shutdown. Newer mounts have priority when an asset is not already ca
 the selected source is stable until the final release. `asset stats` reports cache occupancy,
 reference totals and retained byte count. No LRU or background loading is implemented yet.
 
-The **level loader** has two separate operations. `level inspect` reads and parses a manifest and
+The **synthetic level loader** has two separate operations. `level inspect <name.level>` reads and parses a manifest and
 releases its bytes without requiring any referenced assets. `level prepare` additionally acquires
 each unique dependency, retaining leases in `i76_prepared_level`. The current level remains active
 if preparation fails. `level activate` constructs a new world registry with the current registry's

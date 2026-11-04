@@ -1,7 +1,9 @@
 #include "i76/command.h"
+#include "i76/bwd2.h"
 
 #include <charconv>
 #include <cstdint>
+#include <sstream>
 #include <system_error>
 #include <utility>
 
@@ -282,6 +284,75 @@ static i76_command_result execute_asset_command(i76_runtime& game, std::string_v
                       " bytes=" + std::to_string(stats.cached_bytes));
 }
 
+static bool bwd2_extension(std::string_view name) noexcept
+{
+    std::size_t dot = 0;
+    std::string_view extension = {};
+    char characters[5]{};
+    std::size_t index = 0;
+
+    dot = name.find_last_of('.');
+    if (dot == std::string_view::npos || name.size() - dot > sizeof(characters)) {
+        return false;
+    }
+    extension = name.substr(dot);
+    for (index = 0; index < extension.size(); ++index) {
+        characters[index] = extension[index] >= 'A' && extension[index] <= 'Z' ?
+                                static_cast<char>(extension[index] - 'A' + 'a') : extension[index];
+    }
+    return std::string_view(characters) == ".msn" ||
+           std::string_view(characters) == ".lvl" ||
+           std::string_view(characters) == ".spc";
+}
+
+static std::string byte_offset(std::uint32_t offset)
+{
+    std::ostringstream stream = {};
+
+    stream << "0x" << std::hex << offset;
+    return stream.str();
+}
+
+static i76_command_result inspect_bwd2(i76_runtime& game, std::string_view name)
+{
+    constexpr std::size_t k_display_limit = 128U;
+    i76_bwd2_document document = {};
+    i76_bwd2_error error = {};
+    i76_bwd2_result code = i76_bwd2_result::ok;
+    std::string message = {};
+    std::size_t index = 0;
+    std::uint32_t indent = 0;
+    const i76_bwd2_chunk* chunk = nullptr;
+
+    code = i76_bwd2_read(game.resources, name, document, error);
+    if (code != i76_bwd2_result::ok) {
+        message = std::string("BWD2 inspection failed: ") + i76_bwd2_result_name(code) +
+                  " at " + byte_offset(error.offset);
+        return make_reply(game, i76_result_code::invalid_argument, std::move(message));
+    }
+    message = "BWD2 " + std::string(name) + " bytes=" +
+              std::to_string(document.byte_count) + " chunks=" +
+              std::to_string(document.chunks.size()) + " (structural only; not loaded)";
+    for (index = 0; index < document.chunks.size() && index < k_display_limit; ++index) {
+        chunk = &document.chunks[index];
+        message += "\n  ";
+        for (indent = 0U; indent < chunk->depth; ++indent) {
+            message += "  ";
+        }
+        message += chunk->tag;
+        message += " offset=" + byte_offset(chunk->offset);
+        message += " size=" + std::to_string(chunk->size);
+        if (chunk->has_revision) {
+            message += " revision=" + std::to_string(chunk->revision);
+        }
+    }
+    if (document.chunks.size() > k_display_limit) {
+        message += "\n  ... " + std::to_string(document.chunks.size() - k_display_limit) +
+                   " more sections (inventory output limited to 128)";
+    }
+    return make_reply(game, i76_result_code::ok, std::move(message));
+}
+
 static i76_command_result execute_level_command(i76_runtime& game, std::string_view args)
 {
     std::string_view verb = {};
@@ -292,7 +363,7 @@ static i76_command_result execute_level_command(i76_runtime& game, std::string_v
     verb = take_token(args);
     if (verb == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "level commands: inspect <name> | prepare <name> | activate | load <name> | "
+                          "level commands: inspect <name> | sections <BWD2 name> | prepare <synthetic name> | activate | load <synthetic name> | "
                           "discard | unload | status");
     }
     if (verb == "status" && args.empty()) {
@@ -303,6 +374,10 @@ static i76_command_result execute_level_command(i76_runtime& game, std::string_v
         message += " prepared=" + (game.prepared_level.ready ? game.prepared_level.definition.name :
                                    std::string("none"));
         return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if ((verb == "sections" || (verb == "inspect" && bwd2_extension(args))) &&
+        !args.empty()) {
+        return inspect_bwd2(game, args);
     }
     if (verb == "inspect" && !args.empty()) {
         code = i76_level_read(game.resources, args, inspected);
@@ -315,6 +390,10 @@ static i76_command_result execute_level_command(i76_runtime& game, std::string_v
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
     if ((verb == "prepare" || verb == "load") && !args.empty()) {
+        if (bwd2_extension(args)) {
+            return make_reply(game, i76_result_code::invalid_argument,
+                              "retail BWD2 activation is not implemented; use level inspect or level sections");
+        }
         code = i76_level_prepare(game.resources, args, game.prepared_level);
         if (code != i76_level_result::ok) {
             return make_reply(game, i76_result_code::invalid_argument, level_result_name(code));
