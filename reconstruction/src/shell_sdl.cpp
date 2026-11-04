@@ -2,6 +2,7 @@
 
 #include <SDL3/SDL.h>
 
+#include <cstddef>
 #include <cstdint>
 #include <iostream>
 #include <string>
@@ -52,9 +53,13 @@ static bool shell_sdl_present(SDL_Renderer* renderer, const i76_shell_state& she
     std::string subtitle{view.subtitle};
     std::string status = {};
     std::string label = {};
+    i76_world_handle object_handle = {};
+    const i76_world_object* object = nullptr;
+    std::size_t object_index = 0;
 
     status = "tick " + std::to_string(game.state.tick) + " | " +
-             (game.state.paused ? "PAUSED" : "READY") + " | Esc: back/exit";
+             (game.state.paused ? "PAUSED" : "READY") +
+             " | objects " + std::to_string(i76_world_count(game.world)) + " | Esc: back/exit";
 
     SDL_SetRenderDrawColor(renderer, 20U, 23U, 28U, 255U);
     if (!SDL_RenderClear(renderer)) {
@@ -80,9 +85,23 @@ static bool shell_sdl_present(SDL_Renderer* renderer, const i76_shell_state& she
     }
 
     SDL_SetRenderDrawColor(renderer, 150U, 166U, 180U, 255U);
-    SDL_RenderDebugText(renderer, 28.0f, 230.0f, status.c_str());
+    SDL_RenderDebugText(renderer, 28.0f, 266.0f, status.c_str());
     if (!shell.notice.empty()) {
-        SDL_RenderDebugText(renderer, 28.0f, 246.0f, shell.notice.c_str());
+        SDL_RenderDebugText(renderer, 28.0f, 282.0f, shell.notice.c_str());
+    }
+    if (shell.page == i76_shell_page::session) {
+        SDL_SetRenderDrawColor(renderer, 185U, 207U, 190U, 255U);
+        for (object_index = 0; object_index < i76_world_count(game.world) &&
+                               object_index < 5U; ++object_index) {
+            object_handle = i76_world_handle_at(game.world, object_index);
+            object = i76_world_lookup(game.world, object_handle);
+            if (object != nullptr) {
+                label = std::to_string(object_handle.slot) + ":" +
+                        std::to_string(object_handle.generation) + " " + object->name;
+                SDL_RenderDebugText(renderer, 28.0f, 314.0f +
+                                    static_cast<float>(object_index) * 16.0f, label.c_str());
+            }
+        }
     }
     return SDL_RenderPresent(renderer);
 }
@@ -106,7 +125,7 @@ std::int32_t i76_run_sdl_shell(i76_shell_state& shell, i76_runtime& game,
         std::cerr << "SDL video initialization failed: " << SDL_GetError() << '\n';
         return 1;
     }
-    window_created = SDL_CreateWindowAndRenderer("Interstate '76 | Reconstruction", 960, 540,
+    window_created = SDL_CreateWindowAndRenderer("Interstate '76 | Reconstruction", 1200, 800,
                                                   SDL_WINDOW_RESIZABLE, &window, &renderer);
     if (!window_created) {
         std::cerr << "SDL window creation failed: " << SDL_GetError() << '\n';

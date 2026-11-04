@@ -1,9 +1,10 @@
 #pragma once
 
+#include "i76/world.h"
+
 #include <cstdint>
 #include <string>
 #include <vector>
-
 
 enum class i76_result_code : std::uint8_t {
     ok = 0,
@@ -12,6 +13,7 @@ enum class i76_result_code : std::uint8_t {
     invalid_argument,
     overflow,
     unknown_command,
+    not_found,
 };
 
 enum class i76_diagnostic_level : std::uint8_t {
@@ -63,7 +65,6 @@ struct i76_recording_outputs {
     std::vector<i76_audio_event> audio{};
 };
 
-// Make distinct output channels with independently substitutable sinks.
 i76_output_ports i76_make_null_outputs() noexcept;
 i76_output_ports i76_make_recording_outputs(i76_recording_outputs& record) noexcept;
 
@@ -84,20 +85,22 @@ struct i76_runtime_state {
 struct i76_runtime {
     i76_runtime_state state{};
     i76_output_ports outputs{};
+    // Registry lifetime follows the application; its objects are session-scoped.
+    i76_world_registry world{};
 };
 
-// All values are zero/null on creation. Explicit initialization supplies
-// meaningful defaults and binds sinks. Nothing opens a window or device.
-i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config config, i76_output_ports outputs) noexcept;
+// Explicit initialize/shutdown. The registry preserves its generation history
+// across repeated use of the same runtime instance, including shell sessions.
+i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config config,
+                                        i76_output_ports outputs) noexcept;
 i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept;
 i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count);
 i76_result_code i76_runtime_advance_time(i76_runtime& game, std::uint64_t elapsed_ns);
 i76_result_code i76_runtime_set_paused(i76_runtime& game, bool paused) noexcept;
 i76_result_code i76_runtime_request_exit(i76_runtime& game) noexcept;
 i76_result_code i76_runtime_emit_audio(i76_runtime& game, std::uint32_t sound_id);
-void i76_runtime_emit_diagnostic(i76_runtime& game, i76_diagnostic_level level, const std::string& message);
+void i76_runtime_emit_diagnostic(i76_runtime& game, i76_diagnostic_level level,
+                                 const std::string& message);
 
-// No hidden clock reads: the host owns wall-clock input.
 inline constexpr std::uint64_t i76_k_nanoseconds_per_second = 1'000'000'000ULL;
 inline constexpr std::uint32_t i76_k_max_ticks_per_call = 10'000U;
-

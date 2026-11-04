@@ -13,7 +13,7 @@ ctest --test-dir build/i76-debug --output-on-failure
 build/i76-debug/i76 --shell
 ```
 
-The terminal shell prints a main menu with **Start test session**, **Options**, **About**, and **Exit**. Choose a numbered entry or type its command. Within a test session, `status`, `step <count>`, `pause`, `resume`, `menu`, and `exit` use the same underlying runtime as `--headless`. `Options` and `About` are placeholders, not wired to original game assets or persistent settings.
+The terminal shell prints a main menu with **Start test session**, **Options**, **About**, and **Exit**. Choose a numbered entry or type its command. Within a test session, `status`, `step <count>`, `pause`, `resume`, `object <action>`, `menu`, and `exit` use the same underlying runtime as `--headless`. `Options` and `About` are placeholders, not wired to original game assets or persistent settings.
 
 A completely noninteractive shell integration test is available:
 
@@ -65,3 +65,7 @@ gdb -tui --args build/i76-debug/i76 --shell
 ```
 
 The shell/test session is deliberately single-threaded; Helgrind is not applicable until threaded behavior is added. The portable shell and terminal tests run under CTest, ASan/UBSan, the repository's line-coverage gate and Valgrind Memcheck. SDL3 is optional and absent from the default CI configuration.
+
+## World-object inspection
+
+The synthetic test session now starts with two debug objects. Use `object list`, `object inspect <slot:generation>`, `object spawn <vehicle|scenery|marker> <name>`, `object destroy <slot:generation>`, and `object clear`. Returning to the main menu clears session objects while preserving handle-generation history. See [WORLD.md](WORLD.md).

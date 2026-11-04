@@ -5,8 +5,7 @@
 #include <system_error>
 #include <utility>
 
-
-static std::string_view trim(std::string_view input)
+static std::string_view trim(std::string_view input) noexcept
 {
     std::size_t start = 0;
     std::size_t end = 0;
@@ -17,6 +16,22 @@ static std::string_view trim(std::string_view input)
     }
     end = input.find_last_not_of(" \t\r\n");
     return input.substr(start, end - start + 1U);
+}
+
+static std::string_view take_token(std::string_view& input) noexcept
+{
+    std::size_t boundary = 0;
+    std::string_view token = {};
+
+    input = trim(input);
+    boundary = input.find_first_of(" \t");
+    token = input.substr(0, boundary);
+    if (boundary == std::string_view::npos) {
+        input = {};
+    } else {
+        input = trim(input.substr(boundary));
+    }
+    return token;
 }
 
 static i76_command_result make_reply(i76_runtime& game, i76_result_code code, std::string message)
@@ -33,12 +48,167 @@ static i76_command_result make_reply(i76_runtime& game, i76_result_code code, st
     return reply;
 }
 
+static i76_world_kind parse_kind(std::string_view text) noexcept
+{
+    if (text == "vehicle") {
+        return i76_world_kind::vehicle;
+    }
+    if (text == "scenery") {
+        return i76_world_kind::scenery;
+    }
+    if (text == "marker") {
+        return i76_world_kind::marker;
+    }
+    return i76_world_kind::none;
+}
+
+static const char* kind_name(i76_world_kind kind) noexcept
+{
+    switch (kind) {
+    case i76_world_kind::vehicle:
+        return "vehicle";
+    case i76_world_kind::scenery:
+        return "scenery";
+    case i76_world_kind::marker:
+        return "marker";
+    case i76_world_kind::none:
+        break;
+    }
+    return "unknown";
+}
+
+static std::string handle_text(i76_world_handle handle)
+{
+    return std::to_string(handle.slot) + ":" + std::to_string(handle.generation);
+}
+
+static bool parse_handle(std::string_view text, i76_world_handle& handle) noexcept
+{
+    std::size_t separator = 0;
+    const char* begin = nullptr;
+    const char* end = nullptr;
+    std::from_chars_result parsed = {};
+    i76_world_handle candidate = {};
+
+    handle = {};
+    separator = text.find(':');
+    if (separator == std::string_view::npos || separator == 0U ||
+        separator == text.size() - 1U) {
+        return false;
+    }
+    begin = text.data();
+    end = begin + separator;
+    parsed = std::from_chars(begin, end, candidate.slot, 10);
+    if (parsed.ec != std::errc{} || parsed.ptr != end || candidate.slot == 0U) {
+        return false;
+    }
+    begin = end + 1;
+    end = text.data() + text.size();
+    parsed = std::from_chars(begin, end, candidate.generation, 10);
+    if (parsed.ec != std::errc{} || parsed.ptr != end || candidate.generation == 0U) {
+        return false;
+    }
+    handle = candidate;
+    return true;
+}
+
+static i76_command_result execute_object_command(i76_runtime& game, std::string_view args)
+{
+    constexpr std::size_t k_list_limit = 32U;
+    std::string_view verb = {};
+    std::string_view kind_text = {};
+    std::string_view name = {};
+    i76_world_handle handle = {};
+    i76_world_kind kind = i76_world_kind::none;
+    i76_world_result status = i76_world_result::ok;
+    const i76_world_object* object = nullptr;
+    std::string message = {};
+    std::size_t index = 0;
+    std::size_t count = 0;
+
+    verb = take_token(args);
+    if ((verb.empty() || verb == "help") && args.empty()) {
+        return make_reply(game, i76_result_code::ok,
+                          "object commands: object list | spawn <vehicle|scenery|marker> <name> | "
+                          "inspect <slot:generation> | destroy <slot:generation> | clear");
+    }
+    if (verb == "list" && args.empty()) {
+        count = i76_world_count(game.world);
+        message = "objects=" + std::to_string(count);
+        for (index = 0; index < count && index < k_list_limit; ++index) {
+            handle = i76_world_handle_at(game.world, index);
+            object = i76_world_lookup(game.world, handle);
+            if (object != nullptr) {
+                message += "\n  " + handle_text(handle) + " " + kind_name(object->kind) +
+                           " " + object->name;
+            }
+        }
+        if (count > k_list_limit) {
+            message += "\n  ... " + std::to_string(count - k_list_limit) +
+                       " more (use object inspect <slot:generation>)";
+        }
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if (verb == "spawn") {
+        kind_text = take_token(args);
+        name = take_token(args);
+        kind = parse_kind(kind_text);
+        if (kind == i76_world_kind::none || name.empty() || !args.empty()) {
+            return make_reply(game, i76_result_code::invalid_argument,
+                              "usage: object spawn <vehicle|scenery|marker> <name>");
+        }
+        status = i76_world_create(game.world, kind, name, handle);
+        if (status == i76_world_result::invalid_argument) {
+            return make_reply(game, i76_result_code::invalid_argument, "invalid object name");
+        }
+        if (status != i76_world_result::ok) {
+            return make_reply(game, i76_result_code::overflow, "object capacity exceeded");
+        }
+        return make_reply(game, i76_result_code::ok,
+                          "spawned " + std::string(kind_name(kind)) + " " + std::string(name) +
+                              " handle=" + handle_text(handle));
+    }
+    if (verb == "inspect" || verb == "destroy") {
+        name = take_token(args);
+        if (!args.empty() || !parse_handle(name, handle)) {
+            return make_reply(game, i76_result_code::invalid_argument,
+                              "expected object handle <slot:generation>");
+        }
+        object = i76_world_lookup(game.world, handle);
+        if (object == nullptr) {
+            return make_reply(game, i76_result_code::not_found, "object handle not found");
+        }
+        if (verb == "destroy") {
+            status = i76_world_destroy(game.world, handle);
+            if (status != i76_world_result::ok) {
+                return make_reply(game, i76_result_code::not_found, "object handle not found");
+            }
+            return make_reply(game, i76_result_code::ok,
+                              "destroyed object handle=" + handle_text(handle));
+        }
+        message = "object handle=" + handle_text(handle) + " kind=" + kind_name(object->kind) +
+                  " name=" + object->name + " position=(" +
+                  std::to_string(object->position.x) + "," +
+                  std::to_string(object->position.y) + "," +
+                  std::to_string(object->position.z) + ")";
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if (verb == "clear" && args.empty()) {
+        i76_world_clear(game.world);
+        return make_reply(game, i76_result_code::ok, "world objects cleared");
+    }
+    return make_reply(game, i76_result_code::invalid_argument, "invalid object command (object help)");
+}
 
 i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
 {
-    std::size_t split = 0;
     std::string_view command = {};
     std::string_view args = {};
+    std::uint32_t count = 0;
+    const char* begin = nullptr;
+    const char* end = nullptr;
+    std::from_chars_result parsed = {};
+    i76_result_code result = i76_result_code::ok;
 
     if (!game.state.initialized) {
         return {i76_result_code::not_initialized, "runtime is not initialized"};
@@ -47,23 +217,18 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
     if (line.empty()) {
         return make_reply(game, i76_result_code::invalid_argument, "empty command");
     }
-
-    split = line.find_first_of(" \t");
-    command = line.substr(0, split);
-    if (split == std::string_view::npos) {
-        args = {};
-    } else {
-        args = trim(line.substr(split));
-    }
+    command = take_token(line);
+    args = line;
     if (command == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "commands: help status pause resume step <count> quit");
+                          "commands: help status pause resume step <count> object <action> quit");
     }
     if (command == "status" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
                           "ticks=" + std::to_string(game.state.tick) +
                               " paused=" + (game.state.paused ? "true" : "false") +
-                              " exit=" + (game.state.exit_requested ? "true" : "false"));
+                              " exit=" + (game.state.exit_requested ? "true" : "false") +
+                              " objects=" + std::to_string(i76_world_count(game.world)));
     }
     if (command == "pause" && args.empty()) {
         i76_runtime_set_paused(game, true);
@@ -77,13 +242,10 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
         i76_runtime_request_exit(game);
         return make_reply(game, i76_result_code::ok, "exit requested");
     }
+    if (command == "object") {
+        return execute_object_command(game, args);
+    }
     if (command == "step") {
-        std::uint32_t count = 0;
-        const char* begin = nullptr;
-        const char* end = nullptr;
-        std::from_chars_result parsed = {};
-        i76_result_code result = i76_result_code::ok;
-
         if (args.empty()) {
             return make_reply(game, i76_result_code::invalid_argument, "step requires a count");
         }
@@ -103,4 +265,3 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
     }
     return make_reply(game, i76_result_code::unknown_command, "unknown command");
 }
-

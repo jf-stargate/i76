@@ -51,7 +51,7 @@ static void test_interactive_terminal()
     i76_shell_state shell = {};
     i76_runtime_config config = {};
     std::vector<std::string> commands = {};
-    std::istringstream input{"2\n1\n1\n2\n6\n4\n"};
+    std::istringstream input{"2\n1\n1\n2\n7\n4\n"};
     std::ostringstream output = {};
     std::ostringstream errors = {};
     std::int32_t code = 0;

@@ -17,22 +17,27 @@ if((I76_ENABLE_SANITIZERS OR I76_ENABLE_COVERAGE) AND MSVC)
     message(FATAL_ERROR "These sanitizer/coverage settings require GCC or Clang")
 endif()
 
+add_library(i76_world STATIC src/world.cpp)
+target_include_directories(i76_world PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 add_library(i76_core STATIC src/runtime.cpp src/command.cpp src/shell.cpp)
 target_include_directories(i76_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(i76_core PUBLIC
-        $<$<CONFIG:Debug>:-O0>
-        $<$<CONFIG:Debug>:-fno-omit-frame-pointer>
-    )
-endif()
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    target_compile_options(i76_core PUBLIC $<$<CONFIG:Debug>:-ggdb3>)
-endif()
-if(MSVC)
-    target_compile_options(i76_core PRIVATE /W4 /permissive-)
-else()
-    target_compile_options(i76_core PRIVATE -Wall -Wextra -Wpedantic -Wshadow)
-endif()
+target_link_libraries(i76_core PUBLIC i76_world)
+foreach(i76_target IN ITEMS i76_core i76_world)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${i76_target} PUBLIC
+            $<$<CONFIG:Debug>:-O0>
+            $<$<CONFIG:Debug>:-fno-omit-frame-pointer>
+        )
+    endif()
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        target_compile_options(${i76_target} PUBLIC $<$<CONFIG:Debug>:-ggdb3>)
+    endif()
+    if(MSVC)
+        target_compile_options(${i76_target} PRIVATE /W4 /permissive-)
+    else()
+        target_compile_options(${i76_target} PRIVATE -Wall -Wextra -Wpedantic -Wshadow)
+    endif()
+endforeach()
 
 add_executable(i76 src/main.cpp src/shell_terminal.cpp)
 target_link_libraries(i76 PRIVATE i76_core)
@@ -44,17 +49,29 @@ if(I76_ENABLE_SDL3)
     target_compile_definitions(i76 PRIVATE I76_ENABLE_SDL3=1)
 endif()
 
-if(I76_ENABLE_SANITIZERS)
-    target_compile_options(i76_core PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
-    target_link_options(i76_core PUBLIC -fsanitize=address,undefined)
-endif()
-if(I76_ENABLE_COVERAGE)
-    target_compile_options(i76_core PUBLIC --coverage -O0)
-    target_link_options(i76_core PUBLIC --coverage)
-endif()
+foreach(i76_target IN ITEMS i76_core i76_world)
+    if(I76_ENABLE_SANITIZERS)
+        target_compile_options(${i76_target} PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
+        target_link_options(${i76_target} PUBLIC -fsanitize=address,undefined)
+    endif()
+    if(I76_ENABLE_COVERAGE)
+        target_compile_options(${i76_target} PUBLIC --coverage -O0)
+        target_link_options(${i76_target} PUBLIC --coverage)
+    endif()
+endforeach()
 
 if(I76_BUILD_TESTS)
     enable_testing()
+    add_executable(i76_unit_world tests/test_world.cpp)
+    target_link_libraries(i76_unit_world PRIVATE i76_world)
+    add_test(NAME unit_world COMMAND i76_unit_world)
+    set_tests_properties(unit_world PROPERTIES LABELS "unit;memcheck")
+
+    add_executable(i76_unit_world_commands tests/test_world_commands.cpp)
+    target_link_libraries(i76_unit_world_commands PRIVATE i76_core)
+    add_test(NAME unit_world_commands COMMAND i76_unit_world_commands)
+    set_tests_properties(unit_world_commands PROPERTIES LABELS "unit;memcheck")
+
     add_executable(i76_unit_runtime tests/test_runtime.cpp)
     target_link_libraries(i76_unit_runtime PRIVATE i76_core)
     add_test(NAME unit_runtime COMMAND i76_unit_runtime)
@@ -74,6 +91,19 @@ if(I76_BUILD_TESTS)
     target_link_libraries(i76_unit_terminal PRIVATE i76_core)
     add_test(NAME unit_terminal COMMAND i76_unit_terminal)
     set_tests_properties(unit_terminal PROPERTIES LABELS "unit;memcheck")
+
+    add_test(NAME functional_world_commands COMMAND i76 --headless
+        --command "object spawn vehicle scout" --command "object spawn marker checkpoint"
+        --command "object list" --command "object inspect 1:1")
+    set_tests_properties(functional_world_commands PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "object handle=1:1 kind=vehicle name=scout")
+    add_test(NAME functional_world_session COMMAND i76 --shell --command play
+        --command "object list" --command "object spawn scenery road" --command "object inspect 3:3"
+        --command menu --command play --command "object list")
+    set_tests_properties(functional_world_session PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "objects=2")
+    add_test(NAME functional_world_invalid COMMAND i76 --headless --command "object inspect 0:0")
+    set_tests_properties(functional_world_invalid PROPERTIES LABELS "functional" WILL_FAIL TRUE)
 
     add_test(NAME functional_headless COMMAND i76 --headless --command "step 3" --command status)
     set_tests_properties(functional_headless PROPERTIES
