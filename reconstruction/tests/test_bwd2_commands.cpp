@@ -12,6 +12,9 @@
 
 static std::uint32_t failures = 0;
 
+// -----------------------------------------------------------------------------
+// Record a test failure when an assertion does not hold.
+// -----------------------------------------------------------------------------
 static void expect(bool condition, const char* label)
 {
     if (!condition) {
@@ -20,6 +23,9 @@ static void expect(bool condition, const char* label)
     }
 }
 
+// -----------------------------------------------------------------------------
+// Append a little-endian 32-bit value to a test fixture.
+// -----------------------------------------------------------------------------
 static void add_u32(std::vector<std::uint8_t>& bytes, std::uint32_t value)
 {
     bytes.push_back(static_cast<std::uint8_t>(value & 255U));
@@ -28,26 +34,36 @@ static void add_u32(std::vector<std::uint8_t>& bytes, std::uint32_t value)
     bytes.push_back(static_cast<std::uint8_t>((value >> 24U) & 255U));
 }
 
+// -----------------------------------------------------------------------------
+// Construct a synthetic BWD2 record from its tag and payload.
+// -----------------------------------------------------------------------------
 static std::vector<std::uint8_t> make_chunk(std::string_view name,
-                                             const std::vector<std::uint8_t>& payload)
+                                       const std::vector<std::uint8_t>& payload)
 {
     std::vector<std::uint8_t> bytes = {};
     std::uint32_t index = 0;
 
     for (index = 0; index < 4U; ++index) {
-        bytes.push_back(index < name.size() ? static_cast<std::uint8_t>(name[index]) : 0U);
+        bytes.push_back(index < name.size() ?
+            static_cast<std::uint8_t>(name[index]) : 0U);
     }
     add_u32(bytes, static_cast<std::uint32_t>(8U + payload.size()));
     bytes.insert(bytes.end(), payload.begin(), payload.end());
     return bytes;
 }
 
+// -----------------------------------------------------------------------------
+// Append one fixture byte sequence to another.
+// -----------------------------------------------------------------------------
 static void append(std::vector<std::uint8_t>& target,
                    const std::vector<std::uint8_t>& suffix)
 {
     target.insert(target.end(), suffix.begin(), suffix.end());
 }
 
+// -----------------------------------------------------------------------------
+// Build a synthetic retail-style mission chunk stream.
+// -----------------------------------------------------------------------------
 static std::vector<std::uint8_t> sample_mission()
 {
     std::vector<std::uint8_t> root = {};
@@ -70,6 +86,9 @@ static std::vector<std::uint8_t> sample_mission()
     return stream;
 }
 
+// -----------------------------------------------------------------------------
+// Create test assets in a temporary directory for resource lookup.
+// -----------------------------------------------------------------------------
 static bool write_fixture(const std::filesystem::path& root)
 {
     std::error_code error = {};
@@ -91,6 +110,9 @@ static bool write_fixture(const std::filesystem::path& root)
     return file.good();
 }
 
+// -----------------------------------------------------------------------------
+// Verify console and directory behavior and error cases.
+// -----------------------------------------------------------------------------
 static void test_console_and_directory()
 {
     i76_runtime game = {};
@@ -101,8 +123,10 @@ static void test_console_and_directory()
     i76_world_handle earlier = {};
     std::vector<std::uint8_t> bytes = sample_mission();
     std::vector<std::uint8_t> malformed = make_chunk("BAD!", {});
-    std::filesystem::path root = std::filesystem::temp_directory_path() / "i76_bwd2_cli_fixture";
-    std::filesystem::path outside = std::filesystem::temp_directory_path() / "i76_bwd2_outside.msn";
+    std::filesystem::path root = std::filesystem::temp_directory_path() /
+        "i76_bwd2_cli_fixture";
+    std::filesystem::path outside = std::filesystem::temp_directory_path() /
+        "i76_bwd2_outside.msn";
     std::filesystem::path link = root / "MISS16" / "ESCAPE.MSN";
     std::filesystem::path duplicate_a = root / "MISS16" / "AMBIG.MSN";
     std::filesystem::path duplicate_b = root / "MISS16" / "Ambig.Msn";
@@ -111,15 +135,20 @@ static void test_console_and_directory()
     std::string command = {};
 
     config.tick_rate = 60U;
-    expect(i76_runtime_initialize(game, config, i76_make_recording_outputs(record)) ==
+    expect(i76_runtime_initialize(game, config,
+        i76_make_recording_outputs(record)) ==
                i76_result_code::ok, "initialize console runtime");
-    expect(i76_resource_add_memory(game.resources, "builtin", "sample.msn", bytes) ==
+    expect(i76_resource_add_memory(game.resources, "builtin", "sample.msn",
+        bytes) ==
                i76_resource_result::ok, "register synthetic mission");
-    expect(i76_resource_add_memory(game.resources, "builtin", "broken.msn", malformed) ==
+    expect(i76_resource_add_memory(game.resources, "builtin", "broken.msn",
+        malformed) ==
                i76_resource_result::ok, "register broken mission");
-    expect(i76_resource_add_memory(game.resources, "builtin", "sample.spc", bytes) ==
+    expect(i76_resource_add_memory(game.resources, "builtin", "sample.spc",
+        bytes) ==
                i76_resource_result::ok, "register synthetic scenario");
-    expect(i76_resource_add_memory(game.resources, "builtin", "sample.lvl", bytes) ==
+    expect(i76_resource_add_memory(game.resources, "builtin", "sample.lvl",
+        bytes) ==
                i76_resource_result::ok, "register synthetic editor level");
     reply = i76_execute_command(game, "level inspect sample.msn");
     expect(reply.code == i76_result_code::ok &&
@@ -137,8 +166,10 @@ static void test_console_and_directory()
     expect(reply.code == i76_result_code::ok &&
                reply.message.find("chunks=7") != std::string::npos,
            "explicit BWD2 section command");
-    expect(i76_execute_command(game, "level load sample.msn").code != i76_result_code::ok &&
-               i76_execute_command(game, "level prepare sample.msn").code != i76_result_code::ok,
+    expect(i76_execute_command(game, "level load sample.msn").code !=
+        i76_result_code::ok &&
+               i76_execute_command(game, "level prepare sample.msn").code !=
+                   i76_result_code::ok,
            "BWD2 not accepted for gameplay construction");
     expect(i76_execute_command(game, "level sections ../sample.msn").code !=
                i76_result_code::ok, "reject path traversal");
@@ -149,16 +180,21 @@ static void test_console_and_directory()
            "report parser error and offset");
     expect(i76_execute_command(game, "level sections no.msn").code !=
                i76_result_code::ok, "missing resource reported");
-    expect(i76_execute_command(game, "level inspect demo.level").message.find("objects=2") !=
-               std::string::npos, "previous synthetic inspection remains available");
-    expect(i76_execute_command(game, "level load demo.level").code == i76_result_code::ok,
+    expect(i76_execute_command(game,
+        "level inspect demo.level").message.find("objects=2") !=
+               std::string::npos,
+                   "previous synthetic inspection remains available");
+    expect(i76_execute_command(game, "level load demo.level").code ==
+        i76_result_code::ok,
            "activate existing synthetic level");
     earlier = i76_world_handle_at(game.world, 0U);
-    expect(i76_execute_command(game, "level inspect sample.msn").code == i76_result_code::ok &&
+    expect(i76_execute_command(game, "level inspect sample.msn").code ==
+        i76_result_code::ok &&
                i76_world_lookup(game.world, earlier) != nullptr,
            "BWD2 inspection cannot invalidate active world");
     stats = i76_resource_get_stats(game.resources);
-    expect(stats.references == 1U, "inspector cannot retain extra resource leases");
+    expect(stats.references == 1U,
+        "inspector cannot retain extra resource leases");
 
     std::filesystem::remove_all(root, error);
     expect(write_fixture(root), "write on-disk mixed-case fixture");
@@ -186,11 +222,14 @@ static void test_console_and_directory()
                static_cast<std::streamsize>(bytes.size()));
     file.close();
     error.clear();
-    if (!std::filesystem::equivalent(duplicate_a, duplicate_b, error) && !error) {
-        expect(i76_execute_command(game, "level sections miss16/ambig.msn").code !=
+    if (!std::filesystem::equivalent(duplicate_a, duplicate_b, error) && !error)
+        {
+        expect(i76_execute_command(game, "level sections miss16/ambig.msn").code
+            !=
                    i76_result_code::ok, "ambiguous casefold match rejected");
     }
-    expect(i76_execute_command(game, "level unload").code == i76_result_code::ok,
+    expect(i76_execute_command(game, "level unload").code ==
+        i76_result_code::ok,
            "existing level unload still works");
     stats = i76_resource_get_stats(game.resources);
     expect(stats.references == 0U && stats.cached_bytes == 0U,
@@ -205,15 +244,22 @@ static void test_console_and_directory()
     error.clear();
     std::filesystem::create_symlink(outside, link, error);
     if (!error) {
-        expect(i76_execute_command(game, "level sections miss16/escape.msn").code !=
-                   i76_result_code::ok, "out-of-root symlink cannot be inspected");
+        expect(i76_execute_command(game,
+            "level sections miss16/escape.msn").code !=
+                   i76_result_code::ok,
+                       "out-of-root symlink cannot be inspected");
     }
-    expect(i76_runtime_shutdown(game) == i76_result_code::ok, "cleanup runtime");
+    expect(i76_runtime_shutdown(game) == i76_result_code::ok,
+        "cleanup runtime");
     std::filesystem::remove_all(root, error);
     std::filesystem::remove(outside, error);
-    expect(!record.diagnostics.empty(), "recording sink retains inspect diagnostics");
+    expect(!record.diagnostics.empty(),
+        "recording sink retains inspect diagnostics");
 }
 
+// -----------------------------------------------------------------------------
+// Run the test cases and return a failure status when any assertion fails.
+// -----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
     if (argc == 3 && std::string_view(argv[1]) == "--make-fixture") {

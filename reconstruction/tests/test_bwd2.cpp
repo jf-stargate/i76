@@ -8,6 +8,9 @@
 
 static std::uint32_t failures = 0;
 
+// -----------------------------------------------------------------------------
+// Record a test failure when an assertion does not hold.
+// -----------------------------------------------------------------------------
 static void expect(bool condition, const char* label)
 {
     if (!condition) {
@@ -16,6 +19,9 @@ static void expect(bool condition, const char* label)
     }
 }
 
+// -----------------------------------------------------------------------------
+// Append a little-endian 32-bit integer to a test byte buffer.
+// -----------------------------------------------------------------------------
 static void write_u32(std::vector<std::uint8_t>& bytes, std::uint32_t value)
 {
     bytes.push_back(static_cast<std::uint8_t>(value & 0xffU));
@@ -24,28 +30,39 @@ static void write_u32(std::vector<std::uint8_t>& bytes, std::uint32_t value)
     bytes.push_back(static_cast<std::uint8_t>((value >> 24U) & 0xffU));
 }
 
+// -----------------------------------------------------------------------------
+// Encode a BWD2 chunk with a bounded size and FourCC header.
+// -----------------------------------------------------------------------------
 static std::vector<std::uint8_t> chunk(std::string_view tag,
-                                        const std::vector<std::uint8_t>& payload)
+                                       const std::vector<std::uint8_t>& payload)
 {
     std::vector<std::uint8_t> bytes = {};
     std::uint32_t index = 0;
 
     bytes.reserve(8U + payload.size());
     for (index = 0; index < 4U; ++index) {
-        bytes.push_back(index < tag.size() ? static_cast<std::uint8_t>(tag[index]) : 0U);
+        bytes.push_back(index < tag.size() ?
+            static_cast<std::uint8_t>(tag[index]) : 0U);
     }
     write_u32(bytes, static_cast<std::uint32_t>(8U + payload.size()));
     bytes.insert(bytes.end(), payload.begin(), payload.end());
     return bytes;
 }
 
+// -----------------------------------------------------------------------------
+// Append one fixture byte sequence to another.
+// -----------------------------------------------------------------------------
 static void append(std::vector<std::uint8_t>& target,
                    const std::vector<std::uint8_t>& bytes)
 {
     target.insert(target.end(), bytes.begin(), bytes.end());
 }
 
-static std::vector<std::uint8_t> revision(std::string_view tag, std::uint32_t value)
+// -----------------------------------------------------------------------------
+// Construct a four-byte BWD2 revision record.
+// -----------------------------------------------------------------------------
+static std::vector<std::uint8_t> revision(std::string_view tag,
+                                          std::uint32_t value)
 {
     std::vector<std::uint8_t> payload = {};
 
@@ -53,6 +70,9 @@ static std::vector<std::uint8_t> revision(std::string_view tag, std::uint32_t va
     return chunk(tag, payload);
 }
 
+// -----------------------------------------------------------------------------
+// Build a nested BWD2 fixture for structural parser tests.
+// -----------------------------------------------------------------------------
 static std::vector<std::uint8_t> example()
 {
     std::vector<std::uint8_t> root = {};
@@ -74,7 +94,12 @@ static std::vector<std::uint8_t> example()
     return chunk("BWD2", root);
 }
 
-// The retail writer emits an eight-byte BWD2 marker followed by sibling records.
+// The retail writer emits an eight-byte BWD2 marker followed by sibling
+// records.
+
+// -----------------------------------------------------------------------------
+// Build a retail-style marker stream from the synthetic fixture.
+// -----------------------------------------------------------------------------
 static std::vector<std::uint8_t> retail_example()
 {
     std::vector<std::uint8_t> enclosed = example();
@@ -84,7 +109,12 @@ static std::vector<std::uint8_t> retail_example()
     return bytes;
 }
 
-// The stock mission layout is a flat top-level stream with bounded section bodies.
+// The stock mission layout is a flat top-level stream with bounded section
+// bodies.
+
+// -----------------------------------------------------------------------------
+// Verify full retail layout behavior and error cases.
+// -----------------------------------------------------------------------------
 static void test_full_retail_layout()
 {
     std::vector<std::uint8_t> bytes = chunk("BWD2", {});
@@ -105,7 +135,8 @@ static void test_full_retail_layout()
     append(bytes, chunk("EXIT", {}));
 
     expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok &&
-               document.chunks.size() == 17U && document.byte_count == bytes.size(),
+               document.chunks.size() == 17U && document.byte_count ==
+                   bytes.size(),
            "full retail-style outer stream parses with bounded sections");
     expect(std::string_view(document.chunks[0].tag) == "BWD2" &&
                std::string_view(document.chunks[1].tag) == "REV" &&
@@ -121,10 +152,14 @@ static void test_full_retail_layout()
                document.chunks[13].parent == 13U &&
                document.chunks[14].parent == 13U &&
                document.chunks[16].parent == 0U &&
-               document.chunks[16].offset + document.chunks[16].size == bytes.size(),
+               document.chunks[16].offset + document.chunks[16].size ==
+                   bytes.size(),
            "section depths and terminal EXIT bounds are preserved");
 }
 
+// -----------------------------------------------------------------------------
+// Verify retail marker behavior and error cases.
+// -----------------------------------------------------------------------------
 static void test_retail_marker()
 {
     std::vector<std::uint8_t> bytes = retail_example();
@@ -133,24 +168,31 @@ static void test_retail_marker()
     i76_bwd2_error error = {};
 
     expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok &&
-               document.byte_count == bytes.size() && document.chunks.size() == 13U,
+               document.byte_count == bytes.size() && document.chunks.size() ==
+                   13U,
            "retail marker followed by sibling records parsed to EOF");
     expect(std::string_view(document.chunks[0].tag) == "BWD2" &&
                document.chunks[0].size == 8U &&
-               document.chunks[0].parent == 0U && document.chunks[0].depth == 0U,
+               document.chunks[0].parent == 0U && document.chunks[0].depth ==
+                   0U,
            "BWD2 header remains an eight-byte marker");
     expect(std::string_view(document.chunks[1].tag) == "REV" &&
                document.chunks[1].offset == 8U &&
-               document.chunks[1].parent == 0U && document.chunks[1].depth == 0U &&
-               document.chunks[1].has_revision && document.chunks[1].revision == 2U,
+               document.chunks[1].parent == 0U && document.chunks[1].depth == 0U
+                   &&
+               document.chunks[1].has_revision && document.chunks[1].revision ==
+                   2U,
            "outer REV is a top-level sibling of the marker");
     expect(std::string_view(document.chunks[2].tag) == "WDEF" &&
-               document.chunks[2].parent == 0U && document.chunks[2].depth == 0U &&
+               document.chunks[2].parent == 0U && document.chunks[2].depth == 0U
+                   &&
                std::string_view(document.chunks[3].tag) == "WREV" &&
-               document.chunks[3].parent == 3U && document.chunks[3].depth == 1U,
+               document.chunks[3].parent == 3U && document.chunks[3].depth ==
+                   1U,
            "container children retain correct one-based parent indices");
     expect(std::string_view(document.chunks[8].tag) == "ADEF" &&
-               document.chunks[8].parent == 0U && document.chunks[9].parent == 9U &&
+               document.chunks[8].parent == 0U && document.chunks[9].parent ==
+                   9U &&
                std::string_view(document.chunks[10].tag) == "FSM" &&
                document.chunks[10].payload_size == 0U,
            "retail ADEF and empty FSM are inventoried");
@@ -160,6 +202,9 @@ static void test_retail_marker()
            "repeated marker inspection is deterministic");
 }
 
+// -----------------------------------------------------------------------------
+// Verify structure behavior and error cases.
+// -----------------------------------------------------------------------------
 static void test_structure()
 {
     std::vector<std::uint8_t> bytes = example();
@@ -181,13 +226,17 @@ static void test_structure()
                std::string_view(document.chunks[0].tag) == "BWD2",
            "root has one-based parent sentinel");
     expect(std::string_view(document.chunks[1].tag) == "REV" &&
-               document.chunks[1].parent == 1U && document.chunks[1].depth == 1U &&
-               document.chunks[1].revision == 2U && document.chunks[1].has_revision,
+               document.chunks[1].parent == 1U && document.chunks[1].depth == 1U
+                   &&
+               document.chunks[1].revision == 2U &&
+                   document.chunks[1].has_revision,
            "root revision and little endian");
     expect(std::string_view(document.chunks[2].tag) == "WDEF" &&
-               document.chunks[2].parent == 1U && document.chunks[2].depth == 1U &&
+               document.chunks[2].parent == 1U && document.chunks[2].depth == 1U
+                   &&
                std::string_view(document.chunks[3].tag) == "WREV" &&
-               document.chunks[3].parent == 3U && document.chunks[3].depth == 2U &&
+               document.chunks[3].parent == 3U && document.chunks[3].depth == 2U
+                   &&
                document.chunks[3].revision == 9U,
            "nested WDEF child and revision");
     expect(std::string_view(document.chunks[8].tag) == "ADEF" &&
@@ -196,7 +245,8 @@ static void test_structure()
                document.chunks[10].payload_size == 0U,
            "nested empty FSM chunk accepted");
     for (index = 0; index < document.chunks.size(); ++index) {
-        expect(document.chunks[index].offset + document.chunks[index].size <= bytes.size(),
+        expect(document.chunks[index].offset + document.chunks[index].size <=
+            bytes.size(),
                "reported span is bounded");
     }
     expect(i76_bwd2_parse(bytes, again, error) == i76_bwd2_result::ok &&
@@ -213,12 +263,17 @@ static void test_structure()
                "every documented BWD2 status has a diagnostic name");
     }
     expect(std::string_view(i76_bwd2_result_name(
-               static_cast<i76_bwd2_result>(255U))) == "unknown BWD2 reader error",
+               static_cast<i76_bwd2_result>(255U))) ==
+                   "unknown BWD2 reader error",
            "unexpected error code is never left uninitialized");
 }
 
+// -----------------------------------------------------------------------------
+// Check that malformed BWD2 input yields the expected error and offset.
+// -----------------------------------------------------------------------------
 static void check_failure(const std::vector<std::uint8_t>& bytes,
-                          i76_bwd2_result expected, std::uint32_t offset,
+                          i76_bwd2_result expected,
+                          std::uint32_t offset,
                           const char* label)
 {
     i76_bwd2_document document = {};
@@ -235,6 +290,9 @@ static void check_failure(const std::vector<std::uint8_t>& bytes,
            "rejected input does not overwrite prior report");
 }
 
+// -----------------------------------------------------------------------------
+// Verify invalid inputs behavior and error cases.
+// -----------------------------------------------------------------------------
 static void test_invalid_inputs()
 {
     std::vector<std::uint8_t> bytes = {};
@@ -245,7 +303,8 @@ static void test_invalid_inputs()
     i76_bwd2_document revised = {};
     i76_bwd2_error error = {};
 
-    check_failure({}, i76_bwd2_result::truncated_header, 0U, "empty input rejected");
+    check_failure({}, i76_bwd2_result::truncated_header, 0U,
+        "empty input rejected");
     bytes = {'B','W','D','2',8,0,0};
     check_failure(bytes, i76_bwd2_result::truncated_header, 0U,
                   "short root header rejected");
@@ -326,7 +385,8 @@ static void test_invalid_inputs()
                   8U + 8U * (i76_bwd2_max_chunks - 1U),
                   "bounded chunk count");
     bytes = chunk("EXIT", empty);
-    for (index = 0; index < static_cast<std::uint32_t>(i76_bwd2_max_depth) + 1U; ++index) {
+    for (index = 0; index < static_cast<std::uint32_t>(i76_bwd2_max_depth) + 1U;
+        ++index) {
         bytes = chunk("WDEF", bytes);
     }
     bytes = chunk("BWD2", bytes);
@@ -338,6 +398,9 @@ static void test_invalid_inputs()
                   "oversized resource rejected before header access");
 }
 
+// -----------------------------------------------------------------------------
+// Verify resource lifetime behavior and error cases.
+// -----------------------------------------------------------------------------
 static void test_resource_lifetime()
 {
     i76_resource_store store = {};
@@ -349,7 +412,8 @@ static void test_resource_lifetime()
     i76_resource_stats stats = {};
 
     expect(i76_bwd2_read(store, "example.msn", document, error) ==
-               i76_bwd2_result::not_initialized, "provider requires initialization");
+               i76_bwd2_result::not_initialized,
+                   "provider requires initialization");
     expect(i76_resource_initialize(store) == i76_resource_result::ok,
            "initialize resource provider");
     expect(i76_resource_mount_memory(store, "test") == i76_resource_result::ok,
@@ -359,9 +423,11 @@ static void test_resource_lifetime()
     expect(i76_resource_add_memory(store, "test", "bad.msn", bad) ==
                i76_resource_result::ok, "add invalid BWD2 fixture");
     expect(i76_bwd2_read(store, "../bad.msn", document, error) ==
-               i76_bwd2_result::invalid_argument, "unsafe resource name rejected");
+               i76_bwd2_result::invalid_argument,
+                   "unsafe resource name rejected");
     expect(i76_bwd2_read(store, "missing.msn", document, error) ==
-               i76_bwd2_result::resource_not_found, "missing resource reported");
+               i76_bwd2_result::resource_not_found,
+                   "missing resource reported");
     expect(i76_bwd2_read(store, "example.msn", document, error) ==
                i76_bwd2_result::ok && document.chunks.size() == 13U,
            "inspect through memory provider");
@@ -374,7 +440,8 @@ static void test_resource_lifetime()
     stats = i76_resource_get_stats(store);
     expect(stats.references == 0U && stats.cached_bytes == 0U,
            "failed inspection releases byte lease");
-    expect(i76_resource_acquire(store, "example.msn", handle) == i76_resource_result::ok,
+    expect(i76_resource_acquire(store, "example.msn", handle) ==
+        i76_resource_result::ok,
            "external reference to BWD2 bytes");
     expect(i76_bwd2_read(store, "example.msn", document, error) ==
                i76_bwd2_result::ok, "multiple borrowers share resource entry");
@@ -386,6 +453,9 @@ static void test_resource_lifetime()
            "resource store shutdown clean");
 }
 
+// -----------------------------------------------------------------------------
+// Run the test cases and return a failure status when any assertion fails.
+// -----------------------------------------------------------------------------
 int main()
 {
     test_structure();
