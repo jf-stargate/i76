@@ -47,6 +47,8 @@ struct i76_retail_terrain_definition {
     std::uint32_t referenced_pages{};
     std::uint32_t zmap_offset{};
     std::uint32_t zone_offset{};
+    // ZONE payload byte 0 is opaque; its loader uses the page count from ZMAP.
+    std::uint8_t zone_prefix_byte{};
     std::string sidecar{};
     std::string resource_name{};
     std::array<std::uint8_t, 80U * 80U> page_indices{};

@@ -460,7 +460,8 @@ static i76_command_result inspect_retail_mission(i76_runtime& game,
                        " referenced_pages=" + std::to_string(mission.terrain.referenced_pages);
         }
         if (mission.terrain.has_zone) {
-            message += "\n  ZONE sidecar=" + mission.terrain.resource_name;
+            message += "\n  ZONE sidecar=" + mission.terrain.resource_name +
+                       " prefix_byte=" + std::to_string(mission.terrain.zone_prefix_byte);
         }
         return make_reply(game, i76_result_code::ok, std::move(message));
     }

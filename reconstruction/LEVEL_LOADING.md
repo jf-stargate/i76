@@ -178,7 +178,8 @@ level terrain miss16/M06.MSN
 ```
 
 `summary` decodes mission/section revisions, section sizes, counts of recognizable
-WRLD, OBJ, RSEG and FSM records, plus ZMAP/ZONE terrain metadata. `terrain`
+WRLD, OBJ, RSEG and FSM records, plus ZMAP/ZONE terrain metadata. The ZONE
+prefix byte is displayed as opaque; only ZMAP supplies the TER page count. `terrain`
 validates all 6,400 ZMAP page indices, resolves the ZONE .TER name **relative to
 the mission directory**, checks the page count and byte size, and computes
 packed 16-bit sample statistics (height range, surface flag count, and eight
