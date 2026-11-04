@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
-project(i76_reconstruction VERSION 0.1.0 LANGUAGES CXX)
+project(i76_reconstruction VERSION 0.2.0 LANGUAGES CXX)
 
 option(I76_BUILD_TESTS "Build unit and functional tests" ON)
 option(I76_ENABLE_SANITIZERS "Enable ASan and UBSan" OFF)
 option(I76_ENABLE_COVERAGE "Enable GCC/Clang coverage instrumentation" OFF)
+option(I76_ENABLE_SDL3 "Build optional SDL3 window shell frontend" OFF)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,9 +17,8 @@ if((I76_ENABLE_SANITIZERS OR I76_ENABLE_COVERAGE) AND MSVC)
     message(FATAL_ERROR "These sanitizer/coverage settings require GCC or Clang")
 endif()
 
-add_library(i76_core STATIC src/runtime.cpp src/command.cpp)
+add_library(i76_core STATIC src/runtime.cpp src/command.cpp src/shell.cpp)
 target_include_directories(i76_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-# Keep the default Debug build suitable for GDB/TUI on Linux.
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(i76_core PUBLIC
         $<$<CONFIG:Debug>:-O0>
@@ -34,8 +34,15 @@ else()
     target_compile_options(i76_core PRIVATE -Wall -Wextra -Wpedantic -Wshadow)
 endif()
 
-add_executable(i76 src/main.cpp)
+add_executable(i76 src/main.cpp src/shell_terminal.cpp)
 target_link_libraries(i76 PRIVATE i76_core)
+
+if(I76_ENABLE_SDL3)
+    find_package(SDL3 3.2 CONFIG REQUIRED)
+    target_sources(i76 PRIVATE src/shell_sdl.cpp)
+    target_link_libraries(i76 PRIVATE SDL3::SDL3)
+    target_compile_definitions(i76 PRIVATE I76_ENABLE_SDL3=1)
+endif()
 
 if(I76_ENABLE_SANITIZERS)
     target_compile_options(i76_core PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
@@ -58,6 +65,16 @@ if(I76_BUILD_TESTS)
     add_test(NAME unit_commands COMMAND i76_unit_commands)
     set_tests_properties(unit_commands PROPERTIES LABELS "unit;memcheck")
 
+    add_executable(i76_unit_shell tests/test_shell.cpp)
+    target_link_libraries(i76_unit_shell PRIVATE i76_core)
+    add_test(NAME unit_shell COMMAND i76_unit_shell)
+    set_tests_properties(unit_shell PROPERTIES LABELS "unit;memcheck")
+
+    add_executable(i76_unit_terminal tests/test_shell_terminal.cpp src/shell_terminal.cpp)
+    target_link_libraries(i76_unit_terminal PRIVATE i76_core)
+    add_test(NAME unit_terminal COMMAND i76_unit_terminal)
+    set_tests_properties(unit_terminal PROPERTIES LABELS "unit;memcheck")
+
     add_test(NAME functional_headless COMMAND i76 --headless --command "step 3" --command status)
     set_tests_properties(functional_headless PROPERTIES
         LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "ticks=3 paused=false")
@@ -66,4 +83,22 @@ if(I76_BUILD_TESTS)
         LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "usage: i76")
     add_test(NAME functional_bad_input COMMAND i76 --command "step -1")
     set_tests_properties(functional_bad_input PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+
+    add_test(NAME functional_shell COMMAND i76 --shell --command play --command "step 3" --command status --command menu)
+    set_tests_properties(functional_shell PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "ticks=3 paused=false")
+    add_test(NAME functional_shell_menu COMMAND i76 --shell --command options --command back --command about --command back --command exit)
+    set_tests_properties(functional_shell_menu PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "exit requested")
+    add_test(NAME functional_shell_invalid COMMAND i76 --shell --command "step 3")
+    set_tests_properties(functional_shell_invalid PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+    add_test(NAME functional_shell_help COMMAND i76 --shell --command help)
+    set_tests_properties(functional_shell_help PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "select 1-8")
+    if(I76_ENABLE_SDL3)
+        add_test(NAME functional_sdl_dummy COMMAND i76 --shell=sdl --shell-frames 2)
+        set_tests_properties(functional_sdl_dummy PROPERTIES
+            LABELS "functional;sdl" ENVIRONMENT "SDL_VIDEODRIVER=dummy;SDL_RENDER_DRIVER=software"
+            TIMEOUT 10)
+    endif()
 endif()
