@@ -1,0 +1,25 @@
+00504838 00401536 WRITE 00401510 load_predefined_localized_m16_texture_set MOV [0x00504838],EAX
+00504838 00401705 READ 004016e0 submit_dynamic_geometry_aux_view_polygons MOV EAX,[0x00504838]
+00504838 00401568 WRITE 00401540 load_horizon_texture_manifest MOV dword ptr [0x00504838],0x0
+00504838 004016a7 WRITE 00401540 load_horizon_texture_manifest MOV dword ptr [0x00504838],0x1
+00504840 00401516 DATA 00401510 load_predefined_localized_m16_texture_set LEA EAX,[ESI + -0x10]
+00504840 00401519 DATA 00401510 load_predefined_localized_m16_texture_set PUSH EAX
+00504840 004015eb WRITE 00401540 load_horizon_texture_manifest MOVSD.REP ES:EDI,ESI
+00504840 0040168a DATA 00401540 load_horizon_texture_manifest LEA ECX,[ESI + -0x10]
+00504840 0040168d DATA 00401540 load_horizon_texture_manifest PUSH ECX
+00504840 004016bf DATA 00401540 load_horizon_texture_manifest LEA EAX,[EDX*0x8 + 0x504840]
+00504840 004016c6 DATA 00401540 load_horizon_texture_manifest PUSH EAX
+00504840 004015c9 DATA 00401540 load_horizon_texture_manifest MOV EBP,0x504840
+00504844 004015eb WRITE 00401540 load_horizon_texture_manifest MOVSD.REP ES:EDI,ESI
+00504844 004015f8 WRITE 00401540 load_horizon_texture_manifest MOVSB.REP ES:EDI,ESI
+00504845 004015f8 WRITE 00401540 load_horizon_texture_manifest MOVSB.REP ES:EDI,ESI
+00504850 0040151a DATA 00401510 load_predefined_localized_m16_texture_set PUSH ESI
+00504850 00401511 DATA 00401510 load_predefined_localized_m16_texture_set MOV ESI,0x504850
+00504850 004018fb DATA 004016e0 submit_dynamic_geometry_aux_view_polygons LEA ECX,[EAX*0x8 + 0x504850]
+00504850 0040168e DATA 00401540 load_horizon_texture_manifest PUSH ESI
+00504850 00401685 DATA 00401540 load_horizon_texture_manifest MOV ESI,0x504850
+00504858 00401519 DATA 00401510 load_predefined_localized_m16_texture_set PUSH EAX
+00504858 004015eb WRITE 00401540 load_horizon_texture_manifest MOVSD.REP ES:EDI,ESI
+00504858 0040168d DATA 00401540 load_horizon_texture_manifest PUSH ECX
+00504868 0040151a DATA 00401510 load_predefined_localized_m16_texture_set PUSH ESI
+00504868 0040168e DATA 00401540 load_horizon_texture_manifest PUSH ESI

@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261104T195732Z-147b7e3c",
+  "findings": [
+    {
+      "finding_id": "HZD-001",
+      "claim": "Observed HZD stock profile is plain ASCII text with sixteen CRLF-terminated filename records, no header/count/parameters; retail advances via unchecked delimiter search and CRT mask0x103, while the independent reader is bounded.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/HZD_FORMAT.md",
+          "sha256": "e370db3c2aa63e3759223bf71c8e60990eabd8457d9177db5c9d306964e2c209"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/parser_constants.json",
+          "sha256": "ca94c5c7c4de0bdd561c186586fb1c5cf83835ad3245ea379b6e2ac9d14fa6af"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.tsv",
+          "sha256": "befc2829de193e480594eb90d9816d64d0f806e8a00d6b661687b61ab48ee094"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/test_hzd.py",
+          "sha256": "ae06b3ba06cc3f14e0f108aad4ba2bb121e1144700078a54330ed1bd4d3b72e3"
+        }
+      ],
+      "limitations": "Only this retail build/corpus; CRLF/15-byte independent-reader policy is narrower than unsafe retail; locale and historical layouts unmeasured."
+    },
+    {
+      "finding_id": "HZD-002",
+      "claim": "All 74 archive-authenticated HZD files have 224 bytes and sixteen 12-byte names, with 33 distinct payloads; 78 of 80 mission WRLD fields select 36 logical HZD names /19 payloads.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/HZD_CORPUS.md",
+          "sha256": "54538fea4914379527eab911373ace4bd3ba2776a6774c9f0b5bfda0c4bcbf73"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/corpus.json",
+          "sha256": "4b7c5e6e08b30332166e8672a39e586e5bfa7708d435a27baac6fcabe9864ebe"
+        }
+      ],
+      "limitations": "Accessible installation only; installed mission files hashed but not archive-authenticated; no native load success."
+    },
+    {
+      "finding_id": "HZD-003",
+      "claim": "Every one of 272 HZD texture names resolves in inventory:104 direct MAP PIX members,168 VQM PIX members with ZFS CBKs and M16 PIX members; runtime uses ordered primary/optional pointer pairs.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/HZD_RESOURCE_GRAPH.md",
+          "sha256": "38f48f4ba39c09e39ec56b48fa3be0bd919f77ff8a27f8f84638ccc3ab08dc6e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/dependency_inventory.json",
+          "sha256": "6e123bbd794b1be75f8132fd55a6bd2cec503238ceb38a0ddabf452bdc2f7a31"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.tsv",
+          "sha256": "befc2829de193e480594eb90d9816d64d0f806e8a00d6b661687b61ab48ee094"
+        }
+      ],
+      "limitations": "Inventory and static boundary do not prove decoder success, active source selection, palette or rendering correctness."
+    },
+    {
+      "finding_id": "HZD-004",
+      "claim": "HZD initialization releases the parsed manifest before texture acquisition, retains partial pairs on failure, and has no replacement rollback;00401510 is a separate pair-release loop despite its inherited load annotation.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/HZD_CONTROL_FLOW.md",
+          "sha256": "de8c1a85ea7e3a02e8a3d5aab578f2ef30699e69b261221a2785fcfa94e5b170"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.tsv",
+          "sha256": "befc2829de193e480594eb90d9816d64d0f806e8a00d6b661687b61ab48ee094"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_byte_validation.tsv",
+          "sha256": "c7304c706de2924ab007f6bdec603ff79e9889b37a7a270bfb72da00725b4333"
+        }
+      ],
+      "limitations": "Normal bounded static paths only; malformed parser paths may not reach release; repeated intact teardown is a local property, not whole-engine lifecycle proof."
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.5",
+  "run_id": "i76exe-20261104T195732Z-147b7e3c",
+  "track": "i76exe",
+  "topic": "Retail HZD horizon manifest grammar, corpus and runtime resource contract",
+  "base_commit": "5f408a117da6d55e495714b648f41b43d708bf6e",
+  "started_at": "2026-11-04T19:57:32Z",
+  "summary": "Research only: archive-authenticated 74-file HZD survey, exact retail parser/load/teardown instruction evidence, 272-name PIX/PAK dependency closure, bounded independent Python reader and fresh reproduction. No reconstruction/canonical/shared/baseline changes.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private orig/i76.exe, expected identity verified before/after."
+    },
+    {
+      "name": "HZD corpus metadata",
+      "kind": "resource-manifest",
+      "md5": "cf867ec281a68ffc15d79fc41a771557",
+      "sha256": "4b7c5e6e08b30332166e8672a39e586e5bfa7708d435a27baac6fcabe9864ebe",
+      "notes": "evidence/corpus.json: exact private HZD/MSN paths and hashes; HZD archive authentication; no proprietary payloads."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "v100 / Ghidra12.1.4 PUBLIC",
+      "program_name": "i76.exe",
+      "baseline_id": "i76exe_v100",
+      "baseline_sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0",
+      "storage_ref": "private:scratch_data/i76exe_v100.gzf",
+      "notes": "Disposable import -noanalysis, later -readOnly; persisted program database unchanged; backups housekeeping qualified in database_integrity.json."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "3d1a8be862cc49f719d61509574444fb0aade993724592848fe6dcebb5f5b7cc",
+      "bytes": 3467
+    },
+    {
+      "path": "artifacts/HZD_CONTROL_FLOW.md",
+      "kind": "report",
+      "sha256": "de8c1a85ea7e3a02e8a3d5aab578f2ef30699e69b261221a2785fcfa94e5b170",
+      "bytes": 8227
+    },
+    {
+      "path": "artifacts/HZD_CORPUS.md",
+      "kind": "report",
+      "sha256": "54538fea4914379527eab911373ace4bd3ba2776a6774c9f0b5bfda0c4bcbf73",
+      "bytes": 4798
+    },
+    {
+      "path": "artifacts/HZD_FORMAT.md",
+      "kind": "report",
+      "sha256": "e370db3c2aa63e3759223bf71c8e60990eabd8457d9177db5c9d306964e2c209",
+      "bytes": 6415
+    },
+    {
+      "path": "artifacts/HZD_RESOURCE_GRAPH.md",
+      "kind": "report",
+      "sha256": "38f48f4ba39c09e39ec56b48fa3be0bd919f77ff8a27f8f84638ccc3ab08dc6e",
+      "bytes": 3728
+    },
+    {
+      "path": "artifacts/RECONSTRUCTION_HANDOFF.md",
+      "kind": "report",
+      "sha256": "983c8278541c0f2e617a57a38568a263529d6385459bd09c4766b963b68bed5b",
+      "bytes": 4980
+    },
+    {
+      "path": "artifacts/REPRODUCTION.md",
+      "kind": "report",
+      "sha256": "4e0f256dc1ecbe99238a20bde9a0522d91b2f82dbadf859c016071f0a1deef74",
+      "bytes": 4924
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "b59594c7ee15f4f384141b7c61ae3be1fd7279136fa880e5c8b0f379dd4b75f0",
+      "bytes": 1376
+    },
+    {
+      "path": "evidence/corpus.json",
+      "kind": "table",
+      "sha256": "4b7c5e6e08b30332166e8672a39e586e5bfa7708d435a27baac6fcabe9864ebe",
+      "bytes": 109499
+    },
+    {
+      "path": "evidence/database_integrity.json",
+      "kind": "table",
+      "sha256": "75e1d6f477014ee4d4287414ba9f792d75eea40ff1145859ad38e0000a8d6ea6",
+      "bytes": 1491
+    },
+    {
+      "path": "evidence/dependency_inventory.json",
+      "kind": "table",
+      "sha256": "6e123bbd794b1be75f8132fd55a6bd2cec503238ceb38a0ddabf452bdc2f7a31",
+      "bytes": 184292
+    },
+    {
+      "path": "evidence/fresh_database_integrity.json",
+      "kind": "table",
+      "sha256": "b9a91311b7cbce0738bc2b9e0a6a0f58970a6c0df6720d339345a24d67be7b00",
+      "bytes": 1309
+    },
+    {
+      "path": "evidence/instruction_byte_validation.tsv",
+      "kind": "table",
+      "sha256": "c7304c706de2924ab007f6bdec603ff79e9889b37a7a270bfb72da00725b4333",
+      "bytes": 346
+    },
+    {
+      "path": "evidence/parser_constants.json",
+      "kind": "table",
+      "sha256": "ca94c5c7c4de0bdd561c186586fb1c5cf83835ad3245ea379b6e2ac9d14fa6af",
+      "bytes": 582
+    },
+    {
+      "path": "evidence/reproduction_validation.json",
+      "kind": "table",
+      "sha256": "3fb2b2afc79fec5ca5e64b542de8e664a06ebb208d244ee69c627cbf40d7e68b",
+      "bytes": 466
+    },
+    {
+      "path": "evidence/review_selections.json",
+      "kind": "table",
+      "sha256": "4914ac2985529cebf585f1b241ce217fc9e3af3e751eafa25c4fa2bee5cddd57",
+      "bytes": 1291
+    },
+    {
+      "path": "evidence/reviewed_instructions.tsv",
+      "kind": "assembly",
+      "sha256": "befc2829de193e480594eb90d9816d64d0f806e8a00d6b661687b61ab48ee094",
+      "bytes": 25417
+    },
+    {
+      "path": "evidence/source_integrity.json",
+      "kind": "table",
+      "sha256": "1ecd465ddaddf73af3b8a69eecff390ddb44c674a4dc7101d6c67a44fd4ac706",
+      "bytes": 543
+    },
+    {
+      "path": "evidence/state_refs.txt",
+      "kind": "report",
+      "sha256": "e1bcd5737bbd9b9db92e0bffe5d9fc11fc9a958a340e8b2a62e87360285bbac0",
+      "bytes": 2109
+    },
+    {
+      "path": "evidence/synthetic_tests.txt",
+      "kind": "report",
+      "sha256": "1c6afd5c8ae6edc520da287736e07274fda9fd6e4708eb03761dd602644af9a1",
+      "bytes": 1331
+    },
+    {
+      "path": "scripts/HzdAudit.java",
+      "kind": "script",
+      "sha256": "3ee15ae6302c889715839e0058291f90dafc54b7ed72e7d3651ce6d59f081cd8",
+      "bytes": 1819
+    },
+    {
+      "path": "scripts/HzdRefs.java",
+      "kind": "script",
+      "sha256": "02cbbd9ecff1ef2bd266593aff4d8e042b3854c5132194459239030af8aa299f",
+      "bytes": 846
+    },
+    {
+      "path": "scripts/HzdVerify.java",
+      "kind": "script",
+      "sha256": "83e117951f800c2b438a285b0ec2e3b3e5c241a917bac5f0139025fbb87c5a58",
+      "bytes": 2173
+    },
+    {
+      "path": "scripts/hzd.py",
+      "kind": "script",
+      "sha256": "e57791920d09b8ef49bb6ab6083a276cc785d32e0f43f4b19ece071ef16af5fd",
+      "bytes": 1571
+    },
+    {
+      "path": "scripts/package.py",
+      "kind": "script",
+      "sha256": "b99c0adc44d1aa1b5867cd02076e4a668c688d47af423279af576b448a66ca4e",
+      "bytes": 6395
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "a363d3a0658915dbf0795e5a8628871a43d9aa8769f82ac08b0f7711c1c4041a",
+      "bytes": 3047
+    },
+    {
+      "path": "scripts/select_evidence.py",
+      "kind": "script",
+      "sha256": "89093b8a981ebac32e5bf5cb042b2656ac29a0a20d9387f1d608b0df896d47d2",
+      "bytes": 2785
+    },
+    {
+      "path": "scripts/survey.py",
+      "kind": "script",
+      "sha256": "6ba23b859e25d14ce96585ddbd5cdc560548cd054f805a9e3658f064998ca839",
+      "bytes": 8565
+    },
+    {
+      "path": "scripts/test_hzd.py",
+      "kind": "script",
+      "sha256": "ae06b3ba06cc3f14e0f108aad4ba2bb121e1144700078a54330ed1bd4d3b72e3",
+      "bytes": 2339
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 26,
+    "passed_count": 26,
+    "notes": "20 synthetic unittest methods (including every truncated prefix); 2 expected EXE/GZF SHA-256 checks before/after; 1 full 74-specimen archive/272-name dependency survey; 1 original-byte comparison over 14 bodies / 12135 bytes, zero mismatches; 1 unchanged persisted program/properties/current indexes check; 1 complete fresh reproduction with identical regenerated metadata. GitHub/protocol integrity checks are additional. No native retail execution."
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/HzdAudit.java"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/HzdRefs.java"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/HzdVerify.java"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/hzd.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/package.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/select_evidence.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/survey.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/test_hzd.py"
+      }
+    ],
+    "methods": [
+      "binary-static Ghidra export without reanalysis",
+      "original PE instruction-byte comparison",
+      "archive-authenticated retail corpus and PIX/PAK slice inventory",
+      "independent bounded synthetic reader tests",
+      "fresh full reproduction and program-database hash comparison"
+    ],
+    "limitations": "Requires exact private EXE/GZF, archive and mission installation; public inventory anonymizes complete texture names. No native retail load/render execution, no malformed original execution, no complete renderer or all texture failure-path proof."
+  }
+}
