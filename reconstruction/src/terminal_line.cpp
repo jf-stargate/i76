@@ -25,7 +25,7 @@ struct i76_native_terminal {
     // -------------------------------------------------------------------------
     // Restore saved terminal mode when native input handling ends.
     // -------------------------------------------------------------------------
-~i76_native_terminal() noexcept
+    ~i76_native_terminal() noexcept
     {
         if (!enabled) {
             return;
