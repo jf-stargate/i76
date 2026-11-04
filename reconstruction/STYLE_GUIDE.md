@@ -45,3 +45,22 @@ repeat its identifier. The banner is adjacent to the function signature;
 header declarations may instead use their regular API documentation.
 
 The historical i69 sample and archived research source remain out of scope.
+
+
+### Multi-condition Boolean expressions
+
+Put each alternative or conjunct on its own source line. The first condition
+stays with the introductory expression; continuation lines begin with
+`||` or `&&` and retain the original grouping and operator precedence.
+This applies to `return`, `if`, `while`, and test assertions, even for
+expressions shorter than 80 columns. Do not group enum constants inside a
+Boolean comparison; each enum comparison must be complete.
+
+```cpp
+return kind == i76_world_kind::vehicle
+       || kind == i76_world_kind::scenery
+       || kind == i76_world_kind::marker;
+```
+
+The CTest style checker enforces separate lines for logical operators outside
+literals, comments, and preprocessor directives.
