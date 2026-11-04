@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "line_offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "name": {
+      "maxLength": 15,
+      "minLength": 1,
+      "type": "string"
+    },
+    "name_offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "offset": {
+      "maximum": 2147483647,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "offset_token_offset": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ordinal": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "size": {
+      "maximum": 2147483647,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "size_token_offset": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "ordinal",
+    "name",
+    "offset",
+    "size",
+    "line_offset",
+    "name_offset",
+    "offset_token_offset",
+    "size_token_offset"
+  ],
+  "title": "Safe parsed PIX entry metadata; serialized byte positions are per specimen",
+  "type": "object"
+}

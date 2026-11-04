@@ -1,0 +1,41 @@
+{
+  "base_commit": "5f408a117da6d55e495714b648f41b43d708bf6e",
+  "baseline_note": "Supplied v100 GZF hash independently verified. Imported into disposable project; no baseline promotion or annotation mutation.",
+  "branches_inspected": true,
+  "default_branch": "main",
+  "github_metadata_default_branch": "main",
+  "independent_head_verification": "SSH git ls-remote origin HEAD refs/heads/main; both matched supplied SHA",
+  "open_prs_at_bootstrap": 0,
+  "pinned_reads": [
+    "AGENTS.md",
+    "agent/protocol/VERSION",
+    "agent/protocol/access.yaml",
+    "agent/protocol/BOOTSTRAP.md",
+    "agent/protocol/README.md",
+    "manual/roadmap/DOCUMENTATION_WORKFLOW.md",
+    "agent/protocol/templates/DOCUMENTATION_IMPACT.md"
+  ],
+  "policy": "1.0.5",
+  "prior_work": [
+    "manual/reference/engine/resource_acquisition.md",
+    "ref/game/i76_resource_acquisition_reference.md",
+    "ref/zfs/i76_zfs_structure_and_extraction_reference.md",
+    "ref/model_format/i76_vehicle_model_format_and_extraction_reference.md",
+    "agent/runs/i76exe/i76exe-20261101T161535Z-22d9956f",
+    "agent/runs/i76exe/i76exe-20261104T183028Z-1218829e",
+    "agent/runs/i76exe/i76exe-20261104T183156Z-085a5e76"
+  ],
+  "repository": "jf-stargate/i76",
+  "ruleset": {
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "enforcement": "active",
+    "id": 25664125,
+    "required_check": "integrity",
+    "required_formal_reviews": 0,
+    "strict": false
+  },
+  "schema": "1.2.0",
+  "scope": "create-only owned immutable run; private disposable analysis workspace",
+  "track": "i76exe"
+}

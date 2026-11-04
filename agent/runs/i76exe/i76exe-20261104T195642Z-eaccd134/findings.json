@@ -1,0 +1,221 @@
+{
+  "findings": [
+    {
+      "claim": "PIX is a decimal LF-delimited text count followed by name/offset/length lines, transformed into 0x1C runtime members; no serialized binary row stride was observed.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PIX_PAK_FORMAT.md",
+          "sha256": "4027ce1c49d6ba298798a49a8168d6886ed4f90b79e7a2085f6a1d626315c0d5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PIX_PAK_CONTROL_FLOW.md",
+          "sha256": "5422d2528fbb591b5dcc979628a03c2de46a7358d9e9082c91c92129d9fdc9ca"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/instructions.json",
+          "sha256": "cf0c60605abe103d81c8722303e2280fc0ac58c6c8358f579b09e26f0985910e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/corpus.json",
+          "sha256": "a06749cf559349e2aeb472e61cd72bbeeca9160ff235aec97cc670a9b888a4bc"
+        },
+        {
+          "address": "00470660",
+          "kind": "retail-address",
+          "notes": "Authenticated EXE SHA-256 in manifest",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "pix.text.contract",
+      "limitations": "Base-game variant only. Non-ASCII locale, malformed-input CRT behavior and other products remain unsupported.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Indexed acquire returns a retained whole logical PAK byte pointer plus the absolute member byte offset; length is queried separately and no member decompressor/bounds check is present on that path.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PIX_PAK_FORMAT.md",
+          "sha256": "4027ce1c49d6ba298798a49a8168d6886ed4f90b79e7a2085f6a1d626315c0d5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/instructions.json",
+          "sha256": "cf0c60605abe103d81c8722303e2280fc0ac58c6c8358f579b09e26f0985910e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/examples.json",
+          "sha256": "4795247dcef6371f4b7f9b9ed7744b1703cdd66b570cf82f6bc9ecf72cb74ffe"
+        },
+        {
+          "address": "00470B20",
+          "kind": "retail-address",
+          "notes": "Authenticated EXE SHA-256 in manifest",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "pix.absolute.spans",
+      "limitations": "Static original instructions and authenticated corpus; not original runtime execution. Outer ZFS decompression remains a separate layer.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "All 1,758 authenticated base-game PIX/PAK pairs contain 23,507 bounded members covering 70,149,016 PAK bytes without gaps or overlaps; 264 duplicate keys have identical payload hashes.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PIX_PAK_CORPUS.md",
+          "sha256": "67fd88a9ac9d1773d451d10791658199ef487eb291cbb1e331016e575d2ca237"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/corpus.json",
+          "sha256": "a06749cf559349e2aeb472e61cd72bbeeca9160ff235aec97cc670a9b888a4bc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/examples.json",
+          "sha256": "4795247dcef6371f4b7f9b9ed7744b1703cdd66b570cf82f6bc9ecf72cb74ffe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/reproduction.json",
+          "sha256": "a0842fcbdfbee3325fe12db59e2990ae31cf66cb121e2cdd27dd95d6cc64a8b2"
+        }
+      ],
+      "finding_id": "pix.corpus.coverage",
+      "limitations": "Authentication uses pinned historical ZFS decoder and liblzo2. No indexed CBK exists in this corpus; 53 top-level CBKs are separate.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "The original callback compares four little-endian DWORD differences and lookup uses CRT qsort/bsearch; exact selection among equal PIX member keys remains unresolved.",
+      "confidence": "unknown",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RESOURCE_PRECEDENCE.md",
+          "sha256": "46077301e5efa6021a9031bee97da3b152650e11ab09e19c9fe369836f17cede"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/instructions.json",
+          "sha256": "cf0c60605abe103d81c8722303e2280fc0ac58c6c8358f579b09e26f0985910e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/corpus.json",
+          "sha256": "a06749cf559349e2aeb472e61cd72bbeeca9160ff235aec97cc670a9b888a4bc"
+        },
+        {
+          "address": "00470CA0",
+          "kind": "retail-address",
+          "notes": "Authenticated EXE SHA-256 in manifest",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "pix.lookup.duplicates",
+      "limitations": "No original collision execution or CRT implementation audit; independent reader reports ambiguity unless explicitly selected.",
+      "scope": "game",
+      "status": "unresolved"
+    },
+    {
+      "claim": "PAK retention is aggregate across members, and teardown releases one loaded-file lease per non-null PAK then frees metadata without waiting for member refs or resetting index globals.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RESOURCE_LIFETIME.md",
+          "sha256": "a2d9abf1ac822017b5677ed00d683c9bced13bf3135a12a942d3eaa68396c997"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PIX_PAK_CONTROL_FLOW.md",
+          "sha256": "5422d2528fbb591b5dcc979628a03c2de46a7358d9e9082c91c92129d9fdc9ca"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/instructions.json",
+          "sha256": "cf0c60605abe103d81c8722303e2280fc0ac58c6c8358f579b09e26f0985910e"
+        },
+        {
+          "address": "00470AC0",
+          "kind": "retail-address",
+          "notes": "Authenticated EXE SHA-256 in manifest",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "pix.lifecycle.boundaries",
+      "limitations": "No native teardown execution. External caller sequencing/invalidation invariants remain unresolved; safe reader uses independently owned immutable snapshots.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "General acquire honors 00609564 route order, while name release and size remain indexed-first independently of the preference global.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RESOURCE_PRECEDENCE.md",
+          "sha256": "46077301e5efa6021a9031bee97da3b152650e11ab09e19c9fe369836f17cede"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/instructions.json",
+          "sha256": "cf0c60605abe103d81c8722303e2280fc0ac58c6c8358f579b09e26f0985910e"
+        },
+        {
+          "address": "0046FFC0",
+          "kind": "retail-address",
+          "notes": "Authenticated EXE SHA-256 in manifest",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "pix.precedence.asymmetry",
+      "limitations": "Confirms accepted Pilot C static evidence; actual preference state and direct/index collision outcomes were not measured at runtime.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "The independent standard-library reader returns bounded immutable spans, rejects ambiguous keys by default, passes 21 synthetic tests, and matches seek/read bytes for every corpus entry.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RECONSTRUCTION_HANDOFF.md",
+          "sha256": "c6e28c52f9c52757432e50d0a185024b05724d1611f010fcbb9c955e36772f8c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/examples.json",
+          "sha256": "4795247dcef6371f4b7f9b9ed7744b1703cdd66b570cf82f6bc9ecf72cb74ffe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/synthetic_results.json",
+          "sha256": "3ef431e2151edd84dbf5cfb36d308d3172f68857efb8c48ba65c7c9d4f9b79be"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/reproduction.json",
+          "sha256": "a0842fcbdfbee3325fe12db59e2990ae31cf66cb121e2cdd27dd95d6cc64a8b2"
+        }
+      ],
+      "finding_id": "pix.safe.reader",
+      "limitations": "Independent policy, not emulation of unsafe original failures or a maintained reconstruction integration.",
+      "scope": "game",
+      "status": "derived"
+    }
+  ],
+  "run_id": "i76exe-20261104T195642Z-eaccd134",
+  "schema_version": "1.2.0"
+}
