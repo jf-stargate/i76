@@ -1,0 +1,557 @@
+{
+  "payload_length": 331,
+  "revision_context": "WREV=9 sibling, not a WRLD prefix",
+  "offset_basis": "WRLD payload after 8-byte header",
+  "fields": [
+    {
+      "offset": 0,
+      "offset_hex": "0x000",
+      "width": 4,
+      "name": "audio_selection",
+      "encoding": "little-endian int32",
+      "evidence": "004b8a17 / 00423324 / 00423368",
+      "meaning": "Retained CD audio selection word; not a Boolean or revision",
+      "confidence": "high"
+    },
+    {
+      "offset": 4,
+      "offset_hex": "0x004",
+      "width": 13,
+      "name": "movie_before",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8bd7..004b8bff; 0040371c",
+      "meaning": "13-byte copy to 005dd300, passed to movie opener",
+      "confidence": "high"
+    },
+    {
+      "offset": 17,
+      "offset_hex": "0x011",
+      "width": 13,
+      "name": "movie_after",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8bfc..004b8c20; 00404265",
+      "meaning": "13-byte copy to 005dd310, passed to movie opener",
+      "confidence": "high"
+    },
+    {
+      "offset": 30,
+      "offset_hex": "0x01e",
+      "width": 13,
+      "name": "palette",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8a33..004b8a37",
+      "meaning": "ACT acquisition; 768 bytes copied if non-null",
+      "confidence": "high"
+    },
+    {
+      "offset": 43,
+      "offset_hex": "0x02b",
+      "width": 13,
+      "name": "luminance",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8a53..004b8a57",
+      "meaning": "LUM acquisition; pointer passed to selected palette callback",
+      "confidence": "high"
+    },
+    {
+      "offset": 56,
+      "offset_hex": "0x038",
+      "width": 13,
+      "name": "blend_table",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8ac8..004b8acc",
+      "meaning": "TBL acquisition; 65536-byte copy if non-null",
+      "confidence": "high"
+    },
+    {
+      "offset": 69,
+      "offset_hex": "0x045",
+      "width": 13,
+      "name": "notepad",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8b6e..004b8b8d; 0045df0b",
+      "meaning": "Name retained at 006094f0; later objective text acquire",
+      "confidence": "high"
+    },
+    {
+      "offset": 82,
+      "offset_hex": "0x052",
+      "width": 13,
+      "name": "sky",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8b49..004b8b6c; 00404e88",
+      "meaning": "Name retained at 005dce60; later texture acquisition",
+      "confidence": "high"
+    },
+    {
+      "offset": 95,
+      "offset_hex": "0x05f",
+      "width": 13,
+      "name": "scrounge",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8bb3..004b8bb7; 004b85eb",
+      "meaning": "Basename input to SDF support object initialization",
+      "confidence": "high"
+    },
+    {
+      "offset": 108,
+      "offset_hex": "0x06c",
+      "width": 13,
+      "name": "terrain_default",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8bbf..004b8bc3; 00490914",
+      "meaning": "Base texture name expanded into five retained default names",
+      "confidence": "high"
+    },
+    {
+      "offset": 121,
+      "offset_hex": "0x079",
+      "width": 13,
+      "name": "map_name",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8b8f..004b8bb1; 0049cea2",
+      "meaning": "Name retained at 005a7ec8; later mission map bitmap read",
+      "confidence": "high"
+    },
+    {
+      "offset": 134,
+      "offset_hex": "0x086",
+      "width": 13,
+      "name": "horizon_manifest",
+      "encoding": "char[13], observed ASCII NUL-terminated",
+      "evidence": "004b8bcb..004b8bd2; 00401582",
+      "meaning": "Optional HZD text manifest acquisition and 16 texture slot loads",
+      "confidence": "high"
+    },
+    {
+      "offset": 147,
+      "offset_hex": "0x093",
+      "width": 4,
+      "name": "environment_selector",
+      "encoding": "little-endian int32",
+      "evidence": "004b8a21 / 00477b26..00477b60",
+      "meaning": "Signed arithmetic selects one of eight built-in sun/moon resource rows; hour-of-day interpretation inferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 151,
+      "offset_hex": "0x097",
+      "width": 4,
+      "name": "material_0_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 0, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 155,
+      "offset_hex": "0x09b",
+      "width": 4,
+      "name": "material_0_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 0, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 159,
+      "offset_hex": "0x09f",
+      "width": 4,
+      "name": "material_0_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 0, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 163,
+      "offset_hex": "0x0a3",
+      "width": 4,
+      "name": "material_0_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 167,
+      "offset_hex": "0x0a7",
+      "width": 4,
+      "name": "material_0_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 0, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 171,
+      "offset_hex": "0x0ab",
+      "width": 4,
+      "name": "material_1_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 1, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 175,
+      "offset_hex": "0x0af",
+      "width": 4,
+      "name": "material_1_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 1, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 179,
+      "offset_hex": "0x0b3",
+      "width": 4,
+      "name": "material_1_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 1, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 183,
+      "offset_hex": "0x0b7",
+      "width": 4,
+      "name": "material_1_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 187,
+      "offset_hex": "0x0bb",
+      "width": 4,
+      "name": "material_1_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 1, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 191,
+      "offset_hex": "0x0bf",
+      "width": 4,
+      "name": "material_2_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 2, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 195,
+      "offset_hex": "0x0c3",
+      "width": 4,
+      "name": "material_2_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 2, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 199,
+      "offset_hex": "0x0c7",
+      "width": 4,
+      "name": "material_2_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 2, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 203,
+      "offset_hex": "0x0cb",
+      "width": 4,
+      "name": "material_2_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 207,
+      "offset_hex": "0x0cf",
+      "width": 4,
+      "name": "material_2_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 2, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 211,
+      "offset_hex": "0x0d3",
+      "width": 4,
+      "name": "material_3_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 3, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 215,
+      "offset_hex": "0x0d7",
+      "width": 4,
+      "name": "material_3_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 3, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 219,
+      "offset_hex": "0x0db",
+      "width": 4,
+      "name": "material_3_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 3, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 223,
+      "offset_hex": "0x0df",
+      "width": 4,
+      "name": "material_3_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 227,
+      "offset_hex": "0x0e3",
+      "width": 4,
+      "name": "material_3_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 3, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 231,
+      "offset_hex": "0x0e7",
+      "width": 4,
+      "name": "material_4_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 4, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 235,
+      "offset_hex": "0x0eb",
+      "width": 4,
+      "name": "material_4_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 4, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 239,
+      "offset_hex": "0x0ef",
+      "width": 4,
+      "name": "material_4_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 4, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 243,
+      "offset_hex": "0x0f3",
+      "width": 4,
+      "name": "material_4_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 247,
+      "offset_hex": "0x0f7",
+      "width": 4,
+      "name": "material_4_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 4, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 251,
+      "offset_hex": "0x0fb",
+      "width": 4,
+      "name": "material_5_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 5, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 255,
+      "offset_hex": "0x0ff",
+      "width": 4,
+      "name": "material_5_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 5, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 259,
+      "offset_hex": "0x103",
+      "width": 4,
+      "name": "material_5_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 5, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 263,
+      "offset_hex": "0x107",
+      "width": 4,
+      "name": "material_5_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 267,
+      "offset_hex": "0x10b",
+      "width": 4,
+      "name": "material_5_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 5, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 271,
+      "offset_hex": "0x10f",
+      "width": 4,
+      "name": "material_6_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 6, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 275,
+      "offset_hex": "0x113",
+      "width": 4,
+      "name": "material_6_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 6, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 279,
+      "offset_hex": "0x117",
+      "width": 4,
+      "name": "material_6_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 6, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 283,
+      "offset_hex": "0x11b",
+      "width": 4,
+      "name": "material_6_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 287,
+      "offset_hex": "0x11f",
+      "width": 4,
+      "name": "material_6_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 6, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 291,
+      "offset_hex": "0x123",
+      "width": 4,
+      "name": "material_7_scalar0",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492777",
+      "meaning": "Row 7, member +0x0; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 295,
+      "offset_hex": "0x127",
+      "width": 4,
+      "name": "material_7_scalar1",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492787",
+      "meaning": "Row 7, member +0x4; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 299,
+      "offset_hex": "0x12b",
+      "width": 4,
+      "name": "material_7_scalar2",
+      "encoding": "little-endian IEEE-754 binary32",
+      "evidence": "004b8b2b..004b8b47; 00492797",
+      "meaning": "Row 7, member +0x8; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 303,
+      "offset_hex": "0x12f",
+      "width": 4,
+      "name": "material_7_unknown_0c",
+      "encoding": "opaque bytes",
+      "evidence": "004b8b2b..004b8b47; copy only",
+      "meaning": "Copied word with no getter found in bounded trace",
+      "confidence": "high"
+    },
+    {
+      "offset": 307,
+      "offset_hex": "0x133",
+      "width": 4,
+      "name": "material_7_integer10",
+      "encoding": "little-endian int32",
+      "evidence": "004b8b2b..004b8b47; 004927a7",
+      "meaning": "Row 7, member +0x10; physical meaning deferred",
+      "confidence": "high"
+    },
+    {
+      "offset": 311,
+      "offset_hex": "0x137",
+      "width": 4,
+      "name": "projection_integer",
+      "encoding": "little-endian int32",
+      "evidence": "004b8c2a / 004b8c31 / 004059de",
+      "meaning": "Converted to float at 004c271c; conditionally supplies projection argument",
+      "confidence": "high"
+    },
+    {
+      "offset": 315,
+      "offset_hex": "0x13b",
+      "width": 16,
+      "name": "unknown_tail",
+      "encoding": "opaque bytes",
+      "evidence": "No access in 004b8a10",
+      "meaning": "Retain verbatim; variable in corpus, not reserved padding",
+      "confidence": "high"
+    }
+  ]
+}

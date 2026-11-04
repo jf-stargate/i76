@@ -1,0 +1,5 @@
+address	tag	auxiliary	callback	flags
+00500ca0	WREV	0	004b4610	0x2004
+00500cb0	WRLD	0	004b8a10	0x0001
+00500cc0	EXIT	0	004b4290	0x1000
+# Expected WREV policy: original PE table00500460 stores reversed tag VERW, LE word9 at00500464; 004b4610 reverses tag bytes before comparison.

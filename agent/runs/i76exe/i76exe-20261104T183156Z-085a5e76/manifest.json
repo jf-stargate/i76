@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.5",
+  "run_id": "i76exe-20261104T183156Z-085a5e76",
+  "track": "i76exe",
+  "topic": "Retail WREV9 WRLD serialized layout and world resource dependencies",
+  "base_commit": "7406234ef017a3fbb3539f2cc29cfd9e601dddbd",
+  "started_at": "2026-11-04T18:31:56Z",
+  "summary": "Research-only exact-offset audit: 331-byte WRLD layout, 80 private missions / 40 mode pairs, direct versus conditional/derived resources, opaque preservation, bounded synthetic reader and verified original-instruction evidence. No maintained implementation or annotation changes.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Private orig/i76.exe; expected SHA-256 verified before and after audit."
+    },
+    {
+      "name": "80-specimen retail WRLD corpus metadata",
+      "kind": "resource-manifest",
+      "md5": "a3c4d335f3fcac5055a19b7015b47c9c",
+      "sha256": "fb297ce461c1ebe0229328afcb9805e2d153b824acc42e7cefa3648cf9106326",
+      "notes": "evidence/corpus.json records measured per-specimen identities; no original payload bytes published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "v100 / Ghidra 12.1.4 PUBLIC",
+      "program_name": "i76.exe",
+      "baseline_id": "i76exe_v100",
+      "baseline_sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0",
+      "storage_ref": "private:scratch_data/i76exe_v100.gzf",
+      "notes": "Imported into disposable research:/i76exe_v100 with -noanalysis; subsequent passes -readOnly -noanalysis; 28 instruction bodies byte-matched against original EXE."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "77adb3754c91dfeed6c3f8b00c23af2266a6070beeb2b92794460501b257a90d",
+      "bytes": 2289
+    },
+    {
+      "path": "artifacts/RECONSTRUCTION_HANDOFF.md",
+      "kind": "report",
+      "sha256": "89068261fd40253cfa6371c56e96eb22ab8e4db75bbf6560ca5b8c06cbf1858d",
+      "bytes": 4139
+    },
+    {
+      "path": "artifacts/REPRODUCTION.md",
+      "kind": "report",
+      "sha256": "fcc6acb8cd44bbe74105efa40326a96fda75f7efee884167a724a518d03354d5",
+      "bytes": 3989
+    },
+    {
+      "path": "artifacts/WRLD_CONTROL_FLOW.md",
+      "kind": "report",
+      "sha256": "de28f58a444007bfde26661fa50cf87437bf83608eab7fc3b4baa605740f09f6",
+      "bytes": 6430
+    },
+    {
+      "path": "artifacts/WRLD_CORPUS_COMPARISON.md",
+      "kind": "report",
+      "sha256": "a099a741acc774c050a9dc4c67d45f6f7c1a79e26d530c51f9f0e1bd5f1ed1b9",
+      "bytes": 6087
+    },
+    {
+      "path": "artifacts/WRLD_FORMAT.md",
+      "kind": "report",
+      "sha256": "9bdaf6397aeb21a0a1400263ff37ccc07d0f1f62f81ced9a20ee3def00ec6113",
+      "bytes": 7829
+    },
+    {
+      "path": "artifacts/WRLD_RESOURCE_DEPENDENCIES.md",
+      "kind": "report",
+      "sha256": "ebfcb72c8bb0075a693c026b4083adac795d8ebd9d22bef8f6888a2cea334b75",
+      "bytes": 7603
+    },
+    {
+      "path": "artifacts/dependencies.json",
+      "kind": "table",
+      "sha256": "afecdb0709e02c395960e2755ab7e9c2649d019bf8c0e346a89c9e09659ce92b",
+      "bytes": 6926
+    },
+    {
+      "path": "artifacts/fields.json",
+      "kind": "table",
+      "sha256": "1cb860f0b239d8710ef69b0b8b89f0c0a9dbb7fbc89be0a356b0f76f7b18f857",
+      "bytes": 17322
+    },
+    {
+      "path": "artifacts/numeric_observations.json",
+      "kind": "table",
+      "sha256": "05e2f6f4e90387911aa47f54245f5845c7edc713e977ea4378ed6349cec5481d",
+      "bytes": 7967
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "7cfcc825df239abd62a67d8f8ba2a33446fc8536c7dc3a92338aa8ada1262585",
+      "bytes": 2184
+    },
+    {
+      "path": "evidence/corpus.json",
+      "kind": "table",
+      "sha256": "fb297ce461c1ebe0229328afcb9805e2d153b824acc42e7cefa3648cf9106326",
+      "bytes": 98698
+    },
+    {
+      "path": "evidence/derived_name_sources.tsv",
+      "kind": "table",
+      "sha256": "24f85a216030137f15eda4efddceb637c88648f83dd6a00528ae33b83cc34e8d",
+      "bytes": 652
+    },
+    {
+      "path": "evidence/field_consistency.json",
+      "kind": "table",
+      "sha256": "a8a3fdb00af5b691d5c64aa058e41c45c2d162d1f92a9c941f7e5c0fe5692871",
+      "bytes": 96
+    },
+    {
+      "path": "evidence/instruction_byte_validation.tsv",
+      "kind": "table",
+      "sha256": "ec30cb34a01e9c8ad56dc1f710a4c642179bcf88c1269dbf01c6dc7bd66f71be",
+      "bytes": 593
+    },
+    {
+      "path": "evidence/review_selections.json",
+      "kind": "table",
+      "sha256": "f7786104e7a0c5572754912d87837ffc1c1d0038fa924f4d278ad39502329cdb",
+      "bytes": 1763
+    },
+    {
+      "path": "evidence/reviewed_instructions.tsv",
+      "kind": "assembly",
+      "sha256": "fdcc2b98598a63f7d085076dd901ae40c857377041aad200516b019160c8c2e1",
+      "bytes": 27826
+    },
+    {
+      "path": "evidence/synthetic_tests.txt",
+      "kind": "report",
+      "sha256": "c7db235493ecc82a7d846d45d73d85e0794ae077ddb58b37366788921aa06578",
+      "bytes": 1477
+    },
+    {
+      "path": "evidence/wdef_descriptor_table.tsv",
+      "kind": "table",
+      "sha256": "073225bf083bf46e5605f691050460e8f8ef7e35da7264b4bd0ca7e6148945e6",
+      "bytes": 277
+    },
+    {
+      "path": "scripts/WrldAudit.java",
+      "kind": "script",
+      "sha256": "23d7d60e1786c0b5281d62a9865151818aedcdde65890e8e92d574513dee2203",
+      "bytes": 1821
+    },
+    {
+      "path": "scripts/WrldRefs.java",
+      "kind": "script",
+      "sha256": "2f7c5b16544b5a8fd74131343e463dd0959ff21839b18c21c4ec030d4a8c1fcb",
+      "bytes": 1257
+    },
+    {
+      "path": "scripts/WrldVerify.java",
+      "kind": "script",
+      "sha256": "60d1d606be602c17c0a059648feb16ee8782737234e7f2bc716efe9034cb715b",
+      "bytes": 2175
+    },
+    {
+      "path": "scripts/check_fields.py",
+      "kind": "script",
+      "sha256": "e0961dd8d9ea96dca53df6dff28214ee4904aa59365ca6319724ede358a9c6b8",
+      "bytes": 1523
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "19123fd8cb9a5efac53b94910bfe47b6a919956ff51e39a333a438cce2ae446b",
+      "bytes": 2424
+    },
+    {
+      "path": "scripts/select_evidence.py",
+      "kind": "script",
+      "sha256": "cb142450d28ba31e6153ba0130842ebb8ce16933f0348be7993692d57e3e0495",
+      "bytes": 1372
+    },
+    {
+      "path": "scripts/test_wrld.py",
+      "kind": "script",
+      "sha256": "81554deab6529852ea854281382e9ce24944a2555b03b49fbfccc6509b114c57",
+      "bytes": 4013
+    },
+    {
+      "path": "scripts/wrld.py",
+      "kind": "script",
+      "sha256": "bd438e47830220e8df59a159c234bb794e9fc2b2aae874eab4f06aa3e3ca4aed",
+      "bytes": 5736
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 20,
+    "passed_count": 20,
+    "notes": "16 synthetic unittest methods; 1 field/identity/preservation check over all 80 specimens; 2 expected source SHA-256 checks (also rechecked unchanged after audit); 1 original-instruction byte comparison over 28 bodies / 16617 bytes, zero mismatches. No native retail execution. Protocol and exact-head PR integrity are additional publication checks, not included in this test count."
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/wrld.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/check_fields.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/test_wrld.py"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/WrldAudit.java"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/WrldRefs.java"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/WrldVerify.java"
+      },
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/select_evidence.py"
+      }
+    ],
+    "methods": [
+      "binary-static read-only Ghidra export",
+      "original PE instruction-byte comparison",
+      "full private mission-pair structural and field survey",
+      "independent strict synthetic reader tests"
+    ],
+    "limitations": "Requires exact private EXE/GZF and original mission files, not in public repository. No native retail gameplay or successful resource acquisitions executed; LUM math, physical material labels and unknown bytes deferred."
+  }
+}

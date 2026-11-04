@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261104T183156Z-085a5e76",
+  "findings": [
+    {
+      "finding_id": "WRLD-001",
+      "claim": "WREV9 retail WRLD payload has 331 bytes: eleven 13-byte name slots, three signed selection/projection words, eight 20-byte material rows, and an explicit 16-byte opaque tail.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/WRLD_FORMAT.md",
+          "sha256": "9bdaf6397aeb21a0a1400263ff37ccc07d0f1f62f81ced9a20ee3def00ec6113"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/fields.json",
+          "sha256": "1cb860f0b239d8710ef69b0b8b89f0c0a9dbb7fbc89be0a356b0f76f7b18f857"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.tsv",
+          "sha256": "fdcc2b98598a63f7d085076dd901ae40c857377041aad200516b019160c8c2e1"
+        }
+      ],
+      "limitations": "Observed layout only; material member+0c and final tail semantics unresolved; physical float labels not established."
+    },
+    {
+      "finding_id": "WRLD-002",
+      "claim": "ACT/LUM/TBL are direct serialized acquisitions; NPT/sky are retained then used later; SDF, terrain defaults and display map use derived names; HZD is an optional horizon texture manifest and PCF is derived outside WRLD.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/WRLD_RESOURCE_DEPENDENCIES.md",
+          "sha256": "ebfcb72c8bb0075a693c026b4083adac795d8ebd9d22bef8f6888a2cea334b75"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/dependencies.json",
+          "sha256": "afecdb0709e02c395960e2755ab7e9c2649d019bf8c0e346a89c9e09659ce92b"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.tsv",
+          "sha256": "fdcc2b98598a63f7d085076dd901ae40c857377041aad200516b019160c8c2e1"
+        }
+      ],
+      "limitations": "Static acquisition attempts, not asset readability or runtime success; LUM callback mathematics and complete child resource grammars deferred."
+    },
+    {
+      "finding_id": "WRLD-003",
+      "claim": "All 80 accessible private missions in 40 miss8/miss16 pairs have WREV9, WRLD chunk339/payload331 and WDEF367; 39 pairs differ, including S01 audio selection outside name slots.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/WRLD_CORPUS_COMPARISON.md",
+          "sha256": "a099a741acc774c050a9dc4c67d45f6f7c1a79e26d530c51f9f0e1bd5f1ed1b9"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/corpus.json",
+          "sha256": "fb297ce461c1ebe0229328afcb9805e2d153b824acc42e7cefa3648cf9106326"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/field_consistency.json",
+          "sha256": "a8a3fdb00af5b691d5c64aa058e41c45c2d162d1f92a9c941f7e5c0fe5692871"
+        }
+      ],
+      "limitations": "Applies to exactly the hashed unpacked private specimens; not every release, archived source, native game acceptance or mode availability."
+    },
+    {
+      "finding_id": "WRLD-004",
+      "claim": "WRLD flags1 passes the chunk header to 004b8a10; it uses fixed source displacements without a local payload-length check, performs unbounded name scans and returns1 after side effects.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/WRLD_CONTROL_FLOW.md",
+          "sha256": "de28f58a444007bfde26661fa50cf87437bf83608eab7fc3b4baa605740f09f6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/wdef_descriptor_table.tsv",
+          "sha256": "073225bf083bf46e5605f691050460e8f8ef7e35da7264b4bd0ca7e6148945e6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_byte_validation.tsv",
+          "sha256": "ec30cb34a01e9c8ad56dc1f710a4c642179bcf88c1269dbf01c6dc7bd66f71be"
+        }
+      ],
+      "limitations": "Generic parser validation is incomplete separately; no malformed retail execution or whole-program unknown-byte read closure claimed."
+    }
+  ]
+}

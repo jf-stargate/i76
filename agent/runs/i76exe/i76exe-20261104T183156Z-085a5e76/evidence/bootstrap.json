@@ -1,0 +1,60 @@
+{
+  "base_commit": "7406234ef017a3fbb3539f2cc29cfd9e601dddbd",
+  "assignment_main": "fc1f10ab4d86cd8546897634431b56a575dc2cfe",
+  "repository": "jf-stargate/i76",
+  "default_branch": "main",
+  "protocol": "1.0.5",
+  "track": "i76exe",
+  "branch": "agent/i76exe/i76exe-20261104T183156Z-085a5e76",
+  "open_prs": [],
+  "pr125": {
+    "state": "merged",
+    "merge_commit": "7406234ef017a3fbb3539f2cc29cfd9e601dddbd",
+    "scope": "Milestone 3 retail semantic/terrain reader; WRLD opaque"
+  },
+  "enforcement": {
+    "ruleset": 25664125,
+    "enforcement": "active",
+    "required_checks": [
+      "integrity"
+    ],
+    "required_formal_reviews": 0,
+    "review_threads_must_resolve": true,
+    "bypass_visibility": "not established; proposal-only",
+    "merge_authority": "human only for this research"
+  },
+  "sources": {
+    "executable": "/media/neon-remote/prj/i76/orig/i76.exe",
+    "gzf": "/media/neon-remote/prj/i76/scratch_data/i76exe_v100.gzf",
+    "ghidra": "/media/neon-local/bin/ghidra_12.1.4_PUBLIC",
+    "disposable_project": "/media/neon-remote/prj/i76/wrld-private/project/research",
+    "program": "i76exe_v100",
+    "import_flags": [
+      "-noanalysis"
+    ],
+    "subsequent_flags": [
+      "-readOnly",
+      "-noanalysis"
+    ],
+    "program_name": "i76.exe",
+    "domain_file": "i76exe_v100"
+  },
+  "scope": "Only newly allocated run; no reconstruction, shared reference, promotion or annotation modifications",
+  "baseline_policy_read": [
+    "AGENTS.md",
+    "agent/protocol/VERSION",
+    "agent/protocol/access.yaml",
+    "agent/protocol/BOOTSTRAP.md"
+  ],
+  "references_read": [
+    "ref/level_format/i76_runtime_level_and_terrain_format_notes.md",
+    "ref/mission_execution/LOADER_VALIDATION_AND_FAILURE_CONTRACT.md",
+    "manual/reference/engine/resource_acquisition.md",
+    "ref/material_format/i76_material_extraction_reference.md",
+    "reconstruction/BWD2.md",
+    "reconstruction/RETAIL_MISSION.md",
+    "manual/roadmap/DOCUMENTATION_WORKFLOW.md"
+  ],
+  "prepublication_main": "6a8147191fece8c61a813b42d0f7bcd39875f584",
+  "concurrent_change": "PR126 merged reconstruction-only ZONE prefix correction; no owned-run overlap; original base retained"
+}
