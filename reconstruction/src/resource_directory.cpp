@@ -38,6 +38,82 @@ i76_resource_result i76_resource_directory_validate(std::string_view path, std::
     return i76_resource_result::ok;
 }
 
+// Legacy installations commonly have uppercase filenames. On case-sensitive
+// filesystems, try a deterministic ASCII case-folded component lookup only when
+// the literal normalized (lowercase) path does not exist. Ambiguity is an error.
+static bool ascii_case_match(const std::string& filename, const std::string& expected) noexcept
+{
+    std::size_t index = 0;
+    char character = 0;
+
+    if (filename.size() != expected.size()) {
+        return false;
+    }
+    for (index = 0; index < filename.size(); ++index) {
+        character = filename[index];
+        if (character >= 'A' && character <= 'Z') {
+            character = static_cast<char>(character - 'A' + 'a');
+        }
+        if (character != expected[index]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+static i76_resource_result find_casefolded(const std::filesystem::path& root,
+                                            const std::string& name,
+                                            std::filesystem::path& resolved)
+{
+    std::filesystem::path candidate = root;
+    std::filesystem::path matching = {};
+    std::filesystem::path component_path = {};
+    std::string component = {};
+    std::error_code error = {};
+    std::filesystem::directory_iterator iterator = {};
+    std::filesystem::directory_iterator end = {};
+    bool found = false;
+
+    for (const std::filesystem::path& part : std::filesystem::path(name)) {
+        component = part.string();
+        component_path = candidate / part;
+        error.clear();
+        if (!std::filesystem::exists(component_path, error) && !error) {
+            found = false;
+            iterator = std::filesystem::directory_iterator(candidate, error);
+            if (error) {
+                return error == std::errc::no_such_file_or_directory ?
+                           i76_resource_result::not_found : i76_resource_result::io_error;
+            }
+            while (iterator != end) {
+                if (ascii_case_match(iterator->path().filename().string(), component)) {
+                    if (found) {
+                        return i76_resource_result::io_error; // ambiguous legacy spelling
+                    }
+                    matching = iterator->path();
+                    found = true;
+                }
+                iterator.increment(error);
+                if (error) {
+                    return i76_resource_result::io_error;
+                }
+            }
+            if (!found) {
+                return i76_resource_result::not_found;
+            }
+            component_path = matching;
+        } else if (error) {
+            return i76_resource_result::io_error;
+        }
+        candidate = std::filesystem::weakly_canonical(component_path, error);
+        if (error || !is_within(root, candidate)) {
+            return i76_resource_result::invalid_argument;
+        }
+    }
+    resolved = candidate;
+    return i76_resource_result::ok;
+}
+
 i76_resource_result i76_resource_directory_read(const std::string& root, const std::string& name,
                                                  std::vector<std::uint8_t>& bytes)
 {
@@ -47,6 +123,7 @@ i76_resource_result i76_resource_directory_read(const std::string& root, const s
     std::uintmax_t count = 0;
     std::ifstream stream = {};
     std::streamsize requested = 0;
+    i76_resource_result result = i76_resource_result::ok;
 
     bytes.clear();
     root_path = std::filesystem::path(root);
@@ -56,10 +133,17 @@ i76_resource_result i76_resource_directory_read(const std::string& root, const s
     }
     error.clear();
     if (!std::filesystem::is_regular_file(candidate, error)) {
-        if (!error || error == std::errc::no_such_file_or_directory) {
-            return i76_resource_result::not_found;
+        if (error && error != std::errc::no_such_file_or_directory) {
+            return i76_resource_result::io_error;
         }
-        return i76_resource_result::io_error;
+        result = find_casefolded(root_path, name, candidate);
+        if (result != i76_resource_result::ok) {
+            return result;
+        }
+        error.clear();
+        if (!std::filesystem::is_regular_file(candidate, error) || error) {
+            return error ? i76_resource_result::io_error : i76_resource_result::not_found;
+        }
     }
     count = std::filesystem::file_size(candidate, error);
     if (error) {

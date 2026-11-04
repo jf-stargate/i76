@@ -20,14 +20,17 @@ endif()
 add_library(i76_world STATIC src/world.cpp)
 add_library(i76_assets STATIC src/resource.cpp src/resource_directory.cpp)
 target_include_directories(i76_assets PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+add_library(i76_bwd2 STATIC src/bwd2.cpp)
+target_include_directories(i76_bwd2 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(i76_bwd2 PUBLIC i76_assets)
 add_library(i76_level STATIC src/level.cpp)
 target_include_directories(i76_level PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(i76_level PUBLIC i76_assets i76_world)
 target_include_directories(i76_world PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 add_library(i76_core STATIC src/runtime.cpp src/command.cpp src/shell.cpp)
 target_include_directories(i76_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(i76_core PUBLIC i76_level i76_assets i76_world)
-foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level)
+target_link_libraries(i76_core PUBLIC i76_bwd2 i76_level i76_assets i76_world)
+foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2)
     if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         target_compile_options(${i76_target} PUBLIC
             $<$<CONFIG:Debug>:-O0>
@@ -54,7 +57,7 @@ if(I76_ENABLE_SDL3)
     target_compile_definitions(i76 PRIVATE I76_ENABLE_SDL3=1)
 endif()
 
-foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level)
+foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2)
     if(I76_ENABLE_SANITIZERS)
         target_compile_options(${i76_target} PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
         target_link_options(${i76_target} PUBLIC -fsanitize=address,undefined)
@@ -67,6 +70,38 @@ endforeach()
 
 if(I76_BUILD_TESTS)
     enable_testing()
+    add_executable(i76_unit_bwd2 tests/test_bwd2.cpp)
+    target_link_libraries(i76_unit_bwd2 PRIVATE i76_bwd2)
+    add_test(NAME unit_bwd2 COMMAND i76_unit_bwd2)
+    set_tests_properties(unit_bwd2 PROPERTIES LABELS "unit;memcheck")
+
+    add_executable(i76_unit_bwd2_commands tests/test_bwd2_commands.cpp)
+    target_link_libraries(i76_unit_bwd2_commands PRIVATE i76_core)
+    add_test(NAME unit_bwd2_commands COMMAND i76_unit_bwd2_commands)
+    set_tests_properties(unit_bwd2_commands PROPERTIES LABELS "unit;memcheck")
+
+    # The source-built fixture is a tiny synthetic BWD2 stream. It is created in
+    # the build tree; no binary game resources or generated files are committed.
+    add_test(NAME functional_bwd2_fixture_setup COMMAND i76_unit_bwd2_commands
+        --make-fixture "${CMAKE_CURRENT_BINARY_DIR}/bwd2-fixture")
+    set_tests_properties(functional_bwd2_fixture_setup PROPERTIES
+        LABELS "functional" FIXTURES_SETUP bwd2_fixture)
+    add_test(NAME functional_bwd2_directory COMMAND i76 --headless
+        --command "resource mount ${CMAKE_CURRENT_BINARY_DIR}/bwd2-fixture"
+        --command "level inspect miss16/m06.msn" --command "asset stats")
+    set_tests_properties(functional_bwd2_directory PROPERTIES
+        LABELS "functional" FIXTURES_REQUIRED bwd2_fixture
+        PASS_REGULAR_EXPRESSION "BWD2 miss16/m06.msn bytes=")
+    add_test(NAME functional_bwd2_shell COMMAND i76 --shell
+        --command "resource mount ${CMAKE_CURRENT_BINARY_DIR}/bwd2-fixture"
+        --command "level inspect miss16/m06.msn")
+    set_tests_properties(functional_bwd2_shell PROPERTIES
+        LABELS "functional" FIXTURES_REQUIRED bwd2_fixture
+        PASS_REGULAR_EXPRESSION "BWD2 miss16/m06.msn bytes=")
+    add_test(NAME functional_bwd2_missing COMMAND i76 --headless
+        --command "level sections nonexistent.msn")
+    set_tests_properties(functional_bwd2_missing PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+
     add_executable(i76_unit_level_commands tests/test_level_commands.cpp)
     target_link_libraries(i76_unit_level_commands PRIVATE i76_core)
     add_test(NAME unit_level_commands COMMAND i76_unit_level_commands)
