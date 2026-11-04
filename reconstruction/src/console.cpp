@@ -205,7 +205,9 @@ static std::string show_help(std::string_view topic)
     bool found = false;
 
     for (const i76_console_definition& definition : definitions) {
-        if (definition.name == topic && !topic.empty()) {
+        if (definition.name == topic && !topic.empty() &&
+            topic != "sim" && topic != "resource" && topic != "level" &&
+            topic != "object" && topic != "asset") {
             return std::string(definition.usage) + "\n" + std::string(definition.description) +
                    (definition.variable != i76_console_variable_kind::none ?
                        (definition.read_only ? "\nRead-only console variable" :
@@ -339,6 +341,10 @@ i76_command_result i76_console_execute(i76_runtime& game, std::string_view line)
         }
         return console_reply(game, i76_result_code::ok, find_entries(args[0]));
     }
+    if (definition->variable != i76_console_variable_kind::none &&
+        args.size() == 1U && args[0] == "?") {
+        return console_reply(game, i76_result_code::ok, show_help(definition->name));
+    }
     if (args.size() < definition->minimum || args.size() > definition->maximum) {
         return console_reply(game, i76_result_code::invalid_argument,
                              "usage: " + std::string(definition->usage));
@@ -353,13 +359,7 @@ i76_command_result i76_console_execute(i76_runtime& game, std::string_view line)
         return console_reply(game, i76_result_code::ok, show_help(topic_name));
     }
     if (definition->variable != i76_console_variable_kind::none) {
-        if (args.size() == 1U && args[0] == "?") {
-            return console_reply(game, i76_result_code::ok, show_help(definition->name));
-        }
         return variable_execute(game, *definition, args);
-    }
-    if (definition->name == "sim.paused") {
-        return console_reply(game, i76_result_code::unknown_command, "unknown variable");
     }
     forward = std::string(definition->name);
     if (forward.starts_with("sim ")) {

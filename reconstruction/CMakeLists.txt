@@ -27,7 +27,7 @@ add_library(i76_level STATIC src/level.cpp)
 target_include_directories(i76_level PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(i76_level PUBLIC i76_assets i76_world)
 target_include_directories(i76_world PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-add_library(i76_core STATIC src/runtime.cpp src/command.cpp src/shell.cpp)
+add_library(i76_core STATIC src/runtime.cpp src/command.cpp src/console.cpp src/shell.cpp)
 target_include_directories(i76_core PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(i76_core PUBLIC i76_bwd2 i76_level i76_assets i76_world)
 foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2)
@@ -170,6 +170,23 @@ if(I76_BUILD_TESTS)
     target_link_libraries(i76_unit_runtime PRIVATE i76_core)
     add_test(NAME unit_runtime COMMAND i76_unit_runtime)
     set_tests_properties(unit_runtime PROPERTIES LABELS "unit;memcheck")
+
+    add_executable(i76_unit_console tests/test_console.cpp)
+    target_link_libraries(i76_unit_console PRIVATE i76_core)
+    add_test(NAME unit_console COMMAND i76_unit_console)
+    set_tests_properties(unit_console PROPERTIES LABELS "unit;memcheck")
+
+    add_test(NAME functional_console_registry COMMAND i76 --headless
+        --command "help sim" --command "find paused"
+        --command "sim.paused true" --command "sim.paused false"
+        --command "sim step 2" --command "sim.tick")
+    set_tests_properties(functional_console_registry PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "sim.tick=2")
+    add_test(NAME functional_console_shell COMMAND i76 --shell
+        --command "help resource" --command "sim.paused true"
+        --command "sim.paused false" --command "level status")
+    set_tests_properties(functional_console_shell PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "level loaded=none")
 
     add_executable(i76_unit_commands tests/test_commands.cpp)
     target_link_libraries(i76_unit_commands PRIVATE i76_core)

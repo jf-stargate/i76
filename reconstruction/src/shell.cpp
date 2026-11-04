@@ -15,6 +15,13 @@ static std::string_view trim_shell_input(std::string_view input)
     return input.substr(start, end - start + 1U);
 }
 
+static bool shell_namespace(std::string_view command, std::string_view name) noexcept
+{
+    return command == name ||
+           (command.size() > name.size() && command.starts_with(name) &&
+            (command[name.size()] == ' ' || command[name.size()] == '\t'));
+}
+
 static i76_command_result shell_reply(i76_shell_state& shell, i76_runtime& game,
                                       i76_result_code code, std::string message)
 {
@@ -146,9 +153,10 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
         shell.selected_index = 0U;
         return shell_reply(shell, game, i76_result_code::ok, "main menu");
     }
-    if (command == "resource" || command.starts_with("resource ") ||
-        command == "asset" || command.starts_with("asset ") ||
-        command == "level" || command.starts_with("level ")) {
+    if (shell_namespace(command, "resource") || shell_namespace(command, "asset") ||
+        shell_namespace(command, "level") || shell_namespace(command, "find") ||
+        (shell_namespace(command, "help") && command != "help") ||
+        command.starts_with("sim.") || command.starts_with("world.")) {
         result = i76_execute_command(game, command);
         shell.notice = result.message;
         if (result.code == i76_result_code::ok && game.active_level.loaded &&
@@ -185,7 +193,8 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
         }
     }
     if (shell.page == i76_shell_page::session) {
-        if (command == "status" || command == "pause" || command == "resume" ||
+        if (shell_namespace(command, "sim") || command == "status" ||
+            command == "pause" || command == "resume" ||
             command == "step" || command.starts_with("step ") ||
             command.starts_with("step\t") || command == "object" ||
             command.starts_with("object ") || command.starts_with("object\t")) {
