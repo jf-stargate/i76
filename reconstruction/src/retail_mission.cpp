@@ -50,7 +50,8 @@ static i76_retail_result decode_zmap(std::span<const std::uint8_t> bytes,
     std::uint8_t index{};
     std::size_t position{};
 
-    if (terrain.has_zmap || chunk.payload_size != 1U +
+    if (terrain.has_zmap
+        || chunk.payload_size != 1U +
         terrain.page_indices.size()) {
         return fail(error, i76_retail_result::invalid_terrain_map,
             chunk.offset);
@@ -90,7 +91,8 @@ static i76_retail_result decode_zone(std::span<const std::uint8_t> bytes,
     std::string raw{};
     std::string normalized{};
 
-    if (terrain.has_zone || chunk.payload_size != 14U) {
+    if (terrain.has_zone
+        || chunk.payload_size != 14U) {
         return fail(error, i76_retail_result::invalid_terrain_name,
             chunk.offset);
     }
@@ -101,14 +103,14 @@ static i76_retail_result decode_zone(std::span<const std::uint8_t> bytes,
     // The first ZONE payload byte is not a second validated page count.
     terrain.zone_prefix_byte = bytes[chunk.payload_offset];
     end = 0U;
-    while (end < 13U && bytes[chunk.payload_offset + 1U + end] != 0U) {
+    while (end < 13U
+           && bytes[chunk.payload_offset + 1U + end] != 0U) {
         ++end;
     }
     raw.assign(reinterpret_cast<const char*>(bytes.data() + chunk.payload_offset
         + 1U), end);
     if (i76_resource_normalize_name(raw, normalized) != i76_resource_result::ok
-        ||
-        normalized.find('/') != std::string::npos) {
+            || normalized.find('/') != std::string::npos) {
         return fail(error, i76_retail_result::invalid_terrain_name,
             chunk.payload_offset + 1U);
     }
@@ -143,8 +145,9 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
         return fail(error, i76_retail_result::invalid_structure,
             bwd2_error.offset);
     }
-    if (document.chunks.empty() || !is_tag(document.chunks[0], "BWD2") ||
-        document.chunks[0].size != 8U) {
+    if (document.chunks.empty()
+        || !is_tag(document.chunks[0], "BWD2")
+        || document.chunks[0].size != 8U) {
         return fail(error, i76_retail_result::invalid_structure, 0U);
     }
     candidate.name = std::move(normalized);
@@ -156,7 +159,8 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
             continue;
         }
         if (is_tag(chunk, "REV")) {
-            if (candidate.has_revision || !chunk.has_revision) {
+            if (candidate.has_revision
+                || !chunk.has_revision) {
                 return fail(error, i76_retail_result::invalid_record,
                     chunk.offset);
             }
@@ -181,7 +185,8 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
     }
     for (index = 1U; index < document.chunks.size(); ++index) {
         const i76_bwd2_chunk& chunk = document.chunks[index];
-        if (chunk.parent == 0U || chunk.parent > document.chunks.size()) {
+        if (chunk.parent == 0U
+            || chunk.parent > document.chunks.size()) {
             continue;
         }
         parent = &document.chunks[chunk.parent - 1U];
@@ -201,22 +206,28 @@ i76_retail_result i76_retail_mission_decode(std::span<const std::uint8_t> bytes,
             section->has_revision = true;
             section->revision = chunk.revision;
         }
-        if (section->tag == "WDEF" && is_tag(chunk, "WRLD")) {
+        if (section->tag == "WDEF"
+            && is_tag(chunk, "WRLD")) {
             // Opaque until WRLD field offsets are validated.
             ++candidate.wrld_records;
         }
-        if (section->tag == "ODEF" && is_tag(chunk, "OBJ")) {
+        if (section->tag == "ODEF"
+            && is_tag(chunk, "OBJ")) {
             ++candidate.object_records;
         }
-        if (section->tag == "RDEF" && is_tag(chunk, "RSEG")) {
+        if (section->tag == "RDEF"
+            && is_tag(chunk, "RSEG")) {
             ++candidate.route_records;
         }
-        if (section->tag == "ADEF" && is_tag(chunk, "FSM")) {
+        if (section->tag == "ADEF"
+            && is_tag(chunk, "FSM")) {
             ++candidate.fsm_records;
         }
-        if (section->tag == "TDEF" && is_tag(chunk, "ZMAP")) {
+        if (section->tag == "TDEF"
+            && is_tag(chunk, "ZMAP")) {
             status = decode_zmap(bytes, chunk, candidate.terrain, error);
-        } else if (section->tag == "TDEF" && is_tag(chunk, "ZONE")) {
+        } else if (section->tag == "TDEF"
+                   && is_tag(chunk, "ZONE")) {
             status = decode_zone(bytes, chunk, candidate.terrain, error);
         }
         if (status != i76_retail_result::ok) {
@@ -305,7 +316,8 @@ i76_retail_result i76_retail_terrain_probe(i76_resource_store& resources,
     if (!resources.initialized) {
         return fail(error, i76_retail_result::not_initialized, 0U);
     }
-    if (!mission.terrain.has_zmap || !mission.terrain.has_zone) {
+    if (!mission.terrain.has_zmap
+        || !mission.terrain.has_zone) {
         return fail(error, i76_retail_result::missing_terrain, 0U);
     }
     acquisition = i76_resource_acquire(resources, mission.terrain.resource_name,

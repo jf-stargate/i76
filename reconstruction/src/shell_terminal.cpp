@@ -39,7 +39,8 @@ static void process_shell_command(i76_shell_state& shell,
         errors << reply.message << '\n';
         exit_code = 1;
     }
-    if (!game.state.exit_requested && shell.page != previous) {
+    if (!game.state.exit_requested
+        && shell.page != previous) {
         print_shell_menu(shell, output);
     }
 }
@@ -59,7 +60,8 @@ std::int32_t i76_run_terminal_shell(i76_shell_state& shell,
     std::string line = {};
     i76_line_editor editor = {};
 
-    if (!shell.initialized || !game.state.initialized) {
+    if (!shell.initialized
+        || !game.state.initialized) {
         errors << "shell or runtime not initialized\n";
         return 1;
     }
@@ -73,7 +75,8 @@ std::int32_t i76_run_terminal_shell(i76_shell_state& shell,
         i76_line_editor_remember(editor, command);
     }
 
-    if (interactive && !game.state.exit_requested) {
+    if (interactive
+        && !game.state.exit_requested) {
         while (!game.state.exit_requested) {
             if (!i76_terminal_read_line(input, output, editor, "i76> ", line)) {
                 break;

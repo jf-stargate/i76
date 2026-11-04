@@ -16,7 +16,8 @@ static bool is_within(const std::filesystem::path& root,
     std::filesystem::path::const_iterator right = candidate.begin();
 
     while (left != root.end()) {
-        if (right == candidate.end() || *left != *right) {
+        if (right == candidate.end()
+            || *left != *right) {
             return false;
         }
         ++left;
@@ -40,7 +41,9 @@ i76_resource_result i76_resource_directory_validate(std::string_view path,
     }
     directory = std::filesystem::canonical(
         std::filesystem::path(std::string(path)), error);
-    if (error || !std::filesystem::is_directory(directory, error) || error) {
+    if (error
+        || !std::filesystem::is_directory(directory, error)
+        || error) {
         return i76_resource_result::invalid_argument;
     }
     root = directory.string();
@@ -66,7 +69,8 @@ static bool ascii_case_match(const std::string& filename,
     }
     for (index = 0; index < filename.size(); ++index) {
         character = filename[index];
-        if (character >= 'A' && character <= 'Z') {
+        if (character >= 'A'
+            && character <= 'Z') {
             character = static_cast<char>(character - 'A' + 'a');
         }
         if (character != expected[index]) {
@@ -96,7 +100,8 @@ static i76_resource_result find_casefolded(const std::filesystem::path& root,
         component = part.string();
         component_path = candidate / part;
         error.clear();
-        if (!std::filesystem::exists(component_path, error) && !error) {
+        if (!std::filesystem::exists(component_path, error)
+            && !error) {
             found = false;
             iterator = std::filesystem::directory_iterator(candidate, error);
             if (error) {
@@ -127,7 +132,8 @@ static i76_resource_result find_casefolded(const std::filesystem::path& root,
             return i76_resource_result::io_error;
         }
         candidate = std::filesystem::weakly_canonical(component_path, error);
-        if (error || !is_within(root, candidate)) {
+        if (error
+            || !is_within(root, candidate)) {
             return i76_resource_result::invalid_argument;
         }
     }
@@ -154,12 +160,14 @@ i76_resource_result i76_resource_directory_read(const std::string& root,
     root_path = std::filesystem::path(root);
     candidate = std::filesystem::weakly_canonical(root_path /
         std::filesystem::path(name), error);
-    if (error || !is_within(root_path, candidate)) {
+    if (error
+        || !is_within(root_path, candidate)) {
         return i76_resource_result::invalid_argument;
     }
     error.clear();
     if (!std::filesystem::is_regular_file(candidate, error)) {
-        if (error && error != std::errc::no_such_file_or_directory) {
+        if (error
+            && error != std::errc::no_such_file_or_directory) {
             return i76_resource_result::io_error;
         }
         result = find_casefolded(root_path, name, candidate);
@@ -167,7 +175,8 @@ i76_resource_result i76_resource_directory_read(const std::string& root,
             return result;
         }
         error.clear();
-        if (!std::filesystem::is_regular_file(candidate, error) || error) {
+        if (!std::filesystem::is_regular_file(candidate, error)
+            || error) {
             return error ? i76_resource_result::io_error :
                 i76_resource_result::not_found;
         }
