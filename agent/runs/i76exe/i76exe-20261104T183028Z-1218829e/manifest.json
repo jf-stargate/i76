@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.5",
+  "run_id": "i76exe-20261104T183028Z-1218829e",
+  "track": "i76exe",
+  "topic": "Blind structural discovery of probable compilation-unit boundaries in bounded resource code",
+  "base_commit": "7406234ef017a3fbb3539f2cc29cfd9e601dddbd",
+  "started_at": "2026-11-04T18:30:28Z",
+  "summary": "Frozen address/reference model, manual original-instruction review, then comparison to accepted pilots. Structural seams recur; original file membership remains unresolved.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "User-supplied private retail input; not published."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "user-supplied-v100; Ghidra 12.1.4",
+      "program_name": "i76.exe",
+      "baseline_id": "i76exe_v100.gzf",
+      "baseline_sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0",
+      "storage_ref": "private: scratch_data/i76exe_v100.gzf",
+      "notes": "Disposable import without reanalysis; no source DB modification or authoritative baseline promotion."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/BLIND_COMPARISON.md",
+      "kind": "report",
+      "sha256": "cd2e6e7b411bd9e3d56490a53aac72d26c5a5d3da1aed54cea9c8c6f6cedb277",
+      "bytes": 5951
+    },
+    {
+      "path": "artifacts/BLIND_FREEZE.json",
+      "kind": "other",
+      "sha256": "2e3ba1585c27d8ef38c40a67fcb4cff1462e31b5a37a8b4b17b0bde07ebe659f",
+      "bytes": 5958
+    },
+    {
+      "path": "artifacts/BOUNDARY_RANKING.md",
+      "kind": "report",
+      "sha256": "818c027c5ef212efe11e807fd880b88198c5bf644ae9a8fb2becd71225814ec8",
+      "bytes": 2677
+    },
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "67d2ef4dd87b82d074c9d91c9b9d6704dcf681bdf8622ef2567bbbfa05d3b715",
+      "bytes": 2955
+    },
+    {
+      "path": "artifacts/FEATURE_MODEL.md",
+      "kind": "report",
+      "sha256": "bb4b82964fd782617ffd1c90007a44fd7510d4d56c17508850702135e21e4623",
+      "bytes": 3636
+    },
+    {
+      "path": "artifacts/METHOD_EVALUATION.md",
+      "kind": "report",
+      "sha256": "f0892a84857ada8a9358000015591705bdd670c616c8cc02757b35e2f869ee94",
+      "bytes": 8130
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "3b33c7d18572356590a239f4e87a54137e4a71e239268c91ce0ced2b1e714fe4",
+      "bytes": 4664
+    },
+    {
+      "path": "artifacts/STRUCTURAL_EVIDENCE.md",
+      "kind": "report",
+      "sha256": "615969a718196b36cd76b842a4d13b6f1d42a4a88ab6a2b2fb1f060220fb86eb",
+      "bytes": 12684
+    },
+    {
+      "path": "artifacts/bootstrap.json",
+      "kind": "other",
+      "sha256": "efc24d3a46fcd4e8d3c1b67b384c0850660292605a9a2e1f3aaaf317a03add1e",
+      "bytes": 2667
+    },
+    {
+      "path": "artifacts/data_taxonomy.json",
+      "kind": "other",
+      "sha256": "d89e970e3b672cd87e779932fef718c01c7ff3681654c622c5ab8f60cf0d9aad",
+      "bytes": 14114
+    },
+    {
+      "path": "artifacts/features.json",
+      "kind": "other",
+      "sha256": "2900d8916faad301941b0caeaacde38385b24304fb9681d8bfb78fecb7e353dd",
+      "bytes": 32705
+    },
+    {
+      "path": "artifacts/fresh_reproduction.json",
+      "kind": "test-result",
+      "sha256": "43bfe01ea9332e8a24d27636c8293e8891d88368fc0bd6ed4829af670f79ece4",
+      "bytes": 687
+    },
+    {
+      "path": "artifacts/input_validation.json",
+      "kind": "test-result",
+      "sha256": "63d536c8576b78f8772e688f180d2e2f7878cccf8620771d6c9b44d04a91a9df",
+      "bytes": 4832
+    },
+    {
+      "path": "artifacts/postfreeze_ablations.json",
+      "kind": "other",
+      "sha256": "94e85ae3ea8c7b33d102fe7cb0559cd2b27a92a36850bd10c5c0c84918a97ef8",
+      "bytes": 5308
+    },
+    {
+      "path": "artifacts/ranking.json",
+      "kind": "other",
+      "sha256": "b4ec020b417abc195a7d30f8ad5d07d6e6bc9a62a1b9ee969b87380783cb1b21",
+      "bytes": 33006
+    },
+    {
+      "path": "artifacts/replay_validation.json",
+      "kind": "test-result",
+      "sha256": "acf29517c251fcacd2dc0561f35d356178d4bacd3dffb76a75675c1b327c4467",
+      "bytes": 527
+    },
+    {
+      "path": "artifacts/review_validation.json",
+      "kind": "test-result",
+      "sha256": "c58945c0774074202955299684b925ec964835510a9ed1981ab13649f7e7b26d",
+      "bytes": 1966
+    },
+    {
+      "path": "artifacts/validation_details.json",
+      "kind": "test-result",
+      "sha256": "64b936f068ef90226186cd8a41ab79cc9bf3b937f7d0d23aa6fb57c88a98d899",
+      "bytes": 1602
+    },
+    {
+      "path": "evidence/function_summary.tsv",
+      "kind": "table",
+      "sha256": "011347e47a89f9aecd437375845f21db00d658df1a807ebc54890c7c40024f12",
+      "bytes": 2667
+    },
+    {
+      "path": "evidence/gap_summary.tsv",
+      "kind": "table",
+      "sha256": "24e7e3c02276d9c835a2aed23a44999a00b32e7ef7dd04c6584795613d50b9d7",
+      "bytes": 727
+    },
+    {
+      "path": "scripts/AuditControl.java",
+      "kind": "script",
+      "sha256": "128fe70785ec9a35fb628ee44737a7b0fbffdee75781a1018058bdc3e0d35c84",
+      "bytes": 1950
+    },
+    {
+      "path": "scripts/ExtractStructure.java",
+      "kind": "script",
+      "sha256": "348da259853df1bb7b8e91755b18230ec34f9fd72396160f752a97a32fa8d5c6",
+      "bytes": 5005
+    },
+    {
+      "path": "scripts/analyze.py",
+      "kind": "script",
+      "sha256": "296d0ca39d01885dce8b0ff1dc27af839e87d18e226c84061cc786ce494f5ba8",
+      "bytes": 7596
+    },
+    {
+      "path": "scripts/evaluate.py",
+      "kind": "script",
+      "sha256": "705c95b071598fc52108e20dabf415028bdb0bf342dc6f51f1756a57cd553541",
+      "bytes": 2726
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "532b492a1dd79b7d0dfdeed327ecbb0adfc71bd4407731e786202329f5152e09",
+      "bytes": 2412
+    },
+    {
+      "path": "scripts/validate_review.py",
+      "kind": "script",
+      "sha256": "ec0406464db8ba036e45a0ea8d7553bc704641577f5ef9413e67d165c844597d",
+      "bytes": 2251
+    }
+  ],
+  "validation": {
+    "status": "passed",
+    "test_count": 10,
+    "passed_count": 10,
+    "notes": "Extraction/provenance/reproduction checks only. Original source-file boundaries remain unresolved. Protocol/schema and GitHub exact-head integrity are checked separately at publication."
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "run-artifact",
+        "ref": "scripts/reproduce.py",
+        "sha256": "532b492a1dd79b7d0dfdeed327ecbb0adfc71bd4407731e786202329f5152e09"
+      }
+    ],
+    "methods": [
+      "Read-only Ghidra listing/reference extraction without semantic function names",
+      "Standard-library weighted set turnover and graph cross-density ranking",
+      "Frozen discovery before previous-pilot consultation",
+      "PE section mapped body hashes and original callback/layout checks"
+    ],
+    "limitations": "Full extraction requires licensed private inputs and Ghidra 12.1.4. Public features reproduce ranks only. Reference aliases/indirect targets and original source membership remain unresolved."
+  }
+}

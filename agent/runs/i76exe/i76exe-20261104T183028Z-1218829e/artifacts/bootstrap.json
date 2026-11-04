@@ -1,0 +1,87 @@
+{
+  "repository": "jf-stargate/i76",
+  "default_branch": "main",
+  "base_commit": "7406234ef017a3fbb3539f2cc29cfd9e601dddbd",
+  "assignment_commit": "fc1f10ab4d86cd8546897634431b56a575dc2cfe",
+  "resolution": "independent git ls-remote and GitHub repository/branch APIs agreed",
+  "protocol": "1.0.5",
+  "research_schema": "1.2.0",
+  "track": "i76exe",
+  "scope": "create-only owned run; no canonical changes; research PR without merge",
+  "open_pull_requests_at_bootstrap": [],
+  "ruleset": {
+    "id": 25664125,
+    "name": "I76 main — reviewed research publication",
+    "target": "branch",
+    "source_type": "Repository",
+    "source": "jf-stargate/i76",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": [
+          "refs/heads/main"
+        ]
+      }
+    },
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "dismiss_stale_reviews_on_push": true,
+          "required_reviewers": [],
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": [
+            "merge",
+            "squash",
+            "rebase"
+          ]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": false,
+          "do_not_enforce_on_create": false,
+          "required_status_checks": [
+            {
+              "context": "integrity"
+            }
+          ]
+        }
+      }
+    ],
+    "node_id": "RRS_lACqUmVwb3NpdG9yec5J6TYFzgGHmn0",
+    "created_at": "2026-10-22T11:27:54.186-07:00",
+    "updated_at": "2026-10-29T18:25:54.637-07:00",
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/jf-stargate/i76/rulesets/25664125"
+      },
+      "html": {
+        "href": "https://github.com/jf-stargate/i76/rules/25664125"
+      }
+    }
+  },
+  "read_policy_files": [
+    "AGENTS.md",
+    "agent/protocol/VERSION",
+    "agent/protocol/access.yaml",
+    "agent/protocol/BOOTSTRAP.md",
+    "manual/roadmap/DOCUMENTATION_WORKFLOW.md",
+    "agent/protocol/templates/DOCUMENTATION_IMPACT.md"
+  ],
+  "context": "Promotions/reference/baseline paths discovered; v99 identity note read. v100 is user supplied, not promoted here. Prior pilot contents excluded until freeze."
+}

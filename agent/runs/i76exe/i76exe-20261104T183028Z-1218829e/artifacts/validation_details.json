@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "name": "input_identity",
+      "status": "passed",
+      "evidence": "PE and GZF exact SHA-256"
+    },
+    {
+      "name": "bounded_coverage",
+      "status": "passed",
+      "evidence": "22 in-range entries and 2 immediate context functions"
+    },
+    {
+      "name": "retail_body_comparison",
+      "status": "passed",
+      "evidence": "24 ranges, 4828 bytes match PE"
+    },
+    {
+      "name": "no_script_modification",
+      "status": "passed",
+      "evidence": "modification delta zero in import, read-only replay and control"
+    },
+    {
+      "name": "replay_content",
+      "status": "passed",
+      "evidence": "all captured content identical aside from save/reopen counter"
+    },
+    {
+      "name": "public_reproduction",
+      "status": "passed",
+      "evidence": "frozen hashes, rankings and Markdown exact"
+    },
+    {
+      "name": "fresh_reproduction",
+      "status": "passed",
+      "evidence": "new import, replay, feature and ranking output exact"
+    },
+    {
+      "name": "layout_and_callbacks",
+      "status": "passed",
+      "evidence": "21 NOP gaps; five comparator pushes; switch tables checked against PE"
+    },
+    {
+      "name": "postfreeze_reproduction",
+      "status": "passed",
+      "evidence": "all three supplemental diagnostic artifacts exact"
+    },
+    {
+      "name": "blind_freeze",
+      "status": "passed",
+      "evidence": "all seven frozen file digests unchanged; report path mapping documented"
+    }
+  ],
+  "meaning": "These checks validate provenance, extraction and reproduction, not source-file membership."
+}
