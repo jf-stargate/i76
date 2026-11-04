@@ -253,7 +253,8 @@ static void test_structure()
                again.chunks.size() == document.chunks.size() &&
                again.chunks[3].offset == document.chunks[3].offset,
            "repeated inspection is stateless and deterministic");
-    expect(std::string_view(i76_bwd2_result_name(i76_bwd2_result::invalid_revision)) ==
+    expect(std::string_view(
+               i76_bwd2_result_name(i76_bwd2_result::invalid_revision)) ==
                "revision chunk must have four payload bytes",
            "named diagnostics");
     for (std::uint32_t code = 0; code <=
@@ -326,7 +327,8 @@ static void test_invalid_inputs()
     bytes = chunk("BWD2", chunk("EXIT", {}));
     bytes.push_back(0U);
     check_failure(bytes, i76_bwd2_result::trailing_data, 16U,
-                  "enclosing-root compatibility fixture still rejects trailing bytes");
+                  "enclosing-root compatibility fixture still rejects "
+                  "trailing bytes");
     bytes = retail_example();
     bytes[8U + 4U] = 7U;
     check_failure(bytes, i76_bwd2_result::invalid_length, 8U,

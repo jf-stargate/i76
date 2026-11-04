@@ -29,7 +29,8 @@ static void test_lexer()
     std::string long_line(4097U, 'a');
     std::string long_tokens = {};
 
-    tokens = i76_console_tokenize(" \t resource mount \"C:\\Games\\Interstate 76\" \t");
+    tokens = i76_console_tokenize(" \t resource mount "
+    "\"C:\\Games\\Interstate 76\" \t");
     expect(tokens.error.empty() && tokens.values.size() == 3U &&
            tokens.values[0] == "resource" && tokens.values[1] == "mount" &&
            tokens.values[2] == "C:\\Games\\Interstate 76",

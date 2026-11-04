@@ -111,7 +111,8 @@ static void test_commands_and_directory_provider()
     std::filesystem::create_directories(root, error);
     expect(!error, "create directory fixture");
     stream.open(root / "external.level", std::ios::binary);
-    stream << "I76LEVEL 1\nasset external.bin\nobject scenery tower external.bin\n";
+    stream << "I76LEVEL 1\nasset external.bin\nobject scenery tower "
+    "external.bin\n";
     stream.close();
     stream.open(root / "external.bin", std::ios::binary);
     stream << "GEO-fixture";

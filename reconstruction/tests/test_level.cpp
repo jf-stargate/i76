@@ -51,7 +51,8 @@ static void test_parser()
         definition.assets.empty(),
            "level definition zero initialization");
     expect(i76_level_decode(raw("I76LEVEL 1\r\n# comment\nasset SHARED.DAT\n"
-                                "object vehicle scout shared.dat\nobject marker flag\n"), definition) ==
+                                "object vehicle scout shared.dat\nobject "
+                                "marker flag\n"), definition) ==
                i76_level_result::ok, "decode valid synthetic manifest");
     expect(definition.objects.size() == 2U && definition.objects[0].kind ==
                i76_world_kind::vehicle && definition.assets.size() == 1U &&

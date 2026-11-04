@@ -287,7 +287,8 @@ static void test_decode()
     expect(i76_retail_mission_decode(bytes, "../m06.msn", document, error) ==
                i76_retail_result::invalid_argument,
                    "unsafe mission key rejected");
-    expect(!std::string_view(i76_retail_result_name(i76_retail_result::invalid_terrain_size))
+    expect(!std::string_view(
+               i76_retail_result_name(i76_retail_result::invalid_terrain_size))
                 .empty(), "named semantic errors");
 }
 
@@ -359,7 +360,8 @@ static void test_resource_and_commands()
                i76_retail_terrain_probe(store, mission, samples, error) ==
                    i76_retail_result::resource_not_found &&
                i76_resource_get_stats(store).references == 0U,
-           "missing TER is distinct from valid mission decode and leaks no resource lease");
+           "missing TER is distinct from valid mission decode and leaks no "
+           "resource lease");
     expect(i76_resource_add_memory(store, "fixture", "miss16/prefix.msn",
                                    sample_mission(1U, 0U, 0xffU, "m06.ter")) ==
                i76_resource_result::ok,
@@ -443,7 +445,8 @@ static void test_resource_and_commands()
     expect(response.code == i76_result_code::ok &&
                response.message.find("status=resource not found") !=
                    std::string::npos,
-           "dependencies reports missing TER without treating mission metadata as invalid");
+           "dependencies reports missing TER without treating mission "
+           "metadata as invalid");
     expect(i76_execute_command(game, "level terrain miss16/absent.msn").code !=
                i76_result_code::ok, "terrain probe rejects absent sidecar");
     expect(i76_execute_command(game, "level summary missing.msn").code !=
@@ -453,7 +456,8 @@ static void test_resource_and_commands()
     expect(game.world.last_generation == object_generation &&
                game.state.tick == tick && game.active_level.loaded &&
                i76_world_count(game.world) == 2U && !game.prepared_level.ready,
-           "read-only commands do not modify simulation or active synthetic level");
+           "read-only commands do not modify simulation or active synthetic "
+           "level");
     expect(i76_resource_get_stats(game.resources).references == 1U,
            "retail commands retain no extra leases while demo level active");
     expect(i76_runtime_shutdown(game) == i76_result_code::ok,
