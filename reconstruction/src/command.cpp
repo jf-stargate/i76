@@ -200,6 +200,159 @@ static i76_command_result execute_object_command(i76_runtime& game, std::string_
     return make_reply(game, i76_result_code::invalid_argument, "invalid object command (object help)");
 }
 
+static const char* resource_result_name(i76_resource_result result) noexcept
+{
+    switch (result) {
+    case i76_resource_result::ok: return "ok";
+    case i76_resource_result::already_initialized: return "already initialized";
+    case i76_resource_result::not_initialized: return "not initialized";
+    case i76_resource_result::invalid_argument: return "invalid resource path or name";
+    case i76_resource_result::not_found: return "not found";
+    case i76_resource_result::busy: return "resource still retained";
+    case i76_resource_result::too_large: return "resource exceeds size limit";
+    case i76_resource_result::io_error: return "resource I/O failure";
+    case i76_resource_result::capacity_exceeded: return "resource capacity exceeded";
+    }
+    return "unknown resource error";
+}
+
+static const char* level_result_name(i76_level_result result) noexcept
+{
+    switch (result) {
+    case i76_level_result::ok: return "ok";
+    case i76_level_result::invalid_argument: return "invalid level name";
+    case i76_level_result::not_initialized: return "level runtime is not initialized";
+    case i76_level_result::busy: return "prepared level already exists (level discard first)";
+    case i76_level_result::not_found: return "level or asset not found";
+    case i76_level_result::invalid_data: return "invalid level data or asset read";
+    case i76_level_result::capacity_exceeded: return "level capacity exceeded";
+    case i76_level_result::not_prepared: return "no prepared level";
+    case i76_level_result::not_loaded: return "no loaded level";
+    case i76_level_result::activation_failed: return "unable to instantiate level objects";
+    }
+    return "unknown level error";
+}
+
+static i76_command_result execute_resource_command(i76_runtime& game, std::string_view args)
+{
+    std::string_view verb = {};
+    i76_resource_result code = i76_resource_result::ok;
+    std::string message = {};
+    std::size_t index = 0;
+
+    verb = take_token(args);
+    if (verb == "help" && args.empty()) {
+        return make_reply(game, i76_result_code::ok,
+                          "resource commands: resource list | mount <directory>");
+    }
+    if (verb == "list" && args.empty()) {
+        message = "resource mounts=" + std::to_string(game.resources.mounts.size());
+        for (index = 0; index < game.resources.mounts.size(); ++index) {
+            message += "\n  " + game.resources.mounts[index].name;
+            message += game.resources.mounts[index].kind == i76_resource_provider_kind::memory ?
+                           " (memory)" : " (directory)";
+        }
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if (verb == "mount" && !args.empty()) {
+        code = i76_resource_mount_directory(game.resources, args);
+        if (code != i76_resource_result::ok) {
+            return make_reply(game, i76_result_code::invalid_argument,
+                              resource_result_name(code));
+        }
+        return make_reply(game, i76_result_code::ok, "mounted directory: " + std::string(args));
+    }
+    return make_reply(game, i76_result_code::invalid_argument, "invalid resource command");
+}
+
+static i76_command_result execute_asset_command(i76_runtime& game, std::string_view args)
+{
+    std::string_view verb = {};
+    i76_resource_stats stats = {};
+
+    verb = take_token(args);
+    if (verb != "stats" || !args.empty()) {
+        return make_reply(game, i76_result_code::invalid_argument, "usage: asset stats");
+    }
+    stats = i76_resource_get_stats(game.resources);
+    return make_reply(game, i76_result_code::ok,
+                      "asset mounts=" + std::to_string(stats.mount_count) +
+                      " cached=" + std::to_string(stats.cached_count) +
+                      " references=" + std::to_string(stats.references) +
+                      " bytes=" + std::to_string(stats.cached_bytes));
+}
+
+static i76_command_result execute_level_command(i76_runtime& game, std::string_view args)
+{
+    std::string_view verb = {};
+    i76_level_definition inspected = {};
+    i76_level_result code = i76_level_result::ok;
+    std::string message = {};
+
+    verb = take_token(args);
+    if (verb == "help" && args.empty()) {
+        return make_reply(game, i76_result_code::ok,
+                          "level commands: inspect <name> | prepare <name> | activate | load <name> | "
+                          "discard | unload | status");
+    }
+    if (verb == "status" && args.empty()) {
+        message = "level loaded=" + (game.active_level.loaded ? game.active_level.definition.name :
+                                     std::string("none"));
+        message += " objects=" + std::to_string(i76_world_count(game.world));
+        message += " assets=" + std::to_string(game.active_level.resources.size());
+        message += " prepared=" + (game.prepared_level.ready ? game.prepared_level.definition.name :
+                                   std::string("none"));
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if (verb == "inspect" && !args.empty()) {
+        code = i76_level_read(game.resources, args, inspected);
+        if (code != i76_level_result::ok) {
+            return make_reply(game, i76_result_code::invalid_argument, level_result_name(code));
+        }
+        message = "level " + inspected.name + " objects=" +
+                  std::to_string(inspected.objects.size()) + " assets=" +
+                  std::to_string(inspected.assets.size());
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if ((verb == "prepare" || verb == "load") && !args.empty()) {
+        code = i76_level_prepare(game.resources, args, game.prepared_level);
+        if (code != i76_level_result::ok) {
+            return make_reply(game, i76_result_code::invalid_argument, level_result_name(code));
+        }
+        if (verb == "prepare") {
+            return make_reply(game, i76_result_code::ok,
+                              "level prepared: " + game.prepared_level.definition.name);
+        }
+        verb = "activate";
+        args = {};
+    }
+    if (verb == "activate" && args.empty()) {
+        code = i76_level_activate(game.world, game.resources, game.prepared_level,
+                                  game.active_level);
+        if (code != i76_level_result::ok) {
+            return make_reply(game, i76_result_code::invalid_argument, level_result_name(code));
+        }
+        return make_reply(game, i76_result_code::ok,
+                          "level loaded: " + game.active_level.definition.name +
+                          " objects=" + std::to_string(i76_world_count(game.world)));
+    }
+    if (verb == "discard" && args.empty()) {
+        if (!game.prepared_level.ready) {
+            return make_reply(game, i76_result_code::invalid_argument, "no prepared level");
+        }
+        i76_level_discard(game.resources, game.prepared_level);
+        return make_reply(game, i76_result_code::ok, "prepared level discarded");
+    }
+    if (verb == "unload" && args.empty()) {
+        code = i76_level_unload(game.world, game.resources, game.active_level);
+        if (code != i76_level_result::ok) {
+            return make_reply(game, i76_result_code::invalid_argument, level_result_name(code));
+        }
+        return make_reply(game, i76_result_code::ok, "level unloaded");
+    }
+    return make_reply(game, i76_result_code::invalid_argument, "invalid level command");
+}
+
 i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
 {
     std::string_view command = {};
@@ -221,7 +374,8 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
     args = line;
     if (command == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "commands: help status pause resume step <count> object <action> quit");
+                          "commands: help status pause resume step <count> object <action> resource <action> "
+                          "level <action> asset stats quit");
     }
     if (command == "status" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
@@ -244,6 +398,15 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
     }
     if (command == "object") {
         return execute_object_command(game, args);
+    }
+    if (command == "resource") {
+        return execute_resource_command(game, args);
+    }
+    if (command == "asset") {
+        return execute_asset_command(game, args);
+    }
+    if (command == "level") {
+        return execute_level_command(game, args);
     }
     if (command == "step") {
         if (args.empty()) {

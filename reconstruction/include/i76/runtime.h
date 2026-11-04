@@ -1,5 +1,7 @@
 #pragma once
 
+#include "i76/level.h"
+#include "i76/resource.h"
 #include "i76/world.h"
 
 #include <cstdint>
@@ -87,12 +89,15 @@ struct i76_runtime {
     i76_output_ports outputs{};
     // Registry lifetime follows the application; its objects are session-scoped.
     i76_world_registry world{};
+    i76_resource_store resources{};
+    i76_prepared_level prepared_level{};
+    i76_active_level active_level{};
 };
 
 // Explicit initialize/shutdown. The registry preserves its generation history
 // across repeated use of the same runtime instance, including shell sessions.
 i76_result_code i76_runtime_initialize(i76_runtime& game, i76_runtime_config config,
-                                        i76_output_ports outputs) noexcept;
+                                        i76_output_ports outputs);
 i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept;
 i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count);
 i76_result_code i76_runtime_advance_time(i76_runtime& game, std::uint64_t elapsed_ns);

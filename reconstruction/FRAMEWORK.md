@@ -1,6 +1,6 @@
 # Initial application framework
 
-The base C++20 headless runtime is now extended by a portable application shell. See [SHELL.md](SHELL.md) for execution, terminal and optional SDL3 window setup, menu navigation and debugger commands. The shell does not load original game resources or implement retail `i76shell.dll`.
+The base C++20 headless runtime is extended by a portable application shell, and now has an explicit synthetic level/resource lifecycle. See [LEVEL_LOADING.md](LEVEL_LOADING.md) for resource providers, staged level loading and unloading, and [SHELL.md](SHELL.md) for execution, terminal and optional SDL3 window setup, menu navigation and debugger commands. The shell does not load original game resources or implement retail `i76shell.dll`.
 
 The original headless runtime and command dispatcher remain available. Runtime state is explicitly initialized, simulated ticks are advanced by manual commands or injected host time, and scene/audio/diagnostic outputs support null or recording sinks. The shell is an independent frontend state machine that shares these contracts. No window, sound card, terminal UI library, or retail assets are required for the default build.
 

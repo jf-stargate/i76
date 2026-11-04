@@ -87,7 +87,7 @@ i76_shell_view i76_shell_make_view(const i76_shell_state& shell) noexcept
         break;
     case i76_shell_page::session:
         view.title = "TEST SESSION";
-        view.subtitle = "Synthetic world registry - missions and gameplay are not implemented";
+        view.subtitle = "Synthetic level and world registry - retail missions not loaded";
         view.items[0] = {"Status", "status"};
         view.items[1] = {"Step 1 tick", "step 1"};
         view.items[2] = {"Step 60 ticks", "step 60"};
@@ -107,8 +107,6 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
 {
     i76_command_result result = {};
     i76_result_code code = i76_result_code::ok;
-    i76_world_result world_code = i76_world_result::ok;
-    i76_world_handle demo_handle = {};
     std::uint32_t index = 0;
 
     if (!shell.initialized || !game.state.initialized) {
@@ -123,7 +121,7 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
     if (command == "help") {
         return shell_reply(shell, game, i76_result_code::ok,
                            "select 1-8 or use: play options about back menu status pause resume "
-                           "step <n> object <action> exit");
+                           "step <n> object <action> level <action> resource <action> asset stats exit");
     }
     if (command == "exit" || command == "quit") {
         code = i76_runtime_request_exit(game);
@@ -135,36 +133,45 @@ i76_command_result i76_shell_execute(i76_shell_state& shell, i76_runtime& game,
                                "already at main menu");
         }
         if (shell.page == i76_shell_page::session) {
-            world_code = i76_world_clear(game.world);
-            if (world_code != i76_world_result::ok) {
-                return shell_reply(shell, game, i76_result_code::not_initialized,
-                                   "unable to unload test world");
+            if (game.active_level.loaded) {
+                result = i76_execute_command(game, "level unload");
+                if (result.code != i76_result_code::ok) {
+                    return result;
+                }
+            } else {
+                i76_world_clear(game.world);
             }
         }
         shell.page = i76_shell_page::main_menu;
         shell.selected_index = 0U;
         return shell_reply(shell, game, i76_result_code::ok, "main menu");
     }
+    if (command == "resource" || command.starts_with("resource ") ||
+        command == "asset" || command.starts_with("asset ") ||
+        command == "level" || command.starts_with("level ")) {
+        result = i76_execute_command(game, command);
+        shell.notice = result.message;
+        if (result.code == i76_result_code::ok && game.active_level.loaded &&
+            (command.starts_with("level load ") || command == "level activate")) {
+            shell.page = i76_shell_page::session;
+            shell.selected_index = 0U;
+        }
+        if (result.code == i76_result_code::ok && command == "level unload") {
+            shell.page = i76_shell_page::main_menu;
+            shell.selected_index = 0U;
+        }
+        return result;
+    }
     if (shell.page == i76_shell_page::main_menu) {
         if (command == "play") {
-            world_code = i76_world_clear(game.world);
-            if (world_code == i76_world_result::ok) {
-                world_code = i76_world_create(game.world, i76_world_kind::vehicle,
-                                               "demo_car", demo_handle);
-            }
-            if (world_code == i76_world_result::ok) {
-                world_code = i76_world_create(game.world, i76_world_kind::marker,
-                                               "demo_checkpoint", demo_handle);
-            }
-            if (world_code != i76_world_result::ok) {
-                i76_world_clear(game.world);
-                return shell_reply(shell, game, i76_result_code::overflow,
-                                   "unable to initialize synthetic world");
+            result = i76_execute_command(game, "level load demo.level");
+            if (result.code != i76_result_code::ok) {
+                return result;
             }
             shell.page = i76_shell_page::session;
             shell.selected_index = 0U;
             return shell_reply(shell, game, i76_result_code::ok,
-                               "test session started (2 synthetic objects; no mission loaded)");
+                               "test session started (2 synthetic objects; no retail mission)");
         }
         if (command == "options") {
             shell.page = i76_shell_page::options;
