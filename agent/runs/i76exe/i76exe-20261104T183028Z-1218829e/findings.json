@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261104T183028Z-1218829e",
+  "findings": [
+    {
+      "finding_id": "boundary.blind.wrapper-seams",
+      "claim": "The frozen structural model ranks cuts before 004703A0 and 00470660 in its top five under all 15 predefined variants.",
+      "status": "derived",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ranking.json",
+          "sha256": "b4ec020b417abc195a7d30f8ad5d07d6e6bc9a62a1b9ee969b87380783cb1b21"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/FEATURE_MODEL.md",
+          "sha256": "bb4b82964fd782617ffd1c90007a44fd7510d4d56c17508850702135e21e4623"
+        }
+      ],
+      "limitations": "Ranking is deterministic but does not establish original source-file separation."
+    },
+    {
+      "finding_id": "boundary.callback.counterexample",
+      "claim": "Original comparator-address pushes connect 00470CA0 to surrounding index searches and sort, contradicting its apparent direct-graph disconnection.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/review_validation.json",
+          "sha256": "c58945c0774074202955299684b925ec964835510a9ed1981ab13649f7e7b26d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/STRUCTURAL_EVIDENCE.md",
+          "sha256": "615969a718196b36cd76b842a4d13b6f1d42a4a88ab6a2b2fb1f060220fb86eb"
+        }
+      ],
+      "limitations": "Callback use proves dependency, not common source ownership; the baseline omitted scoring this edge."
+    },
+    {
+      "finding_id": "boundary.original-files.unresolved",
+      "claim": "Structural cohesion and stable heuristic ranks do not resolve original compilation-unit membership in the bounded resource neighborhood.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/METHOD_EVALUATION.md",
+          "sha256": "f0892a84857ada8a9358000015591705bdd670c616c8cc02757b35e2f869ee94"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/BLIND_COMPARISON.md",
+          "sha256": "cd2e6e7b411bd9e3d56490a53aac72d26c5a5d3da1aed54cea9c8c6f6cedb277"
+        }
+      ],
+      "limitations": "No original object-file/linkage ground truth; all-resource-file and shared-state alternatives remain."
+    }
+  ]
+}
