@@ -121,20 +121,25 @@ static bool parse_handle(std::string_view text,
 
     handle = {};
     separator = text.find(':');
-    if (separator == std::string_view::npos || separator == 0U ||
-        separator == text.size() - 1U) {
+    if (separator == std::string_view::npos
+        || separator == 0U
+        || separator == text.size() - 1U) {
         return false;
     }
     begin = text.data();
     end = begin + separator;
     parsed = std::from_chars(begin, end, candidate.slot, 10);
-    if (parsed.ec != std::errc{} || parsed.ptr != end || candidate.slot == 0U) {
+    if (parsed.ec != std::errc{}
+        || parsed.ptr != end
+        || candidate.slot == 0U) {
         return false;
     }
     begin = end + 1;
     end = text.data() + text.size();
     parsed = std::from_chars(begin, end, candidate.generation, 10);
-    if (parsed.ec != std::errc{} || parsed.ptr != end || candidate.generation ==
+    if (parsed.ec != std::errc{}
+        || parsed.ptr != end
+        || candidate.generation ==
         0U) {
         return false;
     }
@@ -161,17 +166,21 @@ static i76_command_result execute_object_command(i76_runtime& game,
     std::size_t count = 0;
 
     verb = take_token(args);
-    if ((verb.empty() || verb == "help") && args.empty()) {
+    if ((verb.empty()
+        || verb == "help")
+        && args.empty()) {
         return make_reply(game, i76_result_code::ok,
                           "object commands: object list | spawn "
                           "<vehicle|scenery|marker> <name> | "
                           "inspect <slot:generation> | destroy "
                           "<slot:generation> | clear");
     }
-    if (verb == "list" && args.empty()) {
+    if (verb == "list"
+        && args.empty()) {
         count = i76_world_count(game.world);
         message = "objects=" + std::to_string(count);
-        for (index = 0; index < count && index < k_list_limit; ++index) {
+        for (index = 0; index < count
+             && index < k_list_limit; ++index) {
             handle = i76_world_handle_at(game.world, index);
             object = i76_world_lookup(game.world, handle);
             if (object != nullptr) {
@@ -190,7 +199,8 @@ static i76_command_result execute_object_command(i76_runtime& game,
         kind_text = take_token(args);
         name = args;
         kind = parse_kind(kind_text);
-        if (kind == i76_world_kind::none || name.empty()) {
+        if (kind == i76_world_kind::none
+            || name.empty()) {
             return make_reply(game, i76_result_code::invalid_argument,
                               "usage: object spawn <vehicle|scenery|marker> "
                               "<name>");
@@ -209,9 +219,11 @@ static i76_command_result execute_object_command(i76_runtime& game,
                           std::string(name) +
                               " handle=" + handle_text(handle));
     }
-    if (verb == "inspect" || verb == "destroy") {
+    if (verb == "inspect"
+        || verb == "destroy") {
         name = take_token(args);
-        if (!args.empty() || !parse_handle(name, handle)) {
+        if (!args.empty()
+            || !parse_handle(name, handle)) {
             return make_reply(game, i76_result_code::invalid_argument,
                               "expected object handle <slot:generation>");
         }
@@ -237,7 +249,8 @@ static i76_command_result execute_object_command(i76_runtime& game,
                   std::to_string(object->position.z) + ")";
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
-    if (verb == "clear" && args.empty()) {
+    if (verb == "clear"
+        && args.empty()) {
         i76_world_clear(game.world);
         return make_reply(game, i76_result_code::ok, "world objects cleared");
     }
@@ -309,14 +322,17 @@ static i76_command_result execute_resource_command(i76_runtime& game,
     i76_resource_result lookup = i76_resource_result::not_found;
 
     verb = take_token(args);
-    if (verb == "help" && args.empty()) {
+    if (verb == "help"
+        && args.empty()) {
         return make_reply(game, i76_result_code::ok,
                           "resource commands: resource list | resource "
                           "mounts | "
                           "resource cache | resource mount <directory> | "
                           "resource unmount <id|name>");
     }
-    if ((verb == "list" || verb == "mounts") && args.empty()) {
+    if ((verb == "list"
+        || verb == "mounts")
+        && args.empty()) {
         message = "resource mounts=" +
             std::to_string(game.resources.mounts.size());
         for (index = 0; index < game.resources.mounts.size(); ++index) {
@@ -326,7 +342,8 @@ static i76_command_result execute_resource_command(i76_runtime& game,
                 ++entry_index) {
                 const i76_resource_entry& entry =
                     game.resources.entries[entry_index];
-                if (entry.occupied && entry.source_mount_id == mount.id) {
+                if (entry.occupied
+                    && entry.source_mount_id == mount.id) {
                     references += entry.references;
                 }
             }
@@ -337,7 +354,8 @@ static i76_command_result execute_resource_command(i76_runtime& game,
         }
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
-    if (verb == "cache" && args.empty()) {
+    if (verb == "cache"
+        && args.empty()) {
         message = "resource cached=" +
             std::to_string(i76_resource_get_stats(game.resources).cached_count);
         for (index = 0; index < game.resources.entries.size(); ++index) {
@@ -352,7 +370,8 @@ static i76_command_result execute_resource_command(i76_runtime& game,
         }
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
-    if (verb == "mount" && !args.empty()) {
+    if (verb == "mount"
+        && !args.empty()) {
         code = i76_resource_mount_directory(game.resources, args);
         if (code != i76_resource_result::ok) {
             return make_reply(game, i76_result_code::invalid_argument,
@@ -364,7 +383,8 @@ static i76_command_result execute_resource_command(i76_runtime& game,
                           "]: " +
                           game.resources.mounts.back().name);
     }
-    if (verb == "unmount" && !args.empty()) {
+    if (verb == "unmount"
+        && !args.empty()) {
         lookup = i76_resource_find_mount(game.resources, args, id);
         if (lookup == i76_resource_result::invalid_argument) {
             return make_reply(game, i76_result_code::invalid_argument,
@@ -375,7 +395,9 @@ static i76_command_result execute_resource_command(i76_runtime& game,
             begin = args.data();
             end = begin + args.size();
             parsed = std::from_chars(begin, end, id, 10);
-            if (parsed.ec != std::errc{} || parsed.ptr != end || id == 0U) {
+            if (parsed.ec != std::errc{}
+                || parsed.ptr != end
+                || id == 0U) {
                 return make_reply(game, i76_result_code::invalid_argument,
                                   "usage: resource unmount <mount id|mount "
                                   "path/name>");
@@ -408,7 +430,8 @@ static i76_command_result execute_asset_command(i76_runtime& game,
     i76_resource_stats stats = {};
 
     verb = take_token(args);
-    if (verb != "stats" || !args.empty()) {
+    if (verb != "stats"
+        || !args.empty()) {
         return make_reply(game, i76_result_code::invalid_argument,
             "usage: asset stats");
     }
@@ -431,19 +454,21 @@ static bool bwd2_extension(std::string_view name) noexcept
     std::size_t index = 0;
 
     dot = name.find_last_of('.');
-    if (dot == std::string_view::npos || name.size() - dot > sizeof(characters))
+    if (dot == std::string_view::npos
+        || name.size() - dot > sizeof(characters))
         {
         return false;
     }
     extension = name.substr(dot);
     for (index = 0; index < extension.size(); ++index) {
-        characters[index] = extension[index] >= 'A' && extension[index] <= 'Z' ?
+        characters[index] = extension[index] >= 'A'
+                        && extension[index] <= 'Z' ?
                                 static_cast<char>(extension[index] - 'A' + 'a')
                                 : extension[index];
     }
-    return std::string_view(characters) == ".msn" ||
-           std::string_view(characters) == ".lvl" ||
-           std::string_view(characters) == ".spc";
+    return std::string_view(characters) == ".msn"
+           || std::string_view(characters) == ".lvl"
+           || std::string_view(characters) == ".spc";
 }
 
 // -----------------------------------------------------------------------------
@@ -483,7 +508,8 @@ static i76_command_result inspect_bwd2(i76_runtime& game, std::string_view name)
               std::to_string(document.byte_count) + " chunks=" +
               std::to_string(document.chunks.size()) +
                   " (structural only; not loaded)";
-    for (index = 0; index < document.chunks.size() && index < k_display_limit;
+    for (index = 0; index < document.chunks.size()
+         && index < k_display_limit;
         ++index) {
         chunk = &document.chunks[index];
         message += "\n  ";
@@ -622,7 +648,8 @@ static i76_command_result execute_level_command(i76_runtime& game,
     std::string message = {};
 
     verb = take_token(args);
-    if (verb == "help" && args.empty()) {
+    if (verb == "help"
+        && args.empty()) {
         return make_reply(game, i76_result_code::ok,
                           "level commands: inspect <name> | sections <BWD2 "
                           "name> | summary <mission> | terrain <mission> | "
@@ -630,11 +657,14 @@ static i76_command_result execute_level_command(i76_runtime& game,
                           "name> | activate | load <synthetic name> | "
                           "discard | unload | status");
     }
-    if ((verb == "summary" || verb == "terrain" || verb == "dependencies") &&
-        !args.empty()) {
+    if ((verb == "summary"
+        || verb == "terrain"
+        || verb == "dependencies")
+        && !args.empty()) {
         return inspect_retail_mission(game, verb, args);
     }
-    if (verb == "status" && args.empty()) {
+    if (verb == "status"
+        && args.empty()) {
         message = "level loaded=" + (game.active_level.loaded ?
             game.active_level.definition.name :
                                      std::string("none"));
@@ -646,11 +676,14 @@ static i76_command_result execute_level_command(i76_runtime& game,
                                    std::string("none"));
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
-    if ((verb == "sections" || (verb == "inspect" && bwd2_extension(args))) &&
-        !args.empty()) {
+    if ((verb == "sections"
+        || (verb == "inspect"
+        && bwd2_extension(args)))
+        && !args.empty()) {
         return inspect_bwd2(game, args);
     }
-    if (verb == "inspect" && !args.empty()) {
+    if (verb == "inspect"
+        && !args.empty()) {
         code = i76_level_read(game.resources, args, inspected);
         if (code != i76_level_result::ok) {
             return make_reply(game, i76_result_code::invalid_argument,
@@ -661,7 +694,9 @@ static i76_command_result execute_level_command(i76_runtime& game,
                   std::to_string(inspected.assets.size());
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
-    if ((verb == "prepare" || verb == "load") && !args.empty()) {
+    if ((verb == "prepare"
+        || verb == "load")
+        && !args.empty()) {
         if (bwd2_extension(args)) {
             return make_reply(game, i76_result_code::invalid_argument,
                               "retail BWD2 activation is not implemented; "
@@ -680,7 +715,8 @@ static i76_command_result execute_level_command(i76_runtime& game,
         verb = "activate";
         args = {};
     }
-    if (verb == "activate" && args.empty()) {
+    if (verb == "activate"
+        && args.empty()) {
         code = i76_level_activate(game.world, game.resources,
             game.prepared_level,
                                   game.active_level);
@@ -693,7 +729,8 @@ static i76_command_result execute_level_command(i76_runtime& game,
                           " objects=" +
                           std::to_string(i76_world_count(game.world)));
     }
-    if (verb == "discard" && args.empty()) {
+    if (verb == "discard"
+        && args.empty()) {
         if (!game.prepared_level.ready) {
             return make_reply(game, i76_result_code::invalid_argument,
                 "no prepared level");
@@ -702,7 +739,8 @@ static i76_command_result execute_level_command(i76_runtime& game,
         return make_reply(game, i76_result_code::ok,
             "prepared level discarded");
     }
-    if (verb == "unload" && args.empty()) {
+    if (verb == "unload"
+        && args.empty()) {
         code = i76_level_unload(game.world, game.resources, game.active_level);
         if (code != i76_level_result::ok) {
             return make_reply(game, i76_result_code::invalid_argument,
@@ -738,13 +776,15 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
     }
     command = take_token(line);
     args = line;
-    if (command == "help" && args.empty()) {
+    if (command == "help"
+        && args.empty()) {
         return make_reply(game, i76_result_code::ok,
                           "commands: help status pause resume step <count> "
                           "object <action> resource <action> "
                           "level <action> asset stats quit");
     }
-    if (command == "status" && args.empty()) {
+    if (command == "status"
+        && args.empty()) {
         return make_reply(game, i76_result_code::ok,
                           "ticks=" + std::to_string(game.state.tick) +
                               " paused=" + (game.state.paused ? "true" :
@@ -754,15 +794,18 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
                               " objects=" +
                               std::to_string(i76_world_count(game.world)));
     }
-    if (command == "pause" && args.empty()) {
+    if (command == "pause"
+        && args.empty()) {
         i76_runtime_set_paused(game, true);
         return make_reply(game, i76_result_code::ok, "paused");
     }
-    if (command == "resume" && args.empty()) {
+    if (command == "resume"
+        && args.empty()) {
         i76_runtime_set_paused(game, false);
         return make_reply(game, i76_result_code::ok, "resumed");
     }
-    if (command == "quit" && args.empty()) {
+    if (command == "quit"
+        && args.empty()) {
         i76_runtime_request_exit(game);
         return make_reply(game, i76_result_code::ok, "exit requested");
     }
@@ -786,8 +829,10 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
         begin = args.data();
         end = begin + args.size();
         parsed = std::from_chars(begin, end, count, 10);
-        if (parsed.ec != std::errc{} || parsed.ptr != end || count == 0U ||
-            count > i76_k_max_ticks_per_call) {
+        if (parsed.ec != std::errc{}
+            || parsed.ptr != end
+            || count == 0U
+            || count > i76_k_max_ticks_per_call) {
             return make_reply(game, i76_result_code::invalid_argument,
                 "invalid step count");
         }
