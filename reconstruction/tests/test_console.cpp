@@ -31,27 +31,34 @@ static void test_lexer()
 
     tokens = i76_console_tokenize(" \t resource mount "
     "\"C:\\Games\\Interstate 76\" \t");
-    expect(tokens.error.empty() && tokens.values.size() == 3U &&
-           tokens.values[0] == "resource" && tokens.values[1] == "mount" &&
-           tokens.values[2] == "C:\\Games\\Interstate 76",
+    expect(tokens.error.empty()
+           && tokens.values.size() == 3U
+           && tokens.values[0] == "resource"
+           && tokens.values[1] == "mount"
+           && tokens.values[2] == "C:\\Games\\Interstate 76",
                "quoted Windows path");
     tokens = i76_console_tokenize("object spawn vehicle \"dune buggy\"");
-    expect(tokens.error.empty() && tokens.values.size() == 4U &&
-           tokens.values[3] == "dune buggy", "quoted object name");
+    expect(tokens.error.empty()
+           && tokens.values.size() == 4U
+           && tokens.values[3] == "dune buggy", "quoted object name");
     tokens = i76_console_tokenize("object spawn vehicle "
                                   "pre\"middle part\"post");
-    expect(tokens.error.empty() && tokens.values.size() == 4U &&
-           tokens.values[3] == "premiddle partpost",
+    expect(tokens.error.empty()
+           && tokens.values.size() == 4U
+           && tokens.values[3] == "premiddle partpost",
                "adjacent bare and quoted segments");
     tokens = i76_console_tokenize("resource mount \"\"");
-    expect(tokens.error.empty() && tokens.values.size() == 3U &&
-        tokens.values[2].empty(),
+    expect(tokens.error.empty()
+           && tokens.values.size() == 3U
+           && tokens.values[2].empty(),
            "explicit empty token retained");
     tokens = i76_console_tokenize("resource mount \"oops");
-    expect(!tokens.error.empty() && tokens.values.empty(),
+    expect(!tokens.error.empty()
+           && tokens.values.empty(),
         "reject unterminated quotes");
     tokens = i76_console_tokenize(long_line);
-    expect(!tokens.error.empty() && tokens.values.empty(),
+    expect(!tokens.error.empty()
+           && tokens.values.empty(),
         "reject overlong command");
     for (std::size_t index = 0U; index < 65U; ++index) {
         long_tokens += "x ";
@@ -61,7 +68,8 @@ static void test_lexer()
     tokens = i76_console_tokenize(std::string_view("foo\0bar", 7U));
     expect(!tokens.error.empty(), "reject embedded null");
     tokens = i76_console_tokenize(" \t ");
-    expect(tokens.error.empty() && tokens.values.empty(),
+    expect(tokens.error.empty()
+           && tokens.values.empty(),
         "blank line produces no tokens");
 }
 
@@ -89,8 +97,9 @@ static void test_console()
                i76_result_code::ok, "initialize runtime");
 
     candidates = i76_console_complete("sim.");
-    expect(candidates.size() == 3U && candidates[0] == "sim.paused" &&
-           candidates[1] == "sim.tick_rate", "completion based on registry");
+    expect(candidates.size() == 3U
+           && candidates[0] == "sim.paused"
+           && candidates[1] == "sim.tick_rate", "completion based on registry");
     expect(i76_execute_command(game, "help").message.find("step <count>") !=
                std::string::npos, "registry help preserves step discovery");
     expect(i76_execute_command(game,
@@ -113,18 +122,19 @@ static void test_console()
         "sim.paused=false",
            "query live boolean CVar");
     expect(i76_execute_command(game, "sim.paused true").code ==
-        i76_result_code::ok &&
-               game.state.paused, "write pause CVar calls runtime");
+        i76_result_code::ok
+            && game.state.paused, "write pause CVar calls runtime");
     expect(i76_execute_command(game, "sim.paused 0").code == i76_result_code::ok
-        &&
-               !game.state.paused, "numeric bool spelling");
+            && !game.state.paused, "numeric bool spelling");
     expect(i76_execute_command(game, "sim paused").code != i76_result_code::ok,
            "dotted variable is not command");
     expect(i76_execute_command(game, "sim.paused yes").code ==
-               i76_result_code::invalid_argument && !game.state.paused,
+               i76_result_code::invalid_argument
+                   && !game.state.paused,
            "invalid CVar has no side effects");
     expect(i76_execute_command(game, "sim.paused false extra").code ==
-               i76_result_code::invalid_argument && !game.state.paused,
+               i76_result_code::invalid_argument
+                   && !game.state.paused,
            "reject extra variable arguments");
     expect(i76_execute_command(game, "sim.paused ?").message.find("Writable") !=
                std::string::npos, "CVar help shorthand");
@@ -132,7 +142,8 @@ static void test_console()
         "sim.tick_rate=60",
            "read-only tick-rate CVar");
     expect(i76_execute_command(game, "sim.tick_rate 120").code ==
-               i76_result_code::invalid_argument && game.state.tick_rate == 60U,
+               i76_result_code::invalid_argument
+                   && game.state.tick_rate == 60U,
            "reject read-only writes");
     expect(i76_execute_command(game,
         "sim.tick_rate ?").message.find("Read-only") !=
@@ -140,39 +151,38 @@ static void test_console()
     expect(i76_execute_command(game, "world.objects").message ==
         "world.objects=0",
            "world count CVar");
-    expect(i76_execute_command(game, "sim pause").code == i76_result_code::ok &&
-               game.state.paused, "hierarchical pause");
+    expect(i76_execute_command(game, "sim pause").code == i76_result_code::ok
+           && game.state.paused, "hierarchical pause");
     expect(i76_execute_command(game, "sim resume").code == i76_result_code::ok
-        &&
-               !game.state.paused, "hierarchical resume");
+            && !game.state.paused, "hierarchical resume");
     expect(i76_execute_command(game, "sim step 3").code == i76_result_code::ok
-        &&
-               game.state.tick == 3U, "hierarchical step");
+            && game.state.tick == 3U, "hierarchical step");
     expect(i76_execute_command(game, "sim.tick").message == "sim.tick=3",
            "tick CVar tracks runtime");
     expect(i76_execute_command(game, "sim status").message.find("ticks=3") !=
                std::string::npos, "hierarchical status");
 
     expect(i76_execute_command(game, "step \"3\"").code == i76_result_code::ok
-        &&
-               game.state.tick == 6U, "quoted numeric argument");
+            && game.state.tick == 6U, "quoted numeric argument");
     expect(i76_execute_command(game, "step \"unterminated").code ==
-               i76_result_code::invalid_argument && game.state.tick == 6U,
+               i76_result_code::invalid_argument
+                   && game.state.tick == 6U,
            "malformed quote prevents execution");
     expect(i76_execute_command(game, "sim step 2 --bad").code ==
-               i76_result_code::invalid_argument && game.state.tick == 6U,
+               i76_result_code::invalid_argument
+                   && game.state.tick == 6U,
            "unrecognized option rejected before execution");
     expect(i76_execute_command(game, "sim step -- 2").code ==
-        i76_result_code::ok &&
-               game.state.tick == 8U, "option terminator");
+        i76_result_code::ok
+            && game.state.tick == 8U, "option terminator");
     expect(i76_execute_command(game, "step -1").code ==
-        i76_result_code::invalid_argument &&
-               game.state.tick == 8U, "legacy step validation retained");
+        i76_result_code::invalid_argument
+            && game.state.tick == 8U, "legacy step validation retained");
 
     expect(i76_execute_command(game,
         "object spawn vehicle \"Test Vehicle\"").code ==
-               i76_result_code::ok &&
-               i76_execute_command(game,
+               i76_result_code::ok
+                   && i76_execute_command(game,
                    "object list").message.find("Test Vehicle") !=
                    std::string::npos, "quoted world object name");
     expect(i76_execute_command(game, "object spawn vehicle Test Vehicle").code

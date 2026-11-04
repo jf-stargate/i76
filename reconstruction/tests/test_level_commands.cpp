@@ -71,8 +71,9 @@ static void test_commands_and_directory_provider()
     expect(i76_execute_command(game,
         "level inspect demo.level").message.find("objects=2") !=
                std::string::npos, "inspect without loading");
-    expect(!game.prepared_level.ready && i76_world_count(game.world) == 0U &&
-               i76_resource_get_stats(game.resources).references == 0U,
+    expect(!game.prepared_level.ready
+           && i76_world_count(game.world) == 0U
+           && i76_resource_get_stats(game.resources).references == 0U,
            "inspect is side-effect free");
     expect(i76_execute_command(game, "level prepare demo.level").code ==
         i76_result_code::ok,
@@ -92,16 +93,15 @@ static void test_commands_and_directory_provider()
            "load command");
     original = i76_world_handle_at(game.world, 0U);
     result = i76_execute_command(game, "level status");
-    expect(result.message.find("loaded=demo.level") != std::string::npos &&
-               result.message.find("assets=1") != std::string::npos,
+    expect(result.message.find("loaded=demo.level") != std::string::npos
+           && result.message.find("assets=1") != std::string::npos,
            "status reports active state");
     expect(i76_execute_command(game, "level load absent.level").code ==
-               i76_result_code::invalid_argument &&
-               i76_world_lookup(game.world, original) != nullptr,
+               i76_result_code::invalid_argument
+                   && i76_world_lookup(game.world, original) != nullptr,
            "failed load retains old world and leases");
     expect(i76_execute_command(game, "level unload").code == i76_result_code::ok
-        &&
-               i76_world_lookup(game.world, original) == nullptr,
+            && i76_world_lookup(game.world, original) == nullptr,
            "explicit unload invalidates world handles");
     expect(i76_execute_command(game, "level badcommand").code ==
                i76_result_code::invalid_argument,
@@ -150,8 +150,8 @@ static void test_commands_and_directory_provider()
     expect(i76_execute_command(game, "level load external.level").code ==
         i76_result_code::ok,
            "load fixture from directory provider");
-    expect(i76_world_count(game.world) == 1U &&
-               i76_world_lookup(game.world, i76_world_handle_at(game.world,
+    expect(i76_world_count(game.world) == 1U
+           && i76_world_lookup(game.world, i76_world_handle_at(game.world,
                    0U))->name == "tower",
            "external level object instantiated");
     expect(i76_execute_command(game,
@@ -161,12 +161,12 @@ static void test_commands_and_directory_provider()
         "resource unmount 3").message.find("retained") !=
                std::string::npos, "active-level lease prevents unmount");
     stats = i76_resource_get_stats(game.resources);
-    expect(stats.mount_count == 2U && stats.cached_bytes == 11U &&
-        stats.references == 1U,
+    expect(stats.mount_count == 2U
+           && stats.cached_bytes == 11U
+           && stats.references == 1U,
            "external dependency leased, bytes accounted");
     expect(i76_execute_command(game, "level unload").code == i76_result_code::ok
-        &&
-               i76_resource_get_stats(game.resources).references == 0U,
+            && i76_resource_get_stats(game.resources).references == 0U,
            "external asset lease released");
     expect(i76_execute_command(game,
                                "resource unmount " +
@@ -183,8 +183,8 @@ static void test_commands_and_directory_provider()
     expect(i76_execute_command(game, "level help extra").code ==
                i76_result_code::invalid_argument,
                    "reject extraneous level args");
-    expect(!record.diagnostics.empty() &&
-               record.diagnostics.back().level == i76_diagnostic_level::error,
+    expect(!record.diagnostics.empty()
+           && record.diagnostics.back().level == i76_diagnostic_level::error,
            "recording diagnostic sink captures errors");
     expect(i76_runtime_shutdown(game) == i76_result_code::ok,
         "shutdown runtime fixture");

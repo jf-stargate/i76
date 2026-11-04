@@ -47,33 +47,35 @@ static void check_commands()
     expect(i76_execute_command(game, " status \t").message.find("ticks=0") !=
                std::string::npos,
            "whitespace trim");
-    expect(i76_execute_command(game, "pause").code == i76_result_code::ok &&
-               game.state.paused,
+    expect(i76_execute_command(game, "pause").code == i76_result_code::ok
+           && game.state.paused,
            "pause command");
-    expect(i76_execute_command(game, "step  3").code == i76_result_code::ok &&
-               game.state.tick == 3U,
+    expect(i76_execute_command(game, "step  3").code == i76_result_code::ok
+           && game.state.tick == 3U,
            "step while paused");
 
     for (const std::string_view command : invalid) {
         expect(i76_execute_command(game, command).code != i76_result_code::ok,
                "invalid command rejected");
-        expect(game.state.tick == 3U && game.state.paused &&
-            !game.state.exit_requested,
+        expect(game.state.tick == 3U
+               && game.state.paused
+               && !game.state.exit_requested,
                "invalid command leaves state unchanged");
     }
     saved_tick = game.state.tick;
     game.state.tick = std::numeric_limits<std::uint64_t>::max();
-    expect(i76_execute_command(game, "step 1").code != i76_result_code::ok &&
-               game.state.tick == std::numeric_limits<std::uint64_t>::max(),
+    expect(i76_execute_command(game, "step 1").code != i76_result_code::ok
+           && game.state.tick == std::numeric_limits<std::uint64_t>::max(),
            "failed i76_runtime step propagates error");
     game.state.tick = saved_tick;
-    expect(i76_execute_command(game, "resume").code == i76_result_code::ok &&
-               !game.state.paused,
+    expect(i76_execute_command(game, "resume").code == i76_result_code::ok
+           && !game.state.paused,
            "resume command");
-    expect(i76_execute_command(game, "quit").code == i76_result_code::ok &&
-               game.state.exit_requested,
+    expect(i76_execute_command(game, "quit").code == i76_result_code::ok
+           && game.state.exit_requested,
            "quit command");
-    expect(record.scene.size() == 3U && record.diagnostics.size() >= 17U,
+    expect(record.scene.size() == 3U
+           && record.diagnostics.size() >= 17U,
            "events recorded for valid and invalid commands");
     expect(record.diagnostics.back().level == i76_diagnostic_level::info,
            "quit diagnostic recorded");

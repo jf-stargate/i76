@@ -134,25 +134,26 @@ static void test_full_retail_layout()
     append(bytes, chunk("ADEF", adef));
     append(bytes, chunk("EXIT", {}));
 
-    expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok &&
-               document.chunks.size() == 17U && document.byte_count ==
+    expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok
+           && document.chunks.size() == 17U
+           && document.byte_count ==
                    bytes.size(),
            "full retail-style outer stream parses with bounded sections");
-    expect(std::string_view(document.chunks[0].tag) == "BWD2" &&
-               std::string_view(document.chunks[1].tag) == "REV" &&
-               std::string_view(document.chunks[2].tag) == "WDEF" &&
-               std::string_view(document.chunks[4].tag) == "TDEF" &&
-               std::string_view(document.chunks[6].tag) == "RDEF" &&
-               std::string_view(document.chunks[8].tag) == "ODEF" &&
-               std::string_view(document.chunks[10].tag) == "LDEF" &&
-               std::string_view(document.chunks[12].tag) == "ADEF" &&
-               std::string_view(document.chunks[16].tag) == "EXIT",
+    expect(std::string_view(document.chunks[0].tag) == "BWD2"
+           && std::string_view(document.chunks[1].tag) == "REV"
+           && std::string_view(document.chunks[2].tag) == "WDEF"
+           && std::string_view(document.chunks[4].tag) == "TDEF"
+           && std::string_view(document.chunks[6].tag) == "RDEF"
+           && std::string_view(document.chunks[8].tag) == "ODEF"
+           && std::string_view(document.chunks[10].tag) == "LDEF"
+           && std::string_view(document.chunks[12].tag) == "ADEF"
+           && std::string_view(document.chunks[16].tag) == "EXIT",
            "original observed section ordering remains visible");
-    expect(document.chunks[12].parent == 0U &&
-               document.chunks[13].parent == 13U &&
-               document.chunks[14].parent == 13U &&
-               document.chunks[16].parent == 0U &&
-               document.chunks[16].offset + document.chunks[16].size ==
+    expect(document.chunks[12].parent == 0U
+           && document.chunks[13].parent == 13U
+           && document.chunks[14].parent == 13U
+           && document.chunks[16].parent == 0U
+           && document.chunks[16].offset + document.chunks[16].size ==
                    bytes.size(),
            "section depths and terminal EXIT bounds are preserved");
 }
@@ -167,38 +168,43 @@ static void test_retail_marker()
     i76_bwd2_document again = {};
     i76_bwd2_error error = {};
 
-    expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok &&
-               document.byte_count == bytes.size() && document.chunks.size() ==
+    expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok
+           && document.byte_count == bytes.size()
+           && document.chunks.size() ==
                    13U,
            "retail marker followed by sibling records parsed to EOF");
-    expect(std::string_view(document.chunks[0].tag) == "BWD2" &&
-               document.chunks[0].size == 8U &&
-               document.chunks[0].parent == 0U && document.chunks[0].depth ==
+    expect(std::string_view(document.chunks[0].tag) == "BWD2"
+           && document.chunks[0].size == 8U
+           && document.chunks[0].parent == 0U
+           && document.chunks[0].depth ==
                    0U,
            "BWD2 header remains an eight-byte marker");
-    expect(std::string_view(document.chunks[1].tag) == "REV" &&
-               document.chunks[1].offset == 8U &&
-               document.chunks[1].parent == 0U && document.chunks[1].depth == 0U
-                   &&
-               document.chunks[1].has_revision && document.chunks[1].revision ==
+    expect(std::string_view(document.chunks[1].tag) == "REV"
+           && document.chunks[1].offset == 8U
+           && document.chunks[1].parent == 0U
+           && document.chunks[1].depth == 0U
+           && document.chunks[1].has_revision
+           && document.chunks[1].revision ==
                    2U,
            "outer REV is a top-level sibling of the marker");
-    expect(std::string_view(document.chunks[2].tag) == "WDEF" &&
-               document.chunks[2].parent == 0U && document.chunks[2].depth == 0U
-                   &&
-               std::string_view(document.chunks[3].tag) == "WREV" &&
-               document.chunks[3].parent == 3U && document.chunks[3].depth ==
+    expect(std::string_view(document.chunks[2].tag) == "WDEF"
+           && document.chunks[2].parent == 0U
+           && document.chunks[2].depth == 0U
+           && std::string_view(document.chunks[3].tag) == "WREV"
+           && document.chunks[3].parent == 3U
+           && document.chunks[3].depth ==
                    1U,
            "container children retain correct one-based parent indices");
-    expect(std::string_view(document.chunks[8].tag) == "ADEF" &&
-               document.chunks[8].parent == 0U && document.chunks[9].parent ==
-                   9U &&
-               std::string_view(document.chunks[10].tag) == "FSM" &&
-               document.chunks[10].payload_size == 0U,
+    expect(std::string_view(document.chunks[8].tag) == "ADEF"
+           && document.chunks[8].parent == 0U
+           && document.chunks[9].parent ==
+                   9U
+           && std::string_view(document.chunks[10].tag) == "FSM"
+           && document.chunks[10].payload_size == 0U,
            "retail ADEF and empty FSM are inventoried");
-    expect(i76_bwd2_parse(bytes, again, error) == i76_bwd2_result::ok &&
-               again.chunks.size() == document.chunks.size() &&
-               again.chunks[1].offset == 8U,
+    expect(i76_bwd2_parse(bytes, again, error) == i76_bwd2_result::ok
+           && again.chunks.size() == document.chunks.size()
+           && again.chunks[1].offset == 8U,
            "repeated marker inspection is deterministic");
 }
 
@@ -214,44 +220,49 @@ static void test_structure()
     i76_bwd2_result result = i76_bwd2_result::ok;
     std::size_t index = 0;
 
-    expect(document.chunks.empty() && document.byte_count == 0U &&
-               error.code == i76_bwd2_result::ok && error.offset == 0U,
+    expect(document.chunks.empty()
+           && document.byte_count == 0U
+           && error.code == i76_bwd2_result::ok
+           && error.offset == 0U,
            "zero initialized document and diagnostic");
     result = i76_bwd2_parse(bytes, document, error);
-    expect(result == i76_bwd2_result::ok && error.code == i76_bwd2_result::ok,
+    expect(result == i76_bwd2_result::ok
+           && error.code == i76_bwd2_result::ok,
            "parse BWD2 structure");
-    expect(document.chunks.size() == 13U && document.byte_count == bytes.size(),
+    expect(document.chunks.size() == 13U
+           && document.byte_count == bytes.size(),
            "all nested sections accounted for");
-    expect(document.chunks[0].parent == 0U && document.chunks[0].depth == 0U &&
-               std::string_view(document.chunks[0].tag) == "BWD2",
+    expect(document.chunks[0].parent == 0U
+           && document.chunks[0].depth == 0U
+           && std::string_view(document.chunks[0].tag) == "BWD2",
            "root has one-based parent sentinel");
-    expect(std::string_view(document.chunks[1].tag) == "REV" &&
-               document.chunks[1].parent == 1U && document.chunks[1].depth == 1U
-                   &&
-               document.chunks[1].revision == 2U &&
-                   document.chunks[1].has_revision,
+    expect(std::string_view(document.chunks[1].tag) == "REV"
+           && document.chunks[1].parent == 1U
+           && document.chunks[1].depth == 1U
+           && document.chunks[1].revision == 2U
+           && document.chunks[1].has_revision,
            "root revision and little endian");
-    expect(std::string_view(document.chunks[2].tag) == "WDEF" &&
-               document.chunks[2].parent == 1U && document.chunks[2].depth == 1U
-                   &&
-               std::string_view(document.chunks[3].tag) == "WREV" &&
-               document.chunks[3].parent == 3U && document.chunks[3].depth == 2U
-                   &&
-               document.chunks[3].revision == 9U,
+    expect(std::string_view(document.chunks[2].tag) == "WDEF"
+           && document.chunks[2].parent == 1U
+           && document.chunks[2].depth == 1U
+           && std::string_view(document.chunks[3].tag) == "WREV"
+           && document.chunks[3].parent == 3U
+           && document.chunks[3].depth == 2U
+           && document.chunks[3].revision == 9U,
            "nested WDEF child and revision");
-    expect(std::string_view(document.chunks[8].tag) == "ADEF" &&
-               document.chunks[9].parent == 9U &&
-               std::string_view(document.chunks[10].tag) == "FSM" &&
-               document.chunks[10].payload_size == 0U,
+    expect(std::string_view(document.chunks[8].tag) == "ADEF"
+           && document.chunks[9].parent == 9U
+           && std::string_view(document.chunks[10].tag) == "FSM"
+           && document.chunks[10].payload_size == 0U,
            "nested empty FSM chunk accepted");
     for (index = 0; index < document.chunks.size(); ++index) {
         expect(document.chunks[index].offset + document.chunks[index].size <=
             bytes.size(),
                "reported span is bounded");
     }
-    expect(i76_bwd2_parse(bytes, again, error) == i76_bwd2_result::ok &&
-               again.chunks.size() == document.chunks.size() &&
-               again.chunks[3].offset == document.chunks[3].offset,
+    expect(i76_bwd2_parse(bytes, again, error) == i76_bwd2_result::ok
+           && again.chunks.size() == document.chunks.size()
+           && again.chunks[3].offset == document.chunks[3].offset,
            "repeated inspection is stateless and deterministic");
     expect(std::string_view(
                i76_bwd2_result_name(i76_bwd2_result::invalid_revision)) ==
@@ -284,10 +295,12 @@ static void check_failure(const std::vector<std::uint8_t>& bytes,
     document.chunks.push_back({});
     error.offset = 23U;
     error.code = i76_bwd2_result::resource_error;
-    expect(i76_bwd2_parse(bytes, document, error) == expected &&
-               error.code == expected && error.offset == offset,
+    expect(i76_bwd2_parse(bytes, document, error) == expected
+           && error.code == expected
+           && error.offset == offset,
            label);
-    expect(document.byte_count == 77U && document.chunks.size() == 1U,
+    expect(document.byte_count == 77U
+           && document.chunks.size() == 1U,
            "rejected input does not overwrite prior report");
 }
 
@@ -368,13 +381,13 @@ static void test_invalid_inputs()
     check_failure(bytes, i76_bwd2_result::invalid_tag, 8U,
                   "empty FourCC rejected");
     bytes = chunk("BWD2", chunk("FUTR", empty));
-    expect(i76_bwd2_parse(bytes, future, error) == i76_bwd2_result::ok &&
-               std::string_view(future.chunks[1].tag) == "FUTR" &&
-               future.chunks[1].payload_size == 0U,
+    expect(i76_bwd2_parse(bytes, future, error) == i76_bwd2_result::ok
+           && std::string_view(future.chunks[1].tag) == "FUTR"
+           && future.chunks[1].payload_size == 0U,
            "unknown ASCII tag retained as opaque leaf");
     bytes = chunk("BWD2", revision("REV", 0x01020304U));
-    expect(i76_bwd2_parse(bytes, revised, error) == i76_bwd2_result::ok &&
-               revised.chunks[1].revision == 0x01020304U,
+    expect(i76_bwd2_parse(bytes, revised, error) == i76_bwd2_result::ok
+           && revised.chunks[1].revision == 0x01020304U,
            "endianness conversion verified");
     // More than the configured chunk count must be bounded without allocating
     // a record for every attacker-controlled header.
@@ -431,16 +444,20 @@ static void test_resource_lifetime()
                i76_bwd2_result::resource_not_found,
                    "missing resource reported");
     expect(i76_bwd2_read(store, "example.msn", document, error) ==
-               i76_bwd2_result::ok && document.chunks.size() == 13U,
+               i76_bwd2_result::ok
+                   && document.chunks.size() == 13U,
            "inspect through memory provider");
     stats = i76_resource_get_stats(store);
-    expect(stats.references == 0U && stats.cached_bytes == 0U,
+    expect(stats.references == 0U
+           && stats.cached_bytes == 0U,
            "successful inspection releases byte lease");
     expect(i76_bwd2_read(store, "bad.msn", document, error) ==
-               i76_bwd2_result::invalid_root && document.chunks.size() == 13U,
+               i76_bwd2_result::invalid_root
+                   && document.chunks.size() == 13U,
            "failed inspection preserves last valid document");
     stats = i76_resource_get_stats(store);
-    expect(stats.references == 0U && stats.cached_bytes == 0U,
+    expect(stats.references == 0U
+           && stats.cached_bytes == 0U,
            "failed inspection releases byte lease");
     expect(i76_resource_acquire(store, "example.msn", handle) ==
         i76_resource_result::ok,

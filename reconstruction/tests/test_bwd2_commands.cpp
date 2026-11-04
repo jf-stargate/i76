@@ -151,32 +151,32 @@ static void test_console_and_directory()
         bytes) ==
                i76_resource_result::ok, "register synthetic editor level");
     reply = i76_execute_command(game, "level inspect sample.msn");
-    expect(reply.code == i76_result_code::ok &&
-               reply.message.find("BWD2 sample.msn") != std::string::npos &&
-               reply.message.find("revision=2") != std::string::npos &&
-               reply.message.find("  ODEF offset=") != std::string::npos &&
-               reply.message.find("not loaded") != std::string::npos,
+    expect(reply.code == i76_result_code::ok
+           && reply.message.find("BWD2 sample.msn") != std::string::npos
+           && reply.message.find("revision=2") != std::string::npos
+           && reply.message.find("  ODEF offset=") != std::string::npos
+           && reply.message.find("not loaded") != std::string::npos,
            "automatic BWD2 inspection by .msn suffix");
     expect(i76_execute_command(game, "level inspect sample.spc").code ==
-               i76_result_code::ok &&
-               i76_execute_command(game, "level inspect sample.lvl").code ==
+               i76_result_code::ok
+                   && i76_execute_command(game, "level inspect sample.lvl").code ==
                    i76_result_code::ok,
            "SPC and LVL suffixes also select BWD2 inspection");
     reply = i76_execute_command(game, "level sections sample.msn");
-    expect(reply.code == i76_result_code::ok &&
-               reply.message.find("chunks=7") != std::string::npos,
+    expect(reply.code == i76_result_code::ok
+           && reply.message.find("chunks=7") != std::string::npos,
            "explicit BWD2 section command");
     expect(i76_execute_command(game, "level load sample.msn").code !=
-        i76_result_code::ok &&
-               i76_execute_command(game, "level prepare sample.msn").code !=
+        i76_result_code::ok
+            && i76_execute_command(game, "level prepare sample.msn").code !=
                    i76_result_code::ok,
            "BWD2 not accepted for gameplay construction");
     expect(i76_execute_command(game, "level sections ../sample.msn").code !=
                i76_result_code::ok, "reject path traversal");
     reply = i76_execute_command(game, "level sections broken.msn");
-    expect(reply.code != i76_result_code::ok &&
-               reply.message.find("expected BWD2 root") != std::string::npos &&
-               reply.message.find("at 0x0") != std::string::npos,
+    expect(reply.code != i76_result_code::ok
+           && reply.message.find("expected BWD2 root") != std::string::npos
+           && reply.message.find("at 0x0") != std::string::npos,
            "report parser error and offset");
     expect(i76_execute_command(game, "level sections no.msn").code !=
                i76_result_code::ok, "missing resource reported");
@@ -189,8 +189,8 @@ static void test_console_and_directory()
            "activate existing synthetic level");
     earlier = i76_world_handle_at(game.world, 0U);
     expect(i76_execute_command(game, "level inspect sample.msn").code ==
-        i76_result_code::ok &&
-               i76_world_lookup(game.world, earlier) != nullptr,
+        i76_result_code::ok
+            && i76_world_lookup(game.world, earlier) != nullptr,
            "BWD2 inspection cannot invalidate active world");
     stats = i76_resource_get_stats(game.resources);
     expect(stats.references == 1U,
@@ -202,12 +202,12 @@ static void test_console_and_directory()
     expect(i76_execute_command(game, command).code == i76_result_code::ok,
            "mount on-disk fixture directory");
     reply = i76_execute_command(game, "level inspect miss16/m06.msn");
-    expect(reply.code == i76_result_code::ok &&
-               reply.message.find("BWD2 miss16/m06.msn") != std::string::npos,
+    expect(reply.code == i76_result_code::ok
+           && reply.message.find("BWD2 miss16/m06.msn") != std::string::npos,
            "case-insensitive legacy filesystem fallback on directory provider");
     reply = i76_execute_command(game, "level sections MISS16/M06.MSN");
-    expect(reply.code == i76_result_code::ok &&
-               reply.message.find("chunks=7") != std::string::npos,
+    expect(reply.code == i76_result_code::ok
+           && reply.message.find("chunks=7") != std::string::npos,
            "explicit BWD2 command handles mixed-case filename");
     stats = i76_resource_get_stats(game.resources);
     expect(stats.references == 1U, "directory inspection does not leak leases");
@@ -222,7 +222,8 @@ static void test_console_and_directory()
                static_cast<std::streamsize>(bytes.size()));
     file.close();
     error.clear();
-    if (!std::filesystem::equivalent(duplicate_a, duplicate_b, error) && !error)
+    if (!std::filesystem::equivalent(duplicate_a, duplicate_b, error)
+        && !error)
         {
         expect(i76_execute_command(game, "level sections miss16/ambig.msn").code
             !=
@@ -232,7 +233,8 @@ static void test_console_and_directory()
         i76_result_code::ok,
            "existing level unload still works");
     stats = i76_resource_get_stats(game.resources);
-    expect(stats.references == 0U && stats.cached_bytes == 0U,
+    expect(stats.references == 0U
+           && stats.cached_bytes == 0U,
            "resource bytes fully released after unload");
 
     // A casefolded name must not be able to read outside an explicitly mounted
@@ -262,7 +264,8 @@ static void test_console_and_directory()
 // -----------------------------------------------------------------------------
 int main(int argc, char* argv[])
 {
-    if (argc == 3 && std::string_view(argv[1]) == "--make-fixture") {
+    if (argc == 3
+        && std::string_view(argv[1]) == "--make-fixture") {
         return write_fixture(std::filesystem::path(argv[2])) ? 0 : 1;
     }
     if (argc != 1) {
