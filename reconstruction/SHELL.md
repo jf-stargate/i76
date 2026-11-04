@@ -27,6 +27,29 @@ No terminal UI library is assumed. `--shell` uses line-mode stdin/stdout; Notcur
 build/i76-debug/i76 --headless --command 'step 3' --command status
 ```
 
+## Native terminal editing and command history
+
+When `--shell` or `--headless --interactive` is run directly in a real terminal,
+interactive input uses a lightweight built-in line editor. **Left/Right** move
+within the command, **Home/End** (or Ctrl-A/Ctrl-E) move to the ends,
+**Backspace/Delete** remove characters, and **Up/Down** browse prior commands.
+Up then Down restores the unfinished draft. **Enter** submits, **Ctrl-C**
+cancels the current line, and **Ctrl-D** on an empty line leaves interactive
+input. History is in-memory for the current application run (last 128 commands),
+not written to disk. Entries are recorded even if a command reports an error,
+and consecutive duplicates are suppressed.
+
+Linux uses `termios` only when both standard input and output are terminals;
+Windows Terminal/consoles use the native console API. The native input mode is
+restored when line editing returns (including exceptions). The console accepts
+UTF-8 input on Linux and navigates by code point; terminal display-column
+handling for wide glyphs and long wrapped lines is not yet exhaustive.
+
+When stdin/stdout are redirected, or when tests inject a stream, we retain
+`std::getline` behavior for scripts rather than interpreting escape bytes or
+emitting ANSI cursor control. This keeps headless batch execution deterministic
+and independent of any terminal device. Neither SDL3 nor Notcurses is needed.
+
 ## Optional SDL3 window shell
 
 On Debian sid, install the SDL3 development package, then enable the backend explicitly:
@@ -76,8 +99,9 @@ The `play` menu entry now loads the built-in `demo.level` manifest through the r
 store and prepared-level lifecycle rather than constructing example objects directly. Returning
 to the menu unloads the active level and releases its asset references.
 
-The terminal and headless command services also support `resource list`,
-`resource mount <directory>`, `level inspect <name>`, `level prepare <name>`, `level activate`,
+The terminal and headless command services also support `resource list`
+(`resource mounts` alias), `resource cache`, `resource mount <directory>`,
+`resource unmount <id|mount-path-or-name>`, `level inspect <name>`, `level prepare <name>`, `level activate`,
 `level load <name>`, `level discard`, `level status`, `level unload`, and `asset stats`.
 See [LEVEL_LOADING.md](LEVEL_LOADING.md) for usage, limits and the intentionally synthetic file
 format. Original `.MSN` and game-archive decoding are not implemented yet.

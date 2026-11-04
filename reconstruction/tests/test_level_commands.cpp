@@ -100,17 +100,49 @@ static void test_commands_and_directory_provider()
            "CLI mount directory");
     expect(i76_execute_command(game, "resource list").message.find("(directory)") !=
                std::string::npos, "directory mount listed");
+    expect(i76_execute_command(game, "resource list").message.find("[2]") !=
+               std::string::npos, "stable mount id visible");
+    expect(i76_execute_command(game, "resource unmount 2").code == i76_result_code::ok,
+           "unmount idle directory");
+    expect(i76_execute_command(game, "resource unmount 2").code ==
+               i76_result_code::invalid_argument, "reject already removed mount");
+    expect(i76_execute_command(game, mount_command).code == i76_result_code::ok,
+           "remount directory with fresh id");
+    expect(i76_execute_command(game, "resource list").message.find("[3]") !=
+               std::string::npos, "remount receives new id");
+    expect(i76_execute_command(game, "resource unmount abc").code ==
+               i76_result_code::invalid_argument, "invalid selector rejected");
+    expect(i76_execute_command(game, "resource unmount 0").code ==
+               i76_result_code::invalid_argument, "zero selector rejected");
+    expect(i76_execute_command(game, "resource unmount 18446744073709551616").code ==
+               i76_result_code::invalid_argument, "overflowing selector rejected");
+    expect(i76_execute_command(game, "resource mounts").message.find("(directory)") !=
+               std::string::npos, "mount-list alias");
+
     expect(i76_execute_command(game, "level load external.level").code == i76_result_code::ok,
            "load fixture from directory provider");
     expect(i76_world_count(game.world) == 1U &&
                i76_world_lookup(game.world, i76_world_handle_at(game.world, 0U))->name == "tower",
            "external level object instantiated");
+    expect(i76_execute_command(game, "resource cache").message.find("external.bin") !=
+               std::string::npos, "resource cache lists acquired files");
+    expect(i76_execute_command(game, "resource unmount 3").message.find("retained") !=
+               std::string::npos, "active-level lease prevents unmount");
     stats = i76_resource_get_stats(game.resources);
     expect(stats.mount_count == 2U && stats.cached_bytes == 11U && stats.references == 1U,
            "external dependency leased, bytes accounted");
     expect(i76_execute_command(game, "level unload").code == i76_result_code::ok &&
                i76_resource_get_stats(game.resources).references == 0U,
            "external asset lease released");
+    expect(i76_execute_command(game,
+                               "resource unmount " +
+                                   (root / ".." / root.filename()).string()).code ==
+               i76_result_code::ok,
+           "directory unmount by canonicalizable path after unloading level");
+    expect(i76_execute_command(game, "resource unmount builtin").code == i76_result_code::ok,
+           "exact-name memory unmount supported");
+    expect(i76_execute_command(game, "resource list").message.find("mounts=0") !=
+               std::string::npos, "all mounts removed");
     expect(i76_execute_command(game, "level help extra").code ==
                i76_result_code::invalid_argument, "reject extraneous level args");
     expect(!record.diagnostics.empty() &&

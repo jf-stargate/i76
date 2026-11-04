@@ -1,4 +1,5 @@
 #include "i76/command.h"
+#include "i76/line_editor.h"
 #include "i76/runtime.h"
 #include "i76/shell.h"
 #include "i76/shell_frontends.h"
@@ -42,6 +43,7 @@ static std::int32_t run(int argc, char* argv[])
     std::vector<std::string> commands = {};
     std::string shell_mode = {};
     std::string line = {};
+    i76_line_editor editor = {};
     bool interactive = false;
     std::uint32_t maximum_frames = 0;
     std::int32_t exit_code = 0;
@@ -146,9 +148,11 @@ static std::int32_t run(int argc, char* argv[])
                 break;
             }
             process_runtime_command(game, command, exit_code);
+            i76_line_editor_remember(editor, command);
         }
         if (interactive && !game.state.exit_requested) {
-            while (!game.state.exit_requested && std::getline(std::cin, line)) {
+            while (!game.state.exit_requested &&
+                   i76_terminal_read_line(std::cin, std::cout, editor, "i76> ", line)) {
                 process_runtime_command(game, line, exit_code);
             }
         }

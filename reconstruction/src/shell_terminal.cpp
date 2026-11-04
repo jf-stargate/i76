@@ -1,4 +1,5 @@
 #include "i76/shell_frontends.h"
+#include "i76/line_editor.h"
 
 #include <iostream>
 
@@ -39,6 +40,7 @@ std::int32_t i76_run_terminal_shell(i76_shell_state& shell, i76_runtime& game,
 {
     std::int32_t exit_code = 0;
     std::string line = {};
+    i76_line_editor editor = {};
 
     if (!shell.initialized || !game.state.initialized) {
         errors << "shell or runtime not initialized\n";
@@ -51,12 +53,12 @@ std::int32_t i76_run_terminal_shell(i76_shell_state& shell, i76_runtime& game,
             break;
         }
         process_shell_command(shell, game, command, exit_code, output, errors);
+        i76_line_editor_remember(editor, command);
     }
 
     if (interactive && !game.state.exit_requested) {
         while (!game.state.exit_requested) {
-            output << "i76> " << std::flush;
-            if (!std::getline(input, line)) {
+            if (!i76_terminal_read_line(input, output, editor, "i76> ", line)) {
                 break;
             }
             process_shell_command(shell, game, line, exit_code, output, errors);

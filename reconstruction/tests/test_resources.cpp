@@ -117,6 +117,76 @@ static void test_memory_and_lifetime()
                i76_resource_shutdown(store) == i76_resource_result::ok, "final cleanup");
 }
 
+static void test_unmount_identity_and_leases()
+{
+    i76_resource_store store = {};
+    i76_resource_handle old_handle = {};
+    i76_resource_handle new_handle = {};
+    const i76_resource_entry* entry = nullptr;
+    const std::uint8_t first[] = {'a'};
+    const std::uint8_t second[] = {'b'};
+    std::uint64_t overlay_id = 0;
+    std::uint64_t first_id = 0;
+
+    expect(i76_resource_unmount(store, 1U) == i76_resource_result::not_initialized,
+           "unmount needs initialized store");
+    expect(i76_resource_initialize(store) == i76_resource_result::ok, "unmount test init");
+    expect(i76_resource_unmount(store, 0U) == i76_resource_result::invalid_argument,
+           "zero mount id rejected");
+    expect(i76_resource_unmount(store, 1000U) == i76_resource_result::not_found,
+           "unknown mount id rejected");
+    expect(i76_resource_mount_memory(store, "base") == i76_resource_result::ok,
+           "first mount");
+    first_id = store.mounts.back().id;
+    expect(first_id != 0U && i76_resource_add_memory(store, "base", "a.dat", first) ==
+               i76_resource_result::ok, "first stable mount id");
+    expect(i76_resource_mount_memory(store, "overlay") == i76_resource_result::ok,
+           "second mount");
+    overlay_id = store.mounts.back().id;
+    expect(overlay_id > first_id, "mount ids monotonically increase");
+    expect(i76_resource_add_memory(store, "overlay", "a.dat", second) ==
+               i76_resource_result::ok, "overlay file");
+    expect(i76_resource_acquire(store, "a.dat", old_handle) == i76_resource_result::ok,
+           "acquire overriding resource");
+    entry = i76_resource_lookup(store, old_handle);
+    expect(entry != nullptr && entry->source_mount_id == overlay_id &&
+               entry->bytes.front() == 'b', "leases associate with exact source mount id");
+    expect(i76_resource_unmount(store, overlay_id) == i76_resource_result::busy &&
+               store.mounts.size() == 2U, "cannot unmount retained resource");
+    expect(i76_resource_unmount(store, first_id) == i76_resource_result::ok &&
+               store.mounts.size() == 1U && store.mounts.front().id == overlay_id,
+           "unmount independent idle mount without shifting ids");
+    expect(i76_resource_release(store, old_handle) == i76_resource_result::ok,
+           "release allows unmount");
+    expect(i76_resource_unmount(store, overlay_id) == i76_resource_result::ok &&
+               store.mounts.empty(), "unmount after lease release");
+    expect(i76_resource_acquire(store, "a.dat", new_handle) ==
+               i76_resource_result::not_found, "removed mount is no longer visible");
+    expect(i76_resource_mount_memory(store, "base") == i76_resource_result::ok &&
+               store.mounts.back().id > overlay_id, "remount never reuses mount ID");
+    expect(i76_resource_add_memory(store, "base", "a.dat", first) ==
+               i76_resource_result::ok &&
+               i76_resource_acquire(store, "a.dat", new_handle) ==
+               i76_resource_result::ok && new_handle.generation > old_handle.generation,
+           "remounted resource has fresh lease identity");
+    expect(i76_resource_release(store, new_handle) == i76_resource_result::ok &&
+               i76_resource_shutdown(store) == i76_resource_result::ok,
+           "unmount test shutdown");
+    expect(i76_resource_initialize(store) == i76_resource_result::ok &&
+               i76_resource_mount_memory(store, "after_shutdown") ==
+               i76_resource_result::ok && store.mounts.back().id > overlay_id,
+           "mount ID history survives reinitialize");
+    expect(i76_resource_shutdown(store) == i76_resource_result::ok, "final release");
+    expect(i76_resource_initialize(store) == i76_resource_result::ok,
+           "initialize for mount ID overflow test");
+    store.last_mount_id = std::numeric_limits<std::uint64_t>::max();
+    expect(i76_resource_mount_memory(store, "overflow") ==
+               i76_resource_result::capacity_exceeded && store.mounts.empty(),
+           "mount ID overflow rejected without mutation");
+    expect(i76_resource_shutdown(store) == i76_resource_result::ok,
+           "shutdown after overflow rejection");
+}
+
 static void test_directory()
 {
     i76_resource_store store = {};
@@ -169,6 +239,7 @@ int main()
 {
     test_normalize();
     test_memory_and_lifetime();
+    test_unmount_identity_and_leases();
     test_directory();
     return failures == 0U ? 0 : 1;
 }

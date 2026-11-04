@@ -36,6 +36,7 @@ struct i76_resource_file {
 };
 
 struct i76_resource_mount {
+    std::uint64_t id{};
     i76_resource_provider_kind kind{};
     std::string name{};
     std::string root{};
@@ -44,6 +45,7 @@ struct i76_resource_mount {
 
 struct i76_resource_entry {
     bool occupied{};
+    std::uint64_t source_mount_id{};
     i76_resource_handle handle{};
     std::string name{};
     std::string source{};
@@ -54,6 +56,7 @@ struct i76_resource_entry {
 struct i76_resource_store {
     bool initialized{};
     std::uint64_t last_generation{};
+    std::uint64_t last_mount_id{};
     std::vector<i76_resource_mount> mounts{};
     std::vector<i76_resource_entry> entries{};
 };
@@ -74,6 +77,12 @@ i76_resource_result i76_resource_initialize(i76_resource_store& store) noexcept;
 i76_resource_result i76_resource_shutdown(i76_resource_store& store) noexcept;
 i76_resource_result i76_resource_mount_memory(i76_resource_store& store, std::string_view name);
 i76_resource_result i76_resource_mount_directory(i76_resource_store& store, std::string_view path);
+// Mount IDs are stable across removals; an in-use mount cannot be removed.
+i76_resource_result i76_resource_unmount(i76_resource_store& store,
+                                          std::uint64_t mount_id) noexcept;
+i76_resource_result i76_resource_find_mount(const i76_resource_store& store,
+                                              std::string_view name,
+                                              std::uint64_t& mount_id);
 i76_resource_result i76_resource_add_memory(i76_resource_store& store, std::string_view mount,
                                              std::string_view name,
                                              std::span<const std::uint8_t> bytes);
