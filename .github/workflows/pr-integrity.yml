@@ -14,10 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
-      # Run validator from protected BASE commit, never the untrusted PR.
+      # Always execute the validator from current protected main, never PR code
+      # or the event's potentially stale pull_request.base.sha.
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: refs/heads/main
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
@@ -36,13 +37,26 @@ jobs:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          git fetch --no-tags origin "+refs/pull/${PR_NUMBER}/head:refs/remotes/origin/i76-pr-candidate"
+          git fetch --no-tags origin \
+            "+refs/pull/${PR_NUMBER}/head:refs/remotes/origin/i76-pr-candidate" \
+            "+refs/heads/main:refs/remotes/origin/i76-trusted-main"
           [[ "$(git rev-parse refs/remotes/origin/i76-pr-candidate)" == "$EXPECTED_HEAD" ]]
+          # Fail closed if main changed after the protected checkout. Never
+          # substitute a PR-controlled or stale commit for trusted policy.
+          [[ "$(git rev-parse HEAD)" == "$(git rev-parse refs/remotes/origin/i76-trusted-main)" ]] || {
+            echo "Protected main advanced during integrity validation; rerun required" >&2
+            exit 1
+          }
       - name: Inspect candidate without executing submitted files
+        shell: bash
         env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
-        run: >-
-          python .github/scripts/pr_integrity.py --repo . --trusted-root .
-          --base-sha "$BASE_SHA" --head-sha "$HEAD_SHA" --branch "$HEAD_BRANCH"
+        run: |
+          set -euo pipefail
+          # Compare against the actual merge-base, not a cached PR base SHA.
+          # The policy/validator itself always comes from protected main (HEAD).
+          DIFF_BASE_SHA="$(git merge-base HEAD "$HEAD_SHA")"
+          [[ -n "$DIFF_BASE_SHA" ]]
+          python .github/scripts/pr_integrity.py --repo . --trusted-root . \
+            --base-sha "$DIFF_BASE_SHA" --head-sha "$HEAD_SHA" --branch "$HEAD_BRANCH"
