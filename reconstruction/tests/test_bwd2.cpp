@@ -74,6 +74,92 @@ static std::vector<std::uint8_t> example()
     return chunk("BWD2", root);
 }
 
+// The retail writer emits an eight-byte BWD2 marker followed by sibling records.
+static std::vector<std::uint8_t> retail_example()
+{
+    std::vector<std::uint8_t> enclosed = example();
+    std::vector<std::uint8_t> bytes = chunk("BWD2", {});
+
+    bytes.insert(bytes.end(), enclosed.begin() + 8U, enclosed.end());
+    return bytes;
+}
+
+// The stock mission layout is a flat top-level stream with bounded section bodies.
+static void test_full_retail_layout()
+{
+    std::vector<std::uint8_t> bytes = chunk("BWD2", {});
+    std::vector<std::uint8_t> adef = {};
+    i76_bwd2_document document = {};
+    i76_bwd2_error error = {};
+
+    append(bytes, revision("REV", 2U));
+    append(bytes, chunk("WDEF", revision("WREV", 9U)));
+    append(bytes, chunk("TDEF", revision("TREV", 4U)));
+    append(bytes, chunk("RDEF", revision("RREV", 1U)));
+    append(bytes, chunk("ODEF", revision("OREV", 3U)));
+    append(bytes, chunk("LDEF", revision("LREV", 1U)));
+    append(adef, revision("AREV", 1U));
+    append(adef, chunk("FSM", {}));
+    append(adef, chunk("EXIT", {}));
+    append(bytes, chunk("ADEF", adef));
+    append(bytes, chunk("EXIT", {}));
+
+    expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok &&
+               document.chunks.size() == 17U && document.byte_count == bytes.size(),
+           "full retail-style outer stream parses with bounded sections");
+    expect(std::string_view(document.chunks[0].tag) == "BWD2" &&
+               std::string_view(document.chunks[1].tag) == "REV" &&
+               std::string_view(document.chunks[2].tag) == "WDEF" &&
+               std::string_view(document.chunks[4].tag) == "TDEF" &&
+               std::string_view(document.chunks[6].tag) == "RDEF" &&
+               std::string_view(document.chunks[8].tag) == "ODEF" &&
+               std::string_view(document.chunks[10].tag) == "LDEF" &&
+               std::string_view(document.chunks[12].tag) == "ADEF" &&
+               std::string_view(document.chunks[16].tag) == "EXIT",
+           "original observed section ordering remains visible");
+    expect(document.chunks[12].parent == 0U &&
+               document.chunks[13].parent == 13U &&
+               document.chunks[14].parent == 13U &&
+               document.chunks[16].parent == 0U &&
+               document.chunks[16].offset + document.chunks[16].size == bytes.size(),
+           "section depths and terminal EXIT bounds are preserved");
+}
+
+static void test_retail_marker()
+{
+    std::vector<std::uint8_t> bytes = retail_example();
+    i76_bwd2_document document = {};
+    i76_bwd2_document again = {};
+    i76_bwd2_error error = {};
+
+    expect(i76_bwd2_parse(bytes, document, error) == i76_bwd2_result::ok &&
+               document.byte_count == bytes.size() && document.chunks.size() == 13U,
+           "retail marker followed by sibling records parsed to EOF");
+    expect(std::string_view(document.chunks[0].tag) == "BWD2" &&
+               document.chunks[0].size == 8U &&
+               document.chunks[0].parent == 0U && document.chunks[0].depth == 0U,
+           "BWD2 header remains an eight-byte marker");
+    expect(std::string_view(document.chunks[1].tag) == "REV" &&
+               document.chunks[1].offset == 8U &&
+               document.chunks[1].parent == 0U && document.chunks[1].depth == 0U &&
+               document.chunks[1].has_revision && document.chunks[1].revision == 2U,
+           "outer REV is a top-level sibling of the marker");
+    expect(std::string_view(document.chunks[2].tag) == "WDEF" &&
+               document.chunks[2].parent == 0U && document.chunks[2].depth == 0U &&
+               std::string_view(document.chunks[3].tag) == "WREV" &&
+               document.chunks[3].parent == 3U && document.chunks[3].depth == 1U,
+           "container children retain correct one-based parent indices");
+    expect(std::string_view(document.chunks[8].tag) == "ADEF" &&
+               document.chunks[8].parent == 0U && document.chunks[9].parent == 9U &&
+               std::string_view(document.chunks[10].tag) == "FSM" &&
+               document.chunks[10].payload_size == 0U,
+           "retail ADEF and empty FSM are inventoried");
+    expect(i76_bwd2_parse(bytes, again, error) == i76_bwd2_result::ok &&
+               again.chunks.size() == document.chunks.size() &&
+               again.chunks[1].offset == 8U,
+           "repeated marker inspection is deterministic");
+}
+
 static void test_structure()
 {
     std::vector<std::uint8_t> bytes = example();
@@ -176,8 +262,21 @@ static void test_invalid_inputs()
                   "root length outside supplied bytes rejected");
     bytes = chunk("BWD2", {});
     bytes.push_back(0U);
-    check_failure(bytes, i76_bwd2_result::trailing_data, 8U,
-                  "trailing root bytes rejected");
+    check_failure(bytes, i76_bwd2_result::truncated_header, 8U,
+                  "retail marker followed by incomplete sibling rejected");
+    bytes = chunk("BWD2", chunk("EXIT", {}));
+    bytes.push_back(0U);
+    check_failure(bytes, i76_bwd2_result::trailing_data, 16U,
+                  "enclosing-root compatibility fixture still rejects trailing bytes");
+    bytes = retail_example();
+    bytes[8U + 4U] = 7U;
+    check_failure(bytes, i76_bwd2_result::invalid_length, 8U,
+                  "retail sibling length below eight bytes rejected");
+    bytes = retail_example();
+    bytes.push_back(0U);
+    check_failure(bytes, i76_bwd2_result::truncated_header,
+                  static_cast<std::uint32_t>(bytes.size() - 1U),
+                  "retail stream rejects trailing incomplete header");
     bytes = chunk("BWD2", {0U});
     check_failure(bytes, i76_bwd2_result::truncated_header, 8U,
                   "truncated nested header rejected");
@@ -245,7 +344,7 @@ static void test_resource_lifetime()
     i76_resource_handle handle = {};
     i76_bwd2_document document = {};
     i76_bwd2_error error = {};
-    std::vector<std::uint8_t> bytes = example();
+    std::vector<std::uint8_t> bytes = retail_example();
     std::vector<std::uint8_t> bad = chunk("NOPE", {});
     i76_resource_stats stats = {};
 
@@ -290,6 +389,8 @@ static void test_resource_lifetime()
 int main()
 {
     test_structure();
+    test_retail_marker();
+    test_full_retail_layout();
     test_invalid_inputs();
     test_resource_lifetime();
     return failures == 0U ? 0 : 1;
