@@ -1,0 +1,11 @@
+# Documentation impact — retail WRLD wire layout and dependencies
+
+Run `i76exe-20261104T183156Z-085a5e76`, track i76exe, base `7406234ef017a3fbb3539f2cc29cfd9e601dddbd`. Manifest identifies exact EXE/v100 inputs. Research PR link is in the PR description; acceptance is pending human review.
+
+Classification: **candidate update / narrows historical claims**. Likely future targets: `manual/reference/engine/resource_acquisition.md` plus a new mission-format reference. Historical inputs: `ref/level_format/i76_runtime_level_and_terrain_format_notes.md` WDEF/WRLD section, `ref/material_format/i76_material_extraction_reference.md` palette/table caveats, and `ref/mission_execution/LOADER_VALIDATION_AND_FAILURE_CONTRACT.md` callback ABI. Reconstruction baseline is merged PR#125 (milestone3; WRLD intentionally opaque).
+
+Candidate findings WRLD-001..004 in findings.json map to WRLD_FORMAT.md / WRLD_CONTROL_FLOW.md / WRLD_RESOURCE_DEPENDENCIES.md / WRLD_CORPUS_COMPARISON.md. All are binary-static or corpus observations with stated confidence. Exact source addresses include 004b8a10, 004b89e0, 00500ca0, 00477b00, 004908f0, 00401540, 004026c0, 004703a0 and 00492770..a0. Original-instruction selections and byte validation are in evidence/. Artifact hashes and lengths are in manifest.json.
+
+Proposed additions: 331-byte WREV9 layout; header-versus-payload offset correction; eleven 13-byte slots; copied numeric table; explicit unknowns; direct/conditional/derived acquisition map. Narrow the legacy WRLD family list: TER belongs to TDEF/ZONE, PCF is derived externally, HZD here means horizon manifest, and terrain defaults/map template involve name transformation. Preserve LUM math and physical material labels as unresolved. No native gameplay success is claimed.
+
+Reconciliation needed: this run confirms existing ACT/LUM/TBL leads and sibling-chunk contract, but filename occurrence alone is insufficient to prove asset selection. The eight material unknown words and tail stay opaque. A separate documentation steward should reconcile this run only after merge and prepare a fresh-base promotion/reference PR with explicit human acceptance. No canonical change is made here; there are no edits to manual/, ref/, reconstruction/, agent/promotions/, shared tools or governance.
