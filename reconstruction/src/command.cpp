@@ -1,6 +1,7 @@
 #include "i76/command.h"
 #include "i76/console.h"
 #include "i76/bwd2.h"
+#include "i76/retail_mission.h"
 
 #include <charconv>
 #include <cstdint>
@@ -416,6 +417,96 @@ static i76_command_result inspect_bwd2(i76_runtime& game, std::string_view name)
     return make_reply(game, i76_result_code::ok, std::move(message));
 }
 
+
+static i76_command_result inspect_retail_mission(i76_runtime& game,
+                                                  std::string_view action,
+                                                  std::string_view name)
+{
+    i76_retail_mission_definition mission{};
+    i76_retail_terrain_samples samples{};
+    i76_retail_error error{};
+    i76_retail_result result{i76_retail_result::ok};
+    std::string message{};
+
+    result = i76_retail_mission_read(game.resources, name, mission, error);
+    if (result != i76_retail_result::ok) {
+        message = "retail mission inspection failed: ";
+        message += i76_retail_result_name(result);
+        message += " at " + byte_offset(error.offset);
+        return make_reply(game, i76_result_code::invalid_argument, std::move(message));
+    }
+
+    if (action == "summary") {
+        message = "retail mission " + mission.name +
+                  " bytes=" + std::to_string(mission.byte_count) +
+                  " chunks=" + std::to_string(mission.chunk_count) +
+                  " revision=" + std::to_string(mission.revision) +
+                  " (read-only; not loaded)";
+        message += "\n  WRLD=" + std::to_string(mission.wrld_records) +
+                   " OBJ=" + std::to_string(mission.object_records) +
+                   " RSEG=" + std::to_string(mission.route_records) +
+                   " FSM=" + std::to_string(mission.fsm_records);
+        for (const i76_retail_section& section : mission.sections) {
+            message += "\n  " + section.tag + " bytes=" + std::to_string(section.bytes) +
+                       " records=" + std::to_string(section.direct_children);
+            if (section.has_revision) {
+                message += " revision=" + std::to_string(section.revision);
+            }
+        }
+        if (mission.terrain.has_zmap) {
+            message += "\n  ZMAP active_pages=" +
+                       std::to_string(mission.terrain.active_pages) +
+                       " mapped_cells=" + std::to_string(mission.terrain.mapped_cells) +
+                       " referenced_pages=" + std::to_string(mission.terrain.referenced_pages);
+        }
+        if (mission.terrain.has_zone) {
+            message += "\n  ZONE sidecar=" + mission.terrain.resource_name;
+        }
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+
+    if (action == "dependencies") {
+        message = "retail dependencies " + mission.name + " (known references only)";
+        if (!mission.terrain.has_zone) {
+            message += "\n  TER: no ZONE reference decoded";
+        } else {
+            result = i76_retail_terrain_probe(game.resources, mission, samples, error);
+            message += "\n  TER " + mission.terrain.resource_name + " status=" +
+                       i76_retail_result_name(result);
+            if (result == i76_retail_result::ok) {
+                message += " pages=" + std::to_string(samples.pages);
+            }
+        }
+        message += "\n  WRLD records=" + std::to_string(mission.wrld_records) +
+                   " (resource fields not yet decoded)";
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+
+    result = i76_retail_terrain_probe(game.resources, mission, samples, error);
+    if (result != i76_retail_result::ok) {
+        message = "retail terrain inspection failed: ";
+        message += i76_retail_result_name(result);
+        message += " (" + mission.terrain.resource_name + ")";
+        return make_reply(game, i76_result_code::invalid_argument, std::move(message));
+    }
+    message = "retail terrain " + mission.name +
+              " active_pages=" + std::to_string(mission.terrain.active_pages) +
+              " mapped_cells=" + std::to_string(mission.terrain.mapped_cells) +
+              " referenced_pages=" + std::to_string(mission.terrain.referenced_pages) +
+              " TER=" + mission.terrain.resource_name +
+              " samples=" + std::to_string(samples.samples) +
+              " height_min=" + std::to_string(samples.height_min) +
+              " height_max=" + std::to_string(samples.height_max) +
+              " surface_flags=" + std::to_string(samples.surface_flags);
+    for (std::size_t index = 0U; index < samples.surface_classes.size(); ++index) {
+        if (samples.surface_classes[index] != 0U) {
+            message += "\n  surface_class=" + std::to_string(index) +
+                       " samples=" + std::to_string(samples.surface_classes[index]);
+        }
+    }
+    return make_reply(game, i76_result_code::ok, std::move(message));
+}
+
 static i76_command_result execute_level_command(i76_runtime& game, std::string_view args)
 {
     std::string_view verb = {};
@@ -426,8 +517,12 @@ static i76_command_result execute_level_command(i76_runtime& game, std::string_v
     verb = take_token(args);
     if (verb == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "level commands: inspect <name> | sections <BWD2 name> | prepare <synthetic name> | activate | load <synthetic name> | "
+                          "level commands: inspect <name> | sections <BWD2 name> | summary <mission> | terrain <mission> | dependencies <mission> | prepare <synthetic name> | activate | load <synthetic name> | "
                           "discard | unload | status");
+    }
+    if ((verb == "summary" || verb == "terrain" || verb == "dependencies") &&
+        !args.empty()) {
+        return inspect_retail_mission(game, verb, args);
     }
     if (verb == "status" && args.empty()) {
         message = "level loaded=" + (game.active_level.loaded ? game.active_level.definition.name :
