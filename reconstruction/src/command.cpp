@@ -241,18 +241,49 @@ static i76_command_result execute_resource_command(i76_runtime& game, std::strin
     i76_resource_result code = i76_resource_result::ok;
     std::string message = {};
     std::size_t index = 0;
+    std::size_t entry_index = 0;
+    std::uint64_t id = 0;
+    std::uint64_t references = 0;
+    const char* begin = nullptr;
+    const char* end = nullptr;
+    std::from_chars_result parsed = {};
+    bool matched = false;
 
     verb = take_token(args);
     if (verb == "help" && args.empty()) {
         return make_reply(game, i76_result_code::ok,
-                          "resource commands: resource list | mount <directory>");
+                          "resource commands: resource list | resource mounts | "
+                          "resource cache | resource mount <directory> | "
+                          "resource unmount <id|name>");
     }
-    if (verb == "list" && args.empty()) {
+    if ((verb == "list" || verb == "mounts") && args.empty()) {
         message = "resource mounts=" + std::to_string(game.resources.mounts.size());
         for (index = 0; index < game.resources.mounts.size(); ++index) {
-            message += "\n  " + game.resources.mounts[index].name;
-            message += game.resources.mounts[index].kind == i76_resource_provider_kind::memory ?
+            const i76_resource_mount& mount = game.resources.mounts[index];
+            references = 0;
+            for (entry_index = 0; entry_index < game.resources.entries.size(); ++entry_index) {
+                const i76_resource_entry& entry = game.resources.entries[entry_index];
+                if (entry.occupied && entry.source_mount_id == mount.id) {
+                    references += entry.references;
+                }
+            }
+            message += "\n  [" + std::to_string(mount.id) + "] " + mount.name;
+            message += mount.kind == i76_resource_provider_kind::memory ?
                            " (memory)" : " (directory)";
+            message += " references=" + std::to_string(references);
+        }
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if (verb == "cache" && args.empty()) {
+        message = "resource cached=" + std::to_string(i76_resource_get_stats(game.resources).cached_count);
+        for (index = 0; index < game.resources.entries.size(); ++index) {
+            const i76_resource_entry& entry = game.resources.entries[index];
+            if (!entry.occupied) {
+                continue;
+            }
+            message += "\n  " + entry.name + " mount=" + std::to_string(entry.source_mount_id) +
+                       " references=" + std::to_string(entry.references) +
+                       " bytes=" + std::to_string(entry.bytes.size());
         }
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
@@ -262,9 +293,45 @@ static i76_command_result execute_resource_command(i76_runtime& game, std::strin
             return make_reply(game, i76_result_code::invalid_argument,
                               resource_result_name(code));
         }
-        return make_reply(game, i76_result_code::ok, "mounted directory: " + std::string(args));
+        return make_reply(game, i76_result_code::ok,
+                          "mounted directory [" +
+                          std::to_string(game.resources.mounts.back().id) + "]: " +
+                          game.resources.mounts.back().name);
     }
-    return make_reply(game, i76_result_code::invalid_argument, "invalid resource command");
+    if (verb == "unmount" && !args.empty()) {
+        for (index = 0; index < game.resources.mounts.size(); ++index) {
+            if (game.resources.mounts[index].name == args) {
+                if (matched) {
+                    return make_reply(game, i76_result_code::invalid_argument,
+                                      "ambiguous mount name; use the numeric ID from resource list");
+                }
+                id = game.resources.mounts[index].id;
+                matched = true;
+            }
+        }
+        if (!matched) {
+            begin = args.data();
+            end = begin + args.size();
+            parsed = std::from_chars(begin, end, id, 10);
+            if (parsed.ec != std::errc{} || parsed.ptr != end || id == 0U) {
+                return make_reply(game, i76_result_code::invalid_argument,
+                                  "usage: resource unmount <mount id|exact mount name>");
+            }
+        }
+        code = i76_resource_unmount(game.resources, id);
+        if (code != i76_resource_result::ok) {
+            message = "resource unmount failed: ";
+            message += resource_result_name(code);
+            if (code == i76_resource_result::busy) {
+                message += " (unload/discard the level before unmounting)";
+            }
+            return make_reply(game, i76_result_code::invalid_argument, std::move(message));
+        }
+        return make_reply(game, i76_result_code::ok,
+                          "unmounted resource [" + std::to_string(id) + "]");
+    }
+    return make_reply(game, i76_result_code::invalid_argument,
+                      "invalid resource command (resource help)");
 }
 
 static i76_command_result execute_asset_command(i76_runtime& game, std::string_view args)

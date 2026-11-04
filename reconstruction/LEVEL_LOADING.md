@@ -141,3 +141,24 @@ Helgrind is not applicable while the core remains single-threaded.
 Next: a separately tested **BWD2 chunk reader** and a case-insensitive/archived resource-provider
 implementation. That work will translate original level records into a typed definition before
 attempting retail object construction, terrain allocation, FSM actor binding or executable code.
+
+## Mount inspection and removal
+
+Use `resource list` (or `resource mounts`) to see **stable, one-based mount IDs**,
+source type, mount name/root and current outstanding byte-lease references.
+`resource cache` displays acquired resource keys, originating mount IDs,
+reference counts and retained sizes. The console supports both
+`resource unmount <id>` and `resource unmount <exact mount name>`; numeric IDs
+are preferred for paths containing spaces or potentially ambiguous names.
+Mount IDs never change when another mount is removed, and new mounts receive
+higher IDs after an unload or store reinitialization.
+
+An unmount is refused with `resource still retained` while any resource acquired
+from that mount has an outstanding reference (including a prepared or active
+level). First use `level discard` or `level unload` as appropriate, then retry.
+Removing a mount does not affect any other mount or change the identity of
+previously acquired resource handles. The default `builtin` fixture mount may
+also be removed, after which `demo.level` is unavailable until the runtime is
+reinitialized. Resource lookup still uses the existing last-mounted-first
+priority for **uncached** names; already acquired byte leases retain their
+original source until the last reference is released.

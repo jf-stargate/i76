@@ -106,9 +106,12 @@ i76_resource_result i76_resource_mount_memory(i76_resource_store& store, std::st
     if (!store.initialized) {
         return i76_resource_result::not_initialized;
     }
-    if (name.empty() || name.size() > i76_resource_max_name_length ||
-        store.mounts.size() >= i76_resource_max_mounts) {
+    if (name.empty() || name.size() > i76_resource_max_name_length) {
         return i76_resource_result::invalid_argument;
+    }
+    if (store.mounts.size() >= i76_resource_max_mounts ||
+        store.last_mount_id == std::numeric_limits<std::uint64_t>::max()) {
+        return i76_resource_result::capacity_exceeded;
     }
     for (index = 0; index < store.mounts.size(); ++index) {
         if (store.mounts[index].name == name) {
@@ -117,7 +120,9 @@ i76_resource_result i76_resource_mount_memory(i76_resource_store& store, std::st
     }
     mount.name = name;
     mount.kind = i76_resource_provider_kind::memory;
+    mount.id = store.last_mount_id + 1U;
     store.mounts.push_back(std::move(mount));
+    ++store.last_mount_id;
     return i76_resource_result::ok;
 }
 
@@ -131,7 +136,8 @@ i76_resource_result i76_resource_mount_directory(i76_resource_store& store, std:
     if (!store.initialized) {
         return i76_resource_result::not_initialized;
     }
-    if (store.mounts.size() >= i76_resource_max_mounts) {
+    if (store.mounts.size() >= i76_resource_max_mounts ||
+        store.last_mount_id == std::numeric_limits<std::uint64_t>::max()) {
         return i76_resource_result::capacity_exceeded;
     }
     status = i76_resource_directory_validate(path, root);
@@ -145,10 +151,40 @@ i76_resource_result i76_resource_mount_directory(i76_resource_store& store, std:
         }
     }
     mount.kind = i76_resource_provider_kind::directory;
+    mount.id = store.last_mount_id + 1U;
     mount.name = root;
     mount.root = std::move(root);
     store.mounts.push_back(std::move(mount));
+    ++store.last_mount_id;
     return i76_resource_result::ok;
+}
+
+i76_resource_result i76_resource_unmount(i76_resource_store& store,
+                                          std::uint64_t mount_id) noexcept
+{
+    std::size_t index = 0;
+    std::size_t entry_index = 0;
+
+    if (!store.initialized) {
+        return i76_resource_result::not_initialized;
+    }
+    if (mount_id == 0U) {
+        return i76_resource_result::invalid_argument;
+    }
+    for (index = 0; index < store.mounts.size(); ++index) {
+        if (store.mounts[index].id != mount_id) {
+            continue;
+        }
+        for (entry_index = 0; entry_index < store.entries.size(); ++entry_index) {
+            if (store.entries[entry_index].occupied &&
+                store.entries[entry_index].source_mount_id == mount_id) {
+                return i76_resource_result::busy;
+            }
+        }
+        store.mounts.erase(store.mounts.begin() + static_cast<std::ptrdiff_t>(index));
+        return i76_resource_result::ok;
+    }
+    return i76_resource_result::not_found;
 }
 
 i76_resource_result i76_resource_add_memory(i76_resource_store& store, std::string_view mount,
@@ -200,6 +236,7 @@ i76_resource_result i76_resource_acquire(i76_resource_store& store, std::string_
     i76_resource_handle new_handle = {};
     std::vector<std::uint8_t> bytes = {};
     std::string source = {};
+    std::uint64_t source_mount_id = 0;
 
     handle = {};
     if (!store.initialized) {
@@ -229,6 +266,7 @@ i76_resource_result i76_resource_acquire(i76_resource_store& store, std::string_
                 if (mount.files[file_index].name == key) {
                     bytes = mount.files[file_index].bytes;
                     source = mount.name;
+                    source_mount_id = mount.id;
                     found = true;
                     break;
                 }
@@ -237,6 +275,7 @@ i76_resource_result i76_resource_acquire(i76_resource_store& store, std::string_
             status = i76_resource_directory_read(mount.root, key, bytes);
             if (status == i76_resource_result::ok) {
                 source = mount.name;
+                source_mount_id = mount.id;
                 found = true;
             } else if (status != i76_resource_result::not_found) {
                 return status;
@@ -265,6 +304,7 @@ i76_resource_result i76_resource_acquire(i76_resource_store& store, std::string_
     entry.handle = new_handle;
     entry.name = std::move(key);
     entry.source = std::move(source);
+    entry.source_mount_id = source_mount_id;
     entry.bytes = std::move(bytes);
     entry.references = 1U;
     if (selected_slot == store.entries.size()) {

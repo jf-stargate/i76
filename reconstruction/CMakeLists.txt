@@ -47,8 +47,16 @@ foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2)
     endif()
 endforeach()
 
+add_library(i76_terminal_input STATIC src/line_editor.cpp src/terminal_line.cpp)
+target_include_directories(i76_terminal_input PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+if(MSVC)
+    target_compile_options(i76_terminal_input PRIVATE /W4 /permissive-)
+else()
+    target_compile_options(i76_terminal_input PRIVATE -Wall -Wextra -Wpedantic -Wshadow)
+endif()
+
 add_executable(i76 src/main.cpp src/shell_terminal.cpp)
-target_link_libraries(i76 PRIVATE i76_core)
+target_link_libraries(i76 PRIVATE i76_core i76_terminal_input)
 
 if(I76_ENABLE_SDL3)
     find_package(SDL3 3.2 CONFIG REQUIRED)
@@ -57,7 +65,7 @@ if(I76_ENABLE_SDL3)
     target_compile_definitions(i76 PRIVATE I76_ENABLE_SDL3=1)
 endif()
 
-foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2)
+foreach(i76_target IN ITEMS i76_core i76_world i76_assets i76_level i76_bwd2 i76_terminal_input)
     if(I76_ENABLE_SANITIZERS)
         target_compile_options(${i76_target} PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
         target_link_options(${i76_target} PUBLIC -fsanitize=address,undefined)
@@ -106,6 +114,22 @@ if(I76_BUILD_TESTS)
     target_link_libraries(i76_unit_level_commands PRIVATE i76_core)
     add_test(NAME unit_level_commands COMMAND i76_unit_level_commands)
     set_tests_properties(unit_level_commands PROPERTIES LABELS "unit;memcheck")
+
+    add_executable(i76_unit_line_editor tests/test_line_editor.cpp)
+    target_link_libraries(i76_unit_line_editor PRIVATE i76_terminal_input)
+    add_test(NAME unit_line_editor COMMAND i76_unit_line_editor)
+    set_tests_properties(unit_line_editor PROPERTIES LABELS "unit;memcheck")
+
+    if(UNIX)
+        find_package(Python3 COMPONENTS Interpreter QUIET)
+        if(Python3_Interpreter_FOUND)
+            add_test(NAME functional_terminal_keys
+                COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_terminal_pty.py"
+                    "$<TARGET_FILE:i76>")
+            set_tests_properties(functional_terminal_keys PROPERTIES
+                LABELS "functional" TIMEOUT 20)
+        endif()
+    endif()
 
     add_executable(i76_unit_resources tests/test_resources.cpp)
     target_link_libraries(i76_unit_resources PRIVATE i76_assets)
@@ -158,7 +182,7 @@ if(I76_BUILD_TESTS)
     set_tests_properties(unit_shell PROPERTIES LABELS "unit;memcheck")
 
     add_executable(i76_unit_terminal tests/test_shell_terminal.cpp src/shell_terminal.cpp)
-    target_link_libraries(i76_unit_terminal PRIVATE i76_core)
+    target_link_libraries(i76_unit_terminal PRIVATE i76_core i76_terminal_input)
     add_test(NAME unit_terminal COMMAND i76_unit_terminal)
     set_tests_properties(unit_terminal PROPERTIES LABELS "unit;memcheck")
 
@@ -174,6 +198,16 @@ if(I76_BUILD_TESTS)
         LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "objects=2")
     add_test(NAME functional_world_invalid COMMAND i76 --headless --command "object inspect 0:0")
     set_tests_properties(functional_world_invalid PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+
+    add_test(NAME functional_resource_mounts COMMAND i76 --headless
+        --command "resource list" --command "resource cache" --command "resource unmount 1"
+        --command "resource list" --command "asset stats")
+    set_tests_properties(functional_resource_mounts PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "resource mounts=0")
+    add_test(NAME functional_resource_busy COMMAND i76 --headless
+        --command "level prepare demo.level" --command "resource unmount 1")
+    set_tests_properties(functional_resource_busy PROPERTIES
+        LABELS "functional" WILL_FAIL TRUE)
 
     add_test(NAME functional_headless COMMAND i76 --headless --command "step 3" --command status)
     set_tests_properties(functional_headless PROPERTIES
