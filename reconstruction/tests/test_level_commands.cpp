@@ -134,8 +134,11 @@ static void test_commands_and_directory_provider()
     expect(i76_execute_command(game, "level unload").code == i76_result_code::ok &&
                i76_resource_get_stats(game.resources).references == 0U,
            "external asset lease released");
-    expect(i76_execute_command(game, "resource unmount " + root.string()).code == i76_result_code::ok,
-           "directory unmount by path after unloading level");
+    expect(i76_execute_command(game,
+                               "resource unmount " +
+                                   (root / ".." / root.filename()).string()).code ==
+               i76_result_code::ok,
+           "directory unmount by canonicalizable path after unloading level");
     expect(i76_execute_command(game, "resource unmount builtin").code == i76_result_code::ok,
            "exact-name memory unmount supported");
     expect(i76_execute_command(game, "resource list").message.find("mounts=0") !=

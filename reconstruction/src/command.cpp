@@ -247,7 +247,7 @@ static i76_command_result execute_resource_command(i76_runtime& game, std::strin
     const char* begin = nullptr;
     const char* end = nullptr;
     std::from_chars_result parsed = {};
-    bool matched = false;
+    i76_resource_result lookup = i76_resource_result::not_found;
 
     verb = take_token(args);
     if (verb == "help" && args.empty()) {
@@ -299,23 +299,18 @@ static i76_command_result execute_resource_command(i76_runtime& game, std::strin
                           game.resources.mounts.back().name);
     }
     if (verb == "unmount" && !args.empty()) {
-        for (index = 0; index < game.resources.mounts.size(); ++index) {
-            if (game.resources.mounts[index].name == args) {
-                if (matched) {
-                    return make_reply(game, i76_result_code::invalid_argument,
-                                      "ambiguous mount name; use the numeric ID from resource list");
-                }
-                id = game.resources.mounts[index].id;
-                matched = true;
-            }
+        lookup = i76_resource_find_mount(game.resources, args, id);
+        if (lookup == i76_resource_result::invalid_argument) {
+            return make_reply(game, i76_result_code::invalid_argument,
+                              "ambiguous mount name; use the numeric ID from resource list");
         }
-        if (!matched) {
+        if (lookup == i76_resource_result::not_found) {
             begin = args.data();
             end = begin + args.size();
             parsed = std::from_chars(begin, end, id, 10);
             if (parsed.ec != std::errc{} || parsed.ptr != end || id == 0U) {
                 return make_reply(game, i76_result_code::invalid_argument,
-                                  "usage: resource unmount <mount id|exact mount name>");
+                                  "usage: resource unmount <mount id|mount path/name>");
             }
         }
         code = i76_resource_unmount(game.resources, id);

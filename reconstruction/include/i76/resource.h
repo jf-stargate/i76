@@ -80,6 +80,9 @@ i76_resource_result i76_resource_mount_directory(i76_resource_store& store, std:
 // Mount IDs are stable across removals; an in-use mount cannot be removed.
 i76_resource_result i76_resource_unmount(i76_resource_store& store,
                                           std::uint64_t mount_id) noexcept;
+i76_resource_result i76_resource_find_mount(const i76_resource_store& store,
+                                              std::string_view name,
+                                              std::uint64_t& mount_id);
 i76_resource_result i76_resource_add_memory(i76_resource_store& store, std::string_view mount,
                                              std::string_view name,
                                              std::span<const std::uint8_t> bytes);

@@ -148,7 +148,8 @@ Use `resource list` (or `resource mounts`) to see **stable, one-based mount IDs*
 source type, mount name/root and current outstanding byte-lease references.
 `resource cache` displays acquired resource keys, originating mount IDs,
 reference counts and retained sizes. The console supports both
-`resource unmount <id>` and `resource unmount <exact mount name>`; numeric IDs
+`resource unmount <id>` and `resource unmount <mount path/name>`. Directory
+paths are canonicalized before lookup, including Windows path variants; numeric IDs
 are preferred for paths containing spaces or potentially ambiguous names.
 Mount IDs never change when another mount is removed, and new mounts receive
 higher IDs after an unload or store reinitialization.

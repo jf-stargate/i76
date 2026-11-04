@@ -187,6 +187,51 @@ i76_resource_result i76_resource_unmount(i76_resource_store& store,
     return i76_resource_result::not_found;
 }
 
+i76_resource_result i76_resource_find_mount(const i76_resource_store& store,
+                                              std::string_view name,
+                                              std::uint64_t& mount_id)
+{
+    std::string root = {};
+    std::size_t index = 0;
+    std::uint64_t found_id = 0;
+    i76_resource_result status = i76_resource_result::ok;
+
+    mount_id = 0U;
+    if (!store.initialized) {
+        return i76_resource_result::not_initialized;
+    }
+    if (name.empty()) {
+        return i76_resource_result::invalid_argument;
+    }
+    // Match the printed mount name first; canonicalize directory aliases only
+    // when a literal name is not present. Windows may normalize path spelling.
+    for (index = 0; index < store.mounts.size(); ++index) {
+        if (store.mounts[index].name == name) {
+            if (found_id != 0U) {
+                return i76_resource_result::invalid_argument;
+            }
+            found_id = store.mounts[index].id;
+        }
+    }
+    if (found_id == 0U) {
+        status = i76_resource_directory_validate(name, root);
+        if (status == i76_resource_result::ok) {
+            for (index = 0; index < store.mounts.size(); ++index) {
+                if (store.mounts[index].kind == i76_resource_provider_kind::directory &&
+                    store.mounts[index].root == root) {
+                    found_id = store.mounts[index].id;
+                    break;
+                }
+            }
+        }
+    }
+    if (found_id == 0U) {
+        return i76_resource_result::not_found;
+    }
+    mount_id = found_id;
+    return i76_resource_result::ok;
+}
+
 i76_resource_result i76_resource_add_memory(i76_resource_store& store, std::string_view mount,
                                              std::string_view name,
                                              std::span<const std::uint8_t> bytes)

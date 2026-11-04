@@ -101,7 +101,7 @@ to the menu unloads the active level and releases its asset references.
 
 The terminal and headless command services also support `resource list`
 (`resource mounts` alias), `resource cache`, `resource mount <directory>`,
-`resource unmount <id|exact-name>`, `level inspect <name>`, `level prepare <name>`, `level activate`,
+`resource unmount <id|mount-path-or-name>`, `level inspect <name>`, `level prepare <name>`, `level activate`,
 `level load <name>`, `level discard`, `level status`, `level unload`, and `asset stats`.
 See [LEVEL_LOADING.md](LEVEL_LOADING.md) for usage, limits and the intentionally synthetic file
 format. Original `.MSN` and game-archive decoding are not implemented yet.
