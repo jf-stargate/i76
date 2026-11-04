@@ -39,7 +39,8 @@ struct i76_bwd2_chunk {
     std::uint32_t size{};
     std::uint32_t payload_offset{};
     std::uint32_t payload_size{};
-    // One-based parent index within the document; zero means the root.
+    // One-based enclosing-chunk index; zero means a top-level record.
+    // Retail BWD2 is an eight-byte top-level marker, not an enclosing chunk.
     std::uint32_t parent{};
     std::uint8_t depth{};
     bool has_revision{};
@@ -55,7 +56,8 @@ inline constexpr std::size_t i76_bwd2_max_bytes = i76_resource_max_bytes;
 inline constexpr std::uint32_t i76_bwd2_max_chunks = 16384U;
 inline constexpr std::uint8_t i76_bwd2_max_depth = 16U;
 
-// Parse a complete BWD2 root chunk. On failure, `document` is unchanged;
+// Parse a BWD2 stream (retail eight-byte marker or legacy synthetic enclosing root).
+// On failure, `document` is unchanged;
 // `error` contains a stable error class and the offending byte offset.
 i76_bwd2_result i76_bwd2_parse(std::span<const std::uint8_t> bytes,
                                 i76_bwd2_document& document,

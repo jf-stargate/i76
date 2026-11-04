@@ -53,11 +53,20 @@ for inspection is released before the console command completes.
 
 ## File contract and bounds checks
 
-- The file must consist of a single outer `BWD2` record, with a four-byte ASCII
-  FourCC and a **little-endian `uint32_t` total size that includes its eight-byte
-  header**. Trailing bytes outside that declared root are rejected.
-- Known container tags `BWD2`, `WDEF`, `TDEF`, `RDEF`, `ODEF`, `LDEF`, and `ADEF`
+- Stock `.MSN` files begin with an **eight-byte `BWD2` marker** (FourCC
+  plus little-endian `uint32_t` size equal to 8). The following top-level
+  `REV`, `WDEF`, `TDEF`, `RDEF`, `ODEF`, `LDEF`, `ADEF` and `EXIT`
+  records are **siblings**, not payload within the `BWD2` marker. Inspection
+  continues through EOF; any incomplete or out-of-range sibling is rejected.
+  For compatibility with older synthetic test fixtures, a non-eight-byte
+  enclosing `BWD2` root is still accepted only when its declared length spans
+  exactly the supplied buffer; extra bytes outside such a root are rejected.
+  The original game writer and the repository's previously audited 80-file
+  mission corpus both establish the eight-byte marker format.
+- Known container tags `WDEF`, `TDEF`, `RDEF`, `ODEF`, `LDEF`, and `ADEF`
   are recursively inventoried within their declared parent byte boundaries.
+  `BWD2` is treated as a marker when its size is eight, and as an enclosing
+  container only for older synthetic fixtures.
   Unknown printable FourCCs are retained as **opaque leaf chunks**. This is not
   an exhaustive container specification for every retail resource family.
 - Recognized revision tags `REV`, `WREV`, `TREV`, `RREV`, `OREV`, `LREV`, and
@@ -86,7 +95,9 @@ never add game assets to the public repository.
 
 ## Testing, GDB, and evidence limits
 
-`unit_bwd2` covers root/nested offsets and parent indices; revision endianness;
+`unit_bwd2` covers the retail BWD2 marker followed by sibling records,
+legacy enclosing-root fixture compatibility, root/nested offsets and parent indices;
+revision endianness;
 empty FSM; unknown tags; zero/short/oversized/out-of-parent lengths; corrupted
 FourCC; truncated headers; trailing bytes; chunk/depth/byte caps; repeat calls;
 rollback on error; and resource lease cleanup. `unit_bwd2_commands` exercises
@@ -104,6 +115,13 @@ gdb -tui --args build/i76-debug/i76 --headless --interactive
 (gdb) break i76_bwd2_read
 (gdb) run
 ```
+
+The 8-byte retail marker contract is supported directly by the original
+`004B4840` BWD2 writer (initial BWD2 header declares size 8), the independent
+[corpus inspector](../scripts/ghidra_emulation/audit_loader_corpus.py), and the
+80-file [mission inventory](../ref/mission_execution/evidence/CORPUS_LOADER_INVENTORY.tsv).
+The inventory and this reader remain structural analyses, not claims of retail
+engine acceptance for malformed input.
 
 The accepted research sources are
 [resource acquisition](../manual/reference/engine/resource_acquisition.md),

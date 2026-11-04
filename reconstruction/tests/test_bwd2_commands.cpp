@@ -64,7 +64,9 @@ static std::vector<std::uint8_t> sample_mission()
     append(object, make_chunk("EXIT", empty));
     append(root, make_chunk("ODEF", object));
     append(root, make_chunk("EXIT", empty));
-    return make_chunk("BWD2", root);
+    std::vector<std::uint8_t> stream = make_chunk("BWD2", {});
+    append(stream, root);
+    return stream;
 }
 
 static bool write_fixture(const std::filesystem::path& root)

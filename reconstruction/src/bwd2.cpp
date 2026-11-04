@@ -153,11 +153,16 @@ i76_bwd2_result i76_bwd2_parse(std::span<const std::uint8_t> bytes,
     if (root_size > bytes.size()) {
         return fail(error, i76_bwd2_result::out_of_bounds, 0U);
     }
-    if (root_size < bytes.size()) {
+    // In retail BWD2 mission streams, the eight-byte BWD2 record is a marker,
+    // not an enclosing chunk. REV/WDEF/.../EXIT follow as sibling records up to
+    // EOF. Preserve support for the earlier synthetic enclosing-root fixtures.
+    if (root_size != 8U && root_size < bytes.size()) {
         return fail(error, i76_bwd2_result::trailing_data, root_size);
     }
-    candidate.byte_count = root_size;
-    result = parse_range(bytes, 0U, root_size, 0U, 0U, candidate, error);
+    candidate.byte_count = static_cast<std::uint32_t>(bytes.size());
+    result = parse_range(bytes, 0U, root_size == 8U ?
+                         static_cast<std::uint32_t>(bytes.size()) : root_size,
+                         0U, 0U, candidate, error);
     if (result != i76_bwd2_result::ok) {
         return result;
     }
