@@ -41,7 +41,8 @@ static void test_scripted_terminal()
            "shell initialization");
     code = i76_run_terminal_shell(shell, game, commands, false, input, output,
         errors);
-    expect(code == 0 && errors.str().empty(), "scripted execution succeeds");
+    expect(code == 0
+           && errors.str().empty(), "scripted execution succeeds");
     expect(output.str().find("INTERSTATE '76") != std::string::npos,
            "initial main menu visible");
     expect(output.str().find("TEST SESSION") != std::string::npos,
@@ -100,7 +101,8 @@ static void test_terminal_errors()
 
     code = i76_run_terminal_shell(shell, game, commands, false, input, output,
         errors);
-    expect(code == 1 && errors.str().find("not initialized") !=
+    expect(code == 1
+           && errors.str().find("not initialized") !=
         std::string::npos,
            "uninitialized use fails clearly");
     config.tick_rate = 60U;
@@ -110,7 +112,8 @@ static void test_terminal_errors()
     errors.clear();
     code = i76_run_terminal_shell(shell, game, commands, false, input, output,
         errors);
-    expect(code == 1 && errors.str().find("unavailable") != std::string::npos,
+    expect(code == 1
+           && errors.str().find("unavailable") != std::string::npos,
            "invalid command reported");
     expect(game.state.tick == 0U,
         "invalid terminal command leaves state intact");

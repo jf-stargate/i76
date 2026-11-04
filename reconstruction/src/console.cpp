@@ -110,7 +110,10 @@ static constexpr i76_console_definition definitions[] = {
 // -----------------------------------------------------------------------------
 static bool whitespace(char c) noexcept
 {
-    return c == ' ' || c == '\t' || c == '\r' || c == '\n';
+    return c == ' '
+           || c == '\t'
+           || c == '\r'
+           || c == '\n';
 }
 
 // -----------------------------------------------------------------------------
@@ -148,14 +151,18 @@ i76_console_tokens i76_console_tokenize(std::string_view line)
     }
     for (std::size_t index = 0; index < line.size(); ++index) {
         const char c = line[index];
-        if (c == '\0' || (static_cast<unsigned char>(c) < 32U &&
-            !whitespace(c))) {
+        if (c == '\0'
+            || (static_cast<unsigned char>(c) < 32U
+            && !whitespace(c))) {
             result.error = "invalid control character in command";
             result.values.clear();
             return result;
         }
-        if (quoted && c == '\\' && index + 1U < line.size() &&
-            (line[index + 1U] == '"' || line[index + 1U] == '\\')) {
+        if (quoted
+            && c == '\\'
+            && index + 1U < line.size()
+            && (line[index + 1U] == '"'
+            || line[index + 1U] == '\\')) {
             token += line[++index];
             continue;
         }
@@ -164,7 +171,8 @@ i76_console_tokens i76_console_tokenize(std::string_view line)
             started = true;
             continue;
         }
-        if (!quoted && whitespace(c)) {
+        if (!quoted
+            && whitespace(c)) {
             if (started) {
                 if (result.values.size() == maximum_tokens) {
                     result.error = "too many command tokens";
@@ -212,8 +220,9 @@ static bool matches_name(const i76_console_definition& definition,
         if (boundary == std::string_view::npos) {
             boundary = definition.name.size();
         }
-        if (part >= values.size() ||
-            definition.name.substr(start, boundary - start) != values[part]) {
+        if (part >= values.size()
+            || definition.name.substr(start, boundary - start) !=
+                   values[part]) {
             return false;
         }
         ++part;
@@ -235,8 +244,8 @@ static const i76_console_definition* lookup(const std::vector<std::string>&
     std::size_t candidate_count = 0U;
 
     for (const i76_console_definition& definition : definitions) {
-        if (matches_name(definition, values, candidate_count) &&
-            candidate_count > selected_count) {
+        if (matches_name(definition, values, candidate_count)
+            && candidate_count > selected_count) {
             selected = &definition;
             selected_count = candidate_count;
         }
@@ -254,9 +263,13 @@ static std::string show_help(std::string_view topic)
     bool found = false;
 
     for (const i76_console_definition& definition : definitions) {
-        if (definition.name == topic && !topic.empty() &&
-            topic != "sim" && topic != "resource" && topic != "level" &&
-            topic != "object" && topic != "asset") {
+        if (definition.name == topic
+            && !topic.empty()
+            && topic != "sim"
+            && topic != "resource"
+            && topic != "level"
+            && topic != "object"
+            && topic != "asset") {
             return std::string(definition.usage) + "\n" +
                 std::string(definition.description) +
                    (definition.variable != i76_console_variable_kind::none ?
@@ -268,9 +281,11 @@ static std::string show_help(std::string_view topic)
     message = topic.empty() ? "commands and variables:" :
                               std::string(topic) + " commands and variables:";
     for (const i76_console_definition& definition : definitions) {
-        if (definition.name == topic || topic.empty() ||
-            (definition.name.size() > topic.size() &&
-             definition.name.starts_with(topic) && definition.name[topic.size()]
+        if (definition.name == topic
+            || topic.empty()
+            || (definition.name.size() > topic.size()
+            && definition.name.starts_with(topic)
+            && definition.name[topic.size()]
                  == ' ')) {
             message += "\n  " + std::string(definition.usage);
             found = true;
@@ -288,8 +303,8 @@ static std::string find_entries(std::string_view search)
     std::size_t count = 0U;
 
     for (const i76_console_definition& definition : definitions) {
-        if (definition.name.find(search) != std::string_view::npos ||
-            definition.description.find(search) != std::string_view::npos) {
+        if (definition.name.find(search) != std::string_view::npos
+            || definition.description.find(search) != std::string_view::npos) {
             result += "\n  " + std::string(definition.name) + " - " +
                       std::string(definition.description);
             ++count;
@@ -307,18 +322,22 @@ static i76_command_result variable_execute(i76_runtime& game,
 {
     std::string value = {};
 
-    if (!args.empty() && definition.read_only) {
+    if (!args.empty()
+        && definition.read_only) {
         return console_reply(game, i76_result_code::invalid_argument,
                              std::string(definition.name) + " is read-only");
     }
     if (!args.empty()) {
         if (definition.name == "sim.paused") {
-            if (args[0] != "true" && args[0] != "false" &&
-                args[0] != "1" && args[0] != "0") {
+            if (args[0] != "true"
+                && args[0] != "false"
+                && args[0] != "1"
+                && args[0] != "0") {
                 return console_reply(game, i76_result_code::invalid_argument,
                                      "sim.paused expects true, false, 1 or 0");
             }
-            i76_runtime_set_paused(game, args[0] == "true" || args[0] == "1");
+            i76_runtime_set_paused(game, args[0] == "true"
+                || args[0] == "1");
         }
     }
     if (definition.name == "sim.paused") {
@@ -379,11 +398,13 @@ i76_command_result i76_console_execute(i76_runtime& game, std::string_view line)
                              "unknown command: " + parsed.values[0]);
     }
     for (std::size_t index = consumed; index < parsed.values.size(); ++index) {
-        if (!after_separator && parsed.values[index] == "--") {
+        if (!after_separator
+            && parsed.values[index] == "--") {
             after_separator = true;
             continue;
         }
-        if (!after_separator && parsed.values[index].starts_with("--")) {
+        if (!after_separator
+            && parsed.values[index].starts_with("--")) {
             return console_reply(game, i76_result_code::invalid_argument,
                                  "unknown option: " + parsed.values[index]);
         }
@@ -408,26 +429,30 @@ i76_command_result i76_console_execute(i76_runtime& game, std::string_view line)
         }
         return console_reply(game, i76_result_code::ok, find_entries(args[0]));
     }
-    if (definition->variable != i76_console_variable_kind::none &&
-        args.size() == 1U && args[0] == "?") {
+    if (definition->variable != i76_console_variable_kind::none
+        && args.size() == 1U
+        && args[0] == "?") {
         return console_reply(game, i76_result_code::ok,
             show_help(definition->name));
     }
-    if (args.size() < definition->minimum || args.size() > definition->maximum)
+    if (args.size() < definition->minimum
+        || args.size() > definition->maximum)
         {
         return console_reply(game, i76_result_code::invalid_argument,
                              "usage: " + std::string(definition->usage));
     }
-    if (definition->name == "sim" && !args.empty()) {
+    if (definition->name == "sim"
+        && !args.empty()) {
         return console_reply(game, i76_result_code::unknown_command,
                              "unknown simulation action (help sim)");
     }
-    if (definition->name == "sim" || definition->name == "sim help" ||
-        definition->name == "resource help" || definition->name == "level help"
-            ||
-        definition->name == "object help") {
-        const std::string_view topic_name = definition->name == "sim" ||
-                                             definition->name == "sim help" ?
+    if (definition->name == "sim"
+        || definition->name == "sim help"
+        || definition->name == "resource help"
+        || definition->name == "level help"
+        || definition->name == "object help") {
+        const std::string_view topic_name = definition->name == "sim"
+            || definition->name == "sim help" ?
                                              "sim" :
                                              definition->name == "resource help"
                                              ? "resource" :

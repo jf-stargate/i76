@@ -19,12 +19,15 @@ static const i76_resource_entry* lookup_entry(const i76_resource_store& store,
 {
     const i76_resource_entry* entry = nullptr;
 
-    if (!store.initialized || handle.slot == 0U || handle.generation == 0U ||
-        handle.slot > store.entries.size()) {
+    if (!store.initialized
+        || handle.slot == 0U
+        || handle.generation == 0U
+        || handle.slot > store.entries.size()) {
         return nullptr;
     }
     entry = &store.entries[handle.slot - 1U];
-    return entry->occupied && entry->handle.generation == handle.generation ?
+    return entry->occupied
+           && entry->handle.generation == handle.generation ?
         entry : nullptr;
 }
 
@@ -39,7 +42,8 @@ i76_resource_result i76_resource_normalize_name(std::string_view name,
     bool segment_start = true;
 
     normalized.clear();
-    if (name.empty() || name.size() > i76_resource_max_name_length) {
+    if (name.empty()
+        || name.size() > i76_resource_max_name_length) {
         return i76_resource_result::invalid_argument;
     }
     normalized.reserve(name.size());
@@ -49,31 +53,41 @@ i76_resource_result i76_resource_normalize_name(std::string_view name,
             character = '/';
         }
         if (character == '/') {
-            if (segment_start || index + 1U == name.size()) {
+            if (segment_start
+                || index + 1U == name.size()) {
                 normalized.clear();
                 return i76_resource_result::invalid_argument;
             }
             segment_start = true;
         } else {
-            if (!((character >= 'a' && character <= 'z') ||
-                  (character >= 'A' && character <= 'Z') ||
-                  (character >= '0' && character <= '9') || character == '_' ||
-                  character == '-' || character == '.')) {
+            if (!((character >= 'a'
+                && character <= 'z')
+                || (character >= 'A'
+                && character <= 'Z')
+                || (character >= '0'
+                && character <= '9')
+                || character == '_'
+                || character == '-'
+                || character == '.')) {
                 normalized.clear();
                 return i76_resource_result::invalid_argument;
             }
-            if (character >= 'A' && character <= 'Z') {
+            if (character >= 'A'
+                && character <= 'Z') {
                 character = static_cast<char>(character - 'A' + 'a');
             }
             segment_start = false;
         }
         normalized.push_back(character);
     }
-    if (normalized == "." || normalized == ".." ||
-        normalized.find("/../") != std::string::npos ||
-        normalized.find("/./") != std::string::npos ||
-        normalized.starts_with("../") || normalized.starts_with("./") ||
-        normalized.ends_with("/..") || normalized.ends_with("/.")) {
+    if (normalized == "."
+        || normalized == ".."
+        || normalized.find("/../") != std::string::npos
+        || normalized.find("/./") != std::string::npos
+        || normalized.starts_with("../")
+        || normalized.starts_with("./")
+        || normalized.ends_with("/..")
+        || normalized.ends_with("/.")) {
         normalized.clear();
         return i76_resource_result::invalid_argument;
     }
@@ -127,11 +141,12 @@ i76_resource_result i76_resource_mount_memory(i76_resource_store& store,
     if (!store.initialized) {
         return i76_resource_result::not_initialized;
     }
-    if (name.empty() || name.size() > i76_resource_max_name_length) {
+    if (name.empty()
+        || name.size() > i76_resource_max_name_length) {
         return i76_resource_result::invalid_argument;
     }
-    if (store.mounts.size() >= i76_resource_max_mounts ||
-        store.last_mount_id == std::numeric_limits<std::uint64_t>::max()) {
+    if (store.mounts.size() >= i76_resource_max_mounts
+        || store.last_mount_id == std::numeric_limits<std::uint64_t>::max()) {
         return i76_resource_result::capacity_exceeded;
     }
     for (index = 0; index < store.mounts.size(); ++index) {
@@ -161,8 +176,8 @@ i76_resource_result i76_resource_mount_directory(i76_resource_store& store,
     if (!store.initialized) {
         return i76_resource_result::not_initialized;
     }
-    if (store.mounts.size() >= i76_resource_max_mounts ||
-        store.last_mount_id == std::numeric_limits<std::uint64_t>::max()) {
+    if (store.mounts.size() >= i76_resource_max_mounts
+        || store.last_mount_id == std::numeric_limits<std::uint64_t>::max()) {
         return i76_resource_result::capacity_exceeded;
     }
     status = i76_resource_directory_validate(path, root);
@@ -170,8 +185,8 @@ i76_resource_result i76_resource_mount_directory(i76_resource_store& store,
         return status;
     }
     for (index = 0; index < store.mounts.size(); ++index) {
-        if (store.mounts[index].kind == i76_resource_provider_kind::directory &&
-            store.mounts[index].root == root) {
+        if (store.mounts[index].kind == i76_resource_provider_kind::directory
+            && store.mounts[index].root == root) {
             return i76_resource_result::invalid_argument;
         }
     }
@@ -205,8 +220,8 @@ i76_resource_result i76_resource_unmount(i76_resource_store& store,
         }
         for (entry_index = 0; entry_index < store.entries.size(); ++entry_index)
             {
-            if (store.entries[entry_index].occupied &&
-                store.entries[entry_index].source_mount_id == mount_id) {
+            if (store.entries[entry_index].occupied
+                && store.entries[entry_index].source_mount_id == mount_id) {
                 return i76_resource_result::busy;
             }
         }
@@ -251,8 +266,8 @@ i76_resource_result i76_resource_find_mount(const i76_resource_store& store,
         if (status == i76_resource_result::ok) {
             for (index = 0; index < store.mounts.size(); ++index) {
                 if (store.mounts[index].kind ==
-                    i76_resource_provider_kind::directory &&
-                    store.mounts[index].root == root) {
+                    i76_resource_provider_kind::directory
+                        && store.mounts[index].root == root) {
                     found_id = store.mounts[index].id;
                     break;
                 }
@@ -284,13 +299,14 @@ i76_resource_result i76_resource_add_memory(i76_resource_store& store,
         return i76_resource_result::not_initialized;
     }
     status = i76_resource_normalize_name(name, key);
-    if (status != i76_resource_result::ok || bytes.size() >
+    if (status != i76_resource_result::ok
+        || bytes.size() >
         i76_resource_max_bytes) {
         return i76_resource_result::invalid_argument;
     }
     for (index = 0; index < store.mounts.size(); ++index) {
-        if (store.mounts[index].kind != i76_resource_provider_kind::memory ||
-            store.mounts[index].name != mount) {
+        if (store.mounts[index].kind != i76_resource_provider_kind::memory
+            || store.mounts[index].name != mount) {
             continue;
         }
         for (file_index = 0; file_index < store.mounts[index].files.size();
@@ -336,7 +352,8 @@ i76_resource_result i76_resource_acquire(i76_resource_store& store,
         return status;
     }
     for (index = 0; index < store.entries.size(); ++index) {
-        if (store.entries[index].occupied && store.entries[index].name == key) {
+        if (store.entries[index].occupied
+            && store.entries[index].name == key) {
             if (store.entries[index].references ==
                 std::numeric_limits<std::uint32_t>::max()) {
                 return i76_resource_result::capacity_exceeded;

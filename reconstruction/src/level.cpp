@@ -12,12 +12,16 @@ static std::string_view trim_level(std::string_view input) noexcept
     std::size_t begin = 0;
     std::size_t end = input.size();
 
-    while (begin < end && (input[begin] == ' ' || input[begin] == '\t' ||
-        input[begin] == '\r')) {
+    while (begin < end
+           && (input[begin] == ' '
+           || input[begin] == '\t'
+           || input[begin] == '\r')) {
         ++begin;
     }
-    while (end > begin && (input[end - 1U] == ' ' || input[end - 1U] == '\t' ||
-                           input[end - 1U] == '\r')) {
+    while (end > begin
+           && (input[end - 1U] == ' '
+           || input[end - 1U] == '\t'
+           || input[end - 1U] == '\r')) {
         --end;
     }
     return input.substr(begin, end - begin);
@@ -36,7 +40,9 @@ static bool parse_line(std::string_view line,
     tokens = {};
     count = 0;
     while (start < line.size()) {
-        while (start < line.size() && (line[start] == ' ' || line[start] ==
+        while (start < line.size()
+               && (line[start] == ' '
+               || line[start] ==
             '\t')) {
             ++start;
         }
@@ -47,7 +53,9 @@ static bool parse_line(std::string_view line,
             return false;
         }
         end = start;
-        while (end < line.size() && line[end] != ' ' && line[end] != '\t') {
+        while (end < line.size()
+               && line[end] != ' '
+               && line[end] != '\t') {
             ++end;
         }
         tokens[count++] = line.substr(start, end - start);
@@ -64,12 +72,14 @@ static bool valid_object_name(std::string_view name) noexcept
     std::size_t index = 0;
     unsigned char c = 0;
 
-    if (name.empty() || name.size() > i76_world_max_name_length) {
+    if (name.empty()
+        || name.size() > i76_world_max_name_length) {
         return false;
     }
     for (index = 0; index < name.size(); ++index) {
         c = static_cast<unsigned char>(name[index]);
-        if (c < 33U || c > 126U) {
+        if (c < 33U
+            || c > 126U) {
             return false;
         }
     }
@@ -116,16 +126,19 @@ i76_level_result i76_level_decode(std::span<const std::uint8_t> bytes,
     bool header = false;
     i76_level_object_def object = {};
 
-    if (bytes.empty() || bytes.size() > i76_level_max_manifest_bytes) {
+    if (bytes.empty()
+        || bytes.size() > i76_level_max_manifest_bytes) {
         return i76_level_result::invalid_data;
     }
     data = std::string_view(reinterpret_cast<const char*>(bytes.data()),
         bytes.size());
     for (index = 0; index < data.size(); ++index) {
-        if ((static_cast<unsigned char>(data[index]) < 32U && data[index] !=
-            '\n' &&
-             data[index] != '\r' && data[index] != '\t') ||
-            static_cast<unsigned char>(data[index]) > 126U) {
+        if ((static_cast<unsigned char>(data[index]) < 32U
+            && data[index] !=
+            '\n'
+            && data[index] != '\r'
+            && data[index] != '\t')
+            || static_cast<unsigned char>(data[index]) > 126U) {
             return i76_level_result::invalid_data;
         }
     }
@@ -136,28 +149,34 @@ i76_level_result i76_level_decode(std::span<const std::uint8_t> bytes,
         }
         line = trim_level(data.substr(start, end - start));
         start = end + (end < data.size() ? 1U : 0U);
-        if (line.empty() || line.starts_with('#')) {
+        if (line.empty()
+            || line.starts_with('#')) {
             continue;
         }
         if (!parse_line(line, tokens, count)) {
             return i76_level_result::invalid_data;
         }
         if (!header) {
-            if (count != 2U || tokens[0] != "I76LEVEL" || tokens[1] != "1") {
+            if (count != 2U
+                || tokens[0] != "I76LEVEL"
+                || tokens[1] != "1") {
                 return i76_level_result::invalid_data;
             }
             header = true;
             continue;
         }
-        if (tokens[0] == "asset" && count == 2U) {
+        if (tokens[0] == "asset"
+            && count == 2U) {
             if (!add_asset(candidate, tokens[1])) {
                 return i76_level_result::invalid_data;
             }
             continue;
         }
-        if (tokens[0] == "object" && (count == 3U || count == 4U)) {
-            if (candidate.objects.size() >= i76_level_max_objects ||
-                !valid_object_name(tokens[2])) {
+        if (tokens[0] == "object"
+            && (count == 3U
+            || count == 4U)) {
+            if (candidate.objects.size() >= i76_level_max_objects
+                || !valid_object_name(tokens[2])) {
                 return i76_level_result::invalid_data;
             }
             object = {};
@@ -310,7 +329,8 @@ i76_level_result i76_level_unload(i76_world_registry& world,
 {
     std::size_t index = 0;
 
-    if (!world.initialized || !store.initialized) {
+    if (!world.initialized
+        || !store.initialized) {
         return i76_level_result::not_initialized;
     }
     if (!active.loaded) {
@@ -339,14 +359,15 @@ i76_level_result i76_level_activate(i76_world_registry& world,
     std::size_t index = 0;
     std::uint64_t max_generation = std::numeric_limits<std::uint64_t>::max();
 
-    if (!world.initialized || !store.initialized) {
+    if (!world.initialized
+        || !store.initialized) {
         return i76_level_result::not_initialized;
     }
     if (!prepared.ready) {
         return i76_level_result::not_prepared;
     }
-    if (prepared.definition.objects.size() > i76_world_max_objects ||
-        prepared.definition.objects.size() > max_generation -
+    if (prepared.definition.objects.size() > i76_world_max_objects
+        || prepared.definition.objects.size() > max_generation -
             world.last_generation) {
         return i76_level_result::capacity_exceeded;
     }

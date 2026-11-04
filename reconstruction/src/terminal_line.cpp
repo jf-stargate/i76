@@ -45,15 +45,16 @@ static bool enable_native_terminal(i76_native_terminal& terminal,
                                    std::istream& input,
                                    std::ostream& output) noexcept
 {
-    if (&input != &std::cin || &output != &std::cout) {
+    if (&input != &std::cin
+        || &output != &std::cout) {
         return false;
     }
 #ifdef _WIN32
     DWORD input_mode = 0;
 
     terminal.output_handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (!GetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), &input_mode) ||
-        !GetConsoleMode(terminal.output_handle, &terminal.output_mode)) {
+    if (!GetConsoleMode(GetStdHandle(STD_INPUT_HANDLE), &input_mode)
+        || !GetConsoleMode(terminal.output_handle, &terminal.output_mode)) {
         return false;
     }
     if (!SetConsoleMode(terminal.output_handle,
@@ -64,8 +65,9 @@ static bool enable_native_terminal(i76_native_terminal& terminal,
 #else
     termios raw = {};
 
-    if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO) ||
-        tcgetattr(STDIN_FILENO, &terminal.original) != 0) {
+    if (!isatty(STDIN_FILENO)
+        || !isatty(STDOUT_FILENO)
+        || tcgetattr(STDIN_FILENO, &terminal.original) != 0) {
         return false;
     }
     raw = terminal.original;
@@ -140,7 +142,8 @@ static int read_optional_byte() noexcept
     descriptor.fd = STDIN_FILENO;
     descriptor.events = POLLIN;
     ready = poll(&descriptor, 1, 75);
-    if (ready <= 0 || (descriptor.revents & POLLIN) == 0) {
+    if (ready <= 0
+        || (descriptor.revents & POLLIN) == 0) {
         return -1;
     }
     return read_native_byte();
@@ -158,7 +161,8 @@ static i76_line_key decode_escape(int& ordinary_byte) noexcept
 
     ordinary_byte = -1;
     next = read_optional_byte();
-    if (next != '[' && next != 'O') {
+    if (next != '['
+        && next != 'O') {
         // ESC alone must not swallow the next normal keystroke
         ordinary_byte = next;
         return i76_line_key::insert;
@@ -169,11 +173,13 @@ static i76_line_key decode_escape(int& ordinary_byte) noexcept
         if (next < 0) {
             return i76_line_key::insert;
         }
-        if (next >= '0' && next <= '9') {
+        if (next >= '0'
+            && next <= '9') {
             sequence[length++] = static_cast<char>(next);
             continue;
         }
-        if (next == ';' && csi) {
+        if (next == ';'
+            && csi) {
             sequence[length++] = ';';
             continue;
         }
@@ -183,12 +189,18 @@ static i76_line_key decode_escape(int& ordinary_byte) noexcept
         if (next == 'D') return i76_line_key::left;
         if (next == 'H') return i76_line_key::home;
         if (next == 'F') return i76_line_key::end;
-        if (next == '~' && csi) {
-            if (length == 1U && sequence[0] == '3') return i76_line_key::remove;
-            if (length == 1U && (sequence[0] == '1' || sequence[0] == '7')) {
+        if (next == '~'
+            && csi) {
+            if (length == 1U
+                && sequence[0] == '3') return i76_line_key::remove;
+            if (length == 1U
+                && (sequence[0] == '1'
+                || sequence[0] == '7')) {
                 return i76_line_key::home;
             }
-            if (length == 1U && (sequence[0] == '4' || sequence[0] == '8')) {
+            if (length == 1U
+                && (sequence[0] == '4'
+                || sequence[0] == '8')) {
                 return i76_line_key::end;
             }
         }
@@ -266,7 +278,8 @@ bool i76_terminal_read_line(std::istream& input,
         text.clear();
 #ifdef _WIN32
         character = static_cast<std::uint32_t>(_getwch());
-        if (character == 0U || character == 0xE0U) {
+        if (character == 0U
+            || character == 0xE0U) {
             character = static_cast<std::uint32_t>(_getwch());
             switch (character) {
             case 72U: key = i76_line_key::up; break;
@@ -279,10 +292,12 @@ bool i76_terminal_read_line(std::istream& input,
             default: break;
             }
             character = 0U;
-        } else if (character >= 0xD800U && character <= 0xDBFFU) {
+        } else if (character >= 0xD800U
+                   && character <= 0xDBFFU) {
             high_surrogate = character;
             continue;
-        } else if (character >= 0xDC00U && character <= 0xDFFFU) {
+        } else if (character >= 0xDC00U
+                   && character <= 0xDFFFU) {
             if (high_surrogate == 0U) {
                 continue; // skip an unmatched UTF-16 low surrogate
             }
@@ -292,7 +307,8 @@ bool i76_terminal_read_line(std::istream& input,
         } else {
             high_surrogate = 0U;
         }
-        if (character >= 0x80U && character <= 0x10FFFFU) {
+        if (character >= 0x80U
+            && character <= 0x10FFFFU) {
             text = utf8_codepoint(character);
         }
 #else
@@ -316,7 +332,9 @@ bool i76_terminal_read_line(std::istream& input,
                 pending.clear();
             }
         }
-        if (text.empty() && character >= 0xC2U && character <= 0xF4U) {
+        if (text.empty()
+            && character >= 0xC2U
+            && character <= 0xF4U) {
             pending.clear();
             pending.push_back(static_cast<char>(character));
             pending_bytes = character <= 0xDFU ? 1U : character <= 0xEFU ? 2U :
@@ -334,14 +352,18 @@ bool i76_terminal_read_line(std::istream& input,
         else if (character == 5U) key = i76_line_key::end;
         else if (character == 3U) key = i76_line_key::cancel;
         else if (character == 4U) key = i76_line_key::eof;
-        else if (character == 127U || character == 8U) key =
+        else if (character == 127U
+            || character == 8U) key =
             i76_line_key::backspace;
-        else if (character == '\n' || character == '\r') key =
+        else if (character == '\n'
+            || character == '\r') key =
             i76_line_key::enter;
-        else if (character >= 32U && character <= 126U)
+        else if (character >= 32U
+                        && character <= 126U)
             text.push_back(static_cast<char>(character));
 
-        if (key == i76_line_key::insert && text.empty()) {
+        if (key == i76_line_key::insert
+            && text.empty()) {
             continue;
         }
         if (key == i76_line_key::enter) {

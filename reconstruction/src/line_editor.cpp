@@ -12,7 +12,8 @@ static std::size_t previous_character(std::string_view text,
         return 0U;
     }
     --cursor;
-    while (cursor != 0U && (static_cast<std::uint8_t>(text[cursor]) & 0xC0U) ==
+    while (cursor != 0U
+           && (static_cast<std::uint8_t>(text[cursor]) & 0xC0U) ==
         0x80U) {
         --cursor;
     }
@@ -29,8 +30,8 @@ static std::size_t next_character(std::string_view text,
         return text.size();
     }
     ++cursor;
-    while (cursor < text.size() &&
-           (static_cast<std::uint8_t>(text[cursor]) & 0xC0U) == 0x80U) {
+    while (cursor < text.size()
+           && (static_cast<std::uint8_t>(text[cursor]) & 0xC0U) == 0x80U) {
         ++cursor;
     }
     return cursor;
@@ -52,10 +53,12 @@ void i76_line_editor_reset(i76_line_editor& editor) noexcept
 // -----------------------------------------------------------------------------
 void i76_line_editor_remember(i76_line_editor& editor, std::string_view command)
 {
-    if (command.empty() || command.size() > i76_line_max_bytes) {
+    if (command.empty()
+        || command.size() > i76_line_max_bytes) {
         return;
     }
-    if (!editor.history.empty() && editor.history.back() == command) {
+    if (!editor.history.empty()
+        && editor.history.back() == command) {
         return;
     }
     if (editor.history.size() >= i76_line_max_history) {
@@ -76,7 +79,8 @@ i76_line_action i76_line_editor_apply(i76_line_editor& editor,
 
     switch (key) {
     case i76_line_key::insert:
-        if (text.empty() || text.size() > i76_line_max_bytes -
+        if (text.empty()
+            || text.size() > i76_line_max_bytes -
             editor.line.size()) {
             return i76_line_action::none;
         }
@@ -125,7 +129,8 @@ i76_line_action i76_line_editor_apply(i76_line_editor& editor,
         editor.line.erase(editor.cursor, next - editor.cursor);
         return i76_line_action::changed;
     case i76_line_key::up:
-        if (editor.history.empty() || editor.history_index == 0U) {
+        if (editor.history.empty()
+            || editor.history_index == 0U) {
             return i76_line_action::none;
         }
         if (editor.history_index == editor.history.size()) {

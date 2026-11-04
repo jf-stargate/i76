@@ -34,7 +34,9 @@ static bool decode_tag(const std::uint8_t* bytes, char (&tag)[5]) noexcept
             terminated = true;
             continue;
         }
-        if (terminated || character < 32U || character > 126U) {
+        if (terminated
+            || character < 32U
+            || character > 126U) {
             return false;
         }
         tag[index] = static_cast<char>(character);
@@ -49,10 +51,13 @@ static bool decode_tag(const std::uint8_t* bytes, char (&tag)[5]) noexcept
 // -----------------------------------------------------------------------------
 static bool container_tag(const char* tag) noexcept
 {
-    return std::strcmp(tag, "BWD2") == 0 || std::strcmp(tag, "WDEF") == 0 ||
-           std::strcmp(tag, "TDEF") == 0 || std::strcmp(tag, "RDEF") == 0 ||
-           std::strcmp(tag, "ODEF") == 0 || std::strcmp(tag, "LDEF") == 0 ||
-           std::strcmp(tag, "ADEF") == 0;
+    return std::strcmp(tag, "BWD2") == 0
+           || std::strcmp(tag, "WDEF") == 0
+           || std::strcmp(tag, "TDEF") == 0
+           || std::strcmp(tag, "RDEF") == 0
+           || std::strcmp(tag, "ODEF") == 0
+           || std::strcmp(tag, "LDEF") == 0
+           || std::strcmp(tag, "ADEF") == 0;
 }
 
 // -----------------------------------------------------------------------------
@@ -60,10 +65,13 @@ static bool container_tag(const char* tag) noexcept
 // -----------------------------------------------------------------------------
 static bool revision_tag(const char* tag) noexcept
 {
-    return std::strcmp(tag, "REV") == 0 || std::strcmp(tag, "WREV") == 0 ||
-           std::strcmp(tag, "TREV") == 0 || std::strcmp(tag, "RREV") == 0 ||
-           std::strcmp(tag, "OREV") == 0 || std::strcmp(tag, "LREV") == 0 ||
-           std::strcmp(tag, "AREV") == 0;
+    return std::strcmp(tag, "REV") == 0
+           || std::strcmp(tag, "WREV") == 0
+           || std::strcmp(tag, "TREV") == 0
+           || std::strcmp(tag, "RREV") == 0
+           || std::strcmp(tag, "OREV") == 0
+           || std::strcmp(tag, "LREV") == 0
+           || std::strcmp(tag, "AREV") == 0;
 }
 
 // -----------------------------------------------------------------------------
@@ -135,7 +143,8 @@ static i76_bwd2_result parse_range(std::span<const std::uint8_t> bytes,
         nested = container_tag(chunk.tag);
         index = static_cast<std::uint32_t>(candidate.chunks.size() + 1U);
         candidate.chunks.push_back(chunk);
-        if (nested && chunk.payload_size != 0U) {
+        if (nested
+            && chunk.payload_size != 0U) {
             child_start = chunk.payload_offset;
             result = parse_range(bytes, child_start, cursor + length, index,
                                  static_cast<std::uint8_t>(depth + 1U),
@@ -161,8 +170,8 @@ i76_bwd2_result i76_bwd2_parse(std::span<const std::uint8_t> bytes,
     std::uint32_t root_size = 0;
 
     error = {};
-    if (bytes.size() > i76_bwd2_max_bytes ||
-        bytes.size() > std::numeric_limits<std::uint32_t>::max()) {
+    if (bytes.size() > i76_bwd2_max_bytes
+        || bytes.size() > std::numeric_limits<std::uint32_t>::max()) {
         return fail(error, i76_bwd2_result::too_large, 0U);
     }
     if (bytes.size() < 8U) {
@@ -181,7 +190,8 @@ i76_bwd2_result i76_bwd2_parse(std::span<const std::uint8_t> bytes,
     // In retail BWD2 mission streams, the eight-byte BWD2 record is a marker,
     // not an enclosing chunk. REV/WDEF/.../EXIT follow as sibling records up to
     // EOF. Preserve support for the earlier synthetic enclosing-root fixtures.
-    if (root_size != 8U && root_size < bytes.size()) {
+    if (root_size != 8U
+        && root_size < bytes.size()) {
         return fail(error, i76_bwd2_result::trailing_data, root_size);
     }
     candidate.byte_count = static_cast<std::uint32_t>(bytes.size());

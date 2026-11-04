@@ -60,6 +60,18 @@
   restating the function's name. This includes file-local helpers and tests.
 - Keep the banner adjacent to the signature. The formatter does not generate
   banner descriptions: authors must write and maintain them deliberately.
+- Write each condition in a logical `||` or `&&` chain on a **separate
+  line**, even when the expression would fit within 80 columns. Keep the
+  first condition alongside its `return`, `if`, `while` or other
+  introductory expression; put `||` and `&&` **at the beginning of each
+  subsequent condition line**. Continue at the same logical indentation,
+  preserve the original parentheses and operator precedence, and do not
+  introduce a comparison between an enum and a Boolean expression.
+- The automatic style check rejects inline `||` / `&&` in maintained
+  C/C++ code. Preprocessor directives, comments, and literals are exempt.
+  Clang-format's `BreakBeforeBinaryOperators: NonAssignment` provides
+  consistent leading-operator wrapping but does not force short chains to
+  wrap: that remains an explicit source convention.
 
 ```cpp
 // -----------------------------------------------------------------------------
@@ -71,6 +83,20 @@ i76_level_result i76_level_activate(i76_world_registry& world,
                                     i76_active_level& active)
 {
     // ...
+}
+```
+
+Example of a multi-case enum predicate:
+
+```cpp
+// -----------------------------------------------------------------------------
+// Check whether the requested kind is a supported world-object category.
+// -----------------------------------------------------------------------------
+static bool valid_kind(i76_world_kind kind) noexcept
+{
+    return kind == i76_world_kind::vehicle
+           || kind == i76_world_kind::scenery
+           || kind == i76_world_kind::marker;
 }
 ```
 

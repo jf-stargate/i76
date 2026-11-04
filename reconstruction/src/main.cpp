@@ -87,7 +87,8 @@ static std::int32_t run(int argc, char* argv[])
             interactive = true;
             continue;
         }
-        if (argument == "--shell" || argument == "--shell=terminal") {
+        if (argument == "--shell"
+            || argument == "--shell=terminal") {
             shell_mode = "terminal";
             continue;
         }
@@ -95,21 +96,25 @@ static std::int32_t run(int argc, char* argv[])
             shell_mode = "sdl";
             continue;
         }
-        if (argument == "--shell-frames" && index + 1 < argc) {
+        if (argument == "--shell-frames"
+            && index + 1 < argc) {
             const std::string value = argv[++index];
             begin = value.data();
             end = begin + value.size();
             maximum_frames = 0;
             parsed = std::from_chars(begin, end, maximum_frames, 10);
-            if (parsed.ec != std::errc{} || parsed.ptr != end || maximum_frames
-                == 0U ||
-                maximum_frames > 10000U) {
+            if (parsed.ec != std::errc{}
+                || parsed.ptr != end
+                || maximum_frames
+                == 0U
+                || maximum_frames > 10000U) {
                 std::cerr << "invalid shell frame count\n";
                 return 2;
             }
             continue;
         }
-        if (argument == "--command" && index + 1 < argc) {
+        if (argument == "--command"
+            && index + 1 < argc) {
             commands.emplace_back(argv[++index]);
             continue;
         }
@@ -117,11 +122,14 @@ static std::int32_t run(int argc, char* argv[])
         return 2;
     }
 
-    if (maximum_frames != 0U && shell_mode != "sdl") {
+    if (maximum_frames != 0U
+        && shell_mode != "sdl") {
         std::cerr << "--shell-frames requires --shell=sdl\n";
         return 2;
     }
-    if (shell_mode == "sdl" && (!commands.empty() || interactive)) {
+    if (shell_mode == "sdl"
+        && (!commands.empty()
+        || interactive)) {
         std::cerr << "SDL shell does not accept --command or --interactive\n";
         return 2;
     }
@@ -138,8 +146,8 @@ static std::int32_t run(int argc, char* argv[])
         if (result == i76_result_code::ok) {
             if (shell_mode == "terminal") {
                 exit_code = i76_run_terminal_shell(shell, game, commands,
-                                                     interactive ||
-                                                     commands.empty(),
+                                                     interactive
+                        || commands.empty(),
                                                      std::cin, std::cout,
                                                      std::cerr);
             } else {
@@ -155,7 +163,8 @@ static std::int32_t run(int argc, char* argv[])
             std::cerr << "unable to initialize shell\n";
             exit_code = 1;
         }
-        if (shell.initialized && i76_shell_shutdown(shell) !=
+        if (shell.initialized
+            && i76_shell_shutdown(shell) !=
             i76_result_code::ok) {
             exit_code = 1;
         }
@@ -167,10 +176,11 @@ static std::int32_t run(int argc, char* argv[])
             process_runtime_command(game, command, exit_code);
             i76_line_editor_remember(editor, command);
         }
-        if (interactive && !game.state.exit_requested) {
-            while (!game.state.exit_requested &&
-                   i76_terminal_read_line(std::cin, std::cout, editor, "i76> ",
-                       line)) {
+        if (interactive
+            && !game.state.exit_requested) {
+            while (!game.state.exit_requested
+                   && i76_terminal_read_line(
+                          std::cin, std::cout, editor, "i76> ", line)) {
                 process_runtime_command(game, line, exit_code);
             }
         }

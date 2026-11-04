@@ -39,11 +39,13 @@ static void shell_sdl_process_key(i76_shell_state& shell,
         }
         return;
     }
-    if (key == SDLK_RETURN || key == SDLK_KP_ENTER) {
+    if (key == SDLK_RETURN
+        || key == SDLK_KP_ENTER) {
         i76_shell_select(shell, game, shell.selected_index);
         return;
     }
-    if (key >= SDLK_1 && key <= SDLK_8) {
+    if (key >= SDLK_1
+        && key <= SDLK_8) {
         index = static_cast<std::uint32_t>(key - SDLK_1);
         i76_shell_select(shell, game, index);
     }
@@ -106,8 +108,8 @@ static bool shell_sdl_present(SDL_Renderer* renderer,
     }
     if (shell.page == i76_shell_page::session) {
         SDL_SetRenderDrawColor(renderer, 185U, 207U, 190U, 255U);
-        for (object_index = 0; object_index < i76_world_count(game.world) &&
-                               object_index < 5U; ++object_index) {
+        for (object_index = 0; object_index < i76_world_count(game.world)
+             && object_index < 5U; ++object_index) {
             object_handle = i76_world_handle_at(game.world, object_index);
             object = i76_world_lookup(game.world, object_handle);
             if (object != nullptr) {
@@ -138,7 +140,8 @@ std::int32_t i76_run_sdl_shell(i76_shell_state& shell,
     std::int32_t result = 0;
     std::uint32_t frames = 0;
 
-    if (!shell.initialized || !game.state.initialized) {
+    if (!shell.initialized
+        || !game.state.initialized) {
         return 1;
     }
     video_initialized = SDL_Init(SDL_INIT_VIDEO);
@@ -163,7 +166,8 @@ std::int32_t i76_run_sdl_shell(i76_shell_state& shell,
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {
                 i76_shell_execute(shell, game, "exit");
-            } else if (event.type == SDL_EVENT_KEY_DOWN && !event.key.repeat) {
+            } else if (event.type == SDL_EVENT_KEY_DOWN
+                       && !event.key.repeat) {
                 shell_sdl_process_key(shell, game, event.key.key);
             }
         }
@@ -177,7 +181,8 @@ std::int32_t i76_run_sdl_shell(i76_shell_state& shell,
             break;
         }
         ++frames;
-        if (maximum_frames != 0U && frames >= maximum_frames) {
+        if (maximum_frames != 0U
+            && frames >= maximum_frames) {
             break;
         }
         SDL_Delay(16U);

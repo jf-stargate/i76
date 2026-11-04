@@ -29,11 +29,13 @@ static void test_lifecycle_and_validation()
     const i76_world_object* object = nullptr;
     std::string long_name(65U, 'a');
 
-    expect(!world.initialized && world.last_generation == 0U &&
-        world.slots.empty() &&
-               i76_world_count(world) == 0U, "value-initialized registry");
+    expect(!world.initialized
+           && world.last_generation == 0U
+           && world.slots.empty()
+           && i76_world_count(world) == 0U, "value-initialized registry");
     expect(i76_world_create(world, i76_world_kind::vehicle, "car", handle) ==
-               i76_world_result::not_initialized && handle.slot == 0U,
+               i76_world_result::not_initialized
+                   && handle.slot == 0U,
            "spawn rejected before initialize");
     expect(i76_world_clear(world) == i76_world_result::not_initialized,
            "clear rejected before initialize");
@@ -42,8 +44,8 @@ static void test_lifecycle_and_validation()
            "destroy rejected before initialize");
     expect(i76_world_shutdown(world) == i76_world_result::not_initialized,
            "shutdown rejected before initialize");
-    expect(i76_world_lookup(world, {}) == nullptr &&
-               i76_world_handle_at(world, 0U).slot == 0U,
+    expect(i76_world_lookup(world, {}) == nullptr
+           && i76_world_handle_at(world, 0U).slot == 0U,
            "lookup and enumeration reject inactive world");
 
     expect(i76_world_initialize(world) == i76_world_result::ok, "initialize");
@@ -72,38 +74,45 @@ static void test_lifecycle_and_validation()
     expect(i76_world_create(world, i76_world_kind::marker,
                             std::string_view("bad\0name", 8U), handle) ==
                i76_world_result::invalid_argument, "embedded NUL rejected");
-    expect(handle.slot == 0U && handle.generation == 0U &&
-        i76_world_count(world) == 0U,
+    expect(handle.slot == 0U
+           && handle.generation == 0U
+           && i76_world_count(world) == 0U,
            "invalid create returns no handle and no objects");
 
     expect(i76_world_create(world, i76_world_kind::vehicle, "scout", handle) ==
                i76_world_result::ok, "create scout");
-    expect(handle.slot == 1U && handle.generation == 2U,
+    expect(handle.slot == 1U
+           && handle.generation == 2U,
            "first live slot and monotonic generation");
     object = i76_world_lookup(world, handle);
-    expect(object != nullptr && object->name == "scout" &&
-               object->kind == i76_world_kind::vehicle && object->position.x ==
-                   0.0f &&
-               object->position.y == 0.0f && object->position.z == 0.0f,
+    expect(object != nullptr
+           && object->name == "scout"
+           && object->kind == i76_world_kind::vehicle
+           && object->position.x ==
+                   0.0f
+           && object->position.y == 0.0f
+           && object->position.z == 0.0f,
            "object data and position zero initialized");
-    expect(i76_world_lookup(world, {0U, 2U}) == nullptr &&
-               i76_world_lookup(world, {1U, 0U}) == nullptr &&
-               i76_world_lookup(world, {2U, 2U}) == nullptr &&
-               i76_world_lookup(world, {1U, 999U}) == nullptr,
+    expect(i76_world_lookup(world, {0U, 2U}) == nullptr
+           && i76_world_lookup(world, {1U, 0U}) == nullptr
+           && i76_world_lookup(world, {2U, 2U}) == nullptr
+           && i76_world_lookup(world, {1U, 999U}) == nullptr,
            "invalid, out-of-range and wrong-generation handles rejected");
     old_handle = handle;
     expect(i76_world_shutdown(world) == i76_world_result::ok, "shutdown");
-    expect(world.slots.empty() && world.creation_order.empty() &&
-        !world.initialized &&
-               i76_world_lookup(world, handle) == nullptr,
+    expect(world.slots.empty()
+           && world.creation_order.empty()
+           && !world.initialized
+           && i76_world_lookup(world, handle) == nullptr,
            "shutdown releases resources and invalidates objects");
     expect(i76_world_initialize(world) == i76_world_result::ok, "reinitialize");
     expect(i76_world_create(world, i76_world_kind::vehicle, "replacement",
         handle) ==
                i76_world_result::ok, "create after reinitialize");
-    expect(handle.slot == old_handle.slot && handle.generation !=
-        old_handle.generation &&
-               i76_world_lookup(world, old_handle) == nullptr,
+    expect(handle.slot == old_handle.slot
+           && handle.generation !=
+        old_handle.generation
+           && i76_world_lookup(world, old_handle) == nullptr,
            "old handle stays invalid across reinitialization");
     expect(i76_world_shutdown(world) == i76_world_result::ok, "final shutdown");
 }
@@ -127,38 +136,39 @@ static void test_order_and_generation()
                i76_world_result::ok, "create two");
     expect(i76_world_create(world, i76_world_kind::marker, "three", third) ==
                i76_world_result::ok, "create three");
-    expect(i76_world_count(world) == 3U && i76_world_handle_at(world,
-        0U).slot == first.slot &&
-               i76_world_handle_at(world, 1U).slot == second.slot &&
-               i76_world_handle_at(world, 2U).slot == third.slot,
+    expect(i76_world_count(world) == 3U
+           && i76_world_handle_at(world,
+        0U).slot == first.slot
+           && i76_world_handle_at(world, 1U).slot == second.slot
+           && i76_world_handle_at(world, 2U).slot == third.slot,
            "initial creation order");
     expect(i76_world_handle_at(world, 3U).slot == 0U,
         "out-of-range enumeration");
     expect(i76_world_destroy(world, second) == i76_world_result::ok,
            "destroy middle object");
     expect(i76_world_destroy(world, second) == i76_world_result::invalid_handle
-        &&
-               i76_world_lookup(world, second) == nullptr,
+            && i76_world_lookup(world, second) == nullptr,
            "double destroy and stale handle rejected");
     expect(i76_world_create(world, i76_world_kind::vehicle, "four", fourth) ==
                i76_world_result::ok, "reuse freed slot");
-    expect(fourth.slot == second.slot && fourth.generation > second.generation
-        &&
-               i76_world_lookup(world, second) == nullptr,
+    expect(fourth.slot == second.slot
+           && fourth.generation > second.generation
+           && i76_world_lookup(world, second) == nullptr,
            "generation changes on slot reuse");
-    expect(i76_world_handle_at(world, 0U).generation == first.generation &&
-               i76_world_handle_at(world, 1U).generation == third.generation &&
-               i76_world_handle_at(world, 2U).generation == fourth.generation,
+    expect(i76_world_handle_at(world, 0U).generation == first.generation
+           && i76_world_handle_at(world, 1U).generation == third.generation
+           && i76_world_handle_at(world, 2U).generation == fourth.generation,
            "order by creation rather than slot index");
-    expect(i76_world_clear(world) == i76_world_result::ok &&
-        i76_world_count(world) == 0U,
+    expect(i76_world_clear(world) == i76_world_result::ok
+           && i76_world_count(world) == 0U,
            "session clear");
-    expect(i76_world_lookup(world, first) == nullptr &&
-               i76_world_lookup(world, third) == nullptr &&
-               i76_world_lookup(world, fourth) == nullptr,
+    expect(i76_world_lookup(world, first) == nullptr
+           && i76_world_lookup(world, third) == nullptr
+           && i76_world_lookup(world, fourth) == nullptr,
            "all old handles invalid after session clear");
     expect(i76_world_create(world, i76_world_kind::vehicle, "new", first) ==
-               i76_world_result::ok && first.generation > fourth.generation,
+               i76_world_result::ok
+                   && first.generation > fourth.generation,
            "new session uses fresh generation");
     expect(i76_world_destroy(world, {0U,
         0U}) == i76_world_result::invalid_handle,
@@ -186,12 +196,14 @@ static void test_capacity_and_exhaustion()
     }
     expect(i76_world_count(world) == i76_world_max_objects, "capacity reached");
     expect(i76_world_create(world, i76_world_kind::vehicle, "excess", handle) ==
-               i76_world_result::capacity_exceeded && handle.slot == 0U,
+               i76_world_result::capacity_exceeded
+                   && handle.slot == 0U,
            "overflow rejected with null output handle");
     expect(i76_world_destroy(world, i76_world_handle_at(world, 0U)) ==
                i76_world_result::ok, "make room");
     expect(i76_world_create(world, i76_world_kind::marker, "new", handle) ==
-               i76_world_result::ok && i76_world_count(world) ==
+               i76_world_result::ok
+                   && i76_world_count(world) ==
                    i76_world_max_objects,
            "capacity recovered after destruction");
     expect(i76_world_clear(world) == i76_world_result::ok, "capacity clear");

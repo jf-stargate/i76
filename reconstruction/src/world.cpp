@@ -8,8 +8,9 @@
 // -----------------------------------------------------------------------------
 static bool valid_kind(i76_world_kind kind) noexcept
 {
-    return kind == i76_world_kind::vehicle || kind == i76_world_kind::scenery ||
-           kind == i76_world_kind::marker;
+    return kind == i76_world_kind::vehicle
+           || kind == i76_world_kind::scenery
+           || kind == i76_world_kind::marker;
 }
 
 // -----------------------------------------------------------------------------
@@ -20,12 +21,14 @@ static bool valid_name(std::string_view name) noexcept
     std::size_t index = 0;
     unsigned char character = 0;
 
-    if (name.empty() || name.size() > i76_world_max_name_length) {
+    if (name.empty()
+        || name.size() > i76_world_max_name_length) {
         return false;
     }
     for (index = 0; index < name.size(); ++index) {
         character = static_cast<unsigned char>(name[index]);
-        if (character < 32U || character > 126U) {
+        if (character < 32U
+            || character > 126U) {
             return false;
         }
     }
@@ -98,11 +101,12 @@ i76_world_result i76_world_create(i76_world_registry& world,
     if (!world.initialized) {
         return i76_world_result::not_initialized;
     }
-    if (!valid_kind(kind) || !valid_name(name)) {
+    if (!valid_kind(kind)
+        || !valid_name(name)) {
         return i76_world_result::invalid_argument;
     }
-    if (world.creation_order.size() >= i76_world_max_objects ||
-        world.last_generation == std::numeric_limits<std::uint64_t>::max()) {
+    if (world.creation_order.size() >= i76_world_max_objects
+        || world.last_generation == std::numeric_limits<std::uint64_t>::max()) {
         return i76_world_result::capacity_exceeded;
     }
 
@@ -116,7 +120,8 @@ i76_world_result i76_world_create(i76_world_registry& world,
             }
         }
     }
-    if (selected == world.slots.size() && world.slots.size() >=
+    if (selected == world.slots.size()
+        && world.slots.size() >=
         i76_world_max_objects) {
         return i76_world_result::capacity_exceeded;
     }
@@ -150,7 +155,9 @@ const i76_world_object* i76_world_lookup(const i76_world_registry& world,
     std::size_t index = 0;
     const i76_world_slot* slot = nullptr;
 
-    if (!world.initialized || handle.slot == 0U || handle.generation == 0U) {
+    if (!world.initialized
+        || handle.slot == 0U
+        || handle.generation == 0U) {
         return nullptr;
     }
     index = static_cast<std::size_t>(handle.slot - 1U);
@@ -158,7 +165,8 @@ const i76_world_object* i76_world_lookup(const i76_world_registry& world,
         return nullptr;
     }
     slot = &world.slots[index];
-    if (!slot->occupied || slot->object.handle.generation != handle.generation)
+    if (!slot->occupied
+        || slot->object.handle.generation != handle.generation)
         {
         return nullptr;
     }
@@ -182,8 +190,8 @@ i76_world_result i76_world_destroy(i76_world_registry& world,
     }
     slot_index = static_cast<std::size_t>(handle.slot - 1U);
     for (index = 0; index < world.creation_order.size(); ++index) {
-        if (world.creation_order[index].slot == handle.slot &&
-            world.creation_order[index].generation == handle.generation) {
+        if (world.creation_order[index].slot == handle.slot
+            && world.creation_order[index].generation == handle.generation) {
             world.creation_order.erase(world.creation_order.begin() +
                                        static_cast<std::ptrdiff_t>(index));
             break;
@@ -208,7 +216,8 @@ std::size_t i76_world_count(const i76_world_registry& world) noexcept
 i76_world_handle i76_world_handle_at(const i76_world_registry& world,
                                      std::size_t creation_index) noexcept
 {
-    if (!world.initialized || creation_index >= world.creation_order.size()) {
+    if (!world.initialized
+        || creation_index >= world.creation_order.size()) {
         return {};
     }
     return world.creation_order[creation_index];

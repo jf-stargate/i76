@@ -89,7 +89,8 @@ i76_result_code i76_runtime_initialize(i76_runtime& game,
     if (game.state.initialized) {
         return i76_result_code::already_initialized;
     }
-    if (config.tick_rate == 0U || config.tick_rate > 1000U) {
+    if (config.tick_rate == 0U
+        || config.tick_rate > 1000U) {
         return i76_result_code::invalid_argument;
     }
     world_result = i76_world_initialize(game.world);
@@ -158,8 +159,10 @@ i76_result_code i76_runtime_step(i76_runtime& game, std::uint32_t count)
     if (!game.state.initialized) {
         return i76_result_code::not_initialized;
     }
-    if (count == 0U || count > i76_k_max_ticks_per_call ||
-        game.state.tick > std::numeric_limits<std::uint64_t>::max() - count) {
+    if (count == 0U
+        || count > i76_k_max_ticks_per_call
+        || game.state.tick >
+               std::numeric_limits<std::uint64_t>::max() - count) {
         return i76_result_code::invalid_argument;
     }
     for (index = 0; index < count; ++index) {
@@ -190,8 +193,9 @@ i76_result_code i76_runtime_advance_time(i76_runtime& game,
     }
     total_ns = game.state.accumulated_ns + elapsed_ns;
     count = total_ns / game.state.tick_period_ns;
-    if (count > i76_k_max_ticks_per_call ||
-        count > std::numeric_limits<std::uint64_t>::max() - game.state.tick) {
+    if (count > i76_k_max_ticks_per_call
+        || count >
+               std::numeric_limits<std::uint64_t>::max() - game.state.tick) {
         return i76_result_code::overflow;
     }
     game.state.accumulated_ns = total_ns % game.state.tick_period_ns;
@@ -254,7 +258,8 @@ void i76_runtime_emit_diagnostic(i76_runtime& game,
 {
     i76_diagnostic_event event = {};
 
-    if (game.state.initialized && game.outputs.diagnostics.submit != nullptr) {
+    if (game.state.initialized
+        && game.outputs.diagnostics.submit != nullptr) {
         event.tick = game.state.tick;
         event.level = level;
         event.message = message;

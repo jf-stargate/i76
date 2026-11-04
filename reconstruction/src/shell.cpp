@@ -24,9 +24,11 @@ static std::string_view trim_shell_input(std::string_view input)
 static bool shell_namespace(std::string_view command,
                             std::string_view name) noexcept
 {
-    return command == name ||
-           (command.size() > name.size() && command.starts_with(name) &&
-            (command[name.size()] == ' ' || command[name.size()] == '\t'));
+    return command == name
+           || (command.size() > name.size()
+           && command.starts_with(name)
+           && (command[name.size()] == ' '
+           || command[name.size()] == '\t'));
 }
 
 // -----------------------------------------------------------------------------
@@ -145,13 +147,16 @@ i76_command_result i76_shell_execute(i76_shell_state& shell,
     i76_result_code code = i76_result_code::ok;
     std::uint32_t index = 0;
 
-    if (!shell.initialized || !game.state.initialized) {
+    if (!shell.initialized
+        || !game.state.initialized) {
         return {i76_result_code::not_initialized,
             "shell or runtime is not initialized"};
     }
 
     command = trim_shell_input(command);
-    if (command.size() == 1U && command[0] >= '1' && command[0] <= '8') {
+    if (command.size() == 1U
+        && command[0] >= '1'
+        && command[0] <= '8') {
         index = static_cast<std::uint32_t>(command[0] - '1');
         return i76_shell_select(shell, game, index);
     }
@@ -162,11 +167,13 @@ i76_command_result i76_shell_execute(i76_shell_state& shell,
                            "step <n> object <action> level <action> "
                            "resource <action> asset stats exit");
     }
-    if (command == "exit" || command == "quit") {
+    if (command == "exit"
+        || command == "quit") {
         code = i76_runtime_request_exit(game);
         return shell_reply(shell, game, code, "exit requested");
     }
-    if (command == "back" || command == "menu") {
+    if (command == "back"
+        || command == "menu") {
         if (shell.page == i76_shell_page::main_menu) {
             return shell_reply(shell, game, i76_result_code::invalid_argument,
                                "already at main menu");
@@ -185,20 +192,27 @@ i76_command_result i76_shell_execute(i76_shell_state& shell,
         shell.selected_index = 0U;
         return shell_reply(shell, game, i76_result_code::ok, "main menu");
     }
-    if (shell_namespace(command, "resource") || shell_namespace(command,
-        "asset") ||
-        shell_namespace(command, "level") || shell_namespace(command, "find") ||
-        (shell_namespace(command, "help") && command != "help") ||
-        command.starts_with("sim.") || command.starts_with("world.")) {
+    if (shell_namespace(command, "resource")
+        || shell_namespace(command,
+        "asset")
+        || shell_namespace(command, "level")
+        || shell_namespace(command, "find")
+        || (shell_namespace(command, "help")
+        && command != "help")
+        || command.starts_with("sim.")
+        || command.starts_with("world.")) {
         result = i76_execute_command(game, command);
         shell.notice = result.message;
-        if (result.code == i76_result_code::ok && game.active_level.loaded &&
-            (command.starts_with("level load ") || command == "level activate"))
+        if (result.code == i76_result_code::ok
+            && game.active_level.loaded
+            && (command.starts_with("level load ")
+            || command == "level activate"))
                 {
             shell.page = i76_shell_page::session;
             shell.selected_index = 0U;
         }
-        if (result.code == i76_result_code::ok && command == "level unload") {
+        if (result.code == i76_result_code::ok
+            && command == "level unload") {
             shell.page = i76_shell_page::main_menu;
             shell.selected_index = 0U;
         }
@@ -228,11 +242,16 @@ i76_command_result i76_shell_execute(i76_shell_state& shell,
         }
     }
     if (shell.page == i76_shell_page::session) {
-        if (shell_namespace(command, "sim") || command == "status" ||
-            command == "pause" || command == "resume" ||
-            command == "step" || command.starts_with("step ") ||
-            command.starts_with("step\t") || command == "object" ||
-            command.starts_with("object ") || command.starts_with("object\t")) {
+        if (shell_namespace(command, "sim")
+            || command == "status"
+            || command == "pause"
+            || command == "resume"
+            || command == "step"
+            || command.starts_with("step ")
+            || command.starts_with("step\t")
+            || command == "object"
+            || command.starts_with("object ")
+            || command.starts_with("object\t")) {
             result = i76_execute_command(game, command);
             shell.notice = result.message;
             return result;
@@ -251,7 +270,8 @@ i76_command_result i76_shell_select(i76_shell_state& shell,
 {
     i76_shell_view view = {};
 
-    if (!shell.initialized || !game.state.initialized) {
+    if (!shell.initialized
+        || !game.state.initialized) {
         return {i76_result_code::not_initialized,
             "shell or runtime is not initialized"};
     }
