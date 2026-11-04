@@ -113,3 +113,14 @@ from user-supplied `.MSN`, `.SPC`, or `.LVL` files (`level inspect M06.MSN`),
 including uppercase legacy filenames on Linux. `level sections <name>` forces
 BWD2 structural inspection without attempting to load a mission. See
 [BWD2.md](BWD2.md). Original mission activation remains unimplemented.
+
+## Console language and CVars (grammar 0.1)
+
+The engine's registered commands and console variables now share a simple
+tokenizer and registry. Try `help resource`, `help level load`, `find paused`,
+`sim pause`, `sim step 60`, `sim.paused true`, and `sim.tick_rate`.
+The original command spellings remain valid. Resource paths with spaces can
+now be quoted; terminal history and cursor editing are unaffected.
+
+See [CONSOLE_GRAMMAR.md](CONSOLE_GRAMMAR.md) for the formal syntax, limits,
+supported CVars, compatibility notes and intentionally deferred features.

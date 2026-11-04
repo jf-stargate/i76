@@ -1,4 +1,5 @@
 #include "i76/command.h"
+#include "i76/console.h"
 #include "i76/bwd2.h"
 
 #include <charconv>
@@ -153,9 +154,9 @@ static i76_command_result execute_object_command(i76_runtime& game, std::string_
     }
     if (verb == "spawn") {
         kind_text = take_token(args);
-        name = take_token(args);
+        name = args;
         kind = parse_kind(kind_text);
-        if (kind == i76_world_kind::none || name.empty() || !args.empty()) {
+        if (kind == i76_world_kind::none || name.empty()) {
             return make_reply(game, i76_result_code::invalid_argument,
                               "usage: object spawn <vehicle|scenery|marker> <name>");
         }
@@ -494,7 +495,7 @@ static i76_command_result execute_level_command(i76_runtime& game, std::string_v
     return make_reply(game, i76_result_code::invalid_argument, "invalid level command");
 }
 
-i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
+i76_command_result i76_execute_legacy_command(i76_runtime& game, std::string_view line)
 {
     std::string_view command = {};
     std::string_view args = {};
@@ -568,4 +569,9 @@ i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
                           "stepped " + std::to_string(count) + " tick(s)");
     }
     return make_reply(game, i76_result_code::unknown_command, "unknown command");
+}
+
+i76_command_result i76_execute_command(i76_runtime& game, std::string_view line)
+{
+    return i76_console_execute(game, line);
 }
