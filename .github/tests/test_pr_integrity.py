@@ -68,6 +68,25 @@ class Tests(unittest.TestCase):
         with self.assertRaises(guard.Rejected):self.check(h,f"agent/i76shell/{rid}")
     def test_manual_proposal(self):
         h=self.add("manual/reference/abc.md","hi");self.assertEqual(self.check(h)["publication"],"review-required")
+    def test_reconstruction_from_stale_pr_base_uses_current_policy(self):
+        # A reconstruction PR may have opened before accepted policy added
+        # reconstruction/. Validate its own diff against the merge-base while
+        # applying the currently trusted policy, without executing candidate code.
+        old_base=self.base
+        git(self.r,"checkout","-q","-b","feature/reconstruction-unit")
+        candidate=self.add("reconstruction/CMakeLists.txt","cmake_minimum_required(VERSION 3.20)\n")
+        git(self.r,"checkout","-q","-b","main",old_base)
+        current_main=self.add("manual/README.md","accepted policy revision")
+        comparison_base=git(self.r,"merge-base",current_main,candidate)
+        self.assertEqual(comparison_base,old_base)
+        result=guard.inspect(self.r,comparison_base,candidate,ROOT,"feature/reconstruction-unit")
+        self.assertEqual(result["classes"]["maintained-reconstruction"],1)
+    def test_trusted_workflow_checks_out_current_main(self):
+        workflow=(ROOT/".github/workflows/pr-integrity.yml").read_text()
+        self.assertIn("ref: refs/heads/main",workflow)
+        self.assertNotIn("ref: " + "${" + "{ github.event.pull_request.base.sha }}",workflow)
+        self.assertIn("git merge-base HEAD",workflow)
+        self.assertIn("i76-trusted-main",workflow)
     def test_unlisted_path(self):
         h=self.add("random/x","a")
         with self.assertRaises(guard.Rejected):self.check(h)
