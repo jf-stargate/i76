@@ -95,6 +95,23 @@ if(I76_BUILD_TESTS)
     add_test(NAME functional_shell_help COMMAND i76 --shell --command help)
     set_tests_properties(functional_shell_help PROPERTIES
         LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "select 1-8")
+    add_test(NAME functional_version COMMAND i76 --version)
+    set_tests_properties(functional_version PROPERTIES
+        LABELS "functional;memcheck" PASS_REGULAR_EXPRESSION "framework 0.2.0")
+    add_test(NAME functional_unknown_argument COMMAND i76 --not-an-option)
+    set_tests_properties(functional_unknown_argument PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+    add_test(NAME functional_invalid_frame_count COMMAND i76 --shell=sdl --shell-frames invalid)
+    set_tests_properties(functional_invalid_frame_count PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+    add_test(NAME functional_frames_require_sdl COMMAND i76 --shell-frames 2)
+    set_tests_properties(functional_frames_require_sdl PROPERTIES LABELS "functional" WILL_FAIL TRUE)
+    add_test(NAME functional_sdl_conflicting_commands COMMAND i76 --shell=sdl --command exit)
+    set_tests_properties(functional_sdl_conflicting_commands PROPERTIES
+        LABELS "functional" WILL_FAIL TRUE)
+    if(NOT I76_ENABLE_SDL3)
+        add_test(NAME functional_sdl_disabled COMMAND i76 --shell=sdl)
+        set_tests_properties(functional_sdl_disabled PROPERTIES
+            LABELS "functional" WILL_FAIL TRUE)
+    endif()
     if(I76_ENABLE_SDL3)
         add_test(NAME functional_sdl_dummy COMMAND i76 --shell=sdl --shell-frames 2)
         set_tests_properties(functional_sdl_dummy PROPERTIES
