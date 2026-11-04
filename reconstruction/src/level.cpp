@@ -4,12 +4,16 @@
 #include <limits>
 #include <utility>
 
+// -----------------------------------------------------------------------------
+// Remove surrounding whitespace from a synthetic manifest line.
+// -----------------------------------------------------------------------------
 static std::string_view trim_level(std::string_view input) noexcept
 {
     std::size_t begin = 0;
     std::size_t end = input.size();
 
-    while (begin < end && (input[begin] == ' ' || input[begin] == '\t' || input[begin] == '\r')) {
+    while (begin < end && (input[begin] == ' ' || input[begin] == '\t' ||
+        input[begin] == '\r')) {
         ++begin;
     }
     while (end > begin && (input[end - 1U] == ' ' || input[end - 1U] == '\t' ||
@@ -19,7 +23,11 @@ static std::string_view trim_level(std::string_view input) noexcept
     return input.substr(begin, end - begin);
 }
 
-static bool parse_line(std::string_view line, std::array<std::string_view, 4>& tokens,
+// -----------------------------------------------------------------------------
+// Validate and decode one line of a synthetic level manifest.
+// -----------------------------------------------------------------------------
+static bool parse_line(std::string_view line,
+                       std::array<std::string_view, 4>& tokens,
                        std::size_t& count) noexcept
 {
     std::size_t start = 0;
@@ -28,7 +36,8 @@ static bool parse_line(std::string_view line, std::array<std::string_view, 4>& t
     tokens = {};
     count = 0;
     while (start < line.size()) {
-        while (start < line.size() && (line[start] == ' ' || line[start] == '\t')) {
+        while (start < line.size() && (line[start] == ' ' || line[start] ==
+            '\t')) {
             ++start;
         }
         if (start >= line.size()) {
@@ -47,6 +56,9 @@ static bool parse_line(std::string_view line, std::array<std::string_view, 4>& t
     return true;
 }
 
+// -----------------------------------------------------------------------------
+// Check whether a proposed level-object name is well formed.
+// -----------------------------------------------------------------------------
 static bool valid_object_name(std::string_view name) noexcept
 {
     std::size_t index = 0;
@@ -64,6 +76,9 @@ static bool valid_object_name(std::string_view name) noexcept
     return true;
 }
 
+// -----------------------------------------------------------------------------
+// Deduplicate and record a resource dependency in a level definition.
+// -----------------------------------------------------------------------------
 static bool add_asset(i76_level_definition& definition, std::string_view name)
 {
     std::string key = {};
@@ -84,6 +99,9 @@ static bool add_asset(i76_level_definition& definition, std::string_view name)
     return true;
 }
 
+// -----------------------------------------------------------------------------
+// Decode a synthetic level manifest into a typed definition.
+// -----------------------------------------------------------------------------
 i76_level_result i76_level_decode(std::span<const std::uint8_t> bytes,
                                   i76_level_definition& definition)
 {
@@ -101,9 +119,11 @@ i76_level_result i76_level_decode(std::span<const std::uint8_t> bytes,
     if (bytes.empty() || bytes.size() > i76_level_max_manifest_bytes) {
         return i76_level_result::invalid_data;
     }
-    data = std::string_view(reinterpret_cast<const char*>(bytes.data()), bytes.size());
+    data = std::string_view(reinterpret_cast<const char*>(bytes.data()),
+        bytes.size());
     for (index = 0; index < data.size(); ++index) {
-        if ((static_cast<unsigned char>(data[index]) < 32U && data[index] != '\n' &&
+        if ((static_cast<unsigned char>(data[index]) < 32U && data[index] !=
+            '\n' &&
              data[index] != '\r' && data[index] != '\t') ||
             static_cast<unsigned char>(data[index]) > 126U) {
             return i76_level_result::invalid_data;
@@ -172,7 +192,11 @@ i76_level_result i76_level_decode(std::span<const std::uint8_t> bytes,
     return i76_level_result::ok;
 }
 
-i76_level_result i76_level_read(i76_resource_store& store, std::string_view name,
+// -----------------------------------------------------------------------------
+// Acquire and parse a synthetic level without preparing its assets.
+// -----------------------------------------------------------------------------
+i76_level_result i76_level_read(i76_resource_store& store,
+                                std::string_view name,
                                 i76_level_definition& definition)
 {
     i76_resource_handle blob = {};
@@ -186,9 +210,11 @@ i76_level_result i76_level_read(i76_resource_store& store, std::string_view name
     }
     resource_status = i76_resource_acquire(store, name, blob);
     if (resource_status != i76_resource_result::ok) {
-        return resource_status == i76_resource_result::not_found ? i76_level_result::not_found :
+        return resource_status == i76_resource_result::not_found ?
+            i76_level_result::not_found :
                resource_status == i76_resource_result::invalid_argument ?
-                   i76_level_result::invalid_argument : i76_level_result::invalid_data;
+                   i76_level_result::invalid_argument :
+                       i76_level_result::invalid_data;
     }
     try {
         entry = i76_resource_lookup(store, blob);
@@ -207,6 +233,9 @@ i76_level_result i76_level_read(i76_resource_store& store, std::string_view name
     return result;
 }
 
+// -----------------------------------------------------------------------------
+// Release resources retained by a prepared synthetic level.
+// -----------------------------------------------------------------------------
 i76_level_result i76_level_discard(i76_resource_store& store,
                                    i76_prepared_level& prepared) noexcept
 {
@@ -222,7 +251,11 @@ i76_level_result i76_level_discard(i76_resource_store& store,
     return i76_level_result::ok;
 }
 
-i76_level_result i76_level_prepare(i76_resource_store& store, std::string_view name,
+// -----------------------------------------------------------------------------
+// Validate and retain assets for a candidate synthetic level.
+// -----------------------------------------------------------------------------
+i76_level_result i76_level_prepare(i76_resource_store& store,
+                                   std::string_view name,
                                    i76_prepared_level& prepared)
 {
     i76_resource_handle asset = {};
@@ -244,12 +277,14 @@ i76_level_result i76_level_prepare(i76_resource_store& store, std::string_view n
     try {
         candidate.resources.reserve(candidate.definition.assets.size());
         for (index = 0; index < candidate.definition.assets.size(); ++index) {
-            resource_status = i76_resource_acquire(store, candidate.definition.assets[index],
+            resource_status = i76_resource_acquire(store,
+                candidate.definition.assets[index],
                                                    asset);
             if (resource_status != i76_resource_result::ok) {
                 i76_level_discard(store, candidate);
                 return resource_status == i76_resource_result::not_found ?
-                           i76_level_result::not_found : i76_level_result::invalid_data;
+                           i76_level_result::not_found :
+                           i76_level_result::invalid_data;
             }
             candidate.resources.push_back(asset);
             asset = {};
@@ -266,7 +301,11 @@ i76_level_result i76_level_prepare(i76_resource_store& store, std::string_view n
     return i76_level_result::ok;
 }
 
-i76_level_result i76_level_unload(i76_world_registry& world, i76_resource_store& store,
+// -----------------------------------------------------------------------------
+// Unload an active level and release its owned resources.
+// -----------------------------------------------------------------------------
+i76_level_result i76_level_unload(i76_world_registry& world,
+                                  i76_resource_store& store,
                                   i76_active_level& active) noexcept
 {
     std::size_t index = 0;
@@ -285,8 +324,13 @@ i76_level_result i76_level_unload(i76_world_registry& world, i76_resource_store&
     return i76_level_result::ok;
 }
 
-i76_level_result i76_level_activate(i76_world_registry& world, i76_resource_store& store,
-                                    i76_prepared_level& prepared, i76_active_level& active)
+// -----------------------------------------------------------------------------
+// Build and atomically commit a prepared level's world objects.
+// -----------------------------------------------------------------------------
+i76_level_result i76_level_activate(i76_world_registry& world,
+                                    i76_resource_store& store,
+                                    i76_prepared_level& prepared,
+                                    i76_active_level& active)
 {
     i76_world_registry replacement = {};
     i76_world_handle handle = {};
@@ -302,13 +346,15 @@ i76_level_result i76_level_activate(i76_world_registry& world, i76_resource_stor
         return i76_level_result::not_prepared;
     }
     if (prepared.definition.objects.size() > i76_world_max_objects ||
-        prepared.definition.objects.size() > max_generation - world.last_generation) {
+        prepared.definition.objects.size() > max_generation -
+            world.last_generation) {
         return i76_level_result::capacity_exceeded;
     }
     i76_world_initialize(replacement);
     replacement.last_generation = world.last_generation;
     for (index = 0; index < prepared.definition.objects.size(); ++index) {
-        world_result = i76_world_create(replacement, prepared.definition.objects[index].kind,
+        world_result = i76_world_create(replacement,
+            prepared.definition.objects[index].kind,
                                          prepared.definition.objects[index].name, handle);
         if (world_result != i76_world_result::ok) {
             i76_world_shutdown(replacement);
@@ -321,7 +367,8 @@ i76_level_result i76_level_activate(i76_world_registry& world, i76_resource_stor
     prepared = {};
 
     // Swapping only registry storage keeps the original registry instance (and
-    // increasing generation sequence) intact. Preparation failures never touch it.
+    // increasing generation sequence) intact. Preparation failures never touch
+    // it.
     world.slots.swap(replacement.slots);
     world.creation_order.swap(replacement.creation_order);
     world.last_generation = replacement.last_generation;

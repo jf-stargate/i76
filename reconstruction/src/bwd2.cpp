@@ -4,6 +4,9 @@
 #include <limits>
 #include <utility>
 
+// -----------------------------------------------------------------------------
+// Read a little-endian 32-bit integer without assuming host alignment.
+// -----------------------------------------------------------------------------
 static std::uint32_t read_le_u32(const std::uint8_t* bytes) noexcept
 {
     std::uint32_t value = 0;
@@ -15,6 +18,9 @@ static std::uint32_t read_le_u32(const std::uint8_t* bytes) noexcept
     return value;
 }
 
+// -----------------------------------------------------------------------------
+// Decode a validated printable FourCC into a null-terminated tag.
+// -----------------------------------------------------------------------------
 static bool decode_tag(const std::uint8_t* bytes, char (&tag)[5]) noexcept
 {
     std::uint32_t index = 0;
@@ -38,6 +44,9 @@ static bool decode_tag(const std::uint8_t* bytes, char (&tag)[5]) noexcept
     return present;
 }
 
+// -----------------------------------------------------------------------------
+// Check whether a BWD2 record contains recursively parsed child records.
+// -----------------------------------------------------------------------------
 static bool container_tag(const char* tag) noexcept
 {
     return std::strcmp(tag, "BWD2") == 0 || std::strcmp(tag, "WDEF") == 0 ||
@@ -46,6 +55,9 @@ static bool container_tag(const char* tag) noexcept
            std::strcmp(tag, "ADEF") == 0;
 }
 
+// -----------------------------------------------------------------------------
+// Recognize the bounded BWD2 records containing revision numbers.
+// -----------------------------------------------------------------------------
 static bool revision_tag(const char* tag) noexcept
 {
     return std::strcmp(tag, "REV") == 0 || std::strcmp(tag, "WREV") == 0 ||
@@ -54,7 +66,11 @@ static bool revision_tag(const char* tag) noexcept
            std::strcmp(tag, "AREV") == 0;
 }
 
-static i76_bwd2_result fail(i76_bwd2_error& error, i76_bwd2_result code,
+// -----------------------------------------------------------------------------
+// Record a typed parse failure and its offending byte offset.
+// -----------------------------------------------------------------------------
+static i76_bwd2_result fail(i76_bwd2_error& error,
+                            i76_bwd2_result code,
                             std::uint32_t offset) noexcept
 {
     error.code = code;
@@ -62,11 +78,16 @@ static i76_bwd2_result fail(i76_bwd2_error& error, i76_bwd2_result code,
     return code;
 }
 
+// -----------------------------------------------------------------------------
+// Walk bounded BWD2 chunk records and inventory their nested children.
+// -----------------------------------------------------------------------------
 static i76_bwd2_result parse_range(std::span<const std::uint8_t> bytes,
-                                    std::uint32_t start, std::uint32_t end,
-                                    std::uint32_t parent, std::uint8_t depth,
-                                    i76_bwd2_document& candidate,
-                                    i76_bwd2_error& error)
+                                   std::uint32_t start,
+                                   std::uint32_t end,
+                                   std::uint32_t parent,
+                                   std::uint8_t depth,
+                                   i76_bwd2_document& candidate,
+                                   i76_bwd2_error& error)
 {
     std::uint32_t cursor = start;
     std::uint32_t length = 0;
@@ -117,7 +138,8 @@ static i76_bwd2_result parse_range(std::span<const std::uint8_t> bytes,
         if (nested && chunk.payload_size != 0U) {
             child_start = chunk.payload_offset;
             result = parse_range(bytes, child_start, cursor + length, index,
-                                 static_cast<std::uint8_t>(depth + 1U), candidate, error);
+                                 static_cast<std::uint8_t>(depth + 1U),
+                                 candidate, error);
             if (result != i76_bwd2_result::ok) {
                 return result;
             }
@@ -127,9 +149,12 @@ static i76_bwd2_result parse_range(std::span<const std::uint8_t> bytes,
     return i76_bwd2_result::ok;
 }
 
+// -----------------------------------------------------------------------------
+// Parse an entire BWD2 stream without modifying output on failure.
+// -----------------------------------------------------------------------------
 i76_bwd2_result i76_bwd2_parse(std::span<const std::uint8_t> bytes,
-                                i76_bwd2_document& document,
-                                i76_bwd2_error& error)
+                               i76_bwd2_document& document,
+                               i76_bwd2_error& error)
 {
     i76_bwd2_document candidate = {};
     i76_bwd2_result result = i76_bwd2_result::ok;
@@ -170,8 +195,13 @@ i76_bwd2_result i76_bwd2_parse(std::span<const std::uint8_t> bytes,
     return i76_bwd2_result::ok;
 }
 
-i76_bwd2_result i76_bwd2_read(i76_resource_store& store, std::string_view name,
-                               i76_bwd2_document& document, i76_bwd2_error& error)
+// -----------------------------------------------------------------------------
+// Acquire, inspect, and release a mission resource through the store.
+// -----------------------------------------------------------------------------
+i76_bwd2_result i76_bwd2_read(i76_resource_store& store,
+                              std::string_view name,
+                              i76_bwd2_document& document,
+                              i76_bwd2_error& error)
 {
     i76_resource_handle handle = {};
     i76_resource_result acquisition = i76_resource_result::ok;
@@ -210,24 +240,34 @@ i76_bwd2_result i76_bwd2_read(i76_resource_store& store, std::string_view name,
     return result;
 }
 
+// -----------------------------------------------------------------------------
+// Convert BWD2 error codes into readable diagnostics.
+// -----------------------------------------------------------------------------
 const char* i76_bwd2_result_name(i76_bwd2_result result) noexcept
 {
     switch (result) {
     case i76_bwd2_result::ok: return "ok";
     case i76_bwd2_result::invalid_argument: return "invalid resource name";
-    case i76_bwd2_result::not_initialized: return "resource store not initialized";
+    case i76_bwd2_result::not_initialized: return
+        "resource store not initialized";
     case i76_bwd2_result::resource_not_found: return "resource not found";
     case i76_bwd2_result::resource_error: return "resource read failure";
     case i76_bwd2_result::too_large: return "BWD2 resource exceeds size limit";
     case i76_bwd2_result::invalid_root: return "expected BWD2 root";
     case i76_bwd2_result::trailing_data: return "bytes after BWD2 root";
-    case i76_bwd2_result::truncated_header: return "truncated 8-byte chunk header";
-    case i76_bwd2_result::invalid_length: return "chunk total size smaller than header";
-    case i76_bwd2_result::out_of_bounds: return "chunk exceeds parent or resource bounds";
+    case i76_bwd2_result::truncated_header: return
+        "truncated 8-byte chunk header";
+    case i76_bwd2_result::invalid_length: return
+        "chunk total size smaller than header";
+    case i76_bwd2_result::out_of_bounds: return
+        "chunk exceeds parent or resource bounds";
     case i76_bwd2_result::invalid_tag: return "invalid printable ASCII FourCC";
-    case i76_bwd2_result::invalid_revision: return "revision chunk must have four payload bytes";
-    case i76_bwd2_result::too_many_chunks: return "BWD2 chunk-count limit exceeded";
-    case i76_bwd2_result::excessive_depth: return "BWD2 nesting-depth limit exceeded";
+    case i76_bwd2_result::invalid_revision: return
+        "revision chunk must have four payload bytes";
+    case i76_bwd2_result::too_many_chunks: return
+        "BWD2 chunk-count limit exceeded";
+    case i76_bwd2_result::excessive_depth: return
+        "BWD2 nesting-depth limit exceeded";
     }
     return "unknown BWD2 reader error";
 }

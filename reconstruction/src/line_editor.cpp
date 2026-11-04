@@ -2,19 +2,28 @@
 
 #include <utility>
 
-static std::size_t previous_character(std::string_view text, std::size_t cursor) noexcept
+// -----------------------------------------------------------------------------
+// Find the start of the previous UTF-8 code point.
+// -----------------------------------------------------------------------------
+static std::size_t previous_character(std::string_view text,
+                                      std::size_t cursor) noexcept
 {
     if (cursor == 0U) {
         return 0U;
     }
     --cursor;
-    while (cursor != 0U && (static_cast<std::uint8_t>(text[cursor]) & 0xC0U) == 0x80U) {
+    while (cursor != 0U && (static_cast<std::uint8_t>(text[cursor]) & 0xC0U) ==
+        0x80U) {
         --cursor;
     }
     return cursor;
 }
 
-static std::size_t next_character(std::string_view text, std::size_t cursor) noexcept
+// -----------------------------------------------------------------------------
+// Find the start of the next UTF-8 code point.
+// -----------------------------------------------------------------------------
+static std::size_t next_character(std::string_view text,
+                                  std::size_t cursor) noexcept
 {
     if (cursor >= text.size()) {
         return text.size();
@@ -27,6 +36,9 @@ static std::size_t next_character(std::string_view text, std::size_t cursor) noe
     return cursor;
 }
 
+// -----------------------------------------------------------------------------
+// Clear the current line, cursor, and history navigation state.
+// -----------------------------------------------------------------------------
 void i76_line_editor_reset(i76_line_editor& editor) noexcept
 {
     editor.line.clear();
@@ -35,6 +47,9 @@ void i76_line_editor_reset(i76_line_editor& editor) noexcept
     editor.history_index = editor.history.size();
 }
 
+// -----------------------------------------------------------------------------
+// Save a submitted command in bounded input history.
+// -----------------------------------------------------------------------------
 void i76_line_editor_remember(i76_line_editor& editor, std::string_view command)
 {
     if (command.empty() || command.size() > i76_line_max_bytes) {
@@ -50,14 +65,19 @@ void i76_line_editor_remember(i76_line_editor& editor, std::string_view command)
     editor.history_index = editor.history.size();
 }
 
-i76_line_action i76_line_editor_apply(i76_line_editor& editor, i76_line_key key,
-                                       std::string_view text)
+// -----------------------------------------------------------------------------
+// Apply a line-editor key action to the editable command buffer.
+// -----------------------------------------------------------------------------
+i76_line_action i76_line_editor_apply(i76_line_editor& editor,
+                                      i76_line_key key,
+                                      std::string_view text)
 {
     std::size_t next = 0;
 
     switch (key) {
     case i76_line_key::insert:
-        if (text.empty() || text.size() > i76_line_max_bytes - editor.line.size()) {
+        if (text.empty() || text.size() > i76_line_max_bytes -
+            editor.line.size()) {
             return i76_line_action::none;
         }
         editor.line.insert(editor.cursor, text);
