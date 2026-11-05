@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "bounded": "rejects",
+      "case": "version2",
+      "historical": "accepts header"
+    },
+    {
+      "bounded": "rejects",
+      "case": "cycle after declared count",
+      "historical": "stops without following cycle"
+    },
+    {
+      "bounded": "selects X and decodes",
+      "case": "both compression bits",
+      "historical": "unknown mode returned raw"
+    },
+    {
+      "bounded": "rejects",
+      "case": "unknown flag",
+      "historical": "unknown mode returned raw"
+    },
+    {
+      "bounded": "XORs full logical words",
+      "case": "nonzero XOR",
+      "historical": "no XOR transform"
+    },
+    {
+      "bounded": "retail SAR gives -8388608; read rejects",
+      "case": "packed sign bit",
+      "historical": "unsigned logical length 8388608"
+    }
+  ],
+  "corpus_disagreements": 0,
+  "scope": "synthetic comparator behavior, not original execution"
+}

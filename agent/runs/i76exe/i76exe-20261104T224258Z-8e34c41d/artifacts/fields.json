@@ -1,0 +1,186 @@
+{
+  "endianness": "little",
+  "flags": {
+    "compressed": "flags&6",
+    "compressed_length": "int32(flags_size)>>8",
+    "inactive": "flags&1",
+    "mode": "X if flags&2 else Y if flags&4 else raw",
+    "raw_length": "stored_length",
+    "unknown_flags": "original ignores other bits in dispatch; reference read rejects flags&~7"
+  },
+  "header": [
+    {
+      "disk_type": "bytes",
+      "name": "magic",
+      "offset": 0,
+      "runtime_use": "ZFSF",
+      "width": 4
+    },
+    {
+      "disk_type": "u32",
+      "name": "version",
+      "offset": 4,
+      "runtime_use": "must equal 1",
+      "width": 4
+    },
+    {
+      "disk_type": "u32",
+      "name": "name_width",
+      "offset": 8,
+      "runtime_use": "must equal 16",
+      "width": 4
+    },
+    {
+      "disk_type": "u32",
+      "name": "table_capacity",
+      "offset": 12,
+      "runtime_use": "must equal 100",
+      "width": 4
+    },
+    {
+      "disk_type": "u32 bits",
+      "name": "declared_count",
+      "offset": 16,
+      "runtime_use": "signed division/count/allocation",
+      "width": 4
+    },
+    {
+      "disk_type": "u32",
+      "name": "xor_key",
+      "offset": 20,
+      "runtime_use": "XOR complete logical DWORDs after decoding",
+      "width": 4
+    },
+    {
+      "disk_type": "u32 bits",
+      "name": "first_table",
+      "offset": 24,
+      "runtime_use": "absolute signed CRT long fseek",
+      "width": 4
+    }
+  ],
+  "header_bytes": 28,
+  "record": [
+    {
+      "disk_type": "char[16]",
+      "name": "name",
+      "offset": 0,
+      "semantics": "first byte zero terminates table scan; case-insensitive C string lookup",
+      "width": 16
+    },
+    {
+      "disk_type": "u32 bits",
+      "name": "stored_offset",
+      "offset": 16,
+      "semantics": "absolute signed CRT long offset",
+      "width": 4
+    },
+    {
+      "disk_type": "u32",
+      "name": "identifier",
+      "offset": 20,
+      "semantics": "preserved; corpus ordinal equality; other semantics unresolved",
+      "width": 4
+    },
+    {
+      "disk_type": "u32 bits",
+      "name": "stored_length",
+      "offset": 24,
+      "semantics": "size_t read/allocation; signed capacity comparison",
+      "width": 4
+    },
+    {
+      "disk_type": "u32",
+      "name": "time_word",
+      "offset": 28,
+      "semantics": "opaque in reviewed reader; Unix timestamp interpretation unproven",
+      "width": 4
+    },
+    {
+      "disk_type": "u32 bits",
+      "name": "flags_size",
+      "offset": 32,
+      "semantics": "low byte flags; expected compressed size int32(word)>>8",
+      "width": 4
+    }
+  ],
+  "record_bytes": 36,
+  "runtime": {
+    "archive_handle": {
+      "fields": {
+        "0": "FILE*",
+        "20": "expected tables:i32",
+        "24": "live count:i32",
+        "28": "xor:u32",
+        "32": "declared allocation count:i32",
+        "36": "table-offset array:va32",
+        "4": "nominal filename[16], unbounded original copy",
+        "40": "live record array:va32"
+      },
+      "stride": 44
+    },
+    "loaded_cache": {
+      "fields": {
+        "0": "key[16]",
+        "16": "length:u32",
+        "20": "refs:u16",
+        "22": "opaque:u16",
+        "24": "hash_next:va32",
+        "28": "purge_link:va32",
+        "32": "purge_link:va32",
+        "36": "inline bytes"
+      },
+      "header_bytes": 36
+    },
+    "mounted_source": {
+      "fields": {
+        "0": "path[256]",
+        "256": "mode:u32",
+        "260": "root/media:i32",
+        "264": "cached archive:va32"
+      },
+      "stride": 268
+    },
+    "registered_key": {
+      "fields": {
+        "0": "key[16]",
+        "16": "source_bitmap:u32[8]"
+      },
+      "stride": 48
+    }
+  },
+  "strict_profile": {
+    "aliases": "equal extent and flags_size; report all",
+    "duplicates": "enumerate candidates; implicit lookup rejects ambiguity",
+    "max_archive_bytes": 268435456,
+    "max_logical_bytes": 8388607,
+    "max_records": 100000,
+    "max_signed_end": 2147483647,
+    "name_domain": "1..15 printable ASCII, no slash/backslash/colon or dot/dotdot; NUL in 16 bytes",
+    "partial_overlap": "reject"
+  },
+  "table": [
+    {
+      "disk_type": "u32 bits; signed CRT long offset",
+      "name": "next_table",
+      "offset": 0,
+      "width": 4,
+      "zero": "terminates chain"
+    },
+    {
+      "count": 100,
+      "name": "entries",
+      "offset": 4,
+      "stride": 36,
+      "width": 3600
+    }
+  ],
+  "table_bytes": 3604,
+  "table_capacity": 100,
+  "traversal": {
+    "empty_name": "stop this table at first zero name byte",
+    "inactive": "skip live copy, continue table",
+    "live_order": "qsort _stricmp; bsearch duplicate winner unresolved",
+    "table_count": "trunc_signed(declared_count/100)+1"
+  }
+}

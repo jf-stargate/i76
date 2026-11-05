@@ -1,0 +1,181 @@
+{
+  "findings": [
+    {
+      "claim": "Retail ZFSF v1 uses fixed 28-byte header, 3604-byte chained tables and 36-byte records; table sentinel/tombstone filtering and signed packed sizes differ from historical parser assumptions.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ZFSF_FORMAT.md",
+          "sha256": "578df5db42bd8ba02e3fa32f2e20137e9ac797dbf050b2a262259324497833bc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/fields.json",
+          "sha256": "28ce4f58d71fc41be6e7ae29308adbbb8aade6e4c764526009dc80cc4bd31d35"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instructions.json",
+          "sha256": "acb0292a18a8e5803af152cb64a7702f70775aec2d061538dcb08bf4609eb0fc"
+        }
+      ],
+      "finding_id": "ZFS-001",
+      "limitations": "Binary-static and one authenticated archive; producer semantics of identifier/time word and other writer variants unresolved.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Retail compression dispatch selects LZO1X for bit1 before LZO1Y for bit2, ignores supplied decoded capacity and actual decoded count, and XORs complete logical DWORDs after decoding.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ZFSF_DECOMPRESSION.md",
+          "sha256": "808332f9798de685c9d9e1befd76965da8c7e498edcbe96ae8b65c67548eb858"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instructions.json",
+          "sha256": "acb0292a18a8e5803af152cb64a7702f70775aec2d061538dcb08bf4609eb0fc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/corpus.json",
+          "sha256": "f0116e019338951d3de8e6ddd8d92355b2ab33bb5be66cafa44a976bfcdd0eea"
+        }
+      ],
+      "finding_id": "ZFS-002",
+      "limitations": "No unsafe retail malformed-input execution; backend codec correctness is external; nonzero XOR is static/synthetic only.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "All 6116 active base-game ZFS records enumerate and decode safely through statically selected modes, with exact historical and extracted byte/hash equality and no duplicate keys or storage overlaps.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ZFSF_CORPUS.md",
+          "sha256": "bb8d8a15d2f4bd1bc3c7eda58025872c0067add1a5c9d6713507366fa7537c7c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/corpus.json",
+          "sha256": "f0116e019338951d3de8e6ddd8d92355b2ab33bb5be66cafa44a976bfcdd0eea"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "2a82d5a32593bed90a989075ad20b2d3a3a330dcd94cee5a43a8805e5ec30143"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reproduction.json",
+          "sha256": "3d5cd7ee4edaebfbd16ec2aff4ae279387f1fe20e09932a75d53d31b24ca91e6"
+        }
+      ],
+      "finding_id": "ZFS-003",
+      "limitations": "This authenticated base-game specimen only; historical and independent wrappers share system liblzo2, not independent codec implementations.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Registered source selection uses 256-bit membership and first-any/first-mode0/active-media ordering, then one selected loose/ZFS source without failed-read alternate-source retry.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RESOURCE_SOURCE_SELECTION.md",
+          "sha256": "18557951b35fb7d0613ef8524b33e10bf938d771ca543d9a6e57352a560d899a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instructions.json",
+          "sha256": "acb0292a18a8e5803af152cb64a7702f70775aec2d061538dcb08bf4609eb0fc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/zix.json",
+          "sha256": "f24701e97069c6b328a0d5dd7e2934a2a8b584cf5cbe06ded9391f206b566ca0"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/source_model.py",
+          "sha256": "da14eb53748984d0524fb28beb2c2c230f14e9f8b72ab2c9f123b65a17eb9516"
+        }
+      ],
+      "finding_id": "RES-001",
+      "limitations": "Binary-static with analytical source-model tests; actual OS enumeration, source collisions and media callbacks not executed.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Runtime key registration calls loaded-cache invalidation at 004702D0, not key canonicalization; forced eviction can free a referenced cache record, while archive close independently frees only archive/index state.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RESOURCE_LIFETIME.md",
+          "sha256": "0b9f96549649b109e960ba86b97b0d22f3ec02870446c4e2825fcc5f29ec0f7a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RESOURCE_SOURCE_SELECTION.md",
+          "sha256": "18557951b35fb7d0613ef8524b33e10bf938d771ca543d9a6e57352a560d899a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instructions.json",
+          "sha256": "acb0292a18a8e5803af152cb64a7702f70775aec2d061538dcb08bf4609eb0fc"
+        }
+      ],
+      "finding_id": "RES-002",
+      "limitations": "Static pointer-lifetime implications; full native invalidation effects, concurrent state changes and shutdown sequencing unresolved.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "The run-owned reader enforces a bounded immutable logical-byte boundary, explicit duplicate/alias policies and safe X/Y decoder capacity/return checks, with 50 synthetic tests and six historical differential fixtures passing.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RECONSTRUCTION_HANDOFF.md",
+          "sha256": "984477d2cec3164d2f5a6d6fdf3c75167793b0cd05757a27925c84e585605697"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/zfs_reader.py",
+          "sha256": "6c158d3c8a67e307cb72831dd29f51e3aadf3916de1de8d77ded6f58af284f9f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/test_zfs.py",
+          "sha256": "697c53f8a86d9712adb8a53d6a09d093ab454306381022c41b80022d4e08c4b4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/test_source_model.py",
+          "sha256": "5b98a5428aa59b367365f3542a2e57e68e3d8677ed4b6d3183ad31cd36aac076"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/synthetic_results.json",
+          "sha256": "4fe4195447c945f77d2c1a0e33510764d01c77fd9f540289a89c2cf0b18e9164"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/historical_differences.json",
+          "sha256": "616c9d930bd5aff2a4994e15ed4d6a294009c8deb50dfd65849b3fc6a56c0961"
+        }
+      ],
+      "finding_id": "ZFS-004",
+      "limitations": "Stricter independent profile, not complete retail input acceptance or runtime lifecycle compatibility; Linux LP64 backend only; no maintained reconstruction integration.",
+      "scope": "game",
+      "status": "derived"
+    }
+  ],
+  "run_id": "i76exe-20261104T224258Z-8e34c41d",
+  "schema_version": "1.2.0"
+}
