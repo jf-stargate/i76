@@ -1,0 +1,134 @@
+{
+  "evidence_classes": [
+    "original-Ghidra",
+    "original-native-x87",
+    "independent-rational",
+    "independent-C-x87",
+    "injected-service",
+    "unresolved-retail-CRT"
+  ],
+  "gamma": {
+    "abi": "cdecl(void), aligned stack; no meaningful return value established",
+    "bytes": 2560,
+    "conversion_store": "ftol, store AL; no clamp/endpoint fixup",
+    "crt_conversion": "_ftol at004BA090 -> [004BC27C]; retail implementation UNRESOLVED",
+    "crt_power": "_CIpow at004BA2B6 -> [004BC1FC]; implementation UNRESOLVED",
+    "entry": "00479860",
+    "exponents_bits64": [
+      "3FE999999999999A",
+      "3FECCCCCCCCCCCCD",
+      "3FF0000000000000",
+      "3FF3333333333333",
+      "3FF6666666666666",
+      "3FF999999999999A",
+      "3FFCCCCCCCCCCCCD",
+      "4000000000000000",
+      "400199999999999A",
+      "4004000000000000"
+    ],
+    "lifetime": "static storage, recomputed unconditionally each invocation; startup caller00402DA9",
+    "normalization_bits64": "3F70101010101010",
+    "power_inputs": "ST0=reciprocal reloaded from binary64; ST1=op(integer_component*double_normalization) retained extended",
+    "power_result": "one ST0, no caller binary64 spill before op(ST0*255)",
+    "reciprocal": "spill64(op(1/exponent))",
+    "row_bytes": 256,
+    "rows": 10,
+    "startup_precision_request": {
+      "call": "004BA171",
+      "documented_interpretation": "request PC53; actual CRT execution and subsequent CW unresolved",
+      "helper": "004BA320",
+      "iat": "004BC1B8",
+      "mask": "00030000",
+      "new_value": "00010000",
+      "service": "MSVCRT._controlfp",
+      "source": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/control87-controlfp-control87-2"
+    },
+    "table_va": "006095A0"
+  },
+  "nearest": {
+    "cache_bytes": 32768,
+    "cache_va": "0063B2E0",
+    "candidate_indexes": [
+      0,
+      254
+    ],
+    "distance": "sum of signed RGB8 difference squares, signed32",
+    "empty": 255,
+    "entry": "004796A0",
+    "key": "(R>>3)*1024+(G>>3)*32+(B>>3)",
+    "return": "AL only; high EAX differs on cached hit",
+    "reuse": "first unquantized query determines cell; repeated query returns cached byte",
+    "tie": "first strict minimum",
+    "validation_domain": "clamped RGB8 only"
+  },
+  "null_lum": {
+    "abi": "cdecl(context, optional_lum); caller cleans 8; EAX is incidental, not recovered Boolean status",
+    "constants_bits32": {
+      "initial": "3C23D70A",
+      "normalization": "3B808081",
+      "scale": "437F0000",
+      "step1": "3D25294A",
+      "step2": "3D6E23B9",
+      "upper": "3F800000"
+    },
+    "entry": "004791E0",
+    "invariant": "All 256 channel inputs and 32 quantized levels equal across twelve tested PC/RC modes under finite truncation. This is not generalized FPU parity.",
+    "local_failure_paths": "none; unchecked pointers/global square state and external exceptions not modeled",
+    "precision": "x87 PC24/53/64 RC0..3 per-operation; binary32 memory spills",
+    "query": "signed32(low32(ftol(op(state*255)))) clamped 0..255",
+    "recurrence": "state=spill32(op(state+step)); after row8 set step=spill32(op(op(1-state)*b))",
+    "return_addresses": [
+      "00479255",
+      "0047953C"
+    ],
+    "service_contract": "finite truncation toward zero; one ST pop; EDX:EAX integer64; CW preserved",
+    "source": "context+0xE8, RGB8[256]",
+    "state_slots_post_prologue": [
+      "ESP+30",
+      "ESP+34",
+      "ESP+10"
+    ],
+    "step1": "spill32(op(op(op(byte*norm)-initial)*a))",
+    "step_slots_post_prologue": [
+      "ESP+18",
+      "ESP+1C",
+      "ESP+20"
+    ],
+    "table": {
+      "active_row_order": [
+        31,
+        0,
+        -1
+      ],
+      "address": "row*256+column",
+      "bytes": 65536,
+      "column_order": [
+        0,
+        255,
+        1
+      ],
+      "extensions": {
+        "144..255": "row0",
+        "32..143": "row31"
+      },
+      "va": "0061B2A0"
+    }
+  },
+  "schema": "experimental-arithmetic-contract-1",
+  "services": {
+    "double_power": "authored CI adapter spilling extended inputs through glibc binary64 pow ABI, identified runtime digest",
+    "ghidra_ftol": "exact BigInteger truncation for finite signed64; rejects nonfinite/out of range; does not emulate status/tag",
+    "ghidra_power": "replay native substitute return; operand mismatches recorded, never silently treated as independent pow",
+    "native_ftol": "authored fnstcw/or RC=truncate/fistp64/fldcw, hardware masked-invalid behavior",
+    "native_loader": "authenticated PE mapped at preferred base; only selected routines called; FTOL/CIpow IAT slots replaced; no retail loader/startup/device calls",
+    "wide_power": "authored CI adapter to glibc powl using 80-bit operands, identified runtime digest"
+  },
+  "unsupported": [
+    "loaded retail MSVCRT identity and implementations",
+    "retail process CW/status/tag/exceptions and CRT initialization",
+    "unmasked FP exceptions and reserved PC01",
+    "arbitrary invalid pointers/lengths and corrupt global state",
+    "scene/backend palette selection, correction and device behavior",
+    "unconditional retail-exact gamma hash"
+  ]
+}
