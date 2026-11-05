@@ -335,7 +335,8 @@ static bool make_fixture(const std::filesystem::path& directory)
     cbk.write(reinterpret_cast<const char*>(codebook.data()),
               static_cast<std::streamsize>(codebook.size()));
     cbk.close();
-    return vqm.good() && cbk.good();
+    return vqm.good()
+           && cbk.good();
 }
 
 // -----------------------------------------------------------------------------
