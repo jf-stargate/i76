@@ -135,6 +135,12 @@ i76_result_code i76_runtime_shutdown(i76_runtime& game) noexcept
     if (!game.state.initialized) {
         return i76_result_code::not_initialized;
     }
+    if (game.prepared_terrain.ready) {
+        i76_terrain_discard(game.prepared_terrain);
+    }
+    if (game.active_terrain.loaded) {
+        i76_terrain_unload(game.active_terrain);
+    }
     i76_level_discard(game.resources, game.prepared_level);
     if (game.active_level.loaded) {
         i76_level_unload(game.world, game.resources, game.active_level);
