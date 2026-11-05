@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "native_cases": 20,
+  "ghidra_complete_cases": 4,
+  "standalone_tests": 10,
+  "curated_retail_checked_instructions": 366,
+  "original_conversion_results_compared": 491520,
+  "native_lum_bytes_compared": 1310720,
+  "native_gamma_bytes_compared": 51200,
+  "expected_negative_controls": [
+    "unloaded FTOL and CIpow imports fail",
+    "PC24 Ghidra power-input mismatch count2556",
+    "fixed replay ignores Ghidra CW precision"
+  ],
+  "source_input_hashes_unchanged": true,
+  "saved_baseline_policy": "Original GZF remains unchanged; disposable Ghidra processing read-only.",
+  "limitations": [
+    "Historical MSVCRT not executed",
+    "No stock Windows process CW/status measurement",
+    "No unconditional retail-exact gamma"
+  ]
+}

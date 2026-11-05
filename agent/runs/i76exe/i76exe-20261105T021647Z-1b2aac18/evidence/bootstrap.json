@@ -1,0 +1,52 @@
+{
+  "repository": "jf-stargate/i76",
+  "base_commit": "999fcc0798c7756bab34d0fa46e43bf2a21e8236",
+  "track": "i76exe",
+  "advisory": [
+    "RND",
+    "RES"
+  ],
+  "accepted_inputs": [
+    "PR81 and original shade-column promotion",
+    "PR133 color pipeline",
+    "PR134 ZFS source contract"
+  ],
+  "open_prs_at_bootstrap": [],
+  "ruleset": {
+    "id": 25664125,
+    "enforcement": "active",
+    "checks": [
+      "integrity"
+    ],
+    "approvals": 0,
+    "bypass_actors": [],
+    "current_user_can_bypass": "never"
+  },
+  "policy_files_at_pinned_commit": {
+    "AGENTS.md": {
+      "sha256": "9a70814031764adb174072854f7229cce77469152b8622531210d5858e681c91",
+      "bytes": 7990
+    },
+    "agent/protocol/VERSION": {
+      "sha256": "8c54bfab7f1ae9bd1a7148eae41e7b0a8f4ad3726e0cac70f823a2d45db9e60c",
+      "bytes": 6
+    },
+    "agent/protocol/BOOTSTRAP.md": {
+      "sha256": "6ff2eaab4db844cd05578429e32917ef10a4ee483b6b481d134c36b3f78a74b1",
+      "bytes": 10063
+    },
+    "agent/protocol/access.yaml": {
+      "sha256": "3cc2d9293e4fb4281108340afe099dc1d0d7800953834b5189c21b96667059fb",
+      "bytes": 6841
+    },
+    "manual/roadmap/DOCUMENTATION_WORKFLOW.md": {
+      "sha256": "483232bee65ff0b0f40d4bc898f9ff32a90dd5aff82a1e393c8c001e93e6491d",
+      "bytes": 8698
+    },
+    "agent/protocol/templates/DOCUMENTATION_IMPACT.md": {
+      "sha256": "b29a8d99a7c4c86de793113e7b3250244ddb7edb786e04cfbce8c0b034986798",
+      "bytes": 2148
+    }
+  },
+  "publication_scope": "owned run only; human review; no merge"
+}

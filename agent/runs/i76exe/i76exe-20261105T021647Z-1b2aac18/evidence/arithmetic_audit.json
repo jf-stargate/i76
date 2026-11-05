@@ -1,0 +1,1849 @@
+{
+  "listed_fp_control_instructions": [
+    {
+      "va": "0042687f",
+      "assembly": "FLDCW word ptr [EBP + 0x8]"
+    },
+    {
+      "va": "004268be",
+      "assembly": "FLDCW word ptr [EBP + 0xc]"
+    },
+    {
+      "va": "00472188",
+      "assembly": "FLDCW word ptr [EBP + 0xfffffcc4]"
+    },
+    {
+      "va": "004721fb",
+      "assembly": "FLDCW word ptr [EBP + 0xfffffcc0]"
+    },
+    {
+      "va": "004743a1",
+      "assembly": "FLDCW word ptr [EBP + -0xc]"
+    },
+    {
+      "va": "004745ce",
+      "assembly": "FLDCW word ptr [EBP + -0xc]"
+    },
+    {
+      "va": "00490b7b",
+      "assembly": "FLDCW word ptr [EBP + 0x8]"
+    },
+    {
+      "va": "00490edd",
+      "assembly": "FLDCW word ptr [EBP + 0x8]"
+    },
+    {
+      "va": "004935ca",
+      "assembly": "FLDCW word ptr [EBP + -0x8]"
+    },
+    {
+      "va": "00493792",
+      "assembly": "FLDCW word ptr [EBP + -0x10]"
+    },
+    {
+      "va": "00493c40",
+      "assembly": "FINIT"
+    }
+  ],
+  "constants": [
+    {
+      "va": "004be698",
+      "bytes": 4,
+      "little_endian_hex": "8180803b"
+    },
+    {
+      "va": "004be6e4",
+      "bytes": 4,
+      "little_endian_hex": "0ad7233c"
+    },
+    {
+      "va": "004be6e8",
+      "bytes": 4,
+      "little_endian_hex": "4a29253d"
+    },
+    {
+      "va": "004be6d0",
+      "bytes": 4,
+      "little_endian_hex": "00007f43"
+    },
+    {
+      "va": "004be6e0",
+      "bytes": 4,
+      "little_endian_hex": "0000803f"
+    },
+    {
+      "va": "004be6ec",
+      "bytes": 4,
+      "little_endian_hex": "b9236e3d"
+    },
+    {
+      "va": "004be700",
+      "bytes": 8,
+      "little_endian_hex": "000000000000f03f"
+    },
+    {
+      "va": "004be740",
+      "bytes": 8,
+      "little_endian_hex": "101010101010703f"
+    },
+    {
+      "va": "004be748",
+      "bytes": 8,
+      "little_endian_hex": "0000000000e06f40"
+    }
+  ],
+  "modification_after": 3,
+  "functions": [
+    {
+      "retail_sha256": "da87e3a019cc091b1096d012dd1fa59ef34e1967dce2845552e5af909f4d8675",
+      "arithmetic": [
+        {
+          "va": "0047928a",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47928a, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa300, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) INT2FLOAT (unique, 0xa300, 4)"
+          ],
+          "assembly": "FILD dword ptr [ESP + 0x30]"
+        },
+        {
+          "va": "0047929b",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47929b, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa300, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) INT2FLOAT (unique, 0xa300, 4)"
+          ],
+          "assembly": "FILD dword ptr [ESP + 0x34]"
+        },
+        {
+          "va": "004792a5",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4792a5, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa300, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) INT2FLOAT (unique, 0xa300, 4)"
+          ],
+          "assembly": "FILD dword ptr [ESP + 0x30]"
+        },
+        {
+          "va": "004792a9",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792a9, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST2"
+        },
+        {
+          "va": "004792ab",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792ab, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be698, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be698]"
+        },
+        {
+          "va": "004792b1",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792b1, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (ram, 0x4be6e4, 4)"
+          ],
+          "assembly": "FLD float ptr [0x004be6e4]"
+        },
+        {
+          "va": "004792b7",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792b7, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST2"
+        },
+        {
+          "va": "004792b9",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792b9, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be698, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be698]"
+        },
+        {
+          "va": "004792bf",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792bf, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST3"
+        },
+        {
+          "va": "004792c1",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792c1, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be698, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be698]"
+        },
+        {
+          "va": "004792c7",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792c7, 4)",
+            "(unique, 0xba900, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (unique, 0xba900, 10)"
+          ],
+          "assembly": "FXCH"
+        },
+        {
+          "va": "004792c9",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792c9, 4)",
+            "(unique, 0xb7b00, 10) FLOAT2FLOAT (ram, 0x4be6e4, 4)",
+            "(register, 0x1100, 10) FLOAT_SUB (register, 0x1100, 10) , (unique, 0xb7b00, 10)"
+          ],
+          "assembly": "FSUB float ptr [0x004be6e4]"
+        },
+        {
+          "va": "004792cf",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792cf, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST3"
+        },
+        {
+          "va": "004792d1",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792d1, 4)",
+            "(unique, 0xb7b00, 10) FLOAT2FLOAT (ram, 0x4be6e4, 4)",
+            "(register, 0x1100, 10) FLOAT_SUB (register, 0x1100, 10) , (unique, 0xb7b00, 10)"
+          ],
+          "assembly": "FSUB float ptr [0x004be6e4]"
+        },
+        {
+          "va": "004792d7",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792d7, 4)",
+            "(unique, 0xba900, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (unique, 0xba900, 10)"
+          ],
+          "assembly": "FXCH"
+        },
+        {
+          "va": "004792d9",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792d9, 4)",
+            "(unique, 0xb7b00, 10) FLOAT2FLOAT (ram, 0x4be6e4, 4)",
+            "(register, 0x1100, 10) FLOAT_SUB (register, 0x1100, 10) , (unique, 0xb7b00, 10)"
+          ],
+          "assembly": "FSUB float ptr [0x004be6e4]"
+        },
+        {
+          "va": "004792df",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792df, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (ram, 0x4be6e4, 4)"
+          ],
+          "assembly": "FLD float ptr [0x004be6e4]"
+        },
+        {
+          "va": "004792e5",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792e5, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (ram, 0x4be6e4, 4)"
+          ],
+          "assembly": "FLD float ptr [0x004be6e4]"
+        },
+        {
+          "va": "004792eb",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792eb, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST5"
+        },
+        {
+          "va": "004792ed",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792ed, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6e8, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6e8]"
+        },
+        {
+          "va": "004792f3",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x18, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4792f3, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x18]"
+        },
+        {
+          "va": "004792f7",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792f7, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST2"
+        },
+        {
+          "va": "004792f9",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792f9, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6e8, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6e8]"
+        },
+        {
+          "va": "004792ff",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4792ff, 4)",
+            "(unique, 0xba900, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (unique, 0xba900, 10)"
+          ],
+          "assembly": "FXCH"
+        },
+        {
+          "va": "00479301",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479301, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6e8, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6e8]"
+        },
+        {
+          "va": "00479307",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479307, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST3"
+        },
+        {
+          "va": "00479309",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479309, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x30]"
+        },
+        {
+          "va": "0047930d",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x1c, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47930d, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x1c]"
+        },
+        {
+          "va": "00479311",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479311, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "00479315",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x20, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479315, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x20]"
+        },
+        {
+          "va": "00479319",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479319, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x10]"
+        },
+        {
+          "va": "0047931d",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47931d, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x30]"
+        },
+        {
+          "va": "00479321",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479321, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6d0, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6d0]"
+        },
+        {
+          "va": "0047932c",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47932c, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "00479330",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479330, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6d0, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6d0]"
+        },
+        {
+          "va": "0047933d",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47933d, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x10]"
+        },
+        {
+          "va": "00479341",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479341, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6d0, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6d0]"
+        },
+        {
+          "va": "00479394",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x24, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479394, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x24]"
+        },
+        {
+          "va": "00479398",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x3c, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479398, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xa9500, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_ADD (register, 0x1100, 10) , (unique, 0xa9500, 10)"
+          ],
+          "assembly": "FADD float ptr [ESP + 0x3c]"
+        },
+        {
+          "va": "004793ad",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793ad, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x30]"
+        },
+        {
+          "va": "004793b1",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x1c, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793b1, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x1c]"
+        },
+        {
+          "va": "004793b5",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793b5, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xa9500, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_ADD (register, 0x1100, 10) , (unique, 0xa9500, 10)"
+          ],
+          "assembly": "FADD float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "004793b9",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793b9, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "004793bd",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x20, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793bd, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x20]"
+        },
+        {
+          "va": "004793c1",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793c1, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xa9500, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_ADD (register, 0x1100, 10) , (unique, 0xa9500, 10)"
+          ],
+          "assembly": "FADD float ptr [ESP + 0x10]"
+        },
+        {
+          "va": "004793c5",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793c5, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x10]"
+        },
+        {
+          "va": "004793cf",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793cf, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (ram, 0x4be6e0, 4)"
+          ],
+          "assembly": "FLD float ptr [0x004be6e0]"
+        },
+        {
+          "va": "004793d5",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793d5, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (ram, 0x4be6e0, 4)"
+          ],
+          "assembly": "FLD float ptr [0x004be6e0]"
+        },
+        {
+          "va": "004793db",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793db, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (ram, 0x4be6e0, 4)"
+          ],
+          "assembly": "FLD float ptr [0x004be6e0]"
+        },
+        {
+          "va": "004793e1",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793e1, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST2"
+        },
+        {
+          "va": "004793e3",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793e3, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xb7b00, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_SUB (register, 0x1100, 10) , (unique, 0xb7b00, 10)"
+          ],
+          "assembly": "FSUB float ptr [ESP + 0x30]"
+        },
+        {
+          "va": "004793e7",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793e7, 4)",
+            "(unique, 0xba900, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (unique, 0xba900, 10)"
+          ],
+          "assembly": "FXCH"
+        },
+        {
+          "va": "004793e9",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793e9, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xb7b00, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_SUB (register, 0x1100, 10) , (unique, 0xb7b00, 10)"
+          ],
+          "assembly": "FSUB float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "004793ed",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793ed, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST2"
+        },
+        {
+          "va": "004793ef",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4793ef, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xb7b00, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_SUB (register, 0x1100, 10) , (unique, 0xb7b00, 10)"
+          ],
+          "assembly": "FSUB float ptr [ESP + 0x10]"
+        },
+        {
+          "va": "004793f3",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793f3, 4)",
+            "(unique, 0xba900, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (unique, 0xba900, 10)"
+          ],
+          "assembly": "FXCH"
+        },
+        {
+          "va": "004793f5",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793f5, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6ec, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6ec]"
+        },
+        {
+          "va": "004793fb",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793fb, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST2"
+        },
+        {
+          "va": "004793fd",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x4793fd, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6ec, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6ec]"
+        },
+        {
+          "va": "00479403",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479403, 4)",
+            "(unique, 0xba900, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (unique, 0xba900, 10)"
+          ],
+          "assembly": "FXCH"
+        },
+        {
+          "va": "00479405",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479405, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6ec, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6ec]"
+        },
+        {
+          "va": "0047940b",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x47940b, 4)",
+            "(unique, 0xba800, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (unique, 0xba800, 10)"
+          ],
+          "assembly": "FXCH ST2"
+        },
+        {
+          "va": "0047940d",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x18, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47940d, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x18]"
+        },
+        {
+          "va": "0047941a",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x1c, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47941a, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x1c]"
+        },
+        {
+          "va": "00479424",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x20, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479424, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x20]"
+        },
+        {
+          "va": "00479428",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479428, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x30]"
+        },
+        {
+          "va": "0047942c",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x47942c, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6d0, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6d0]"
+        },
+        {
+          "va": "00479437",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479437, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "0047943b",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x47943b, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6d0, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6d0]"
+        },
+        {
+          "va": "00479448",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479448, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x10]"
+        },
+        {
+          "va": "0047944c",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x47944c, 4)",
+            "(unique, 0xb1500, 10) FLOAT2FLOAT (ram, 0x4be6d0, 4)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1500, 10)"
+          ],
+          "assembly": "FMUL float ptr [0x004be6d0]"
+        },
+        {
+          "va": "0047949f",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x24, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47949f, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x24]"
+        },
+        {
+          "va": "004794a3",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x3c, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794a3, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xa9500, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_ADD (register, 0x1100, 10) , (unique, 0xa9500, 10)"
+          ],
+          "assembly": "FADD float ptr [ESP + 0x3c]"
+        },
+        {
+          "va": "004794b8",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x30, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794b8, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x30]"
+        },
+        {
+          "va": "004794bc",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x1c, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794bc, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x1c]"
+        },
+        {
+          "va": "004794c0",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794c0, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xa9500, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_ADD (register, 0x1100, 10) , (unique, 0xa9500, 10)"
+          ],
+          "assembly": "FADD float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "004794c4",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x34, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794c4, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x34]"
+        },
+        {
+          "va": "004794c8",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x20, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794c8, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xa900, 4)"
+          ],
+          "assembly": "FLD float ptr [ESP + 0x20]"
+        },
+        {
+          "va": "004794cc",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794cc, 4)",
+            "(unique, 0xa900, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(unique, 0xa9500, 10) FLOAT2FLOAT (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) FLOAT_ADD (register, 0x1100, 10) , (unique, 0xa9500, 10)"
+          ],
+          "assembly": "FADD float ptr [ESP + 0x10]"
+        },
+        {
+          "va": "004794d0",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x4794d0, 4)",
+            "(unique, 0xa900, 4) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xa900, 4)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP float ptr [ESP + 0x10]"
+        }
+      ],
+      "control_transfers": [
+        {
+          "assembly": "JNZ 0x0047922b",
+          "targets": [
+            "0047922b"
+          ],
+          "va": "00479204",
+          "fallthrough": "00479206"
+        },
+        {
+          "assembly": "JL 0x00479215",
+          "targets": [
+            "00479215"
+          ],
+          "va": "00479229",
+          "fallthrough": "0047922b"
+        },
+        {
+          "assembly": "JZ 0x00479256",
+          "targets": [
+            "00479256"
+          ],
+          "va": "00479240",
+          "fallthrough": "00479242"
+        },
+        {
+          "assembly": "RET",
+          "targets": [],
+          "va": "00479255",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "JMP 0x0047926e",
+          "targets": [
+            "0047926e"
+          ],
+          "va": "00479268",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "CALL 0x004ba090",
+          "targets": [
+            "004ba090"
+          ],
+          "va": "00479327",
+          "fallthrough": "0047932c"
+        },
+        {
+          "assembly": "CALL 0x004ba090",
+          "targets": [
+            "004ba090"
+          ],
+          "va": "00479338",
+          "fallthrough": "0047933d"
+        },
+        {
+          "assembly": "CALL 0x004ba090",
+          "targets": [
+            "004ba090"
+          ],
+          "va": "00479349",
+          "fallthrough": "0047934e"
+        },
+        {
+          "assembly": "JGE 0x00479356",
+          "targets": [
+            "00479356"
+          ],
+          "va": "00479350",
+          "fallthrough": "00479352"
+        },
+        {
+          "assembly": "JMP 0x00479363",
+          "targets": [
+            "00479363"
+          ],
+          "va": "00479354",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "JLE 0x00479363",
+          "targets": [
+            "00479363"
+          ],
+          "va": "0047935c",
+          "fallthrough": "0047935e"
+        },
+        {
+          "assembly": "JGE 0x0047936b",
+          "targets": [
+            "0047936b"
+          ],
+          "va": "00479365",
+          "fallthrough": "00479367"
+        },
+        {
+          "assembly": "JMP 0x00479378",
+          "targets": [
+            "00479378"
+          ],
+          "va": "00479369",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "JLE 0x00479378",
+          "targets": [
+            "00479378"
+          ],
+          "va": "00479371",
+          "fallthrough": "00479373"
+        },
+        {
+          "assembly": "JGE 0x00479380",
+          "targets": [
+            "00479380"
+          ],
+          "va": "0047937a",
+          "fallthrough": "0047937c"
+        },
+        {
+          "assembly": "JMP 0x0047938c",
+          "targets": [
+            "0047938c"
+          ],
+          "va": "0047937e",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "JLE 0x0047938c",
+          "targets": [
+            "0047938c"
+          ],
+          "va": "00479385",
+          "fallthrough": "00479387"
+        },
+        {
+          "assembly": "CALL 0x004796a0",
+          "targets": [
+            "004796a0"
+          ],
+          "va": "0047938f",
+          "fallthrough": "00479394"
+        },
+        {
+          "assembly": "JNZ 0x0047931d",
+          "targets": [
+            "0047931d"
+          ],
+          "va": "004793c9",
+          "fallthrough": "004793cf"
+        },
+        {
+          "assembly": "CALL 0x004ba090",
+          "targets": [
+            "004ba090"
+          ],
+          "va": "00479432",
+          "fallthrough": "00479437"
+        },
+        {
+          "assembly": "CALL 0x004ba090",
+          "targets": [
+            "004ba090"
+          ],
+          "va": "00479443",
+          "fallthrough": "00479448"
+        },
+        {
+          "assembly": "CALL 0x004ba090",
+          "targets": [
+            "004ba090"
+          ],
+          "va": "00479454",
+          "fallthrough": "00479459"
+        },
+        {
+          "assembly": "JGE 0x00479461",
+          "targets": [
+            "00479461"
+          ],
+          "va": "0047945b",
+          "fallthrough": "0047945d"
+        },
+        {
+          "assembly": "JMP 0x0047946e",
+          "targets": [
+            "0047946e"
+          ],
+          "va": "0047945f",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "JLE 0x0047946e",
+          "targets": [
+            "0047946e"
+          ],
+          "va": "00479467",
+          "fallthrough": "00479469"
+        },
+        {
+          "assembly": "JGE 0x00479476",
+          "targets": [
+            "00479476"
+          ],
+          "va": "00479470",
+          "fallthrough": "00479472"
+        },
+        {
+          "assembly": "JMP 0x00479483",
+          "targets": [
+            "00479483"
+          ],
+          "va": "00479474",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "JLE 0x00479483",
+          "targets": [
+            "00479483"
+          ],
+          "va": "0047947c",
+          "fallthrough": "0047947e"
+        },
+        {
+          "assembly": "JGE 0x0047948b",
+          "targets": [
+            "0047948b"
+          ],
+          "va": "00479485",
+          "fallthrough": "00479487"
+        },
+        {
+          "assembly": "JMP 0x00479497",
+          "targets": [
+            "00479497"
+          ],
+          "va": "00479489",
+          "fallthrough": "null"
+        },
+        {
+          "assembly": "JLE 0x00479497",
+          "targets": [
+            "00479497"
+          ],
+          "va": "00479490",
+          "fallthrough": "00479492"
+        },
+        {
+          "assembly": "CALL 0x004796a0",
+          "targets": [
+            "004796a0"
+          ],
+          "va": "0047949a",
+          "fallthrough": "0047949f"
+        },
+        {
+          "assembly": "JNZ 0x00479428",
+          "targets": [
+            "00479428"
+          ],
+          "va": "004794d4",
+          "fallthrough": "004794da"
+        },
+        {
+          "assembly": "JNZ 0x004794ed",
+          "targets": [
+            "004794ed"
+          ],
+          "va": "004794f6",
+          "fallthrough": "004794f8"
+        },
+        {
+          "assembly": "JNZ 0x0047950b",
+          "targets": [
+            "0047950b"
+          ],
+          "va": "00479514",
+          "fallthrough": "00479516"
+        },
+        {
+          "assembly": "JC 0x0047926a",
+          "targets": [
+            "0047926a"
+          ],
+          "va": "0047952f",
+          "fallthrough": "00479535"
+        },
+        {
+          "assembly": "RET",
+          "targets": [],
+          "va": "0047953c",
+          "fallthrough": "null"
+        }
+      ],
+      "instructions_retail_checked": 243,
+      "entry": "004791e0",
+      "last_instruction": "0047953c",
+      "byte_length": 861
+    },
+    {
+      "retail_sha256": "8d0cf4be32d9e29ae67e1cb883b6f0fb29e2f0388610c35b897af870850265d5",
+      "arithmetic": [],
+      "control_transfers": [
+        {
+          "assembly": "JNZ 0x00479736",
+          "targets": [
+            "00479736"
+          ],
+          "va": "004796cf",
+          "fallthrough": "004796d1"
+        },
+        {
+          "assembly": "JGE 0x0047971c",
+          "targets": [
+            "0047971c"
+          ],
+          "va": "00479714",
+          "fallthrough": "00479716"
+        },
+        {
+          "assembly": "JL 0x004796e7",
+          "targets": [
+            "004796e7"
+          ],
+          "va": "00479726",
+          "fallthrough": "00479728"
+        },
+        {
+          "assembly": "RET",
+          "targets": [],
+          "va": "00479739",
+          "fallthrough": "null"
+        }
+      ],
+      "instructions_retail_checked": 56,
+      "entry": "004796a0",
+      "last_instruction": "00479739",
+      "byte_length": 154
+    },
+    {
+      "retail_sha256": "fb1a8980791442e0194b58adf42ca157cbec714dbd56b7ca831ca46062c6f7b6",
+      "arithmetic": [
+        {
+          "va": "00479915",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479915, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (ram, 0x4be700, 8)"
+          ],
+          "assembly": "FLD double ptr [0x004be700]"
+        },
+        {
+          "va": "0047991b",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x47991b, 4)",
+            "(unique, 0xaa00, 8) LOAD (const, 0x1a1, 4) , (register, 0xc, 4)",
+            "(unique, 0xabd00, 10) FLOAT2FLOAT (unique, 0xaa00, 8)",
+            "(register, 0x1100, 10) FLOAT_DIV (register, 0x1100, 10) , (unique, 0xabd00, 10)"
+          ],
+          "assembly": "FDIV double ptr [EBX]"
+        },
+        {
+          "va": "00479923",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479923, 4)",
+            "(unique, 0xaa00, 8) FLOAT2FLOAT (register, 0x1100, 10)",
+            " ---  STORE (const, 0x1a1, 4) , (unique, 0x7600, 4) , (unique, 0xaa00, 8)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1170, 10)"
+          ],
+          "assembly": "FSTP double ptr [ESP + 0x10]"
+        },
+        {
+          "va": "00479927",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0x10, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x479927, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xaa00, 8) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) FLOAT2FLOAT (unique, 0xaa00, 8)"
+          ],
+          "assembly": "FLD double ptr [ESP + 0x10]"
+        },
+        {
+          "va": "0047992b",
+          "pcode": [
+            "(unique, 0x7600, 4) INT_ADD (const, 0xc, 4) , (register, 0x10, 4)",
+            "(register, 0x10ac, 4) COPY (const, 0x47992b, 4)",
+            "(unique, 0x4e300, 10) COPY (register, 0x1170, 10)",
+            "(register, 0x1170, 10) COPY (register, 0x1160, 10)",
+            "(register, 0x1160, 10) COPY (register, 0x1150, 10)",
+            "(register, 0x1150, 10) COPY (register, 0x1140, 10)",
+            "(register, 0x1140, 10) COPY (register, 0x1130, 10)",
+            "(register, 0x1130, 10) COPY (register, 0x1120, 10)",
+            "(register, 0x1120, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (unique, 0x4e300, 10)",
+            "(unique, 0xa300, 4) LOAD (const, 0x1a1, 4) , (unique, 0x7600, 4)",
+            "(register, 0x1100, 10) INT2FLOAT (unique, 0xa300, 4)"
+          ],
+          "assembly": "FILD dword ptr [ESP + 0xc]"
+        },
+        {
+          "va": "0047992f",
+          "pcode": [
+            "(unique, 0xb1700, 10) FLOAT2FLOAT (ram, 0x4be740, 8)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1700, 10)",
+            "(register, 0x10ac, 4) COPY (const, 0x47992f, 4)"
+          ],
+          "assembly": "FMUL double ptr [0x004be740]"
+        },
+        {
+          "va": "00479935",
+          "pcode": [
+            "(register, 0x10ac, 4) COPY (const, 0x479935, 4)",
+            "(unique, 0xba900, 10) COPY (register, 0x1100, 10)",
+            "(register, 0x1100, 10) COPY (register, 0x1110, 10)",
+            "(register, 0x1110, 10) COPY (unique, 0xba900, 10)"
+          ],
+          "assembly": "FXCH"
+        },
+        {
+          "va": "0047993c",
+          "pcode": [
+            "(unique, 0xb1700, 10) FLOAT2FLOAT (ram, 0x4be748, 8)",
+            "(register, 0x1100, 10) FLOAT_MULT (register, 0x1100, 10) , (unique, 0xb1700, 10)",
+            "(register, 0x10ac, 4) COPY (const, 0x47993c, 4)"
+          ],
+          "assembly": "FMUL double ptr [0x004be748]"
+        }
+      ],
+      "control_transfers": [
+        {
+          "assembly": "CALL 0x004ba2b6",
+          "targets": [
+            "004ba2b6"
+          ],
+          "va": "00479937",
+          "fallthrough": "0047993c"
+        },
+        {
+          "assembly": "CALL 0x004ba090",
+          "targets": [
+            "004ba090"
+          ],
+          "va": "00479942",
+          "fallthrough": "00479947"
+        },
+        {
+          "assembly": "JL 0x00479927",
+          "targets": [
+            "00479927"
+          ],
+          "va": "00479955",
+          "fallthrough": "00479957"
+        },
+        {
+          "assembly": "JL 0x00479915",
+          "targets": [
+            "00479915"
+          ],
+          "va": "00479966",
+          "fallthrough": "00479968"
+        },
+        {
+          "assembly": "RET",
+          "targets": [],
+          "va": "0047996e",
+          "fallthrough": "null"
+        }
+      ],
+      "instructions_retail_checked": 56,
+      "entry": "00479860",
+      "last_instruction": "0047996e",
+      "byte_length": 271
+    },
+    {
+      "retail_sha256": "3872076459a0428eaea2a02c55d9ca0a1ffa442ced70c24d614157161f7f108b",
+      "arithmetic": [],
+      "control_transfers": [
+        {
+          "assembly": "JMP dword ptr [0x004bc27c]",
+          "targets": [
+            "EXTERNAL:000000bf"
+          ],
+          "va": "004ba090",
+          "fallthrough": "null"
+        }
+      ],
+      "instructions_retail_checked": 1,
+      "entry": "004ba090",
+      "last_instruction": "004ba095",
+      "byte_length": 6
+    },
+    {
+      "retail_sha256": "d080115cf56a8b4f36e961eef75177743e142bed010b3e7ad4c871b3ed7e1463",
+      "arithmetic": [],
+      "control_transfers": [
+        {
+          "assembly": "JMP dword ptr [0x004bc1fc]",
+          "targets": [
+            "EXTERNAL:0000009f"
+          ],
+          "va": "004ba2b6",
+          "fallthrough": "null"
+        }
+      ],
+      "instructions_retail_checked": 1,
+      "entry": "004ba2b6",
+      "last_instruction": "004ba2bb",
+      "byte_length": 6
+    },
+    {
+      "retail_sha256": "410644c46a71db30ae0fa0ef806d25a8eb6c87f7482cb3357165dca399be2977",
+      "arithmetic": [
+        {
+          "va": "004ba320",
+          "pcode": [
+            "(unique, 0x84f00, 4) COPY (const, 0x30000, 4)",
+            "(register, 0x10, 4) INT_SUB (register, 0x10, 4) , (const, 0x4, 4)",
+            " ---  STORE (const, 0x1a1, 8) , (register, 0x10, 4) , (unique, 0x84f00, 4)"
+          ],
+          "assembly": "PUSH 0x30000"
+        },
+        {
+          "va": "004ba325",
+          "pcode": [
+            "(unique, 0x84f00, 4) COPY (const, 0x10000, 4)",
+            "(register, 0x10, 4) INT_SUB (register, 0x10, 4) , (const, 0x4, 4)",
+            " ---  STORE (const, 0x1a1, 8) , (register, 0x10, 4) , (unique, 0x84f00, 4)"
+          ],
+          "assembly": "PUSH 0x10000"
+        },
+        {
+          "va": "004ba32a",
+          "pcode": [
+            "(register, 0x10, 4) INT_SUB (register, 0x10, 4) , (const, 0x4, 4)",
+            " ---  STORE (const, 0x1a1, 8) , (register, 0x10, 4) , (const, 0x4ba32f, 4)",
+            " ---  CALL (ram, 0x4ba340, 4)"
+          ],
+          "assembly": "CALL 0x004ba340"
+        },
+        {
+          "va": "004ba32f",
+          "pcode": [
+            "(register, 0x200, 1) INT_CARRY (register, 0x10, 4) , (const, 0x8, 4)",
+            "(register, 0x20b, 1) INT_SCARRY (register, 0x10, 4) , (const, 0x8, 4)",
+            "(register, 0x10, 4) INT_ADD (register, 0x10, 4) , (const, 0x8, 4)",
+            "(register, 0x207, 1) INT_SLESS (register, 0x10, 4) , (const, 0x0, 4)",
+            "(register, 0x206, 1) INT_EQUAL (register, 0x10, 4) , (const, 0x0, 4)",
+            "(unique, 0x49800, 4) INT_AND (register, 0x10, 4) , (const, 0xff, 4)",
+            "(unique, 0x49900, 1) POPCOUNT (unique, 0x49800, 4)",
+            "(unique, 0x49a00, 1) INT_AND (unique, 0x49900, 1) , (const, 0x1, 1)",
+            "(register, 0x202, 1) INT_EQUAL (unique, 0x49a00, 1) , (const, 0x0, 1)"
+          ],
+          "assembly": "ADD ESP,0x8"
+        },
+        {
+          "va": "004ba332",
+          "pcode": [
+            "(register, 0x284, 4) LOAD (const, 0x1a1, 8) , (register, 0x10, 4)",
+            "(register, 0x10, 4) INT_ADD (register, 0x10, 4) , (const, 0x4, 4)",
+            " ---  RETURN (register, 0x284, 4)"
+          ],
+          "assembly": "RET"
+        }
+      ],
+      "control_transfers": [
+        {
+          "assembly": "CALL 0x004ba340",
+          "targets": [
+            "004ba340"
+          ],
+          "va": "004ba32a",
+          "fallthrough": "004ba32f"
+        },
+        {
+          "assembly": "RET",
+          "targets": [],
+          "va": "004ba332",
+          "fallthrough": "null"
+        }
+      ],
+      "instructions_retail_checked": 5,
+      "entry": "004ba320",
+      "last_instruction": "004ba332",
+      "byte_length": 19
+    },
+    {
+      "retail_sha256": "8bf7a5a2701e89008297cf2747663aae8f96cefb3b128b73aedf46af3e4c20f9",
+      "arithmetic": [],
+      "control_transfers": [
+        {
+          "assembly": "JMP dword ptr [0x004bc1b8]",
+          "targets": [
+            "EXTERNAL:0000008e"
+          ],
+          "va": "004ba340",
+          "fallthrough": "null"
+        }
+      ],
+      "instructions_retail_checked": 1,
+      "entry": "004ba340",
+      "last_instruction": "004ba345",
+      "byte_length": 6
+    },
+    {
+      "retail_sha256": "e2d77f963507a45d38eddcf9b551b5bb6a72a9669207161eba23175c198efbb1",
+      "arithmetic": [],
+      "control_transfers": [
+        {
+          "assembly": "CALL 0x004ba320",
+          "targets": [
+            "004ba320"
+          ],
+          "va": "004ba171",
+          "fallthrough": "004ba176"
+        }
+      ],
+      "instructions_retail_checked": 1,
+      "entry": "004ba171",
+      "last_instruction": "004ba171",
+      "byte_length": 5
+    },
+    {
+      "retail_sha256": "93cc8b5c872c323a99e0dfec0476a0b0bcbe5150198b9209a8ea1bdb141aae5c",
+      "arithmetic": [],
+      "control_transfers": [
+        {
+          "assembly": "CALL 0x00493c50",
+          "targets": [
+            "00493c50"
+          ],
+          "va": "00402da4",
+          "fallthrough": "00402da9"
+        },
+        {
+          "assembly": "CALL 0x00479860",
+          "targets": [
+            "00479860"
+          ],
+          "va": "00402da9",
+          "fallthrough": "00402dae"
+        }
+      ],
+      "instructions_retail_checked": 2,
+      "entry": "00402da4",
+      "last_instruction": "00402da9",
+      "byte_length": 10
+    }
+  ],
+  "scope": "Private disposable read-only program; any disassembly exists only in this session. Curated arithmetic/CFG metadata, no full exports.",
+  "modification_before": 3
+}
