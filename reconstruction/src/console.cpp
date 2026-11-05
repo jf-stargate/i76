@@ -72,6 +72,12 @@ static constexpr i76_console_definition definitions[] = {
         "Mount a directory provider", 1, 64, true},
     {"resource unmount", "resource unmount <id|name>",
         "Unmount an idle provider", 1, 64, true},
+    {"texture", "texture <action>", "Indexed texture inspection", 0, 64},
+    {"texture inspect", "texture inspect <name.vqm>",
+        "Decode a VQM with its CBK dependency", 1, 64, true},
+    {"color", "color <action>", "Indexed color resource inspection", 0, 64},
+    {"color inspect", "color inspect <act> [lum|-] [tbl|-]",
+        "Inspect ACT and optional initialized remap tables", 1, 3},
     {"asset", "asset <action>", "Asset command namespace", 0, 64},
     {"asset stats", "asset stats", "Show asset cache statistics", 0, 0},
     {"level", "level <action>", "Level lifecycle command namespace", 0, 64},
@@ -269,7 +275,9 @@ static std::string show_help(std::string_view topic)
             && topic != "resource"
             && topic != "level"
             && topic != "object"
-            && topic != "asset") {
+            && topic != "asset"
+            && topic != "texture"
+            && topic != "color") {
             return std::string(definition.usage) + "\n" +
                 std::string(definition.description) +
                    (definition.variable != i76_console_variable_kind::none ?

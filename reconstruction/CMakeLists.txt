@@ -18,7 +18,9 @@ if((I76_ENABLE_SANITIZERS OR I76_ENABLE_COVERAGE) AND MSVC)
 endif()
 
 add_library(i76_world STATIC src/world.cpp)
-add_library(i76_assets STATIC src/resource.cpp src/resource_directory.cpp)
+add_library(i76_assets STATIC
+    src/resource.cpp src/resource_directory.cpp
+    src/texture.cpp src/color.cpp)
 target_include_directories(i76_assets PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 add_library(i76_bwd2 STATIC src/bwd2.cpp)
 target_include_directories(i76_bwd2 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
@@ -170,6 +172,24 @@ if(I76_BUILD_TESTS)
                 LABELS "functional" TIMEOUT 20)
         endif()
     endif()
+
+    add_executable(i76_unit_indexed_assets tests/test_indexed_assets.cpp)
+    target_link_libraries(i76_unit_indexed_assets PRIVATE i76_core)
+    add_test(NAME unit_indexed_assets COMMAND i76_unit_indexed_assets)
+    set_tests_properties(unit_indexed_assets PROPERTIES LABELS "unit;memcheck")
+
+    add_test(NAME functional_texture_fixture_setup
+        COMMAND i76_unit_indexed_assets --make-fixture
+            "${CMAKE_CURRENT_BINARY_DIR}/texture-fixture")
+    set_tests_properties(functional_texture_fixture_setup PROPERTIES
+        LABELS "functional;memcheck" FIXTURES_SETUP texture_fixture)
+
+    add_test(NAME functional_texture_inspect COMMAND i76 --headless
+        --command "resource mount ${CMAKE_CURRENT_BINARY_DIR}/texture-fixture"
+        --command "texture inspect textures/a.vqm")
+    set_tests_properties(functional_texture_inspect PROPERTIES
+        LABELS "functional;memcheck" FIXTURES_REQUIRED texture_fixture
+        PASS_REGULAR_EXPRESSION "width=5 height=7")
 
     add_executable(i76_unit_resources tests/test_resources.cpp)
     target_link_libraries(i76_unit_resources PRIVATE i76_assets)
