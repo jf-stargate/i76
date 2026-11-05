@@ -1,0 +1,304 @@
+[
+  {
+    "operation": "shade",
+    "length": 5,
+    "command": "20400000",
+    "descriptor": "20401000",
+    "texture": "20800080",
+    "framebuffer": "20500000",
+    "span_x": 2,
+    "span_y": 1,
+    "span_word": "00401401",
+    "u0": -2,
+    "v0": 0,
+    "du_dx": 1,
+    "dv_dx": 0,
+    "q": 1,
+    "shade_row": 15,
+    "destination_before": 165,
+    "coordinates": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "sampled_indices": [
+      0,
+      0,
+      0,
+      0,
+      255
+    ],
+    "result_indices": [
+      0,
+      0,
+      0,
+      0,
+      255
+    ],
+    "stores": [
+      {
+        "pc": "00485416",
+        "address": "20500042",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "pc": "0048547c",
+        "address": "20500043",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "pc": "004854b1",
+        "address": "20500044",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "pc": "0048547c",
+        "address": "20500045",
+        "size": 1,
+        "value": 0
+      },
+      {
+        "pc": "004854b1",
+        "address": "20500046",
+        "size": 1,
+        "value": 255
+      }
+    ],
+    "original_memory_reads": [
+      {
+        "pc": "00485406",
+        "address": "20800088",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "0048540f",
+        "address": "0061c1a0",
+        "index": 0,
+        "kind": "lum"
+      },
+      {
+        "pc": "0048545f",
+        "address": "20800089",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "00485468",
+        "address": "0061c1a0",
+        "index": 0,
+        "kind": "lum"
+      },
+      {
+        "pc": "0048549e",
+        "address": "2080008a",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "004854aa",
+        "address": "0061c1a0",
+        "index": 0,
+        "kind": "lum"
+      },
+      {
+        "pc": "0048545f",
+        "address": "2080008b",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "00485468",
+        "address": "0061c1a0",
+        "index": 0,
+        "kind": "lum"
+      },
+      {
+        "pc": "0048549e",
+        "address": "2080008c",
+        "index": 255,
+        "kind": "texel"
+      },
+      {
+        "pc": "004854aa",
+        "address": "0061c29f",
+        "index": 255,
+        "kind": "lum"
+      }
+    ],
+    "row_cache_previous": "00000000",
+    "row_cache_current": "20800080",
+    "row_cache_sha256": "9857d9b80f3210126b5ba8a872b76c18bf78c167e7be847c437219ab260c0ac1"
+  },
+  {
+    "operation": "compose",
+    "length": 5,
+    "command": "20400000",
+    "descriptor": "20401000",
+    "texture": "20800080",
+    "framebuffer": "20500000",
+    "span_x": 2,
+    "span_y": 1,
+    "span_word": "00401401",
+    "u0": -2,
+    "v0": 0,
+    "du_dx": 1,
+    "dv_dx": 0,
+    "q": 1,
+    "shade_row": null,
+    "destination_before": 165,
+    "coordinates": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        4,
+        0
+      ]
+    ],
+    "sampled_indices": [
+      0,
+      0,
+      0,
+      0,
+      255
+    ],
+    "result_indices": [
+      166,
+      166,
+      166,
+      166,
+      165
+    ],
+    "stores": [
+      {
+        "pc": "00482b29",
+        "address": "20500042",
+        "size": 1,
+        "value": 166
+      },
+      {
+        "pc": "00482b29",
+        "address": "20500043",
+        "size": 1,
+        "value": 166
+      },
+      {
+        "pc": "00482b29",
+        "address": "20500044",
+        "size": 1,
+        "value": 166
+      },
+      {
+        "pc": "00482b29",
+        "address": "20500045",
+        "size": 1,
+        "value": 166
+      },
+      {
+        "pc": "00482b29",
+        "address": "20500046",
+        "size": 1,
+        "value": 165
+      }
+    ],
+    "original_memory_reads": [
+      {
+        "pc": "00482b16",
+        "address": "20800088",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "00482b22",
+        "address": "0060b045",
+        "index": 166,
+        "kind": "tbl"
+      },
+      {
+        "pc": "00482b16",
+        "address": "20800089",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "00482b22",
+        "address": "0060b045",
+        "index": 166,
+        "kind": "tbl"
+      },
+      {
+        "pc": "00482b16",
+        "address": "2080008a",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "00482b22",
+        "address": "0060b045",
+        "index": 166,
+        "kind": "tbl"
+      },
+      {
+        "pc": "00482b16",
+        "address": "2080008b",
+        "index": 0,
+        "kind": "texel"
+      },
+      {
+        "pc": "00482b22",
+        "address": "0060b045",
+        "index": 166,
+        "kind": "tbl"
+      },
+      {
+        "pc": "00482b16",
+        "address": "2080008c",
+        "index": 255,
+        "kind": "texel"
+      },
+      {
+        "pc": "00482b22",
+        "address": "0061af45",
+        "index": 165,
+        "kind": "tbl"
+      }
+    ],
+    "row_cache_previous": "20800080",
+    "row_cache_current": "20800080",
+    "row_cache_sha256": "9857d9b80f3210126b5ba8a872b76c18bf78c167e7be847c437219ab260c0ac1"
+  }
+]

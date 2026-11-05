@@ -1,0 +1,182 @@
+{
+  "findings": [
+    {
+      "claim": "Original 0044B430 reconstructs tightly packed indexed texels from row-major CBK tiles or solid tokens; 20 authentic complete-buffer comparisons cover all 18 observed shapes.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/VQM_CBK_SPEC.md",
+          "sha256": "52028e188250e828acf0d5313f29884622cea866ad6d6ddb42a50fdd791a6d08"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/execution.json",
+          "sha256": "e17f56e24cfe876085abb337c54f2bfb40b38a689b8a188ac3fb94598ff7a911"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_validation.json",
+          "sha256": "0e43c8b78bf2774fafad7328c0e81db7f33fc495db0acc0379dab33ed6f228a8"
+        },
+        {
+          "address": "0044B430",
+          "kind": "retail-address",
+          "notes": "Exact EXE identity in manifest; original bytes excluded",
+          "ref": "private:i76.exe"
+        }
+      ],
+      "finding_id": "texture.decode",
+      "limitations": "Original-x86 emulation with supplied inputs; 5987 independent corpus decodes are not all original executions; host validation is stricter than retail.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Decoded VQM cache precedes preference; MAP-first and VQM-first fallback rules differ, and selected VQM with missing CBK fails without MAP recovery.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TEXTURE_SELECTION.md",
+          "sha256": "ef2e190207d5d41da307066ef5a52f52dcc07381818ed89582cc9ee67264c660"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/selection.json",
+          "sha256": "179b6fad40af4b4060de7e6b7e8a706adb81abcbea267d7546ddfbabeb386088"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/callgraph.json",
+          "sha256": "c0cb4360506644bc7118a877ad03905d27e0d4ac5904dc9a158ac29ab1f4d7f1"
+        },
+        {
+          "address": "004474B0",
+          "kind": "retail-address",
+          "notes": "Exact EXE identity in manifest; original bytes excluded",
+          "ref": "private:i76.exe"
+        }
+      ],
+      "finding_id": "texture.selection",
+      "limitations": "Resource APIs substituted; original archive selection/collisions and failed-allocation recovery are not executed.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Authentic bus/GTSi TMT decoding and original owner-slot construction feed 0044A290 and original VQM/CBK runtime texture construction in one state per fixture.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RUNTIME_TEXTURE.md",
+          "sha256": "1999cc0bec08888676388d048d5ba6f882e5d2db25c8f20803502fd5bf329225"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/execution.json",
+          "sha256": "e17f56e24cfe876085abb337c54f2bfb40b38a689b8a188ac3fb94598ff7a911"
+        },
+        {
+          "address": "0044A290",
+          "kind": "retail-address",
+          "notes": "Exact EXE identity in manifest; original bytes excluded",
+          "ref": "private:i76.exe"
+        }
+      ],
+      "finding_id": "texture.owner",
+      "limitations": "Owner, material relationship, descriptor backing and root invocations supplied; no vehicle/GEO constructor or animation clock in these states.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original full shade and composition callbacks consume authentic original-decoded textures and perform 296 verified indexed framebuffer stores with recorded texel/table reads.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SOFTWARE_SAMPLING.md",
+          "sha256": "e7c3ae3cd4fa54e685c5bef378f0607e0497e984d95b14e39cddd755f4605d55"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/execution.json",
+          "sha256": "e17f56e24cfe876085abb337c54f2bfb40b38a689b8a188ac3fb94598ff7a911"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/executed_instructions.json",
+          "sha256": "377e771102ff97193b50ca88e54e534113c1db5d0b81c8e3323f40527b1053ac"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/constants.json",
+          "sha256": "a0cd47b53a613cb89625d1cd92142ea5bbaf045391e9423a8c82b898615976b2"
+        },
+        {
+          "address": "00485120",
+          "kind": "retail-address",
+          "notes": "Exact EXE identity in manifest; original bytes excluded",
+          "ref": "private:i76.exe"
+        }
+      ],
+      "finding_id": "texture.samples",
+      "limitations": "Commands, surface and table installation supplied; q1 and selected exact slopes; no actual GEO textured commands, general perspective equivalence or display RGB.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Qualifying owner contexts select authentic raw M16 resources through original 00471980 and update FULLRES header bits, independently of the indexed texture slot.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TEXTURE_SELECTION.md",
+          "sha256": "ef2e190207d5d41da307066ef5a52f52dcc07381818ed89582cc9ee67264c660"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/execution.json",
+          "sha256": "e17f56e24cfe876085abb337c54f2bfb40b38a689b8a188ac3fb94598ff7a911"
+        },
+        {
+          "address": "00471980",
+          "kind": "retail-address",
+          "notes": "Exact EXE identity in manifest; original bytes excluded",
+          "ref": "private:i76.exe"
+        }
+      ],
+      "finding_id": "texture.m16",
+      "limitations": "Context and initialized empty FULLRES bitmap supplied; no M16 payload decoding, list parser or native16-bit sampling.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "General varying-q precision, authentic textured GEO command production and renderer cache invalidation on reused addresses remain unvalidated.",
+      "confidence": "unknown",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RECONSTRUCTION_HANDOFF.md",
+          "sha256": "2f4a1941c2c9dc632ce637a2fb3b9a8620fea6f5adf608c1974a996430626bf7"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/texture_references.json",
+          "sha256": "6655ca01a68b666dc33bd045f40ad9d4dee055fcf0a3c283a4215aebf6e657ae"
+        },
+        {
+          "address": "004859E0",
+          "kind": "retail-address",
+          "notes": "Exact EXE identity in manifest; original bytes excluded",
+          "ref": "private:i76.exe"
+        }
+      ],
+      "finding_id": "texture.perspective",
+      "limitations": "Static instruction contracts and bounded constant-q original execution do not establish full scene or CPU precision equivalence.",
+      "scope": "game",
+      "status": "unresolved"
+    }
+  ],
+  "run_id": "i76exe-20261105T021753Z-998542c9",
+  "schema_version": "1.2.0"
+}
