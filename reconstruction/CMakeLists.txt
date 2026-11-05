@@ -182,7 +182,7 @@ if(I76_BUILD_TESTS)
         COMMAND i76_unit_indexed_assets --make-fixture
             "${CMAKE_CURRENT_BINARY_DIR}/texture-fixture")
     set_tests_properties(functional_texture_fixture_setup PROPERTIES
-        LABELS "functional" FIXTURES_SETUP texture_fixture)
+        LABELS "functional;memcheck" FIXTURES_SETUP texture_fixture)
 
     add_test(NAME functional_texture_inspect COMMAND i76 --headless
         --command "resource mount ${CMAKE_CURRENT_BINARY_DIR}/texture-fixture"
