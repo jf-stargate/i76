@@ -240,6 +240,23 @@ static void test_color()
     expect(!i76_color_shade(tables, 0U, 0U, value)
            && !i76_color_compose(tables, 0U, 0U, value)
            && value == 83U, "missing tables preserve the texel");
+    expect(std::string(i76_color_result_name(i76_color_result::ok)) ==
+               "ok", "color status name ok");
+    expect(std::string(i76_color_result_name(
+        i76_color_result::invalid_act)) == "invalid ACT",
+        "color status name ACT");
+    expect(std::string(i76_color_result_name(
+        i76_color_result::invalid_lum)) == "invalid LUM",
+        "color status name LUM");
+    expect(std::string(i76_color_result_name(
+        i76_color_result::invalid_tbl)) == "invalid TBL",
+        "color status name TBL");
+    expect(std::string(i76_color_result_name(
+        i76_color_result::missing_resource)) ==
+            "missing color resource", "color missing resource status");
+    expect(std::string(i76_color_result_name(
+        i76_color_result::resource_error)) == "resource error",
+        "color resource error status");
 }
 
 // -----------------------------------------------------------------------------
@@ -305,6 +322,39 @@ static void test_loader_and_commands()
     expect(i76_color_read(game.resources, "palette.act", "missing.lum",
                           "", colors) == i76_color_result::missing_resource
            && colors.has_lum, "failed color load preserves output");
+    expect(i76_color_read(game.resources, "", "", "", colors) ==
+               i76_color_result::invalid_act
+           && colors.has_tbl, "empty ACT rejected without mutation");
+    expect(i76_color_read(game.resources, "palette.act", "", "",
+                          colors) == i76_color_result::ok
+           && !colors.has_lum
+           && !colors.has_tbl, "ACT-only load releases its lease");
+    expect(i76_execute_command(game,
+        "color inspect palette.act").message.find(
+            "lum=absent tbl=absent") != std::string::npos,
+        "ACT-only CLI inspection");
+    expect(i76_execute_command(game,
+        "color inspect palette.act - blend.tbl").message.find(
+            "lum=absent tbl=present") != std::string::npos,
+        "TBL-only CLI inspection");
+    expect(i76_texture_read(game.resources, "textures/absent.vqm",
+                            texture, error) ==
+               i76_texture_result::missing_vqm
+           && texture.width == 5U, "missing VQM preserves prior output");
+    expect(i76_texture_read(game.resources, "textures/a.map",
+                            texture, error) ==
+               i76_texture_result::invalid_argument,
+           "direct MAP is not implicitly reinterpreted as VQM");
+    {
+        i76_resource_store unopened = {};
+        expect(i76_color_read(unopened, "palette.act", "", "",
+                              colors) == i76_color_result::resource_error,
+               "uninitialized color store is a resource error");
+        expect(i76_texture_read(unopened, "textures/a.vqm",
+                                texture, error) ==
+                   i76_texture_result::resource_error,
+               "uninitialized texture store is a resource error");
+    }
     stats = i76_resource_get_stats(game.resources);
     expect(stats.references == 0U
            && stats.cached_count == 0U, "all decode leases released");
