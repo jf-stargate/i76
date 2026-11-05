@@ -1,0 +1,191 @@
+{
+  "findings": [
+    {
+      "claim": "Five backend descriptors select four palette callbacks, installed by a whole-context copy; their correction/display/LUM order differs.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PALETTE_CALLBACKS.md",
+          "sha256": "d77be06d2e43408e220b41a6a5667d4206189d28bf6e8c5f0cda356bd3911eb3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.json",
+          "sha256": "623611b7e192f2e676bb745dc30b48cc583829d263869b1f78b0bd58ded1c444"
+        },
+        {
+          "address": "00402EBA",
+          "kind": "retail-address",
+          "notes": "Exact executable identity in manifest",
+          "ref": "orig/i76.exe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/formulas.json",
+          "sha256": "bc20c849f02aa0ad383a919e46b2c2a4f4f9ebde9df8847c740cdab31dd07895"
+        }
+      ],
+      "finding_id": "color.callbacks",
+      "limitations": "No dynamically supplied/external-code closure or native device success claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Palette and mask consumers use unsigned RGB8 triplets, component correction LUTs and backend-specific reserved display indexes; a separate DIB helper uses a different channel order.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ACT_FORMAT_AND_CONVERSION.md",
+          "sha256": "fa4d5879a38fc917efbf7678817eb9f7462ce4d004e89c57df52cf10c931f7a8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.json",
+          "sha256": "623611b7e192f2e676bb745dc30b48cc583829d263869b1f78b0bd58ded1c444"
+        },
+        {
+          "address": "004797F0",
+          "kind": "retail-address",
+          "notes": "Exact executable identity in manifest",
+          "ref": "orig/i76.exe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/formulas.json",
+          "sha256": "bc20c849f02aa0ad383a919e46b2c2a4f4f9ebde9df8847c740cdab31dd07895"
+        }
+      ],
+      "finding_id": "color.act",
+      "limitations": "Exact CRT power generation, imported conversion outputs and native display appearance unvalidated.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Provided LUM is copied verbatim to runtime0061B2A0; software consumers use source-index columns and shade-row offsets; runtime helper modifies one column.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/LUM_SEMANTICS.md",
+          "sha256": "847909d6174e0563bfc06d537eda620fc0a083c5c25aa757a8d9e396688ea895"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.json",
+          "sha256": "623611b7e192f2e676bb745dc30b48cc583829d263869b1f78b0bd58ded1c444"
+        },
+        {
+          "address": "004791E0",
+          "kind": "retail-address",
+          "notes": "Exact executable identity in manifest",
+          "ref": "orig/i76.exe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/formulas.json",
+          "sha256": "bc20c849f02aa0ad383a919e46b2c2a4f4f9ebde9df8847c740cdab31dd07895"
+        }
+      ],
+      "finding_id": "color.lum",
+      "limitations": "Null-LUM arithmetic structure recovered but complete x87/CRT generator unsupported by model; upstream float shade units/rounding not unified.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Runtime TBL composes source-high and destination-low palette indexes; source255 row is replaced by identity and two span consumers temporarily patch destination255 column.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TBL_SEMANTICS.md",
+          "sha256": "8cbd4b4bca69ca2ed519f82af2ca97b26dda9f535002c4cb1db4763a73a24f78"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.json",
+          "sha256": "623611b7e192f2e676bb745dc30b48cc583829d263869b1f78b0bd58ded1c444"
+        },
+        {
+          "address": "00479780",
+          "kind": "retail-address",
+          "notes": "Exact executable identity in manifest",
+          "ref": "orig/i76.exe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/formulas.json",
+          "sha256": "bc20c849f02aa0ad383a919e46b2c2a4f4f9ebde9df8847c740cdab31dd07895"
+        }
+      ],
+      "finding_id": "color.tbl",
+      "limitations": "No fixed RGB blend factor, arbitrary-alias closure, external plugin equivalence or abnormal-exit restoration guarantee.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "80 missions select37 ACT,18 LUM and18 TBL names;36/18/18 resolve as distinct payloads authenticated against retail ZFS; t013_16.act remains unresolved.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/COLOR_RESOURCE_CORPUS.md",
+          "sha256": "593c730000053e5d046a40a50958e6df6f65ca27485be88c37ae1b084096dc9a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/reviewed_instructions.json",
+          "sha256": "623611b7e192f2e676bb745dc30b48cc583829d263869b1f78b0bd58ded1c444"
+        },
+        {
+          "address": "004B8A10",
+          "kind": "retail-address",
+          "notes": "Exact executable identity in manifest",
+          "ref": "orig/i76.exe"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/corpus.json",
+          "sha256": "d205296adac3a1cbac726d0c232631e1928e84b514b12b27dfb4835392e8bebf"
+        }
+      ],
+      "finding_id": "color.corpus",
+      "limitations": "One available base-game corpus only; no substitution of missing name or native acquisition success.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Independent bounded model implements verified integer/copy contracts and passes11 synthetic tests with axis/order/precision counterexamples.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/color_model.py",
+          "sha256": "d254e31921de33fd6e8d1fce9781ffc3a259df057ac3c57724c2925a25789e3d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/test_color_model.py",
+          "sha256": "7483d8fe386a05b89e0c91f9f60b5bd4cec0e1da487e49aadc68ab32dedde77c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/synthetic_tests.txt",
+          "sha256": "9c0a4cf40f0c42963c0e150c98dd08ae60f18ce7c08d298fe8acfdbb2eefd5f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RECONSTRUCTION_HANDOFF.md",
+          "sha256": "056fe0bd1846125f5de630d92f59e62e6437a275c18a8b2113c0f3443ea65098"
+        }
+      ],
+      "finding_id": "color.reference.model",
+      "limitations": "No original-instruction execution or native renderer; null-LUM/CRT gamma generation explicitly unsupported.",
+      "scope": "game",
+      "status": "derived"
+    }
+  ],
+  "run_id": "i76exe-20261104T224244Z-4359bae0",
+  "schema_version": "1.2.0"
+}

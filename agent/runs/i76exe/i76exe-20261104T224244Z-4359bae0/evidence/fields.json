@@ -1,0 +1,90 @@
+{
+  "context": {
+    "base": "005dcec0",
+    "bytes": 1068,
+    "fields": [
+      {
+        "offset": 8,
+        "role": "surface pixel-format selector; not descriptor type",
+        "width": 4
+      },
+      {
+        "offset": 224,
+        "role": "valid device/context gate in software callbacks",
+        "width": 4
+      },
+      {
+        "offset": 232,
+        "role": "runtime palette triplets",
+        "width": 768
+      },
+      {
+        "offset": 1000,
+        "role": "backend descriptor type; 1 high-color predicate",
+        "width": 4
+      },
+      {
+        "offset": 1028,
+        "role": "selected five-argument palette/LUM callback",
+        "width": 4
+      },
+      {
+        "offset": 1032,
+        "role": "separate palette update callback",
+        "width": 4
+      }
+    ]
+  },
+  "globals": [
+    {
+      "bytes": 768,
+      "role": "raw ACT mirror",
+      "va": "004fa170"
+    },
+    {
+      "bytes": 65536,
+      "role": "runtime TBL, source row/destination column",
+      "va": "0060afa0"
+    },
+    {
+      "bytes": 256,
+      "role": "identity bytes",
+      "va": "0061afa0"
+    },
+    {
+      "bytes": 256,
+      "role": "constant-key bytes",
+      "va": "0061b0a0"
+    },
+    {
+      "bytes": 65536,
+      "role": "runtime LUM, shade offset/source column",
+      "va": "0061b2a0"
+    },
+    {
+      "bytes": 65536,
+      "role": "auxiliary source/destination composition table",
+      "va": "0062b2c0"
+    },
+    {
+      "bytes": 32768,
+      "role": "nearest-color cache; sentinel255",
+      "va": "0063b2e0"
+    },
+    {
+      "bytes": 768,
+      "role": "nearest-color palette snapshot",
+      "va": "006432e0"
+    },
+    {
+      "bytes": 512,
+      "role": "256 uint16 display pixels",
+      "va": "00608460"
+    },
+    {
+      "bytes": 2560,
+      "role": "ten component correction rows, slot1..10",
+      "va": "006095a0"
+    }
+  ]
+}
