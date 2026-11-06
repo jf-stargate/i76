@@ -91,6 +91,17 @@ static constexpr i76_console_definition definitions[] = {
         "Discard pending terrain", 0, 0},
     {"terrain unload", "terrain unload",
         "Release active terrain pages", 0, 0},
+    {"scene", "scene <action>", "Combined retail scene lifecycle", 0, 64},
+    {"scene prepare", "scene prepare <mission> <texture.vqm>",
+        "Prepare terrain, WRLD indexed colors and a selected texture", 2, 2},
+    {"scene activate", "scene activate",
+        "Activate a renderer-neutral indexed scene", 0, 0},
+    {"scene status", "scene status",
+        "Show active and prepared combined scenes", 0, 0},
+    {"scene discard", "scene discard",
+        "Discard a pending scene", 0, 0},
+    {"scene unload", "scene unload",
+        "Release a combined scene", 0, 0},
     {"level", "level <action>", "Level lifecycle command namespace", 0, 64},
     {"level help", "level help", "List level commands", 0, 0},
     {"level inspect", "level inspect <name>",
@@ -286,6 +297,7 @@ static std::string show_help(std::string_view topic)
             && topic != "resource"
             && topic != "level"
             && topic != "terrain"
+            && topic != "scene"
             && topic != "object"
             && topic != "asset"
             && topic != "texture"
