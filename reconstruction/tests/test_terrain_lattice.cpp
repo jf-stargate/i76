@@ -54,11 +54,16 @@ static void test_source_coordinates()
     expect(i76_terrain_lattice_at(scene, 0, 0, sample) ==
                i76_terrain_lattice_result::ok,
            "origin resolves active page zero");
-    expect(sample.lattice_x == 0 && sample.lattice_z == 0
-           && sample.source_col == 0 && sample.source_row == 0
-           && sample.runtime_col == 24U && sample.runtime_row == 24U
-           && sample.local_x == 0U && sample.local_z == 0U
-           && sample.page_ordinal == 0U && sample.packed_word == 0xf123U
+    expect(sample.lattice_x == 0
+        && sample.lattice_z == 0
+           && sample.source_col == 0
+           && sample.source_row == 0
+           && sample.runtime_col == 24U
+           && sample.runtime_row == 24U
+           && sample.local_x == 0U
+           && sample.local_z == 0U
+           && sample.page_ordinal == 0U
+           && sample.packed_word == 0xf123U
            && sample.attributes.height == 0x123U
            && sample.attributes.surface_flag
            && sample.attributes.surface_class == 7U,
@@ -66,8 +71,10 @@ static void test_source_coordinates()
 
     expect(i76_terrain_lattice_at(scene, 128, 0, sample) ==
                i76_terrain_lattice_result::ok
-           && sample.source_col == 1 && sample.source_row == 0
-           && sample.runtime_col == 25U && sample.page_ordinal == 1U
+           && sample.source_col == 1
+           && sample.source_row == 0
+           && sample.runtime_col == 25U
+           && sample.page_ordinal == 1U
            && sample.packed_word == 0x8abcU
            && sample.attributes.height == 0xabcU
            && !sample.attributes.surface_flag
@@ -76,9 +83,12 @@ static void test_source_coordinates()
 
     expect(i76_terrain_lattice_at(scene, 127, 128, sample) ==
                i76_terrain_lattice_result::ok
-           && sample.source_col == 0 && sample.source_row == 1
-           && sample.local_x == 127U && sample.local_z == 0U
-           && sample.page_ordinal == 2U && sample.packed_word == 0x2fedU
+           && sample.source_col == 0
+           && sample.source_row == 1
+           && sample.local_x == 127U
+           && sample.local_z == 0U
+           && sample.page_ordinal == 2U
+           && sample.packed_word == 0x2fedU
            && sample.attributes.height == 0xfedU
            && sample.attributes.surface_class == 1U,
            "increasing Z selects the next row with 256-byte row stride");
@@ -86,14 +96,16 @@ static void test_source_coordinates()
     expect(i76_terrain_lattice_at(scene, 127, 127, sample) ==
                i76_terrain_lattice_result::ok
            && sample.packed_word == 0x6123U
-           && sample.local_x == 127U && sample.local_z == 127U,
+           && sample.local_x == 127U
+           && sample.local_z == 127U,
            "end of page is sample 127, never a duplicated sample 128");
 
     expect(i76_terrain_lattice_at(scene, 128, 128, sample) ==
                i76_terrain_lattice_result::ok
            && sample.page_ordinal == 0U
            && sample.packed_word == 0xf123U
-           && sample.source_col == 1 && sample.source_row == 1,
+           && sample.source_col == 1
+           && sample.source_row == 1,
            "repeated page ID reuses data with a distinct world origin");
 }
 
@@ -107,7 +119,8 @@ static void test_default_pages()
 
     expect(i76_terrain_lattice_at(scene, 256, 0, sample) ==
                i76_terrain_lattice_result::default_page
-           && sample.source_col == 2 && sample.source_row == 0
+           && sample.source_col == 2
+           && sample.source_row == 0
            && sample.page_ordinal == 0xffU
            && sample.packed_word == 0U
            && sample.attributes.height == 0U
@@ -116,31 +129,40 @@ static void test_default_pages()
 
     expect(i76_terrain_lattice_at(scene, -1, 0, sample) ==
                i76_terrain_lattice_result::default_page
-           && sample.source_col == -1 && sample.source_row == -1
-           && sample.runtime_col == 23U && sample.runtime_row == 24U
-           && sample.local_x == 127U && sample.local_z == 0U,
+           && sample.source_col == -1
+           && sample.source_row == -1
+           && sample.runtime_col == 23U
+           && sample.runtime_row == 24U
+           && sample.local_x == 127U
+           && sample.local_z == 0U,
            "negative lattice inside runtime grid uses default backing");
 
     expect(i76_terrain_lattice_at(scene, 10240, 0, sample) ==
                i76_terrain_lattice_result::default_page
-           && sample.source_col == -1 && sample.runtime_col == 104U,
+           && sample.source_col == -1
+           && sample.runtime_col == 104U,
            "lattice 10240 is a valid runtime-grid default");
 
     expect(i76_terrain_lattice_at(scene, -3072, -3072, sample) ==
                i76_terrain_lattice_result::default_page
-           && sample.runtime_col == 0U && sample.runtime_row == 0U
-           && sample.local_x == 0U && sample.local_z == 0U,
+           && sample.runtime_col == 0U
+           && sample.runtime_row == 0U
+           && sample.local_x == 0U
+           && sample.local_z == 0U,
            "lowest runtime grid lattice coordinate is valid");
 
     expect(i76_terrain_lattice_at(scene, 13311, 13311, sample) ==
                i76_terrain_lattice_result::default_page
-           && sample.runtime_col == 127U && sample.runtime_row == 127U
-           && sample.local_x == 127U && sample.local_z == 127U,
+           && sample.runtime_col == 127U
+           && sample.runtime_row == 127U
+           && sample.local_x == 127U
+           && sample.local_z == 127U,
            "highest runtime grid lattice coordinate is valid");
 
     expect(i76_terrain_lattice_at(scene, 0, -1, sample) ==
                i76_terrain_lattice_result::default_page
-           && sample.runtime_col == 24U && sample.runtime_row == 23U,
+           && sample.runtime_col == 24U
+           && sample.runtime_row == 23U,
            "Z default region uses a distinct runtime row");
 }
 
@@ -154,23 +176,28 @@ static void test_world_positions()
 
     expect(i76_terrain_lattice_position_at(scene, 0, 0, position) ==
                i76_terrain_lattice_result::ok
-           && position.x == 0.0 && position.z == 0.0
+           && position.x == 0.0
+           && position.z == 0.0
            && position.y == 291.0 * static_cast<double>(0.1F)
            && position.source.packed_word == 0xf123U,
            "height scale is the exact widened float32 constant");
     expect(i76_terrain_lattice_position_at(scene, 128, 128, position) ==
                i76_terrain_lattice_result::ok
-           && position.x == 640.0 && position.z == 640.0
+           && position.x == 640.0
+           && position.z == 640.0
            && position.source.packed_word == 0xf123U,
            "repeated page payload does not reuse the original position");
     expect(i76_terrain_lattice_position_at(scene, -1, 0, position) ==
                i76_terrain_lattice_result::default_page
-           && position.x == -5.0 && position.z == 0.0
-           && position.y == 0.0 && position.source.page_ordinal == 0xffU,
+           && position.x == -5.0
+           && position.z == 0.0
+           && position.y == 0.0
+           && position.source.page_ordinal == 0xffU,
            "default page converts to valid zero-height world position");
     expect(i76_terrain_lattice_position_at(scene, 13311, -3072, position) ==
                i76_terrain_lattice_result::default_page
-           && position.x == 66555.0 && position.z == -15360.0,
+           && position.x == 66555.0
+           && position.z == -15360.0,
            "runtime-grid extrema convert without integer overflow");
 }
 
