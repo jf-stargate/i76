@@ -817,10 +817,10 @@ static i76_command_result execute_scene_command(i76_runtime& game,
             message += " pixels=" +
                 std::to_string(active->sample_texture.pixels.size());
             message += " ACT=" + active->palette_name;
-            message += " LUM=" + (active->colors.has_lum ?
-                                 "present" : "absent");
-            message += " TBL=" + (active->colors.has_tbl ?
-                                 "present" : "absent");
+            message += " LUM=";
+            message += active->colors.has_lum ? "present" : "absent";
+            message += " TBL=";
+            message += active->colors.has_tbl ? "present" : "absent";
         }
         return make_reply(game, i76_result_code::ok, std::move(message));
     }
