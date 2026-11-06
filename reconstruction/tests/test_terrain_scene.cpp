@@ -1,5 +1,6 @@
 #include "i76/command.h"
 #include "i76/terrain_scene.h"
+#include "i76/terrain_lattice.h"
 
 #include <cstdint>
 #include <iostream>
@@ -228,6 +229,28 @@ static void test_lifecycle()
            && sample.surface_flag
            && sample.surface_class == 7U,
            "page 0 special flag and class are preserved");
+    i76_terrain_lattice_sample lattice = {};
+    i76_terrain_lattice_position position = {};
+
+    expect(i76_terrain_lattice_at(active.scene, 0, 0, lattice) ==
+               i76_terrain_lattice_result::ok
+           && lattice.packed_word == 0x8abcU
+           && lattice.page_ordinal == 1U
+           && lattice.source_col == 0 && lattice.source_row == 0,
+           "prepared retail mission resolves global lattice origin");
+    expect(i76_terrain_lattice_position_at(active.scene, 128, 0,
+                                           position) ==
+               i76_terrain_lattice_result::ok
+           && position.x == 640.0
+           && position.z == 0.0
+           && position.y == 291.0 * static_cast<double>(0.1F)
+           && position.source.page_ordinal == 0U,
+           "loaded sidecar maps next ZMAP cell to its own world origin");
+    expect(i76_terrain_lattice_at(active.scene, 256, 0, lattice) ==
+               i76_terrain_lattice_result::default_page
+           && lattice.page_ordinal == 0xffU
+           && lattice.packed_word == 0U,
+           "owned retail terrain retains original initialized default");
     sample.height = 77U;
     expect(!i76_terrain_sample_at(active.scene, 2U, 0U, sample)
            && sample.height == 77U, "unmapped cell does not mutate result");
