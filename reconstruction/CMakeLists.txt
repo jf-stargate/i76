@@ -100,6 +100,23 @@ if(I76_BUILD_TESTS)
     add_test(NAME unit_retail_scene COMMAND i76_unit_retail_scene)
     set_tests_properties(unit_retail_scene PROPERTIES LABELS "unit;memcheck")
 
+    add_test(NAME functional_scene_fixture_setup
+        COMMAND i76_unit_retail_scene --make-fixture
+            "${CMAKE_CURRENT_BINARY_DIR}/scene-fixture")
+    set_tests_properties(functional_scene_fixture_setup PROPERTIES
+        LABELS "functional;memcheck" FIXTURES_SETUP scene_fixture)
+
+    add_test(NAME functional_scene_lifecycle COMMAND i76 --headless
+        --command "resource mount ${CMAKE_CURRENT_BINARY_DIR}/scene-fixture"
+        --command "scene prepare miss16/m06.msn textures/a.vqm"
+        --command "scene activate"
+        --command "scene status"
+        --command "scene unload"
+        --command "scene status")
+    set_tests_properties(functional_scene_lifecycle PROPERTIES
+        LABELS "functional;memcheck" FIXTURES_REQUIRED scene_fixture
+        PASS_REGULAR_EXPRESSION "scene active=none prepared=none")
+
     add_executable(i76_unit_terrain_scene tests/test_terrain_scene.cpp)
     target_link_libraries(i76_unit_terrain_scene PRIVATE i76_core)
     add_test(NAME unit_terrain_scene COMMAND i76_unit_terrain_scene)
