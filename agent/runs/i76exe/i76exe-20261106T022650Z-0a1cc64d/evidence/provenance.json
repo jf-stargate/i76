@@ -1,0 +1,52 @@
+{
+  "base_commit": "19c755a77db404ba9cb0ab51f307b4261e983aff",
+  "prior_prs": [
+    {
+      "number": 140,
+      "merge_commit": "12a904eff8c22ab43df575cd1e9f7d2ddfc6f880"
+    },
+    {
+      "number": 141,
+      "merge_commit": "19c755a77db404ba9cb0ab51f307b4261e983aff"
+    }
+  ],
+  "exe_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "baseline_sha256": "f21ce157703cb33ef265c2ddc98e5079c24f254f5ab7dd6ee87eaabe9d115bb0",
+  "verified_anchor_instructions": 122,
+  "inherited_sources": [
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011552Z-7f9377cc/scripts/verify_topology.py",
+      "sha256": "e5fe6947fd3f9159e885b390f46a41f6ba7009a98fd5beca84feb6f0a5e4ebe9"
+    },
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011552Z-7f9377cc/scripts/I76_TopologyProbe.java",
+      "sha256": "c3dc6234ff2dbe5c23724403d7fa90b5cbd0d418bb8ff38294988c1f8f7a59f5"
+    },
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011552Z-7f9377cc/scripts/I76_CameraBase.java",
+      "sha256": "44f0194de7a22786b27491c2a37d539ce42d44fc60039e82c6c13a55327fb2a2"
+    },
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011552Z-7f9377cc/scripts/I76_TopologyAudit.java",
+      "sha256": "d92849b9fed5ca8b0638fb1894373bfb9b606df02f5fce39522b732fcac658d8"
+    },
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011552Z-7f9377cc/scripts/x87_terrain_service.c",
+      "sha256": "01159a70ccd994c0b848c238e57a2178e3958b2d4ed7e1f95e9c6dce48d46fd1"
+    }
+  ],
+  "services": [
+    "Native: Linux PE/backing loader, supplied original-parser-equivalent grid, child tracing; original scan instructions unchanged",
+    "Ghidra: immutable #140 original camera/terrain/mesh observer, resource/OS substitutions and narrow x87 host services; original root/hull planes supplied to independent graph model",
+    "Private observer copy adds exact-allocation guard before adaptive reads; original instruction bytes unchanged"
+  ],
+  "native_unsafe_policy": "Stop before word load beyond exact TER or default backing, even if PE or anonymous padding happens to be mapped",
+  "geometry_mutations": "All non-retail variants clear only high three TER class bits, retaining low13. class2/class5 set one word at lattice543,9695. alias replaces ZMAP row75,col4 with row74,col4. default sets row75,col4=255. Retail never mutated.",
+  "limitations": [
+    "No retail Windows or complete running-game environment",
+    "Native instruction slice starts after prior height and LOD tests",
+    "Full geometry uses Ghidra emulation with inherited services, not native numerical parity",
+    "The annotation baseline is authenticated and full executable section equality checked; labels are navigation only",
+    "No conclusion about arbitrary corrupted roots, int32 overflow, allocator exhaustion, default page lifetime after other game writers, or entire renderer parity"
+  ]
+}

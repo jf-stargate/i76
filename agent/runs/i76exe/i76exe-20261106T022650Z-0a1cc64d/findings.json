@@ -1,0 +1,126 @@
+{
+  "findings": [
+    {
+      "claim": "All four retained-pointer scan starts/descending strides are recovered; normal side8/16/32 caller phases keep their half-open footprints within one page.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ADAPTIVE_BOUNDARY_SCAN.md",
+          "sha256": "306539a410fdb8f7f0b30c064450f4d432b245e0927cc7b9798e7273af92f33a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/public_verification.json",
+          "sha256": "d7b91a4883dbd71973b811c66df812a81585f258ad41512e7eaa6be0e1701665"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "9f448eea9f2fd1553a5c380066514c78d65c13f1a83e08ced13f2f8fff303f5d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "1f86104aae32397f09f1709899b253ca30dbd3e37d80c6bb8cd3f4b48020d91a"
+        }
+      ],
+      "finding_id": "F-SCAN",
+      "limitations": "Normal safety requires recovered dyadic root phase, valid backing and bounded coordinates. Native slice has supplied Linux/image/grid environment and bypasses earlier LOD/height tests; unaligned cases are injected. Full source geometry is Ghidra original-instruction execution with inherited services and original root/hull inputs. Unsafe words are not read. No native full-geometry, retail Windows, arbitrary-corruption or whole-renderer claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Injected unaligned scans can row-spill, enter a following serialized page ordinal, or leave owned terrain/default backing; their decisions can differ from coordinate resolution.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PAGE_CROSSING_CASES.md",
+          "sha256": "ec1c0452b2b5c10144819aae9e0e9d2adca0fd659e94448f661f229995daf9ea"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scan_cases.jsonl",
+          "sha256": "a6bbc7f324d4d44a243e43964aab7fbb04672771aea2f79c3b5d3f5f8cdd79d8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "9f448eea9f2fd1553a5c380066514c78d65c13f1a83e08ced13f2f8fff303f5d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "1f86104aae32397f09f1709899b253ca30dbd3e37d80c6bb8cd3f4b48020d91a"
+        }
+      ],
+      "finding_id": "F-CROSS",
+      "limitations": "Normal safety requires recovered dyadic root phase, valid backing and bounded coordinates. Native slice has supplied Linux/image/grid environment and bypasses earlier LOD/height tests; unaligned cases are injected. Full source geometry is Ghidra original-instruction execution with inherited services and original root/hull inputs. Unsafe words are not read. No native full-geometry, retail Windows, arbitrary-corruption or whole-renderer claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Classes2,3,4,6,7 refine, including bit12 controls at all four sites; initialized default0 and class5 pass, and repeated pointers receive no special handling.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/MATERIAL_REFINEMENT_BOUNDARIES.md",
+          "sha256": "fd92390d8ea104bf47d3eaf16102beb6277d84f4011348107f327432f7d6c7d6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/scan_cases.jsonl",
+          "sha256": "a6bbc7f324d4d44a243e43964aab7fbb04672771aea2f79c3b5d3f5f8cdd79d8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "9f448eea9f2fd1553a5c380066514c78d65c13f1a83e08ced13f2f8fff303f5d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "1f86104aae32397f09f1709899b253ca30dbd3e37d80c6bb8cd3f4b48020d91a"
+        }
+      ],
+      "finding_id": "F-CLASS",
+      "limitations": "Normal safety requires recovered dyadic root phase, valid backing and bounded coordinates. Native slice has supplied Linux/image/grid environment and bypasses earlier LOD/height tests; unaligned cases are injected. Full source geometry is Ghidra original-instruction execution with inherited services and original root/hull inputs. Unsafe words are not read. No native full-geometry, retail Windows, arbitrary-corruption or whole-renderer claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Six bounded M06 original-instruction source graphs match the independent predicate/graph oracle exactly, including class, default, repeated-page and unequal-LOD shared edges.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/MATERIAL_REFINEMENT_BOUNDARIES.md",
+          "sha256": "fd92390d8ea104bf47d3eaf16102beb6277d84f4011348107f327432f7d6c7d6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/geometry_comparisons.json",
+          "sha256": "afcef1a1472f505f76f15f7e58191422afb2ffd87117eaa8fc0ea3566439aa6a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "9f448eea9f2fd1553a5c380066514c78d65c13f1a83e08ced13f2f8fff303f5d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "1f86104aae32397f09f1709899b253ca30dbd3e37d80c6bb8cd3f4b48020d91a"
+        }
+      ],
+      "finding_id": "F-GEOMETRY",
+      "limitations": "Normal safety requires recovered dyadic root phase, valid backing and bounded coordinates. Native slice has supplied Linux/image/grid environment and bypasses earlier LOD/height tests; unaligned cases are injected. Full source geometry is Ghidra original-instruction execution with inherited services and original root/hull inputs. Unsafe words are not read. No native full-geometry, retail Windows, arbitrary-corruption or whole-renderer claim.",
+      "scope": "game",
+      "status": "derived"
+    }
+  ],
+  "run_id": "i76exe-20261106T022650Z-0a1cc64d",
+  "schema_version": "1.2.0"
+}
