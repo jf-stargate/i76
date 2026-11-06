@@ -274,6 +274,42 @@ static void test_rejections()
                 make_mission("abcdefghijklm", "shade.lum", "blend.tbl"));
     add_variant(resources, "miss16/absent.msn",
                 make_mission("missing.act", "shade.lum", "blend.tbl"));
+    add_variant(resources, "miss16/whitespace.msn",
+                make_mission("bad act", "shade.lum", "blend.tbl"));
+    add_variant(resources, "miss16/double.msn",
+                make_mission("palette.act", "shade.lum", "blend.tbl",
+                             9U, 331U, true, true, true, "M06.TER",
+                             false, true));
+    add_variant(resources, "miss16/invalid.msn", {0U, 1U, 2U});
+    add_variant(resources, "miss16/no_ter.msn",
+                make_mission("palette.act", "shade.lum", "blend.tbl",
+                             9U, 331U, true, true, true, "MISSING.TER"));
+    add_variant(resources, "miss16/bad_page.msn",
+                make_mission("palette.act", "shade.lum", "blend.tbl",
+                             9U, 331U, true, true, true, "M06.TER", true));
+    add_variant(resources, "miss16/bad_act.msn",
+                make_mission("bad.act", "shade.lum", "blend.tbl"));
+    add_variant(resources, "miss16/bad_lum.msn",
+                make_mission("palette.act", "bad.lum", "blend.tbl"));
+    add_variant(resources, "miss16/bad_tbl.msn",
+                make_mission("palette.act", "shade.lum", "bad.tbl"));
+    const std::vector<std::uint8_t> short_act(767U, 0U);
+    const std::vector<std::uint8_t> short_lum(65535U, 0U);
+    const std::vector<std::uint8_t> short_tbl(65535U, 0U);
+    expect(i76_resource_add_memory(resources, "builtin", "bad.act",
+                                   short_act) == i76_resource_result::ok,
+           "register invalid ACT");
+    expect(i76_resource_add_memory(resources, "builtin", "bad.lum",
+                                   short_lum) == i76_resource_result::ok,
+           "register invalid LUM");
+    expect(i76_resource_add_memory(resources, "builtin", "bad.tbl",
+                                   short_tbl) == i76_resource_result::ok,
+           "register invalid TBL");
+    std::vector<std::uint8_t> bad_vqm = make_vqm();
+    bad_vqm[24U] = 1U;
+    expect(i76_resource_add_memory(resources, "builtin", "textures/bad.vqm",
+                                   bad_vqm) == i76_resource_result::ok,
+           "register invalid VQM token");
 
     const std::string_view cases[] = {
         "miss16/v08.msn", "miss16/short.msn", "miss16/none.msn",
