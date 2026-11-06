@@ -597,6 +597,38 @@ static bool make_fixture(const std::filesystem::path& root)
 }
 
 // -----------------------------------------------------------------------------
+// Check stable diagnostics for every scene state and unknown future results.
+// -----------------------------------------------------------------------------
+static void test_result_names()
+{
+    const std::array<i76_retail_scene_result, 15U> values = {
+        i76_retail_scene_result::ok,
+        i76_retail_scene_result::not_initialized,
+        i76_retail_scene_result::invalid_argument,
+        i76_retail_scene_result::busy,
+        i76_retail_scene_result::missing_mission,
+        i76_retail_scene_result::missing_world,
+        i76_retail_scene_result::unsupported_world,
+        i76_retail_scene_result::missing_terrain,
+        i76_retail_scene_result::invalid_terrain,
+        i76_retail_scene_result::invalid_color,
+        i76_retail_scene_result::invalid_texture,
+        i76_retail_scene_result::missing_resource,
+        i76_retail_scene_result::resource_error,
+        i76_retail_scene_result::not_prepared,
+        i76_retail_scene_result::not_loaded
+    };
+
+    for (i76_retail_scene_result value : values) {
+        expect(std::string_view(i76_retail_scene_result_name(value)).size()
+               != 0U, "all scene errors have diagnostic labels");
+    }
+    expect(std::string_view(i76_retail_scene_result_name(
+        static_cast<i76_retail_scene_result>(255U))) ==
+            "unknown scene result", "unknown future result has a label");
+}
+
+// -----------------------------------------------------------------------------
 // Run synthetic unit tests or emit reusable headless filesystem fixtures.
 // -----------------------------------------------------------------------------
 int main(int argc, char** argv)
@@ -609,6 +641,7 @@ int main(int argc, char** argv)
     test_loaded_scene();
     test_optional_tables();
     test_commands();
+    test_result_names();
     if (failures != 0U) {
         std::cerr << failures << " retail scene tests failed\n";
         return 1;
