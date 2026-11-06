@@ -35,17 +35,45 @@ static void add_u32(std::vector<std::uint8_t>& data, std::uint32_t value)
 }
 
 // -----------------------------------------------------------------------------
-// Append one tagged BWD2 record with the serialized total byte length.
+// Append a BWD2 record, explicitly zero-padding short FourCC views.
 // -----------------------------------------------------------------------------
 static void add_chunk(std::vector<std::uint8_t>& target,
                       std::string_view tag,
                       const std::vector<std::uint8_t>& body)
 {
     for (std::size_t index = 0U; index < 4U; ++index) {
-        target.push_back(static_cast<std::uint8_t>(tag[index]));
+        target.push_back(index < tag.size() ?
+            static_cast<std::uint8_t>(tag[index]) : 0U);
     }
     add_u32(target, static_cast<std::uint32_t>(body.size() + 8U));
     target.insert(target.end(), body.begin(), body.end());
+}
+
+// -----------------------------------------------------------------------------
+// Check FourCC padding without relying on a terminator beyond the input view.
+// -----------------------------------------------------------------------------
+static void test_chunk_tags()
+{
+    const std::array<char, 4U> storage = {'R', 'E', 'V', '!'};
+    std::vector<std::uint8_t> bytes = {};
+    const std::vector<std::uint8_t> revision = {
+        'R', 'E', 'V', 0U, 12U, 0U, 0U, 0U, 2U, 0U, 0U, 0U
+    };
+    const std::vector<std::uint8_t> full = {
+        'R', 'E', 'V', '!', 8U, 0U, 0U, 0U
+    };
+    const std::vector<std::uint8_t> empty = {
+        0U, 0U, 0U, 0U, 8U, 0U, 0U, 0U
+    };
+
+    add_chunk(bytes, std::string_view(storage.data(), 3U), {2U, 0U, 0U, 0U});
+    expect(bytes == revision, "short FourCC is padded inside fixture writer");
+    bytes.clear();
+    add_chunk(bytes, std::string_view(storage.data(), storage.size()), {});
+    expect(bytes == full, "four-byte FourCC is preserved without terminator");
+    bytes.clear();
+    add_chunk(bytes, std::string_view{}, {});
+    expect(bytes == empty, "empty FourCC is zero-padded without reading it");
 }
 
 // -----------------------------------------------------------------------------
@@ -637,6 +665,7 @@ int main(int argc, char** argv)
         && std::string(argv[1]) == "--make-fixture") {
         return make_fixture(argv[2]) ? 0 : 1;
     }
+    test_chunk_tags();
     test_rejections();
     test_loaded_scene();
     test_optional_tables();
