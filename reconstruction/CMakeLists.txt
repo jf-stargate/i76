@@ -26,7 +26,8 @@ add_library(i76_bwd2 STATIC src/bwd2.cpp)
 target_include_directories(i76_bwd2 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(i76_bwd2 PUBLIC i76_assets)
 add_library(i76_retail_mission STATIC
-    src/retail_mission.cpp src/terrain_scene.cpp src/retail_scene.cpp)
+    src/retail_mission.cpp src/terrain_scene.cpp
+    src/terrain_lattice.cpp src/retail_scene.cpp)
 target_include_directories(i76_retail_mission PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(i76_retail_mission PUBLIC i76_bwd2 i76_assets)
 add_library(i76_level STATIC src/level.cpp)
@@ -116,6 +117,11 @@ if(I76_BUILD_TESTS)
     set_tests_properties(functional_scene_lifecycle PROPERTIES
         LABELS "functional;memcheck" FIXTURES_REQUIRED scene_fixture
         PASS_REGULAR_EXPRESSION "scene active=none prepared=none")
+
+    add_executable(i76_unit_terrain_lattice tests/test_terrain_lattice.cpp)
+    target_link_libraries(i76_unit_terrain_lattice PRIVATE i76_retail_mission)
+    add_test(NAME unit_terrain_lattice COMMAND i76_unit_terrain_lattice)
+    set_tests_properties(unit_terrain_lattice PROPERTIES LABELS "unit;memcheck")
 
     add_executable(i76_unit_terrain_scene tests/test_terrain_scene.cpp)
     target_link_libraries(i76_unit_terrain_scene PRIVATE i76_core)
