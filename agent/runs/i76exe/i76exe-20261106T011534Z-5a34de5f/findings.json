@@ -1,0 +1,291 @@
+{
+  "schema_version": "1.2.0",
+  "run_id": "i76exe-20261106T011534Z-5a34de5f",
+  "findings": [
+    {
+      "finding_id": "F1-coordinate-map",
+      "claim": "Original initialized lookup maps serialized ZMAP column/row to positive lattice X/Z, internal +3072 translation, 128-sample local addressing and 5-unit world spacing with low12*0.1f height.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TERRAIN_COORDINATE_CONTRACT.md",
+          "sha256": "5cdf033dbee664ada1cbad333699e339267eb495f80cd84c9873a37ee65d3017"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/coordinate_cases.jsonl",
+          "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493080"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493160"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004931A4"
+        }
+      ],
+      "limitations": "Static instructions and representative M06/CD M02 execution. Conceptual world placement is distinguished from prior accepted source/view buffer semantics; no full renderer replay."
+    },
+    {
+      "finding_id": "F2-neighbor-continuity",
+      "claim": "Each bilinear corner resolves its own global lattice location, traversing horizontal/vertical/diagonal page boundaries without duplicated edge samples; controlled repeated references reset local offsets.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PAGE_CONTINUITY.md",
+          "sha256": "fa459219b07516cb25ec7053d16f42f705c416c835423846525c0b6da706a8d5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/coordinate_cases.jsonl",
+          "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493652"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004936A5"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004936F8"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "0049373D"
+        }
+      ],
+      "limitations": "Retail M06/CD M02 have unique active ordinals; active alias uses an explicitly modified ZMAP. Address ownership does not guarantee equal adjacent heights or slopes."
+    },
+    {
+      "finding_id": "F3-default-and-bounds",
+      "claim": "The initialized tested image uses a zero default page for valid unmapped grid entries; default class0 differs from rejected world material class5, while direct helper lacks a negative-slot guard.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/PAGE_CONTINUITY.md",
+          "sha256": "fa459219b07516cb25ec7053d16f42f705c416c835423846525c0b6da706a8d5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/coordinate_cases.jsonl",
+          "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "0059C588"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493080"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004927B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493160"
+        }
+      ],
+      "limitations": "No unsafe negative-slot dereference or claim about indirect writes/teardown/full-game default lifetime. Checked reconstruction domain is a proposed safety boundary."
+    },
+    {
+      "finding_id": "F4-native-numerics",
+      "claim": "Unchanged retail sample/height/class instructions executed on CPU match an independent rational/address model across 668 cases, including staged x87 admission and RC-down row stores.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/NUMERICAL_BEHAVIOR.md",
+          "sha256": "bfdf2bbf886e06ad517d7c1bc0049914728a5f84e3ad63771ceca5fd08c2fef2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/coordinate_cases.jsonl",
+          "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493550"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "0049375D"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493769"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493792"
+        }
+      ],
+      "limitations": "Native Linux i386 shim supplies image/grid/default/TER memory; default CW037F only. Not Windows or complete native engine execution; 392 of these cases are world-height queries."
+    },
+    {
+      "finding_id": "F5-emulator-narrowing",
+      "claim": "Correcting the two FISTP instructions alone does not make Ghidra terrain heights bit-exact; recorded native differences persist while captured addressing agrees.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/NUMERICAL_BEHAVIOR.md",
+          "sha256": "bfdf2bbf886e06ad517d7c1bc0049914728a5f84e3ad63771ceca5fd08c2fef2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/coordinate_cases.jsonl",
+          "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004935EE"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493608"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "0049375D"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "00493769"
+        }
+      ],
+      "limitations": "Measured Ghidra12.1.4/native environment. Narrows earlier emulator interpretations, not the accepted static RC-down contract. Detailed deltas are retained rather than hidden as passing parity."
+    },
+    {
+      "finding_id": "F6-bit12-bounded",
+      "claim": "XORing bit12 in private M06 TER leaves tested native height/class outputs and emulated query normals unchanged; its overall meaning remains unresolved.",
+      "status": "proven",
+      "confidence": "high",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/NUMERICAL_BEHAVIOR.md",
+          "sha256": "bfdf2bbf886e06ad517d7c1bc0049914728a5f84e3ad63771ceca5fd08c2fef2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/coordinate_cases.jsonl",
+          "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004931A8"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004927B0"
+        },
+        {
+          "kind": "retail-address",
+          "ref": "retail i76.exe",
+          "address": "004931C0"
+        }
+      ],
+      "limitations": "Bounded negative evidence only. Native normals, complete rendering position replay and all bit12 consumers are untested; no semantic label is assigned."
+    },
+    {
+      "finding_id": "F7-bit12-purpose",
+      "claim": "The general original purpose of packed TER bit12 remains unresolved.",
+      "status": "unresolved",
+      "confidence": "unknown",
+      "scope": "game",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/NUMERICAL_BEHAVIOR.md",
+          "sha256": "bfdf2bbf886e06ad517d7c1bc0049914728a5f84e3ad63771ceca5fd08c2fef2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/coordinate_cases.jsonl",
+          "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb"
+        }
+      ],
+      "limitations": "No global no-effect claim follows from the controlled sampler/normal negative result."
+    }
+  ]
+}

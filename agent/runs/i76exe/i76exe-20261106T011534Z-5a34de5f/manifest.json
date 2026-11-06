@@ -1,0 +1,307 @@
+{
+  "schema_version": "1.2.0",
+  "protocol_version": "1.0.5",
+  "run_id": "i76exe-20261106T011534Z-5a34de5f",
+  "track": "i76exe",
+  "topic": "Retail terrain coordinates, neighboring pages and exact sampler arithmetic",
+  "base_commit": "7c315c103e6eda864f5bd9f3c3736a03b4c1fa7c",
+  "started_at": "2026-11-06T01:15:34Z",
+  "summary": "Research only: M06 and CD M02 addressing/native numeric evidence, explicit default pages, controlled alias/bit12, bounded C++ handoff. No maintained reconstruction/canonical edits.",
+  "inputs": [
+    {
+      "name": "i76.exe",
+      "kind": "retail-executable",
+      "md5": "a640ea0097dbb62e0c77b7f2847c7161",
+      "sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+      "notes": "Hash-verified private input; bytes not published. See input ledger and reproduction/service reports for active use."
+    },
+    {
+      "name": "M06.MSN",
+      "kind": "other",
+      "md5": "d8801a3c9d2c79187b67e2f4b818b7db",
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f",
+      "notes": "Hash-verified private input; bytes not published. See input ledger and reproduction/service reports for active use."
+    },
+    {
+      "name": "M06.TER",
+      "kind": "other",
+      "md5": "5307dc057a8bbc53569c04d89bd7ca2e",
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea",
+      "notes": "Hash-verified private input; bytes not published. See input ledger and reproduction/service reports for active use."
+    },
+    {
+      "name": "M02.MSN",
+      "kind": "other",
+      "md5": "d00fd92c8ced2f7abc662a9ac3d2b358",
+      "sha256": "b566539e260440b43d40e7b6ad5ed6a959e344bcb6ca365562641b8b4b060175",
+      "notes": "CD MISSIONS/M02.MSN privately extracted; installed loose metadata not used in final run."
+    },
+    {
+      "name": "M02.TER",
+      "kind": "other",
+      "md5": "de5b6f0c0f665e5d42bfe0b445c3ad7b",
+      "sha256": "08ae567ceac9647bacd95a352eaef9707c3fbf6a9ec7096b9fe2152afc6bc0e2",
+      "notes": "Hash-verified private input; bytes not published. See input ledger and reproduction/service reports for active use."
+    },
+    {
+      "name": "I76.ZFS",
+      "kind": "resource-manifest",
+      "md5": "6dd57b1627d73e814247c0d9521f9778",
+      "sha256": "0610541842dfd10464ea02307dec9749ac2b31da4019e1af05d5fcfc55d9020d",
+      "notes": "Hash-verified private input; bytes not published. See input ledger and reproduction/service reports for active use."
+    },
+    {
+      "name": "I76_CD1.ISO",
+      "kind": "resource-manifest",
+      "md5": "8fcd930d8d7245268b882fb7a0cd4018",
+      "sha256": "cbcb0b7f2726b2f6e50ea4bc4480072af1fa32375679bb2c99659be2d272898a",
+      "notes": "Hash-verified private input; bytes not published. See input ledger and reproduction/service reports for active use."
+    }
+  ],
+  "baselines": [
+    {
+      "version": "Ghidra 12.1.4 / annotated v97",
+      "program_name": "i76_mission_v97_verified_names",
+      "baseline_id": "i76_mission_v97_verified_names.gzf",
+      "baseline_sha256": "b2f76177fbab3d6ddc8c88cb10eac5d331b52155190e120c349508f6032d4fce",
+      "storage_ref": "private licensed researcher storage; see REPRODUCE.md",
+      "notes": "Measured private export; disposable read-only import, full executable-section identity checked."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/DOCUMENTATION_IMPACT.md",
+      "kind": "report",
+      "sha256": "80cdbc59f4c166d909729d420ce5febc093300e46020998a1007bb38944599b0",
+      "bytes": 3867
+    },
+    {
+      "path": "artifacts/FINDINGS.md",
+      "kind": "report",
+      "sha256": "11e7ea2528d4c0ac7389be2a2641c51cc23e602120b9315b064b9f9e68951114",
+      "bytes": 2189
+    },
+    {
+      "path": "artifacts/NUMERICAL_BEHAVIOR.md",
+      "kind": "report",
+      "sha256": "bfdf2bbf886e06ad517d7c1bc0049914728a5f84e3ad63771ceca5fd08c2fef2",
+      "bytes": 6543
+    },
+    {
+      "path": "artifacts/PAGE_CONTINUITY.md",
+      "kind": "report",
+      "sha256": "fa459219b07516cb25ec7053d16f42f705c416c835423846525c0b6da706a8d5",
+      "bytes": 5093
+    },
+    {
+      "path": "artifacts/RECONSTRUCTION_HANDOFF.md",
+      "kind": "report",
+      "sha256": "ae2bd1c4bbf56d5166ed1a072b0e9ee855bd2c8fe25091cdc8cf8bdad8fbbaae",
+      "bytes": 5977
+    },
+    {
+      "path": "artifacts/REPRODUCE.md",
+      "kind": "report",
+      "sha256": "eee7c6c2e82b51579cea4b9654865e4a0870115defe89874cf1ea881dbced7e7",
+      "bytes": 4020
+    },
+    {
+      "path": "artifacts/SERVICE_LEDGER.md",
+      "kind": "report",
+      "sha256": "709327bc1967979cc228da496d9e486ea8a43c919f3218fc53a92041d40027d8",
+      "bytes": 4017
+    },
+    {
+      "path": "artifacts/TERRAIN_COORDINATE_CONTRACT.md",
+      "kind": "report",
+      "sha256": "5cdf033dbee664ada1cbad333699e339267eb495f80cd84c9873a37ee65d3017",
+      "bytes": 4920
+    },
+    {
+      "path": "evidence/bootstrap.json",
+      "kind": "table",
+      "sha256": "fb7673750f455964a60109a7c3d0160220f659c8297abc226846ca322cae428e",
+      "bytes": 874
+    },
+    {
+      "path": "evidence/boundary_cases.jsonl",
+      "kind": "table",
+      "sha256": "4e9e925da8bc33e73828bb10239e4ec471fa2247dbd66bf05030944c905fef62",
+      "bytes": 737933
+    },
+    {
+      "path": "evidence/coordinate_cases.jsonl",
+      "kind": "table",
+      "sha256": "11e39c07640419640c22eeaad958cd47d0c97d4a32e942efa1ad96d1414231f4",
+      "bytes": 1207550
+    },
+    {
+      "path": "evidence/input_identities.json",
+      "kind": "table",
+      "sha256": "8248c76bac8fb0730964ed12f5d57c08cbf9a967fe2984dd715e34fdc0a5ea2e",
+      "bytes": 1344
+    },
+    {
+      "path": "evidence/instruction_anchors.tsv",
+      "kind": "table",
+      "sha256": "3ee3e5b45f20ab16c0a12688fd9fa1ddb3d8d4520df049dfc9a20fd4c9bc5d2f",
+      "bytes": 1662
+    },
+    {
+      "path": "evidence/negative_controls.json",
+      "kind": "test-result",
+      "sha256": "6c05b55f2281a1f1406d5b5cdb5dd6d5b4bda96aeb03de59275c10bd4794ea2a",
+      "bytes": 305
+    },
+    {
+      "path": "evidence/policy_validation.json",
+      "kind": "test-result",
+      "sha256": "5ad3b3fe93cfb0cdd2a6b7bbdbc54274d4e7766a3055df196c85de6c3d885c65",
+      "bytes": 958
+    },
+    {
+      "path": "evidence/provenance.json",
+      "kind": "table",
+      "sha256": "66102d5eeb8f0fef532d5a60690d5b9b7ffa1a84ae3bc945ac7cd48e50919c2e",
+      "bytes": 513
+    },
+    {
+      "path": "evidence/public_verification.json",
+      "kind": "table",
+      "sha256": "7994d0758273acb5295b14bf85719a8074a01360a5d5b2a014499e7d36237370",
+      "bytes": 226
+    },
+    {
+      "path": "evidence/results.json",
+      "kind": "table",
+      "sha256": "a72f3e6320a106a0d1292bf968176501ec03c7e4c5cc92c9e4c0a6487007febb",
+      "bytes": 2329
+    },
+    {
+      "path": "evidence/services.json",
+      "kind": "table",
+      "sha256": "92671d3a5a83948bd6cc62b184889448aafff07d0776ba92502260f8e2656d5b",
+      "bytes": 1319
+    },
+    {
+      "path": "evidence/verification.json",
+      "kind": "test-result",
+      "sha256": "9fca706e8b33cfec89552a3d4c85358ca0a4e7cb2feadcaea0b95ef3b18637bc",
+      "bytes": 367
+    },
+    {
+      "path": "scripts/CoordinateAudit.java",
+      "kind": "script",
+      "sha256": "8cd7a2b32a8969913e404657e8cb8c5effbd34e9376908c21fed18db9a9505af",
+      "bytes": 1344
+    },
+    {
+      "path": "scripts/CoordinateProbe.java",
+      "kind": "script",
+      "sha256": "325e8fb17631dd8d6ebf0cdad4c661e967bf4deee4257074accfd895f9b3fa7a",
+      "bytes": 4262
+    },
+    {
+      "path": "scripts/TerrainHarnessBase.java",
+      "kind": "script",
+      "sha256": "f5de63ed71eeeaae53d85839ed2a5fa83abf8762ccc71bb5b93a2591d22b3da2",
+      "bytes": 52704
+    },
+    {
+      "path": "scripts/coordinate_model.py",
+      "kind": "script",
+      "sha256": "f67052940ee8ff9a0471a5c921f5470a68f169d49386ee2d853578ec7fe97893",
+      "bytes": 3571
+    },
+    {
+      "path": "scripts/make_cases.py",
+      "kind": "script",
+      "sha256": "99c31ec3df260a3586bb86165852e418fd7f2c4dad690f12b8946a414b3baf68",
+      "bytes": 2309
+    },
+    {
+      "path": "scripts/native_replay.py",
+      "kind": "script",
+      "sha256": "f4db22bf6599849e01ad3d28a2107a1dbcbfc2d48c3c2e3131cd86574c125ce3",
+      "bytes": 2517
+    },
+    {
+      "path": "scripts/native_sampler.S",
+      "kind": "script",
+      "sha256": "ce9ab450b0d454a4f97025c2de14abc83852bebc967bfb93c02dd861eccf6473",
+      "bytes": 1836
+    },
+    {
+      "path": "scripts/negative_controls.py",
+      "kind": "script",
+      "sha256": "e3e55f16176d7166d137bed3f8d299ca1894a1feb6df355fd4ec1785c61289b2",
+      "bytes": 1786
+    },
+    {
+      "path": "scripts/package_run.py",
+      "kind": "script",
+      "sha256": "d7b9f6f723f11e33bd5790ab721eac09c3d4b027847ce8be990cca4480fed92c",
+      "bytes": 7274
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "kind": "script",
+      "sha256": "a9e3a401ebc1adaafff46370bc3758d4e48dcee746b32bfb24caa90dee49be95",
+      "bytes": 3195
+    },
+    {
+      "path": "scripts/verify_coordinates.py",
+      "kind": "script",
+      "sha256": "4d5d04201e53f8e51abf8f1e0b04802d822b8ba52d7e6a7f5d36e6d3ee661501",
+      "bytes": 10545
+    },
+    {
+      "path": "scripts/verify_public_cases.py",
+      "kind": "script",
+      "sha256": "cc9d9c1317d651887626d7170ad1b950a7adc38811982ecd246cbd19a34e0fcf",
+      "bytes": 3376
+    },
+    {
+      "path": "scripts/x87_fistp_service.c",
+      "kind": "script",
+      "sha256": "54ef13262a85de1b4d589ccccc7c31dbdf759e486a9e5a72c8d27399dc02c7e7",
+      "bytes": 1069
+    }
+  ],
+  "validation": {
+    "notes": "668 native/model cases; 1724 captured reads; native intermediate rows checked; emulator differences retained as diagnostics. Details: evidence/verification.json; negative controls separate.",
+    "passed_count": 76589,
+    "status": "passed",
+    "test_count": 76589
+  },
+  "reproducibility": {
+    "status": "complete",
+    "script_refs": [
+      {
+        "kind": "script",
+        "ref": "scripts/reproduce.py",
+        "sha256": "a9e3a401ebc1adaafff46370bc3758d4e48dcee746b32bfb24caa90dee49be95"
+      },
+      {
+        "kind": "script",
+        "ref": "scripts/verify_coordinates.py",
+        "sha256": "4d5d04201e53f8e51abf8f1e0b04802d822b8ba52d7e6a7f5d36e6d3ee661501"
+      },
+      {
+        "kind": "script",
+        "ref": "scripts/negative_controls.py",
+        "sha256": "e3e55f16176d7166d137bed3f8d299ca1894a1feb6df355fd4ec1785c61289b2"
+      }
+    ],
+    "methods": [
+      "binary-static PE/Ghidra code equality",
+      "original-instruction Ghidra emulation with explicit services",
+      "unchanged original instructions on native i386 CPU with supplied environment",
+      "independent integer and exact rational arithmetic",
+      "authenticated retail M06 and CD M02 corpus",
+      "controlled page alias/bit12 and fresh-emulator repeat",
+      "negative corruption controls"
+    ],
+    "limitations": "Requires private licensed inputs, Ghidra12.1.4/JDK, x86 Linux with i386 execution and local compiler/7z. No full retail Windows execution, native normal verification, unsafe negative-slot reads, nondefault x87 state or global bit12 purpose. Exact final CPU sample/height/class outputs checked; emulator numerical mismatches are diagnostics."
+  }
+}
