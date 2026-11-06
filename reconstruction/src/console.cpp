@@ -80,6 +80,17 @@ static constexpr i76_console_definition definitions[] = {
         "Inspect ACT and optional initialized remap tables", 1, 3},
     {"asset", "asset <action>", "Asset command namespace", 0, 64},
     {"asset stats", "asset stats", "Show asset cache statistics", 0, 0},
+    {"terrain", "terrain <action>", "Retail terrain scene lifecycle", 0, 64},
+    {"terrain prepare", "terrain prepare <mission>",
+        "Decode and prepare owned terrain pages", 1, 64, true},
+    {"terrain activate", "terrain activate",
+        "Activate a prepared terrain-only scene", 0, 0},
+    {"terrain status", "terrain status",
+        "Inspect prepared and active terrain", 0, 0},
+    {"terrain discard", "terrain discard",
+        "Discard pending terrain", 0, 0},
+    {"terrain unload", "terrain unload",
+        "Release active terrain pages", 0, 0},
     {"level", "level <action>", "Level lifecycle command namespace", 0, 64},
     {"level help", "level help", "List level commands", 0, 0},
     {"level inspect", "level inspect <name>",
@@ -274,6 +285,7 @@ static std::string show_help(std::string_view topic)
             && topic != "sim"
             && topic != "resource"
             && topic != "level"
+            && topic != "terrain"
             && topic != "object"
             && topic != "asset"
             && topic != "texture"

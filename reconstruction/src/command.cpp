@@ -712,6 +712,82 @@ static i76_command_result execute_color_command(i76_runtime& game,
 }
 
 // -----------------------------------------------------------------------------
+// Advance the independent retail-terrain preparation and activation lifecycle.
+// -----------------------------------------------------------------------------
+static i76_command_result execute_terrain_command(i76_runtime& game,
+                                                   std::string_view args)
+{
+    std::string_view action = take_token(args);
+    i76_terrain_error error = {};
+    i76_terrain_result result = i76_terrain_result::ok;
+    std::string message = {};
+
+    if (action == "status"
+        && args.empty()) {
+        message = "terrain active=" +
+            (game.active_terrain.loaded ?
+             game.active_terrain.scene.mission_name : std::string("none"));
+        message += " prepared=" +
+            (game.prepared_terrain.ready ?
+             game.prepared_terrain.scene.mission_name : std::string("none"));
+        if (game.active_terrain.loaded) {
+            const i76_terrain_scene& scene = game.active_terrain.scene;
+            message += " pages=" + std::to_string(scene.page_count);
+            message += " cells=" + std::to_string(scene.mapped_cells);
+            message += " samples=" +
+                std::to_string(scene.packed_samples.size());
+        }
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if (action == "prepare"
+        && !args.empty()) {
+        result = i76_terrain_prepare(game.resources, args,
+                                     game.prepared_terrain, error);
+        if (result == i76_terrain_result::ok) {
+            message = "terrain prepared " +
+                game.prepared_terrain.scene.mission_name;
+            message += " pages=" +
+                std::to_string(game.prepared_terrain.scene.page_count);
+            message += " samples=" + std::to_string(
+                game.prepared_terrain.scene.packed_samples.size());
+            return make_reply(game, i76_result_code::ok, std::move(message));
+        }
+    } else if (action == "activate"
+               && args.empty()) {
+        result = i76_terrain_activate(game.prepared_terrain,
+                                      game.active_terrain);
+        if (result == i76_terrain_result::ok) {
+            return make_reply(game, i76_result_code::ok,
+                              "terrain activated " +
+                              game.active_terrain.scene.mission_name);
+        }
+    } else if (action == "discard"
+               && args.empty()) {
+        result = i76_terrain_discard(game.prepared_terrain);
+        if (result == i76_terrain_result::ok) {
+            return make_reply(game, i76_result_code::ok,
+                              "terrain preparation discarded");
+        }
+    } else if (action == "unload"
+               && args.empty()) {
+        result = i76_terrain_unload(game.active_terrain);
+        if (result == i76_terrain_result::ok) {
+            return make_reply(game, i76_result_code::ok,
+                              "terrain unloaded");
+        }
+    } else {
+        return make_reply(game, i76_result_code::invalid_argument,
+                          "terrain commands: prepare <mission> | activate | "
+                          "status | discard | unload");
+    }
+    message = "terrain command failed: ";
+    message += i76_terrain_result_name(result);
+    message += " offset=" + std::to_string(error.offset);
+    return make_reply(game, i76_result_code::invalid_argument,
+                      std::move(message));
+}
+
+// -----------------------------------------------------------------------------
 // Dispatch read-only inspection and synthetic level lifecycle commands.
 // -----------------------------------------------------------------------------
 static i76_command_result execute_level_command(i76_runtime& game,
@@ -857,7 +933,7 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
                           "commands: help status pause resume step <count> "
                           "object <action> resource <action> "
                           "texture <action> color <action> "
-                          "level <action> asset stats quit");
+                          "terrain <action> level <action> asset stats quit");
     }
     if (command == "status"
         && args.empty()) {
@@ -896,6 +972,9 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
     }
     if (command == "level") {
         return execute_level_command(game, args);
+    }
+    if (command == "terrain") {
+        return execute_terrain_command(game, args);
     }
     if (command == "texture") {
         return execute_texture_command(game, args);
