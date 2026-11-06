@@ -1,0 +1,181 @@
+{
+  "findings": [
+    {
+      "claim": "Original camera to terrain footprint uses world camera/far corners, height admission, all-nonpositive far-corner ground intersection, bias-rounded extrema and expanded power-of-two root.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_TERRAIN_ROOT.md",
+          "sha256": "f7827e32ae5dabad80842ab8d83c2c19a8b8cdd4ca9a2af97ab688a20b3c439c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/camera_fixtures.json",
+          "sha256": "b69bd90f28d2faf2f74906391de044b22988a93cd36d852f0b19dc55438020a2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "32c8811dcf0a6841cde821881001c24eaa43fe6eed70b05557a01cb070fe0180"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "09750fd802b4a71355951f5162b618875bbb6f3f11ace7b31e9cbcaea5aa042a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/predict.py",
+          "sha256": "4e43618fb543adbe48286e0a97348406f93bf1e18c6f457f7ca7e9cbefe9661e"
+        }
+      ],
+      "finding_id": "ROOT-FOOTPRINT",
+      "limitations": "Finite measured M06 camera states and default CW037F only. Original view remains input; explicit terrain quality and independent authenticated height data required. Supplied Linux/OS/backing and Ghidra services, not native retail Windows/frame/raster. One known emulator boundary discrepancy; arbitrary state, overflow, exceptional FP, repeated rejected frames and full rendering unverified.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original later-point duplicate rejection, angular distance-score sentinel selection and approximate vertical plane construction reproduce measured ordered hull and plane stores.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/VISIBILITY_HULL.md",
+          "sha256": "5d62a2ca07732a075286bc8c70420f5411f7f56523845b2c38bdd0db80451e2f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/predictions.json",
+          "sha256": "a9c878e554169448cf0a6b42adb2d1ea859611e8a712f890565fba63567c2bf2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "32c8811dcf0a6841cde821881001c24eaa43fe6eed70b05557a01cb070fe0180"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "09750fd802b4a71355951f5162b618875bbb6f3f11ace7b31e9cbcaea5aa042a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/predict.py",
+          "sha256": "4e43618fb543adbe48286e0a97348406f93bf1e18c6f457f7ca7e9cbefe9661e"
+        }
+      ],
+      "finding_id": "ROOT-HULL",
+      "limitations": "Finite measured M06 camera states and default CW037F only. Original view remains input; explicit terrain quality and independent authenticated height data required. Supplied Linux/OS/backing and Ghidra services, not native retail Windows/frame/raster. One known emulator boundary discrepancy; arbitrary state, overflow, exceptional FP, repeated rejected frames and full rendering unverified.",
+      "scope": "game",
+      "status": "derived"
+    },
+    {
+      "claim": "Original terrain quality factors and retained camera projection/viewport derive the two float32 LOD thresholds through extended arithmetic and final stores.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/LOD_THRESHOLD_NUMERICS.md",
+          "sha256": "e60e25e6b4f5562a727512e19f119d3e738c38a896b183468927baadeb52dc9f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/comparison.json",
+          "sha256": "94fc076e8c70db09ca4577bd8c67fe504790a2d3055ad2a0cc58b9f367e43e18"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "32c8811dcf0a6841cde821881001c24eaa43fe6eed70b05557a01cb070fe0180"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "09750fd802b4a71355951f5162b618875bbb6f3f11ace7b31e9cbcaea5aa042a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/predict.py",
+          "sha256": "4e43618fb543adbe48286e0a97348406f93bf1e18c6f457f7ca7e9cbefe9661e"
+        }
+      ],
+      "finding_id": "ROOT-LOD",
+      "limitations": "Finite measured M06 camera states and default CW037F only. Original view remains input; explicit terrain quality and independent authenticated height data required. Supplied Linux/OS/backing and Ghidra services, not native retail Windows/frame/raster. One known emulator boundary discrepancy; arbitrary state, overflow, exceptional FP, repeated rejected frames and full rendering unverified.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Independent camera-input predictions match all 24 native root/threshold/plane observations and reproduce 20 accepted emulated source graphs, including nine known #140 graphs.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/CAMERA_GEOMETRY_HANDOFF.md",
+          "sha256": "b100d19bc43c1123f926b5ff9af73ccab90ee25ea02a670ab087f33e4430bf78"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/downstream.json",
+          "sha256": "085226c23fd7910be7dca7c325a9e17dcd0e71d49aeff8b95997d16dff78351a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "32c8811dcf0a6841cde821881001c24eaa43fe6eed70b05557a01cb070fe0180"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "09750fd802b4a71355951f5162b618875bbb6f3f11ace7b31e9cbcaea5aa042a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/predict.py",
+          "sha256": "4e43618fb543adbe48286e0a97348406f93bf1e18c6f457f7ca7e9cbefe9661e"
+        }
+      ],
+      "finding_id": "ROOT-PARITY",
+      "limitations": "Finite measured M06 camera states and default CW037F only. Original view remains input; explicit terrain quality and independent authenticated height data required. Supplied Linux/OS/backing and Ghidra services, not native retail Windows/frame/raster. One known emulator boundary discrepancy; arbitrary state, overflow, exceptional FP, repeated rejected frames and full rendering unverified.",
+      "scope": "game",
+      "status": "derived"
+    },
+    {
+      "claim": "At controlled .01 terrain clearance the native root and independent model accept while the FISTP-serviced Ghidra sampler causes rejection; adjacent clearance controls agree.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/LOD_THRESHOLD_NUMERICS.md",
+          "sha256": "e60e25e6b4f5562a727512e19f119d3e738c38a896b183468927baadeb52dc9f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/numeric_diagnostics.json",
+          "sha256": "3cb2465c9ae9d022a05a4ce48162abc7aa20a4f0bd1f3104a16f8a8cb82528e4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "32c8811dcf0a6841cde821881001c24eaa43fe6eed70b05557a01cb070fe0180"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/provenance.json",
+          "sha256": "09750fd802b4a71355951f5162b618875bbb6f3f11ace7b31e9cbcaea5aa042a"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/predict.py",
+          "sha256": "4e43618fb543adbe48286e0a97348406f93bf1e18c6f457f7ca7e9cbefe9661e"
+        }
+      ],
+      "finding_id": "ROOT-EMU-LIMIT",
+      "limitations": "Finite measured M06 camera states and default CW037F only. Original view remains input; explicit terrain quality and independent authenticated height data required. Supplied Linux/OS/backing and Ghidra services, not native retail Windows/frame/raster. One known emulator boundary discrepancy; arbitrary state, overflow, exceptional FP, repeated rejected frames and full rendering unverified.",
+      "scope": "game",
+      "status": "proven"
+    }
+  ],
+  "run_id": "i76exe-20261106T022622Z-24e5aee7",
+  "schema_version": "1.2.0"
+}
