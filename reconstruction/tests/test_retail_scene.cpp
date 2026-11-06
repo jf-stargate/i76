@@ -1,6 +1,8 @@
 #include "i76/command.h"
 #include "i76/retail_scene.h"
 
+#include <array>
+
 #include <cstdint>
 #include <filesystem>
 #include <fstream>
@@ -85,7 +87,10 @@ static std::vector<std::uint8_t> make_mission(
     std::size_t wrld_bytes = 331U,
     bool has_world = true,
     bool has_wrld = true,
-    bool has_wrev = true)
+    bool has_wrev = true,
+    std::string_view ter_name = "M06.TER",
+    bool bad_page = false,
+    bool duplicate_world = false)
 {
     std::vector<std::uint8_t> mission = {};
     std::vector<std::uint8_t> world = {};
@@ -110,13 +115,16 @@ static std::vector<std::uint8_t> make_mission(
         }
         add_chunk(world, "EXIT", {});
         add_chunk(mission, "WDEF", world);
+        if (duplicate_world) {
+            add_chunk(mission, "WDEF", world);
+        }
     }
     add_revision(terrain, "TREV", 4U);
     map[0] = 1U;
-    map[1] = 0U;
+    map[1] = bad_page ? 1U : 0U;
     add_chunk(terrain, "ZMAP", map);
     zone[0] = 0x5aU;
-    put_name(zone, 1U, "M06.TER");
+    put_name(zone, 1U, ter_name);
     add_chunk(terrain, "ZONE", zone);
     add_chunk(terrain, "EXIT", {});
     add_chunk(mission, "TDEF", terrain);
