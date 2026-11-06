@@ -35,8 +35,10 @@ i76_terrain_lattice_result i76_terrain_lattice_at(
         static_cast<std::int64_t>(global_z) + shift;
     i76_terrain_lattice_sample candidate = {};
 
-    if (shifted_x < 0 || shifted_z < 0
-        || shifted_x >= grid_side || shifted_z >= grid_side) {
+    if (shifted_x < 0
+        || shifted_z < 0
+        || shifted_x >= grid_side
+        || shifted_z >= grid_side) {
         return i76_terrain_lattice_result::invalid_coordinate;
     }
     if (!lattice_scene_valid(scene)) {
@@ -60,8 +62,10 @@ i76_terrain_lattice_result i76_terrain_lattice_at(
     candidate.local_x = static_cast<std::uint8_t>(local_x);
     candidate.local_z = static_cast<std::uint8_t>(local_z);
 
-    if (runtime_x >= zmap_first && runtime_x < zmap_last
-        && runtime_z >= zmap_first && runtime_z < zmap_last) {
+    if (runtime_x >= zmap_first
+        && runtime_x < zmap_last
+        && runtime_z >= zmap_first
+        && runtime_z < zmap_last) {
         const std::int32_t source_x = runtime_x - zmap_first;
         const std::int32_t source_z = runtime_z - zmap_first;
         const std::size_t cell_index =
@@ -144,8 +148,10 @@ i76_terrain_lattice_result i76_terrain_lattice_quad_at(
     const std::int64_t z = global_z;
     i76_terrain_lattice_quad candidate = {};
 
-    if (x < minimum || z < minimum
-        || x > last_cell || z > last_cell) {
+    if (x < minimum
+        || z < minimum
+        || x > last_cell
+        || z > last_cell) {
         return i76_terrain_lattice_result::invalid_coordinate;
     }
 
