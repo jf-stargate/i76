@@ -788,7 +788,7 @@ static i76_command_result execute_terrain_command(i76_runtime& game,
 }
 
 // -----------------------------------------------------------------------------
-// Prepare, activate and inspect an owned terrain/color/texture diagnostic scene.
+// Prepare and activate an owned diagnostic terrain, color and texture scene.
 // -----------------------------------------------------------------------------
 static i76_command_result execute_scene_command(i76_runtime& game,
                                                  std::string_view args)
