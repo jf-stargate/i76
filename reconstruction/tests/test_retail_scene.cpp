@@ -315,7 +315,11 @@ static void test_rejections()
         "miss16/v08.msn", "miss16/short.msn", "miss16/none.msn",
         "miss16/no_wrld.msn", "miss16/no_wrev.msn", "miss16/blank.msn",
         "miss16/unsafe.msn", "miss16/unterm.msn",
-        "miss16/absent.msn"
+        "miss16/absent.msn", "miss16/whitespace.msn",
+        "miss16/double.msn", "miss16/invalid.msn",
+        "miss16/no_ter.msn", "miss16/bad_page.msn",
+        "miss16/bad_act.msn", "miss16/bad_lum.msn",
+        "miss16/bad_tbl.msn"
     };
     const i76_retail_scene_result codes[] = {
         i76_retail_scene_result::unsupported_world,
@@ -327,8 +331,16 @@ static void test_rejections()
         i76_retail_scene_result::invalid_color,
         i76_retail_scene_result::invalid_color,
         i76_retail_scene_result::missing_resource,
+        i76_retail_scene_result::invalid_color,
+        i76_retail_scene_result::unsupported_world,
+        i76_retail_scene_result::unsupported_world,
+        i76_retail_scene_result::missing_terrain,
+        i76_retail_scene_result::invalid_terrain,
+        i76_retail_scene_result::invalid_color,
+        i76_retail_scene_result::invalid_color,
+        i76_retail_scene_result::invalid_color,
     };
-    for (std::size_t index = 0U; index < 9U; ++index) {
+    for (std::size_t index = 0U; index < std::size(cases); ++index) {
         expect(i76_retail_scene_prepare(resources, cases[index],
                                         "textures/a.vqm", prepared, error) ==
                    codes[index], "reject unsupported WRLD or missing color");
@@ -340,6 +352,10 @@ static void test_rejections()
                                     "textures/absent.vqm", prepared, error) ==
                i76_retail_scene_result::missing_resource,
            "require an actual selected texture");
+    expect(i76_retail_scene_prepare(resources, "miss16/m06.msn",
+                                    "textures/bad.vqm", prepared, error) ==
+               i76_retail_scene_result::invalid_texture,
+           "reject an invalid selected VQM token");
     expect(i76_retail_scene_prepare(resources, "miss16/m06.msn", "",
                                     prepared, error) ==
                i76_retail_scene_result::invalid_argument,
