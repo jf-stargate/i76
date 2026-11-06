@@ -1,6 +1,7 @@
 #pragma once
 
 #include "i76/level.h"
+#include "i76/retail_scene.h"
 #include "i76/terrain_scene.h"
 #include "i76/resource.h"
 #include "i76/world.h"
@@ -97,6 +98,8 @@ struct i76_runtime {
     i76_active_level active_level{};
     i76_prepared_terrain prepared_terrain{};
     i76_active_terrain active_terrain{};
+    i76_prepared_retail_scene prepared_retail_scene{};
+    i76_active_retail_scene active_retail_scene{};
 };
 
 // Explicit initialize/shutdown. The registry preserves its generation history
