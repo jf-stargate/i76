@@ -1,0 +1,166 @@
+{
+  "findings": [
+    {
+      "claim": "Original whole-polygon eligibility requires projected-Y score=4-N, both corner distances<0 and equal masked shade bands; only zero whole-emitter return enters fallback after an attempt.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TERRAIN_WALKER_DECISIONS.md",
+          "sha256": "563e038af1d93b30c34d10e10cc1d4e2c17b4dc1063499858cac7e6623e2c797"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "4d12485ebeeac549af46307437830c7cbc445bff367615643068e6962c5eb10d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/verification.json",
+          "sha256": "5a340a5e5ed287d71ceb9acd703c4477d7c2f132b326c9ca0169217f1e773960"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/decisions.jsonl",
+          "sha256": "0a283313dca960603242ee75e67192cd24307aeca7768ca167f629f049ab7cfd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/walker.py",
+          "sha256": "6d4ab41780b85b29bf04cb912352cde6ff2cfcee6beee9a3168892dd48efbee2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify.py",
+          "sha256": "d7d52d5b2ab6d4e191ec0f78a5d30bf2a7802e3e5557dc6d8aeb30759d038f4c"
+        }
+      ],
+      "finding_id": "F-WALK",
+      "limitations": "Bounded original-instruction emulation with controlled root, explicit OS/CRT/resource/numerical services and original source/post-transform inputs. Numerical model has stated comparison bounds. Shade/high are supplied diagnostic controls, not mission lighting/resource provenance. Additional-center/corner-end anchors, degenerate/tie behavior, general bin rejection and downstream rendering remain unresolved.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original anchor priority and adjacent boundary fan predict tested emitted triangles in exact order, filtering nonnegative plane distances and ignoring triangle callback return values.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/TRIANGLE_FALLBACK.md",
+          "sha256": "158dde9142ad0a5fc255fba0a821a166b55589f2970e7457aac31af5d6b3aee4"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "4d12485ebeeac549af46307437830c7cbc445bff367615643068e6962c5eb10d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/verification.json",
+          "sha256": "5a340a5e5ed287d71ceb9acd703c4477d7c2f132b326c9ca0169217f1e773960"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/decisions.jsonl",
+          "sha256": "0a283313dca960603242ee75e67192cd24307aeca7768ca167f629f049ab7cfd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/walker.py",
+          "sha256": "6d4ab41780b85b29bf04cb912352cde6ff2cfcee6beee9a3168892dd48efbee2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify.py",
+          "sha256": "d7d52d5b2ab6d4e191ec0f78a5d30bf2a7802e3e5557dc6d8aeb30759d038f4c"
+        }
+      ],
+      "finding_id": "F-FAN",
+      "limitations": "Bounded original-instruction emulation with controlled root, explicit OS/CRT/resource/numerical services and original source/post-transform inputs. Numerical model has stated comparison bounds. Shade/high are supplied diagnostic controls, not mission lighting/resource provenance. Additional-center/corner-end anchors, degenerate/tie behavior, general bin rejection and downstream rendering remain unresolved.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "In the bounded ordinary M06 corpus the independent walker predicts source-index attempts, depth/screen rejection and final accepted bins; 79 primary leaves produce 181 attempts and 30 entries.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/EMISSION_RECONSTRUCTION_HANDOFF.md",
+          "sha256": "388226b0aeb845e5c006ecb0c5a36a3420f09f1b53f9859e72218f5941a05922"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "4d12485ebeeac549af46307437830c7cbc445bff367615643068e6962c5eb10d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/verification.json",
+          "sha256": "5a340a5e5ed287d71ceb9acd703c4477d7c2f132b326c9ca0169217f1e773960"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/decisions.jsonl",
+          "sha256": "0a283313dca960603242ee75e67192cd24307aeca7768ca167f629f049ab7cfd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/walker.py",
+          "sha256": "6d4ab41780b85b29bf04cb912352cde6ff2cfcee6beee9a3168892dd48efbee2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify.py",
+          "sha256": "d7d52d5b2ab6d4e191ec0f78a5d30bf2a7802e3e5557dc6d8aeb30759d038f4c"
+        }
+      ],
+      "finding_id": "F-EMISSION",
+      "limitations": "Bounded original-instruction emulation with controlled root, explicit OS/CRT/resource/numerical services and original source/post-transform inputs. Numerical model has stated comparison bounds. Shade/high are supplied diagnostic controls, not mission lighting/resource provenance. Additional-center/corner-end anchors, degenerate/tie behavior, general bin rejection and downstream rendering remain unresolved.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Supplied lighting exercises 18 original shade-band rejections; supplied high-color flag bypasses triangle scalar shade while retaining the original whole-polygon shade gate.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/POLYGON_FACING_AND_SHADE.md",
+          "sha256": "2edbacde4f128f5229882bb1f8cf29d1a3a93f4749dc93171f7470523c058a5f"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "4d12485ebeeac549af46307437830c7cbc445bff367615643068e6962c5eb10d"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/verification.json",
+          "sha256": "5a340a5e5ed287d71ceb9acd703c4477d7c2f132b326c9ca0169217f1e773960"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/decisions.jsonl",
+          "sha256": "0a283313dca960603242ee75e67192cd24307aeca7768ca167f629f049ab7cfd"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/walker.py",
+          "sha256": "6d4ab41780b85b29bf04cb912352cde6ff2cfcee6beee9a3168892dd48efbee2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify.py",
+          "sha256": "d7d52d5b2ab6d4e191ec0f78a5d30bf2a7802e3e5557dc6d8aeb30759d038f4c"
+        }
+      ],
+      "finding_id": "F-SHADE-CONTROL",
+      "limitations": "Bounded original-instruction emulation with controlled root, explicit OS/CRT/resource/numerical services and original source/post-transform inputs. Numerical model has stated comparison bounds. Shade/high are supplied diagnostic controls, not mission lighting/resource provenance. Additional-center/corner-end anchors, degenerate/tie behavior, general bin rejection and downstream rendering remain unresolved.",
+      "scope": "game",
+      "status": "proven"
+    }
+  ],
+  "run_id": "i76exe-20261106T041351Z-cdebba73",
+  "schema_version": "1.2.0"
+}
