@@ -788,6 +788,96 @@ static i76_command_result execute_terrain_command(i76_runtime& game,
 }
 
 // -----------------------------------------------------------------------------
+// Prepare and activate an owned diagnostic terrain, color and texture scene.
+// -----------------------------------------------------------------------------
+static i76_command_result execute_scene_command(i76_runtime& game,
+                                                 std::string_view args)
+{
+    std::string_view action = take_token(args);
+    std::string_view mission = {};
+    std::string_view texture = {};
+    i76_retail_scene_error error = {};
+    i76_retail_scene_result status = i76_retail_scene_result::ok;
+    std::string message = {};
+
+    if (action == "status"
+        && args.empty()) {
+        const i76_retail_scene* active =
+            game.active_retail_scene.scene.get();
+        const i76_retail_scene* pending =
+            game.prepared_retail_scene.scene.get();
+        message = "scene active=" + (active != nullptr ?
+            active->terrain.mission_name : std::string("none"));
+        message += " prepared=" + (pending != nullptr ?
+            pending->terrain.mission_name : std::string("none"));
+        if (active != nullptr) {
+            message += " pages=" +
+                std::to_string(active->terrain.page_count);
+            message += " texture=" + active->sample_texture.name;
+            message += " pixels=" +
+                std::to_string(active->sample_texture.pixels.size());
+            message += " ACT=" + active->palette_name;
+            message += " LUM=";
+            message += active->colors.has_lum ? "present" : "absent";
+            message += " TBL=";
+            message += active->colors.has_tbl ? "present" : "absent";
+        }
+        return make_reply(game, i76_result_code::ok, std::move(message));
+    }
+    if (action == "prepare") {
+        mission = take_token(args);
+        texture = take_token(args);
+        if (mission.empty()
+            || texture.empty()
+            || !args.empty()) {
+            return make_reply(game, i76_result_code::invalid_argument,
+                              "usage: scene prepare <mission> <texture.vqm>");
+        }
+        status = i76_retail_scene_prepare(game.resources, mission, texture,
+                                           game.prepared_retail_scene, error);
+        if (status == i76_retail_scene_result::ok) {
+            message = "scene prepared " +
+                game.prepared_retail_scene.scene->terrain.mission_name;
+            message += " texture=" +
+                game.prepared_retail_scene.scene->sample_texture.name;
+            return make_reply(game, i76_result_code::ok, std::move(message));
+        }
+    } else if (action == "activate"
+               && args.empty()) {
+        status = i76_retail_scene_activate(game.prepared_retail_scene,
+                                           game.active_retail_scene);
+        if (status == i76_retail_scene_result::ok) {
+            return make_reply(game, i76_result_code::ok,
+                              "scene activated " +
+                              game.active_retail_scene.scene->
+                                  terrain.mission_name);
+        }
+    } else if (action == "discard"
+               && args.empty()) {
+        status = i76_retail_scene_discard(game.prepared_retail_scene);
+        if (status == i76_retail_scene_result::ok) {
+            return make_reply(game, i76_result_code::ok,
+                              "scene preparation discarded");
+        }
+    } else if (action == "unload"
+               && args.empty()) {
+        status = i76_retail_scene_unload(game.active_retail_scene);
+        if (status == i76_retail_scene_result::ok) {
+            return make_reply(game, i76_result_code::ok, "scene unloaded");
+        }
+    } else {
+        return make_reply(game, i76_result_code::invalid_argument,
+                          "scene commands: prepare <mission> <texture.vqm> | "
+                          "activate | status | discard | unload");
+    }
+    message = "scene operation failed: ";
+    message += i76_retail_scene_result_name(status);
+    message += " offset=" + std::to_string(error.offset);
+    return make_reply(game, i76_result_code::invalid_argument,
+                      std::move(message));
+}
+
+// -----------------------------------------------------------------------------
 // Dispatch read-only inspection and synthetic level lifecycle commands.
 // -----------------------------------------------------------------------------
 static i76_command_result execute_level_command(i76_runtime& game,
@@ -933,7 +1023,8 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
                           "commands: help status pause resume step <count> "
                           "object <action> resource <action> "
                           "texture <action> color <action> "
-                          "terrain <action> level <action> asset stats quit");
+                          "terrain <action> scene <action> "
+                          "level <action> asset stats quit");
     }
     if (command == "status"
         && args.empty()) {
@@ -975,6 +1066,9 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
     }
     if (command == "terrain") {
         return execute_terrain_command(game, args);
+    }
+    if (command == "scene") {
+        return execute_scene_command(game, args);
     }
     if (command == "texture") {
         return execute_texture_command(game, args);
