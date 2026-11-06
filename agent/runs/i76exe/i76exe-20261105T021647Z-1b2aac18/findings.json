@@ -1,0 +1,264 @@
+{
+  "findings": [
+    {
+      "claim": "Complete original null-LUM generation and return produces65536-byte tables matching independent rational and C models under explicit finite truncation services.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "e8f8bd3397feecc362886e7edbf2d798454f161cefa887943dfbbcbb8cdbc4b2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "f38a4167e75a0a22f908b26e29350ceb980d518780685f9877e68de98425d08c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_comparisons.json",
+          "sha256": "8f5c75cac544a53127bd65b4bd690cb019eef2a6df55f3f6dbe15fca2e7b80b5"
+        },
+        {
+          "address": "004791E0",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.full-lum",
+      "limitations": "Original nearest arithmetic and stores executed; context/palette and imported FTOL supplied; no retail DLL or scene/backend selection claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "All256 byte-channel inputs and32 generated levels quantize identically across twelve tested PC/RC modes under finite truncation, despite intermediate differences.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/model.py",
+          "sha256": "52993b69e78fbd5a1ec478efe8554e2496715587fc4135f91041006c9e47d950"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/test_model.py",
+          "sha256": "2fe1600eacc98c699aa18bb7dc6b94c10cb54075aca50afce4b8ca2d2d13d45e"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "f38a4167e75a0a22f908b26e29350ceb980d518780685f9877e68de98425d08c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/differential_fixtures.json",
+          "sha256": "87091b19c4f59477f5b31a3076955586d8e158189389200d0c2e4d8dc76779ec"
+        },
+        {
+          "address": "004792A9",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.mode-invariance",
+      "limitations": "Exact rational exhaustive result, confirmed by original native conversion sequences for a palette covering all channel values. Finite normal/masked-exception domain only.",
+      "scope": "game",
+      "status": "derived"
+    },
+    {
+      "claim": "Original nearest uses first minimum over0..254 and first unquantized query per5-bit cache cell; direct original control returns0,0,1 after cache reset.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_comparisons.json",
+          "sha256": "8f5c75cac544a53127bd65b4bd690cb019eef2a6df55f3f6dbe15fca2e7b80b5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/differential_fixtures.json",
+          "sha256": "87091b19c4f59477f5b31a3076955586d8e158189389200d0c2e4d8dc76779ec"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "e8f8bd3397feecc362886e7edbf2d798454f161cefa887943dfbbcbb8cdbc4b2"
+        },
+        {
+          "address": "004796A0",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.nearest",
+      "limitations": "Confirms prior accepted finding; only AL is stable; bounded RGB8 query domain.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Complete original gamma loops expose reciprocal binary64 spill, extended power input/result boundaries, AL-only storage, and conditional table differences under precision and power service choices.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/arithmetic_audit.json",
+          "sha256": "209e3fdb76413fdc267d7529f81587468a4462ec892edf6a8814a4a8091149ab"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/arithmetic_contracts.json",
+          "sha256": "eb8f21ae626f1d25716df24e6cc76cac5211a3188c41b24590d1fa3517a430c3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/results.json",
+          "sha256": "f38a4167e75a0a22f908b26e29350ceb980d518780685f9877e68de98425d08c"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/differential_fixtures.json",
+          "sha256": "87091b19c4f59477f5b31a3076955586d8e158189389200d0c2e4d8dc76779ec"
+        },
+        {
+          "address": "00479860",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.gamma-boundary",
+      "limitations": "Power services are identified glibc substitutes/replay. No unconditional retail-exact gamma hash, endpoint or identity-slot claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original startup helper calls imported_controlfp with new10000/mask30000, documented as a53-bit precision request.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/arithmetic_audit.json",
+          "sha256": "209e3fdb76413fdc267d7529f81587468a4462ec892edf6a8814a4a8091149ab"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/REPORT.md",
+          "sha256": "e8f8bd3397feecc362886e7edbf2d798454f161cefa887943dfbbcbb8cdbc4b2"
+        },
+        {
+          "address": "004BA320",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.startup-precision",
+      "limitations": "Original instructions/arguments are static; ABI interpretation uses linked Microsoft documentation. Actual CRT startup and later process CW unexecuted.",
+      "scope": "game",
+      "status": "inferred"
+    },
+    {
+      "claim": "Ghidra fixed-power replay yields identical gamma under CW037F/007F, while native modes and their power inputs differ; setting the emulated CW is insufficient architectural validation.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/gamma_cw_control.json",
+          "sha256": "66c134aa4c221c873054a39f0a68fca89e08aef100fc66d906679397a54dbfe8"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/original_comparisons.json",
+          "sha256": "8f5c75cac544a53127bd65b4bd690cb019eef2a6df55f3f6dbe15fca2e7b80b5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/arithmetic_audit.json",
+          "sha256": "209e3fdb76413fdc267d7529f81587468a4462ec892edf6a8814a4a8091149ab"
+        },
+        {
+          "address": "0047991B",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.emulator-limit",
+      "limitations": "Controlled Ghidra12.1.4 experiment; fixed replay is deliberately not a valid low-PC CRT substitute.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Unserviced original thunks reach missing import placeholders; historical MSVCRT controlfp/ftol/CIpow and their runtime/exception dependencies remain unresolved.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/unserviced_imports.json",
+          "sha256": "5029ed79b9859ebb1790a4a8abaa08ad10f382c874644dfa0d4819111c09eaf3"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SERVICE_LEDGER.md",
+          "sha256": "013d733c32cd6627f0bf6a539d8376e9ee77db1b5d1ec9004e53a2f8898baec5"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/RECONSTRUCTION_HANDOFF.md",
+          "sha256": "4a079ce4eaf0fc7f58e0cc2ef5953c3425576fe3880d480be770a0beffba510c"
+        },
+        {
+          "address": "004BA090",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.crt-gap",
+      "limitations": "Missing DLL in this emulation environment, not an observed retail game failure. Supplied FTOL boundary tests do not prove retail CRT implementation.",
+      "scope": "game",
+      "status": "unresolved"
+    },
+    {
+      "claim": "Independent finite exact-rational IEEE arithmetic and C/x87 models validate full outputs, conversion sequences, gamma arithmetic boundaries and differential fixtures; ten standalone tests pass.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/model.py",
+          "sha256": "52993b69e78fbd5a1ec478efe8554e2496715587fc4135f91041006c9e47d950"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/native.c",
+          "sha256": "c212ebe1f4739d1cf645763f7e06c68fab764003d79d2e41e0bf83f4b53982c2"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/reproduce.py",
+          "sha256": "bb0641a8208adddc9f06cd5259094ca771dc3a29cfc13c46d7abdba3ae25aca6"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/standalone_tests.txt",
+          "sha256": "392a459d363bd34a439a083364dca76a21afe65d7dac57d3f8e3e190aa62ee74"
+        },
+        {
+          "address": "004791E0",
+          "kind": "retail-address",
+          "notes": "PE identity authenticated in manifest and reproduction.",
+          "ref": "orig/i76.exe"
+        }
+      ],
+      "finding_id": "numeric.reference",
+      "limitations": "Models are experimental research, not maintained reconstruction or full FPU/CRT emulation.",
+      "scope": "game",
+      "status": "derived"
+    }
+  ],
+  "run_id": "i76exe-20261105T021647Z-1b2aac18",
+  "schema_version": "1.2.0"
+}

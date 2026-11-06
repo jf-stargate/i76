@@ -1,0 +1,219 @@
+[
+  {
+    "test": "vqm_first",
+    "prefer": 0,
+    "result": "20800000",
+    "services": [
+      {
+        "service": "size",
+        "name": "choice.vqm",
+        "result": 32
+      },
+      {
+        "service": "acquire",
+        "name": "choice.vqm",
+        "result": 537919488
+      },
+      {
+        "service": "acquire",
+        "name": "synthetic.cbk",
+        "result": 538181632
+      },
+      {
+        "service": "HeapAlloc",
+        "heap": 0,
+        "flags": 0,
+        "size": 72,
+        "result": 545259520
+      },
+      {
+        "service": "HeapAlloc",
+        "heap": 0,
+        "flags": 0,
+        "size": 36,
+        "result": 545259648
+      },
+      {
+        "service": "release",
+        "name": "synthetic.cbk",
+        "result": 0
+      },
+      {
+        "service": "release",
+        "name": "choice.vqm",
+        "result": 0
+      }
+    ]
+  },
+  {
+    "test": "cached_vqm_overrides_changed_preference",
+    "same_pointer": true,
+    "no_resource_calls": true
+  },
+  {
+    "test": "map_first",
+    "prefer": 1,
+    "result": "20180000",
+    "services": [
+      {
+        "service": "acquire",
+        "name": "choice.map",
+        "result": 538443776
+      }
+    ]
+  },
+  {
+    "test": "map_fallback",
+    "prefer": 0,
+    "result": "20100000",
+    "services": [
+      {
+        "service": "size",
+        "name": "choice.vqm",
+        "result": 0
+      },
+      {
+        "service": "acquire",
+        "name": "choice.map",
+        "result": 537919488
+      }
+    ]
+  },
+  {
+    "test": "vqm_fallback",
+    "prefer": 1,
+    "result": "20800000",
+    "services": [
+      {
+        "service": "acquire",
+        "name": "choice.map",
+        "result": 0
+      },
+      {
+        "service": "size",
+        "name": "choice.vqm",
+        "result": 32
+      },
+      {
+        "service": "acquire",
+        "name": "choice.vqm",
+        "result": 537919488
+      },
+      {
+        "service": "acquire",
+        "name": "synthetic.cbk",
+        "result": 538181632
+      },
+      {
+        "service": "HeapAlloc",
+        "heap": 0,
+        "flags": 0,
+        "size": 72,
+        "result": 545259520
+      },
+      {
+        "service": "HeapAlloc",
+        "heap": 0,
+        "flags": 0,
+        "size": 36,
+        "result": 545259648
+      },
+      {
+        "service": "release",
+        "name": "synthetic.cbk",
+        "result": 0
+      },
+      {
+        "service": "release",
+        "name": "choice.vqm",
+        "result": 0
+      }
+    ]
+  },
+  {
+    "test": "missing_cbk",
+    "prefer": 0,
+    "result": "00000000",
+    "services": [
+      {
+        "service": "size",
+        "name": "choice.vqm",
+        "result": 32
+      },
+      {
+        "service": "acquire",
+        "name": "choice.vqm",
+        "result": 537919488
+      },
+      {
+        "service": "acquire",
+        "name": "synthetic.cbk",
+        "result": 0
+      },
+      {
+        "service": "release",
+        "name": "choice.vqm",
+        "result": 0
+      }
+    ]
+  },
+  {
+    "test": "all_missing",
+    "prefer": 0,
+    "result": "00000000",
+    "services": [
+      {
+        "service": "size",
+        "name": "choice.vqm",
+        "result": 0
+      },
+      {
+        "service": "acquire",
+        "name": "choice.map",
+        "result": 0
+      }
+    ]
+  },
+  {
+    "test": "authentic_direct_map",
+    "source": {
+      "name": "mcalt101.map",
+      "sha256": "cf0ed0dbafea42efe9efcf582afc9eaa378ae888b38d5656f71b4c74df06d4b6",
+      "length": 4104,
+      "sources": [
+        {
+          "pak": "mcaltrpm.pak",
+          "pak_sha256": "5a9fb498c6cca3887b7e5ad7fffd5163e1bb52c21f939f34507ae4881d11a501",
+          "offset": 0,
+          "length": 4104,
+          "pix": "mcaltrpm.pix",
+          "pix_sha256": "194da91153232b002d862cfe6a6cc7bccdd55c2ddefe6f51be3918147f552d2d",
+          "pix_row": 0,
+          "zfs_directory_offset": 23830463,
+          "zfs_stored_offset": 24611943,
+          "zfs_stored_size": 2937,
+          "zfs_flags": 4
+        }
+      ]
+    },
+    "result": "20100000",
+    "resource_pointer_returned": true,
+    "runtime_sha256": "cf0ed0dbafea42efe9efcf582afc9eaa378ae888b38d5656f71b4c74df06d4b6",
+    "dimensions": [
+      64,
+      64
+    ],
+    "services": [
+      {
+        "service": "size",
+        "name": "mcalt101.vqm",
+        "result": 0
+      },
+      {
+        "service": "acquire",
+        "name": "mcalt101.map",
+        "result": 537919488
+      }
+    ]
+  }
+]

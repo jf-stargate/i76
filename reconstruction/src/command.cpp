@@ -1,6 +1,8 @@
 #include "i76/command.h"
 #include "i76/console.h"
 #include "i76/bwd2.h"
+#include "i76/color.h"
+#include "i76/texture.h"
 #include "i76/retail_mission.h"
 
 #include <charconv>
@@ -637,6 +639,79 @@ static i76_command_result inspect_retail_mission(i76_runtime& game,
 }
 
 // -----------------------------------------------------------------------------
+// Inspect a decoded VQM/CBK asset without retaining resource or scene state.
+// -----------------------------------------------------------------------------
+static i76_command_result execute_texture_command(i76_runtime& game,
+                                                   std::string_view args)
+{
+    std::string_view action = take_token(args);
+    i76_indexed_texture texture = {};
+    i76_texture_error error = {};
+    i76_texture_result status = i76_texture_result::ok;
+    std::string message = {};
+
+    if (action != "inspect"
+        || args.empty()) {
+        return make_reply(game, i76_result_code::invalid_argument,
+                          "usage: texture inspect <name.vqm>");
+    }
+    status = i76_texture_read(game.resources, args, texture, error);
+    if (status != i76_texture_result::ok) {
+        message = "texture inspection failed: ";
+        message += i76_texture_result_name(status);
+        message += " offset=" + std::to_string(error.offset);
+        return make_reply(game, i76_result_code::invalid_argument,
+                          std::move(message));
+    }
+    message = "texture " + texture.name +
+              " width=" + std::to_string(texture.width) +
+              " height=" + std::to_string(texture.height) +
+              " indexed_bytes=" + std::to_string(texture.pixels.size()) +
+              " CBK=" + texture.codebook + " (read-only)";
+    return make_reply(game, i76_result_code::ok, std::move(message));
+}
+
+// -----------------------------------------------------------------------------
+// Inspect typed ACT/LUM/TBL resources without mutating a renderer or world.
+// -----------------------------------------------------------------------------
+static i76_command_result execute_color_command(i76_runtime& game,
+                                                 std::string_view args)
+{
+    std::string_view action = take_token(args);
+    std::string_view act = take_token(args);
+    std::string_view lum = take_token(args);
+    std::string_view tbl = take_token(args);
+    i76_indexed_color_tables tables = {};
+    i76_color_result status = i76_color_result::ok;
+    std::string message = {};
+
+    if (action != "inspect"
+        || act.empty()
+        || !args.empty()) {
+        return make_reply(game, i76_result_code::invalid_argument,
+                          "usage: color inspect <act> [lum|-] [tbl|-]");
+    }
+    if (lum == "-") {
+        lum = {};
+    }
+    if (tbl == "-") {
+        tbl = {};
+    }
+    status = i76_color_read(game.resources, act, lum, tbl, tables);
+    if (status != i76_color_result::ok) {
+        message = "color inspection failed: ";
+        message += i76_color_result_name(status);
+        return make_reply(game, i76_result_code::invalid_argument,
+                          std::move(message));
+    }
+    message = "color ACT=" + std::string(act) + " rgb_entries=256" +
+              " lum=" + (tables.has_lum ? "present" : "absent") +
+              " tbl=" + (tables.has_tbl ? "present" : "absent") +
+              " (read-only; no gamma or generated LUM)";
+    return make_reply(game, i76_result_code::ok, std::move(message));
+}
+
+// -----------------------------------------------------------------------------
 // Advance the independent retail-terrain preparation and activation lifecycle.
 // -----------------------------------------------------------------------------
 static i76_command_result execute_terrain_command(i76_runtime& game,
@@ -857,6 +932,7 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
         return make_reply(game, i76_result_code::ok,
                           "commands: help status pause resume step <count> "
                           "object <action> resource <action> "
+                          "texture <action> color <action> "
                           "terrain <action> level <action> asset stats quit");
     }
     if (command == "status"
@@ -899,6 +975,12 @@ i76_command_result i76_execute_legacy_command(i76_runtime& game,
     }
     if (command == "terrain") {
         return execute_terrain_command(game, args);
+    }
+    if (command == "texture") {
+        return execute_texture_command(game, args);
+    }
+    if (command == "color") {
+        return execute_color_command(game, args);
     }
     if (command == "step") {
         if (args.empty()) {
