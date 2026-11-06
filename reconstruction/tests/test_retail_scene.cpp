@@ -360,10 +360,11 @@ static void test_loaded_scene()
                                     19U, true, true, sample)
            && sample.composite == 199U,
            "unmapped page is rejected without modifying caller");
-    expect(!i76_retail_scene_sample(*active.scene, 0U, 0U, 0, 0,
-                                    0U, 19U, true, false, sample)
-           || sample.shaded == 0U,
-           "unshaded accumulator row remains deterministic");
+    expect(i76_retail_scene_sample(*active.scene, 0U, 0U, 0, 0,
+                                   0U, 19U, true, false, sample)
+           && sample.shaded == 0U
+           && sample.composite == 0U,
+           "zero-filled shade row remains deterministic");
     expect(i76_retail_scene_activate(prepared, active) ==
                i76_retail_scene_result::not_prepared
            && active.scene != nullptr,
