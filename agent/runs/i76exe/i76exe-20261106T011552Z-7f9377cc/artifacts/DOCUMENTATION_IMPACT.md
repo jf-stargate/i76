@@ -1,0 +1,13 @@
+# Documentation impact — adaptive source topology
+
+Run: i76exe-20261106T011552Z-7f9377cc, i76exe, base 7c315c103e6eda864f5bd9f3c3736a03b4c1fa7c. PR pending at artifact authorship. Inputs and measured retail/v100 identities are in manifest.json. Classification: candidate update; no canonical change in this PR.
+
+Candidate F-TOPOLOGY: original 00491810 leaf +00/+02/+04 are lattice X/Z/size in executed cases; narrow the historical screen/bucket naming. F-SHARED: original in-place split and late flatten accommodate unequal-size neighbors without forcing equal leaf depth. F-WINDING: original flatten order is confirmed dynamically including eight-index loops, but emitter work order reverses the input. F-MODEL: independently authored bounded source predicate and graph reproduce complete source arenas across nine valid M06 camera configurations when original bounds/planes are supplied.
+
+Evidence: edge_graph.json, polygons.jsonl, subdivision_decisions.tsv, geometry_comparisons.json, instruction_anchors.tsv, selected_original_events.tsv; each digest and byte count is recorded in manifest.json. Method: retail opcode audit + original-instruction emulation with supplied services + independent source/graph and inherited clip/camera verification. Confidence high within selected cases; unsupported domains and full facing/shading parity remain unresolved. The precise scope and counterexamples are in VALIDATION.md.
+
+Potential future targets: manual/reference/engine/m06_visual_terrain.md adaptive layout/flatten/winding section, manual/roadmap/subsystems/TER.md, GEO.md and RND.md evidence frontier. Historical ref/level_format/i76_runtime_terrain_lod_reference.md remains immutable checkpoint: its shared-edge warning is confirmed; a bounded source builder now exists, so universal diagnostic-only guidance could be narrowed in living documentation after review. reconstruction/RETAIL_TERRAIN_SCENE.md is an implementation milestone, not itself updated/promoted by this research.
+
+Agrees with accepted #69/#76/#80 source topology and source/material distinction. Extends #76 via the same original-camera fixture and verifies unchanged common sidecars. Does not establish native Windows, full retail frame, pixels, successful alternate textured output or all-mission parity. Root/visible hull is an external original input to the independent builder; coordinate mapping must be reconciled with the separate investigation before any new canonical mapping claim.
+
+Only a designated documentation steward should reconcile merged runs and prepare a separate promotion/reference PR. Human acceptance is required. No edits to manual/, ref/, reconstruction/, policy or previous runs are proposed here.

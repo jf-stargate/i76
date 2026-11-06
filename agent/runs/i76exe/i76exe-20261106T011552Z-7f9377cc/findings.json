@@ -1,0 +1,126 @@
+{
+  "findings": [
+    {
+      "claim": "Original 0x1C leaf +00/+02/+04 store lattice X/Z/size and +0C/+10/+14/+18 store the four shared-edge references in selected M06 cases.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SHARED_EDGE_TOPOLOGY.md",
+          "sha256": "c662b5ea06344a4241df03f448327d267575c89f402b941175e61e3d5b0e3748"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/edge_graph.json",
+          "sha256": "0366e36dd1ea94d9b5eed3ee7e242d3a58b00cd033871f24186e4f57b91fab82"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "99972682d19136f7b638c4551c82a9135888b183c6164026f9551649c9f61edc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_topology.py",
+          "sha256": "e5fe6947fd3f9159e885b390f46a41f6ba7009a98fd5beca84feb6f0a5e4ebe9"
+        }
+      ],
+      "finding_id": "F-TOPOLOGY",
+      "limitations": "Bounded original-instruction emulation with inherited #76 resource/OS/CRT/numerical services, controlled poses and backing. Independent model accepts original root bounds and planes. Full camera hull, facing/shade/emission selection, added-center/high-color, default-page/overflow and successful alternate output remain unresolved; no native Windows/render/image claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original idempotent edge splitting mutates shared parent records; late flattening incorporates deeper children across unequal-size neighboring leaves without partial T junctions in tested graphs.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/SHARED_EDGE_TOPOLOGY.md",
+          "sha256": "c662b5ea06344a4241df03f448327d267575c89f402b941175e61e3d5b0e3748"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/edge_graph.json",
+          "sha256": "0366e36dd1ea94d9b5eed3ee7e242d3a58b00cd033871f24186e4f57b91fab82"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "99972682d19136f7b638c4551c82a9135888b183c6164026f9551649c9f61edc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_topology.py",
+          "sha256": "e5fe6947fd3f9159e885b390f46a41f6ba7009a98fd5beca84feb6f0a5e4ebe9"
+        }
+      ],
+      "finding_id": "F-SHARED",
+      "limitations": "Bounded original-instruction emulation with inherited #76 resource/OS/CRT/numerical services, controlled poses and backing. Independent model accepts original root bounds and planes. Full camera hull, facing/shade/emission selection, added-center/high-color, default-page/overflow and successful alternate output remain unresolved; no native Windows/render/image claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Original leaf flattening executes +14 forward,+10 forward,+18 reverse,+0C reverse; original emitter copies these inputs in reverse, including split-edge and triangle cases.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/POLYGON_EMISSION.md",
+          "sha256": "afceb278d61898d2150e9f9472b16bdefac109f868695d119bf9d2e7cda78795"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/polygons.jsonl",
+          "sha256": "2d7ae556414afd05ce98547463b0ecc893877cb5af8c86f4869f65a91e6af1bf"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "99972682d19136f7b638c4551c82a9135888b183c6164026f9551649c9f61edc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_topology.py",
+          "sha256": "e5fe6947fd3f9159e885b390f46a41f6ba7009a98fd5beca84feb6f0a5e4ebe9"
+        }
+      ],
+      "finding_id": "F-WINDING",
+      "limitations": "Bounded original-instruction emulation with inherited #76 resource/OS/CRT/numerical services, controlled poses and backing. Independent model accepts original root bounds and planes. Full camera hull, facing/shade/emission selection, added-center/high-color, default-page/overflow and successful alternate output remain unresolved; no native Windows/render/image claim.",
+      "scope": "game",
+      "status": "proven"
+    },
+    {
+      "claim": "Independent bounded numerical subdivision and source graph construction match exact source indices, XYZ and complete edge/leaf arenas for nine valid M06 camera configurations with original root/planes supplied.",
+      "confidence": "high",
+      "evidence": [
+        {
+          "kind": "run-artifact",
+          "ref": "artifacts/ADAPTIVE_TERRAIN_ALGORITHM.md",
+          "sha256": "9079fce3fd43b835d5a29b625a641cb7d5c89cc485cc730cb367c2f1bce0f8cc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/geometry_comparisons.json",
+          "sha256": "40c8d0d9edd93b9f763c0b92901b8ca2100e886090dba9f9638a1dfdb361c1fb"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "evidence/instruction_anchors.tsv",
+          "sha256": "99972682d19136f7b638c4551c82a9135888b183c6164026f9551649c9f61edc"
+        },
+        {
+          "kind": "run-artifact",
+          "ref": "scripts/verify_topology.py",
+          "sha256": "e5fe6947fd3f9159e885b390f46a41f6ba7009a98fd5beca84feb6f0a5e4ebe9"
+        }
+      ],
+      "finding_id": "F-MODEL",
+      "limitations": "Bounded original-instruction emulation with inherited #76 resource/OS/CRT/numerical services, controlled poses and backing. Independent model accepts original root bounds and planes. Full camera hull, facing/shade/emission selection, added-center/high-color, default-page/overflow and successful alternate output remain unresolved; no native Windows/render/image claim.",
+      "scope": "game",
+      "status": "derived"
+    }
+  ],
+  "run_id": "i76exe-20261106T011552Z-7f9377cc",
+  "schema_version": "1.2.0"
+}
