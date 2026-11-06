@@ -236,7 +236,8 @@ static void test_lifecycle()
                i76_terrain_lattice_result::ok
            && lattice.packed_word == 0x8abcU
            && lattice.page_ordinal == 1U
-           && lattice.source_col == 0 && lattice.source_row == 0,
+           && lattice.source_col == 0
+           && lattice.source_row == 0,
            "prepared retail mission resolves global lattice origin");
     expect(i76_terrain_lattice_position_at(active.scene, 128, 0,
                                            position) ==
