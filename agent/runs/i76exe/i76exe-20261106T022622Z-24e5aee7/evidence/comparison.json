@@ -1,0 +1,633 @@
+{
+  "cases": {
+    "below": {
+      "accepted": false,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": null,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "clear_exact": {
+      "accepted": true,
+      "emulated": {
+        "admission_mismatch": true,
+        "plane_comparison": "unavailable after emulator rejection",
+        "reason": "known Ghidra sampler rounding at clearance boundary"
+      },
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "clear_high": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "clear_low": {
+      "accepted": false,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": null,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "collinear": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": true,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        544,
+        9568,
+        6
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "contrast": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        544,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "duplicate": {
+      "accepted": false,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": true,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        544,
+        9568,
+        6
+      ],
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "ground": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": true,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "groundzero": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": true,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "lodfov": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F000000"
+      ]
+    },
+    "lodwide": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40A3D70B",
+        "3F47FFFE"
+      ]
+    },
+    "mixed": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "pitch": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "primary": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "quality1": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "41800001",
+        "3F055555"
+      ]
+    },
+    "quality2": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "42200001",
+        "3EB19998"
+      ]
+    },
+    "x2952.6": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "x2953.5": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "x2957.5": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "yaw": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "z47996.4": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "z47996.6": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "z47999.9": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    },
+    "z48000.1": {
+      "accepted": true,
+      "emulated": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "ground": false,
+      "hull_max_absolute_error": 0.0,
+      "native": {
+        "max_offset_absolute_error": 0,
+        "max_offset_ulps": 0,
+        "normal_bit_mismatches": 0,
+        "offset_bit_mismatches": 0
+      },
+      "root": [
+        512,
+        9568,
+        7
+      ],
+      "score_max_double_ulps": 0.0,
+      "threshold_bits": [
+        "40CCCCCE",
+        "3F47FFFE"
+      ]
+    }
+  },
+  "checks": 417
+}
