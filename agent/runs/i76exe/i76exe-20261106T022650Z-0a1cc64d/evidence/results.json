@@ -1,0 +1,52 @@
+{
+  "attempted_reads": 4380,
+  "cases": 124,
+  "checks": 4504,
+  "decision_differences": [
+    "M06_last_allocated_unaligned",
+    "M06_horizontal_neighbor_class3",
+    "M06_diagonal_neighbor_class3",
+    "M06_last_allocated_clear_cross",
+    "M06_last_allocated_neighbor_class3",
+    "M06_repeat_cross",
+    "M06_default_cross",
+    "M02_horizontal_neighbor_class3",
+    "M02_vertical_neighbor_class3",
+    "M02_diagonal_neighbor_class3",
+    "M02_repeat_cross",
+    "M02_default_cross"
+  ],
+  "exe_sha256": "bc073a930da5b03793c086f22eeeff6f2cc7d9c81ce650c6656d0d0c49af13f3",
+  "executed_reads": 4375,
+  "inputs": {
+    "M02.MSN": {
+      "bytes": 21061,
+      "sha256": "b566539e260440b43d40e7b6ad5ed6a959e344bcb6ca365562641b8b4b060175"
+    },
+    "M02.TER": {
+      "bytes": 393216,
+      "sha256": "08ae567ceac9647bacd95a352eaef9707c3fbf6a9ec7096b9fe2152afc6bc0e2"
+    },
+    "M06.MSN": {
+      "bytes": 47814,
+      "sha256": "923d47e189e087b604e7b2d2825668433b9ccf1547437938fd31b5573202a97f"
+    },
+    "M06.TER": {
+      "bytes": 524288,
+      "sha256": "fdd18c8b8a4dc1b280ae5ccf780b988a928cadbcf9170cd8c1907da97e4002ea"
+    }
+  },
+  "method": "Unmodified original instructions on i386 CPU, ptrace single step with bounded pre-read checks; supplied PE/grid/Linux environment. No earlier LOD/height test execution.",
+  "slice": [
+    4789590,
+    4789876
+  ],
+  "status": "passed",
+  "unsafe_cases": [
+    "M06_last_allocated_unaligned",
+    "M06_last_allocated_clear_cross",
+    "M06_last_allocated_neighbor_class3",
+    "M06_default_cross",
+    "M02_default_cross"
+  ]
+}
