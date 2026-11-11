@@ -2,6 +2,7 @@
 #include "i76/terrain_scene.h"
 #include "i76/terrain_lattice.h"
 
+#include <array>
 #include <cstdint>
 #include <iostream>
 #include <string>
@@ -33,17 +34,46 @@ static void append_u32(std::vector<std::uint8_t>& bytes,
 }
 
 // -----------------------------------------------------------------------------
-// Append a complete tagged record whose size includes its eight-byte header.
+// Append a BWD2 record, explicitly zero-padding short FourCC views.
 // -----------------------------------------------------------------------------
 static void append_chunk(std::vector<std::uint8_t>& destination,
                          std::string_view tag,
                          const std::vector<std::uint8_t>& body)
 {
     for (std::size_t index = 0U; index < 4U; ++index) {
-        destination.push_back(static_cast<std::uint8_t>(tag[index]));
+        destination.push_back(index < tag.size() ?
+            static_cast<std::uint8_t>(tag[index]) : 0U);
     }
     append_u32(destination, static_cast<std::uint32_t>(body.size() + 8U));
     destination.insert(destination.end(), body.begin(), body.end());
+}
+
+// -----------------------------------------------------------------------------
+// Check FourCC padding without relying on a terminator beyond the input view.
+// -----------------------------------------------------------------------------
+static void test_chunk_tags()
+{
+    const std::array<char, 4U> storage = {'R', 'E', 'V', '!'};
+    std::vector<std::uint8_t> bytes = {};
+    const std::vector<std::uint8_t> revision = {
+        'R', 'E', 'V', 0U, 12U, 0U, 0U, 0U, 2U, 0U, 0U, 0U
+    };
+    const std::vector<std::uint8_t> full = {
+        'R', 'E', 'V', '!', 8U, 0U, 0U, 0U
+    };
+    const std::vector<std::uint8_t> empty = {
+        0U, 0U, 0U, 0U, 8U, 0U, 0U, 0U
+    };
+
+    append_chunk(bytes, std::string_view(storage.data(), 3U),
+                 {2U, 0U, 0U, 0U});
+    expect(bytes == revision, "short FourCC is padded inside fixture writer");
+    bytes.clear();
+    append_chunk(bytes, std::string_view(storage.data(), storage.size()), {});
+    expect(bytes == full, "four-byte FourCC is preserved without terminator");
+    bytes.clear();
+    append_chunk(bytes, std::string_view{}, {});
+    expect(bytes == empty, "empty FourCC is zero-padded without reading it");
 }
 
 // -----------------------------------------------------------------------------
@@ -333,6 +363,7 @@ static void test_runtime()
 // -----------------------------------------------------------------------------
 int main()
 {
+    test_chunk_tags();
     test_failures();
     test_lifecycle();
     test_runtime();
