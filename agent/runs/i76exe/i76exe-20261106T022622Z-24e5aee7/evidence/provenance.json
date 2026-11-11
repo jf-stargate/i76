@@ -1,0 +1,30 @@
+{
+  "accepted_dependencies": [
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011552Z-7f9377cc/scripts/I76_CameraBase.java",
+      "pr": 140,
+      "sha256": "44f0194de7a22786b27491c2a37d539ce42d44fc60039e82c6c13a55327fb2a2"
+    },
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011552Z-7f9377cc/scripts/verify_topology.py",
+      "pr": 140,
+      "sha256": "e5fe6947fd3f9159e885b390f46a41f6ba7009a98fd5beca84feb6f0a5e4ebe9"
+    },
+    {
+      "path": "agent/runs/i76exe/i76exe-20261106T011534Z-5a34de5f/scripts/coordinate_model.py",
+      "pr": 141,
+      "sha256": "f67052940ee8ff9a0471a5c921f5470a68f169d49386ee2d853578ec7fe97893"
+    }
+  ],
+  "base_commit": "19c755a77db404ba9cb0ab51f307b4261e983aff",
+  "fresh_audit_first_line": "CODE_EQUAL\t1000\t765952\te58a54c0e39b55c2d0110cf8a6d22bedf8c53896a85b10dc7d1e8775cfe1318a",
+  "native_continuation_patch": {
+    "after": "83c404c3",
+    "before": "83c40485",
+    "scope": "continuation after numerical prefix; root/math/sampler bodies unchanged",
+    "va": "00490B23"
+  },
+  "observer_derivation": "I76_TopologyProbe.java from #140 with owned root observations and controls; CameraBase unchanged",
+  "prediction_boundary": "camera input subobject only; height stencils independently extracted from source data, no original root/plane/hull/threshold outputs",
+  "run_id": "i76exe-20261106T022622Z-24e5aee7"
+}
